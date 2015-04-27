@@ -1,0 +1,14 @@
+Microsoft HTML Help Compiler 4.74.8702
+
+Compiling c:\Users\Jonathan\Documents\SignWriter\SignWriter Studio\Help\SignWriterStudio.chm
+
+
+Compile time: 0 minutes, 0 seconds
+35	Topics
+175	Local links
+3	Internet links
+12	Graphics
+
+
+Created c:\Users\Jonathan\Documents\SignWriter\SignWriter Studio\Help\SignWriterStudio.chm, 176,922 bytes
+Compression decreased file by 125,998 bytes.

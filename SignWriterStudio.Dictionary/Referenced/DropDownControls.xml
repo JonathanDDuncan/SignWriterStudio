@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DropDownControls</name>
+    </assembly>
+    <members>
+        <member name="T:BufferedPainting.BufferedPainter`1">
+            <summary>
+            Attaches to a System.Windows.Forms.Control and provides buffered 
+            painting functionality.
+            <para>
+            Uses TState to represent the visual state of the control. Animations 
+            are attached to transitions between states.
+            </para>
+            </summary>
+            <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
+        </member>
+        <member name="M:BufferedPainting.BufferedPainter`1.OnPaintVisualState(BufferedPainting.BufferedPaintEventArgs{`0})">
+            <summary>
+            Raises the PaintVisualState event.
+            </summary>
+            <param name="e">BufferedPaintEventArgs instance.</param>
+        </member>
+        <member name="M:BufferedPainting.BufferedPainter`1.#ctor(System.Windows.Forms.Control)">
+            <summary>
+            Initialises a new instance of the BufferedPainter class.
+            </summary>
+            <param name="control">
+            Control this instance is attached to.
+            <para>
+            For best results, use a control which does not paint its background.
+            </para>
+            <para>
+            Note: Buffered painting does not work if the OptimizedDoubleBuffer flag is set for the control.
+            </para> 
+            </param>
+        </member>
+        <member name="M:BufferedPainting.BufferedPainter`1.AddTransition(`0,`0,System.Int32)">
+            <summary>
+            Short-hand method for adding a state transition.
+            </summary>
+            <param name="fromState">The previous visual state.</param>
+            <param name="toState">The new visual state.</param>
+            <param name="duration">Duration of the animation (in milliseconds).</param>
+        </member>
+        <member name="M:BufferedPainting.BufferedPainter`1.AddTrigger(BufferedPainting.VisualStateTriggerTypes,`0,System.Drawing.Rectangle,System.Windows.Forms.AnchorStyles)">
+            <summary>
+            Short-hand method for adding a state change trigger.
+            </summary>
+            <param name="type">Type of trigger.</param>
+            <param name="state">Visual state applied when the trigger occurs.</param>
+            <param name="bounds">Bounds within which the trigger applies.</param>
+            <param name="anchor">How the bounds are anchored to the control.</param>
+        </member>
+        <member name="M:BufferedPainting.BufferedPainter`1.EvalTriggers">
+            <summary>
+            Evaluates all state change triggers.
+            </summary>
+        </member>
+        <member name="M:BufferedPainting.BufferedPainter`1.ApplyCondition(BufferedPainting.VisualStateTriggerTypes,`0@)">
+            <summary>
+            Helper method for EvalTriggers().
+            </summary>
+            <param name="type">Type of trigger to search for.</param>
+            <param name="stateIfTrue">Reference to the visual state variable to update (if the trigger occurs).</param>
+        </member>
+        <member name="M:BufferedPainting.BufferedPainter`1.CleanupAnimations">
+            <summary>
+            Deactivates buffered painting.
+            </summary>
+        </member>
+        <member name="E:BufferedPainting.BufferedPainter`1.PaintVisualState">
+            <summary>
+            Fired when the control must be painted in a particular state.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.BufferedPaintSupported">
+            <summary>
+            Gets whether buffered painting is supported for the current OS/configuration.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Control">
+            <summary>
+            Gets the control this instance is attached to.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.DefaultDuration">
+            <summary>
+            Gets or sets the default animation duration (in milliseconds) for state transitions. The default is zero (not animated).
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Enabled">
+            <summary>
+            Gets or sets whether animation is enabled.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.DefaultState">
+            <summary>
+            Gets or sets the default visual state. The default value is 'default(TState)'.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Transitions">
+            <summary>
+            Gets the collection of state transitions and their animation durations. 
+            Only one item for each unique state transition is permitted.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Triggers">
+            <summary>
+            Gets the collection of state change triggers. 
+            Only one item for each unique combination of type and visual state is permitted.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.State">
+            <summary>
+            Gets or sets the current visual state.
+            </summary>
+        </member>
+        <member name="T:BufferedPainting.BufferedPaintTransition`1">
+            <summary>
+            Represents a transition between two visual states. Describes the duration of the animation. 
+            Two transitions are considered equal if they represent the same change in visual state.
+            </summary>
+            <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
+        </member>
+        <member name="M:BufferedPainting.BufferedPaintTransition`1.#ctor(`0,`0,System.Int32)">
+            <summary>
+            Initialises a new instance of the BufferedPaintTransition class.
+            </summary>
+            <param name="fromState">The previous visual state.</param>
+            <param name="toState">The new visual state.</param>
+            <param name="duration">Duration of the animation (in milliseconds).</param>
+        </member>
+        <member name="M:BufferedPainting.BufferedPaintTransition`1.Equals(System.Object)">
+            <summary>
+            Determines if two instances are equal.
+            </summary>
+            <param name="obj">The object to compare.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BufferedPainting.BufferedPaintTransition`1.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintTransition`1.FromState">
+            <summary>
+            Gets the previous visual state.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintTransition`1.ToState">
+            <summary>
+            Gets the new visual state.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintTransition`1.Duration">
+            <summary>
+            Gets or sets the duration (in milliseconds) of the animation.
+            </summary>
+        </member>
+        <member name="T:BufferedPainting.VisualStateTrigger`1">
+            <summary>
+            Represents a trigger for a particular visual state. 
+            Two triggers are considered equal if they are of the same type and visual state.
+            </summary>
+            <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
+        </member>
+        <member name="M:BufferedPainting.VisualStateTrigger`1.#ctor(BufferedPainting.VisualStateTriggerTypes,`0,System.Drawing.Rectangle,System.Windows.Forms.AnchorStyles)">
+            <summary>
+            Initialises a new instance of the VisualStateTrigger class.
+            </summary>
+            <param name="type">Type of trigger.</param>
+            <param name="state">Visual state applied when the trigger occurs.</param>
+            <param name="bounds">Bounds within which the trigger applies.</param>
+        </member>
+        <member name="M:BufferedPainting.VisualStateTrigger`1.Equals(System.Object)">
+            <summary>
+            Determines if two instances are equal.
+            </summary>
+            <param name="obj">The object to compare.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BufferedPainting.VisualStateTrigger`1.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.Type">
+            <summary>
+            Gets the type of trigger.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.State">
+            <summary>
+            Gets the visual state applied when the trigger occurs.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.Bounds">
+            <summary>
+            Gets or sets the bounds within which the trigger applies.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.Anchor">
+            <summary>
+            Gets or sets how the bounds are anchored to the edge of the control.
+            </summary>
+        </member>
+        <member name="T:BufferedPainting.VisualStateTriggerTypes">
+            <summary>
+            Represents the types of trigger which can change the visual state of a control.
+            </summary>
+        </member>
+        <member name="F:BufferedPainting.VisualStateTriggerTypes.Focused">
+            <summary>
+            The control receives input focus.
+            </summary>
+        </member>
+        <member name="F:BufferedPainting.VisualStateTriggerTypes.Hot">
+            <summary>
+            The mouse is over the control.
+            </summary>
+        </member>
+        <member name="F:BufferedPainting.VisualStateTriggerTypes.Pushed">
+            <summary>
+            The left mouse button is pressed on the control.
+            </summary>
+        </member>
+        <member name="T:BufferedPainting.BufferedPaintEventArgs`1">
+            <summary>
+            EventArgs class for the BufferedPainter.PaintVisualState event.
+            </summary>
+            <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
+        </member>
+        <member name="M:BufferedPainting.BufferedPaintEventArgs`1.#ctor(`0,System.Drawing.Graphics)">
+            <summary>
+            Initialises a new instance of the BufferedPaintEventArgs class.
+            </summary>
+            <param name="state">Visual state to paint.</param>
+            <param name="graphics">Graphics object on which to paint.</param>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintEventArgs`1.State">
+            <summary>
+            Gets the visual state to paint.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintEventArgs`1.Graphics">
+            <summary>
+            Gets the Graphics object on which to paint.
+            </summary>
+        </member>
+        <member name="T:DropDownControls.IEnumerableToDataTable.ConvertDataTable">
+            <summary>
+            Convert IEnumerable to DataTable
+            </summary>
+        </member>
+        <member name="M:DropDownControls.IEnumerableToDataTable.ConvertDataTable.ToAdoTable``1(System.Collections.Generic.IEnumerable{``0},DropDownControls.IEnumerableToDataTable.ConvertDataTable.CreateRowDelegate{``0})">
+            <summary>
+            T
+            </summary>
+            <param name="varlist">the IEnumerable list</param>
+            <param name="fn"> function to create new object such as rec => new object[] {query}</param>
+            <typeparam name="T"></typeparam>
+            <returns>DataTable Object</returns>
+        </member>
+        <member name="T:DropDownControls.IEnumerableToDataTable.ConvertDataTable.CreateRowDelegate`1">
+            <summary>
+            
+            </summary>
+            <param name="t"></param>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:DropDownControls.FilteredGroupedComboBox.GroupedComboBoxItem">
+            <summary>
+            Item for Filtered Grouped ComboBox
+            Group is string of the group
+            Value is the value or ID
+            Display is the Item text
+            </summary>
+        </member>
+        <member name="T:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox">
+            <summary>
+            Represents a Windows combo box control that, when bound to a data source, is capable of 
+            displaying items in groups/categories.
+            </summary>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.#ctor">
+            <summary>
+            Initialises a new instance of the GroupedComboBox class.
+            </summary>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.Dispose(System.Boolean)">
+            <summary>
+            Releases the resources used by the control.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnDropDownStyleChanged(System.EventArgs)">
+            <summary>
+            Recreates the control's handle when the DropDownStyle property changes.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnDropDown(System.EventArgs)">
+            <summary>
+            Redraws the control when the dropdown portion is displayed.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnDropDownClosed(System.EventArgs)">
+            <summary>
+            Redraws the control when the dropdown portion closes.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnGotFocus(System.EventArgs)">
+            <summary>
+            Repaints the control when it receives input focus.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnLostFocus(System.EventArgs)">
+            <summary>
+            Repaints the control when it loses input focus.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Paints the control without a background (when using buffered painting).
+            </summary>
+            <param name="pevent"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnSelectedItemChanged(System.EventArgs)">
+            <summary>
+            Redraws the control when the selected item changes.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.System#Collections#IComparer#Compare(System.Object,System.Object)">
+            <summary>
+            Explicit interface implementation for the IComparer.Compare method. Performs a two-tier comparison 
+            on two list items so that the list can be sorted by group, then by display value.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.GetPushButtonState(System.Windows.Forms.VisualStyles.ComboBoxState)">
+            <summary>
+            Converts a ComboBoxState into its equivalent PushButtonState value.
+            </summary>
+            <param name="combo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.GetRenderState">
+            <summary>
+            Determines the state in which to render the control (when using buffered painting).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.IsGroupStart(System.Int32,System.String@)">
+            <summary>
+            Determines whether the list item at the specified index is the start of a new group. In all 
+            cases, populates the string respresentation of the group that the item belongs to.
+            </summary>
+            <param name="index"></param>
+            <param name="groupText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.mBindingSource_ListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            Re-synchronises the internal sorted collection when the data source changes.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnFontChanged(System.EventArgs)">
+            <summary>
+            When the control font changes, updates the font used to render group names.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnParentChanged(System.EventArgs)">
+            <summary>
+            When the parent control changes, updates the font used to render group names.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnDrawItem(System.Windows.Forms.DrawItemEventArgs)">
+            <summary>
+            Performs custom painting for a list item.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnMeasureItem(System.Windows.Forms.MeasureItemEventArgs)">
+            <summary>
+            Determines the size of a list item.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.SyncInternalItems">
+            <summary>
+            Rebuilds the internal sorted collection.
+            </summary>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.ToggleStyle">
+            <summary>
+            Changes the control style to allow user-painting in DropDownList mode (when using buffered painting).
+            </summary>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox._bufferedPainter_PaintVisualState(System.Object,BufferedPainting.BufferedPaintEventArgs{System.Windows.Forms.VisualStyles.ComboBoxState})">
+            <summary>
+            Paints the control (using the Buffered Paint API).
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnTextChanged(System.EventArgs)">
+            <summary>
+            Raises the System.Windows.Forms.Control.TextChanged event.
+            </summary>
+            <param name="e">An System.EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.OnSelectedIndexChanged(System.EventArgs)">
+            <summary>
+            Raises the System.Windows.Forms.ComboBox.SelectedIndexChanged event.
+            </summary>
+            <param name="e">An System.EventArgs that contains the event data.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.FilterableGroupableDataSource(System.Collections.Generic.IEnumerable{DropDownControls.FilteredGroupedComboBox.GroupedComboBoxItem})" -->
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DataView">
+            <summary>
+            Filterable dataview for combobox items
+            </summary>
+        </member>
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DataSource">
+            <summary>
+            Gets or sets the data source for this GroupedComboBox.
+            </summary>
+        </member>
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DrawMode">
+            <summary>
+            Gets a value indicating whether the drawing of elements in the list will be handled by user code. 
+            </summary>
+        </member>
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.GroupMember">
+            <summary>
+            Gets or sets the property to use when grouping items in the list.
+            </summary>
+        </member>
+    </members>
+</doc>

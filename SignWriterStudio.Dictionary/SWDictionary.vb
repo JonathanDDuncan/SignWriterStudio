@@ -1,0 +1,1989 @@
+Imports System.ComponentModel
+Imports System.Drawing.Imaging
+Imports System.IO
+Imports System.Data.OleDb
+Imports DropDownControls.FilteredGroupedComboBox
+Imports Microsoft.VisualBasic.FileIO
+Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
+Imports SignWriterStudio.Settings
+Imports SignWriterStudio.General
+Imports SignWriterStudio.Database.Dictionary
+Imports SignWriterStudio.SWClasses
+Imports SPML
+Imports SignWriterStudio.SWEditor
+Imports System.Data.SQLite
+Imports System.Xml
+Imports System.Text
+Imports System.Data.SqlClient
+Imports System.Linq
+
+Public Class SWDictForm
+    Dim WithEvents SPMLImportbw As BackgroundWorker ' With {.WorkerReportsProgress = True}
+    Dim WithEvents SPMLExportbw As New BackgroundWorker With {.WorkerReportsProgress = True}
+    Dim SWEditorProgressBar As New Progress
+    Private myExportSettings As New ExportSettings
+    'Friend WithEvents monitor As EQATEC.Analytics.Monitor.IAnalyticsMonitor = EQATEC.Analytics.Monitor.AnalyticsMonitorFactory.Create("7A55FE8188FD4072B11C3EA5D30EB7F9")
+    Private Editor As Editor
+    'Private ImportExport As SignWriterStudio.Document.ImportExport
+
+    Dim _myDictionary As New SWDict
+    Dim ColumnClicked As DictionaryColumn
+    Dim ClickedCell As DataGridViewCell
+    Public CallingForm As Form
+    Public IDDictionaryResult As Integer
+    Dim isLoading As Boolean = True
+    Private _DictionaryLoaded As Boolean = False
+
+    Public Property DictionaryLoaded() As Boolean
+        Get
+            Return _DictionaryLoaded
+        End Get
+        Set(ByVal value As Boolean)
+            _DictionaryLoaded = value
+            DictLoadedChanged()
+        End Set
+    End Property
+
+
+    Public Enum DictionaryColumn
+        Photo
+        Sign
+        SWriting
+    End Enum
+
+    Public Property CbGloss() As String
+        Get
+            Return CBGloss1.SelectedValue
+        End Get
+        Set(ByVal value As String)
+            CBGloss1.SelectedValue = value
+        End Set
+    End Property
+
+    Private Sub SWDictForm_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
+        SaveDataGrid()
+    End Sub
+
+    Private Sub SWDict_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        KeyPreview = True
+        WindowState = FormWindowState.Maximized
+        LoadDictionary()
+    End Sub
+
+    Private Sub LoadDictionary(Optional ask As Boolean = True)
+        isLoading = True
+        _myDictionary = New SWDict
+        _myDictionary.DictionaryBindingSource1.DataSource = SWDict.BlankDictionaryTable
+
+        DictionaryDataGridView.AutoGenerateColumns = False
+        DictionaryDataGridView.DataSource = _myDictionary.DictionaryBindingSource1
+        CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
+        CBGloss1.DisplayMember = "gloss1"
+        CBGloss1.ValueMember = "IDDictionary"
+        CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
+        CBGloss2.DisplayMember = "gloss2"
+        CBGloss2.ValueMember = "IDDictionary"
+        DictionaryBindingNavigator.BindingSource = _myDictionary.DictionaryBindingSource1
+        ShowButtons()
+        UpdateOptions()
+        SetGlossTittles()
+        CheckDictionary(ask)
+
+        SWEditorProgressBar.Text = "SignWriter Studio™ Converting data ..."
+        SWEditorProgressBar.ProgressBar1.Minimum = 0
+        SWEditorProgressBar.ProgressBar1.Maximum = 100
+        SWEditorProgressBar.ProgressBar1.Value = 0
+
+        Tags.DataSource = GetTagsData()
+
+        isLoading = False
+    End Sub
+
+    Private Shared Function GetTagsData() As Object
+        Return {
+                New GroupedComboBoxItem With {.Group = "Gases", .Value = "1", .Display = "Helium"},
+                New GroupedComboBoxItem With {.Group = "Gases", .Value = "2", .Display = "Hydrogen"},
+                New GroupedComboBoxItem With {.Group = "Gases", .Value = "3", .Display = "Oxygen"},
+                New GroupedComboBoxItem With {.Group = "Gases", .Value = "4", .Display = "Argon"},
+                New GroupedComboBoxItem With {.Group = "Metals", .Value = "5", .Display = "Iron"},
+                New GroupedComboBoxItem With {.Group = "Metals", .Value = "6", .Display = "Lithium"},
+                New GroupedComboBoxItem With {.Group = "Metals", .Value = "7", .Display = "Copper"},
+                New GroupedComboBoxItem With {.Group = "Metals", .Value = "8", .Display = "Gold"},
+                New GroupedComboBoxItem With {.Group = "Metals", .Value = "9", .Display = "Silver"},
+                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "10", .Display = "Uranium"},
+                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "11", .Display = "Plutonium"},
+                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "12", .Display = "Americium"},
+                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "13", .Display = "Radon"}
+            }
+    End Function
+
+    Private Sub CheckDictionary(Optional ask As Boolean = True)
+        Dim wasUpgraded = False
+        If Not DatabaseSetup.CheckDictionary(ask, wasUpgraded) Then
+            MessageBox.Show("Choose or create a SignWriter Dictionary (.SWS) file before continuing.")
+        Else
+            DictionaryLoaded = True
+            ShowloadedFile()
+        End If
+
+        If wasUpgraded Then
+            ' Create sort strings if first one is empty
+            _myDictionary.CreateSortString()
+        End If
+    End Sub
+
+    Private Sub ShowButtons()
+        If CallingForm IsNot Nothing AndAlso Not Me.CallingForm.Name = "SignWriterMenu" Then
+            BtnAccept.Visible = True
+            BtnCancel.Visible = True
+        Else
+            BtnAccept.Visible = False
+            BtnCancel.Visible = False
+        End If
+    End Sub
+
+    Private Sub SetGlossTittles()
+        DictionaryDataGridView.Columns("gloss1").HeaderText = "Gloss " &
+                                                              UI.Cultures.GetCultureFullName(
+                                                                  _myDictionary.FirstGlossLanguage)
+        DictionaryDataGridView.Columns("glosses1").HeaderText = "Other Glosses " &
+                                                                UI.Cultures.GetCultureFullName(
+                                                                    _myDictionary.FirstGlossLanguage)
+        DictionaryDataGridView.Columns("gloss2").HeaderText = "Gloss " &
+                                                              UI.Cultures.GetCultureFullName(
+                                                                  _myDictionary.SecondGlossLanguage)
+        DictionaryDataGridView.Columns("glosses2").HeaderText = "Other Glosses " &
+                                                                UI.Cultures.GetCultureFullName(
+                                                                    _myDictionary.SecondGlossLanguage)
+    End Sub
+
+    Friend Sub LoadDictionaryEntries()
+        If DictionaryLoaded Then
+            DictionaryDataGridView.SuspendLayout()
+            'Check if entries have been saved before reloading and losing changes.
+            Dim dt As DataTable = Me._myDictionary.DictionaryBindingSource1.DataSource
+            'Create dataset if not exists
+            If dt.DataSet Is Nothing Then
+                Dim ds As New DataSet
+                ds.Tables.Add(_myDictionary.DictionaryBindingSource1.DataSource)
+            End If
+
+            SaveDataGrid()
+            Dim search As String
+
+            search = "%" & TBSearch.Text & "%"
+
+            _myDictionary.SearchText(search)
+            CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
+            CBGloss1.DisplayMember = "gloss1"
+            CBGloss1.ValueMember = "IDDictionary"
+            CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
+            CBGloss2.DisplayMember = "gloss2"
+            CBGloss2.ValueMember = "IDDictionary"
+            DictionaryDataGridView.ResumeLayout()
+        Else
+            MessageBox.Show("Choose a valid SignWriter file before continuing.")
+        End If
+    End Sub
+
+    Friend Sub LoadDictionaryAll()
+
+        If DictionaryLoaded Then
+            DictionaryDataGridView.SuspendLayout()
+            'Check if entries have been saved before reloading and losing changes.
+            Dim dt As DataTable = _myDictionary.DictionaryBindingSource1.DataSource
+            'Create dataset if not exists
+            If dt.DataSet Is Nothing Then
+                Dim ds As New DataSet
+                ds.Tables.Add(_myDictionary.DictionaryBindingSource1.DataSource)
+            End If
+            SaveDataGrid()
+            Const limit As Integer = 100
+            Dim limited As Boolean
+            Dim count = _myDictionary.SignsinDictionaryCount
+            If count > limit Then
+                Dim result =
+                        MessageBox.Show(
+                            "There are " & count &
+                            " signs in the dictionary.  It make take a while to display them all. Would you like to just show the first " &
+                            limit & "?", "Show all signs", MessageBoxButtons.YesNo)
+                limited = (result = DialogResult.Yes)
+            End If
+
+
+            If limited Then
+                _myDictionary.TopSigns(limit)
+
+            Else
+                _myDictionary.AllSigns()
+
+            End If
+
+
+            CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
+            CBGloss1.DisplayMember = "gloss1"
+            CBGloss1.ValueMember = "IDDictionary"
+            CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
+            CBGloss2.DisplayMember = "gloss2"
+            CBGloss2.ValueMember = "IDDictionary"
+            DictionaryDataGridView.ResumeLayout()
+        Else
+            MessageBox.Show("Choose a valid SignWriter file before continuing.")
+        End If
+    End Sub
+
+    Private Sub EditImage()
+        Dim imageEditor As New ImageEditor.ImageEditor
+        Dim image1 As Image =
+                Me.DictionaryDataGridView.CurrentCell.GetEditedFormattedValue(
+                    Me.DictionaryDataGridView.CurrentCell.RowIndex, DataGridViewDataErrorContexts.Display)
+        'Resize to same to not have indexed pixels.
+        imageEditor.Image = SWDrawing.ResizeImage(image1, image1.Width, image1.Height)
+
+        Dim dialogRes As DialogResult = imageEditor.ShowDialog()
+        If (dialogRes = DialogResult.OK) Then
+            DictionaryDataGridView.CurrentCell.Value = imageEditor.Image
+            imageEditor.Close()
+        ElseIf (dialogRes = DialogResult.Cancel) Then
+            imageEditor.Close()
+        End If
+    End Sub
+
+    Private Sub SaveFileDialog1_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) Handles OpenImage.FileOk
+        ImportImage(OpenImage.FileName, DictionaryDataGridView.CurrentCell)
+    End Sub
+
+    Private Sub ImportImage(ByVal filename As String, ByVal currentCell As DataGridViewCell)
+        Try
+            'check for boundaries before performing delete: datatable is empty, or there is no selection
+            If currentCell IsNot Nothing Then
+                'convert generic Current object returned by DataConnector to the typed movie row object
+                'Dim rowView As DataRowView = CType(Me.MyDictionary.DictionaryBindingSource1.DataSource.Current, DataRowView)
+                'Dim wordRow As DataRow = CType(rowView.Row, DataRow)
+
+                If ColumnClicked = DictionaryColumn.Photo Then
+                    'open file as Readonly from file system, copy bytes, and assign to the image property of the current row
+                    currentCell.Value = My.Computer.FileSystem.ReadAllBytes(filename)
+                    'Edit
+                    EditImage()
+                End If
+                If ColumnClicked = DictionaryColumn.Sign Then
+                    'open file as Readonly from file system, copy bytes, and assign to the image property of the current row
+                    currentCell.Value = My.Computer.FileSystem.ReadAllBytes(filename)
+                    'Edit
+                    EditImage()
+                End If
+
+            End If
+        Catch ex As Exception
+            LogError(ex, "Saving Dictionary Entries, UpdateDictionaryEntries " & ex.GetType().Name)
+
+        End Try
+    End Sub
+
+    Private Sub Me_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
+        Dim controlActive As Object = ActiveControl
+
+        Select Case e.KeyCode
+            Case Keys.Enter
+                If e.Control Then
+                    Accept()
+                ElseIf controlActive.Name = TBSearch.Name Then
+                    LoadDictionaryEntries()
+
+                End If
+                'Case Keys.C
+                '    If e.Control Then
+                '        CopySign()
+                '        e.Handled = True
+
+                '    End If
+                'Case Keys.V
+                '    If e.Control Then
+                '        PasteSign()
+                '        e.Handled = True
+
+                '    End If
+            Case Keys.G
+                If e.Control Then
+                    DictionaryDataGridView.Focus()
+                    e.Handled = True
+                    e.SuppressKeyPress = True
+                End If
+            Case Keys.S
+                If e.Control Then
+                    TBSearch.Focus()
+                    e.Handled = True
+                    e.SuppressKeyPress = True
+                End If
+
+
+            Case Keys.Escape
+                Cancel()
+            Case Keys.F1
+                Help.ShowHelp(Me, "SignWriterStudio.chm", "dictionary.htm")
+        End Select
+    End Sub
+
+    Private Sub WordsViewDataGridView_CellDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) _
+        Handles DictionaryDataGridView.CellDoubleClick
+        OpenEditor()
+    End Sub
+
+    Private Sub WordsViewDataGridView_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs)
+        'Consume DataError  
+    End Sub
+
+    Sub SaveDataGrid()
+        Try
+            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+
+            Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+            Using conn
+                Try
+                    SaveDataGrid(conn, trans)
+                    trans.Commit()
+                Catch ex As SQLiteException
+                    LogError(ex, "SQLite Error " & ex.GetType().Name)
+
+                    MessageBox.Show(ex.ToString)
+                    If trans IsNot Nothing Then trans.Rollback()
+                Finally
+                    conn.Close()
+
+                End Try
+            End Using
+
+        Catch ex As ArgumentException
+            LogError(ex, "No current file can not save DataGrid " & ex.GetType().Name)
+
+
+        End Try
+    End Sub
+
+    Sub SaveDataGrid(ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
+
+        'Try
+        UpdateDataset()
+        Dim ds As New DataSet
+        Dim previousDs As DataSet
+        Dim changedDs As DataSet
+        Dim dt As DataTable = _myDictionary.DictionaryBindingSource1.DataSource
+        If dt IsNot Nothing Then
+            If dt.DataSet IsNot Nothing Then
+                previousDs = dt.DataSet
+                previousDs.Tables.Remove(dt)
+            End If
+
+            ds.Tables.Add(dt)
+
+            changedDs = ds.GetChanges
+            If changedDs IsNot Nothing AndAlso changedDs.Tables.Count >= 1 Then
+                _myDictionary.UpdateDictionaryEntries(
+                    _myDictionary.ConvertUnilingualDTtoBilingualDt(changedDs.Tables(0)),
+                    _myDictionary.FirstGlossLanguage, _myDictionary.SecondGlossLanguage, conn, trans)
+            End If
+
+        End If
+        dt.AcceptChanges()
+    End Sub
+
+    Sub UpdateDataset()
+
+        Validate()
+        _myDictionary.DictionaryBindingSource1.EndEdit()
+    End Sub
+
+    Public Sub FindSign(ByVal IDDictionary As Integer)
+        Me._myDictionary.GetbyIdDictionary(IDDictionary)
+    End Sub
+
+
+    Private Sub LoadTranslations()
+        'TODO Translations
+    End Sub
+
+
+    Private Sub DictionaryBindingNavigatorSaveItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Me.SaveDataGrid()
+    End Sub
+
+    Private Sub DictionaryDataGridView_CellEnter(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) _
+        Handles DictionaryDataGridView.CellEnter
+        If sender.CurrentCell.OwningColumn.DataPropertyName = "Photo" Then
+            Me.ColumnClicked = DictionaryColumn.Photo
+        ElseIf sender.CurrentCell.OwningColumn.DataPropertyName = "Sign" Then
+            Me.ColumnClicked = DictionaryColumn.Sign
+        ElseIf sender.CurrentCell IsNot Nothing AndAlso sender.CurrentCell.OwningColumn.DataPropertyName = "SWriting" _
+            Then
+            Me.ColumnClicked = DictionaryColumn.SWriting
+        Else
+            Me.ColumnClicked = Nothing
+        End If
+    End Sub
+
+    Private Sub DictionaryDataGridView_CellMouseDown(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) _
+        Handles DictionaryDataGridView.CellMouseDown
+        If sender.currentcell IsNot Nothing Then
+            If sender.CurrentCell.OwningColumn.DataPropertyName = "Photo" Then
+                Me.ColumnClicked = DictionaryColumn.Photo
+            ElseIf sender.CurrentCell.OwningColumn.DataPropertyName = "Sign" Then
+                Me.ColumnClicked = DictionaryColumn.Sign
+            ElseIf _
+                sender.CurrentCell IsNot Nothing AndAlso sender.CurrentCell.OwningColumn.DataPropertyName = "SWriting" _
+                Then
+                Me.ColumnClicked = DictionaryColumn.SWriting
+            Else
+                Me.ColumnClicked = Nothing
+            End If
+        Else
+            Me.ColumnClicked = Nothing
+        End If
+    End Sub
+
+    Private Sub SetClipboardImage()
+        Dim Value As Image
+        If _
+            DictionaryDataGridView.CurrentCell IsNot Nothing AndAlso
+            DictionaryDataGridView.CurrentCell.Value IsNot Nothing AndAlso
+            DictionaryDataGridView.CurrentCell.Value.GetType.FullName = "System.Byte[]" Then
+            Value = ByteArraytoImage(DictionaryDataGridView.CurrentCell.Value)
+
+            Select Case ColumnClicked
+                Case DictionaryColumn.Photo
+                    SWDrawing.SetClipboardImage(Value)
+                Case DictionaryColumn.Sign
+                    SWDrawing.SetClipboardImage(Value)
+                Case DictionaryColumn.SWriting
+                    SWDrawing.SetClipboardImage(Value)
+            End Select
+        End If
+    End Sub
+
+    Private Sub DictionaryDataGridView_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) _
+        Handles DictionaryDataGridView.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete
+                If DictionaryDataGridView.SelectedCells.Count > 1 Then
+                    DeleteEntries()
+                Else
+                    DeleteCellInfo(DictionaryDataGridView.CurrentCellAddress)
+                End If
+            Case Keys.Enter
+                OpenEditor()
+        End Select
+    End Sub
+
+    Private Sub DictionaryDataGridView_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) _
+        Handles DictionaryDataGridView.MouseDown
+        Dim HitTestInfo As DataGridView.HitTestInfo = DictionaryDataGridView.HitTest(e.X, e.Y)
+        If HitTestInfo.Type = DataGridViewHitTestType.Cell Then
+            Me.ClickedCell = DictionaryDataGridView.Rows(HitTestInfo.RowIndex).Cells(HitTestInfo.ColumnIndex)
+        Else
+            Me.ClickedCell = Nothing
+        End If
+    End Sub
+
+    Private Sub DictionaryDataGridView_RowValidating(ByVal sender As Object, ByVal e As DataGridViewCellCancelEventArgs) _
+        Handles DictionaryDataGridView.RowValidating
+        If Information.IsDBNull(Me.DictionaryDataGridView.Rows(e.RowIndex).Cells("SignLanguage").Value) Then
+            Me.DictionaryDataGridView.Rows(e.RowIndex).Cells("SignLanguage").Value =
+                Me._myDictionary.DefaultSignLanguage
+        End If
+    End Sub
+
+    Private Sub UpdateOptions()
+
+        Me._myDictionary.DefaultSignLanguage = SettingsPublic.DefaultSignLanguage
+        Me._myDictionary.FirstGlossLanguage = SettingsPublic.FirstGlossLanguage
+        Me._myDictionary.SecondGlossLanguage = SettingsPublic.SecondGlossLanguage
+        Me._myDictionary.BilingualMode = SettingsPublic.BilingualMode
+        If Me._myDictionary.BilingualMode Then
+
+            Me.LBGlossLang2.Visible = True
+            Me.CBGloss2.Visible = True
+            Me.DictionaryDataGridView.Columns("Gloss2").Visible = True
+            Me.DictionaryDataGridView.Columns("Glosses2").Visible = True
+
+        Else
+
+            Me.LBGlossLang2.Visible = False
+            Me.CBGloss2.Visible = False
+            Me.DictionaryDataGridView.Columns("Gloss2").Visible = False
+            Me.DictionaryDataGridView.Columns("Glosses2").Visible = False
+
+        End If
+
+        Me.LBGlossLang1.Text = UI.Cultures.GetCultureFullName(Me._myDictionary.FirstGlossLanguage)
+        Me.LBGlossLang2.Text = UI.Cultures.GetCultureFullName(Me._myDictionary.SecondGlossLanguage)
+
+        SetGlossTittles()
+    End Sub
+
+    Private Sub TBSearch_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles TBSearch.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            LoadDictionaryEntries()
+            LetKnowNoMatchesFound()
+            e.SuppressKeyPress = True
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub CBGloss1_SelectedValueChanged(ByVal sender As Object, ByVal e As EventArgs) _
+        Handles CBGloss1.SelectedValueChanged
+        If Me._myDictionary.BilingualMode AndAlso CBGloss1.SelectedValue IsNot Nothing Then
+            CBGloss2.SelectedValue = CBGloss1.SelectedValue
+        End If
+    End Sub
+
+    Private Sub CBGloss2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) _
+        Handles CBGloss2.SelectedIndexChanged
+        If Me._myDictionary.BilingualMode AndAlso CBGloss2.SelectedValue IsNot Nothing Then
+            CBGloss1.SelectedValue = CBGloss2.SelectedValue
+        End If
+    End Sub
+
+    Private Sub Cancel()
+        Me.DialogResult = DialogResult.Cancel
+        Me.Close()
+    End Sub
+
+    Private Sub Accept()
+        SaveDataGrid()
+        If _
+            DictionaryDataGridView.CurrentRow IsNot Nothing AndAlso
+            DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value IsNot Nothing Then
+            IDDictionaryResult = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+        End If
+        Me.DialogResult = DialogResult.OK
+        Me.Close()
+    End Sub
+
+    Private Sub Options()
+        Dim SWOptions As New SWOptions
+        Dim DialogRes As DialogResult = SWOptions.ShowDialog()
+        If (DialogRes = DialogResult.OK) Then
+            'Use TSWOptions
+            UpdateOptions()
+            SWOptions.Close()
+        ElseIf (DialogRes = DialogResult.Cancel) Then
+            SWOptions.Close()
+        End If
+    End Sub
+
+    Private Sub TSBDuplicate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TSBDuplicate.Click
+        SaveDataGrid()
+        Duplicate()
+    End Sub
+
+    Private Sub Duplicate()
+        Dim btnDuplicateCopy As String = " Copy"
+        If DictionaryDataGridView.CurrentRow IsNot Nothing Then
+            Me._myDictionary.DuplicateSign(_myDictionary.DictionaryBindingSource1.Current)
+
+            LoadDictionaryEntries()
+        End If
+    End Sub
+
+    Private Sub TSBSymbolSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TSBSymbolSearch.Click
+
+        SearchSymbol()
+    End Sub
+
+    Public Sub SearchSymbol()
+        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000791 begin
+        Dim searchString As String
+        Dim dt As DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        Dim swSignSearch As New SWSignSearch
+        Dim dialogRes As DialogResult = swSignSearch.ShowDialog()
+        If (dialogRes = DialogResult.OK) Then
+            If _
+                swSignSearch IsNot Nothing AndAlso swSignSearch.SearchCriteria IsNot Nothing AndAlso
+                swSignSearch.SearchCriteria.SearchString IsNot Nothing AndAlso
+                Not String.IsNullOrEmpty(swSignSearch.SearchCriteria.SearchString) Then
+                searchString = swSignSearch.SearchCriteria.SearchString
+                dt = _myDictionary.GetSymbolSearchDt(SettingsPublic.LastDictionaryString, searchString)
+                _myDictionary.UpdateDataSources(dt)
+                If dt.Rows.Count = 0 Then
+                    MessageBox.Show("There are no matches for your criteria.")
+                End If
+            Else
+                MessageBox.Show("Could not create search criteria")
+            End If
+        ElseIf (dialogRes = DialogResult.Cancel) Then
+            'SWSignSearch.Close()
+        End If
+
+        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000791 end
+    End Sub
+
+
+    'Private Sub CopyCell()
+
+    '    Dim conn As SQLite.SQLiteConnection = SWDict.GetNewDictionaryConnection()
+    '    Dim trans As SQLite.SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+    '    Using conn
+    '        Try
+    '            If Me.DictionaryDataGridView.GetCellCount( _
+    '               DataGridViewElementStates.Selected) > 0 Then
+
+    '                Try
+    '                    If Me.DictionaryDataGridView.SelectedCells.Contains(Me.ClickedCell) AndAlso Me.DictionaryDataGridView.GetCellCount( _
+    '         DataGridViewElementStates.Selected) > 1 Then
+    '                        ' Add the selection to the clipboard.
+    '                        Clipboard.SetDataObject( _
+    '                            Me.DictionaryDataGridView.GetClipboardContent())
+    '                    Else
+    '                        'Copy Clicked Cell
+    '                        If ClickedCell IsNot Nothing AndAlso Me.DictionaryDataGridView.Columns(Me.ClickedCell.ColumnIndex).Name = "SWriting" Then
+    '                            Dim Sign As SWSign
+    '                            Dim myDataObject As New DataObject()
+
+    '                            Sign = Me.MyDictionary.GetSWSign(Me.DictionaryDataGridView.Rows(Me.ClickedCell.RowIndex).Cells("IDDictionary").Value, conn, trans)
+
+    '                            If Not IsDBNull(Me.ClickedCell.Value) Then
+    '                                myDataObject.SetImage(General.ByteArraytoImage(Me.ClickedCell.Value))
+    '                            End If
+    '                            myDataObject.SetData("SWriting", False, Sign)
+    '                            Clipboard.SetDataObject(myDataObject)
+    '                        ElseIf ClickedCell IsNot Nothing AndAlso Me.DictionaryDataGridView.Columns(Me.ClickedCell.ColumnIndex).Name = "Photo" Then
+    '                            If Not IsDBNull(Me.ClickedCell.Value) Then
+    '                                SetImagetoClipboard(General.ByteArraytoImage(Me.ClickedCell.Value))
+    '                            Else
+    '                                SetImagetoClipboard(Nothing)
+    '                            End If
+    '                        ElseIf ClickedCell IsNot Nothing AndAlso Me.DictionaryDataGridView.Columns(Me.ClickedCell.ColumnIndex).Name = "Sign" Then
+    '                            If Not IsDBNull(Me.ClickedCell.Value) Then
+    '                                SetImagetoClipboard(General.ByteArraytoImage(Me.ClickedCell.Value))
+    '                            Else
+    '                                SetImagetoClipboard(Nothing)
+    '                            End If
+    '                        Else
+    '                            If ClickedCell IsNot Nothing Then
+    '                                Me.ClickedCell.Selected = True
+    '                                Clipboard.SetDataObject( _
+    '                                                  Me.DictionaryDataGridView.GetClipboardContent())
+    '                            End If
+    '                        End If
+
+
+    '                    End If
+
+
+    '                Catch ex As Exception
+    '                    'monitor.TrackException(ex, _
+    '                    '                  TraceEventType.Error, _
+    '                    '                  "Exception ")
+    '                    My.Application.Log.WriteException(ex, _
+    '                                      TraceEventType.Error, _
+    '                                      "Exception ")
+
+    '                End Try
+
+    '            End If
+    '            trans.Commit()
+    '        Catch ex As SQLite.SQLiteException
+    '            MessageBox.Show(ex.ToString)
+    '            If trans IsNot Nothing Then trans.Rollback()
+    '        Finally
+    '            conn.Close()
+
+    '        End Try
+    '    End Using
+    'End Sub
+
+    'Private Sub PasteCellClicked()
+    '     If Me.ClickedCell IsNot Nothing Then
+    '         If Me.DictionaryDataGridView.Columns(Me.ClickedCell.ColumnIndex).Name = "SWriting" Then
+    '             Dim ClipboardSign = GetSWSignFromClipboard()
+    '             Dim Sign As SWSign = ClipboardSign.SWSign
+    '             Dim RowClicked As DataGridViewRow = Me.DictionaryDataGridView.Rows(Me.ClickedCell.RowIndex)
+    '             If Sign IsNot Nothing Then
+    '                 Sign = Sign.Clone
+    '                 Sign.SignWriterGuid = New Guid
+
+    '                 If Me.ClickedCell.RowIndex < Me.DictionaryDataGridView.Rows.Count AndAlso Me.ClickedCell.RowIndex >= 0 Then
+
+    '                     Dim IDDic As Integer = Me.DictionaryDataGridView.Rows.Item(Me.ClickedCell.RowIndex).Cells("IDDictionary").Value
+
+
+    '                     Me.DictionaryDataGridView.Rows.Item(Me.ClickedCell.RowIndex).Cells("SWriting").Value = General.ImageToByteArray(Sign.Render(), Imaging.ImageFormat.Png)
+    '                     Me.MyDictionary.SaveSWSign(IDDic, Sign)
+    '                 End If
+    '             Else
+    '                 ClickedCell.Value = Nothing
+    '             End If
+    '         ElseIf Me.DictionaryDataGridView.Columns(Me.ClickedCell.ColumnIndex).Name = "Photo" Then
+    '             ClickedCell.Value = GetImageFromClipboard()
+    '         ElseIf Me.DictionaryDataGridView.Columns(Me.ClickedCell.ColumnIndex).Name = "Sign" Then
+    '             ClickedCell.Value = GetImageFromClipboard()
+    '         Else
+    '             ClickedCell.Value = GetTextFromClipboard()
+    '         End If
+    '     End If
+    ' End Sub
+
+    Private Sub PasteFsw()
+        Dim fsw As String = GetTextFromClipboard()
+
+        If IsBuildString(fsw) Then
+            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+            Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+            Using conn
+                Try
+                    If DictionaryDataGridView.CurrentRow IsNot Nothing Then
+
+
+                        Dim Sign = SpmlConverter.FswtoSwSign(fsw, _myDictionary.DefaultSignLanguage,
+                                                             _myDictionary.FirstGlossLanguage)
+
+                        If Sign IsNot Nothing Then
+                            If _
+                                MessageBox.Show("This will ovewrite the current row. Do you wish to continue?", "",
+                                                MessageBoxButtons.YesNo) = DialogResult.Yes Then
+
+                                Dim idDic As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+
+                                DictionaryDataGridView.CurrentRow.Cells("SWriting").Value =
+                                    ImageToByteArray(Sign.Render(), ImageFormat.Png)
+
+                                _myDictionary.SaveSWSign(idDic, Sign, conn, trans)
+                                SaveDataGrid(conn, trans)
+                            End If
+                        End If
+
+                    End If
+
+                    trans.Commit()
+                Catch ex As SQLiteException
+                    LogError(ex, "Exception " & ex.GetType().Name)
+
+                    MessageBox.Show(ex.ToString)
+                    If trans IsNot Nothing Then trans.Rollback()
+                Finally
+                    conn.Close()
+                End Try
+            End Using
+
+        Else
+            MessageBox.Show("Text in clipboard is not FSW")
+        End If
+    End Sub
+
+    Private Sub PasteSign()
+        Dim result = GetSWSignFromClipboard()
+        If Me.DictionaryDataGridView.CurrentRow IsNot Nothing AndAlso result IsNot Nothing Then
+            If _
+                MessageBox.Show("This will ovewrite the current row. Do you wish to continue?", "",
+                                MessageBoxButtons.YesNo) = DialogResult.Yes Then
+
+
+                Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+                Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+                Using conn
+                    Try
+
+
+                        Dim Sign As SwSign = result.SWSign
+                        Dim RowClicked As DataGridViewRow = Me.DictionaryDataGridView.CurrentRow
+                        If Sign IsNot Nothing Then
+                            Sign = Sign.Clone
+                            Sign.SignWriterGuid = New Guid
+
+                            Dim IDDic As Integer = Me.DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+
+                            Me.DictionaryDataGridView.CurrentRow.Cells("SWriting").Value =
+                                ImageToByteArray(Sign.Render(), ImageFormat.Png)
+
+                            Me.DictionaryDataGridView.CurrentRow.Cells("Gloss1").Value = result.Gloss
+                            Me.DictionaryDataGridView.CurrentRow.Cells("Glosses1").Value = result.Glosses
+                            Me.DictionaryDataGridView.CurrentRow.Cells("Photo").Value = result.Illustration
+                            Me.DictionaryDataGridView.CurrentRow.Cells("Sign").Value = result.Sign
+                            Me.DictionaryDataGridView.CurrentRow.Cells("SWSignSource").Value = result.SWSignSource
+                            Me.DictionaryDataGridView.CurrentRow.Cells("PhotoSource").Value = result.IllustrationSource
+                            Me.DictionaryDataGridView.CurrentRow.Cells("SignSource").Value = result.SignSource
+                            Me._myDictionary.SaveSWSign(IDDic, Sign, conn, trans)
+                            SaveDataGrid(conn, trans)
+
+                        End If
+                        trans.Commit()
+                    Catch ex As SQLiteException
+                        LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                        MessageBox.Show(ex.ToString)
+                        If trans IsNot Nothing Then trans.Rollback()
+                    Finally
+                        conn.Close()
+
+                    End Try
+                End Using
+            End If
+        End If
+    End Sub
+    'Private Function GetNewIDDictionary(ByVal NewRow As DataGridViewRow) As Integer
+    '    'TODO()
+    '    Dim InitialString As String
+    '    Dim Lookup As String
+    '    If Not IsDBNull(NewRow.Cells("gloss1").Value) Then
+    '        InitialString = NewRow.Cells("gloss1").Value
+    '    Else
+    '        InitialString = String.Empty
+    '    End If
+
+    '    Lookup = Mid(InitialString & (System.Guid.NewGuid).ToString, 1, 50)
+    '    NewRow.Cells("gloss1").Value = Lookup
+    '    Exit Function
+    '    SaveDataGrid()
+    '    Me.TBSearch.Text = Lookup
+    '    LoadDictionaryEntries()
+    '    If Me.DictionaryDataGridView.Rows.Count > 0 Then
+    '        Dim LoadedRow As DataGridViewRow = Me.DictionaryDataGridView.Rows(0)
+    '        LoadedRow.Cells("gloss1").Value = InitialString
+    '        Return LoadedRow.Cells("IDDictionary").Value
+    '    Else
+    '        Return 0
+    '    End If
+    'End Function
+
+    Private Function GetSWSignFromClipboard() As ClipboardSign
+        If Clipboard.GetDataObject.GetDataPresent("SignWriterStudio.Dictionary.ClipboardSign", False) Then
+            Return CType(Clipboard.GetDataObject.GetData("SignWriterStudio.Dictionary.ClipboardSign"), ClipboardSign)
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Sub SetSWSigntoClipboard(ByVal ClipboardSign As ClipboardSign, SWriting As Bitmap)
+        Dim myDataObject As New DataObject()
+
+        Dim myType As Type = ClipboardSign.GetType()
+        'myDataObject.SetImage(SWriting)
+        myDataObject.SetData(ClipboardSign.GetType().Name, False, ClipboardSign)
+
+
+        Clipboard.Clear()
+
+        'Clipboard.SetImage(SWriting)
+        Clipboard.SetDataObject(myDataObject)
+    End Sub
+
+    Private Function GetImageFromClipboard() As Image
+        If My.Computer.Clipboard.ContainsImage() Then
+            Return Clipboard.GetImage()
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Function GetTextFromClipboard() As String
+        If My.Computer.Clipboard.ContainsText() Then
+            Return Clipboard.GetText(TextDataFormat.Text)
+        Else
+            Return ""
+        End If
+    End Function
+
+    Private Sub SetImagetoClipboard(ByVal Image As Image)
+        If Image IsNot Nothing Then
+            Clipboard.SetImage(Image)
+        End If
+    End Sub
+
+
+    Private Sub DeleteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+        DeleteCellInfo(DictionaryDataGridView.CurrentCellAddress)
+    End Sub
+
+    Private Sub DeleteCellInfo(ByVal CellAddress As Point)
+
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+        Using conn
+            Try
+                Dim CurrentColumn As DataGridViewColumn = DictionaryDataGridView.Columns(CellAddress.X)
+                Select Case CurrentColumn.Name
+                    Case "SWriting"
+                        If _
+                            MessageBox.Show("Do you want to delete the info in this cell?", "Delete",
+                                            MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                            Me._myDictionary.DeleteSign(
+                                DictionaryDataGridView.Rows(CellAddress.Y).Cells("IDDictionary").Value, conn, trans)
+                            DictionaryDataGridView.Rows(CellAddress.Y).Cells(CellAddress.X).Value = Nothing
+                        End If
+                    Case "Photo", "Sign"
+                        If _
+                            MessageBox.Show("Do you want to delete the info in this cell?", "Delete",
+                                            MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                            DictionaryDataGridView.Rows(CellAddress.Y).Cells(CellAddress.X).Value = Nothing
+                        End If
+                End Select
+                trans.Commit()
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            Finally
+                conn.Close()
+
+            End Try
+        End Using
+    End Sub
+
+    Private Sub OpenEditor()
+
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+        Using conn
+            Try
+                If Not _myDictionary.DictionaryBindingSource1.Current.GetType.ToString = "System.Object" Then
+
+                    If DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "Photo" Then
+                        ColumnClicked = DictionaryColumn.Photo
+
+                        If Information.IsDBNull(DictionaryDataGridView.CurrentCell.Value) Then
+                            OpenImage.ShowDialog()
+                        Else
+                            EditImage()
+                        End If
+                    ElseIf DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "Sign" Then
+                        ColumnClicked = DictionaryColumn.Sign
+                        If Information.IsDBNull(DictionaryDataGridView.CurrentCell.Value) Then
+                            OpenImage.ShowDialog()
+                        Else
+                            EditImage()
+                        End If
+
+                    ElseIf _
+                        DictionaryDataGridView.CurrentCell IsNot Nothing AndAlso
+                        DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "SWriting" Then
+                        ColumnClicked = DictionaryColumn.SWriting
+                        Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+                        If idDictionary1 <> 0 Then
+                            Editor.ClearAll()
+                            Editor.Sign = _myDictionary.GetSWSign(idDictionary1, conn, trans)
+                            Dim dialogRes As DialogResult = Editor.ShowDialog()
+                            If (dialogRes = DialogResult.OK) Then
+                                SaveSignWriting(conn, trans, idDictionary1)
+                            End If
+                        Else
+                            ColumnClicked = Nothing
+                            SaveDataGrid(conn, trans)
+                        End If
+                    End If
+                End If
+                trans.Commit()
+                'MessageBox.Show((Now() - timestart).TotalSeconds.ToString)
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            Finally
+                conn.Close()
+
+            End Try
+        End Using
+    End Sub
+
+    Private Sub ToolStripLabel1_Click(ByVal sender As Object, ByVal e As EventArgs)
+    End Sub
+
+    Private Sub DictionaryDataGridView_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) _
+        Handles DictionaryDataGridView.DataError
+        'Do nothing
+    End Sub
+
+
+    Private Sub BtnAccept_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnAccept.Click
+        Accept()
+    End Sub
+
+    Private Sub BtnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnCancel.Click
+        Cancel()
+    End Sub
+
+    Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
+        Handles BindingNavigatorAddNewItem.Click
+        AddNew()
+    End Sub
+
+    Private Sub AddNew()
+        If DictionaryLoaded Then
+            _myDictionary.DictionaryBindingSource1.AddNew()
+
+            'Edit last added row so that it will save.
+            Dim taDictionary As New DictionaryTableAdapter
+            Dim newId As Integer = taDictionary.LastID + 1
+            Dim currentRow As DataGridViewRow = Me.DictionaryDataGridView.CurrentRow
+            currentRow.Cells("IDDictionary").Value = newId
+            currentRow.Cells("SignLanguage").Value = _myDictionary.DefaultSignLanguage
+            currentRow.Cells("isPrivate").Value = False
+            SaveDataGrid()
+            _myDictionary.DictionaryBindingSource1.ResetBindings(False)
+        Else
+            MessageBox.Show("Choose or create a SignWriter Dictionary (.SWS) file before continuing.")
+        End If
+    End Sub
+
+    Private Sub DictionaryDataGridView_RowsAdded(ByVal sender As Object, ByVal e As DataGridViewRowsAddedEventArgs) _
+        Handles DictionaryDataGridView.RowsAdded
+        If Information.IsDBNull(DictionaryDataGridView.Rows(e.RowIndex).Cells("GUID").Value) Then
+            DictionaryDataGridView.Rows(e.RowIndex).Cells("GUID").Value = System.Guid.NewGuid
+        End If
+    End Sub
+
+    Public Sub New(ByVal editor1 As Editor) ', ByVal ImportExport As SignWriterStudio.Document.ImportExport)
+
+        ' This call is required by the Windows Form Designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Editor = editor1
+        'Me.ImportExport = ImportExport
+    End Sub
+
+    Private _importedSigns As Tuple(Of Integer, Integer, Integer)
+
+    Private Sub ImportFileDialog_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) _
+        Handles ImportFileDialog.FileOk
+
+
+        Dim _
+            classifiedSigns _
+                As  _
+                Tuple _
+                (Of SwCollection(Of SwSign), 
+                SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), 
+                SwCollection(Of SwSign))
+        Try
+            Dim signs As SwCollection(Of SwSign)
+            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+            Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+            Dim selectedSigns As SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
+
+            Dim spmlConverter As New SpmlConverter
+            signs = spmlConverter.ImportSPML(ImportFileDialog.FileName, _myDictionary.DefaultSignLanguage,
+                                             _myDictionary.FirstGlossLanguage)
+
+
+            spmlConverter.CleanImportedSigns(signs)
+
+            'signs = GetOnlyWithSequence(signs)
+            'signs = GetOnlyWithTagSort(signs)
+
+
+            Try
+                Using conn
+                    classifiedSigns = ClassifySigns(signs, conn, trans)
+                    If trans.Connection IsNot Nothing Then
+
+                        trans.Commit()
+                    End If
+
+                    conn.Close()
+                End Using
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            End Try
+
+            Try
+                Using conn
+                    selectedSigns = SelectComparedSigns(classifiedSigns.Item2, conn, trans)
+                    If trans.Connection IsNot Nothing Then
+
+                        trans.Commit()
+                    End If
+
+                    'conn.Close()
+                End Using
+
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            End Try
+
+            Try
+                conn = SWDict.GetNewDictionaryConnection()
+                trans = SWDict.GetNewDictionaryTransaction(conn)
+                Using conn
+                    'Update current signs
+                    _myDictionary.DeleteSigns(selectedSigns, conn, trans)
+                    _myDictionary.SignstoDictionary(SelectedSignsToCollection(selectedSigns), conn, trans)
+                    trans.Commit()
+                    conn.Close()
+                End Using
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            End Try
+
+            Try
+
+                conn = SWDict.GetNewDictionaryConnection()
+                trans = SWDict.GetNewDictionaryTransaction(conn)
+                Using conn
+                    SWEditorProgressBar.ProgressBar1.Value = 0
+                    SWEditorProgressBar.Text = "SignWriter Studio™ Importing ..."
+                    SWEditorProgressBar.Show()
+                    _importedSigns = Tuple.Create(classifiedSigns.Item1.Count, selectedSigns.Count,
+                                                  classifiedSigns.Item3.Count)
+                    trans.Commit()
+                    conn.Close()
+                End Using
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            End Try
+
+            Try
+                conn = SWDict.GetNewDictionaryConnection()
+                trans = SWDict.GetNewDictionaryTransaction(conn)
+                Using conn
+                    'Add new signs
+                    SPMLImportbw = New BackgroundWorker With {.WorkerReportsProgress = True}
+                    AddHandler SPMLImportbw.DoWork, AddressOf SPMLImportbw_DoWork
+                    AddHandler SPMLImportbw.RunWorkerCompleted, AddressOf SPMLImportbw_RunWorkerCompleted
+                    AddHandler SPMLImportbw.ProgressChanged, AddressOf SPMLImportbw_ProgressChanged
+                    SPMLImportbw.RunWorkerAsync(Tuple.Create(classifiedSigns.Item3, SPMLImportbw))
+                    trans.Commit()
+                    conn.Close()
+                End Using
+
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            End Try
+
+
+        Catch ex As XmlException
+            LogError(ex, "XML Exception " & ex.GetType().Name)
+
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Shared Function GetOnlyWithSequence(ByVal swCollection As SwCollection(Of SwSign)) _
+        As SwCollection(Of SwSign)
+        Dim newSignList = New SwCollection(Of SwSign)
+        For Each sign As SwSign In swCollection
+            If sign.Frames.First().Sequences.Count > 0 AndAlso sign.SWritingSource.ToLower().Contains("Val".ToLower()) _
+                Then
+                newSignList.Add(sign)
+            End If
+        Next
+        Return newSignList
+    End Function
+
+    Private Shared Function GetOnlyWithTagSort(ByVal swCollection As SwCollection(Of SwSign)) As SwCollection(Of SwSign)
+        Dim newSignList = New SwCollection(Of SwSign)
+        For Each sign As SwSign In swCollection
+            If _
+                sign.Frames.First().Sequences.Count > 0 AndAlso sign.SWritingSource.ToLower().Contains("Tag".ToLower()) AndAlso
+                sign.SWritingSource.ToLower().Contains("Sort".ToLower()) Then
+                newSignList.Add(sign)
+            End If
+        Next
+        Return newSignList
+    End Function
+
+    Private Sub DisposeSigns(ByVal swCollection As SwCollection(Of SwSign))
+        For Each sign1 As SwSign In swCollection
+            sign1.Dispose()
+        Next
+    End Sub
+
+    Private Sub SPMLImportbw_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) ' Handles SPMLImportbw.DoWork
+        Dim Args = CType(e.Argument, Tuple(Of SwCollection(Of SwSign), BackgroundWorker))
+
+        _myDictionary.SignstoDictionary(Args.Item1, Args.Item2)
+    End Sub
+
+    Private Function SelectedSignsToCollection(
+                                               SelectedSigns As  _
+                                                  SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))) _
+        As SwCollection(Of SwSign)
+        Dim Coll As New SwCollection(Of SwSign)
+        For Each SelectedSign In SelectedSigns
+            Coll.Add(SelectedSign.Item1)
+        Next
+        Return Coll
+    End Function
+
+    Private Sub SPMLImportbw_ProgressChanged(ByVal sender As Object, ByVal e As ProgressChangedEventArgs) _
+' Handles SPMLImportbw.ProgressChanged
+        SWEditorProgressBar.ProgressBar1.Value = e.ProgressPercentage
+    End Sub
+
+    Private Sub SPMLImportbw_RunWorkerCompleted(ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs) _
+'Handles SPMLImportbw.RunWorkerCompleted
+
+        SWEditorProgressBar.Hide()
+        SWEditorProgressBar.ProgressBar1.Value = 0
+        Dim sb As New StringBuilder
+        If Not _importedSigns.Item1 = 0 Then
+            sb.AppendLine(_importedSigns.Item1 & " signs already up to date.")
+        End If
+        If Not _importedSigns.Item2 = 0 Then
+            sb.AppendLine(_importedSigns.Item2 & " signs updated.")
+        End If
+        If Not _importedSigns.Item3 = 0 Then
+            sb.AppendLine(_importedSigns.Item3 & " new signs added.")
+        End If
+        MessageBox.Show(sb.ToString)
+        RemoveHandler SPMLImportbw.DoWork, AddressOf SPMLImportbw_DoWork
+        RemoveHandler SPMLImportbw.RunWorkerCompleted, AddressOf SPMLImportbw_RunWorkerCompleted
+        RemoveHandler SPMLImportbw.ProgressChanged, AddressOf SPMLImportbw_ProgressChanged
+    End Sub
+
+    Private Sub SignListsToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles SignListsToolStripMenuItem.Click
+        SaveDataGrid()
+        'If DatabaseSetup.CheckDictionary() Then
+        '    Dim SignListPrint As New SignWriterStudio.SignList.SignListPrint
+        '    SignListPrint.Show()
+        'Else
+        '    MessageBox.Show("Choose a valid SignWriter file before continuing.")
+        'End If
+    End Sub
+
+    Private Sub TemporarilyDisabled()
+        MessageBox.Show("This option has been temporarily disabled because it is not yet fully functional.")
+    End Sub
+
+    Private Sub NewSignWriterStudioFileToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles NewSignWriterStudioFileToolStripMenuItem.Click
+        SaveDataGrid()
+        SaveFileDialog1.ShowDialog()
+    End Sub
+
+    Private Sub OpenSignWriterStudioFileToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles OpenSignWriterStudioFileToolStripMenuItem.Click
+        SaveDataGrid()
+        OpenFileDialog1.InitialDirectory = ""
+
+        OpenFileDialog1.ShowDialog()
+    End Sub
+
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As CancelEventArgs) Handles OpenFileDialog1.FileOk
+        OpenDictionary(OpenFileDialog1.FileName)
+    End Sub
+
+    Public Sub OpenDictionary(Filename As String)
+        If CheckSQLiteConnectionString(CreateConnectionString(Filename)) Then
+            SetDictionaryConnectionString(Filename)
+            Dim wasUpgraded = False
+            If DatabaseSetup.CheckDictionary(True, wasUpgraded) Then
+                Dim Languages As String = DictLanguages.LanguagesInDictionary
+                If Not Languages = String.Empty Then
+                    MessageBox.Show(Languages)
+                End If
+                If wasUpgraded Then
+                    ' Create sort strings if first one is empty
+                    _myDictionary.CreateSortString()
+                End If
+                LoadDictionary()
+
+                DictionaryLoaded = True
+            Else
+                MessageBox.Show(
+                    "File '" & Filename &
+                    "' is not a valid SignWriter Studio file. Please choose a valid SignWriter file before continuing.")
+                SetDictionaryConnectionString("")
+                Me.DictionaryLoaded = False
+            End If
+        End If
+    End Sub
+
+    Private Sub SaveFileDialog1_FileOk_1(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
+        CopyBlankDB(SaveFileDialog1.FileName)
+        SetDictionaryConnectionString(SaveFileDialog1.FileName)
+        LoadDictionary(False)
+        'Dim source = Me.DictionaryDataGridView.DataSource
+        'source.
+
+        Me.DictionaryLoaded = True
+    End Sub
+
+    Friend Sub SetDictionaryConnectionString(ByVal FileName As String)
+
+        DictionaryConnectionString = FileName
+
+        ShowloadedFile()
+    End Sub
+
+    Private Sub ShowloadedFile()
+        Dim filename As String = DictionaryConnectionString.ToString.Replace("""", "").Replace("data source=", "")
+
+        If File.Exists(filename) Then
+            If Not (filename = String.Empty) Then
+                Me.Text = "SignWriter Studio™ - " & Path.GetFileName(filename) & " - " & GetSLNameandAcronym()
+            Else
+                Me.Text = "SignWriter Studio™" & " - " & GetSLNameandAcronym()
+            End If
+        Else
+            Me.Text = "SignWriter Studio™" & " - " & GetSLNameandAcronym()
+        End If
+    End Sub
+
+    Private Function GetSLNameandAcronym() As String
+        Dim Acronym As String = UI.Cultures.GetSLAcronymbyID(_myDictionary.DefaultSignLanguage)
+        Dim AcronymShow As String = String.Empty
+        If Not Acronym = String.Empty Then
+            AcronymShow = " (" & Acronym & ")"
+        End If
+        Return UI.Cultures.GetSLNamebyID(_myDictionary.DefaultSignLanguage) & AcronymShow
+    End Function
+
+    Friend Sub CopyBlankDB(ByVal Filename As String)
+        My.Computer.FileSystem.CopyFile(Application.StartupPath & "\BlankDict.dat", Filename, True)
+    End Sub
+
+    Private Function CheckConnectionString(ByVal ConnString As String) As Boolean
+        Dim oledbStBuild As New OleDbConnectionStringBuilder
+        oledbStBuild.ConnectionString = ConnString
+        Dim Filename As String = oledbStBuild.DataSource
+        If FileSystem.FileExists(Filename) AndAlso oledbStBuild.Provider = "Microsoft.Jet.OLEDB.4.0" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Function CheckSQLiteConnectionString(ByVal ConnString As String) As Boolean
+        Dim CSBuilder As New SqlConnectionStringBuilder
+        CSBuilder.ConnectionString = ConnString
+        If ConnString.Contains("data source=") Then
+            Dim Filename As String = CSBuilder.DataSource
+            If Paths.FileExists(Filename) Then
+                Return True
+            Else
+                Return False
+            End If
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Function CreateConnectionString(Filename As String) As String
+        Return "data source=" & Filename
+    End Function
+
+    Private Sub ImportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportToolStripMenuItem.Click
+        Dim result =
+                MessageBox.Show(
+                    "You are importing to " & GetSLNameandAcronym() & " and gloss language " &
+                    UI.Cultures.GetCultureFullName(Me._myDictionary.FirstGlossLanguage) &
+                    ". If this is not what you want click No and change the options from the File menu.", "Import",
+                    MessageBoxButtons.YesNo)
+        If result = DialogResult.Yes Then
+            SaveDataGrid()
+            Me.ImportFileDialog.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub ExportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToolStripMenuItem.Click
+        SaveDataGrid()
+        myExportSettings.EntireDictionary =
+            (MessageBox.Show(
+                "Do you want to export the entire Dictionary?  Yes, for entire Dictionary.  No, for currently displaying items",
+                "Export entire Dictionary?", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) = DialogResult.Yes)
+        myExportSettings.Puddle =
+            CInt(Interaction.InputBox("What puddle number would you like to use for the file? Default is 2000.",
+                                      "Puddle Number", "2000"))
+        myExportSettings.PuddleName = Interaction.InputBox("What what puddle name would you like to use?", "Puddle Name",
+                                                           "Exported from SignWriter Studio™, puddle " &
+                                                           myExportSettings.Puddle)
+
+        ExportFileDialog.FileName = "sgn" & myExportSettings.Puddle & ".spml"
+        ExportFileDialog.ShowDialog()
+    End Sub
+
+    Private Sub OptionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OptionsToolStripMenuItem.Click
+        SaveDataGrid()
+        Options()
+        ShowloadedFile()
+    End Sub
+
+
+    Private Sub DictLoadedChanged()
+        If Me.DictionaryLoaded Then
+            Me.ImportToolStripMenuItem.Enabled = True
+            Me.ExportToolStripMenuItem.Enabled = True
+            Me.SignListsToolStripMenuItem.Enabled = True
+            Me.TBSearch.Enabled = True
+            Me.CBGloss1.Enabled = True
+            Me.CBGloss2.Enabled = True
+        Else
+            Me.ImportToolStripMenuItem.Enabled = False
+            Me.ExportToolStripMenuItem.Enabled = False
+            Me.SignListsToolStripMenuItem.Enabled = False
+            Me.TBSearch.Enabled = False
+            Me.CBGloss1.Enabled = False
+            Me.CBGloss2.Enabled = False
+        End If
+    End Sub
+
+    Private Sub HelpToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem1.Click
+        Help.ShowHelp(Me, "SignWriterStudio.chm", "dictionary.htm")
+    End Sub
+
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        If Not TBSearch.Text = String.Empty Then
+            LoadDictionaryEntries()
+            LetKnowNoMatchesFound()
+        End If
+    End Sub
+
+    Private Sub LetKnowNoMatchesFound()
+
+        If _myDictionary.DictionaryBindingSource1.DataSource.Rows.Count = 0 Then
+            Dim MBO As MessageBoxOptions = CType(MessageBoxOptions.RtlReading And MessageBoxOptions.RightAlign, 
+                                                 MessageBoxOptions)
+            MessageBox.Show("There are no matches for your criteria.", "", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MBO, False)
+        End If
+    End Sub
+
+    Private Sub BtnShowAll_Click(sender As Object, e As EventArgs) Handles BtnShowAll.Click
+        TBSearch.Text = ""
+        LoadDictionaryAll()
+    End Sub
+
+    Private Sub ExportFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles ExportFileDialog.FileOk
+
+        SWEditorProgressBar.Text = "SignWriter Studio™ Exporting ..."
+        SWEditorProgressBar.Show()
+        SPMLExportbw.RunWorkerAsync()
+    End Sub
+
+    Private Sub SPMLExportbw_DoWork(sender As Object, e As DoWorkEventArgs) Handles SPMLExportbw.DoWork
+        myExportSettings.Filename = ExportFileDialog.FileName
+        If Directory.Exists(Path.GetDirectoryName(myExportSettings.Filename)) Then
+            Dim SPMLConverter As New SpmlConverter
+
+            'Dim Signs = SPMLConverter.ExportSPML(ExportFileDialog.FileName, myExportSettings.Puddle, MyDictionary, myExportSettings.EntireDictionary, SPMLExportbw)
+            Dim Signs = SPMLConverter.ExportSPML(myExportSettings, _myDictionary, SPMLExportbw)
+
+        End If
+    End Sub
+
+    Private Sub SPMLExportbw_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) _
+        Handles SPMLExportbw.ProgressChanged
+        SWEditorProgressBar.ProgressBar1.Value = e.ProgressPercentage
+        If e.ProgressPercentage > 50 Then
+            SWEditorProgressBar.Text = "SignWriter Studio™ Exporting ..."
+
+        End If
+    End Sub
+
+    Private Sub SPMLExportbw_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) _
+        Handles SPMLExportbw.RunWorkerCompleted
+        SWEditorProgressBar.ProgressBar1.Value = 100
+        SWEditorProgressBar.Hide()
+        SWEditorProgressBar.ProgressBar1.Value = 0
+    End Sub
+
+
+    Private Sub DictionaryDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) _
+        Handles DictionaryDataGridView.CellContentClick
+    End Sub
+
+    Private Sub btnEditSignWriting_Click(sender As Object, e As EventArgs) Handles btnEditSignWriting.Click
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+        Using conn
+            Try
+                If DictionaryDataGridView.CurrentRow IsNot Nothing Then
+                    Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+                    If idDictionary1 <> 0 Then
+                        Editor.ClearAll()
+                        Editor.Sign = _myDictionary.GetSWSign(idDictionary1, conn, trans)
+                        Dim dialogRes As DialogResult = Editor.ShowDialog()
+                        If (dialogRes = DialogResult.OK) Then
+                            SaveSignWriting(conn, trans, idDictionary1)
+                        End If
+                    End If
+                End If
+                trans.Commit()
+                'MessageBox.Show((Now() - timestart).TotalSeconds.ToString)
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            Finally
+                conn.Close()
+
+            End Try
+        End Using
+    End Sub
+
+    Private Sub SaveSignWriting(ByVal conn As SQLiteConnection, ByRef trans As SQLiteTransaction,
+                                ByVal idDictionary1 As Integer)
+        'Save SWriting
+        DictionaryDataGridView.CurrentRow.Cells("SWriting").Value = Editor.ToImage()
+        DictionaryDataGridView.CurrentRow.Cells("Sorting").Value =
+            _myDictionary.SequencetoSortingString(Editor.Sign.Frames.First().Sequences)
+        DictionaryDataGridView.EndEdit()
+        _myDictionary.SaveSWSign(idDictionary1, Editor.Sign, conn, trans)
+
+        SaveDataGrid(conn, trans)
+    End Sub
+
+    Private Function ClassifySigns(ByVal Signs As SwCollection(Of SwSign), ByRef conn As SQLiteConnection,
+                                   ByRef trans As SQLiteTransaction) _
+        As  _
+        Tuple _
+            (Of SwCollection(Of SwSign), SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), 
+                SwCollection(Of SwSign))
+        Dim signsToAdd As New SwCollection(Of SwSign)
+        Dim signsNotModified As New SwCollection(Of SwSign)
+        Dim signstoCompare As New SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))
+        Static allCachedDictionaryDataTable As DataTable
+        Dim taDictionary As New DictionaryTableAdapter
+        taDictionary.AssignConnection(conn, trans)
+        allCachedDictionaryDataTable = taDictionary.GetData()
+
+        Dim foundbyGuid As DictionaryDataSet.DictionaryRow
+
+        For Each Sign As SwSign In Signs
+            If Sign.SignWriterGuid.HasValue Then
+
+                foundbyGuid = DatabaseDictionary.GetDataDictionaryByGuid(allCachedDictionaryDataTable,
+                                                                         Sign.SignWriterGuid)
+                If foundbyGuid IsNot Nothing Then
+
+                    If Not Date.Compare(Sign.LastModified, foundbyGuid.LastModified) = 0 Then
+                        signstoCompare.Add(Tuple.Create(Sign, foundbyGuid, True))
+                    Else
+                        signsNotModified.Add(Sign)
+                    End If
+
+                Else
+                    signsToAdd.Add(Sign)
+                End If
+            Else
+                signsToAdd.Add(Sign)
+            End If
+        Next
+        Return Tuple.Create(signsNotModified, signstoCompare, signsToAdd)
+    End Function
+
+    Private Function SelectComparedSigns(
+                                         ByVal signsToCompare As  _
+                                            SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)),
+                                         ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) _
+        As SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
+        Dim signsToOverwrite As New SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
+        Dim compareSigns As New CompareSigns
+        If signsToCompare.Count > 0 Then
+            'compareSigns.Conn = conn
+            'compareSigns.Trans = trans
+            compareSigns.SignsToCompare = signsToCompare
+            compareSigns.ShowDialog()
+
+            For Each Item In compareSigns.ListToShow
+                If Item.OverwritefromPuddle Then
+                    signsToOverwrite.Add(Tuple.Create(Item.puddleSign, Item.StudioDictRow))
+                End If
+            Next
+
+        End If
+        Return signsToOverwrite
+    End Function
+
+    Private Sub CopyToSignPuddle()
+        Dim fsw = GetFsw()
+        Process.Start("http://www.signbank.org/signpuddle2.0/signtextsave.php?ui=1&sgn=&sgntxt=" & fsw)
+    End Sub
+
+    Private Function GetFsw() As String
+
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+        Using conn
+            Try
+                If DictionaryDataGridView.GetCellCount(
+                    DataGridViewElementStates.Selected) > 0 Then
+
+                    Try
+                        If _
+                            DictionaryDataGridView.SelectedCells.Contains(ClickedCell) AndAlso
+                            DictionaryDataGridView.GetCellCount(
+                                DataGridViewElementStates.Selected) > 1 Then
+                            ' Add the selection to the clipboard.
+                            Clipboard.SetDataObject(
+                                Me.DictionaryDataGridView.GetClipboardContent())
+                        Else
+                            'Copy Clicked Cell
+
+                            Dim idDictionary1 = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+
+                            Dim sign = _myDictionary.GetSWSign(idDictionary1,
+                                                               conn, trans)
+
+                            Dim conv As New SpmlConverter
+
+                            Dim fsw As String = conv.GetFsw(sign)
+                            Return fsw
+                        End If
+
+                    Catch ex As Exception
+                        LogError(ex, "Exception " & ex.GetType().Name)
+
+
+                    End Try
+
+                End If
+                trans.Commit()
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            Finally
+                conn.Close()
+
+            End Try
+        End Using
+    End Function
+
+
+    Private Sub CopySign()
+
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+        Using conn
+            Try
+                If DictionaryDataGridView.GetCellCount(
+                    DataGridViewElementStates.Selected) > 0 Then
+
+                    Try
+
+                        ' Add the selection to the clipboard.
+
+                        If DictionaryDataGridView.CurrentRow IsNot Nothing Then
+                            Dim cr = DictionaryDataGridView.CurrentRow
+                            Dim sign As SwSign = _myDictionary.GetSWSign(cr.Cells("IDDictionary").Value, conn, trans)
+                            Dim clipboardSign As New ClipboardSign
+                            clipboardSign.SWSign = sign
+                            clipboardSign.Gloss = CStr(cr.Cells("Gloss1").Value)
+                            clipboardSign.Glosses = CStr(cr.Cells("Glosses1").Value)
+                            If Not Information.IsDBNull(cr.Cells("Photo").Value) Then
+                                clipboardSign.Illustration = CType(ByteArraytoImage(cr.Cells("Photo").Value), Bitmap)
+                            End If
+                            If Not Information.IsDBNull(cr.Cells("Sign").Value) Then
+                                clipboardSign.Sign = CType(ByteArraytoImage(cr.Cells("Sign").Value), Bitmap)
+                            End If
+                            clipboardSign.SWSignSource = CStr(cr.Cells("SWSignSource").Value)
+                            clipboardSign.IllustrationSource = CStr(cr.Cells("PhotoSource").Value)
+                            clipboardSign.SignSource = CStr(cr.Cells("SignSource").Value)
+                            Dim signWritingImage As Image = Nothing
+                            If Not Information.IsDBNull(cr.Cells("SWriting").Value) Then
+                                signWritingImage = ByteArraytoImage(cr.Cells("SWriting").Value)
+                            End If
+                            SetSWSigntoClipboard(clipboardSign, signWritingImage)
+                        End If
+
+                    Catch ex As Exception
+                        LogError(ex, "Exception " & ex.GetType().Name)
+
+
+                    End Try
+
+                End If
+                trans.Commit()
+            Catch ex As SQLiteException
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            Finally
+                conn.Close()
+
+            End Try
+        End Using
+    End Sub
+
+    Private Sub CopyIllustrationToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles CopyIllustrationToolStripMenuItem.Click
+        Try
+            If DictionaryDataGridView.CurrentRow IsNot Nothing Then
+                'Copy 
+                If Not Information.IsDBNull(DictionaryDataGridView.CurrentRow.Cells("Photo").Value) Then
+                    SetImagetoClipboard(ByteArraytoImage(DictionaryDataGridView.CurrentRow.Cells("Photo").Value))
+                Else
+                    SetImagetoClipboard(Nothing)
+                End If
+            End If
+        Catch ex As Exception
+            LogError(ex, "Exception " & ex.GetType().Name)
+
+            Throw
+        End Try
+    End Sub
+
+    Private Sub CopyPhotoSignToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles CopyPhotoSignToolStripMenuItem.Click
+        Try
+            If DictionaryDataGridView.CurrentRow IsNot Nothing Then
+                'Copy 
+                If Not Information.IsDBNull(DictionaryDataGridView.CurrentRow.Cells("Sign").Value) Then
+                    SetImagetoClipboard(ByteArraytoImage(DictionaryDataGridView.CurrentRow.Cells("Sign").Value))
+                Else
+                    SetImagetoClipboard(Nothing)
+                End If
+            End If
+        Catch ex As Exception
+            LogError(ex, "Exception " & ex.GetType().Name)
+
+            Throw
+        End Try
+    End Sub
+
+    Private Sub CopyToSignPuddleToolStripMenuItem1_Click(sender As Object, e As EventArgs) _
+        Handles CopyToSignPuddleToolStripMenuItem1.Click
+        CopyToSignPuddle()
+    End Sub
+
+    Private Sub PasteIllustrationToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles PasteIllustrationToolStripMenuItem.Click
+        DictionaryDataGridView.CurrentRow.Cells("Photo").Value = GetImageFromClipboard()
+        SaveDataGrid()
+    End Sub
+
+    Private Sub PastePhotoSignToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles PastePhotoSignToolStripMenuItem.Click
+        DictionaryDataGridView.CurrentRow.Cells("Sign").Value = GetImageFromClipboard()
+        SaveDataGrid()
+    End Sub
+
+    Private Sub PasteFSWFromSignPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles PasteFSWFromSignPuddleToolStripMenuItem.Click
+        SaveDataGrid()
+        PasteFsw()
+    End Sub
+
+    Private Sub CopySignToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles CopySignToolStripMenuItem.Click
+        CopySign()
+    End Sub
+
+
+    Private Sub AddNewEntryToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles AddNewEntryToolStripMenuItem.Click
+        AddNew()
+    End Sub
+
+    Private Sub DuplicateEntryToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles DuplicateEntryToolStripMenuItem.Click
+        SaveDataGrid()
+        Duplicate()
+        SaveDataGrid()
+    End Sub
+
+    Private Sub PasteSignToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles PasteSignToolStripMenuItem.Click
+        PasteSign()
+    End Sub
+
+    Private Sub DeleteEntryToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles DeleteEntryToolStripMenuItem.Click
+        DeleteEntries()
+    End Sub
+
+    Private Sub DeleteEntries()
+        If (DictionaryDataGridView.SelectedRows.Count > 1 AndAlso
+            MessageBox.Show("Do you really want to delete selected entries?", "Delete Entries", MessageBoxButtons.YesNo) =
+            DialogResult.Yes) Then
+            Dim rowIds = New List(Of Tuple(Of Long, Object))()
+
+            For Each row In DictionaryDataGridView.SelectedRows
+                Dim id = CLng(row.Cells("IDDictionary").Value)
+                rowIds.Add(Tuple.Create(id, row))
+            Next
+
+            For Each todelete In rowIds
+                Try
+                    DeleteEntry(todelete.Item1, todelete.Item2)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            Next
+            SaveDataGrid()
+        Else
+            Dim id As Long = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+            If Not id = 0 AndAlso
+               MessageBox.Show("Do you really want to delete this entry?", "Delete Entry", MessageBoxButtons.YesNo) =
+               DialogResult.Yes Then
+
+                DeleteEntry(id, DictionaryDataGridView.CurrentRow)
+                SaveDataGrid()
+            End If
+        End If
+    End Sub
+
+    Private Sub DeleteEntry(ByVal id As Long, row As DataGridViewRow)
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+        Using conn
+            Try
+                _myDictionary.DeleteSign(id, conn, trans)
+                'MyDictionary.DictionaryBindingSource1.
+                'MyDictionary.DictionaryBindingSource1.Remove()
+                DictionaryDataGridView.Rows.Remove(row)
+            Catch ex As SQLiteException
+                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                MessageBox.Show(ex.ToString)
+                If trans IsNot Nothing Then trans.Rollback()
+            Finally
+                trans.Commit()
+
+            End Try
+        End Using
+    End Sub
+
+    Private Sub BindingNavigatorDeleteItem_Click(sender As Object, e As EventArgs) _
+        Handles BindingNavigatorDeleteItem.Click
+        DeleteEntries()
+    End Sub
+
+    Private Sub CopySignImageToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles CopySignImageToolStripMenuItem.Click
+        Dim imageValue = DictionaryDataGridView.CurrentRow.Cells("SWriting").Value
+        Dim signWritingImage As Image
+        If Not Information.IsDBNull(imageValue) Then
+            signWritingImage = ByteArraytoImage(imageValue)
+            Clipboard.Clear()
+            Clipboard.SetImage(signWritingImage)
+
+        End If
+    End Sub
+
+    Private Sub ExportToAnkiToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles ExportToAnkiToolStripMenuItem.Click
+        SaveDataGrid()
+        Dim ankiFrm = New ExportAnkiFrm
+        ankiFrm.MyDictionary = _myDictionary
+        ankiFrm.Show()
+    End Sub
+
+    Private Sub ExportToHTMLToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+        Handles ExportToHTMLToolStripMenuItem.Click
+        SaveDataGrid()
+        Dim exportHtmlFrm = New ExportHtmlFrm
+        exportHtmlFrm.MyDictionary = _myDictionary
+        exportHtmlFrm.Show()
+    End Sub
+
+    Private Sub CopyFSWToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyFSWToolStripMenuItem.Click
+        Dim fsw = GetFsw()
+        If fsw IsNot Nothing Then
+            Clipboard.SetText(fsw)
+        End If
+    End Sub
+
+    Private Sub btnSpell_Click(sender As Object, e As EventArgs) Handles btnSpell.Click
+        Dim result =
+                       MessageBox.Show("This will attempt to spell any unspelt signs.  If there isn't enoough information to suggest a spelling, the spelling will be left blank. Do you with to continue?", "Spell signs", MessageBoxButtons.YesNo)
+
+        If result = DialogResult.Yes Then
+            TBSearch.Text = ""
+            _myDictionary.AllSigns()
+            SuggestSpellings()
+        End If
+    End Sub
+
+    Public Sub SuggestSpellings()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+
+        Try
+            Dim start = 0
+            Dim dt As DataTable = _myDictionary.GetAllSignsUnilingualDt()
+
+            Do While start <= dt.Rows.Count
+
+                Const qty As Integer = 100
+                Dim rows = GetRows(dt.Rows, start, qty)
+                start += qty
+                For Each row As DataRow In rows
+                    Dim idDictionary1 = CType(row.Item("IDDictionary"), Long)
+
+                    Dim sign1 = _myDictionary.GetSWSign(idDictionary1, conn, trans)
+
+                    If sign1.Frames.FirstOrDefault().Sequences.Count = 0 Then
+
+                        Dim suggestedSequence = Editor.OrderSuggestion1(sign1, False).ToList()
+                        If suggestedSequence.Count > 0 Then
+                            Dim sequences = sign1.Frames.FirstOrDefault().Sequences
+                            sequences.Clear()
+                            For Each sequence As SWSequence In suggestedSequence
+                                sequences.Add(sequence)
+                            Next
+
+                            Dim sortString = _myDictionary.SequencetoSortingString(suggestedSequence)
+                            sign1.SortString = sortString
+                            _myDictionary.SaveSWSign(idDictionary1, sign1, conn, trans)
+                        End If
+                    End If
+                Next
+            Loop
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        trans.Commit()
+        trans.Dispose()
+        conn.Close()
+        conn.Dispose()
+
+    End Sub
+
+    Private Shared Function GetRows(ByVal dataRowCollection As DataRowCollection, ByVal start As Integer, ByVal qty As Integer) As List(Of DataRow)
+        Dim rowList = New List(Of DataRow)
+        Dim count As Integer = dataRowCollection.Count
+        For i As Integer = 0 To start + qty
+
+            If i >= start AndAlso i < count Then
+                rowList.Add(dataRowCollection(i))
+            End If
+
+        Next
+        Return rowList
+    End Function
+
+    Private Sub SPMLImportbw_DoWork1(sender As Object, e As DoWorkEventArgs) Handles SPMLImportbw.DoWork
+
+    End Sub
+
+    Private Sub btnTagsForm_Click(sender As Object, e As EventArgs) Handles btnTagsForm.Click
+        Dim tf = New TagsForm()
+        tf.ShowDialog()
+    End Sub
+End Class
+
+<Serializable()>
+Public Class ClipboardSign
+    Public SWSign As SwSign
+    Public Gloss As String
+    Public Glosses As String
+    Public Illustration As Image
+    Public Sign As Image
+    Public SWSignSource As String
+    Public IllustrationSource As String
+    Public SignSource As String
+End Class
+

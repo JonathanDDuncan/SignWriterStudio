@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ClassDiagram Zoom="1" MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="SWEditor.My.MyApplication" Collapsed="False">
+    <Position X="0.5" Y="0.5" Width="2.356413" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.My.MyComputer" Collapsed="False">
+    <Position X="0.5" Y="2.2" Width="2.356413" />
+    <Compartments />
+  </Class>
+  <Class Name="SWEditor.My.MyForms" Collapsed="False">
+    <Position X="0.5" Y="3.2" Width="1.972433" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.My.MyProject" Collapsed="False">
+    <Position X="0.5" Y="4.6" Width="2.44466" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.Editor" Collapsed="False">
+    <Position X="0.5" Y="6.5" Width="3.961496" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Methods" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+      <Compartment Name="Nested Types" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.SWEditorTest" Collapsed="False">
+    <Position X="0.5" Y="53" Width="1.424674" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.SWEditorFavoritesTest" Collapsed="False">
+    <Position X="0.5" Y="54.4" Width="1.749084" />
+    <Compartments />
+  </Class>
+  <Class Name="SWEditor.ArrowChooser" Collapsed="False">
+    <Position X="0.5" Y="55.5" Width="3.088112" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Methods" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+      <Compartment Name="Events" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.HandChooser" Collapsed="False">
+    <Position X="0.5" Y="64.6" Width="3.088112" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Methods" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+      <Compartment Name="Events" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.My.Resources.Resources" Collapsed="False">
+    <Position X="0.5" Y="75.5" Width="2.472174" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.My.MySettings" Collapsed="False">
+    <Position X="0.5" Y="78.6" Width="2.186242" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Methods" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="SWEditor.My.MySettingsProperty" Collapsed="False">
+    <Position X="0.5" Y="81.2" Width="1.579391" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+    </Compartments>
+  </Class>
+</ClassDiagram>

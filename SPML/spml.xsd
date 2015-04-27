@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SPMLDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="spml" msprop:Generator_TableClassName="spmlDataTable" msprop:Generator_TableVarName="tablespml" msprop:Generator_TablePropName="spml" msprop:Generator_RowDeletingName="spmlRowDeleting" msprop:Generator_RowChangingName="spmlRowChanging" msprop:Generator_RowEvHandlerName="spmlRowChangeEventHandler" msprop:Generator_RowDeletedName="spmlRowDeleted" msprop:Generator_UserTableName="spml" msprop:Generator_RowChangedName="spmlRowChanged" msprop:Generator_RowEvArgName="spmlRowChangeEvent" msprop:Generator_RowClassName="spmlRow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="png" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="png" msprop:Generator_ColumnVarNameInTable="columnpng" msprop:Generator_ColumnPropNameInTable="pngColumn" msprop:Generator_UserColumnName="png" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+        <xs:element name="svg" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="svg" msprop:Generator_ColumnVarNameInTable="columnsvg" msprop:Generator_ColumnPropNameInTable="svgColumn" msprop:Generator_UserColumnName="svg" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+        <xs:element name="entry" msprop:Generator_TableClassName="entryDataTable" msprop:Generator_TableVarName="tableentry" msprop:Generator_TablePropName="entry" msprop:Generator_RowDeletingName="entryRowDeleting" msprop:Generator_RowChangingName="entryRowChanging" msprop:Generator_RowEvHandlerName="entryRowChangeEventHandler" msprop:Generator_RowDeletedName="entryRowDeleted" msprop:Generator_UserTableName="entry" msprop:Generator_RowChangedName="entryRowChanged" msprop:Generator_RowEvArgName="entryRowChangeEvent" msprop:Generator_RowClassName="entryRow" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="png" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="png" msprop:Generator_ColumnVarNameInTable="columnpng" msprop:Generator_ColumnPropNameInTable="pngColumn" msprop:Generator_UserColumnName="png" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+              <xs:element name="svg" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="svg" msprop:Generator_ColumnVarNameInTable="columnsvg" msprop:Generator_ColumnPropNameInTable="svgColumn" msprop:Generator_UserColumnName="svg" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+              <xs:element name="video" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="video" msprop:Generator_ColumnVarNameInTable="columnvideo" msprop:Generator_ColumnPropNameInTable="videoColumn" msprop:Generator_UserColumnName="video" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+              <xs:element name="src" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="src" msprop:Generator_ColumnVarNameInTable="columnsrc" msprop:Generator_ColumnPropNameInTable="srcColumn" msprop:Generator_UserColumnName="src" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+              <xs:element name="next" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="_next" msprop:Generator_ColumnVarNameInTable="columnnext" msprop:Generator_ColumnPropNameInTable="nextColumn" msprop:Generator_UserColumnName="next" type="xs:string" minOccurs="0" msdata:Ordinal="10" />
+              <xs:element name="text" nillable="true" msprop:Generator_TableClassName="textDataTable" msprop:Generator_TableVarName="tabletext" msprop:Generator_TablePropName="text" msprop:Generator_RowDeletingName="textRowDeleting" msprop:Generator_RowChangingName="textRowChanging" msprop:Generator_RowEvHandlerName="textRowChangeEventHandler" msprop:Generator_RowDeletedName="textRowDeleted" msprop:Generator_UserTableName="text" msprop:Generator_RowChangedName="textRowChanged" msprop:Generator_RowEvArgName="textRowChangeEvent" msprop:Generator_RowClassName="textRow" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="text_Text" msprop:Generator_ColumnVarNameInTable="columntext_Text" msprop:Generator_ColumnPropNameInTable="text_TextColumn" msprop:Generator_UserColumnName="text_Text" msdata:ColumnName="text_Text" msdata:Ordinal="0">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="entry_Id" msprop:Generator_ColumnVarNameInTable="columnentry_Id" msprop:Generator_ColumnPropNameInRow="entry_Id" msprop:Generator_ColumnPropNameInTable="entry_IdColumn" msprop:Generator_UserColumnName="entry_Id" type="xs:int" use="prohibited" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="term" nillable="true" msprop:Generator_TableClassName="termDataTable" msprop:Generator_TableVarName="tableterm" msprop:Generator_TablePropName="term" msprop:Generator_RowDeletingName="termRowDeleting" msprop:Generator_RowChangingName="termRowChanging" msprop:Generator_RowEvHandlerName="termRowChangeEventHandler" msprop:Generator_RowDeletedName="termRowDeleted" msprop:Generator_UserTableName="term" msprop:Generator_RowChangedName="termRowChanged" msprop:Generator_RowEvArgName="termRowChangeEvent" msprop:Generator_RowClassName="termRow" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="term_Text" msprop:Generator_ColumnVarNameInTable="columnterm_Text" msprop:Generator_ColumnPropNameInTable="term_TextColumn" msprop:Generator_UserColumnName="term_Text" msdata:ColumnName="term_Text" msdata:Ordinal="0">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="entry_Id" msprop:Generator_ColumnVarNameInTable="columnentry_Id" msprop:Generator_ColumnPropNameInRow="entry_Id" msprop:Generator_ColumnPropNameInTable="entry_IdColumn" msprop:Generator_UserColumnName="entry_Id" type="xs:int" use="prohibited" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" />
+            <xs:attribute name="uuid" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="uuid" msprop:Generator_ColumnVarNameInTable="columnuuid" msprop:Generator_ColumnPropNameInTable="uuidColumn" msprop:Generator_UserColumnName="uuid" type="xs:string" />
+            <xs:attribute name="cdt" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="cdt" msprop:Generator_ColumnVarNameInTable="columncdt" msprop:Generator_ColumnPropNameInTable="cdtColumn" msprop:Generator_UserColumnName="cdt" type="xs:string" />
+            <xs:attribute name="mdt" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="mdt" msprop:Generator_ColumnVarNameInTable="columnmdt" msprop:Generator_ColumnPropNameInTable="mdtColumn" msprop:Generator_UserColumnName="mdt" type="xs:string" />
+            <xs:attribute name="usr" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="usr" msprop:Generator_ColumnVarNameInTable="columnusr" msprop:Generator_ColumnPropNameInTable="usrColumn" msprop:Generator_UserColumnName="usr" type="xs:string" />
+            <xs:attribute name="prev" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="prev" msprop:Generator_ColumnVarNameInTable="columnprev" msprop:Generator_ColumnPropNameInTable="prevColumn" msprop:Generator_UserColumnName="prev" type="xs:string" />
+            <xs:attribute name="entry_Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnentry_Id" msprop:Generator_ColumnPropNameInRow="entry_Id" msprop:Generator_ColumnPropNameInTable="entry_IdColumn" msprop:Generator_UserColumnName="entry_Id" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+            <xs:attribute name="spml_Id" msprop:Generator_ColumnVarNameInTable="columnspml_Id" msprop:Generator_ColumnPropNameInRow="spml_Id" msprop:Generator_ColumnPropNameInTable="spml_IdColumn" msprop:Generator_UserColumnName="spml_Id" type="xs:int" use="prohibited" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="root" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="root" msprop:Generator_ColumnVarNameInTable="columnroot" msprop:Generator_ColumnPropNameInTable="rootColumn" msprop:Generator_UserColumnName="root" type="xs:string" />
+      <xs:attribute name="type" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:string" />
+      <xs:attribute name="puddle" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="puddle" msprop:Generator_ColumnVarNameInTable="columnpuddle" msprop:Generator_ColumnPropNameInTable="puddleColumn" msprop:Generator_UserColumnName="puddle" type="xs:string" />
+      <xs:attribute name="uuid" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="uuid" msprop:Generator_ColumnVarNameInTable="columnuuid" msprop:Generator_ColumnPropNameInTable="uuidColumn" msprop:Generator_UserColumnName="uuid" type="xs:string" />
+      <xs:attribute name="cdt" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="cdt" msprop:Generator_ColumnVarNameInTable="columncdt" msprop:Generator_ColumnPropNameInTable="cdtColumn" msprop:Generator_UserColumnName="cdt" type="xs:string" />
+      <xs:attribute name="mdt" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="mdt" msprop:Generator_ColumnVarNameInTable="columnmdt" msprop:Generator_ColumnPropNameInTable="mdtColumn" msprop:Generator_UserColumnName="mdt" type="xs:string" />
+      <xs:attribute name="nextid" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="nextid" msprop:Generator_ColumnVarNameInTable="columnnextid" msprop:Generator_ColumnPropNameInTable="nextidColumn" msprop:Generator_UserColumnName="nextid" type="xs:string" />
+      <xs:attribute name="spml_Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnspml_Id" msprop:Generator_ColumnPropNameInRow="spml_Id" msprop:Generator_ColumnPropNameInTable="spml_IdColumn" msprop:Generator_UserColumnName="spml_Id" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SPMLDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="SPMLDataSet" msprop:Generator_UserDSName="SPMLDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="spml" />
+        <xs:element name="text1" nillable="true" msprop:Generator_TableClassName="text1DataTable" msprop:Generator_TableVarName="tabletext1" msprop:Generator_RowChangedName="text1RowChanged" msprop:Generator_TablePropName="text1" msprop:Generator_RowDeletingName="text1RowDeleting" msprop:Generator_RowChangingName="text1RowChanging" msprop:Generator_RowEvHandlerName="text1RowChangeEventHandler" msprop:Generator_RowDeletedName="text1RowDeleted" msprop:Generator_RowClassName="text1Row" msprop:Generator_UserTableName="text1" msprop:Generator_RowEvArgName="text1RowChangeEvent">
+          <xs:complexType>
+            <xs:simpleContent msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="text_Text" msprop:Generator_ColumnVarNameInTable="columntext_Text" msprop:Generator_ColumnPropNameInTable="text_TextColumn" msprop:Generator_UserColumnName="text_Text" msdata:ColumnName="text_Text" msdata:Ordinal="0">
+              <xs:extension base="xs:string">
+                <xs:attribute name="spml_Id" msdata:Caption="entry_Id" msprop:Generator_ColumnVarNameInTable="columnspml_Id" msprop:Generator_ColumnPropNameInRow="spml_Id" msprop:Generator_ColumnPropNameInTable="spml_IdColumn" msprop:Generator_UserColumnName="spml_Id" type="xs:int" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="term1" nillable="true" msprop:Generator_TableClassName="term1DataTable" msprop:Generator_TableVarName="tableterm1" msprop:Generator_RowChangedName="term1RowChanged" msprop:Generator_TablePropName="term1" msprop:Generator_RowDeletingName="term1RowDeleting" msprop:Generator_RowChangingName="term1RowChanging" msprop:Generator_RowEvHandlerName="term1RowChangeEventHandler" msprop:Generator_RowDeletedName="term1RowDeleted" msprop:Generator_RowClassName="term1Row" msprop:Generator_UserTableName="term1" msprop:Generator_RowEvArgName="term1RowChangeEvent">
+          <xs:complexType>
+            <xs:simpleContent msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="term_Text" msprop:Generator_ColumnVarNameInTable="columnterm_Text" msprop:Generator_ColumnPropNameInTable="term_TextColumn" msprop:Generator_UserColumnName="term_Text" msdata:ColumnName="term_Text" msdata:Ordinal="0">
+              <xs:extension base="xs:string">
+                <xs:attribute name="spml_Id" msdata:Caption="entry_Id" msprop:Generator_ColumnVarNameInTable="columnspml_Id" msprop:Generator_ColumnPropNameInRow="spml_Id" msprop:Generator_ColumnPropNameInTable="spml_IdColumn" msprop:Generator_UserColumnName="spml_Id" type="xs:int" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="entry_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//entry" />
+      <xs:field xpath="@entry_Id" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//spml" />
+      <xs:field xpath="@spml_Id" />
+    </xs:unique>
+    <xs:keyref name="spml_entry" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="entry" msprop:rel_Generator_ChildPropName="GetentryRows" msprop:rel_Generator_UserRelationName="spml_entry" msprop:rel_Generator_ParentPropName="spmlRow" msprop:rel_Generator_RelationVarName="relationspml_entry" msprop:rel_Generator_UserParentTable="spml">
+      <xs:selector xpath=".//entry" />
+      <xs:field xpath="@spml_Id" />
+    </xs:keyref>
+    <xs:keyref name="entry_term" refer="entry_Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="term" msprop:rel_Generator_ChildPropName="GettermRows" msprop:rel_Generator_UserRelationName="entry_term" msprop:rel_Generator_ParentPropName="entryRow" msprop:rel_Generator_RelationVarName="relationentry_term" msprop:rel_Generator_UserParentTable="entry">
+      <xs:selector xpath=".//term" />
+      <xs:field xpath="@entry_Id" />
+    </xs:keyref>
+    <xs:keyref name="entry_text" refer="entry_Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="text" msprop:rel_Generator_ChildPropName="GettextRows" msprop:rel_Generator_UserRelationName="entry_text" msprop:rel_Generator_ParentPropName="entryRow" msprop:rel_Generator_RelationVarName="relationentry_text" msprop:rel_Generator_UserParentTable="entry">
+      <xs:selector xpath=".//text" />
+      <xs:field xpath="@entry_Id" />
+    </xs:keyref>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="spml_text1" msdata:parent="spml" msdata:child="text1" msdata:parentkey="spml_Id" msdata:childkey="spml_Id" msprop:Generator_UserChildTable="text1" msprop:Generator_ChildPropName="Gettext1Rows" msprop:Generator_UserRelationName="spml_text1" msprop:Generator_RelationVarName="relationspml_text1" msprop:Generator_UserParentTable="spml" msprop:Generator_ParentPropName="spmlRow" />
+      <msdata:Relationship name="spml_term1" msdata:parent="spml" msdata:child="term1" msdata:parentkey="spml_Id" msdata:childkey="spml_Id" msprop:Generator_UserChildTable="term1" msprop:Generator_ChildPropName="Getterm1Rows" msprop:Generator_UserRelationName="spml_term1" msprop:Generator_RelationVarName="relationspml_term1" msprop:Generator_UserParentTable="spml" msprop:Generator_ParentPropName="spmlRow" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

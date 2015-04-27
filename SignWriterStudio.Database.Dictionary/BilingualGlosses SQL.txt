@@ -1,0 +1,123 @@
+Base
+
+SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+FROM               DictionaryGloss
+WHERE           (IDCulture = @Lang1) OR
+                                (IDCulture IS NULL)
+
+
+
+Both
+
+SELECT          TableLanguage1.IDDictionaryGloss, TableLanguage1.IDDictionary, TableLanguage1.IDCulture, TableLanguage1.gloss, TableLanguage1.glosses, 
+                                TableLanguage2.IDDictionaryGloss AS Expr1, TableLanguage2.IDDictionary AS Expr2, TableLanguage2.IDCulture AS Expr3, TableLanguage2.gloss AS Expr4, 
+                                TableLanguage2.glosses AS Expr5
+FROM               (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                 FROM               DictionaryGloss DictionaryGloss_1
+                                 WHERE           (IDCulture = @Lang2) OR
+                                                                 (IDCulture IS NULL)) Joinner LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss
+                                       WHERE           (IDCulture = @Lang1) OR
+                                                                       (IDCulture IS NULL)) TableLanguage1 ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss DictionaryGloss_1
+                                       WHERE           (IDCulture = @Lang2) OR
+                                                                       (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary
+
+
+
+
+ (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                 FROM               DictionaryGloss DictionaryGloss_1) Joinner 
+
+Modified
+
+SELECT          TableLanguage1.IDDictionaryGloss, TableLanguage1.IDDictionary, TableLanguage1.IDCulture, TableLanguage1.gloss, TableLanguage1.glosses, 
+                                TableLanguage2.IDDictionaryGloss AS Expr1, TableLanguage2.IDDictionary AS Expr2, TableLanguage2.IDCulture AS Expr3, TableLanguage2.gloss AS Expr4, 
+                                TableLanguage2.glosses AS Expr5
+FROM               (SELECT          IDDictionary
+FROM               Dictionary) Joinner  LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss
+                                       WHERE           (IDCulture = @Lang1) OR
+                                                                       (IDCulture IS NULL)) TableLanguage1 ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss DictionaryGloss_1
+                                       WHERE           (IDCulture = @Lang2) OR
+                                                                       (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary
+
+BAckup
+
+SELECT          TableLanguage1.IDDictionaryGloss, TableLanguage1.IDDictionary, TableLanguage1.IDCulture, TableLanguage1.gloss AS gloss1, 
+                                TableLanguage1.glosses AS glosses1, TableLanguage2.IDDictionaryGloss AS Expr1, TableLanguage2.IDDictionary AS Expr2, 
+                                TableLanguage2.IDCulture AS Expr3, TableLanguage2.gloss AS gloss2, TableLanguage2.glosses AS glosses2
+FROM               (SELECT          IDDictionary
+                                 FROM               Dictionary) Joinner LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss
+                                       WHERE           (IDCulture = @Lang1) OR
+                                                                       (IDCulture IS NULL)) TableLanguage1 ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss DictionaryGloss_1
+                                       WHERE           (IDCulture = @Lang2) OR
+                                                                       (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary
+
+
+
+Languages
+
+SELECT          TableLanguage1.IDDictionary, TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, TableLanguage1.IDCulture AS Culture1, 
+                                TableLanguage1.gloss AS gloss1, TableLanguage1.glosses AS glosses1, TableLanguage2.IDDictionaryGloss AS IDDictionaryGloss2, 
+                                TableLanguage2.IDCulture AS Culture2, TableLanguage2.gloss AS gloss2, TableLanguage2.glosses AS glosses2
+FROM               (SELECT           IDDictionary
+                                 FROM               Dictionary) Joinner LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss
+                                       WHERE           (IDCulture = @Lang1) OR
+                                                                       (IDCulture IS NULL)) TableLanguage1 ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss DictionaryGloss_1
+                                       WHERE           (IDCulture = @Lang2) OR
+                                                                       (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary
+
+
+
+
+New
+
+SELECT          TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, 
+                                TableLanguage1.glosses AS glosses1, TableLanguage2.IDDictionaryGloss AS IDDictionaryGloss2, TableLanguage2.IDCulture AS Culture2, 
+                                TableLanguage2.gloss AS gloss2, TableLanguage2.glosses AS glosses2
+FROM               (SELECT            IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastChange
+
+                                 FROM               Dictionary) Joinner LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss
+                                       WHERE           (IDCulture = @Lang1) OR
+                                                                       (IDCulture IS NULL)) TableLanguage1 ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss DictionaryGloss_1
+                                       WHERE           (IDCulture = @Lang2) OR
+                                                                       (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary
+
+
+Finished
+
+BilingualGlosses
+
+SELECT          Joinner.IDDictionary, Joinner.IDSignLanguage, Joinner.IDSignPuddle, Joinner.isPrivate, Joinner.SWriting, Joinner.Photo, Joinner.Sign, Joinner.SWritingSource,
+                                 Joinner.PhotoSource, Joinner.SignSource, Joinner.GUID, Joinner.LastChange, TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, 
+                                TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, TableLanguage1.glosses AS glosses1, 
+                                TableLanguage2.IDDictionaryGloss AS IDDictionaryGloss2, TableLanguage2.IDCulture AS Culture2, TableLanguage2.gloss AS gloss2, 
+                                TableLanguage2.glosses AS glosses2
+FROM               (SELECT          IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastChange
+                                 FROM               Dictionary) Joinner LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss
+                                       WHERE           (IDCulture = @Lang1) OR
+                                                                       (IDCulture IS NULL)) TableLanguage1 ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
+                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                                       FROM               DictionaryGloss DictionaryGloss_1
+                                       WHERE           (IDCulture = @Lang2) OR
+                                                                       (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary

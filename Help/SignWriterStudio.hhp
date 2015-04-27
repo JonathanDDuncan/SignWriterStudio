@@ -1,0 +1,55 @@
+[OPTIONS]
+Auto Index=Yes
+Binary Index=No
+Compatibility=1.1 or later
+Compiled file=SignWriterStudio.chm
+Contents file=Table of Contents.hhc
+Default topic=mainmenu.htm
+Display compile progress=No
+Error log file=Log.txt
+Full-text search=Yes
+Index file=Index.hhk
+Language=0x409 English (United States)
+
+
+[FILES]
+symbolsequence.htm
+allsymbols.htm
+arrowchooser.htm
+dicsignsearch.htm
+dictionary.htm
+document.htm
+favoritesymbols.htm
+generalchooser.htm
+generaltips.htm
+glosstosign.htm
+handchooser.htm
+handsearch.htm
+imageeditor.htm
+index.htm
+mainmenu.htm
+options.htm
+registering.htm
+signarea.htm
+signeditor.htm
+signlist.htm
+signlistprint.htm
+license.htm
+wtsignlist.htm
+walkthroughs.htm
+wtcreating.htm
+wtdictionary.htm
+wtdocument.htm
+wtglosstosign.htm
+wtimageeditor.htm
+wtinstalation.htm
+wtopening.htm
+wtoptions.htm
+wtprintsignlist.htm
+wtsigneditor.htm
+wtsigneditorkeyb.htm
+
+[INFOTYPES]
+Category:SignWriter Studio™
+CategoryDesc: 
+
