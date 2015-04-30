@@ -10,9 +10,9 @@ Public Class ExportAnki
 
             Dim signs = ExportPng.GetSignsinDictionary(myDictionary)
             For Each sign In signs
-                Dim gloss = sign.Gloss 
-                Dim glosses = sign.Glosses 
-                Dim guid = sign.Guid 
+                Dim gloss = sign.Gloss
+                Dim glosses = sign.Glosses
+                Dim guid = sign.Guid
                 Dim png = sign.SignWritingImage
 
                 Dim filename As String = ExportPng.GetFilename(gloss, guid.ToString)
