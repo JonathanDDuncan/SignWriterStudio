@@ -23,7 +23,7 @@ namespace SQLiteRepository.SQLiteFluent
             if (whereIn != null && whereIn.Item2.Any())
             {
 
-                return " WHERE [" + whereIn.Item1 + "] IN (" + StringUtil.Concatenate(whereIn.Item2) + ")";
+                return " WHERE [" + whereIn.Item1 + "] IN (" + StringUtil.Concatenate(whereIn.Item2.Cast<string>()) + ")";
             }
             return string.Empty;
         }

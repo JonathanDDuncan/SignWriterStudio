@@ -12,7 +12,7 @@ namespace SQLiteRepository.SQLiteFluent
         }
 
         public string TableName { get; set; }
-        public List<List<object>> Values { get; set; }
+        public List<List<string>> Values { get; set; }
         public string Path { get; set; }
         public List<string> Columns { get; set; }
     }

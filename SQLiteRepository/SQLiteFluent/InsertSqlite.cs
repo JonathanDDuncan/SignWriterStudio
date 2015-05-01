@@ -14,7 +14,7 @@ namespace SQLiteRepository.SQLiteFluent
             return result;
         }
 
-        private static IFluentResult Insert(SQLiteConnection conn, string tableName, IEnumerable<string> columns, IEnumerable<List<object>> rows)
+        private static IFluentResult Insert(SQLiteConnection conn, string tableName, IEnumerable<string> columns, IEnumerable<List<string>> rows)
         {
             var columnNames = StringUtil.GetSelectNames(columns);
             conn.Open();
@@ -26,9 +26,9 @@ namespace SQLiteRepository.SQLiteFluent
                 {
                      
                     int sum = 0;
-                    foreach (List<object> row in rows)
+                    foreach (List<string> row in rows)
                     {
-                        string values = StringUtil.GetValues(row);
+                        string values = StringUtil.GetValues(row );
                         string sql = string.Format("INSERT INTO {0} ({1})  VALUES ({2});", tableName, columnNames, values);
                         SQLiteCommand command = new SQLiteCommand(sql, conn);
 

@@ -59,7 +59,12 @@
   <ItemGroup>
     <Compile Include="LINQ\LINQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\TableDescription.cs" />
+    <Compile Include="SQLiteFluent\CreateTableExtensions.cs" />
     <Compile Include="SQLiteFluent\DeleteEntensions.cs" />
+    <Compile Include="SQLiteFluent\CreateTableSqlite.cs" />
+    <Compile Include="SQLiteFluent\CreateTableFluent.cs" />
     <Compile Include="SQLiteFluent\DeleteSqlite.cs" />
     <Compile Include="SQLiteFluent\FluentResult.cs" />
     <Compile Include="SQLiteFluent\GetSqlite.cs" />

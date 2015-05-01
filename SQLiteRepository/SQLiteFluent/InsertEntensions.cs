@@ -16,7 +16,7 @@ namespace SQLiteRepository.SQLiteFluent
             query.Path = path;
             return query;
         }
-        public static InsertFluent Values(this InsertFluent query, List<List<object>> values)
+        public static InsertFluent Values(this InsertFluent query, List<List<string>> values)
         {
             query.Values = values;
             return query;

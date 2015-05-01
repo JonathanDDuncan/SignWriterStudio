@@ -18,16 +18,24 @@ namespace SQLiteRepository.SQLiteFluent
             return schemaTable != null ? (from DataRow row in schemaTable.Rows from DataColumn column in schemaTable.Columns where column.ColumnName == "ColumnName" select row[column].ToString()).ToList() : null;
         }
 
-        public static string GetValues(IEnumerable<object> row)
+        public static string GetValues(IEnumerable<string> row)
         {
             return ConcatValues(row, "'", "'", ", ");
         }
 
-        private static string ConcatValues(IEnumerable<object> row, string prepend, string append, string seperator)
+        private static string ConcatValues(IEnumerable<string> row, string prepend, string append, string seperator)
         {
-            return row.Select(x => prepend + x + append).Aggregate((current, next) => current + seperator + next);
+            return Concat(row.Select(x => prepend + x + append),seperator);
         }
 
+        internal static string Concat(IEnumerable<string> row, string seperator)
+        {
+            return row.Aggregate((current, next) => current + seperator + next);
+        }
+        public static string Concatenate(IEnumerable<string> items)
+        {
+            return items.Aggregate((current, next) => current + next);
+        }
         public static string GetUpdateValues(IEnumerable<string> columnNames, IEnumerable<object> values)
         {
             return columnNames.Skip(1).Zip(values.Skip(1), Tuple.Create).Select(x => "[" + x.Item1 + "] = '" + x.Item2 + "'").Aggregate((current, next) => current + ", " + next);
@@ -42,9 +50,18 @@ namespace SQLiteRepository.SQLiteFluent
             return null;
         }
 
-        public static string Concatenate(List<object> list)
+        
+
+        public static string RemoveLastChar(string str)
         {
-          return  ConcatValues(list, "", "", ", ");
+            return str.Substring(0, str.Length - 1);
         }
+
+        public static string ConcatenateColumnTypes(Dictionary<string, string> fields)
+        {
+           return Concat(fields.Select(x => "[" + x.Key + "] " + x.Value),  ", ");
+        }
+
+       
     }
 }
