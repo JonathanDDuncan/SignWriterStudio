@@ -12,7 +12,7 @@ namespace SQLiteRepository.SQLiteFluent
         public static SQLiteConnection CreateConnection(string path)
         {
             return new SQLiteConnection(@"Data Source=" + path + ";Version=3;");
-        }
+        } 
 
         internal static object GetWhereClause(string @where, Tuple<string,List<object>> whereIn)
         {
