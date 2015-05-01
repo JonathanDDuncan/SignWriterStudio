@@ -41,11 +41,11 @@ namespace SQLiteRepository.Test
 
             var insertColumns = new List<string> { "IDDictionary", "IDSignLanguage", "GUID" };
 
-            var values = new List<List<object>>
+            var values = new List<List<string>>
             {
-                new List< object> {112555 , 1 , Guid.NewGuid()} ,
-                new List< object> {112556 , 1 , Guid.NewGuid()} ,
-                new List< object> {112557 , 1 , Guid.NewGuid()}  
+                new List< string> {"112555" , "1" , Guid.NewGuid().ToString()} ,
+                new List< string> {"112556" , "1" , Guid.NewGuid().ToString()} ,
+                new List< string> {"112557" , "1" , Guid.NewGuid().ToString()}  
             };
 
             var query = InsertFluent.Initialize()
@@ -107,7 +107,7 @@ namespace SQLiteRepository.Test
         {
             var path = @"C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS";
 
-            var wherein = Tuple.Create("IDDictionary", new List<object> { 112555, 112556, 112557 });
+            var wherein = Tuple.Create("IDDictionary", new List<string> { "112555", "112556", "112557" });
 
 
             var query = DeleteFluent.Initialize()

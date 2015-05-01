@@ -15,6 +15,6 @@ namespace SQLiteRepository.SQLiteFluent
         public string TableName { get; set; }
         public string Path { get; set; }
         public string Where { get; set; }
-        public Tuple<string,List<object>> WhereIn { get; set; }
+        public Tuple<string,List<string>> WhereIn { get; set; }
     }
 }

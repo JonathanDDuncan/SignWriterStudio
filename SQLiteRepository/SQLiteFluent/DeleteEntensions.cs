@@ -24,7 +24,7 @@ namespace SQLiteRepository.SQLiteFluent
             query.Where  = where;
             return query;
         }
-        public static DeleteFluent Where(this DeleteFluent query, Tuple<string,List<object>> wherein)
+        public static DeleteFluent Where(this DeleteFluent query, Tuple<string,List<string>> wherein)
         {
             query.WhereIn = wherein;
             return query;

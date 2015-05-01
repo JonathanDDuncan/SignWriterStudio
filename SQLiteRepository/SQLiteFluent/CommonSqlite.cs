@@ -14,7 +14,7 @@ namespace SQLiteRepository.SQLiteFluent
             return new SQLiteConnection(@"Data Source=" + path + ";Version=3;");
         } 
 
-        internal static object GetWhereClause(string @where, Tuple<string,List<object>> whereIn)
+        internal static object GetWhereClause(string @where, Tuple<string,List<string>> whereIn)
         {
             if (!string.IsNullOrEmpty( where))
             {
@@ -23,7 +23,7 @@ namespace SQLiteRepository.SQLiteFluent
             if (whereIn != null && whereIn.Item2.Any())
             {
 
-                return " WHERE [" + whereIn.Item1 + "] IN (" + StringUtil.Concatenate(whereIn.Item2.Cast<string>()) + ")";
+                return " WHERE [" + whereIn.Item1 + "] IN (" + StringUtil.Concat(whereIn.Item2, ",") + ")";
             }
             return string.Empty;
         }

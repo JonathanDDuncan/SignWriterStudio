@@ -11,7 +11,7 @@ namespace SQLiteRepository.SQLiteFluent
             return Delete(query.Path, query.TableName, query.Where, query.WhereIn );
         }
 
-        private static IFluentResult  Delete(string path, string tableName, string @where, Tuple<string,List<object>> whereIn = null)
+        private static IFluentResult  Delete(string path, string tableName, string @where, Tuple<string,List<string>> whereIn = null)
         {
             var conn = CommonSqlite.CreateConnection(path);
             conn.Open();
