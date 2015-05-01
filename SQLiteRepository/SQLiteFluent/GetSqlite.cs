@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Dynamic;
 
@@ -28,7 +29,7 @@ namespace SQLiteRepository.SQLiteFluent
             return new FluentResult {TabularResults = new List<List<ExpandoObject>> {table}};
         }
 
-        private static List<ExpandoObject> ReadRows(SQLiteDataReader rdr, List<string> readColumns)
+        private static List<ExpandoObject> ReadRows(IDataReader rdr, List<string> readColumns)
         {
             var table = new List<ExpandoObject>(); ;
             while (rdr.Read())

@@ -9,7 +9,7 @@ namespace SQLiteRepository.SQLiteFluent
     {
         public static string GetSelectNames(IEnumerable<string> selectitems)
         {
-            return ConcatValues(selectitems, "[", "]", ", ");
+            return selectitems == null ? " * " : ConcatValues(selectitems, "[", "]", ", ");
         }
 
         public static List<string> GetColumnNames(IDataReader reader)

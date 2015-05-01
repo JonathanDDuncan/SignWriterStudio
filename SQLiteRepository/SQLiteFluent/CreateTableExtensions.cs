@@ -25,7 +25,7 @@ namespace SQLiteRepository.SQLiteFluent
             return query;
         }
 
-        public static CreateTableFluent PrimaryKey(this CreateTableFluent query, Dictionary<string, string> fields)
+        public static CreateTableFluent Fields(this CreateTableFluent query, Dictionary<string, string> fields)
         {
             query.Fields = fields;
             return query;
