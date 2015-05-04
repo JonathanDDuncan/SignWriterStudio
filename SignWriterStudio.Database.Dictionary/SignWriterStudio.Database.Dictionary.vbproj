@@ -190,10 +190,6 @@
       <Project>{5917d821-bb0b-4eff-be9c-bceae1da82db}</Project>
       <Name>Settings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SignWriterStudio.Db.Tags\SignWriterStudio.Db.Tags.csproj">
-      <Project>{1afaba99-1d37-4038-8678-a14d5442495e}</Project>
-      <Name>SignWriterStudio.Db.Tags</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SignWriterStudio.UI\SignWriterStudio.UI.vbproj">
       <Project>{1ef13998-503f-433c-b860-e33a351ee21e}</Project>
       <Name>SignWriterStudio.UI</Name>
