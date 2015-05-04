@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="Connections.vb" />
     <Compile Include="DatabaseDictionary.vb" />
+    <Compile Include="DatabaseSetup.vb" />
     <Compile Include="DictionaryDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,11 +187,15 @@
       <Name>General</Name>
     </ProjectReference>
     <ProjectReference Include="..\Settings\Settings.vbproj">
-      <Project>{5917D821-BB0B-4EFF-BE9C-BCEAE1DA82DB}</Project>
+      <Project>{5917d821-bb0b-4eff-be9c-bceae1da82db}</Project>
       <Name>Settings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SignWriterStudio.Db.Tags\SignWriterStudio.Db.Tags.csproj">
+      <Project>{1afaba99-1d37-4038-8678-a14d5442495e}</Project>
+      <Name>SignWriterStudio.Db.Tags</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SignWriterStudio.UI\SignWriterStudio.UI.vbproj">
-      <Project>{1EF13998-503F-433C-B860-E33A351EE21E}</Project>
+      <Project>{1ef13998-503f-433c-b860-e33a351ee21e}</Project>
       <Name>SignWriterStudio.UI</Name>
     </ProjectReference>
   </ItemGroup>
