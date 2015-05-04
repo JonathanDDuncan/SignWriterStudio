@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{861219F4-24DD-4781-8CAC-8FE1B81CC538}</ProjectGuid>
+    <ProjectGuid>{F385F873-9337-4032-A53C-CF5DE0C34BF9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SQLiteRepository</RootNamespace>
