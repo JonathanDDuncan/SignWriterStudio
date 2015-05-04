@@ -1,6 +1,6 @@
 ﻿using SQLiteRepository.SQLiteQuery;
 
-namespace SignWriterStudio.Db.Tags
+namespace SignWriterStudio.DbTags
 {
     public class DbDictionary
     {

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteRepository.Test", "SQ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteRepository", "..\SQLiteRepository\SQLiteRepository.csproj", "{861219F4-24DD-4781-8CAC-8FE1B81CC538}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignWriterStudio.Db.Tags", "..\SignWriterStudio.Db.Tags\SignWriterStudio.Db.Tags.csproj", "{1AFABA99-1D37-4038-8678-A14D5442495E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignWriterStudio.DbTags", "..\SignWriterStudio.DbTags\SignWriterStudio.DbTags.csproj", "{38FE1956-63D5-4AB5-B3B9-FDDC843D9763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{861219F4-24DD-4781-8CAC-8FE1B81CC538}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{861219F4-24DD-4781-8CAC-8FE1B81CC538}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{861219F4-24DD-4781-8CAC-8FE1B81CC538}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1AFABA99-1D37-4038-8678-A14D5442495E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AFABA99-1D37-4038-8678-A14D5442495E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AFABA99-1D37-4038-8678-A14D5442495E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AFABA99-1D37-4038-8678-A14D5442495E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38FE1956-63D5-4AB5-B3B9-FDDC843D9763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38FE1956-63D5-4AB5-B3B9-FDDC843D9763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38FE1956-63D5-4AB5-B3B9-FDDC843D9763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38FE1956-63D5-4AB5-B3B9-FDDC843D9763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

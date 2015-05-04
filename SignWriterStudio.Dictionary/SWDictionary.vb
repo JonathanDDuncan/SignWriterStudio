@@ -2,7 +2,9 @@ Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Data.OleDb
+Imports DbInterface
 Imports DropDownControls.FilteredGroupedComboBox
+Imports NUnit.Framework
 Imports Microsoft.VisualBasic.FileIO
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Settings
@@ -119,9 +121,12 @@ Public Class SWDictForm
 
     Private Sub CheckDictionary(Optional ask As Boolean = True)
         Dim wasUpgraded = False
-        If Not DatabaseSetup.CheckDictionary(ask, wasUpgraded) Then
+        Dim result = DatabaseSetup.CheckDictionary(ask, wasUpgraded)
+
+        If Not result.Item1 Then
             MessageBox.Show("Choose or create a SignWriter Dictionary (.SWS) file before continuing.")
         Else
+            ExtraTodo(result.Item2)
             DictionaryLoaded = True
             ShowloadedFile()
         End If
@@ -131,6 +136,14 @@ Public Class SWDictForm
             _myDictionary.CreateSortString()
         End If
     End Sub
+
+    Private Sub ExtraTodo(ByVal todo As String)
+        If todo IsNot Nothing AndAlso todo = "AddDoNotExportTags" Then
+            'Dim filename = GetCurrentDictFilename()
+            'DbInterface1.AddDoNotExportTags(filename)
+        End If
+    End Sub
+ 
 
     Private Sub ShowButtons()
         If CallingForm IsNot Nothing AndAlso Not Me.CallingForm.Name = "SignWriterMenu" Then
@@ -1284,7 +1297,9 @@ Public Class SWDictForm
         If CheckSQLiteConnectionString(CreateConnectionString(Filename)) Then
             SetDictionaryConnectionString(Filename)
             Dim wasUpgraded = False
-            If DatabaseSetup.CheckDictionary(True, wasUpgraded) Then
+            Dim result = DatabaseSetup.CheckDictionary(True, wasUpgraded)
+            ExtraTodo(result.Item2)
+            If result.Item1 Then
                 Dim Languages As String = DictLanguages.LanguagesInDictionary
                 If Not Languages = String.Empty Then
                     MessageBox.Show(Languages)
@@ -1324,8 +1339,7 @@ Public Class SWDictForm
     End Sub
 
     Private Sub ShowloadedFile()
-        Dim filename As String = DictionaryConnectionString.ToString.Replace("""", "").Replace("data source=", "")
-
+        Dim filename As String = GetCurrentDictFilename()
         If File.Exists(filename) Then
             If Not (filename = String.Empty) Then
                 Me.Text = "SignWriter Studio™ - " & Path.GetFileName(filename) & " - " & GetSLNameandAcronym()
@@ -1336,6 +1350,11 @@ Public Class SWDictForm
             Me.Text = "SignWriter Studio™" & " - " & GetSLNameandAcronym()
         End If
     End Sub
+
+    Private Shared Function GetCurrentDictFilename() As String
+
+        Return DictionaryConnectionString.ToString.Replace("""", "").Replace("data source=", "")
+    End Function
 
     Private Function GetSLNameandAcronym() As String
         Dim Acronym As String = UI.Cultures.GetSLAcronymbyID(_myDictionary.DefaultSignLanguage)

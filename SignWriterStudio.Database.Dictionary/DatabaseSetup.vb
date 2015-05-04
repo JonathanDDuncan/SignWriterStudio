@@ -32,7 +32,7 @@ Public Module DatabaseSetup
     Friend Function BuildConnectionString(ByVal filename As String) As String
         Return "data source=""" & filename & """"
     End Function
-    Public Function CheckDictionary(Optional ByVal ask As Boolean = True, Optional ByRef wasUpdated As Boolean = False) As Boolean
+    Public Function CheckDictionary(Optional ByVal ask As Boolean = True, Optional ByRef wasUpdated As Boolean = False, Optional ByVal todo As String = "") As Tuple(Of Boolean, String)
         'Try
         Dim ta As New DictionaryDataSetTableAdapters.VersionTableAdapter() '(True)
         'Check if database exists
@@ -48,7 +48,7 @@ Public Module DatabaseSetup
                     Try
                         table = ta.GetData()
                     Catch ex As Exception
-                        Return False
+                        Return Tuple.Create(False, todo)
                     End Try
                     Const currentVersion As Integer = 2
                     Const currentMajor As Integer = 3
@@ -61,21 +61,21 @@ Public Module DatabaseSetup
 
                         If firstRow.DatabaseName = "Dictionary" AndAlso firstRow.DatabaseType = "Dictionary" AndAlso firstRow.IDVersion = currentVersion AndAlso firstRow.Major = currentMajor AndAlso firstRow.Minor = currentMinor Then
                             'Already upgraded to most recent version
-                            Return True
+                            Return Tuple.Create(True, todo)
 
                         ElseIf firstRow.DatabaseName = "Dictionary" AndAlso firstRow.DatabaseType = "Dictionary" AndAlso firstRow.IDVersion = 2 AndAlso firstRow.Major = 0 AndAlso firstRow.Minor = 0 Then
                             If Not ask OrElse MessageBox.Show(upgradeQuestion, "Upgrade file", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                                 ask = False
                                 UpgradeDatabase210(VersionString(firstRow.IDVersion, firstRow.Major, firstRow.Minor))
                                 wasUpdated = True
-                                Return CheckDictionary(ask, wasUpdated)
+                                Return CheckDictionary(ask, wasUpdated, todo)
                             End If
                         ElseIf firstRow.DatabaseName = "Dictionary" AndAlso firstRow.DatabaseType = "Dictionary" AndAlso firstRow.IDVersion = 2 AndAlso firstRow.Major = 1 AndAlso firstRow.Minor = 0 Then
                             If Not ask OrElse MessageBox.Show(upgradeQuestion, "Upgrade file", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                                 ask = False
                                 UpgradeDatabase211(VersionString(firstRow.IDVersion, firstRow.Major, firstRow.Minor))
                                 wasUpdated = True
-                                Return CheckDictionary(ask, wasUpdated)
+                                Return CheckDictionary(ask, wasUpdated, todo)
                             End If
 
                         ElseIf firstRow.DatabaseName = "Dictionary" AndAlso firstRow.DatabaseType = "Dictionary" AndAlso firstRow.IDVersion = 2 AndAlso firstRow.Major = 1 AndAlso firstRow.Minor = 1 Then
@@ -84,37 +84,37 @@ Public Module DatabaseSetup
                                 ask = False
                                 UpgradeDatabase220(VersionString(firstRow.IDVersion, firstRow.Major, firstRow.Minor))
                                 wasUpdated = True
-                                Return CheckDictionary(ask, wasUpdated)
+                                Return CheckDictionary(ask, wasUpdated, todo)
                             End If
                         ElseIf firstRow.DatabaseName = "Dictionary" AndAlso firstRow.DatabaseType = "Dictionary" AndAlso firstRow.IDVersion = 2 AndAlso firstRow.Major = 2 AndAlso firstRow.Minor = 0 Then
                             If Not ask OrElse MessageBox.Show(upgradeQuestion, "Upgrade file", MessageBoxButtons.YesNo) = DialogResult.Yes Then
 
                                 ask = False
-                                UpgradeDatabase230(VersionString(firstRow.IDVersion, firstRow.Major, firstRow.Minor))
+                                todo = UpgradeDatabase230(VersionString(firstRow.IDVersion, firstRow.Major, firstRow.Minor))
                                 wasUpdated = True
-                                Return CheckDictionary(ask, wasUpdated)
+                                Return CheckDictionary(ask, wasUpdated, todo)
                             End If
                         End If
                     Else
-                        Return False
+                        Tuple.Create(False, todo)
                     End If
                 Else
-                    Return False
+                    Tuple.Create(False, todo)
                 End If
             Else
-                Return False
+                Tuple.Create(False, todo)
             End If
         Catch ex As ArgumentException
-            Return False
+            Tuple.Create(False, todo)
         End Try
-        Return False
+        Tuple.Create(False, todo)
     End Function
 
     Private Function VersionString(ByVal idVersion As Long, ByVal major As Long, ByVal minor As Long) As String
         Return idVersion & "." & major & "." & minor
     End Function
 
-    Private Sub UpgradeDatabase230(ByVal fromVersion As String)
+    Private Function UpgradeDatabase230(ByVal fromVersion As String) As String
         Dim script230 = New List(Of String)
 
         script230.Add("BEGIN TRANSACTION;")
@@ -130,16 +130,10 @@ Public Module DatabaseSetup
 
         RunUpgradeScript(fromVersion, script230)
 
-        AddDoNotExportTags()
-    End Sub
+        Return "AddDoNotExportTags"
+    End Function
 
-    Private Sub AddDoNotExportTags()
-        'Dim connectionString = GetConnectionString()
-        'Dim path = GetConnectionFilename(connectionString)
-        'Dim DictionaryEntriesMarkedasPrivate = DbDictionary.GetDictionaryEntries(path, " [isPrivate] ")
-        'DbTags.CreateDoNotExportTags(DictionaryEntriesMarkedasPrivate)
-
-    End Sub
+     
 
     Private Sub UpgradeDatabase220(ByVal fromVersion As String)
         RunUpgradeScript(fromVersion, "Upgrade220.sql")

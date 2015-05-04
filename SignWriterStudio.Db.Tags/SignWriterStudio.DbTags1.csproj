@@ -7,8 +7,8 @@
     <ProjectGuid>{1AFABA99-1D37-4038-8678-A14D5442495E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SignWriterStudio.Db.Tags</RootNamespace>
-    <AssemblyName>SignWriterStudio.Db.Tags</AssemblyName>
+    <RootNamespace>SignWriterStudio.DbTags</RootNamespace>
+    <AssemblyName>SignWriterStudio.DbTags</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -40,8 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbTags.cs" />
-    <Compile Include="DbDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
