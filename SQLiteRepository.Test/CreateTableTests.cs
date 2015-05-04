@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SQLiteRepository.SQLiteFluent;
+using SQLiteRepository.SQLiteQuery;
 
 namespace SQLiteRepository.Test
 {
@@ -21,18 +21,20 @@ namespace SQLiteRepository.Test
                 {"SecondField", "TEXT"},
                 {"ThirdField", "TEXT"}
             };
-            
-            var query = CreateTableFluent.Initialize()
-                .Path(path)
-                .Table(tableName)
-                .PrimaryKey("PrimaryKey") 
-                .Fields(fields);
 
-            CreateTableSqlite.CreateTable(query);
+            var query = new CreateTableQuery
+            {
+                Path = path,
+                TableName = tableName,
+                PrimaryKey = "PrimaryKey",
+                Fields = fields
+            };
 
-            var tableQuery = GetFluent.Initialize().Table(tableName).Path(path);
+            query.Execute();
 
-            var tableResult = GetSqlite.GetData(tableQuery);
+            var tableQuery = new GetQuery{ TableName = tableName, Path = path  };
+
+            var tableResult = tableQuery.Execute();
 
             Assert.AreEqual(1, tableResult.TabularResults.Count());
         }

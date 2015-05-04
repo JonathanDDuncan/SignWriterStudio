@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace SQLiteRepository.SQLiteFluent
+namespace SQLiteRepository.SQLiteQuery
 {
     public class StringUtil
     {

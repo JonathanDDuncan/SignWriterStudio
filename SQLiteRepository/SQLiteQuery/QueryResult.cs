@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 
-namespace SQLiteRepository.SQLiteFluent
+namespace SQLiteRepository.SQLiteQuery
 {
-    public class FluentResult : IFluentResult
-    {
+    public class QueryResult : IQueryResult
+    { 
         public int AffectedRows { get; set; }
         public List<object> ScalarResults { get; set; }
       

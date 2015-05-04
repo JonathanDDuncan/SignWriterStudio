@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Dynamic;
 using System.Linq;
+using SQLiteRepository.SQLiteQuery;
 
-namespace SQLiteRepository.SQLiteFluent
+namespace SQLiteRepository.SQLiteQuery
 {
     public class CommonSqlite
     {

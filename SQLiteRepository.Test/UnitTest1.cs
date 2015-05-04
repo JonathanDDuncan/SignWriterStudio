@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SQLiteRepository.SQLiteFluent;
+using SQLiteRepository.SQLiteQuery;
 
 namespace SQLiteRepository.Test
 {
     [TestClass]
     public class UnitTest1
     {
+        private string _path = @"C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS";
+
         [TestMethod]
         public void GetData()
         {
-            var path = @"C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS";
-
+           
 
             var selectColumns = new List<string> { "IDDictionary" };
 
-            var query = GetFluent.Initialize()
-                .Path(path)
-                .Table("Dictionary")
-                .Columns(selectColumns);
-
+            var query = new GetQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                Columns = selectColumns
+            };
             var result = GetSqlite.GetData(query);
 
             var firstOrDefault = result.TabularResults.FirstOrDefault();
@@ -37,7 +39,91 @@ namespace SQLiteRepository.Test
         [TestMethod]
         public void InsertData()
         {
-            var path = @"C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS";
+            
+            var insertColumns = new List<string> { "IDDictionary", "IDSignLanguage", "GUID" };
+
+            var values = new List<List<string>>
+            {
+                new List< string> {"112555" , "1" , Guid.NewGuid().ToString()} ,
+                new List< string> {"112556" , "1" , Guid.NewGuid().ToString()} ,
+                new List< string> {"112557" , "1" , Guid.NewGuid().ToString()}  
+            };
+
+            var query = new InsertQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                Columns = insertColumns,
+                Values = values
+            };
+            var result = query.Execute();
+
+            Assert.AreEqual(3, result.AffectedRows);
+        }
+
+        [TestMethod]
+        public void UpdateData()
+        {
+            
+            var updateColumns = new List<string> { "IDDictionary", "IDSignLanguage", "GUID" };
+
+            var newValues = new List<List<object>>
+            {
+                new List< object> {112555 , 1 , Guid.NewGuid()} ,
+                new List< object> {112556 , 1 , Guid.NewGuid()} ,
+                new List< object> {112557 , 1 , Guid.NewGuid()}  
+            };
+
+            var query = new UpdateQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                Columns = updateColumns,
+                Values = newValues
+            };
+            var result = query.Execute();
+
+            Assert.AreEqual(3, result.AffectedRows);
+        }
+
+        [TestMethod]
+        public void DeleteData()
+        {
+            
+            var where = "[IDDictionary] = '112557'";
+
+            var query = new DeleteQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                Where = where
+            };
+            var result = query.Execute();
+
+            Assert.AreEqual(1, result.AffectedRows);
+        }
+
+        [TestMethod]
+        public void DeleteDataWhereIn()
+        {
+            
+            var wherein = Tuple.Create("IDDictionary", new List<string> { "112555", "112556", "112557" });
+
+
+            var query = new DeleteQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                WhereIn = wherein
+            };
+
+            var result = query.Execute();
+            Assert.AreEqual(3, result.AffectedRows);
+        }
+
+        [TestMethod]
+        public void UnitOfWork()
+        {
 
             var insertColumns = new List<string> { "IDDictionary", "IDSignLanguage", "GUID" };
 
@@ -48,21 +134,15 @@ namespace SQLiteRepository.Test
                 new List< string> {"112557" , "1" , Guid.NewGuid().ToString()}  
             };
 
-            var query = InsertFluent.Initialize()
-                .Path(path)
-                .Table("Dictionary")
-                .Columns(insertColumns)
-                .Values(values);
+            var insertquery = new InsertQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                Columns = insertColumns,
+                Values = values
+            };
 
-            var result = InsertSqlite.Insert(query);
-
-            Assert.AreEqual(3, result.AffectedRows);
-        }
-
-        [TestMethod]
-        public void UpdateData()
-        {
-            var path = @"C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS";
+            var wherein = Tuple.Create("IDDictionary", new List<string> { "112555", "112556", "112557" });
 
             var updateColumns = new List<string> { "IDDictionary", "IDSignLanguage", "GUID" };
 
@@ -73,52 +153,37 @@ namespace SQLiteRepository.Test
                 new List< object> {112557 , 1 , Guid.NewGuid()}  
             };
 
-            var query = UpdateFluent.Initialize()
-                .Path(path)
-                .Table("Dictionary")
-                .Columns(updateColumns)
-                .Values(newValues);
+            var updatequery = new UpdateQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                Columns = updateColumns,
+                Values = newValues
+            };
+            var deletequery = new DeleteQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                WhereIn = wherein
+            };
+            var selectColumns = new List<string> { "IDDictionary" };
 
-            var result = UpdateSqlite.Update(query);
+            var getquery = new GetQuery
+            {
+                Path = _path,
+                TableName = "Dictionary",
+                Columns = selectColumns
+            };
+            var unitofWork = new UnitOfWork();
+           
+            unitofWork.Queries.Add(insertquery);
+            unitofWork.Queries.Add(updatequery);
+            unitofWork.Queries.Add(deletequery);
+            unitofWork.Queries.Add(getquery);
 
-            Assert.AreEqual(3, result.AffectedRows);
-        }
+            var result = unitofWork.Execute();
 
-        [TestMethod]
-        public void DeleteData()
-        {
-            var path = @"C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS";
-
-            var where = "[IDDictionary] = '112557'";
-
-            var query = DeleteFluent.Initialize()
-                .Path(path)
-                .Table("Dictionary")
-                .Where(where);
-
-
-            var result = DeleteSqlite.Delete(query);
-
-            Assert.AreEqual(1, result.AffectedRows);
-        }
-
-        [TestMethod]
-        public void DeleteDataWhereIn()
-        {
-            var path = @"C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS";
-
-            var wherein = Tuple.Create("IDDictionary", new List<string> { "112555", "112556", "112557" });
-
-
-            var query = DeleteFluent.Initialize()
-                .Path(path)
-                .Table("Dictionary")
-                .Where(wherein);
-
-
-            var result = DeleteSqlite.Delete(query);
-
-            Assert.AreEqual(3, result.AffectedRows );
+            Assert.AreEqual(4, result.Count());
         }
     }
 }

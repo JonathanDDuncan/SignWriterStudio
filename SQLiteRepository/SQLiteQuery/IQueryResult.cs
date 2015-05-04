@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 
-namespace SQLiteRepository.SQLiteFluent
+namespace SQLiteRepository.SQLiteQuery
 {
-    public interface IFluentResult
+    public interface IQueryResult
     {
         int AffectedRows { get; set; }
         List<object> ScalarResults { get; set; }
