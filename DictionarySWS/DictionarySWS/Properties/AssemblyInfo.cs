@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SignWriterStudio.DbTags")]
+[assembly: AssemblyTitle("DictionarySWS")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SignWriterStudio.DbTags")]
+[assembly: AssemblyProduct("DictionarySWS")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("320d6724-d5fe-4df8-ba8c-0f5fa913a28b")]
+[assembly: Guid("a9009ac3-4c91-417b-9e88-c8f5f4e6f66e")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -5,7 +5,7 @@ Imports System.Linq
 
 
 Public Class UnitOfWork
-    Public Property Queries As List(Of ISqliteQuery)
+    Public Property Queries As New List(Of ISqliteQuery)
 
     Public Function Execute() As List(Of IQueryResult)
         Dim cumresult = New List(Of IQueryResult)()
