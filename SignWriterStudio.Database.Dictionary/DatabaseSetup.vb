@@ -1,7 +1,8 @@
-Option Strict On
+Option Strict Off
 Option Explicit On
 
 Imports System.Data.SQLite
+Imports System.Dynamic
 Imports SignWriterStudio.General
 
 ''' <summary>
@@ -130,10 +131,59 @@ Public Module DatabaseSetup
 
         RunUpgradeScript(fromVersion, script230)
 
+        AddDoNotExportTags()
+
         Return "AddDoNotExportTags"
     End Function
 
-     
+    Private Sub AddDoNotExportTags()
+        Dim path = GetConnectionFilename(GetConnectionString)
+        Dim listIdDictionary = GetIdDoNotExport(path)
+        Dim affectedRows = InsertDoNotExportTag(path, listIdDictionary)
+
+    End Sub
+
+    Private Function InsertDoNotExportTag(ByVal path As String, ByVal listIdDictionary As List(Of String)) As Integer
+        Dim query = New SQLiteAdapters.InsertQuery()
+        query.TableName = "TagDictionary"
+        query.Path = path
+        query.Columns = New List(Of String)()
+        query.Columns.Add("IdTagDictionary")
+        query.Columns.Add("IDDictionary")
+        query.Columns.Add("IdTag")
+        Dim rows = New List(Of List(Of String))()
+        For Each id As String In listIdDictionary
+            Dim rowValues = New List(Of String)()
+            rowValues.Add(Guid.NewGuid.ToString)
+            rowValues.Add(id)
+            rowValues.Add("b9e38963-59e4-4878-ad68-922911dcce17")
+
+            rows.Add(rowValues)
+        Next
+        query.Values = rows
+        Dim result = query.Execute()
+        Return result.AffectedRows
+    End Function
+
+    Private Function GetIdDoNotExport(path As String) As List(Of String)
+        Dim query = New SQLiteAdapters.GetQuery()
+        query.TableName = "Dictionary"
+        query.Path = path
+        query.Where = " isPrivate "
+        query.Columns = New List(Of String)()
+        query.Columns.Add("IDDictionary")
+        Dim result = query.Execute()
+
+        Dim table = result.TabularResults.FirstOrDefault()
+        Dim listIDs = New List(Of String)
+        For Each expandoObject As ExpandoObject In table
+            Dim row = TryCast(expandoObject, IDictionary(Of [String], Object))
+            listIDs.Add(row.Item("IDDictionary"))
+        Next
+
+        Return listIDs
+    End Function
+
 
     Private Sub UpgradeDatabase220(ByVal fromVersion As String)
         RunUpgradeScript(fromVersion, "Upgrade220.sql")

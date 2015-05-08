@@ -195,6 +195,10 @@
       <Project>{1ef13998-503f-433c-b860-e33a351ee21e}</Project>
       <Name>SignWriterStudio.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SQLiteAdapters\SQLiteAdapters.vbproj">
+      <Project>{4209648f-47e6-432b-aa93-f7fd16b1fb0b}</Project>
+      <Name>SQLiteAdapters</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
