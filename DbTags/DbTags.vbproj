@@ -84,6 +84,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTableAdapter.vb" />
     <Compile Include="DbTagsDictionary.vb" />
     <Compile Include="DbTags.vb" />
     <Compile Include="DbDictionary.vb" />

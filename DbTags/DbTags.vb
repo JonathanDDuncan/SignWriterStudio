@@ -2,40 +2,18 @@
 Imports SignWriterStudio.SQLiteAdapters
 
 Public Class DbTags
-    Private Const TableName As String = "Tags"
-    Private Shared ReadOnly DefaultColumns = New List(Of String) From {
-        "IdTag", "Description", "Abbreviation", "Color", "Rank", "Parent"}
-    Private Const PrimaryKey = "IdTag"
-
-    Public Shared Function DefaultGetQuery() As GetQuery
-        Dim query = New GetQuery()
-        SetGeneralDefaults(query)
-        Return query
-    End Function
-
-    Private Shared Sub SetGeneralDefaults(ByVal query As BaseQuery)
-        query.TableName = TableName
-        query.Columns = DefaultColumns
-        query.PrimaryKey = PrimaryKey
+    Inherits BaseTableAdapter
+     
+    Public Sub New()
+        PrimaryKey = "IdTag"
+        DefaultColumns = New List(Of String) From {"IdTag", "Description", "Abbreviation", "Color", "Rank", "Parent"}
+        TableName = "Tags"
     End Sub
 
-    Public Shared Function DefaultInsertQuery() As InsertQuery
-        Dim query = New InsertQuery()
-        SetGeneralDefaults(query)
-        Return query
-    End Function
-    Public Shared Function DefaultUpdateQuery() As UpdateQuery
-        Dim query = New UpdateQuery()
-        SetGeneralDefaults(query)
-        Return query
-    End Function
-    Public Shared Function DefaultDeleteQuery() As DeleteQuery
-        Dim query = New DeleteQuery()
-         SetGeneralDefaults(query)
-        Return query
-    End Function
+
     Public Shared Function GetTagsData(path As String, orderBy As List(Of String)) As List(Of ExpandoObject)
-        Dim query = DefaultGetQuery()
+        Dim dbTags = New DbTags()
+        Dim query = dbTags.DefaultGetQuery()
         query.Path = path
         query.OrderBy = orderBy
 
@@ -45,9 +23,10 @@ Public Class DbTags
     End Function
 
     Public Shared Sub SaveTags(ByVal path As String, ByVal added As List(Of ExpandoObject), ByVal updated As List(Of ExpandoObject), ByVal removed As List(Of String))
-        Dim insertQuery = CreateInsertQuery(path, added)
-        Dim updateQuery = CreateUpdateQuery(path, updated)
-        Dim deleteQuery = CreateDeleteQuery(path, removed)
+        Dim dbTags = New DbTags()
+        Dim insertQuery = dbTags.CreateInsertQuery(path, added, AddressOf GetTagValues)
+        Dim updateQuery = dbTags.CreateUpdateQuery(path, updated, AddressOf GetTagValues)
+        Dim deleteQuery = dbTags.CreateDeleteQuery(path, removed)
         Dim unitofWork = New UnitOfWork()
         unitofWork.Queries.Add(insertQuery)
         unitofWork.Queries.Add(updateQuery)
@@ -56,30 +35,8 @@ Public Class DbTags
         Dim result = unitofWork.Execute()
     End Sub
 
-    Private Shared Function CreateDeleteQuery(ByVal path As String, ByVal removed As List(Of String))
-        Dim query = DefaultDeleteQuery()
-        query.Path = path
-        query.Delete = removed
 
-        Return query
-    End Function
-
-    Private Shared Function CreateUpdateQuery(path As String, updated As List(Of ExpandoObject)) As UpdateQuery
-        Dim query = DefaultUpdateQuery()
-        query.Path = path
-        query.Values = GetValues(updated)
-
-        Return query
-    End Function
-    Private Shared Function CreateInsertQuery(ByVal path As String, ByVal added As List(Of ExpandoObject)) As InsertQuery
-        Dim query = DefaultInsertQuery()
-        query.Path = path
-        query.Values = GetValues(added)
-
-        Return query
-    End Function
-
-    Private Shared Function GetValues(ByVal added As List(Of ExpandoObject)) As List(Of List(Of String))
+    Private Shared Function GetTagValues(ByVal added As List(Of ExpandoObject)) As List(Of List(Of String))
 
         Return (From expandoObject In added Select row = TryCast(expandoObject, IDictionary(Of String, Object)) _
                 Select New List(Of String)() From { _

@@ -24,7 +24,9 @@ Public Class StringUtil
     Public Shared Function GetValues(row As IEnumerable(Of String)) As String
         Return ConcatValues(row, "'", "'", ", ")
     End Function
-
+    Public Shared Function GetInsertValues(row As IEnumerable(Of String)) As String
+        Return Concat(row.Select(Function(x) GetSqlValue(x)), ", ")
+    End Function
     Public Shared Function ConcatValues(row As IEnumerable(Of String), prepend As String, append As String, seperator As String) As String
         Return Concat(row.[Select](Function(x) prepend & x & append), seperator)
     End Function

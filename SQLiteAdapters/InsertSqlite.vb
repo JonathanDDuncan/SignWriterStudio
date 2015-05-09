@@ -33,7 +33,7 @@ Public Class InsertSqlite
 
         Dim sum As Integer = 0
         For Each row As List(Of String) In rows
-            Dim values = StringUtil.GetValues(row)
+            Dim values = StringUtil.GetInsertValues(row)
             Dim sql = String.Format("INSERT INTO {0} ({1})  VALUES ({2});", tableName, columnNames, values)
             Dim command = New SQLiteCommand(sql, conn)
 
