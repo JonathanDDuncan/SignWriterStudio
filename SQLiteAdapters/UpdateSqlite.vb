@@ -6,7 +6,7 @@ Imports System.Linq
 
 Public Class UpdateSqlite
 
-    Private Shared Function Update(path As String, tableName As String, columns As IEnumerable(Of String), rows As IEnumerable(Of List(Of Object))) As IQueryResult
+    Private Shared Function Update(path As String, tableName As String, columns As IEnumerable(Of String), rows As IEnumerable(Of List(Of String))) As IQueryResult
         Dim conn = CommonSqlite.CreateConnection(path)
         conn.Open()
 
@@ -25,7 +25,7 @@ Public Class UpdateSqlite
 
     End Function
 
-    Private Shared Function Update(conn As SQLiteConnection, tr As SQLiteTransaction, tableName As String, columns As IEnumerable(Of String), rows As IEnumerable(Of List(Of Object))) As IQueryResult
+    Private Shared Function Update(conn As SQLiteConnection, tr As SQLiteTransaction, tableName As String, columns As IEnumerable(Of String), rows As IEnumerable(Of List(Of String))) As IQueryResult
         Dim totalRowsAffected = 0
         Dim commandList = New List(Of String)()
         Dim columnNames = If(TryCast(columns, IList(Of String)), columns.ToList())

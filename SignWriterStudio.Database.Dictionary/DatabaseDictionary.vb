@@ -6,6 +6,7 @@ Option Explicit On
 Imports System
 #If NUnitTest Then
 #End If
+Imports System.Dynamic
 Imports SignWriterStudio.General
 Imports System.Data.SQLite
 'Class
@@ -117,6 +118,23 @@ Public Class DatabaseDictionary
         Return dataTable
     End Function
 
+    Public Shared Function GetTags() As List(Of ExpandoObject)
+        Dim path = DictionaryConnectionString
+
+
+        Dim orderBy = New List(Of String)() From {"Rank"}
+        Dim tagsData = DbTags.DbTags.GetTagsData(path, orderBy)
+
+
+        Return tagsData
+    End Function
+
+    Public Shared Sub SaveTags(ByVal added As List(Of ExpandoObject), ByVal updated As List(Of ExpandoObject), ByVal removed As List(Of String))
+        Dim path = DictionaryConnectionString
+
+        DbTags.DbTags.SaveTags(path, added, updated, removed)
+
+    End Sub
 End Class
 
 

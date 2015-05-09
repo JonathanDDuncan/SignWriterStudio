@@ -31,7 +31,8 @@ Public Class GetSqlite
                                     Optional orderBy As List(Of String) = Nothing) As IQueryResult
         Dim columnNames = StringUtil.GetSelectNames(columns)
         Dim whereclause = CommonSqlite.GetWhereClause(where, whereIn)
-        Dim sql = String.Format("select {0} from {1}{2}", columnNames, tableName, whereclause)
+        Dim orderbyclause = CommonSqlite.GetOrderByClause(orderBy)
+        Dim sql = String.Format("select {0} from {1}{2}{3}", columnNames, tableName, whereclause, orderbyclause)
 
         Dim command = New SQLiteCommand(sql, conn) With { _
                  .Transaction = tr _

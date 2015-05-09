@@ -102,6 +102,8 @@ Public Class SWDictForm
     End Sub
 
     Private Shared Function GetTagsData() As Object
+
+       
         Return {
                 New GroupedComboBoxItem With {.Group = "Gases", .Value = "1", .Display = "Helium"},
                 New GroupedComboBoxItem With {.Group = "Gases", .Value = "2", .Display = "Hydrogen"},
@@ -126,8 +128,7 @@ Public Class SWDictForm
         If Not result.Item1 Then
             MessageBox.Show("Choose or create a SignWriter Dictionary (.SWS) file before continuing.")
         Else
-            ExtraTodo(result.Item2)
-            DictionaryLoaded = True
+           DictionaryLoaded = True
             ShowloadedFile()
         End If
 
@@ -137,12 +138,6 @@ Public Class SWDictForm
         End If
     End Sub
 
-    Private Sub ExtraTodo(ByVal todo As String)
-        If todo IsNot Nothing AndAlso todo = "AddDoNotExportTags" Then
-            'Dim filename = GetCurrentDictFilename()
-            'DbInterface1.AddDoNotExportTags(filename)
-        End If
-    End Sub
  
 
     Private Sub ShowButtons()
@@ -1293,16 +1288,16 @@ Public Class SWDictForm
         OpenDictionary(OpenFileDialog1.FileName)
     End Sub
 
-    Public Sub OpenDictionary(Filename As String)
-        If CheckSQLiteConnectionString(CreateConnectionString(Filename)) Then
-            SetDictionaryConnectionString(Filename)
+    Public Sub OpenDictionary(filename As String)
+        If CheckSQLiteConnectionString(CreateConnectionString(filename)) Then
+            SetDictionaryConnectionString(filename)
             Dim wasUpgraded = False
             Dim result = DatabaseSetup.CheckDictionary(True, wasUpgraded)
-            ExtraTodo(result.Item2)
+
             If result.Item1 Then
-                Dim Languages As String = DictLanguages.LanguagesInDictionary
-                If Not Languages = String.Empty Then
-                    MessageBox.Show(Languages)
+                Dim languages As String = DictLanguages.LanguagesInDictionary
+                If Not languages = String.Empty Then
+                    MessageBox.Show(languages)
                 End If
                 If wasUpgraded Then
                     ' Create sort strings if first one is empty
@@ -1313,7 +1308,7 @@ Public Class SWDictForm
                 DictionaryLoaded = True
             Else
                 MessageBox.Show(
-                    "File '" & Filename &
+                    "File '" & filename &
                     "' is not a valid SignWriter Studio file. Please choose a valid SignWriter file before continuing.")
                 SetDictionaryConnectionString("")
                 Me.DictionaryLoaded = False
@@ -1990,7 +1985,14 @@ Public Class SWDictForm
 
     Private Sub btnTagsForm_Click(sender As Object, e As EventArgs) Handles btnTagsForm.Click
         Dim tf = New TagsForm()
+        tf.SetFromDB(_myDictionary.GetTags())
         tf.ShowDialog()
+        Dim changes = tf.GetChanges()
+
+        If (tf.DialogResult = DialogResult.OK) Then
+            _myDictionary.SaveTags(changes.Added, changes.Updated, changes.Removed)
+        End If
+        tf.Close()
     End Sub
 End Class
 

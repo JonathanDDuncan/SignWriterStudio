@@ -2,6 +2,8 @@
 Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Windows.Forms
+Imports System.Dynamic
+Imports SignWriterStudio.Database.Dictionary
 Imports SignWriterStudio.General.All
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSet
 Imports System.Data.SQLite
@@ -153,9 +155,9 @@ Public NotInheritable Class SWDict
 
                     Dim sortWeight = SequencetoSortingString(sign.Frames(0).Sequences)
 
-                    dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink,sortWeight))
+                    dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink, sortWeight))
 
-                     
+
 
 
                     frameId = CLng(frameTa.InsertGetId(dictionaryId, 0, sign.Frames(0).Bounds.Left, sign.Frames(0).Bounds.Top, sign.Frames(0).MinWidth, sign.Frames(0).MinHeight))
@@ -237,7 +239,7 @@ Public NotInheritable Class SWDict
             Dim photoByte As Byte()
             Dim signByte As Byte()
 
-            Dim sortOrder = SequencetoSortingString (sign.Frames(0).Sequences)
+            Dim sortOrder = SequencetoSortingString(sign.Frames(0).Sequences)
 
             dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink, sortOrder))
 
@@ -1523,5 +1525,11 @@ Public NotInheritable Class SWDict
     End Function
 
 
+    Public Function GetTags() As List(Of ExpandoObject)
+        Return DatabaseDictionary.GetTags()
+    End Function
 
+    Public Sub SaveTags(ByVal added As List(Of ExpandoObject), ByVal updated As List(Of ExpandoObject), ByVal removed As List(Of String))
+        DatabaseDictionary.SaveTags(added, updated, removed)
+    End Sub
 End Class

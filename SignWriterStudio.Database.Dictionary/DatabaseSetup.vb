@@ -2,8 +2,9 @@ Option Strict Off
 Option Explicit On
 
 Imports System.Data.SQLite
-Imports System.Dynamic
+Imports SignWriterStudio.DbTags
 Imports SignWriterStudio.General
+Imports SignWriterStudio.SQLiteAdapters
 
 ''' <summary>
 ''' Class DatabaseSignList description
@@ -97,18 +98,18 @@ Public Module DatabaseSetup
                             End If
                         End If
                     Else
-                        Tuple.Create(False, todo)
+                        Return Tuple.Create(False, todo)
                     End If
                 Else
-                    Tuple.Create(False, todo)
+                    Return Tuple.Create(False, todo)
                 End If
             Else
-                Tuple.Create(False, todo)
+                Return Tuple.Create(False, todo)
             End If
         Catch ex As ArgumentException
-            Tuple.Create(False, todo)
+            Return Tuple.Create(False, todo)
         End Try
-        Tuple.Create(False, todo)
+        Return Tuple.Create(False, todo)
     End Function
 
     Private Function VersionString(ByVal idVersion As Long, ByVal major As Long, ByVal minor As Long) As String
@@ -123,10 +124,10 @@ Public Module DatabaseSetup
         script230.Add("CREATE TABLE [TagDictionary] ([IdTagDictionary] guid NOT NULL, [IDDictionary] bigint NOT NULL, [IdTag] guid NOT NULL, CONSTRAINT [sqlite_autoindex_TagDictionary_1] PRIMARY KEY ([IdTagDictionary]), FOREIGN KEY ([IdTag]) REFERENCES [Tags] ([IdTag]) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY ([IDDictionary]) REFERENCES [Dictionary] ([IDDictionary]) ON DELETE CASCADE ON UPDATE CASCADE);CREATE INDEX [TagDictionary_IdTag_TagDictionary] ON [TagDictionary] ([IdTag] ASC);CREATE INDEX [TagDictionary_IDDictionary_TagDictionary] ON [TagDictionary] ([IDDictionary] ASC);")
         script230.Add("UPDATE Version SET Major =3, Minor = 0, DatabaseName = ""Dictionary"", DatabaseType = ""Dictionary"" WHERE IDVersion=2;")
 
-        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('5bfcb134-1689-4f65-9deb-4934e7c32585', 'Misc','Misc', 0,3);")
-        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('1409bab8-9031-4249-b95e-81695a2a7f7c', 'SignLists','', 0,1);")
-        script230.Add("INSERT INTO [Tags] ([IdTag] ,[Description],[Abbreviation],[Color],[Rank])VALUES('5f78f958-a299-482c-9412-7eca30cda394', 'Parts Of Speech','', 0, 2);")
-        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('b9e38963-59e4-4878-ad68-922911dcce17', 'Do Not Export','', 0,1,'5bfcb134-1689-4f65-9deb-4934e7c32585');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('5bfcb134-1689-4f65-9deb-4934e7c32585', 'Misc','Misc', -1,3);")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('1409bab8-9031-4249-b95e-81695a2a7f7c', 'SignLists','', -1,1);")
+        script230.Add("INSERT INTO [Tags] ([IdTag] ,[Description],[Abbreviation],[Color],[Rank])VALUES('5f78f958-a299-482c-9412-7eca30cda394', 'Parts Of Speech','', -1, 2);")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('b9e38963-59e4-4878-ad68-922911dcce17', 'Do Not Export','', -1,1,'5bfcb134-1689-4f65-9deb-4934e7c32585');")
         script230.Add("COMMIT;")
 
         RunUpgradeScript(fromVersion, script230)
@@ -137,53 +138,10 @@ Public Module DatabaseSetup
     End Function
 
     Private Sub AddDoNotExportTags()
-        Dim path = GetConnectionFilename(GetConnectionString)
-        Dim listIdDictionary = GetIdDoNotExport(path)
-        Dim affectedRows = InsertDoNotExportTag(path, listIdDictionary)
-
+        Dim path = GetConnectionString()
+        Dim listIdDictionary = DbDictionary.GetIdDoNotExport(path)
+        Dim affectedRows = DbTagsDictionary.InsertDoNotExportTag(path, listIdDictionary)
     End Sub
-
-    Private Function InsertDoNotExportTag(ByVal path As String, ByVal listIdDictionary As List(Of String)) As Integer
-        Dim query = New SQLiteAdapters.InsertQuery()
-        query.TableName = "TagDictionary"
-        query.Path = path
-        query.Columns = New List(Of String)()
-        query.Columns.Add("IdTagDictionary")
-        query.Columns.Add("IDDictionary")
-        query.Columns.Add("IdTag")
-        Dim rows = New List(Of List(Of String))()
-        For Each id As String In listIdDictionary
-            Dim rowValues = New List(Of String)()
-            rowValues.Add(Guid.NewGuid.ToString)
-            rowValues.Add(id)
-            rowValues.Add("b9e38963-59e4-4878-ad68-922911dcce17")
-
-            rows.Add(rowValues)
-        Next
-        query.Values = rows
-        Dim result = query.Execute()
-        Return result.AffectedRows
-    End Function
-
-    Private Function GetIdDoNotExport(path As String) As List(Of String)
-        Dim query = New SQLiteAdapters.GetQuery()
-        query.TableName = "Dictionary"
-        query.Path = path
-        query.Where = " isPrivate "
-        query.Columns = New List(Of String)()
-        query.Columns.Add("IDDictionary")
-        Dim result = query.Execute()
-
-        Dim table = result.TabularResults.FirstOrDefault()
-        Dim listIDs = New List(Of String)
-        For Each expandoObject As ExpandoObject In table
-            Dim row = TryCast(expandoObject, IDictionary(Of [String], Object))
-            listIDs.Add(row.Item("IDDictionary"))
-        Next
-
-        Return listIDs
-    End Function
-
 
     Private Sub UpgradeDatabase220(ByVal fromVersion As String)
         RunUpgradeScript(fromVersion, "Upgrade220.sql")
@@ -195,6 +153,7 @@ Public Module DatabaseSetup
     Private Sub UpgradeDatabase210(ByVal fromVersion As String)
         RunUpgradeScript(fromVersion, "Upgrade210.sql")
     End Sub
+
     Private Sub RunUpgradeScript(ByVal fromVersion As String, ByVal upgradeScript As String)
         Dim connectionString = GetConnectionString()
 
@@ -208,16 +167,14 @@ Public Module DatabaseSetup
         cmd.Connection = sqliteConnection1
         sqliteConnection1.Open()
 
-
         For Each line In queryStr
             cmd.CommandText = line
             cmd.ExecuteNonQuery()
         Next
 
-
-
         sqliteConnection1.Close()
     End Sub
+
     Private Sub RunUpgradeScript(ByVal fromVersion As String, ByVal queryStr As IEnumerable(Of String))
         Dim connectionString = GetConnectionString()
 
@@ -229,13 +186,10 @@ Public Module DatabaseSetup
         cmd.Connection = sqliteConnection1
         sqliteConnection1.Open()
 
-
         For Each line In queryStr
             cmd.CommandText = line
             cmd.ExecuteNonQuery()
         Next
-
-
 
         sqliteConnection1.Close()
     End Sub
@@ -246,16 +200,8 @@ Public Module DatabaseSetup
     End Function
 
     Private Sub CreateBackup(ByVal connectionString As String, ByVal fromVersion As String)
-        Dim filename As String = GetConnectionFilename(connectionString)
+        Dim filename As String = StringUtil.GetConnectionFilename(connectionString)
         Dim newFilename = IO.Path.Combine(IO.Path.GetDirectoryName(filename), IO.Path.GetFileNameWithoutExtension(filename) + "_" + fromVersion + ".bak")
         IO.File.Copy(filename, newFilename, True)
     End Sub
-
-    Private Function GetConnectionFilename(ByVal connectionString As String) As String
-
-        Dim filename = connectionString.Replace("data source=""", "")
-        filename = filename.Substring(0, filename.Length - 1)
-        Return filename
-    End Function
-
 End Module

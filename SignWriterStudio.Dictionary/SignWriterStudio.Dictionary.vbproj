@@ -229,6 +229,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DbTags\DbTags.vbproj">
+      <Project>{39cde5fb-e7ec-4365-95fa-17b0cb6bf13e}</Project>
+      <Name>DbTags</Name>
+    </ProjectReference>
     <ProjectReference Include="..\General\General\General.vbproj">
       <Project>{800e41f9-9663-47d2-a0b2-a61bb6eeb4cc}</Project>
       <Name>General</Name>

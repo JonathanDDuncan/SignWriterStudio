@@ -25,7 +25,7 @@ Public Class StringUtil
         Return ConcatValues(row, "'", "'", ", ")
     End Function
 
-    Private Shared Function ConcatValues(row As IEnumerable(Of String), prepend As String, append As String, seperator As String) As String
+    Public Shared Function ConcatValues(row As IEnumerable(Of String), prepend As String, append As String, seperator As String) As String
         Return Concat(row.[Select](Function(x) prepend & x & append), seperator)
     End Function
 
@@ -36,7 +36,17 @@ Public Class StringUtil
         Return items.Aggregate(Function(current, [next]) current & [next])
     End Function
     Public Shared Function GetUpdateValues(columnNames As IEnumerable(Of String), values As IEnumerable(Of Object)) As String
-        Return columnNames.Skip(1).Zip(values.Skip(1), AddressOf Tuple.Create).[Select](Function(x) "[" & Convert.ToString(x.Item1) & "] = '" & Convert.ToString(x.Item2) & "'").Aggregate(Function(current, [next]) current & ", " & [next])
+        Return columnNames.Skip(1).Zip(values.Skip(1), AddressOf Tuple.Create).[Select](Function(x) "[" & _
+                          Convert.ToString(x.Item1) & "] = " & GetSqlValue(x.Item2)) _
+                            .Aggregate(Function(current, [next]) current & ", " & [next])
+    End Function
+
+    Private Shared Function GetSqlValue(ByVal value As Object) As String
+        If value IsNot Nothing Then
+            Return "'" & Convert.ToString(value) & "'"
+        Else
+            Return "NULL"
+        End If
     End Function
 
     Public Shared Function GetUpdateWhere(columns As IEnumerable(Of String), row As IEnumerable(Of Object)) As String
@@ -59,5 +69,13 @@ Public Class StringUtil
         Return Concat(fields.[Select](Function(x) "[" & x.Key & "] " & x.Value), ", ")
     End Function
 
-
+    Public Shared Function GetConnectionFilename(ByVal connectionString As String) As String
+        If (connectionString.ToLower.Contains("data source=")) Then
+            Dim filename = connectionString.Replace("data source=""", "")
+            filename = filename.Substring(0, filename.Length - 1)
+            Return filename
+        Else
+            Return connectionString
+        End If
+    End Function
 End Class

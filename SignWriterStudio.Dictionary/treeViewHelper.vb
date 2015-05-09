@@ -1,7 +1,8 @@
 Public Class TreeViewHelper
-    Friend Shared Function AddNewNode(ByVal treeView As TreeView, ByVal isTagGroup As Boolean) As TreeNode
+    
+    Friend Shared Function AddNewNode(ByVal treeView As TreeView, ByVal nodeName As String, ByVal isTagGroup As Boolean) As TreeNode
         Dim nodeEdited As New TreeNode()
-        nodeEdited.Name = Guid.NewGuid.ToString()
+        nodeEdited.Name = nodeName
         Dim currentNode = treeView.SelectedNode
 
         If isTagGroup Then
@@ -21,7 +22,7 @@ Public Class TreeViewHelper
         Return Enumerable.Where(Of TreeNode)(GetIEnumerableAllTreeNode(treeView.Nodes), Function(x) x.Checked)
     End Function
 
-    Private Shared Function GetIEnumerableAllTreeNode(ByVal treeNodeCollection As TreeNodeCollection) As IEnumerable(Of TreeNode)
+    Public Shared Function GetIEnumerableAllTreeNode(ByVal treeNodeCollection As TreeNodeCollection) As IEnumerable(Of TreeNode)
 
         Dim currentNodeCollection = treeNodeCollection.Cast(Of TreeNode)().ToList()
         Dim allNodes = currentNodeCollection.ToList()
@@ -127,4 +128,8 @@ Public Class TreeViewHelper
             End If
         End If
     End Sub
+
+    Public Shared Function FindNode(ByVal treeView As TreeView, ByVal nodeName As String) As TreeNode
+        Return treeView.Nodes.Find(nodeName, True).FirstOrDefault()
+    End Function
 End Class

@@ -33,14 +33,14 @@ Partial Class TagTreeView
         Me.btnEditOk = New System.Windows.Forms.Button()
         Me.btnEditCancel = New System.Windows.Forms.Button()
         Me.gbEdit = New System.Windows.Forms.GroupBox()
+        Me.btnColor = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.tbAbreviation = New System.Windows.Forms.TextBox()
         Me.cbTagGroup = New System.Windows.Forms.CheckBox()
         Me.SettingsDataSet1 = New SignWriterStudio.Settings.SettingsDataSet()
         Me.btnMoveUp = New System.Windows.Forms.Button()
         Me.btnMoveDown = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.tbAbreviation = New System.Windows.Forms.TextBox()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.btnColor = New System.Windows.Forms.Button()
         Me.gbEdit.SuspendLayout()
         CType(Me.SettingsDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -149,6 +149,31 @@ Partial Class TagTreeView
         Me.gbEdit.Text = "Edit"
         Me.gbEdit.Visible = False
         '
+        'btnColor
+        '
+        Me.btnColor.Location = New System.Drawing.Point(16, 121)
+        Me.btnColor.Name = "btnColor"
+        Me.btnColor.Size = New System.Drawing.Size(75, 23)
+        Me.btnColor.TabIndex = 18
+        Me.btnColor.Text = "Color"
+        Me.btnColor.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 55)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(60, 13)
+        Me.Label1.TabIndex = 16
+        Me.Label1.Text = "Abreviation"
+        '
+        'tbAbreviation
+        '
+        Me.tbAbreviation.Location = New System.Drawing.Point(6, 72)
+        Me.tbAbreviation.Name = "tbAbreviation"
+        Me.tbAbreviation.Size = New System.Drawing.Size(94, 20)
+        Me.tbAbreviation.TabIndex = 17
+        '
         'cbTagGroup
         '
         Me.cbTagGroup.AutoSize = True
@@ -182,31 +207,6 @@ Partial Class TagTreeView
         Me.btnMoveDown.TabIndex = 17
         Me.btnMoveDown.Text = "Move Down"
         Me.btnMoveDown.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 55)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(60, 13)
-        Me.Label1.TabIndex = 16
-        Me.Label1.Text = "Abreviation"
-        '
-        'tbAbreviation
-        '
-        Me.tbAbreviation.Location = New System.Drawing.Point(6, 72)
-        Me.tbAbreviation.Name = "tbAbreviation"
-        Me.tbAbreviation.Size = New System.Drawing.Size(94, 20)
-        Me.tbAbreviation.TabIndex = 17
-        '
-        'btnColor
-        '
-        Me.btnColor.Location = New System.Drawing.Point(16, 121)
-        Me.btnColor.Name = "btnColor"
-        Me.btnColor.Size = New System.Drawing.Size(75, 23)
-        Me.btnColor.TabIndex = 18
-        Me.btnColor.Text = "Color"
-        Me.btnColor.UseVisualStyleBackColor = True
         '
         'TagTreeView
         '

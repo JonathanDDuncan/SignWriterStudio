@@ -5,7 +5,7 @@ Imports SignWriterStudio.SQLiteAdapters
 
 <TestClass> _
 Public Class UnitTest1
-    Private Const Path As String = "C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (7).SWS"
+    Private Const Path As String = "C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LESHO - Copy (9) - Copy.SWS"
 
     <TestMethod> _
     Public Sub GetData()
@@ -78,10 +78,10 @@ Public Class UnitTest1
             "GUID" _
         }
 
-        Dim newValues = New List(Of List(Of Object))() From { _
-            New List(Of Object)() From {112555, 1, Guid.NewGuid()}, _
-            New List(Of Object)() From {112556, 1, Guid.NewGuid()}, _
-            New List(Of Object)() From {112557, 1, Guid.NewGuid()}}
+        Dim newValues = New List(Of List(Of String))() From { _
+            New List(Of String)() From {"112555", "1", Guid.NewGuid().ToString()}, _
+            New List(Of String)() From {"112556", "1", Guid.NewGuid().ToString()}, _
+            New List(Of String)() From {"112557", "1", Guid.NewGuid().ToString()}}
 
         Dim query = New UpdateQuery() With { _
             .Path = Path, _
@@ -159,22 +159,10 @@ Public Class UnitTest1
             "GUID" _
         }
 
-        Dim newValues = New List(Of List(Of Object))() From { _
-            New List(Of Object)() From { _
-                112555, _
-                1, _
-                Guid.NewGuid() _
-            }, _
-            New List(Of Object)() From { _
-                112556, _
-                1, _
-                Guid.NewGuid() _
-            }, _
-            New List(Of Object)() From { _
-                112557, _
-                1, _
-                Guid.NewGuid() _
-            } _
+        Dim newValues = New List(Of List(Of String))() From { _
+            New List(Of String)() From {"112555", "1", Guid.NewGuid().ToString()}, _
+            New List(Of String)() From {"112556", "1", Guid.NewGuid().ToString()}, _
+            New List(Of String)() From {"112557", "1", Guid.NewGuid().ToString()} _
         }
 
         Dim updatequery = New UpdateQuery() With { _
