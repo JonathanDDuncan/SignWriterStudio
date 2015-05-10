@@ -40,18 +40,28 @@ Public Class BaseTableAdapter
         Return query
     End Function
 
-    Public Function CreateUpdateQuery(path As String, updated As List(Of ExpandoObject), ByVal getValues As Func(Of List(Of ExpandoObject), List(Of List(Of String)))) As UpdateQuery
+    Public Function CreateUpdateQuery(ByVal path As String, ByVal values As List(Of List(Of String))) As UpdateQuery
         Dim query = DefaultUpdateQuery()
         query.Path = path
-        query.Values = getValues(updated)
+        query.Values = values
 
         Return query
     End Function
-    Public Function CreateInsertQuery(ByVal path As String, ByVal added As List(Of ExpandoObject), ByVal getValues As Func(Of List(Of ExpandoObject), List(Of List(Of String)))) As InsertQuery
+    Public Function CreateInsertQuery(ByVal path As String, ByVal values As List(Of List(Of String))) As InsertQuery
         Dim query = DefaultInsertQuery()
         query.Path = path
-        query.Values = getValues(added)
+        query.Values = values
 
         Return query
+    End Function
+
+    Public Shared Function NullifEmpty(ByVal item As Object) As String
+        If item.GetType Is GetType(String) Then
+            If (String.IsNullOrEmpty(item)) Then
+                Return Nothing
+            End If
+        End If
+
+        Return item
     End Function
 End Class

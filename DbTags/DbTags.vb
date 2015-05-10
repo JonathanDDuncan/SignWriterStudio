@@ -24,8 +24,9 @@ Public Class DbTags
 
     Public Shared Sub SaveTags(ByVal path As String, ByVal added As List(Of ExpandoObject), ByVal updated As List(Of ExpandoObject), ByVal removed As List(Of String))
         Dim dbTags = New DbTags()
-        Dim insertQuery = dbTags.CreateInsertQuery(path, added, AddressOf GetTagValues)
-        Dim updateQuery = dbTags.CreateUpdateQuery(path, updated, AddressOf GetTagValues)
+
+        Dim insertQuery = dbTags.CreateInsertQuery(path, GetTagValues(added))
+        Dim updateQuery = dbTags.CreateUpdateQuery(path, GetTagValues(updated))
         Dim deleteQuery = dbTags.CreateDeleteQuery(path, removed)
         Dim unitofWork = New UnitOfWork()
         unitofWork.Queries.Add(insertQuery)
@@ -46,15 +47,5 @@ Public Class DbTags
                     row.Item("Color"),
                     row.Item("Rank"),
                     NullifEmpty(row.Item("Parent"))}).ToList()
-    End Function
-
-    Private Shared Function NullifEmpty(ByVal item As Object) As String
-        If item.GetType Is GetType(String) Then
-            If (String.IsNullOrEmpty(item)) Then
-                Return Nothing
-            End If
-        End If
-
-        Return item
     End Function
 End Class
