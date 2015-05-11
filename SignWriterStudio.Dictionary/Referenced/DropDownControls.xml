@@ -271,7 +271,7 @@
             <param name="t"></param>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="T:DropDownControls.FilteredGroupedComboBox.GroupedComboBoxItem">
+        <member name="T:DropDownControls.FilteredGroupedComboBox.GroupedColoredComboBoxItem">
             <summary>
             Item for Filtered Grouped ComboBox
             Group is string of the group
@@ -429,7 +429,7 @@
             </summary>
             <param name="e">An System.EventArgs that contains the event data.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.FilterableGroupableDataSource(System.Collections.Generic.IEnumerable{DropDownControls.FilteredGroupedComboBox.GroupedComboBoxItem})" -->
+        <!-- Badly formed XML comment ignored for member "M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.FilterableGroupableDataSource(System.Collections.Generic.IEnumerable{DropDownControls.FilteredGroupedComboBox.GroupedColoredComboBoxItem})" -->
         <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DataView">
             <summary>
             Filterable dataview for combobox items

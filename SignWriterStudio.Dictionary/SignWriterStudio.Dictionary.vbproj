@@ -111,6 +111,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClipboardSign.vb" />
     <Compile Include="CompareSigns.Designer.vb">
       <DependentUpon>CompareSigns.vb</DependentUpon>
     </Compile>

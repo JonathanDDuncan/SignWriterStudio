@@ -2,8 +2,9 @@ Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Data.OleDb
-Imports DbInterface
+Imports System.Security.Cryptography
 Imports DropDownControls.FilteredGroupedComboBox
+Imports System.Dynamic
 Imports NUnit.Framework
 Imports Microsoft.VisualBasic.FileIO
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
@@ -101,24 +102,33 @@ Public Class SWDictForm
         isLoading = False
     End Sub
 
-    Private Shared Function GetTagsData() As Object
+    Private Function GetTagsData() As Object
 
-       
-        Return {
-                New GroupedComboBoxItem With {.Group = "Gases", .Value = "1", .Display = "Helium"},
-                New GroupedComboBoxItem With {.Group = "Gases", .Value = "2", .Display = "Hydrogen"},
-                New GroupedComboBoxItem With {.Group = "Gases", .Value = "3", .Display = "Oxygen"},
-                New GroupedComboBoxItem With {.Group = "Gases", .Value = "4", .Display = "Argon"},
-                New GroupedComboBoxItem With {.Group = "Metals", .Value = "5", .Display = "Iron"},
-                New GroupedComboBoxItem With {.Group = "Metals", .Value = "6", .Display = "Lithium"},
-                New GroupedComboBoxItem With {.Group = "Metals", .Value = "7", .Display = "Copper"},
-                New GroupedComboBoxItem With {.Group = "Metals", .Value = "8", .Display = "Gold"},
-                New GroupedComboBoxItem With {.Group = "Metals", .Value = "9", .Display = "Silver"},
-                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "10", .Display = "Uranium"},
-                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "11", .Display = "Plutonium"},
-                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "12", .Display = "Americium"},
-                New GroupedComboBoxItem With {.Group = "Radioactive", .Value = "13", .Display = "Radon"}
-            }
+        Return CreateGroupedComboBoxItems(_myDictionary.GetTags())
+
+    End Function
+
+    Private Function CreateGroupedComboBoxItems(ByVal expandoObjecttags As List(Of ExpandoObject)) As List(Of GroupedColoredComboBoxItem)
+        Dim listgcbi = New List(Of GroupedColoredComboBoxItem)
+
+        Dim dict = expandoObjecttags.Cast(Of IDictionary(Of String, Object))().ToList()
+
+
+        Dim groups = dict.Where(Function(d) IsDbNull(d.Item("Parent")))
+        Dim items = dict.Where(Function(d) Not IsDbNull(d.Item("Parent"))).ToList()
+
+        For Each group In groups
+            Dim groupText = group.Item("Description")
+            Dim groupId = group.Item("IdTag")
+
+            For Each itemTag In items.Where(Function(x) x.Item("Parent") = groupId)
+                Dim gcbi = New GroupedColoredComboBoxItem With {.Group = groupText.ToString(), .Value = itemTag.Item("IdTag").ToString(), .Display = itemTag.Item("Description"), .Color = Color.FromArgb(itemTag.Item("Color"))}
+                listgcbi.Add(gcbi)
+            Next
+
+
+        Next
+        Return listgcbi
     End Function
 
     Private Sub CheckDictionary(Optional ask As Boolean = True)
@@ -128,7 +138,7 @@ Public Class SWDictForm
         If Not result.Item1 Then
             MessageBox.Show("Choose or create a SignWriter Dictionary (.SWS) file before continuing.")
         Else
-           DictionaryLoaded = True
+            DictionaryLoaded = True
             ShowloadedFile()
         End If
 
@@ -138,7 +148,7 @@ Public Class SWDictForm
         End If
     End Sub
 
- 
+
 
     Private Sub ShowButtons()
         If CallingForm IsNot Nothing AndAlso Not Me.CallingForm.Name = "SignWriterMenu" Then
@@ -1985,7 +1995,7 @@ Public Class SWDictForm
 
     Private Sub btnTagsForm_Click(sender As Object, e As EventArgs) Handles btnTagsForm.Click
         Dim tf = New TagsForm()
-        tf.SetFromDB(_myDictionary.GetTags())
+        tf.SetFromDb(_myDictionary.GetTags())
         tf.ShowDialog()
         Dim changes = tf.GetChanges()
 
@@ -1995,16 +2005,3 @@ Public Class SWDictForm
         tf.Close()
     End Sub
 End Class
-
-<Serializable()>
-Public Class ClipboardSign
-    Public SWSign As SwSign
-    Public Gloss As String
-    Public Glosses As String
-    Public Illustration As Image
-    Public Sign As Image
-    Public SWSignSource As String
-    Public IllustrationSource As String
-    Public SignSource As String
-End Class
-
