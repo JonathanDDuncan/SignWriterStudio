@@ -1,3 +1,4 @@
+
 Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.IO
@@ -5,6 +6,7 @@ Imports System.Data.OleDb
 Imports System.Security.Cryptography
 Imports DropDownControls.FilteredGroupedComboBox
 Imports System.Dynamic
+Imports DropDownControls.IEnumerableToDataTable
 Imports NUnit.Framework
 Imports Microsoft.VisualBasic.FileIO
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
@@ -108,8 +110,7 @@ Public Class SWDictForm
 
     End Function
 
-    Private Function CreateGroupedComboBoxItems(ByVal expandoObjecttags As List(Of ExpandoObject)) As List(Of GroupedColoredComboBoxItem)
-        Dim listgcbi = New List(Of GroupedColoredComboBoxItem)
+    Private Shared Function CreateGroupedComboBoxItems(ByVal expandoObjecttags As List(Of ExpandoObject)) As List(Of GroupedColoredComboBoxItem)
 
         Dim dict = expandoObjecttags.Cast(Of IDictionary(Of String, Object))().ToList()
 
@@ -117,18 +118,11 @@ Public Class SWDictForm
         Dim groups = dict.Where(Function(d) IsDbNull(d.Item("Parent")))
         Dim items = dict.Where(Function(d) Not IsDbNull(d.Item("Parent"))).ToList()
 
-        For Each group In groups
-            Dim groupText = group.Item("Description")
-            Dim groupId = group.Item("IdTag")
-
-            For Each itemTag In items.Where(Function(x) x.Item("Parent") = groupId)
-                Dim gcbi = New GroupedColoredComboBoxItem With {.Group = groupText.ToString(), .Value = itemTag.Item("IdTag").ToString(), .Display = itemTag.Item("Description"), .Color = Color.FromArgb(itemTag.Item("Color"))}
-                listgcbi.Add(gcbi)
-            Next
-
-
-        Next
-        Return listgcbi
+        Return (From group In groups Let groupText = group.Item("Description") Let groupId = group.Item("IdTag") From itemTag _
+                    In items.Where(Function(x) x.Item("Parent") = groupId)
+                    Select New GroupedColoredComboBoxItem With
+                           {.Group = groupText.ToString(), .Value = itemTag.Item("IdTag").ToString(),
+                            .Display = itemTag.Item("Description"), .Color = Color.FromArgb(itemTag.Item("Color"))}).ToList()
     End Function
 
     Private Sub CheckDictionary(Optional ask As Boolean = True)
@@ -198,6 +192,7 @@ Public Class SWDictForm
             CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
             CBGloss2.DisplayMember = "gloss2"
             CBGloss2.ValueMember = "IDDictionary"
+
             DictionaryDataGridView.ResumeLayout()
         Else
             MessageBox.Show("Choose a valid SignWriter file before continuing.")
@@ -353,14 +348,19 @@ Public Class SWDictForm
     End Sub
 
     Sub SaveDataGrid()
+
         Try
+            Dim saved = False
+            Dim tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))) = Nothing
             Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
 
             Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
             Using conn
                 Try
+                    tagChanges = SignWriterStudio.Dictionary.TagChanges.GetTagChanges(_myDictionary)
                     SaveDataGrid(conn, trans)
                     trans.Commit()
+                    saved = True
                 Catch ex As SQLiteException
                     LogError(ex, "SQLite Error " & ex.GetType().Name)
 
@@ -371,12 +371,18 @@ Public Class SWDictForm
 
                 End Try
             End Using
-
+            If saved Then
+                SaveTagDictionary(tagChanges)
+            End If
         Catch ex As ArgumentException
             LogError(ex, "No current file can not save DataGrid " & ex.GetType().Name)
 
 
         End Try
+    End Sub
+
+    Private Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))))
+        _myDictionary.SaveTagDictionary(tagChanges)
     End Sub
 
     Sub SaveDataGrid(ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
@@ -1484,6 +1490,7 @@ Public Class SWDictForm
     Private Sub BtnShowAll_Click(sender As Object, e As EventArgs) Handles BtnShowAll.Click
         TBSearch.Text = ""
         LoadDictionaryAll()
+
     End Sub
 
     Private Sub ExportFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles ExportFileDialog.FileOk
@@ -2001,7 +2008,15 @@ Public Class SWDictForm
 
         If (tf.DialogResult = DialogResult.OK) Then
             _myDictionary.SaveTags(changes.Added, changes.Updated, changes.Removed)
+            Tags.DataSource = GetTagsData()
         End If
         tf.Close()
+    End Sub
+
+    Private Sub AddTagToRow(ByVal row As DataGridViewRow, ByVal value As List(Of Guid))
+        Dim cell = row.Cells("Tags")
+
+        cell.Value = value.ConvertAll(Function(x) x.ToString())
+
     End Sub
 End Class

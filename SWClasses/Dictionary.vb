@@ -941,13 +941,61 @@ Public NotInheritable Class SWDict
     End Function
     Private Sub UpdateDataSources(ByVal searchWord As String)
         Dim dt As DataTable = GetDictionaryEntries(searchWord)
-
+        AddTags(dt)
+        SetTags(dt)
         SetBindingSources(dt)
+    End Sub
+
+    Private Sub SetTags(ByVal dt As DataTable)
+        Dim entryIds = GetEntryIds(dt)
+        Dim tagDictionaryEntries = GetTagEntries(entryIds.ConvertAll(Function(id) id.ToString()))
+
+        SetTagDictionaryEntries(dt, tagDictionaryEntries)
+        dt.AcceptChanges()
+    End Sub
+    Private Sub SetTagDictionaryEntries(ByVal dt As DataTable, ByVal tagDictionaryEntries As List(Of ExpandoObject))
+
+        Dim groups = GetTagDictionaryGroups(tagDictionaryEntries)
+
+        For Each groupItem In groups
+            Dim row As DataRow = dt.Rows.Find(groupItem.Key)
+            If row IsNot Nothing Then
+                AddTagToRow(row, groupItem.Value)
+            End If
+
+
+        Next
+
+    End Sub
+  
+    Private Shared Function GetTagDictionaryGroups(ByVal entries As List(Of ExpandoObject)) As Dictionary(Of Long, List(Of Guid))
+        Dim entries2 = entries.ConvertAll(Function(x) TryCast(x, IDictionary(Of String, Object)))
+        Dim entries3 = entries2.Select(Function(x) New With {Key .IdTagDictionary = x.Item("IdTagDictionary"), .IDDictionary = x.Item("IDDictionary"), .IdTag = x.Item("IdTag")})
+        Dim grouped = New Dictionary(Of Long, List(Of Guid))
+        For Each anonymous In entries3
+            If Not grouped.ContainsKey(CType(anonymous.IDDictionary, Long)) Then
+                grouped.Add(CType(anonymous.IDDictionary, Long), New List(Of Guid)())
+            End If
+            Dim list As List(Of Guid)
+            Dim result = grouped.TryGetValue(CType(anonymous.IDDictionary, Long), list)
+
+            list.Add(CType(anonymous.IdTag, Guid))
+
+
+        Next
+
+        Return grouped
+    End Function
+
+    Private Sub AddTagToRow(ByVal row As DataRow, ByVal value As List(Of Guid))
+        Dim tags = value.ConvertAll(Function(x) x.ToString()).ToList()
+        row("Tags") = tags
+        row("OriginalTags") = tags.ToList()
     End Sub
     Public Sub TopSigns(ByVal top As Integer)
         Dim dt As DataTable = GetTopSigns(top)
-
-
+        AddTags(dt)
+        SetTags(dt)
         SetBindingSources(dt)
         'If DT.Rows.Count = 0 Then
         '    Dim MBO As MessageBoxOptions = CType(MessageBoxOptions.RtlReading And MessageBoxOptions.RightAlign, MessageBoxOptions)
@@ -985,7 +1033,8 @@ Public NotInheritable Class SWDict
 
     Public Sub AllSigns()
         Dim dt As DataTable = GetAllSigns()
-
+        AddTags(dt)
+        SetTags(dt)
         SetBindingSources(dt)
 
     End Sub
@@ -1063,9 +1112,9 @@ Public NotInheritable Class SWDict
 
     Private Sub SetBindingSources(dt As DataTable)
 
-        Dim dtWithTags = AddTags(dt)
+
         DictionaryBindingSource1.RaiseListChangedEvents = False
-        DictionaryBindingSource1.DataSource = dtWithTags
+        DictionaryBindingSource1.DataSource = dt
         DictionaryBindingSource1.RaiseListChangedEvents = True
         DictionaryBindingSource1.ResetBindings(True)
 
@@ -1082,8 +1131,10 @@ Public NotInheritable Class SWDict
 
     Private Function AddTags(ByVal dataTable As DataTable) As DataTable
 
-        Dim dc = New DataColumn("Tags", GetType(List(Of String)))
-        dataTable.Columns.Add(dc)
+        Dim dc1 = New DataColumn("Tags", GetType(List(Of String)))
+        Dim dc2 = New DataColumn("OriginalTags", GetType(List(Of String)))
+        dataTable.Columns.Add(dc1)
+        dataTable.Columns.Add(dc2)
 
         Return dataTable
     End Function
@@ -1531,5 +1582,24 @@ Public NotInheritable Class SWDict
 
     Public Sub SaveTags(ByVal added As List(Of ExpandoObject), ByVal updated As List(Of ExpandoObject), ByVal removed As List(Of String))
         DatabaseDictionary.SaveTags(added, updated, removed)
+    End Sub
+
+    Public Function GetEntryIds(ByVal dt As DataTable) As List(Of Long)
+        Dim ids = New List(Of Long)
+
+        For Each row As DataRow In dt.Rows
+            ids.Add(CType(row.Item("IDDictionary"), Long))
+        Next
+
+
+        Return ids
+    End Function
+
+    Public Function GetTagEntries(ByVal entryIds As List(Of String)) As List(Of ExpandoObject)
+        Return DatabaseDictionary.GetTagEntries(entryIds)
+    End Function
+
+    Public Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))))
+        DatabaseDictionary.SaveTagDictionary(tagChanges)
     End Sub
 End Class

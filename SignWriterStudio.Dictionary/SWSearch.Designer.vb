@@ -1,6 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class Form1
-    Inherits SignWriterStudio.SWEditor.Editor
+    Inherits SWEditor.Editor
 
 
     'Form overrides dispose to clean up the component list.

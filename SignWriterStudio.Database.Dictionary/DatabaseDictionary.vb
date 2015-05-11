@@ -135,6 +135,19 @@ Public Class DatabaseDictionary
         DbTags.DbTags.SaveTags(path, added, updated, removed)
 
     End Sub
+
+    Public Shared Function GetTagEntries(ByVal entryIds As List(Of String)) As List(Of ExpandoObject)
+        Dim path = DictionaryConnectionString
+
+        Return DbTags.DbTagsDictionary.GetTagEntries(path, entryIds)
+    End Function
+
+    Public Shared Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))))
+        Dim path = DictionaryConnectionString
+        DbTags.DbTagsDictionary.SaveTagDictionary(path, tagChanges)
+
+
+    End Sub
 End Class
 
 

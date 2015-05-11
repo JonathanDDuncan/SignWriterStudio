@@ -93,7 +93,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TagList, Version=1.0.0.22302, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TagList, Version=1.0.0.20559, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Referenced\TagList.dll</HintPath>
     </Reference>
@@ -167,6 +167,7 @@
     <Compile Include="SWSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TagChanges.vb" />
     <Compile Include="TagData.vb" />
     <Compile Include="TagsForm.Designer.vb">
       <DependentUpon>TagsForm.vb</DependentUpon>
