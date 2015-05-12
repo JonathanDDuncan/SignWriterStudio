@@ -22,7 +22,7 @@ Partial Class TagsForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TagTreeView1 = New SignWriterStudio.Dictionary.TagTreeView()
+        Me.TagTreeView1 = New Dictionary.TagTreeView()
         Me.SuspendLayout()
         '
         'TagTreeView1
@@ -45,5 +45,5 @@ Partial Class TagsForm
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents TagTreeView1 As SignWriterStudio.Dictionary.TagTreeView
+    Friend WithEvents TagTreeView1 As Dictionary.TagTreeView
 End Class

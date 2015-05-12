@@ -37,7 +37,7 @@ Partial Class TagTreeView
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbAbreviation = New System.Windows.Forms.TextBox()
         Me.cbTagGroup = New System.Windows.Forms.CheckBox()
-        Me.SettingsDataSet1 = New SignWriterStudio.Settings.SettingsDataSet()
+        Me.SettingsDataSet1 = New Settings.SettingsDataSet()
         Me.btnMoveUp = New System.Windows.Forms.Button()
         Me.btnMoveDown = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
@@ -240,7 +240,7 @@ Partial Class TagTreeView
     Friend WithEvents btnEditOk As System.Windows.Forms.Button
     Friend WithEvents btnEditCancel As System.Windows.Forms.Button
     Friend WithEvents gbEdit As System.Windows.Forms.GroupBox
-    Friend WithEvents SettingsDataSet1 As SignWriterStudio.Settings.SettingsDataSet
+    Friend WithEvents SettingsDataSet1 As Settings.SettingsDataSet
     Friend WithEvents btnMoveUp As System.Windows.Forms.Button
     Friend WithEvents btnMoveDown As System.Windows.Forms.Button
     Friend WithEvents cbTagGroup As System.Windows.Forms.CheckBox
