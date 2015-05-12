@@ -124,9 +124,9 @@ Partial Class SWDictForm
         Me.PhotoSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Tags = New TagList.DGV.DataGridViewTagListColumn()
-        Me.isPrivate = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.GUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Sorting = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnShowSource = New System.Windows.Forms.Button()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -298,6 +298,7 @@ Partial Class SWDictForm
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.AutoScroll = True
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnShowSource)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnTagsForm)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnSpell)
         Me.SplitContainer1.Panel1.Controls.Add(Me.TBSearch)
@@ -318,7 +319,7 @@ Partial Class SWDictForm
         '
         Me.SplitContainer1.Panel2.AutoScroll = True
         Me.SplitContainer1.Panel2.Controls.Add(Me.DictionaryDataGridView)
-        Me.SplitContainer1.Size = New System.Drawing.Size(989, 533)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1354, 533)
         Me.SplitContainer1.SplitterDistance = 73
         Me.SplitContainer1.TabIndex = 4
         '
@@ -632,12 +633,12 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.AllowUserToOrderColumns = True
         Me.DictionaryDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders
         Me.DictionaryDataGridView.ColumnHeadersHeight = 35
-        Me.DictionaryDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SignLanguage, Me.IDDictionary, Me.gloss1, Me.glosses1, Me.gloss2, Me.glosses2, Me.SWriting, Me.Photo, Me.Sign, Me.SWSignSource, Me.PhotoSource, Me.SignSource, Me.Tags, Me.isPrivate, Me.GUID, Me.Sorting})
+        Me.DictionaryDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SignLanguage, Me.IDDictionary, Me.gloss1, Me.glosses1, Me.gloss2, Me.glosses2, Me.SWriting, Me.Photo, Me.Sign, Me.SWSignSource, Me.PhotoSource, Me.SignSource, Me.Tags, Me.GUID, Me.Sorting})
         Me.DictionaryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DictionaryDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.DictionaryDataGridView.Name = "DictionaryDataGridView"
         Me.DictionaryDataGridView.RowTemplate.Height = 24
-        Me.DictionaryDataGridView.Size = New System.Drawing.Size(989, 456)
+        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1354, 456)
         Me.DictionaryDataGridView.TabIndex = 3
         Me.DictionaryDataGridView.VirtualMode = True
         '
@@ -753,6 +754,7 @@ Partial Class SWDictForm
         'DataGridViewTagListColumn1
         '
         Me.DataGridViewTagListColumn1.HeaderText = "Column1"
+        Me.DataGridViewTagListColumn1.LabelFont = Nothing
         Me.DataGridViewTagListColumn1.Name = "DataGridViewTagListColumn1"
         '
         'SignLanguage
@@ -852,16 +854,12 @@ Partial Class SWDictForm
         '
         'Tags
         '
+        Me.Tags.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.Tags.DataPropertyName = "Tags"
         Me.Tags.HeaderText = "Tags"
+        Me.Tags.LabelFont = Nothing
         Me.Tags.Name = "Tags"
         Me.Tags.ReadOnly = True
-        '
-        'isPrivate
-        '
-        Me.isPrivate.DataPropertyName = "isPrivate"
-        Me.isPrivate.HeaderText = "Do Not Export "
-        Me.isPrivate.Name = "isPrivate"
         '
         'GUID
         '
@@ -877,11 +875,20 @@ Partial Class SWDictForm
         Me.Sorting.Name = "Sorting"
         Me.Sorting.Visible = False
         '
+        'btnShowSource
+        '
+        Me.btnShowSource.Location = New System.Drawing.Point(1004, 5)
+        Me.btnShowSource.Name = "btnShowSource"
+        Me.btnShowSource.Size = New System.Drawing.Size(98, 23)
+        Me.btnShowSource.TabIndex = 18
+        Me.btnShowSource.Text = "Show Source"
+        Me.btnShowSource.UseVisualStyleBackColor = True
+        '
         'SWDictForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(989, 533)
+        Me.ClientSize = New System.Drawing.Size(1354, 533)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -991,7 +998,7 @@ End Sub
     Friend WithEvents PhotoSource As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SignSource As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Tags As TagList.DGV.DataGridViewTagListColumn
-    Friend WithEvents isPrivate As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents GUID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Sorting As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btnShowSource As System.Windows.Forms.Button
 End Class

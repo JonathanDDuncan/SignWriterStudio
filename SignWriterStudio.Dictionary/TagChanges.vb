@@ -83,9 +83,11 @@ Namespace SignWriterStudio.Dictionary
 
                 Next
             Else
-                For Each newValue In newValues
-                    toAdd.Add(New List(Of String) From {idDictionary, newValue})
-                Next
+                If newValues IsNot Nothing Then
+                    For Each newValue In newValues
+                        toAdd.Add(New List(Of String) From {idDictionary, newValue})
+                    Next
+                End If
             End If
         End Sub
     End Class

@@ -77,6 +77,11 @@ Public Class SWDictForm
 
     Private Sub LoadDictionary(Optional ask As Boolean = True)
         isLoading = True
+
+        SWSignSource.Visible = False
+        SignSource.Visible = False
+        PhotoSource.Visible = False
+
         _myDictionary = New SWDict
         _myDictionary.DictionaryBindingSource1.DataSource = SWDict.BlankDictionaryTable
 
@@ -2018,5 +2023,13 @@ Public Class SWDictForm
 
         cell.Value = value.ConvertAll(Function(x) x.ToString())
 
+    End Sub
+
+    Private Sub btnShowSource_Click(sender As Object, e As EventArgs) Handles btnShowSource.Click
+        SWSignSource.Visible = Not SWSignSource.Visible
+        SignSource.Visible = SWSignSource.Visible
+        PhotoSource.Visible = SWSignSource.Visible
+
+        btnShowSource.Text = If(SWSignSource.Visible, "Hide Sources", "Show Sources")
     End Sub
 End Class
