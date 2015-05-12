@@ -38,14 +38,14 @@ Public Class StringUtil
         Return items.Aggregate(Function(current, [next]) current & [next])
     End Function
     Public Shared Function GetUpdateValues(columnNames As IEnumerable(Of String), values As IEnumerable(Of Object)) As String
-        Return columnNames.Skip(1).Zip(values.Skip(1), AddressOf Tuple.Create).[Select](Function(x) "[" & _
-                          Convert.ToString(x.Item1) & "] = " & GetSqlValue(x.Item2)) _
+        Return columnNames.Skip(1).Zip(values.Skip(1), AddressOf Tuple.Create).[Select](Function(x) _
+                         SquareBracket(Convert.ToString(x.Item1)) & " = " & GetSqlValue(x.Item2)) _
                             .Aggregate(Function(current, [next]) current & ", " & [next])
     End Function
 
     Private Shared Function GetSqlValue(ByVal value As Object) As String
         If value IsNot Nothing Then
-            Return "'" & Convert.ToString(value) & "'"
+            Return SingleQuote(Convert.ToString(value))
         Else
             Return "NULL"
         End If
@@ -56,7 +56,7 @@ Public Class StringUtil
         Dim id = row.FirstOrDefault()
 
         If columnName IsNot Nothing AndAlso id IsNot Nothing Then
-            Return "[" & columnName & "] = '" & Convert.ToString(id) & "'"
+            Return SquareBracket(columnName) & " = " & SingleQuote(Convert.ToString(id))
         End If
         Return Nothing
     End Function
@@ -68,7 +68,7 @@ Public Class StringUtil
     End Function
 
     Public Shared Function ConcatenateColumnTypes(fields As Dictionary(Of String, String)) As String
-        Return Concat(fields.[Select](Function(x) "[" & x.Key & "] " & x.Value), ", ")
+        Return Concat(fields.[Select](Function(x) SquareBracket(x.Key) & " " & x.Value), ", ")
     End Function
 
     Public Shared Function GetConnectionFilename(ByVal connectionString As String) As String
@@ -79,5 +79,13 @@ Public Class StringUtil
         Else
             Return connectionString
         End If
+    End Function
+
+    Public Shared Function SquareBracket(ByVal s As String) As String
+        Return "[" & s & "]"
+    End Function
+
+    Public Shared Function SingleQuote(ByVal s As String) As String
+        Return "'" & s & "'"
     End Function
 End Class

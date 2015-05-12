@@ -1,6 +1,5 @@
 ﻿Imports System.Collections.Generic
 Imports System.Dynamic
-Imports System.Security.Cryptography
 Imports SignWriterStudio.SQLiteAdapters
 
 Public NotInheritable Class DbTagsDictionary
@@ -51,22 +50,22 @@ Public NotInheritable Class DbTagsDictionary
         Return result.TabularResults.FirstOrDefault()
     End Function
 
-    Public Shared Sub SaveTagDictionary(ByVal path As String, ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))))
-        Dim deleteQuery = CreateDeleteQuery(path, tagChanges.Item2)
-        Dim insertQuery = CreateInsertQuery(path, tagChanges.Item1)
+    Public Shared Sub SaveTagDictionary(ByVal path As String, ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))))
+        Dim deleteQueries = SaveTagDeleteQueries(path, tagChanges.Item2)
+        Dim insertQuery = SaveTagInsertQuery(path, tagChanges.Item1)
         Dim unitofWork = New UnitOfWork()
         unitofWork.Queries.Add(insertQuery)
-        unitofWork.Queries.Add(deleteQuery)
+        unitofWork.Queries.AddRange(deleteQueries)
 
         Dim result = unitofWork.Execute()
     End Sub
 
-    Private Shared Function CreateInsertQuery(ByVal path As String, ByVal toInsert As List(Of List(Of String))) As InsertQuery
+    Private Shared Function SaveTagInsertQuery(ByVal path As String, ByVal toInsert As List(Of List(Of String))) As InsertQuery
         Dim dbtd = New DbTagsDictionary()
         Dim query = dbtd.DefaultInsertQuery()
         query.Path = path
         query.Columns = dbtd.DefaultColumns
-        query.Values = AddGUID(toInsert)
+        query.Values = AddGuid(toInsert)
         Return query
     End Function
 
@@ -82,12 +81,17 @@ Public NotInheritable Class DbTagsDictionary
         Return newListList
     End Function
 
-    Private Shared Function CreateDeleteQuery(ByVal path As String, ByVal toRemove As List(Of Tuple(Of String, String))) As DeleteQuery
+    Private Shared Function SaveTagDeleteQueries(ByVal path As String, ByVal toRemove As List(Of List(Of String))) As List(Of DeleteQuery)
         Dim dbtd = New DbTagsDictionary()
-        Dim query = dbtd.DefaultDeleteQuery()
-        query.Path = path
+        Dim queries = New List(Of DeleteQuery)()
+        For Each removeList In toRemove
+            Dim query = dbtd.DefaultDeleteQuery()
+            query.Values = removeList
+            query.Columns = New List(Of String)() From {"IDDictionary", "IdTag"}
+            query.Path = path
+            queries.Add(query)
+        Next
 
-
-        Return query
+        Return queries
     End Function
 End Class

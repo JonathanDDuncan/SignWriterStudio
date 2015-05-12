@@ -12,4 +12,6 @@ Public Class DeleteQuery
 
     Public Property Delete() As List(Of String)
 
+    Public Property Values() As List(Of String)
+
 End Class

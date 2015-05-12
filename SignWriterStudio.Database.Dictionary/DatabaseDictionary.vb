@@ -142,7 +142,7 @@ Public Class DatabaseDictionary
         Return DbTags.DbTagsDictionary.GetTagEntries(path, entryIds)
     End Function
 
-    Public Shared Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))))
+    Public Shared Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))))
         Dim path = DictionaryConnectionString
         DbTags.DbTagsDictionary.SaveTagDictionary(path, tagChanges)
 

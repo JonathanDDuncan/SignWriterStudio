@@ -351,7 +351,7 @@ Public Class SWDictForm
 
         Try
             Dim saved = False
-            Dim tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))) = Nothing
+            Dim tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))) = Nothing
             Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
 
             Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
@@ -381,7 +381,7 @@ Public Class SWDictForm
         End Try
     End Sub
 
-    Private Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))))
+    Private Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))))
         _myDictionary.SaveTagDictionary(tagChanges)
     End Sub
 

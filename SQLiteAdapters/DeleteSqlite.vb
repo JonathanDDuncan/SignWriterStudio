@@ -6,13 +6,13 @@ Imports System.Data.SQLite
 Public Class DeleteSqlite
 
 
-    Private Shared Function Delete(path As String, tableName As String, where As String, Optional whereIn As Tuple(Of String, List(Of String)) = Nothing, Optional deleteList As List(Of String) = Nothing, Optional primaryKey As String = Nothing) As IQueryResult
+    Private Shared Function Delete(ByVal path As String, ByVal tableName As String, ByVal where As String, Optional ByVal whereIn As Tuple(Of String, List(Of String)) = Nothing, Optional ByVal deleteList As List(Of String) = Nothing, Optional ByVal primaryKey As String = Nothing, Optional ByVal columns As List(Of String) = Nothing, Optional ByVal values As List(Of String) = Nothing) As IQueryResult
         Dim conn = CommonSqlite.CreateConnection(path)
         conn.Open()
 
         Using tr = conn.BeginTransaction()
             Try
-                Dim result = Delete(conn, tr, tableName, where, whereIn)
+                Dim result = Delete(conn, tr, tableName, where, whereIn, deleteList, primaryKey, columns, values)
                 tr.Commit()
 
                 Return result
@@ -25,14 +25,14 @@ Public Class DeleteSqlite
         End Using
     End Function
 
-    Private Shared Function Delete(conn As SQLiteConnection, tr As SQLiteTransaction, tableName As String, where As String, Optional whereIn As Tuple(Of String, List(Of String)) = Nothing, Optional deleteList As List(Of String) = Nothing, Optional primaryKey As String = Nothing) As IQueryResult
+    Private Shared Function Delete(ByVal conn As SQLiteConnection, ByVal tr As SQLiteTransaction, ByVal tableName As String, ByVal where As String, Optional ByVal whereIn As Tuple(Of String, List(Of String)) = Nothing, Optional ByVal deleteList As List(Of String) = Nothing, Optional ByVal primaryKey As String = Nothing, Optional ByVal columns As List(Of String) = Nothing, Optional ByVal values As List(Of String) = Nothing) As IQueryResult
 
         If (deleteList IsNot Nothing AndAlso primaryKey IsNot Nothing) Then
             whereIn = Tuple.Create(primaryKey, deleteList)
         End If
         Dim totalRowsAffected As Integer
         Dim commandText As String = String.Empty
-        Dim whereclause = CommonSqlite.GetWhereClause(where, whereIn)
+        Dim whereclause = ValuesWhere(CommonSqlite.GetWhereClause(where, whereIn), columns, values)
         If whereclause.Contains("WHERE") Then
 
 
@@ -54,11 +54,28 @@ Public Class DeleteSqlite
         }
     End Function
 
+    Private Shared Function ValuesWhere(ByVal initialWhereClause As String, ByVal columns As List(Of String), ByVal values As List(Of String)) As String
+        If Not String.IsNullOrEmpty(initialWhereClause) Then
+            Return initialWhereClause
+        ElseIf columns IsNot Nothing AndAlso values IsNot Nothing Then
+
+            Return " WHERE " & DeleteWhereValues(columns, values)
+        Else
+            Return String.Empty
+        End If
+
+
+    End Function
+
+    Private Shared Function DeleteWhereValues(ByVal columns As List(Of String), ByVal values As List(Of String)) As String
+        Return StringUtil.Concat(columns.Zip(values, Function(x, y) StringUtil.SquareBracket(x) & " = " & StringUtil.SingleQuote(y)), " AND ")
+    End Function
+
     Public Shared Function Delete(conn As SQLiteConnection, tr As SQLiteTransaction, query As DeleteQuery) As IQueryResult
-        Return Delete(conn, tr, query.TableName, query.Where, query.WhereIn, query.Delete, query.PrimaryKey)
+        Return Delete(conn, tr, query.TableName, query.Where, query.WhereIn, query.Delete, query.PrimaryKey, query.Columns, query.Values)
     End Function
 
     Public Shared Function Delete(query As DeleteQuery) As IQueryResult
-        Return Delete(query.Path, query.TableName, query.Where, query.WhereIn, query.Delete, query.PrimaryKey)
+        Return Delete(query.Path, query.TableName, query.Where, query.WhereIn, query.Delete, query.PrimaryKey, query.Columns, query.Values)
     End Function
 End Class

@@ -1599,7 +1599,7 @@ Public NotInheritable Class SWDict
         Return DatabaseDictionary.GetTagEntries(entryIds)
     End Function
 
-    Public Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of Tuple(Of String, String))))
+    Public Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))))
         DatabaseDictionary.SaveTagDictionary(tagChanges)
     End Sub
 End Class
