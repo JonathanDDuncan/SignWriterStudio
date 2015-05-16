@@ -10,6 +10,8 @@ Imports System.Data.SQLite
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Database.Dictionary.DatabaseDictionary
 Imports System.Text
+'Imports SignsbyGlossesBilingual = SignWriterStudio.DbTags.SignsbyGlosses.SignsbyGlossesBilingual
+'Imports SignsByGlossesUnilingual = SignWriterStudio.DbTags.SignsbyGlosses.SignsByGlossesUnilingual
 
 Public NotInheritable Class SWDict
     Implements IDisposable
@@ -85,8 +87,8 @@ Public NotInheritable Class SWDict
     Public Sub SearchText(ByVal search As String)
         UpdateDataSources(search)
     End Sub
-    Public Function PagingSearchText(ByVal search As String, ByVal pageSize As Integer, ByVal skip As Integer) As Integer
-        Dim totalRowCount = UpdateDataSources(search, pageSize, skip)
+    Public Function PagingSearchText(ByVal search As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal count As Boolean) As Integer
+        Dim totalRowCount = UpdateDataSources(search, pageSize, skip, count)
         Return totalRowCount
     End Function
     Public Sub GetbyIdDictionary(ByVal idDictionary As Integer)
@@ -944,15 +946,17 @@ Public NotInheritable Class SWDict
     Private Sub UpdateDataSources(ByVal searchWord As String)
         Dim dt As DataTable = GetDictionaryEntries(searchWord)
 
-        
+
         AddTags(dt)
         SetTags(dt)
         SetBindingSources(dt)
     End Sub
-    Private Function UpdateDataSources(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As Integer
+    Private Function UpdateDataSources(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal count As Boolean) As Integer
 
-        Dim totalRowCount = GetDictionaryEntriesCount(searchWord)
-
+        Dim totalRowCount As Integer
+        If count Then
+            totalRowCount = GetDictionaryEntriesCount(searchWord)
+        End If
         Dim dt As DataTable = GetDictionaryEntriesPaging(searchWord, pageSize, skip)
 
         AddTags(dt)
@@ -1166,62 +1170,60 @@ Public NotInheritable Class SWDict
     End Sub
 
     Private Function GetDictionaryEntriesCount(ByVal searchWord As String) As Integer
-        'Try
-        Dim lang1Id As Integer = FirstGlossLanguage
-        Dim lang2Id As Integer = SecondGlossLanguage
-        Dim slid As Integer = DefaultSignLanguage
-
-        If lang1Id = 0 Then
-            lang1Id = 54
-        End If
-        If lang2Id = 0 Then
-            lang2Id = 157
-        End If
-        If slid = 0 Then
-            slid = 4
-        End If
-
-
         If BilingualMode Then
-            Dim dtBilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
-            'Return _taSignsbyGlossesBilingual.Count(dtBilingual, slid, lang1Id, lang2Id, searchWord)
-
+            Return DbTags.SignsbyGlosses.SignsbyGlossesBilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord)
         Else
-            Dim dtUnilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
-            'Return _taSignsbyGlossesUnilingual.Count(dtUnilingual, slid, lang1Id, searchWord)
 
+            Return DbTags.SignsbyGlosses.SignsByGlossesUnilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord)
         End If
-        Return 0
     End Function
 
     Private Function GetDictionaryEntriesPaging(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As DataTable
-        'Try
-        Dim lang1Id As Integer = FirstGlossLanguage
-        Dim lang2Id As Integer = SecondGlossLanguage
-        Dim slid As Integer = DefaultSignLanguage
-
-        If lang1Id = 0 Then
-            lang1Id = 54
-        End If
-        If lang2Id = 0 Then
-            lang2Id = 157
-        End If
-        If slid = 0 Then
-            slid = 4
-        End If
-
-
-
         If BilingualMode Then
-            Dim dtBilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
-            '_taSignsbyGlossesBilingual.FillPagingby(dtBilingual, slid, lang1Id, lang2Id, searchWord, pageSize, skip )
-            Return dtBilingual
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip))
         Else
-            Dim dtUnilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
-            '_taSignsbyGlossesUnilingual.FillPagingby(dtUnilingual, slid, lang1Id, searchWord, pageSize, skip, )
-            Return dtUnilingual
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsByGlossesUnilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, pageSize, skip))
         End If
     End Function
+
+    Private Function ConvertoSignsbyGlossesBilingualDataTable(ByVal eoList As IEnumerable(Of ExpandoObject)) As SignsbyGlossesBilingualDataTable
+        Dim table = New SignsbyGlossesBilingualDataTable()
+
+        For Each eo As ExpandoObject In eoList
+            Dim dict = TryCast(eo, IDictionary(Of String, Object))
+            Dim row = table.NewRow()
+
+            row.Item("gloss1") = dict.Item("gloss1")
+            row.Item("glosses1") = dict.Item("glosses1")
+            row.Item("IDDictionaryGloss1") = dict.Item("IDDictionaryGloss1")
+            row.Item("Culture1") = dict.Item("Culture1")
+            row.Item("IDDictionary") = dict.Item("IDDictionary")
+            row.Item("IDSignLanguage") = dict.Item("IDSignLanguage")
+            row.Item("IDSignPuddle") = dict.Item("IDSignPuddle")
+            row.Item("isPrivate") = dict.Item("isPrivate")
+            row.Item("SWriting") = dict.Item("SWriting")
+            row.Item("Photo") = dict.Item("Photo")
+            row.Item("Sign") = dict.Item("Sign")
+            row.Item("SWritingSource") = dict.Item("SWritingSource")
+            row.Item("PhotoSource") = dict.Item("PhotoSource")
+            row.Item("SignSource") = dict.Item("SignSource")
+            row.Item("GUID") = dict.Item("GUID")
+            row.Item("LastModified") = dict.Item("LastModified")
+            row.Item("Sorting") = dict.Item("Sorting")
+
+            If dict.ContainsKey("gloss2") Then
+                row.Item("gloss2") = dict.Item("gloss2")
+                row.Item("glosses2") = dict.Item("glosses2")
+                row.Item("IDDictionaryGloss2") = dict.Item("IDDictionaryGloss2")
+                row.Item("Culture2") = dict.Item("Culture2")
+            End If
+            table.Rows.Add(row)
+        Next
+
+
+        Return table
+    End Function
+
     Private Function GetDictionaryEntries(ByVal searchWord As String) As DataTable
         'Try
         Dim lang1Id As Integer = FirstGlossLanguage

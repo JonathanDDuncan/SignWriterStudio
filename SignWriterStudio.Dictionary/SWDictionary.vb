@@ -81,6 +81,7 @@ Public Class SWDictForm
         SWSignSource.Visible = False
         SignSource.Visible = False
         PhotoSource.Visible = False
+        AddHandler Pager1.PageChanged, AddressOf PageChanged
 
         _myDictionary = New SWDict
         _myDictionary.DictionaryBindingSource1.DataSource = SWDict.BlankDictionaryTable
@@ -108,6 +109,12 @@ Public Class SWDictForm
 
         isLoading = False
     End Sub
+
+    Private Sub PageChanged(ByVal sender As Object, ByVal e As EventArgs)
+        LoadPage()
+    End Sub
+
+   
 
     Private Function GetTagsData() As Object
 
@@ -173,87 +180,119 @@ Public Class SWDictForm
                                                                 UI.Cultures.GetCultureFullName(
                                                                     _myDictionary.SecondGlossLanguage)
     End Sub
+    Private Sub LoadPage()
+        If Not LoadingEntries Then
+            LoadingEntries = True
+            PreLoadEntries()
+            LoadEntries()
+            LoadingEntries = False
+        End If
+    End Sub
+
+    Public Property LoadingEntries() As Boolean
+       
 
     Friend Sub LoadDictionaryEntries()
         If DictionaryLoaded Then
-            DictionaryDataGridView.SuspendLayout()
-            'Check if entries have been saved before reloading and losing changes.
-            Dim dt As DataTable = Me._myDictionary.DictionaryBindingSource1.DataSource
-            'Create dataset if not exists
-            If dt.DataSet Is Nothing Then
-                Dim ds As New DataSet
-                ds.Tables.Add(_myDictionary.DictionaryBindingSource1.DataSource)
+            If Not LoadingEntries Then
+                LoadingEntries = True
+                PreLoadEntries()
+                Dim search As String
+
+                If Not TBSearch.Text.Contains("%") Then
+                    search = "%" & TBSearch.Text & "%"
+                Else
+                    search = TBSearch.Text
+                End If
+
+                Pager1.Search = search
+                Pager1.CurrentPage = 1
+
+                LoadEntries(True)
+
+                LoadingEntries = False
             End If
+        Else
+            MessageBox.Show("Choose a valid SignWriter file before continuing.")
+        End If
+    End Sub
 
-            SaveDataGrid()
-            Dim search As String
+    Private Sub LoadEntries(Optional ByVal count As Boolean = False)
 
-            search = "%" & TBSearch.Text & "%"
-
-            Pager1.CurrentPage = 1
-
-            Dim skip = (Pager1.CurrentPage - 1) * Pager1.PageSize
-            Dim totalRowCount = _myDictionary.PagingSearchText(search, Pager1.PageSize, skip)
+        Dim skip = (Pager1.CurrentPage - 1) * Pager1.PageSize
+        Dim totalRowCount = _myDictionary.PagingSearchText(Pager1.Search, Pager1.PageSize, skip, count)
+        If count Then
             Pager1.TotalRowCount = totalRowCount
-
-            CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
-            CBGloss1.DisplayMember = "gloss1"
-            CBGloss1.ValueMember = "IDDictionary"
-            CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
-            CBGloss2.DisplayMember = "gloss2"
-            CBGloss2.ValueMember = "IDDictionary"
-
-            DictionaryDataGridView.ResumeLayout()
-        Else
-            MessageBox.Show("Choose a valid SignWriter file before continuing.")
         End If
+        CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
+        CBGloss1.DisplayMember = "gloss1"
+        CBGloss1.ValueMember = "IDDictionary"
+        CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
+        CBGloss2.DisplayMember = "gloss2"
+        CBGloss2.ValueMember = "IDDictionary"
+
+        DictionaryDataGridView.ResumeLayout()
     End Sub
 
-    Friend Sub LoadDictionaryAll()
+    Private Sub PreLoadEntries()
 
-        If DictionaryLoaded Then
-            DictionaryDataGridView.SuspendLayout()
-            'Check if entries have been saved before reloading and losing changes.
-            Dim dt As DataTable = _myDictionary.DictionaryBindingSource1.DataSource
-            'Create dataset if not exists
-            If dt.DataSet Is Nothing Then
-                Dim ds As New DataSet
-                ds.Tables.Add(_myDictionary.DictionaryBindingSource1.DataSource)
-            End If
-            SaveDataGrid()
-            Const limit As Integer = 100
-            Dim limited As Boolean
-            Dim count = _myDictionary.SignsinDictionaryCount
-            If count > limit Then
-                Dim result =
-                        MessageBox.Show(
-                            "There are " & count &
-                            " signs in the dictionary.  It make take a while to display them all. Would you like to just show the first " &
-                            limit & "?", "Show all signs", MessageBoxButtons.YesNo)
-                limited = (result = DialogResult.Yes)
-            End If
-
-
-            If limited Then
-                _myDictionary.TopSigns(limit)
-
-            Else
-                _myDictionary.AllSigns()
-
-            End If
-
-
-            CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
-            CBGloss1.DisplayMember = "gloss1"
-            CBGloss1.ValueMember = "IDDictionary"
-            CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
-            CBGloss2.DisplayMember = "gloss2"
-            CBGloss2.ValueMember = "IDDictionary"
-            DictionaryDataGridView.ResumeLayout()
-        Else
-            MessageBox.Show("Choose a valid SignWriter file before continuing.")
+        DictionaryDataGridView.SuspendLayout()
+        'Check if entries have been saved before reloading and losing changes.
+        Dim dt As DataTable = Me._myDictionary.DictionaryBindingSource1.DataSource
+        'Create dataset if not exists
+        If dt.DataSet Is Nothing Then
+            Dim ds As New DataSet
+            ds.Tables.Add(_myDictionary.DictionaryBindingSource1.DataSource)
         End If
+
+        SaveDataGrid()
     End Sub
+
+    'Friend Sub LoadDictionaryAll()
+
+    '    If DictionaryLoaded Then
+    '        DictionaryDataGridView.SuspendLayout()
+    '        'Check if entries have been saved before reloading and losing changes.
+    '        Dim dt As DataTable = _myDictionary.DictionaryBindingSource1.DataSource
+    '        'Create dataset if not exists
+    '        If dt.DataSet Is Nothing Then
+    '            Dim ds As New DataSet
+    '            ds.Tables.Add(_myDictionary.DictionaryBindingSource1.DataSource)
+    '        End If
+    '        SaveDataGrid()
+    '        Const limit As Integer = 100
+    '        Dim limited As Boolean
+    '        Dim count = _myDictionary.SignsinDictionaryCount
+    '        If count > limit Then
+    '            Dim result =
+    '                    MessageBox.Show(
+    '                        "There are " & count &
+    '                        " signs in the dictionary.  It make take a while to display them all. Would you like to just show the first " &
+    '                        limit & "?", "Show all signs", MessageBoxButtons.YesNo)
+    '            limited = (result = DialogResult.Yes)
+    '        End If
+
+
+    '        If limited Then
+    '            _myDictionary.TopSigns(limit)
+
+    '        Else
+    '            _myDictionary.AllSigns()
+
+    '        End If
+
+
+    '        CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
+    '        CBGloss1.DisplayMember = "gloss1"
+    '        CBGloss1.ValueMember = "IDDictionary"
+    '        CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
+    '        CBGloss2.DisplayMember = "gloss2"
+    '        CBGloss2.ValueMember = "IDDictionary"
+    '        DictionaryDataGridView.ResumeLayout()
+    '    Else
+    '        MessageBox.Show("Choose a valid SignWriter file before continuing.")
+    '    End If
+    'End Sub
 
     Private Sub EditImage()
         Dim imageEditor As New ImageEditor.ImageEditor
@@ -1481,10 +1520,10 @@ Public Class SWDictForm
     End Sub
 
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
-        If Not TBSearch.Text = String.Empty Then
-            LoadDictionaryEntries()
-            LetKnowNoMatchesFound()
-        End If
+
+        LoadDictionaryEntries()
+        LetKnowNoMatchesFound()
+
     End Sub
 
     Private Sub LetKnowNoMatchesFound()
@@ -1497,11 +1536,11 @@ Public Class SWDictForm
         End If
     End Sub
 
-    Private Sub BtnShowAll_Click(sender As Object, e As EventArgs) Handles BtnShowAll.Click
-        TBSearch.Text = ""
-        LoadDictionaryAll()
+    'Private Sub BtnShowAll_Click(sender As Object, e As EventArgs) Handles BtnShowAll.Click
+    '    TBSearch.Text = ""
+    '    LoadDictionaryAll()
 
-    End Sub
+    'End Sub
 
     Private Sub ExportFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles ExportFileDialog.FileOk
 

@@ -99,6 +99,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SignsbyGlosses\SignsbyGlossesBilingual.vb" />
+    <Compile Include="SignsbyGlosses\SignsByGlossesUnilingual.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

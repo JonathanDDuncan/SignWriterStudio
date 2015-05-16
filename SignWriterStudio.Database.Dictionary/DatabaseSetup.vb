@@ -122,6 +122,8 @@ Public Module DatabaseSetup
         script230.Add("BEGIN TRANSACTION;")
         script230.Add("CREATE TABLE [Tags] ([IdTag] guid NOT NULL, [Description] text NOT NULL, [Abbreviation] text NULL, [Color] int NULL, [Rank] int NOT NULL, [Parent] guid NULL, CONSTRAINT [PK_Tags] PRIMARY KEY ([IdTag]));")
         script230.Add("CREATE TABLE [TagDictionary] ([IdTagDictionary] guid NOT NULL, [IDDictionary] bigint NOT NULL, [IdTag] guid NOT NULL, CONSTRAINT [sqlite_autoindex_TagDictionary_1] PRIMARY KEY ([IdTagDictionary]), FOREIGN KEY ([IdTag]) REFERENCES [Tags] ([IdTag]) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY ([IDDictionary]) REFERENCES [Dictionary] ([IDDictionary]) ON DELETE CASCADE ON UPDATE CASCADE);CREATE INDEX [TagDictionary_IdTag_TagDictionary] ON [TagDictionary] ([IdTag] ASC);CREATE INDEX [TagDictionary_IDDictionary_TagDictionary] ON [TagDictionary] ([IDDictionary] ASC);")
+        script230.Add("CREATE INDEX [SignWritingSorting] ON [Dictionary] ([Sorting] ASC);")
+
         script230.Add("UPDATE Version SET Major =3, Minor = 0, DatabaseName = ""Dictionary"", DatabaseType = ""Dictionary"" WHERE IDVersion=2;")
 
         script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('5bfcb134-1689-4f65-9deb-4934e7c32585', 'Misc','Misc', -8355712,3);")
@@ -139,6 +141,7 @@ Public Module DatabaseSetup
         script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('0db55ecb-7726-4e69-810a-39c001753c5e', 'Conjunction','', -8355712,8,'5f78f958-a299-482c-9412-7eca30cda394');")
         script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('6556dfb2-c53d-4628-b256-580b87ee02db', 'Interjection','', -8355712,9,'5f78f958-a299-482c-9412-7eca30cda394');")
         script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('6769d1f7-c905-4772-8cbb-3db176055016', 'Preposition','', -8355712,10,'5f78f958-a299-482c-9412-7eca30cda394');")
+
 
         script230.Add("COMMIT;")
 

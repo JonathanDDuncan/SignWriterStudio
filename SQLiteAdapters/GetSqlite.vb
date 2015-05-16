@@ -51,7 +51,8 @@ Public Class GetSqlite
             } _
         }
     End Function
-    Private Shared Function ReadRows(rdr As IDataReader, readColumns As List(Of String)) As List(Of ExpandoObject)
+
+    Public Shared Function ReadRows(rdr As IDataReader, readColumns As List(Of String)) As List(Of ExpandoObject)
         Dim table = New List(Of ExpandoObject)()
 
 

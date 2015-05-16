@@ -21,20 +21,20 @@ Partial Class SWDictForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SWDictForm))
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DictionaryBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
@@ -60,7 +60,6 @@ Partial Class SWDictForm
         Me.btnSpell = New System.Windows.Forms.Button()
         Me.TBSearch = New System.Windows.Forms.TextBox()
         Me.btnEditSignWriting = New System.Windows.Forms.Button()
-        Me.BtnShowAll = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.BtnCancel = New System.Windows.Forms.Button()
         Me.BtnAccept = New System.Windows.Forms.Button()
@@ -95,6 +94,7 @@ Partial Class SWDictForm
         Me.DuplicateEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
         Me.DictionaryDataGridView = New System.Windows.Forms.DataGridView()
         Me.SignLanguage = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -127,7 +127,6 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
-        Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -304,7 +303,6 @@ Partial Class SWDictForm
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnSpell)
         Me.SplitContainer1.Panel1.Controls.Add(Me.TBSearch)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnEditSignWriting)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.BtnShowAll)
         Me.SplitContainer1.Panel1.Controls.Add(Me.BtnSearch)
         Me.SplitContainer1.Panel1.Controls.Add(Me.BtnCancel)
         Me.SplitContainer1.Panel1.Controls.Add(Me.BtnAccept)
@@ -368,15 +366,6 @@ Partial Class SWDictForm
         Me.btnEditSignWriting.TabIndex = 15
         Me.btnEditSignWriting.Text = "Edit SignWriting"
         Me.btnEditSignWriting.UseVisualStyleBackColor = True
-        '
-        'BtnShowAll
-        '
-        Me.BtnShowAll.Location = New System.Drawing.Point(190, 36)
-        Me.BtnShowAll.Name = "BtnShowAll"
-        Me.BtnShowAll.Size = New System.Drawing.Size(75, 23)
-        Me.BtnShowAll.TabIndex = 14
-        Me.BtnShowAll.Text = "Show All"
-        Me.BtnShowAll.UseVisualStyleBackColor = True
         '
         'BtnSearch
         '
@@ -637,6 +626,19 @@ Partial Class SWDictForm
         Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.HelpToolStripMenuItem1.Text = "&Help "
         '
+        'Pager1
+        '
+        Me.Pager1.CurrentPage = 0
+        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Pager1.Location = New System.Drawing.Point(0, 428)
+        Me.Pager1.Name = "Pager1"
+        Me.Pager1.PageSize = 100
+        Me.Pager1.Search = Nothing
+        Me.Pager1.Size = New System.Drawing.Size(1354, 28)
+        Me.Pager1.TabIndex = 4
+        Me.Pager1.TotalPages = 0
+        Me.Pager1.TotalRowCount = 0
+        '
         'DictionaryDataGridView
         '
         Me.DictionaryDataGridView.AllowUserToAddRows = False
@@ -670,33 +672,33 @@ Partial Class SWDictForm
         'gloss1
         '
         Me.gloss1.DataPropertyName = "gloss1"
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gloss1.DefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gloss1.DefaultCellStyle = DataGridViewCellStyle1
         Me.gloss1.HeaderText = "Gloss"
         Me.gloss1.Name = "gloss1"
         '
         'glosses1
         '
         Me.glosses1.DataPropertyName = "glosses1"
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.glosses1.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.glosses1.DefaultCellStyle = DataGridViewCellStyle2
         Me.glosses1.HeaderText = "Other Glosses"
         Me.glosses1.Name = "glosses1"
         '
         'gloss2
         '
         Me.gloss2.DataPropertyName = "gloss2"
-        DataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gloss2.DefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gloss2.DefaultCellStyle = DataGridViewCellStyle3
         Me.gloss2.HeaderText = "Gloss"
         Me.gloss2.Name = "gloss2"
         '
         'glosses2
         '
         Me.glosses2.DataPropertyName = "glosses2"
-        DataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.glosses2.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.glosses2.DefaultCellStyle = DataGridViewCellStyle4
         Me.glosses2.HeaderText = "Other Glosses"
         Me.glosses2.Name = "glosses2"
         '
@@ -727,24 +729,24 @@ Partial Class SWDictForm
         'SWSignSource
         '
         Me.SWSignSource.DataPropertyName = "SWritingSource"
-        DataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.SWSignSource.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SWSignSource.DefaultCellStyle = DataGridViewCellStyle5
         Me.SWSignSource.HeaderText = "SWritingSource"
         Me.SWSignSource.Name = "SWSignSource"
         '
         'PhotoSource
         '
         Me.PhotoSource.DataPropertyName = "PhotoSource"
-        DataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PhotoSource.DefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PhotoSource.DefaultCellStyle = DataGridViewCellStyle6
         Me.PhotoSource.HeaderText = "PhotoSource"
         Me.PhotoSource.Name = "PhotoSource"
         '
         'SignSource
         '
         Me.SignSource.DataPropertyName = "SignSource"
-        DataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.SignSource.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SignSource.DefaultCellStyle = DataGridViewCellStyle7
         Me.SignSource.HeaderText = "PhotoSignSource"
         Me.SignSource.Name = "SignSource"
         '
@@ -812,57 +814,57 @@ Partial Class SWDictForm
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.DataPropertyName = "gloss1"
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewTextBoxColumn3.HeaderText = "Gloss"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         '
         'DataGridViewTextBoxColumn4
         '
         Me.DataGridViewTextBoxColumn4.DataPropertyName = "glosses1"
-        DataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle37
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewTextBoxColumn4.HeaderText = "Other Glosses"
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         '
         'DataGridViewTextBoxColumn5
         '
         Me.DataGridViewTextBoxColumn5.DataPropertyName = "gloss2"
-        DataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle38
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridViewTextBoxColumn5.HeaderText = "Gloss"
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         '
         'DataGridViewTextBoxColumn6
         '
         Me.DataGridViewTextBoxColumn6.DataPropertyName = "glosses2"
-        DataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle39
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewTextBoxColumn6.HeaderText = "Other Glosses"
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
         '
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.DataPropertyName = "SWritingSource"
-        DataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle40
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridViewTextBoxColumn7.HeaderText = "SWritingSource"
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         '
         'DataGridViewTextBoxColumn8
         '
         Me.DataGridViewTextBoxColumn8.DataPropertyName = "PhotoSource"
-        DataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle41
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewTextBoxColumn8.HeaderText = "PhotoSource"
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
         '
         'DataGridViewTextBoxColumn9
         '
         Me.DataGridViewTextBoxColumn9.DataPropertyName = "SignSource"
-        DataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle42
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle14
         Me.DataGridViewTextBoxColumn9.HeaderText = "PhotoSignSource"
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
         '
@@ -885,14 +887,6 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1.HeaderText = "Column1"
         Me.DataGridViewTagListColumn1.LabelFont = Nothing
         Me.DataGridViewTagListColumn1.Name = "DataGridViewTagListColumn1"
-        '
-        'Pager1
-        '
-        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Pager1.Location = New System.Drawing.Point(0, 428)
-        Me.Pager1.Name = "Pager1"
-        Me.Pager1.Size = New System.Drawing.Size(1354, 28)
-        Me.Pager1.TabIndex = 4
         '
         'SWDictForm
         '
@@ -960,7 +954,6 @@ End Sub
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents BtnShowAll As System.Windows.Forms.Button
     Friend WithEvents BtnSearch As System.Windows.Forms.Button
     Friend WithEvents btnEditSignWriting As System.Windows.Forms.Button
     Friend WithEvents TSMIEdit As System.Windows.Forms.ToolStripMenuItem

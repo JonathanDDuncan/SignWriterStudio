@@ -26,6 +26,7 @@
             Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pager))
             Me.PagerBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
+            Me.PagerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
             Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
             Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
             Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
@@ -35,7 +36,10 @@
             Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
             Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
             Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-            Me.PagerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+            Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
+            Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+            Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+            Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
             CType(Me.PagerBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.PagerBindingNavigator.SuspendLayout()
             CType(Me.PagerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,15 +53,15 @@
             Me.PagerBindingNavigator.CountItem = Me.BindingNavigatorCountItem
             Me.PagerBindingNavigator.DeleteItem = Nothing
             Me.PagerBindingNavigator.Dock = System.Windows.Forms.DockStyle.None
-            Me.PagerBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
-            Me.PagerBindingNavigator.Location = New System.Drawing.Point(4, 0)
+            Me.PagerBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.ToolStripDropDownButton1})
+            Me.PagerBindingNavigator.Location = New System.Drawing.Point(98, 1)
             Me.PagerBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
             Me.PagerBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
             Me.PagerBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
             Me.PagerBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
             Me.PagerBindingNavigator.Name = "PagerBindingNavigator"
             Me.PagerBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-            Me.PagerBindingNavigator.Size = New System.Drawing.Size(240, 25)
+            Me.PagerBindingNavigator.Size = New System.Drawing.Size(288, 25)
             Me.PagerBindingNavigator.Stretch = True
             Me.PagerBindingNavigator.TabIndex = 0
             Me.PagerBindingNavigator.Text = "PagerBindingNavigator"
@@ -129,13 +133,41 @@
             Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
             Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
             '
+            'ToolStripDropDownButton1
+            '
+            Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+            Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4})
+            Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
+            Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+            Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
+            Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(48, 22)
+            Me.ToolStripDropDownButton1.Text = "Rows"
+            '
+            'ToolStripMenuItem2
+            '
+            Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+            Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+            Me.ToolStripMenuItem2.Text = "20"
+            '
+            'ToolStripMenuItem3
+            '
+            Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+            Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 22)
+            Me.ToolStripMenuItem3.Text = "50"
+            '
+            'ToolStripMenuItem4
+            '
+            Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+            Me.ToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
+            Me.ToolStripMenuItem4.Text = "100"
+            '
             'Pager
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.Controls.Add(Me.PagerBindingNavigator)
             Me.Name = "Pager"
-            Me.Size = New System.Drawing.Size(217, 28)
+            Me.Size = New System.Drawing.Size(405, 30)
             CType(Me.PagerBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
             Me.PagerBindingNavigator.ResumeLayout(False)
             Me.PagerBindingNavigator.PerformLayout()
@@ -155,6 +187,10 @@
         Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
         Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
         Friend WithEvents PagerBindingSource As System.Windows.Forms.BindingSource
+        Friend WithEvents ToolStripDropDownButton1 As System.Windows.Forms.ToolStripDropDownButton
+        Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
 
     End Class
 End Namespace

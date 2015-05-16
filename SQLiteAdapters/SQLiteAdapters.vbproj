@@ -89,6 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseQuery.vb" />
+    <Compile Include="StatementQuery.vb" />
+    <Compile Include="StatementSqlite.vb" />
     <Compile Include="UpdateSqlite.vb" />
     <Compile Include="UpdateQuery.vb" />
     <Compile Include="UnitOfWork.vb" />
