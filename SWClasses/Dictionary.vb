@@ -82,11 +82,13 @@ Public NotInheritable Class SWDict
     Private ReadOnly _taDictionary As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryTableAdapter
 
     ' Operations
-    Public Sub SearchText(ByVal searchWord As String)
-        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:000000000000078F begin
-        UpdateDataSources(searchWord)
-        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:000000000000078F end
+    Public Sub SearchText(ByVal search As String)
+        UpdateDataSources(search)
     End Sub
+    Public Function PagingSearchText(ByVal search As String, ByVal pageSize As Integer, ByVal skip As Integer) As Integer
+        Dim totalRowCount = UpdateDataSources(search, pageSize, skip)
+        Return totalRowCount
+    End Function
     Public Sub GetbyIdDictionary(ByVal idDictionary As Integer)
         UpdateDataSources(idDictionary)
     End Sub
@@ -941,10 +943,23 @@ Public NotInheritable Class SWDict
     End Function
     Private Sub UpdateDataSources(ByVal searchWord As String)
         Dim dt As DataTable = GetDictionaryEntries(searchWord)
+
+        
         AddTags(dt)
         SetTags(dt)
         SetBindingSources(dt)
     End Sub
+    Private Function UpdateDataSources(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As Integer
+
+        Dim totalRowCount = GetDictionaryEntriesCount(searchWord)
+
+        Dim dt As DataTable = GetDictionaryEntriesPaging(searchWord, pageSize, skip)
+
+        AddTags(dt)
+        SetTags(dt)
+        SetBindingSources(dt)
+        Return totalRowCount
+    End Function
 
     Private Sub SetTags(ByVal dt As DataTable)
         Dim entryIds = GetEntryIds(dt)
@@ -967,7 +982,7 @@ Public NotInheritable Class SWDict
         Next
 
     End Sub
-  
+
     Private Shared Function GetTagDictionaryGroups(ByVal entries As List(Of ExpandoObject)) As Dictionary(Of Long, List(Of Guid))
         Dim entries2 = entries.ConvertAll(Function(x) TryCast(x, IDictionary(Of String, Object)))
         Dim entries3 = entries2.Select(Function(x) New With {Key .IdTagDictionary = x.Item("IdTagDictionary"), .IDDictionary = x.Item("IDDictionary"), .IdTag = x.Item("IdTag")})
@@ -1149,6 +1164,64 @@ Public NotInheritable Class SWDict
         Dim dt As DataTable = GetDictionaryEntries(idDictionary)
         SetBindingSources(dt)
     End Sub
+
+    Private Function GetDictionaryEntriesCount(ByVal searchWord As String) As Integer
+        'Try
+        Dim lang1Id As Integer = FirstGlossLanguage
+        Dim lang2Id As Integer = SecondGlossLanguage
+        Dim slid As Integer = DefaultSignLanguage
+
+        If lang1Id = 0 Then
+            lang1Id = 54
+        End If
+        If lang2Id = 0 Then
+            lang2Id = 157
+        End If
+        If slid = 0 Then
+            slid = 4
+        End If
+
+
+        If BilingualMode Then
+            Dim dtBilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+            'Return _taSignsbyGlossesBilingual.Count(dtBilingual, slid, lang1Id, lang2Id, searchWord)
+
+        Else
+            Dim dtUnilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
+            'Return _taSignsbyGlossesUnilingual.Count(dtUnilingual, slid, lang1Id, searchWord)
+
+        End If
+        Return 0
+    End Function
+
+    Private Function GetDictionaryEntriesPaging(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As DataTable
+        'Try
+        Dim lang1Id As Integer = FirstGlossLanguage
+        Dim lang2Id As Integer = SecondGlossLanguage
+        Dim slid As Integer = DefaultSignLanguage
+
+        If lang1Id = 0 Then
+            lang1Id = 54
+        End If
+        If lang2Id = 0 Then
+            lang2Id = 157
+        End If
+        If slid = 0 Then
+            slid = 4
+        End If
+
+
+
+        If BilingualMode Then
+            Dim dtBilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+            '_taSignsbyGlossesBilingual.FillPagingby(dtBilingual, slid, lang1Id, lang2Id, searchWord, pageSize, skip )
+            Return dtBilingual
+        Else
+            Dim dtUnilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
+            '_taSignsbyGlossesUnilingual.FillPagingby(dtUnilingual, slid, lang1Id, searchWord, pageSize, skip, )
+            Return dtUnilingual
+        End If
+    End Function
     Private Function GetDictionaryEntries(ByVal searchWord As String) As DataTable
         'Try
         Dim lang1Id As Integer = FirstGlossLanguage
@@ -1602,4 +1675,6 @@ Public NotInheritable Class SWDict
     Public Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))))
         DatabaseDictionary.SaveTagDictionary(tagChanges)
     End Sub
+
+
 End Class

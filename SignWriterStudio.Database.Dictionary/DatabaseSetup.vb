@@ -124,10 +124,22 @@ Public Module DatabaseSetup
         script230.Add("CREATE TABLE [TagDictionary] ([IdTagDictionary] guid NOT NULL, [IDDictionary] bigint NOT NULL, [IdTag] guid NOT NULL, CONSTRAINT [sqlite_autoindex_TagDictionary_1] PRIMARY KEY ([IdTagDictionary]), FOREIGN KEY ([IdTag]) REFERENCES [Tags] ([IdTag]) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY ([IDDictionary]) REFERENCES [Dictionary] ([IDDictionary]) ON DELETE CASCADE ON UPDATE CASCADE);CREATE INDEX [TagDictionary_IdTag_TagDictionary] ON [TagDictionary] ([IdTag] ASC);CREATE INDEX [TagDictionary_IDDictionary_TagDictionary] ON [TagDictionary] ([IDDictionary] ASC);")
         script230.Add("UPDATE Version SET Major =3, Minor = 0, DatabaseName = ""Dictionary"", DatabaseType = ""Dictionary"" WHERE IDVersion=2;")
 
-        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('5bfcb134-1689-4f65-9deb-4934e7c32585', 'Misc','Misc', -1,3);")
-        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('1409bab8-9031-4249-b95e-81695a2a7f7c', 'SignLists','', -1,1);")
-        script230.Add("INSERT INTO [Tags] ([IdTag] ,[Description],[Abbreviation],[Color],[Rank])VALUES('5f78f958-a299-482c-9412-7eca30cda394', 'Parts Of Speech','', -1, 2);")
-        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('b9e38963-59e4-4878-ad68-922911dcce17', 'Do Not Export','', -1,1,'5bfcb134-1689-4f65-9deb-4934e7c32585');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('5bfcb134-1689-4f65-9deb-4934e7c32585', 'Misc','Misc', -8355712,3);")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank])VALUES('1409bab8-9031-4249-b95e-81695a2a7f7c', 'SignLists','', -8355712,1);")
+        script230.Add("INSERT INTO [Tags] ([IdTag] ,[Description],[Abbreviation],[Color],[Rank])VALUES('5f78f958-a299-482c-9412-7eca30cda394', 'Parts Of Speech','', -8355712, 2);")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('b9e38963-59e4-4878-ad68-922911dcce17', 'Do Not Export','', -8355712,1,'5bfcb134-1689-4f65-9deb-4934e7c32585');")
+
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('6d6b67b2-1ab5-4c68-8bae-2c82218ac489', 'Noun','', -8355712,1,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('02572ed0-e09e-4d6b-9434-722527d57800', 'Pronoun','', -8355712,2,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('a58331ae-d062-4752-8c23-f15c46de2ce7', 'Plain Verb','', -8355712,3,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('a649c66b-b282-4207-9b28-d6b17dff6a9b', 'Inflecting/Indicating Verb','', -8355712,4,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('f7a97000-18b5-4aac-8dfb-ac47fe212ab5', 'Spatial Verb','', -8355712,5,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('402c809d-5999-424d-8e94-46b093decae3', 'Adjective','', -8355712,6,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('0ad7fa69-7617-411a-8f93-a2bdafce801d', 'Adverb','', -8355712,7,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('0db55ecb-7726-4e69-810a-39c001753c5e', 'Conjunction','', -8355712,8,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('6556dfb2-c53d-4628-b256-580b87ee02db', 'Interjection','', -8355712,9,'5f78f958-a299-482c-9412-7eca30cda394');")
+        script230.Add("INSERT INTO [Tags] ([IdTag],[Description],[Abbreviation],[Color],[Rank],[Parent])VALUES('6769d1f7-c905-4772-8cbb-3db176055016', 'Preposition','', -8355712,10,'5f78f958-a299-482c-9412-7eca30cda394');")
+
         script230.Add("COMMIT;")
 
         RunUpgradeScript(fromVersion, script230)

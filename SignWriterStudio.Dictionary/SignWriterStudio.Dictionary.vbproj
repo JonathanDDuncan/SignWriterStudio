@@ -118,6 +118,12 @@
     <Compile Include="CompareSigns.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DataGridViewPager\Pager.Designer.vb">
+      <DependentUpon>Pager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewPager\Pager.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ExportFields.vb" />
     <Compile Include="ExportHtml.vb" />
     <Compile Include="ExportHtmlFrm.Designer.vb">
@@ -186,6 +192,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CompareSigns.resx">
       <DependentUpon>CompareSigns.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridViewPager\Pager.resx">
+      <DependentUpon>Pager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportHtmlFrm.resx">
       <DependentUpon>ExportHtmlFrm.vb</DependentUpon>

@@ -190,7 +190,12 @@ Public Class SWDictForm
 
             search = "%" & TBSearch.Text & "%"
 
-            _myDictionary.SearchText(search)
+            Pager1.CurrentPage = 1
+
+            Dim skip = (Pager1.CurrentPage - 1) * Pager1.PageSize
+            Dim totalRowCount = _myDictionary.PagingSearchText(search, Pager1.PageSize, skip)
+            Pager1.TotalRowCount = totalRowCount
+
             CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
             CBGloss1.DisplayMember = "gloss1"
             CBGloss1.ValueMember = "IDDictionary"
