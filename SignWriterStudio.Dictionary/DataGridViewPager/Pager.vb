@@ -89,7 +89,12 @@ Namespace DataGridViewPager
             InitializeComponent()
 
             ' Add any initialization after the InitializeComponent() call.
-            PageSize = 100
+            PageSize = 10
+        End Sub
+
+        Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem5.Click
+            PageSize = 10
+            CreatePages()
         End Sub
     End Class
 End Namespace

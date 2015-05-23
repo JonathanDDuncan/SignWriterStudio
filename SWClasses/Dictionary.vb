@@ -947,8 +947,8 @@ Public NotInheritable Class SWDict
         Dim dt As DataTable = GetDictionaryEntries(searchWord)
 
 
-        AddTags(dt)
-        SetTags(dt)
+        'AddTags(dt)
+        'SetTags(dt)
         SetBindingSources(dt)
     End Sub
     Private Function UpdateDataSources(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal count As Boolean) As Integer
@@ -959,8 +959,8 @@ Public NotInheritable Class SWDict
         End If
         Dim dt As DataTable = GetDictionaryEntriesPaging(searchWord, pageSize, skip)
 
-        AddTags(dt)
-        SetTags(dt)
+        'AddTags(dt)
+        'SetTags(dt)
         SetBindingSources(dt)
         Return totalRowCount
     End Function
@@ -1013,8 +1013,8 @@ Public NotInheritable Class SWDict
     End Sub
     Public Sub TopSigns(ByVal top As Integer)
         Dim dt As DataTable = GetTopSigns(top)
-        AddTags(dt)
-        SetTags(dt)
+        'AddTags(dt)
+        'SetTags(dt)
         SetBindingSources(dt)
         'If DT.Rows.Count = 0 Then
         '    Dim MBO As MessageBoxOptions = CType(MessageBoxOptions.RtlReading And MessageBoxOptions.RightAlign, MessageBoxOptions)
@@ -1052,8 +1052,8 @@ Public NotInheritable Class SWDict
 
     Public Sub AllSigns()
         Dim dt As DataTable = GetAllSigns()
-        AddTags(dt)
-        SetTags(dt)
+        'AddTags(dt)
+        'SetTags(dt)
         SetBindingSources(dt)
 
     End Sub
@@ -1186,8 +1186,8 @@ Public NotInheritable Class SWDict
         End If
     End Function
 
-    Private Function ConvertoSignsbyGlossesBilingualDataTable(ByVal eoList As IEnumerable(Of ExpandoObject)) As SignsbyGlossesBilingualDataTable
-        Dim table = New SignsbyGlossesBilingualDataTable()
+    Private Shared Function ConvertoSignsbyGlossesBilingualDataTable(ByVal eoList As IEnumerable(Of ExpandoObject)) As DictionaryDataGridTable
+        Dim table = New DictionaryDataGridTable()
 
         For Each eo As ExpandoObject In eoList
             Dim dict = TryCast(eo, IDictionary(Of String, Object))
@@ -1210,6 +1210,12 @@ Public NotInheritable Class SWDict
             row.Item("GUID") = dict.Item("GUID")
             row.Item("LastModified") = dict.Item("LastModified")
             row.Item("Sorting") = dict.Item("Sorting")
+            Dim tags = StringToList(dict.Item("Tags"))
+            If (tags IsNot Nothing) Then
+                row.Item("Tags") = tags
+                row.Item("OriginalTags") = tags.ToList()
+            End If
+          
 
             If dict.ContainsKey("gloss2") Then
                 row.Item("gloss2") = dict.Item("gloss2")
@@ -1220,8 +1226,25 @@ Public NotInheritable Class SWDict
             table.Rows.Add(row)
         Next
 
-
+        table.AcceptChanges()
         Return table
+    End Function
+    Public Shared Function StringToList(value As Object) As List(Of String)
+        Dim str = TryCast(value, [String])
+        Dim lst = TryCast(value, List(Of String))
+
+        If str IsNot Nothing Then
+            Return ValueToList(str)
+        Else
+            Return lst
+        End If
+    End Function
+    Private Shared Function ValueToList(value As String) As List(Of String)
+        If Not String.IsNullOrEmpty(value) Then
+            Return value.Split(","c).[Select](Function(x) x.Trim()).ToList()
+        Else
+            Return Nothing
+        End If
     End Function
 
     Private Function GetDictionaryEntries(ByVal searchWord As String) As DataTable

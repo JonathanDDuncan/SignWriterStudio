@@ -112,6 +112,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DictionaryDataGridTable.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Search.vb" />
     <Compile Include="SWCollection.vb" />
     <Compile Include="SWDocument.vb" />

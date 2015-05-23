@@ -94,7 +94,6 @@ Partial Class SWDictForm
         Me.DuplicateEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
         Me.DictionaryDataGridView = New System.Windows.Forms.DataGridView()
         Me.SignLanguage = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -111,6 +110,7 @@ Partial Class SWDictForm
         Me.Tags = New TagList.DGV.DataGridViewTagListColumn()
         Me.GUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Sorting = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.ExportFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -317,8 +317,8 @@ Partial Class SWDictForm
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.AutoScroll = True
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Pager1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.DictionaryDataGridView)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Pager1)
         Me.SplitContainer1.Size = New System.Drawing.Size(1354, 533)
         Me.SplitContainer1.SplitterDistance = 73
         Me.SplitContainer1.TabIndex = 4
@@ -626,19 +626,6 @@ Partial Class SWDictForm
         Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.HelpToolStripMenuItem1.Text = "&Help "
         '
-        'Pager1
-        '
-        Me.Pager1.CurrentPage = 0
-        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Pager1.Location = New System.Drawing.Point(0, 428)
-        Me.Pager1.Name = "Pager1"
-        Me.Pager1.PageSize = 100
-        Me.Pager1.Search = Nothing
-        Me.Pager1.Size = New System.Drawing.Size(1354, 28)
-        Me.Pager1.TabIndex = 4
-        Me.Pager1.TotalPages = 0
-        Me.Pager1.TotalRowCount = 0
-        '
         'DictionaryDataGridView
         '
         Me.DictionaryDataGridView.AllowUserToAddRows = False
@@ -651,7 +638,7 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.DictionaryDataGridView.Name = "DictionaryDataGridView"
         Me.DictionaryDataGridView.RowTemplate.Height = 24
-        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1354, 456)
+        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1354, 428)
         Me.DictionaryDataGridView.TabIndex = 3
         Me.DictionaryDataGridView.VirtualMode = True
         '
@@ -772,6 +759,19 @@ Partial Class SWDictForm
         Me.Sorting.HeaderText = "Sorting"
         Me.Sorting.Name = "Sorting"
         Me.Sorting.Visible = False
+        '
+        'Pager1
+        '
+        Me.Pager1.CurrentPage = 0
+        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Pager1.Location = New System.Drawing.Point(0, 428)
+        Me.Pager1.Name = "Pager1"
+        Me.Pager1.PageSize = 100
+        Me.Pager1.Search = Nothing
+        Me.Pager1.Size = New System.Drawing.Size(1354, 28)
+        Me.Pager1.TabIndex = 4
+        Me.Pager1.TotalPages = 0
+        Me.Pager1.TotalRowCount = 0
         '
         'ImportFileDialog
         '

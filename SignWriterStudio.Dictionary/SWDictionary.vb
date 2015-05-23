@@ -105,7 +105,7 @@ Public Class SWDictForm
         SWEditorProgressBar.ProgressBar1.Maximum = 100
         SWEditorProgressBar.ProgressBar1.Value = 0
 
-        Tags.DataSource = GetTagsData()
+
 
         isLoading = False
     End Sub
@@ -146,6 +146,7 @@ Public Class SWDictForm
         Else
             DictionaryLoaded = True
             ShowloadedFile()
+            Tags.DataSource = GetTagsData()
         End If
 
         If wasUpgraded Then

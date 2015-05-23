@@ -1,5 +1,4 @@
-﻿Imports System.IO
-Imports System.Dynamic
+﻿Imports System.Dynamic
 Imports SignWriterStudio.SQLiteAdapters
 
 Namespace SignsbyGlosses
@@ -7,8 +6,9 @@ Namespace SignsbyGlosses
         Private Shared ReadOnly BaseQryStr = _
             "SELECT Dictionary.IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, " & _
             "SWritingSource, PhotoSource, SignSource, GUID, LastModified, TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, " & _
-            "TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, TableLanguage1.glosses AS glosses1, Dictionary.Sorting " & _
+            "TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, TableLanguage1.glosses AS glosses1,TagsList.Tags As Tags, Dictionary.Sorting " & _
             "FROM Dictionary LEFT OUTER JOIN DictionaryGloss TableLanguage1 ON Dictionary.IDDictionary = TableLanguage1.IDDictionary " & _
+            "LEFT OUTER JOIN (select IDDictionary, Group_Concat(IdTag) as Tags FROM TagDictionary GROUP BY IDDictionary) as TagsList ON Dictionary.IDDictionary = TagsList.IDDictionary  " & _
             "WHERE (Dictionary.IDSignLanguage = @IDSL) AND (((TableLanguage1.IDCulture = @Lang1) OR " & _
             "(TableLanguage1.IDCulture IS NULL)) AND ((TableLanguage1.gloss LIKE @search) OR " & _
             "(TableLanguage1.glosses LIKE @search))) " & _

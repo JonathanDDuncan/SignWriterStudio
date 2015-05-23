@@ -40,6 +40,7 @@
             Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
             Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
             Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+            Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem()
             CType(Me.PagerBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.PagerBindingNavigator.SuspendLayout()
             CType(Me.PagerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,7 +137,7 @@
             'ToolStripDropDownButton1
             '
             Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-            Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4})
+            Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem5, Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4})
             Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
             Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
             Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
@@ -160,6 +161,12 @@
             Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
             Me.ToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
             Me.ToolStripMenuItem4.Text = "100"
+            '
+            'ToolStripMenuItem5
+            '
+            Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+            Me.ToolStripMenuItem5.Size = New System.Drawing.Size(152, 22)
+            Me.ToolStripMenuItem5.Text = "10"
             '
             'Pager
             '
@@ -191,6 +198,7 @@
         Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents ToolStripMenuItem5 As System.Windows.Forms.ToolStripMenuItem
 
     End Class
 End Namespace

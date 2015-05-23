@@ -300,7 +300,6 @@ Public Class SignWriterMenu
     End Sub
 
     Private Sub SaveSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles SaveSettingsDialog.FileOk
-
         IO.File.Copy(Paths.Join(Paths.AllUsersData, "Settings.dat"), SaveSettingsDialog.FileName, True)
     End Sub
 
@@ -311,14 +310,11 @@ Public Class SignWriterMenu
     End Sub
 
     Public Sub New()
-
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
         LoadForms()
-
-
     End Sub
 
     Private Sub BtnDocument_Click(sender As System.Object, e As EventArgs) Handles BtnDocument.Click
@@ -339,7 +335,7 @@ Public Class SignWriterMenu
         _swDictForm = New Dictionary.SWDictForm(editor)
     End Sub
 
-    Private Sub SetFileAssociation()
+    Private Shared Sub SetFileAssociation()
         Try
             Dim fa As New Org.Mentalis.Utilities.FileAssociation
             fa.Extension = "SWS"
@@ -370,7 +366,7 @@ Public Class SignWriterMenu
 
     End Sub
 
-    Private Sub AboutToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem1.Click
+    Private Shared Sub AboutToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem1.Click
         Dim ab As New About()
         ab.ShowDialog()
     End Sub
