@@ -110,7 +110,6 @@ Partial Class SWDictForm
         Me.Tags = New TagList.DGV.DataGridViewTagListColumn()
         Me.GUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Sorting = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.ExportFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -127,6 +126,8 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
+        Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
+        Me.btnShowReports = New System.Windows.Forms.Button()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -298,6 +299,7 @@ Partial Class SWDictForm
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.AutoScroll = True
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnShowReports)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnShowSource)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnTagsForm)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnSpell)
@@ -760,19 +762,6 @@ Partial Class SWDictForm
         Me.Sorting.Name = "Sorting"
         Me.Sorting.Visible = False
         '
-        'Pager1
-        '
-        Me.Pager1.CurrentPage = 0
-        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Pager1.Location = New System.Drawing.Point(0, 428)
-        Me.Pager1.Name = "Pager1"
-        Me.Pager1.PageSize = 100
-        Me.Pager1.Search = Nothing
-        Me.Pager1.Size = New System.Drawing.Size(1354, 28)
-        Me.Pager1.TabIndex = 4
-        Me.Pager1.TotalPages = 0
-        Me.Pager1.TotalRowCount = 0
-        '
         'ImportFileDialog
         '
         Me.ImportFileDialog.DefaultExt = "spml"
@@ -887,6 +876,28 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1.HeaderText = "Column1"
         Me.DataGridViewTagListColumn1.LabelFont = Nothing
         Me.DataGridViewTagListColumn1.Name = "DataGridViewTagListColumn1"
+        '
+        'Pager1
+        '
+        Me.Pager1.CurrentPage = 0
+        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Pager1.Location = New System.Drawing.Point(0, 428)
+        Me.Pager1.Name = "Pager1"
+        Me.Pager1.PageSize = 20
+        Me.Pager1.Search = Nothing
+        Me.Pager1.Size = New System.Drawing.Size(1354, 28)
+        Me.Pager1.TabIndex = 4
+        Me.Pager1.TotalPages = 0
+        Me.Pager1.TotalRowCount = 0
+        '
+        'btnShowReports
+        '
+        Me.btnShowReports.Location = New System.Drawing.Point(1004, 34)
+        Me.btnShowReports.Name = "btnShowReports"
+        Me.btnShowReports.Size = New System.Drawing.Size(75, 23)
+        Me.btnShowReports.TabIndex = 19
+        Me.btnShowReports.Text = "Show Reports"
+        Me.btnShowReports.UseVisualStyleBackColor = True
         '
         'SWDictForm
         '
@@ -1005,4 +1016,5 @@ End Sub
     Friend WithEvents Sorting As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnShowSource As System.Windows.Forms.Button
     Friend WithEvents Pager1 As Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager
+    Friend WithEvents btnShowReports As System.Windows.Forms.Button
 End Class

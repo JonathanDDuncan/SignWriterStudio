@@ -660,13 +660,11 @@ Public Class SWDictForm
     End Sub
 
     Private Sub TSBSymbolSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TSBSymbolSearch.Click
-
         SearchSymbol()
     End Sub
 
     Public Sub SearchSymbol()
-        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000791 begin
-        Dim searchString As String
+     Dim searchString As String
         Dim dt As DictionaryDataSet.SignsbyGlossesBilingualDataTable
         Dim swSignSearch As New SWSignSearch
         Dim dialogRes As DialogResult = swSignSearch.ShowDialog()
@@ -685,10 +683,9 @@ Public Class SWDictForm
                 MessageBox.Show("Could not create search criteria")
             End If
         ElseIf (dialogRes = DialogResult.Cancel) Then
-            'SWSignSearch.Close()
-        End If
 
-        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000791 end
+        End If
+        swSignSearch.Close()
     End Sub
 
 
@@ -2076,5 +2073,14 @@ Public Class SWDictForm
         PhotoSource.Visible = SWSignSource.Visible
 
         btnShowSource.Text = If(SWSignSource.Visible, "Hide Sources", "Show Sources")
+    End Sub
+
+    Private Sub btnShowReports_Click(sender As Object, e As EventArgs) Handles btnShowReports.Click
+        Dim rptViewr = New ReportViewer()
+
+        Dim dt = _myDictionary.GetDictionaryEntriesPaging("%", Integer.MaxValue, 0)
+        rptViewr.DataTable = dt
+
+        rptViewr.Show()
     End Sub
 End Class

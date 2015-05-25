@@ -21,7 +21,7 @@ Namespace SignsbyGlosses
             "WHERE (IDCulture = @Lang2) OR (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary " & _
             "LEFT OUTER JOIN (select IDDictionary, Group_Concat(IdTag) as Tags FROM TagDictionary GROUP BY IDDictionary) as TagsList ON Joinner.IDDictionary = TagsList.IDDictionary  " & _
             "WHERE (Joinner.IDSignLanguage = @IDSL) AND (gloss1 LIKE @search) OR (Joinner.IDSignLanguage = @IDSL) AND (glosses1 LIKE @search) OR " & _
-            "(Joinner.IDSignLanguage = @IDSL) AND (gloss2 LIKE @search) OR (Joinner.IDSignLanguage = @IDSL) AND (glosses2 LIKE @search) GROUP BY Joinner.IDDictionary ORDER BY Joinner.Sorting "
+            "(Joinner.IDSignLanguage = @IDSL) AND (gloss2 LIKE @search) OR (Joinner.IDSignLanguage = @IDSL) AND (glosses2 LIKE @search) GROUP BY Joinner.IDDictionary ORDER BY TableLanguage1.gloss "
 
         Public Shared Function Count(ByVal path As String, ByVal slid As Integer, ByVal lang1Id As Integer, ByVal lang2Id As Integer, ByVal searchWord As String) As Integer
             Dim query = New StatementQuery()

@@ -2,7 +2,7 @@ Option Strict On
 
 Imports SignWriterStudio.Database.Dictionary
 
-Friend Class DictionaryDataGridTable
+Public Class DictionaryDataGridTable
     Inherits DictionaryDataSet.SignsbyGlossesBilingualDataTable
     Sub New()
 

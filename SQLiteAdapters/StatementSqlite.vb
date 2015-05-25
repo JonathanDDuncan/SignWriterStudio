@@ -32,9 +32,7 @@ Public Class StatementSqlite
     End Function
 
     Private Shared Function Execute(ByVal command As SQLiteCommand) As QueryResult
-        command.ExecuteNonQuery()
-
-        Dim table As List(Of ExpandoObject) = Nothing
+      Dim table As List(Of ExpandoObject) = Nothing
         Using rdr = command.ExecuteReader()
             Dim readColumns = StringUtil.GetColumnNames(rdr)
             If readColumns IsNot Nothing Then

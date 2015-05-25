@@ -959,8 +959,6 @@ Public NotInheritable Class SWDict
         End If
         Dim dt As DataTable = GetDictionaryEntriesPaging(searchWord, pageSize, skip)
 
-        'AddTags(dt)
-        'SetTags(dt)
         SetBindingSources(dt)
         Return totalRowCount
     End Function
@@ -1135,7 +1133,7 @@ Public NotInheritable Class SWDict
         DictionaryBindingSource1.RaiseListChangedEvents = False
         DictionaryBindingSource1.DataSource = dt
         DictionaryBindingSource1.RaiseListChangedEvents = True
-        DictionaryBindingSource1.ResetBindings(True)
+
 
         If BilingualMode Then
             DictionaryBindingSource2.RaiseListChangedEvents = False
@@ -1146,6 +1144,8 @@ Public NotInheritable Class SWDict
         Else
             DictionaryBindingSource2.DataSource = BlankDictionaryTable()
         End If
+
+        DictionaryBindingSource1.ResetBindings(True)
     End Sub
 
     Private Function AddTags(ByVal dataTable As DataTable) As DataTable
@@ -1178,7 +1178,7 @@ Public NotInheritable Class SWDict
         End If
     End Function
 
-    Private Function GetDictionaryEntriesPaging(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As DataTable
+    Public Function GetDictionaryEntriesPaging(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As DataTable
         If BilingualMode Then
             Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip))
         Else
