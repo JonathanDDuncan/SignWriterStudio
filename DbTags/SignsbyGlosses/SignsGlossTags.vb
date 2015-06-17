@@ -22,5 +22,15 @@ Namespace SignsbyGlosses
                 Return String.Empty
             End If
         End Function
+
+        Public Shared Function SearchWord(ByVal str As String) As String
+            Dim sword As String
+            If str Is Nothing Then
+                sword = String.Empty
+            Else
+                sword = str
+            End If
+            Return sword
+        End Function
     End Class
 End Namespace

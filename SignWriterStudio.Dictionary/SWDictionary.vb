@@ -4,6 +4,7 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Data.OleDb
 Imports System.Security.Cryptography
+Imports SignWriterStudio.DbTags
 Imports DropDownControls.FilteredGroupedComboBox
 Imports System.Dynamic
 Imports DropDownControls.IEnumerableToDataTable
@@ -2060,7 +2061,9 @@ Public Class SWDictForm
 
         If (tf.DialogResult = DialogResult.OK) Then
             _myDictionary.SaveTags(changes.Added, changes.Updated, changes.Removed)
-            Tags.DataSource = GetTagsData()
+            Dim tagData = GetTagsData()
+            Tags.DataSource = tagData
+            TagFilter1.TagListControl1.SelectionItemList(tagData)
         End If
         tf.Close()
     End Sub
@@ -2080,15 +2083,7 @@ Public Class SWDictForm
         btnShowSource.Text = If(SWSignSource.Visible, "Hide Sources", "Show Sources")
     End Sub
 
-    Private Sub btnShowReports_Click(sender As Object, e As EventArgs) Handles btnShowReports.Click
-        Dim rptViewr = New ReportViewer()
-
-        Dim dt = _myDictionary.GetDictionaryEntriesPaging("%", New TagFilterValues With {.Filter = False, .AllExcept = False, .Tags = New List(Of String)()}, Integer.MaxValue, 0)
-        rptViewr.DataTable = dt
-
-        rptViewr.Show()
-    End Sub
-
+   
     Private Sub TagFilter1_ValueChanged(sender As Object, args As EventArgs) Handles TagFilter1.ValueChanged
         Dim newTagFilterValues = GetTagFilterValues(TagFilter1)
         Dim reFilter = ShouldRefilter(newTagFilterValues, currentTagFilterValues)
@@ -2136,4 +2131,15 @@ Public Class SWDictForm
         reportForm.TagFilter1.TagListControl1.SelectionItemList(GetTagsData())
         reportForm.Show()
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Dim path = GetConnectionString()
+        Dim listIdDictionary = DbDictionary.GetAllIds(path)
+        Dim affectedRows = DbTagsDictionary.InsertTag(path, listIdDictionary, "d58d8114-7dc4-4d3d-9594-ee3756ed1854")
+    End Sub
+
+    Private Function GetConnectionString() As String
+        Dim taVer As New DictionaryDataSetTableAdapters.VersionTableAdapter
+        Return taVer.Connection.ConnectionString
+    End Function
 End Class

@@ -17,18 +17,20 @@ Namespace SignsbyGlosses
 
         Public Shared Function Count(ByVal path As String, ByVal slid As Integer, ByVal lang1Id As Integer, ByVal searchWord As String, ByVal filterTags As Boolean, ByVal allTagsExcept As Boolean, ByVal tags As List(Of String)) As Integer
             Dim query = New StatementQuery()
+            Dim sword As String = SignsGlossTags.SearchWord(searchWord)
             query.Path = path
             query.Sql = SignsGlossTags.GetQuery(BaseQryStr, filterTags, allTagsExcept, tags)
             query.Parameters = New Dictionary(Of String, String)
             query.Parameters.Add("@IDSL", slid.ToString())
             query.Parameters.Add("@Lang1", lang1Id.ToString())
-            query.Parameters.Add("@search", searchWord.ToString())
+            query.Parameters.Add("@search", sword.ToString())
             Return query.Count().ScalarResults.FirstOrDefault()
 
         End Function
 
         Public Shared Function GetPage(ByVal path As String, ByVal slid As Integer, ByVal lang1Id As Integer, ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal filterTags As Boolean, ByVal allTagsExcept As Boolean, ByVal tags As List(Of String)) As List(Of ExpandoObject)
             Dim query = New StatementQuery()
+            Dim sword As String = SignsGlossTags.SearchWord(searchWord)
             query.Path = path
             query.Sql = SignsGlossTags.GetQuery(BaseQryStr, filterTags, allTagsExcept, tags)
             query.PageSize = pageSize
@@ -36,7 +38,7 @@ Namespace SignsbyGlosses
             query.Parameters = New Dictionary(Of String, String)
             query.Parameters.Add("@IDSL", slid.ToString())
             query.Parameters.Add("@Lang1", lang1Id.ToString())
-            query.Parameters.Add("@search", searchWord.ToString())
+            query.Parameters.Add("@search", sword.ToString())
             Return query.Page().TabularResults.FirstOrDefault()
         End Function
     End Class

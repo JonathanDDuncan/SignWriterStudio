@@ -41,6 +41,22 @@ Public Class DbDictionary
         Return IdList(result)
     End Function
 
+    Public Shared Function GetAllIds(path As String) As List(Of String)
+
+        Dim columns = New List(Of String)()
+        columns.Add("IDDictionary")
+
+        Dim dict = New DbDictionary()
+        Dim query = dict.DefaultGetQuery()
+        query.Path = path
+        query.Columns = columns
+
+
+        Dim result = query.Execute()
+
+        Return IdList(result)
+    End Function
+
     Private Shared Function IdList(ByVal queryResult As IQueryResult) As List(Of String)
         Dim table = queryResult.TabularResults.FirstOrDefault()
         Dim list1 = New List(Of String)

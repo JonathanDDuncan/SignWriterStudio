@@ -41,6 +41,18 @@ Public NotInheritable Class DbTagsDictionary
         Return result.AffectedRows
     End Function
 
+    Public Shared Function InsertTag(ByVal path As String, ByVal listIdDictionary As List(Of String), ByVal tagValue As String) As Integer
+        Dim dbtd = New DbTagsDictionary()
+        Dim query = dbtd.DefaultInsertQuery()
+        query.Path = path
+
+        query.Values = (From id In listIdDictionary Select New List(Of String)() From
+                {Guid.NewGuid.ToString, id, tagValue}).ToList()
+
+        Dim result = query.Execute()
+        Return result.AffectedRows
+    End Function
+
     Public Shared Function GetTagEntries(ByVal path As String, ByVal entryIds As List(Of String)) As List(Of ExpandoObject)
         Dim dbtd = New DbTagsDictionary()
         Dim query = dbtd.DefaultGetQuery()
