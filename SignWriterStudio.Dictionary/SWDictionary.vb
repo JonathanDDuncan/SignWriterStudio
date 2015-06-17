@@ -21,6 +21,7 @@ Imports System.Xml
 Imports System.Text
 Imports System.Data.SqlClient
 Imports System.Linq
+Imports Microsoft.Reporting.WinForms
 
 Public Class SWDictForm
     Dim WithEvents SPMLImportbw As BackgroundWorker ' With {.WorkerReportsProgress = True}
@@ -114,7 +115,7 @@ Public Class SWDictForm
         LoadPage()
     End Sub
 
-   
+
 
     Private Function GetTagsData() As Object
 
@@ -194,7 +195,7 @@ Public Class SWDictForm
     End Sub
 
     Public Property LoadingEntries() As Boolean
-       
+
 
     Friend Sub LoadDictionaryEntries()
         If DictionaryLoaded Then
@@ -667,7 +668,7 @@ Public Class SWDictForm
     End Sub
 
     Public Sub SearchSymbol()
-     Dim searchString As String
+        Dim searchString As String
         Dim dt As DictionaryDataSet.SignsbyGlossesBilingualDataTable
         Dim swSignSearch As New SWSignSearch
         Dim dialogRes As DialogResult = swSignSearch.ShowDialog()
@@ -2084,7 +2085,6 @@ Public Class SWDictForm
 
         Dim dt = _myDictionary.GetDictionaryEntriesPaging("%", New TagFilterValues With {.Filter = False, .AllExcept = False, .Tags = New List(Of String)()}, Integer.MaxValue, 0)
         rptViewr.DataTable = dt
-        
 
         rptViewr.Show()
     End Sub
@@ -2129,4 +2129,11 @@ Public Class SWDictForm
 
         Return tagFilterValues
     End Function
+
+    Private Sub ViewReportPDFWordExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewReportPDFWordExcelToolStripMenuItem.Click
+        Dim reportForm = New ReportForm()
+        reportForm.Dictionary = _myDictionary
+        reportForm.TagFilter1.TagListControl1.SelectionItemList(GetTagsData())
+        reportForm.Show()
+    End Sub
 End Class

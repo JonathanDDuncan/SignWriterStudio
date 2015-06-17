@@ -1,11 +1,7 @@
-﻿Imports TagList.Controls
-
-Public Class TagFilter
+﻿Public Class TagFilter
     Private _dataSource1 As Object
 
     Event ValueChanged(sender As Object, args As EventArgs)
-
-
 
     Property DataSource As Object
         Get
