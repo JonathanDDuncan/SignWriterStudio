@@ -55,6 +55,7 @@ Partial Class SWDictForm
         Me.CBGloss2 = New System.Windows.Forms.ComboBox()
         Me.CBGloss1 = New System.Windows.Forms.ComboBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.btnShowReports = New System.Windows.Forms.Button()
         Me.btnShowSource = New System.Windows.Forms.Button()
         Me.btnTagsForm = New System.Windows.Forms.Button()
         Me.btnSpell = New System.Windows.Forms.Button()
@@ -126,8 +127,8 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
+        Me.TagFilter1 = New Global.SignWriterStudio.Dictionary.TagFilter()
         Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
-        Me.btnShowReports = New System.Windows.Forms.Button()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -299,6 +300,7 @@ Partial Class SWDictForm
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.AutoScroll = True
+        Me.SplitContainer1.Panel1.Controls.Add(Me.TagFilter1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnShowReports)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnShowSource)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnTagsForm)
@@ -321,9 +323,18 @@ Partial Class SWDictForm
         Me.SplitContainer1.Panel2.AutoScroll = True
         Me.SplitContainer1.Panel2.Controls.Add(Me.DictionaryDataGridView)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Pager1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1354, 533)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1533, 533)
         Me.SplitContainer1.SplitterDistance = 73
         Me.SplitContainer1.TabIndex = 4
+        '
+        'btnShowReports
+        '
+        Me.btnShowReports.Location = New System.Drawing.Point(1004, 34)
+        Me.btnShowReports.Name = "btnShowReports"
+        Me.btnShowReports.Size = New System.Drawing.Size(75, 23)
+        Me.btnShowReports.TabIndex = 19
+        Me.btnShowReports.Text = "Show Reports"
+        Me.btnShowReports.UseVisualStyleBackColor = True
         '
         'btnShowSource
         '
@@ -640,7 +651,7 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.DictionaryDataGridView.Name = "DictionaryDataGridView"
         Me.DictionaryDataGridView.RowTemplate.Height = 24
-        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1354, 428)
+        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1533, 428)
         Me.DictionaryDataGridView.TabIndex = 3
         Me.DictionaryDataGridView.VirtualMode = True
         '
@@ -877,6 +888,14 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1.LabelFont = Nothing
         Me.DataGridViewTagListColumn1.Name = "DataGridViewTagListColumn1"
         '
+        'TagFilter1
+        '
+        Me.TagFilter1.DataSource = Nothing
+        Me.TagFilter1.Location = New System.Drawing.Point(1120, 3)
+        Me.TagFilter1.Name = "TagFilter1"
+        Me.TagFilter1.Size = New System.Drawing.Size(393, 68)
+        Me.TagFilter1.TabIndex = 20
+        '
         'Pager1
         '
         Me.Pager1.CurrentPage = 0
@@ -885,44 +904,35 @@ Partial Class SWDictForm
         Me.Pager1.Name = "Pager1"
         Me.Pager1.PageSize = 20
         Me.Pager1.Search = Nothing
-        Me.Pager1.Size = New System.Drawing.Size(1354, 28)
+        Me.Pager1.Size = New System.Drawing.Size(1533, 28)
         Me.Pager1.TabIndex = 4
         Me.Pager1.TotalPages = 0
         Me.Pager1.TotalRowCount = 0
-        '
-        'btnShowReports
-        '
-        Me.btnShowReports.Location = New System.Drawing.Point(1004, 34)
-        Me.btnShowReports.Name = "btnShowReports"
-        Me.btnShowReports.Size = New System.Drawing.Size(75, 23)
-        Me.btnShowReports.TabIndex = 19
-        Me.btnShowReports.Text = "Show Reports"
-        Me.btnShowReports.UseVisualStyleBackColor = True
         '
         'SWDictForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1354, 533)
+        Me.ClientSize = New System.Drawing.Size(1533, 533)
         Me.Controls.Add(Me.SplitContainer1)
-        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "SWDictForm"
         Me.Text = "SignWriter Studio™ Dictionary"
-        CType(Me.DictionaryBindingNavigator,System.ComponentModel.ISupportInitialize).EndInit
-        Me.DictionaryBindingNavigator.ResumeLayout(false)
-        Me.DictionaryBindingNavigator.PerformLayout
-        Me.SplitContainer1.Panel1.ResumeLayout(false)
-        Me.SplitContainer1.Panel1.PerformLayout
-        Me.SplitContainer1.Panel2.ResumeLayout(false)
-        CType(Me.SplitContainer1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainer1.ResumeLayout(false)
-        Me.MenuStrip1.ResumeLayout(false)
-        Me.MenuStrip1.PerformLayout
-        CType(Me.DictionaryDataGridView,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.DictionaryBindingNavigator.ResumeLayout(False)
+        Me.DictionaryBindingNavigator.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
+        CType(Me.DictionaryDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Friend WithEvents DictionaryBindingNavigator As System.Windows.Forms.BindingNavigator
     Friend WithEvents BindingNavigatorAddNewItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
@@ -1017,4 +1027,5 @@ End Sub
     Friend WithEvents btnShowSource As System.Windows.Forms.Button
     Friend WithEvents Pager1 As Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager
     Friend WithEvents btnShowReports As System.Windows.Forms.Button
+    Friend WithEvents TagFilter1 As Global.SignWriterStudio.Dictionary.TagFilter
 End Class

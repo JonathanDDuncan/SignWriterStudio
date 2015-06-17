@@ -184,6 +184,12 @@
     </Compile>
     <Compile Include="TagChanges.vb" />
     <Compile Include="TagData.vb" />
+    <Compile Include="TagFilter.Designer.vb">
+      <DependentUpon>TagFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TagFilter.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TagsForm.Designer.vb">
       <DependentUpon>TagsForm.vb</DependentUpon>
     </Compile>
@@ -232,6 +238,9 @@
     <EmbeddedResource Include="SWSearch.resx">
       <DependentUpon>SWSearch.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagFilter.resx">
+      <DependentUpon>TagFilter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TagsForm.resx">
       <DependentUpon>TagsForm.vb</DependentUpon>

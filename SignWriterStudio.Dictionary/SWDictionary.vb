@@ -146,7 +146,10 @@ Public Class SWDictForm
         Else
             DictionaryLoaded = True
             ShowloadedFile()
-            Tags.DataSource = GetTagsData()
+            Dim tagData = GetTagsData()
+            Tags.DataSource = tagData
+            TagFilter1.TagListControl1.SelectionItemList(tagData)
+
         End If
 
         If wasUpgraded Then
@@ -221,7 +224,7 @@ Public Class SWDictForm
     Private Sub LoadEntries(Optional ByVal count As Boolean = False)
 
         Dim skip = (Pager1.CurrentPage - 1) * Pager1.PageSize
-        Dim totalRowCount = _myDictionary.PagingSearchText(Pager1.Search, Pager1.PageSize, skip, count)
+        Dim totalRowCount = _myDictionary.PagingSearchText(Pager1.Search, Pager1.PageSize, skip, count, currentTagFilterValues)
         If count Then
             Pager1.TotalRowCount = totalRowCount
         End If
@@ -1115,6 +1118,7 @@ Public Class SWDictForm
     End Sub
 
     Private _importedSigns As Tuple(Of Integer, Integer, Integer)
+    Private currentTagFilterValues As TagFilterValues
 
     Private Sub ImportFileDialog_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) _
         Handles ImportFileDialog.FileOk
@@ -2078,9 +2082,51 @@ Public Class SWDictForm
     Private Sub btnShowReports_Click(sender As Object, e As EventArgs) Handles btnShowReports.Click
         Dim rptViewr = New ReportViewer()
 
-        Dim dt = _myDictionary.GetDictionaryEntriesPaging("%", Integer.MaxValue, 0)
+        Dim dt = _myDictionary.GetDictionaryEntriesPaging("%", New TagFilterValues With {.Filter = False, .AllExcept = False, .Tags = New List(Of String)()}, Integer.MaxValue, 0)
         rptViewr.DataTable = dt
+        
 
         rptViewr.Show()
     End Sub
+
+    Private Sub TagFilter1_ValueChanged(sender As Object, args As EventArgs) Handles TagFilter1.ValueChanged
+        Dim newTagFilterValues = GetTagFilterValues(TagFilter1)
+        Dim reFilter = ShouldRefilter(newTagFilterValues, currentTagFilterValues)
+
+        currentTagFilterValues = newTagFilterValues
+        If (reFilter) Then
+            LoadPage()
+        End If
+
+
+    End Sub
+
+    Private Shared Function ShouldRefilter(ByVal newTagFilterValues As TagFilterValues, ByVal previousTagFilterValues As TagFilterValues) As Boolean
+
+        Dim refilter = False
+        If (previousTagFilterValues Is Nothing AndAlso newTagFilterValues Is Nothing) Then refilter = False
+        If (previousTagFilterValues Is Nothing AndAlso newTagFilterValues.Filter) Then refilter = True
+        If (previousTagFilterValues IsNot Nothing AndAlso newTagFilterValues IsNot Nothing) Then
+            If (Not previousTagFilterValues.Filter = newTagFilterValues.Filter) Then
+                refilter = True
+            End If
+            If (Not previousTagFilterValues.AllExcept = newTagFilterValues.AllExcept) Then
+                refilter = True
+            End If
+            If (Not previousTagFilterValues.Tags.Count = newTagFilterValues.Tags.Count) Then
+                refilter = True
+            End If
+        End If
+
+        Return refilter
+    End Function
+
+    Private Shared Function GetTagFilterValues(ByVal tagFilter As TagFilter) As TagFilterValues
+        Dim tagFilterValues = New TagFilterValues()
+        tagFilterValues.Filter = tagFilter.CBFilter.Checked
+        tagFilterValues.AllExcept = tagFilter.CBAllBut.Checked
+        tagFilterValues.Tags = tagFilter.TagListControl1.TagValues
+
+        Return tagFilterValues
+    End Function
 End Class

@@ -7,7 +7,7 @@ Imports System.Data.SQLite
 Public Class CommonSqlite
 
     Public Shared Function CreateConnection(path As String) As SQLiteConnection
-        Return New SQLiteConnection("Data Source=" & path & ";Version=3;")
+        Return New SQLiteConnection("Data Source=" & path & ";Version=3;BinaryGuid=False;")
     End Function
 
     Friend Shared Function GetWhereClause(where As String, whereIn As Tuple(Of String, List(Of String))) As String

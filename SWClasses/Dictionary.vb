@@ -87,8 +87,8 @@ Public NotInheritable Class SWDict
     Public Sub SearchText(ByVal search As String)
         UpdateDataSources(search)
     End Sub
-    Public Function PagingSearchText(ByVal search As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal count As Boolean) As Integer
-        Dim totalRowCount = UpdateDataSources(search, pageSize, skip, count)
+    Public Function PagingSearchText(ByVal search As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal count As Boolean, ByVal tagFilterValues As TagFilterValues) As Integer
+        Dim totalRowCount = UpdateDataSources(search, pageSize, skip, count, tagFilterValues)
         Return totalRowCount
     End Function
     Public Sub GetbyIdDictionary(ByVal idDictionary As Integer)
@@ -951,13 +951,13 @@ Public NotInheritable Class SWDict
         'SetTags(dt)
         SetBindingSources(dt)
     End Sub
-    Private Function UpdateDataSources(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal count As Boolean) As Integer
+    Private Function UpdateDataSources(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal count As Boolean, ByVal tagFilterValues As TagFilterValues) As Integer
 
         Dim totalRowCount As Integer
         If count Then
-            totalRowCount = GetDictionaryEntriesCount(searchWord)
+            totalRowCount = GetDictionaryEntriesCount(searchWord, tagFilterValues)
         End If
-        Dim dt As DataTable = GetDictionaryEntriesPaging(searchWord, pageSize, skip)
+        Dim dt As DataTable = GetDictionaryEntriesPaging(searchWord, tagFilterValues, pageSize, skip)
 
         SetBindingSources(dt)
         Return totalRowCount
@@ -1169,20 +1169,19 @@ Public NotInheritable Class SWDict
         SetBindingSources(dt)
     End Sub
 
-    Private Function GetDictionaryEntriesCount(ByVal searchWord As String) As Integer
+    Private Function GetDictionaryEntriesCount(ByVal searchWord As String, ByVal tagFilterValues As TagFilterValues) As Integer
         If BilingualMode Then
-            Return DbTags.SignsbyGlosses.SignsbyGlossesBilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord)
+            Return DbTags.SignsbyGlosses.SignsbyGlossesBilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, tagFilterValues.Filter, tagFilterValues.AllExcept, tagFilterValues.Tags)
         Else
-
-            Return DbTags.SignsbyGlosses.SignsByGlossesUnilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord)
+            Return DbTags.SignsbyGlosses.SignsByGlossesUnilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, tagFilterValues.Filter, tagFilterValues.AllExcept, tagFilterValues.Tags)
         End If
     End Function
 
-    Public Function GetDictionaryEntriesPaging(ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As DataTable
+    Public Function GetDictionaryEntriesPaging(ByVal searchWord As String, ByVal tagFilterValues As TagFilterValues, ByVal pageSize As Integer, ByVal skip As Integer) As DataTable
         If BilingualMode Then
-            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip))
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip, tagFilterValues.Filter, tagFilterValues.AllExcept, tagFilterValues.Tags))
         Else
-            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsByGlossesUnilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, pageSize, skip))
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsByGlossesUnilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, pageSize, skip, tagFilterValues.Filter,tagFilterValues.AllExcept, tagFilterValues.Tags ))
         End If
     End Function
 
@@ -1215,7 +1214,7 @@ Public NotInheritable Class SWDict
                 row.Item("Tags") = tags
                 row.Item("OriginalTags") = tags.ToList()
             End If
-          
+
 
             If dict.ContainsKey("gloss2") Then
                 row.Item("gloss2") = dict.Item("gloss2")
@@ -1223,7 +1222,11 @@ Public NotInheritable Class SWDict
                 row.Item("IDDictionaryGloss2") = dict.Item("IDDictionaryGloss2")
                 row.Item("Culture2") = dict.Item("Culture2")
             End If
-            table.Rows.Add(row)
+
+            If Not table.Rows.Contains(row.Item("IDDictionary")) Then
+                table.Rows.Add(row)
+            End If
+
         Next
 
         table.AcceptChanges()

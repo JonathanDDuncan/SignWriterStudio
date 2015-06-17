@@ -1,4 +1,5 @@
 ﻿Imports System.Dynamic
+Imports System.Diagnostics.Eventing.Reader
 Imports SignWriterStudio.SQLiteAdapters
 
 Namespace SignsbyGlosses
@@ -23,10 +24,12 @@ Namespace SignsbyGlosses
             "WHERE (Joinner.IDSignLanguage = @IDSL) AND (gloss1 LIKE @search) OR (Joinner.IDSignLanguage = @IDSL) AND (glosses1 LIKE @search) OR " & _
             "(Joinner.IDSignLanguage = @IDSL) AND (gloss2 LIKE @search) OR (Joinner.IDSignLanguage = @IDSL) AND (glosses2 LIKE @search) GROUP BY Joinner.IDDictionary ORDER BY TableLanguage1.gloss "
 
-        Public Shared Function Count(ByVal path As String, ByVal slid As Integer, ByVal lang1Id As Integer, ByVal lang2Id As Integer, ByVal searchWord As String) As Integer
+        Public Shared Function Count(ByVal path As String, ByVal slid As Integer, ByVal lang1Id As Integer, ByVal lang2Id As Integer, ByVal searchWord As String, ByVal filterTags As Boolean, ByVal allTagsExcept As Boolean, ByVal tags As List(Of String)) As Integer
             Dim query = New StatementQuery()
             query.Path = path
-            query.Sql = BaseQryStr
+
+            query.Sql = SignsGlossTags.GetQuery(BaseQryStr, filterTags, allTagsExcept, tags)
+
             query.Parameters = New Dictionary(Of String, String)
             query.Parameters.Add("@IDSL", slid.ToString())
             query.Parameters.Add("@Lang1", lang1Id.ToString())
@@ -35,19 +38,28 @@ Namespace SignsbyGlosses
             Return query.Count().ScalarResults.FirstOrDefault()
         End Function
 
-        Public Shared Function GetPage(ByVal path As String, ByVal slid As Integer, ByVal lang1Id As Integer, ByVal lang2Id As Integer, ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer) As List(Of ExpandoObject)
+        Public Shared Function GetPage(ByVal path As String, ByVal slid As Integer, ByVal lang1Id As Integer, ByVal lang2Id As Integer, ByVal searchWord As String, ByVal pageSize As Integer, ByVal skip As Integer, ByVal filterTags As Boolean, ByVal allTagsExcept As Boolean, ByVal tags As List(Of String)) As List(Of ExpandoObject)
             Dim query = New StatementQuery()
+            Dim sword As String
+            If searchWord Is Nothing Then
+                sword = String.Empty
+            Else
+                sword = searchWord
+            End If
+
             query.Path = path
-            query.Sql = BaseQryStr
+            query.Sql = SignsGlossTags.GetQuery(BaseQryStr, filterTags, allTagsExcept, tags)
             query.PageSize = pageSize
             query.Skip = skip
             query.Parameters = New Dictionary(Of String, String)
             query.Parameters.Add("@IDSL", slid.ToString())
             query.Parameters.Add("@Lang1", lang1Id.ToString())
             query.Parameters.Add("@Lang2", lang2Id.ToString())
-            query.Parameters.Add("@search", searchWord.ToString())
+            query.Parameters.Add("@search", sword.ToString())
             Return query.Page().TabularResults.FirstOrDefault()
         End Function
+
+
 
     End Class
 End Namespace

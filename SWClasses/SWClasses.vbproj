@@ -131,6 +131,7 @@
     <Compile Include="SWSequence.vb" />
     <Compile Include="SwSign.vb" />
     <Compile Include="SWSignSymbol.vb" />
+    <Compile Include="TagFilterValues.vb" />
     <Import Include="System" />
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
