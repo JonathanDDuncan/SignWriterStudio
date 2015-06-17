@@ -1,5 +1,4 @@
 ﻿Imports System.Dynamic
-Imports System.Diagnostics.Eventing.Reader
 Imports SignWriterStudio.SQLiteAdapters
 
 Namespace SignsbyGlosses
