@@ -9,7 +9,7 @@
               <Width>1.25in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2in</Width>
+              <Width>2.40625in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2in</Width>
@@ -201,14 +201,13 @@
                       <Source>Database</Source>
                       <Value>=Fields!SWriting.Value</Value>
                       <MIMEType>image/png</MIMEType>
+                      <Sizing>Clip</Sizing>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>10pt</PaddingLeft>
-                        <PaddingRight>10pt</PaddingRight>
-                        <PaddingTop>10pt</PaddingTop>
-                        <PaddingBottom>10pt</PaddingBottom>
+                        <PaddingLeft>=Code.GetLeftPadding(2.40625, 1.75,Fields!SWritingWidth.Value,Fields!SWritingHeight.Value,96)</PaddingLeft>
+                        <PaddingTop>=Code.GetTopPadding(2.40625, 1.75,Fields!SWritingWidth.Value,Fields!SWritingHeight.Value,96)</PaddingTop>
                       </Style>
                     </Image>
                   </CellContents>
@@ -224,10 +223,8 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>3pt</PaddingLeft>
-                        <PaddingRight>3pt</PaddingRight>
-                        <PaddingTop>3pt</PaddingTop>
-                        <PaddingBottom>3pt</PaddingBottom>
+                        <PaddingLeft>=Code.GetLeftPaddingProportional(2, 1.75,Fields!IllustrationWidth.Value,Fields!IllustrationHeight.Value,96)</PaddingLeft>
+                        <PaddingTop>=Code.GetTopPaddingProportional(2, 1.75,Fields!IllustrationWidth.Value,Fields!IllustrationHeight.Value,96)</PaddingTop>
                       </Style>
                     </Image>
                   </CellContents>
@@ -243,10 +240,8 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>3pt</PaddingLeft>
-                        <PaddingRight>3pt</PaddingRight>
-                        <PaddingTop>3pt</PaddingTop>
-                        <PaddingBottom>3pt</PaddingBottom>
+                        <PaddingLeft>=Code.GetLeftPaddingProportional(2, 1.75,Fields!SignWidth.Value,Fields!SignHeight.Value,96)</PaddingLeft>
+                        <PaddingTop>=Code.GetTopPaddingProportional(2, 1.75,Fields!SignWidth.Value,Fields!SignHeight.Value,96)</PaddingTop>
                       </Style>
                     </Image>
                   </CellContents>
@@ -283,7 +278,7 @@
         <KeepTogether>true</KeepTogether>
         <DataSetName>DataSet1</DataSetName>
         <Height>2in</Height>
-        <Width>7.25in</Width>
+        <Width>7.65625in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -294,7 +289,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>7.25in</Width>
+  <Width>7.65625in</Width>
   <Page>
     <PageHeader>
       <Height>0.48833in</Height>
@@ -497,6 +492,34 @@
           <DataField>OriginalTags</DataField>
           <rd:TypeName>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
+        <Field Name="NormalizedGloss">
+          <DataField>NormalizedGloss</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SWritingWidth">
+          <DataField>SWritingWidth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SWritingHeight">
+          <DataField>SWritingHeight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IllustrationWidth">
+          <DataField>IllustrationWidth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IllustrationHeight">
+          <DataField>IllustrationHeight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SignWidth">
+          <DataField>SignWidth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SignHeight">
+          <DataField>SignHeight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SignWriterStudio.SWClasses</rd:DataSetName>
@@ -505,6 +528,136 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <Code>
+    Shared Function GetTopPadding(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return TopPaddingCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+    Shared Function GetLeftPadding(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return LeftPaddingCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+    Shared Function GetTopPaddingProportional(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return TopPaddingProportionalCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+    Shared Function GetLeftPaddingProportional(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return LeftPaddingProportionalCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+
+    Shared Function LeftPaddingPixels(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim leftPadding = (cellWidth - imageWidth) / 2
+        If leftPadding &lt; 0 Then leftPadding = 0
+        Return leftPadding
+    End Function
+
+    Shared Function TopPaddingPixels(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim topPadding = (cellHeight - imageHeight) / 2
+        If topPadding &lt; 0 Then topPadding = 0
+        Return topPadding
+    End Function
+
+    Shared Function LeftPaddingProportionalCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function TopPaddingProportionalCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function LeftPaddingCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+    Shared Function TopPaddingCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+
+    Shared Function LeftPaddingProportionalCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function TopPaddingProportionalCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function LeftPaddingCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+
+    Shared Function TopPaddingCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+
+
+    Shared Function LeftPaddingPixelsProportional(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim proportional = ProportionalSize(cellWidth, cellHeight, imageWidth, imageHeight)
+        Return LeftPaddingPixels(cellWidth, cellHeight, proportional.Width, proportional.Height)
+    End Function
+    Shared Function TopPaddingPixelsProportional(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim proportional = ProportionalSize(cellWidth, cellHeight, imageWidth, imageHeight)
+        Return TopPaddingPixels(cellWidth, cellHeight, proportional.Width, proportional.Height)
+    End Function
+
+    Shared Function PxToPt(ByVal px As Single, Optional ByVal dpi As Integer = 96) As Single
+        If (Not dpi = 0) Then
+            Return px * 72 / dpi
+        Else
+            Return 0
+        End If
+    End Function
+    Shared Function PtToPx(ByVal pt As Single, Optional ByVal dpi As Integer = 96) As Single
+        Return (pt * dpi) / 72
+    End Function
+    Shared Function PxToIn(ByVal px As Single, Optional ByVal dpi As Integer = 96) As Single
+        If (Not dpi = 0) Then
+            Return px / dpi
+        Else
+            Return 0
+        End If
+    End Function
+    Shared Function InToPx(ByVal inches As Single, Optional ByVal dpi As Integer = 96) As Single
+        Return inches * dpi
+    End Function
+    Shared Function ProportionalSize(cellwidth As Single, cellheight As Single, imgwidth As Single, imgheight As Single) As System.Drawing.SizeF
+        Dim ratio As Single = 1
+
+        If imgwidth &gt; imgheight AndAlso Not Math.Abs(imgwidth - 0) &lt; Single.Epsilon Then
+            ratio = cellwidth / imgwidth
+        ElseIf Not Math.Abs(imgheight - 0) &lt; Single.Epsilon Then
+            ratio = cellheight / imgheight
+        End If
+
+        Return New System.Drawing.SizeF(imgwidth * ratio, imgheight * ratio)
+    End Function
+
+    Shared Function PttoStr(point As Single) As String
+        Return point.ToString() + "pt"
+    End Function
+</Code>
+  <CodeModules>
+    <CodeModule>System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</CodeModule>
+  </CodeModules>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>78523599-2410-40fb-9411-c92e391052f1</rd:ReportID>
 </Report>
