@@ -67,6 +67,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
@@ -177,6 +178,8 @@
     <Compile Include="Reports\ReportViewer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SignPuddleAPITests\SignPuddleAPITest.vb" />
+    <Compile Include="SignPuddleAPI\SignPuddleAPI.vb" />
     <Compile Include="SWDictionary.Designer.vb">
       <DependentUpon>SWDictionary.vb</DependentUpon>
     </Compile>
@@ -299,6 +302,10 @@
       <Project>{1ef13998-503f-433c-b860-e33a351ee21e}</Project>
       <Name>SignWriterStudio.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SignWriterStudio.WebRequestPost\SignWriterStudio.WebRequestPost.csproj">
+      <Project>{98f66e5e-ae91-498d-9eff-cd5fc4f0b644}</Project>
+      <Name>SignWriterStudio.WebRequestPost</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPML\SPML.vbproj">
       <Project>{4E9D9258-A74E-496E-A6AF-7C65DF81EFD6}</Project>
       <Name>SPML</Name>
@@ -346,6 +353,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>

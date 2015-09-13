@@ -303,7 +303,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Diccionario SignWriting de Lenguaje de señas de Honduras</Value>
+                  <Value>Diccionario SignWriting del Lenguaje de señas de Honduras</Value>
                   <Style>
                     <FontFamily>mv boli</FontFamily>
                     <FontSize>18pt</FontSize>
@@ -317,7 +317,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox30</rd:DefaultName>
           <Height>0.48833in</Height>
-          <Width>7.25in</Width>
+          <Width>7.65625in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -359,7 +359,7 @@
           <rd:DefaultName>Textbox17</rd:DefaultName>
           <Top>0.04167in</Top>
           <Height>0.25in</Height>
-          <Width>7.25in</Width>
+          <Width>7.65625in</Width>
           <Style>
             <Border>
               <Style>None</Style>
