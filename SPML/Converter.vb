@@ -580,7 +580,7 @@ Public NotInheritable Class SpmlConverter
         Dim frame As SWFrame = sign.Frames.FirstOrDefault
         frame.CenterSpmlSymbols(New Point(500, 500))
         sb.Append(CreateSequenceBuildString(frame))
-        sb.Append(CreateSymbolBuildString(frame))
+        sb.Append(CreateFSWSymbolBuildString(frame))
 
         Return sb.ToString
     End Function
@@ -589,7 +589,7 @@ Public NotInheritable Class SpmlConverter
         Dim frame As SWFrame = sign.Frames.FirstOrDefault
         frame.CenterSpmlSymbols(New Point(500, 500))
         sb.Append(CreateSequenceBuildString(frame))
-        sb.Append(CreateSymbolBuildString(frame, sign.Lane))
+        sb.Append(CreateFSWSymbolBuildString(frame, sign.Lane))
 
         Return sb.ToString
     End Function
@@ -740,17 +740,17 @@ Public NotInheritable Class SpmlConverter
         Next
         WritePtUs(ptUs)
     End Sub
-    Private Function CreateSymbolBuildString(ByVal frame As SWFrame, Optional lane As AnchorStyles = AnchorStyles.None) As String
+    Private Function CreateFswSymbolBuildString(ByVal frame As SWFrame, Optional lane As AnchorStyles = AnchorStyles.None) As String
 
 
         Dim symbol As SWSignSymbol
-        Frame.SignSymbols.Sort()
+        frame.SignSymbols.Sort()
 
         Dim ptu As PlainTextUnit
         Dim ptuType As PlainTextUnitType
         Dim ptUs As New List(Of PlainTextUnit)
         'Put an M if not a punctuation
-        If Not (Frame.SignSymbols.Count = 1 AndAlso IsPunctuationSymbol(Frame.SignSymbols(0).Code)) Then
+        If Not (frame.SignSymbols.Count = 1 AndAlso IsPunctuationSymbol(frame.SignSymbols(0).Code)) Then
 
             ptuType = PlainTextUnitType.M
             If lane = AnchorStyles.Left Then
@@ -759,11 +759,11 @@ Public NotInheritable Class SpmlConverter
             If lane = AnchorStyles.Right Then
                 ptuType = PlainTextUnitType.R
             End If
-            ptu = New PlainTextUnit With {.Type = ptuType, .MaxCoordinates = SWFrame.GetMaxCoordinate(Frame)}
+            ptu = New PlainTextUnit With {.Type = ptuType, .MaxCoordinates = SWFrame.GetMaxCoordinate(frame)}
             ptUs.Add(ptu)
 
         End If
-        For Each symbol In Frame.SignSymbols
+        For Each symbol In frame.SignSymbols
             ptu = New PlainTextUnit
             ptu.FromSwsSignSymbol(symbol)
             ptUs.Add(ptu)
@@ -772,13 +772,44 @@ Public NotInheritable Class SpmlConverter
         Return CreatePtUs(ptUs)
     End Function
 
+    Friend Shared Function CreateKswSymbolBuildString(ByVal frame As SWFrame, Optional lane As AnchorStyles = AnchorStyles.None) As String
+
+
+        Dim symbol As SWSignSymbol
+        frame.SignSymbols.Sort()
+
+        Dim ptu As PlainTextUnit
+        Dim ptuType As PlainTextUnitType
+        Dim ptUs As New List(Of PlainTextUnit)
+        'Put an M if not a punctuation
+        If Not (frame.SignSymbols.Count = 1 AndAlso IsPunctuationSymbol(frame.SignSymbols(0).Code)) Then
+
+            ptuType = PlainTextUnitType.M
+            If lane = AnchorStyles.Left Then
+                ptuType = PlainTextUnitType.L
+            End If
+            If lane = AnchorStyles.Right Then
+                ptuType = PlainTextUnitType.R
+            End If
+            ptu = New PlainTextUnit With {.Type = ptuType, .MaxCoordinates = SWFrame.GetMaxCoordinate(frame)}
+            ptUs.Add(ptu)
+
+        End If
+        For Each symbol In frame.SignSymbols
+            ptu = New PlainTextUnit
+            ptu.FromSwsSignSymbol(symbol)
+            ptUs.Add(ptu)
+        Next
+
+        Return CreatePtUs(ptUs)
+    End Function
     Private Shared Function IsPunctuationSymbol(code As Integer) As Boolean
         Return code >= 62113 AndAlso code <= 62504
     End Function
     Friend Sub WritePtUs(ByVal ptUs As List(Of PlainTextUnit))
         SpmlWrite(CreatePtUs(ptUs))
     End Sub
-    Friend Function CreatePtUs(ByVal ptUs As List(Of PlainTextUnit)) As String
+    Friend Shared Function CreatePtUs(ByVal ptUs As List(Of PlainTextUnit)) As String
         Dim sb As New StringBuilder
 
         Dim ptu As PlainTextUnit
@@ -906,7 +937,43 @@ Public NotInheritable Class SpmlConverter
     End Sub
 
 
+    Public Shared Function Fsw2Ksw(ByVal fsw As String) As String
+        Dim split = fsw.Split(CChar("S"))
+        Dim sb = New StringBuilder()
+        For Each s As String In split
+            If s.Length = 12 Then
+                sb.Append("S")
+                sb.Append(s.Substring(0, 5))
+                sb.Append(ConvertCoordinateFswtoKsw(s.Substring(5, 7)))
+            ElseIf s.Length = 8 Then
+                sb.Append(s.Substring(0, 1))
+                sb.Append(ConvertCoordinateFswtoKsw(s.Substring(1, 7)))
+            Else
+                sb.Append(s)
+            End If
 
+
+        Next
+        Return sb.ToString()
+    End Function
+
+    Private Shared Function ConvertCoordinateFswtoKsw(coord As String) As String
+        Return NegasN(Shift500(coord))
+    End Function
+
+    Private Shared Function NegasN(ByVal s As String) As String
+        Return s.Replace(CChar("-"), CChar("n"))
+    End Function
+
+    Private Shared Function Shift500(ByVal coord As String) As String
+        Dim xy = coord.Split(CChar("x"))
+        Dim x = Integer.Parse(xy.FirstOrDefault())
+        Dim y = Integer.Parse(xy.Skip(1).FirstOrDefault())
+
+        x -= 500
+        y -= 500
+        Return x & "x" & y
+    End Function
 End Class
 
 Public Class ExportSettings

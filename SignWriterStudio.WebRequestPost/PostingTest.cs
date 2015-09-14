@@ -35,8 +35,8 @@ namespace SignWriterStudio.WebSessions
         {
          
             var loginuri = "http://www.signbank.org/signpuddle2.0/login.php";
-            var username = "Jonathan";
-            var password = "54321";
+            var username = "TestSignWriterStudio";
+            var password = "123456";
 
             var posting = new WebSession();
             var loginWebPage = posting.Login(loginuri, username, password);

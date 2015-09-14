@@ -6,8 +6,8 @@ Namespace SignPuddleAPITests
   
     <TestClass()>
     Public Class SignPuddleAPITest
-        Private ReadOnly _username = "Jonathan"
-        Private ReadOnly _password = "54321"
+        Private ReadOnly _username = "TestSignWriterStudio"
+        Private ReadOnly _password = "123456"
 
         <TestMethod()> Public Sub AddEntryTest()
 
