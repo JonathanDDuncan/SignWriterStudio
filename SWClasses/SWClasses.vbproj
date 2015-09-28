@@ -112,6 +112,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReportTitleRow.vb" />
+    <Compile Include="ReportTitleTable.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DictionaryDataGridTable.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -202,6 +206,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\ReportTitleTable.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

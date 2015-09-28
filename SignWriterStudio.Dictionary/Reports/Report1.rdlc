@@ -6,28 +6,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.25in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>2.40625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>2in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1in</Width>
+              <Width>2in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -36,21 +24,25 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox1">
+                    <Textbox Name="Textbox2">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>gloss1</Value>
-                              <Style />
+                              <Value>=First(Fields!Gloss.Value, "TitlesDataSet")</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -66,111 +58,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox3">
+                    <Textbox Name="Textbox6">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>glosses1</Value>
-                              <Style />
+                              <Value>=First(Fields!SignWriting.Value, "TitlesDataSet")</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox3</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox5">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>gloss2</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox5</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox7">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>glosses2</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox7</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox11">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>SWriting</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox11</rd:DefaultName>
+                      <rd:DefaultName>Textbox6</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -193,11 +99,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Photo</Value>
-                              <Style />
+                              <Value>=First(Fields!Illustration.Value, "TitlesDataSet")</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox9</rd:DefaultName>
@@ -216,51 +126,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox13">
+                    <Textbox Name="Textbox11">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Sign</Value>
-                              <Style />
+                              <Value>=First(Fields!PhotoSign.Value, "TitlesDataSet")</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox13</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox15">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Tags</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox15</rd:DefaultName>
+                      <rd:DefaultName>Textbox11</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -277,7 +161,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.25in</Height>
+              <Height>1.75in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -288,8 +172,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!gloss1.Value</Value>
-                              <Style />
+                              <Value>=Fields!gloss1.Value &amp; IIF(Not Fields!glosses1.Value  = "",", " &amp; Fields!glosses1.Value, "")</Value>
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -298,7 +185,6 @@
                       <rd:DefaultName>gloss1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -311,212 +197,53 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="glosses1">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!glosses1.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>glosses1</rd:DefaultName>
+                    <Image Name="SWriting">
+                      <Source>Database</Source>
+                      <Value>=Fields!SWriting.Value</Value>
+                      <MIMEType>image/png</MIMEType>
+                      <Sizing>Clip</Sizing>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingLeft>=Code.GetLeftPadding(2.40625, 1.75,Fields!SWritingWidth.Value,Fields!SWritingHeight.Value,96)</PaddingLeft>
+                        <PaddingTop>=Code.GetTopPadding(2.40625, 1.75,Fields!SWritingWidth.Value,Fields!SWritingHeight.Value,96)</PaddingTop>
                       </Style>
-                    </Textbox>
+                    </Image>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="gloss2">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!gloss2.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>gloss2</rd:DefaultName>
+                    <Image Name="Photo">
+                      <Source>Database</Source>
+                      <Value>=Fields!Photo.Value</Value>
+                      <MIMEType>image/png</MIMEType>
+                      <Sizing>FitProportional</Sizing>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingLeft>=Code.GetLeftPaddingProportional(2, 1.75,Fields!IllustrationWidth.Value,Fields!IllustrationHeight.Value,96)</PaddingLeft>
+                        <PaddingTop>=Code.GetTopPaddingProportional(2, 1.75,Fields!IllustrationWidth.Value,Fields!IllustrationHeight.Value,96)</PaddingTop>
                       </Style>
-                    </Textbox>
+                    </Image>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="glosses2">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!glosses2.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>glosses2</rd:DefaultName>
+                    <Image Name="Sign">
+                      <Source>Database</Source>
+                      <Value>=Fields!Sign.Value</Value>
+                      <MIMEType>image/png</MIMEType>
+                      <Sizing>FitProportional</Sizing>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingLeft>=Code.GetLeftPaddingProportional(2, 1.75,Fields!SignWidth.Value,Fields!SignHeight.Value,96)</PaddingLeft>
+                        <PaddingTop>=Code.GetTopPaddingProportional(2, 1.75,Fields!SignWidth.Value,Fields!SignHeight.Value,96)</PaddingTop>
                       </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="SWriting">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!SWriting.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>SWriting</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Photo">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Photo.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Photo</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Sign">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Sign.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Sign</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Tags">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Tags.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Tags</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
+                    </Image>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -529,25 +256,29 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
             <TablixMember>
+              <FixedData>true</FixedData>
               <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSet1</DataSetName>
-        <Height>0.5in</Height>
-        <Width>8in</Width>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <KeepTogether>true</KeepTogether>
+        <DataSetName>DataDataSet</DataSetName>
+        <Height>2in</Height>
+        <Width>7.65625in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -558,31 +289,156 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>9.38417in</Width>
+  <Width>7.65625in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeader>
+      <Height>0.48833in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox30">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Title.Value, "TitlesDataSet")</Value>
+                  <Style>
+                    <FontFamily>mv boli</FontFamily>
+                    <FontSize>18pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox30</rd:DefaultName>
+          <Height>0.48833in</Height>
+          <Width>7.65625in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>0.29167in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox17">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Página " &amp; Globals!PageNumber &amp; " de " &amp; Globals!TotalPages</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox17</rd:DefaultName>
+          <Top>0.04167in</Top>
+          <Height>0.25in</Height>
+          <Width>7.65625in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <LeftMargin>0.4in</LeftMargin>
+    <RightMargin>0.4in</RightMargin>
+    <TopMargin>0.4in</TopMargin>
+    <BottomMargin>0.4in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DictionaryViewDataSet">
+    <DataSource Name="SignWriterStudioDatabaseDictionary">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>92e1a25d-bc1a-4577-aa99-3fa6733ec4ee</rd:DataSourceID>
+      <rd:DataSourceID>56136a41-be23-44c3-8e3e-81e071c263b0</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="SignWriterStudioSWClasses">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>31b38154-d1cc-4a0c-aa00-9c3a2bb0d2d7</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="DataDataSet">
       <Query>
-        <DataSourceName>DictionaryViewDataSet</DataSourceName>
+        <DataSourceName>SignWriterStudioDatabaseDictionary</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="gloss1">
+          <DataField>gloss1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="glosses1">
+          <DataField>glosses1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="gloss2">
+          <DataField>gloss2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="glosses2">
+          <DataField>glosses2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDDictionaryGloss1">
+          <DataField>IDDictionaryGloss1</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Culture1">
+          <DataField>Culture1</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="IDDictionaryGloss2">
+          <DataField>IDDictionaryGloss2</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Culture2">
+          <DataField>Culture2</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
         <Field Name="IDDictionary">
           <DataField>IDDictionary</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
@@ -631,57 +487,217 @@
           <DataField>LastModified</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="IDDictionaryGloss1">
-          <DataField>IDDictionaryGloss1</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
-        </Field>
-        <Field Name="Culture1">
-          <DataField>Culture1</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
-        </Field>
-        <Field Name="gloss1">
-          <DataField>gloss1</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="glosses1">
-          <DataField>glosses1</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IDDictionaryGloss2">
-          <DataField>IDDictionaryGloss2</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
-        </Field>
-        <Field Name="Culture2">
-          <DataField>Culture2</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
-        </Field>
-        <Field Name="gloss2">
-          <DataField>gloss2</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="glosses2">
-          <DataField>glosses2</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Tags">
-          <DataField>Tags</DataField>
-          <rd:TypeName>System.Object</rd:TypeName>
-        </Field>
         <Field Name="Sorting">
           <DataField>Sorting</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Tags">
+          <DataField>Tags</DataField>
+          <rd:TypeName>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="OriginalTags">
+          <DataField>OriginalTags</DataField>
+          <rd:TypeName>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="NormalizedGloss">
+          <DataField>NormalizedGloss</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SWritingWidth">
+          <DataField>SWritingWidth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SWritingHeight">
+          <DataField>SWritingHeight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IllustrationWidth">
+          <DataField>IllustrationWidth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IllustrationHeight">
+          <DataField>IllustrationHeight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SignWidth">
+          <DataField>SignWidth</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SignHeight">
+          <DataField>SignHeight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>DictionaryViewDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Jonathan\Documents\SignWriter\SignWriter Studio\SignWriterStudio.Dictionary\DictionaryViewDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>DictionaryView</rd:TableName>
-        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
-        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>DictionaryViewTableAdapter</rd:TableAdapterName>
+        <rd:DataSetName>SignWriterStudio.SWClasses</rd:DataSetName>
+        <rd:TableName>DictionaryDataGridTable</rd:TableName>
+        <rd:ObjectDataSourceType>SignWriterStudio.SWClasses.DictionaryDataGridTable, SWClasses, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="TitlesDataSet">
+      <Query>
+        <DataSourceName>SignWriterStudioSWClasses</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Title">
+          <DataField>Title</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Gloss">
+          <DataField>Gloss</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SignWriting">
+          <DataField>SignWriting</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Illustration">
+          <DataField>Illustration</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PhotoSign">
+          <DataField>PhotoSign</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>SignWriterStudio.SWClasses</rd:DataSetName>
+        <rd:TableName>ReportTitleTable</rd:TableName>
+        <rd:ObjectDataSourceType>SignWriterStudio.SWClasses.ReportTitleTable, SWClasses, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <Code>
+    Shared Function GetTopPadding(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return TopPaddingCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+    Shared Function GetLeftPadding(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return LeftPaddingCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+    Shared Function GetTopPaddingProportional(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return TopPaddingProportionalCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+    Shared Function GetLeftPaddingProportional(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Return LeftPaddingProportionalCellInImagePxAsPtStr(cellWidthIn, cellHeightIn, imageWidthPx, imageHeightPx, dpi)
+    End Function
+
+    Shared Function LeftPaddingPixels(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim leftPadding = (cellWidth - imageWidth) / 2
+        If leftPadding &lt; 0 Then leftPadding = 0
+        Return leftPadding
+    End Function
+
+    Shared Function TopPaddingPixels(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim topPadding = (cellHeight - imageHeight) / 2
+        If topPadding &lt; 0 Then topPadding = 0
+        Return topPadding
+    End Function
+
+    Shared Function LeftPaddingProportionalCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function TopPaddingProportionalCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function LeftPaddingCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+    Shared Function TopPaddingCellInImagePxAsPtStr(ByVal cellWidthIn As Single, ByVal cellHeightIn As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = InToPx(cellWidthIn, dpi)
+        Dim cellHeightPx = InToPx(cellHeightIn, dpi)
+
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+
+    Shared Function LeftPaddingProportionalCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function TopPaddingProportionalCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+        Dim proportional = ProportionalSize(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx)
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, proportional.Width, proportional.Height), dpi))
+    End Function
+
+    Shared Function LeftPaddingCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+
+        Return PttoStr(PxToPt(LeftPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+
+    Shared Function TopPaddingCellPtImagePxAsPtStr(ByVal cellWidthPt As Single, ByVal cellHeightPt As Single, ByVal imageWidthPx As Single, ByVal imageHeightPx As Single, ByVal dpi As Integer) As String
+        Dim cellWidthPx = PtToPx(cellWidthPt, dpi)
+        Dim cellHeightPx = PtToPx(cellHeightPt, dpi)
+
+        Return PttoStr(PxToPt(TopPaddingPixels(cellWidthPx, cellHeightPx, imageWidthPx, imageHeightPx), dpi))
+    End Function
+
+
+    Shared Function LeftPaddingPixelsProportional(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim proportional = ProportionalSize(cellWidth, cellHeight, imageWidth, imageHeight)
+        Return LeftPaddingPixels(cellWidth, cellHeight, proportional.Width, proportional.Height)
+    End Function
+    Shared Function TopPaddingPixelsProportional(ByVal cellWidth As Single, ByVal cellHeight As Single, ByVal imageWidth As Single, ByVal imageHeight As Single) As Single
+        Dim proportional = ProportionalSize(cellWidth, cellHeight, imageWidth, imageHeight)
+        Return TopPaddingPixels(cellWidth, cellHeight, proportional.Width, proportional.Height)
+    End Function
+
+    Shared Function PxToPt(ByVal px As Single, Optional ByVal dpi As Integer = 96) As Single
+        If (Not dpi = 0) Then
+            Return px * 72 / dpi
+        Else
+            Return 0
+        End If
+    End Function
+    Shared Function PtToPx(ByVal pt As Single, Optional ByVal dpi As Integer = 96) As Single
+        Return (pt * dpi) / 72
+    End Function
+    Shared Function PxToIn(ByVal px As Single, Optional ByVal dpi As Integer = 96) As Single
+        If (Not dpi = 0) Then
+            Return px / dpi
+        Else
+            Return 0
+        End If
+    End Function
+    Shared Function InToPx(ByVal inches As Single, Optional ByVal dpi As Integer = 96) As Single
+        Return inches * dpi
+    End Function
+    Shared Function ProportionalSize(cellwidth As Single, cellheight As Single, imgwidth As Single, imgheight As Single) As System.Drawing.SizeF
+        Dim ratio As Single = 1
+
+        If imgwidth &gt; imgheight AndAlso Not Math.Abs(imgwidth - 0) &lt; Single.Epsilon Then
+            ratio = cellwidth / imgwidth
+        ElseIf Not Math.Abs(imgheight - 0) &lt; Single.Epsilon Then
+            ratio = cellheight / imgheight
+        End If
+
+        Return New System.Drawing.SizeF(imgwidth * ratio, imgheight * ratio)
+    End Function
+
+    Shared Function PttoStr(point As Single) As String
+        Return point.ToString() + "pt"
+    End Function
+</Code>
+  <CodeModules>
+    <CodeModule>System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</CodeModule>
+  </CodeModules>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>bbae2a64-81a6-4acf-b081-761da3d45f5e</rd:ReportID>
+  <rd:ReportID>78523599-2410-40fb-9411-c92e391052f1</rd:ReportID>
 </Report>

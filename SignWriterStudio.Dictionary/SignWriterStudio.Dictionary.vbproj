@@ -270,6 +270,7 @@
     </None>
     <None Include="My Project\DataSources\SignWriterStudio.Database.Dictionary.DictionaryDataSet+SignsBilingualDataTable.datasource" />
     <None Include="My Project\DataSources\SignWriterStudio.SWClasses.DictionaryDataGridTable.datasource" />
+    <None Include="My Project\DataSources\SignWriterStudio.SWClasses.ReportTitleTable.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
