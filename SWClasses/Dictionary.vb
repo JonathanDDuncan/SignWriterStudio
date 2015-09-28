@@ -366,10 +366,8 @@ Public NotInheritable Class SWDict
     End Sub
 
     Public Sub ModifySign(ByVal modifiedEntry As DataRow, ByVal lang1 As Integer, ByVal lang2 As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
-        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000799 begin
         Dim modifiedInfo As SignsbyGlossesBilingualRow = CType(modifiedEntry, SignsbyGlossesBilingualRow)
         'TODO figure out how to distinguish gloss1 and gloss2 from modifiedEntry
-        'Dim modifiedGloss As Database.Dictionary.DictionaryDataSet.DictionaryGlossRow = CType(modifiedEntry, Database.Dictionary.DictionaryDataSet.DictionaryGlossRow)
 
         Dim swSignByte As Byte()
         Dim photoByte As Byte()
@@ -399,7 +397,6 @@ Public NotInheritable Class SWDict
                 _taDictionaryGloss.InsertQuery(modifiedInfo.IDDictionary, lang2, NZ(modifiedEntry.Item("gloss2"), String.Empty).ToString, NZ(modifiedEntry.Item("glosses2"), String.Empty).ToString)
             End If
         End If
-        ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000799 end
     End Sub
 
 
@@ -1439,7 +1436,10 @@ Public NotInheritable Class SWDict
 
         Dim result As Integer
         _taDictionary.AssignConnection(conn, trans)
-        result = _taDictionary.InsertQuery(toInsert.IDSignLanguage, toInsert.isPrivate, -1, toInsert.SWriting, toInsert.Photo, toInsert.Sign, toInsert.SWritingSource, toInsert.PhotoSource, toInsert.SignSource, newGuid, Date.UtcNow, Date.UtcNow, toInsert.IDSignPuddle, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty)
+
+        Dim isPrivate = Not IsDbNull(toInsert.isPrivate) AndAlso toInsert.isPrivate
+
+        result = _taDictionary.InsertQuery(toInsert.IDSignLanguage, isPrivate, -1, toInsert.SWriting, toInsert.Photo, toInsert.Sign, toInsert.SWritingSource, toInsert.PhotoSource, toInsert.SignSource, newGuid, Date.UtcNow, Date.UtcNow, toInsert.IDSignPuddle, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty)
         If result = 1 Then
             'Success
         Else

@@ -474,7 +474,7 @@ Public Class SWDictForm
     End Sub
 
     Public Sub FindSign(ByVal IDDictionary As Integer)
-        Me._myDictionary.GetbyIdDictionary(IDDictionary)
+        _myDictionary.GetbyIdDictionary(IDDictionary)
     End Sub
 
 
@@ -1086,7 +1086,8 @@ Public Class SWDictForm
 
     Private Sub AddNew()
         If DictionaryLoaded Then
-            _myDictionary.DictionaryBindingSource1.AddNew()
+            Dim newRow = DirectCast(DirectCast(_myDictionary.DictionaryBindingSource1.AddNew(), DataRowView).Row, DictionaryDataSet.SignsbyGlossesBilingualRow)
+
 
             'Edit last added row so that it will save.
             Dim taDictionary As New DictionaryTableAdapter
@@ -1094,7 +1095,9 @@ Public Class SWDictForm
             Dim currentRow As DataGridViewRow = Me.DictionaryDataGridView.CurrentRow
             currentRow.Cells("IDDictionary").Value = newId
             currentRow.Cells("SignLanguage").Value = _myDictionary.DefaultSignLanguage
-            currentRow.Cells("isPrivate").Value = False
+            newRow.isPrivate = False
+            newRow.Sorting = ""
+
             SaveDataGrid()
             _myDictionary.DictionaryBindingSource1.ResetBindings(False)
         Else
