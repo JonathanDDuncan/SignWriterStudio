@@ -5,14 +5,14 @@ Imports System.Text
 Imports System.Web
 
 Public Class ExportHtml
-    Public Shared Sub Export(ByVal myDictionary As SWDict, ByVal htmlFilename As String, ByVal inclBeg As Boolean, ByVal inclEnd As Boolean, ByVal begFilename As String, ByVal endFilename As String, ByVal createIndex As Boolean, ByVal externalPng As Boolean, ByVal exportFields As ExportFields, ByVal sortAlphabetically As Boolean)
+    Public Shared Sub Export(ByVal myDictionary As SWDict, ByVal dt As DataTable, ByVal htmlFilename As String, ByVal inclBeg As Boolean, ByVal inclEnd As Boolean, ByVal begFilename As String, ByVal endFilename As String, ByVal createIndex As Boolean, ByVal externalPng As Boolean, ByVal exportFields As ExportFields, ByVal sortAlphabetically As Boolean)
         Dim pngfolderName = Path.GetFileNameWithoutExtension(htmlFilename) & "_files"
         Dim pngFolderAbsolute = Path.Combine(Path.GetDirectoryName(htmlFilename), pngfolderName)
         Dim pngFolderRelative = ".\" & pngfolderName & "\"
-        Dim dt As DataTable = Nothing 'TODO get datatable to export (from tag filtering)
+
         Using writer As StreamWriter = New StreamWriter(htmlFilename, False, Encoding.UTF8)
             Dim signs = ExportPng.GetSignsinDictionary(dt, myDictionary)
-            if (sortAlphabetically) Then
+            If (sortAlphabetically) Then
                 signs = SortSignsAlphabetically(signs)
             End If
             writer.WriteLine("<html><head> <style type=""text/css"">.center {text-align: center;}  .breakhere {page-break-before: always;}  .super-centered {width:100%;height:100%;text-align:center; vertical-align:middle;z-index: 9999;} </style></head><body>")

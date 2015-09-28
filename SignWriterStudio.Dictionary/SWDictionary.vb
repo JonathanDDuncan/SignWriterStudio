@@ -1973,6 +1973,8 @@ Public Class SWDictForm
         Handles ExportToHTMLToolStripMenuItem.Click
         SaveDataGrid()
         Dim exportHtmlFrm = New ExportHtmlFrm
+        exportHtmlFrm.TagFilter1.TagListControl1.SelectionItemList(GetTagsData())
+        exportHtmlFrm.TagFilter1.AssumeFiltering = True
         exportHtmlFrm.MyDictionary = _myDictionary
         exportHtmlFrm.Show()
     End Sub

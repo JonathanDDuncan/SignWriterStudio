@@ -11,7 +11,10 @@ Public Class ExportHtmlFrm
     End Sub
 
     Private Sub ExportBtn_Click(sender As Object, e As EventArgs) Handles ExportBtn.Click
-        PrepareParameters(MyDictionary, externPngCB.Checked, HTMLFilenameTb.Text, CBInclBegHtml.Checked, CBInclEndHtml.Checked, TBInclBegHtml.Text, TBInclEndHtml.Text, CBCreateIndex.Checked, FieldstoExport(),cbSortAlphabetically.Checked)
+        Dim tagFilterValues = TagFilter1.GetTagFilterValues()
+        Dim dt = MyDictionary.GetDictionaryEntriesPaging("%", tagFilterValues, Integer.MaxValue, 0)
+
+        PrepareParameters(MyDictionary, dt, externPngCB.Checked, HTMLFilenameTb.Text, CBInclBegHtml.Checked, CBInclEndHtml.Checked, TBInclBegHtml.Text, TBInclEndHtml.Text, CBCreateIndex.Checked, FieldstoExport(), cbSortAlphabetically.Checked)
         MessageBox.Show("Export finished!")
     End Sub
 
@@ -31,8 +34,8 @@ Public Class ExportHtmlFrm
         Return ef
     End Function
 
-    Private Sub PrepareParameters(ByVal dict As SWDict, ByVal externalPng As Boolean, ByVal htmlFilename As String, ByVal inclBeg As Boolean, ByVal inclEnd As Boolean, ByVal begFilename As String, ByVal endFilename As String, ByVal createIndex As Boolean, ByVal exportFields As ExportFields, ByVal sortAlphabetically As Boolean)
-        ExportHtml.Export(dict, htmlFilename, inclBeg, inclEnd, begFilename, endFilename, createIndex, externalPng, exportFields,sortAlphabetically)
+    Private Sub PrepareParameters(ByVal dict As SWDict, ByVal dt As DataTable, ByVal externalPng As Boolean, ByVal htmlFilename As String, ByVal inclBeg As Boolean, ByVal inclEnd As Boolean, ByVal begFilename As String, ByVal endFilename As String, ByVal createIndex As Boolean, ByVal exportFields As ExportFields, ByVal sortAlphabetically As Boolean)
+        ExportHtml.Export(dict, dt, htmlFilename, inclBeg, inclEnd, begFilename, endFilename, createIndex, externalPng, exportFields, sortAlphabetically)
     End Sub
 
     Private Sub BtnInclBegHtml_Click(sender As Object, e As EventArgs) Handles BtnInclBegHtml.Click
