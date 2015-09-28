@@ -1963,6 +1963,8 @@ Public Class SWDictForm
         Handles ExportToAnkiToolStripMenuItem.Click
         SaveDataGrid()
         Dim ankiFrm = New ExportAnkiFrm
+        ankiFrm.TagFilter1.TagListControl1.SelectionItemList(GetTagsData())
+        ankiFrm.TagFilter1.AssumeFiltering = True
         ankiFrm.MyDictionary = _myDictionary
         ankiFrm.Show()
     End Sub

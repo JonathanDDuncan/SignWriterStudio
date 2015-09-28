@@ -28,28 +28,25 @@ Public Class ExportPng
 
     End Function
 
-    Public Shared Function GetSignsinDictionary(ByVal myDictionary As SWDict) As List(Of SignResult)
+    Public Shared Function GetSignsinDictionary(ByVal dt As DataTable, ByVal myDictionary As SWDict) As List(Of SignResult)
         Dim list = New List(Of SignResult)()
 
-        Dim dt = myDictionary.GetAllSignsUnilingualDt()
+
         Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
 
-       
-        
+        For Each row In dt.Rows
 
-        For Each row As Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualRow In dt.Rows
-            If Not row.isPrivate Then
-                Dim sign = myDictionary.GetSWSign(row.IDDictionary, conn, trans)
-                Dim res = New SignResult(row.gloss1, row.glosses1, row.GUID, General.ByteArraytoImage(row.SWriting), General.ByteArraytoImage(row.Photo), General.ByteArraytoImage(row.Sign), row.SWritingSource, row.PhotoSource, row.SignSource, sign)
-                list.Add(res)
-            End If
+            Dim sign = myDictionary.GetSWSign(row.IDDictionary, conn, trans)
+            Dim res = New SignResult(row.gloss1, row.glosses1, row.GUID, General.ByteArraytoImage(row.SWriting), General.ByteArraytoImage(row.Photo), General.ByteArraytoImage(row.Sign), row.SWritingSource, row.PhotoSource, row.SignSource, sign)
+            list.Add(res)
+
         Next
         trans.Commit()
         trans.Dispose()
         conn.Close()
         conn.Dispose()
-      
+
         Return list
     End Function
 End Class

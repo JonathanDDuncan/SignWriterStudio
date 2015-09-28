@@ -9,8 +9,9 @@ Public Class ExportHtml
         Dim pngfolderName = Path.GetFileNameWithoutExtension(htmlFilename) & "_files"
         Dim pngFolderAbsolute = Path.Combine(Path.GetDirectoryName(htmlFilename), pngfolderName)
         Dim pngFolderRelative = ".\" & pngfolderName & "\"
+        Dim dt As DataTable = Nothing 'TODO get datatable to export (from tag filtering)
         Using writer As StreamWriter = New StreamWriter(htmlFilename, False, Encoding.UTF8)
-            Dim signs = ExportPng.GetSignsinDictionary(myDictionary)
+            Dim signs = ExportPng.GetSignsinDictionary(dt, myDictionary)
             if (sortAlphabetically) Then
                 signs = SortSignsAlphabetically(signs)
             End If

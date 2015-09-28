@@ -29,12 +29,13 @@ Partial Class ExportAnkiFrm
         Me.TextBrowseBtn = New System.Windows.Forms.Button()
         Me.PNGBrowseBtn = New System.Windows.Forms.Button()
         Me.ExportBtn = New System.Windows.Forms.Button()
+        Me.TagFilter1 = New Global.SignWriterStudio.Dictionary.TagFilter()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(22, 32)
+        Me.Label1.Location = New System.Drawing.Point(16, 139)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(73, 13)
         Me.Label1.TabIndex = 0
@@ -42,14 +43,14 @@ Partial Class ExportAnkiFrm
         '
         'TextFilenameTb
         '
-        Me.TextFilenameTb.Location = New System.Drawing.Point(101, 29)
+        Me.TextFilenameTb.Location = New System.Drawing.Point(95, 136)
         Me.TextFilenameTb.Name = "TextFilenameTb"
         Me.TextFilenameTb.Size = New System.Drawing.Size(350, 20)
         Me.TextFilenameTb.TabIndex = 1
         '
         'PNGFolderTb
         '
-        Me.PNGFolderTb.Location = New System.Drawing.Point(101, 58)
+        Me.PNGFolderTb.Location = New System.Drawing.Point(95, 165)
         Me.PNGFolderTb.Name = "PNGFolderTb"
         Me.PNGFolderTb.Size = New System.Drawing.Size(350, 20)
         Me.PNGFolderTb.TabIndex = 3
@@ -57,7 +58,7 @@ Partial Class ExportAnkiFrm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(22, 61)
+        Me.Label2.Location = New System.Drawing.Point(16, 168)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(62, 13)
         Me.Label2.TabIndex = 2
@@ -65,7 +66,7 @@ Partial Class ExportAnkiFrm
         '
         'TextBrowseBtn
         '
-        Me.TextBrowseBtn.Location = New System.Drawing.Point(457, 27)
+        Me.TextBrowseBtn.Location = New System.Drawing.Point(451, 134)
         Me.TextBrowseBtn.Name = "TextBrowseBtn"
         Me.TextBrowseBtn.Size = New System.Drawing.Size(75, 23)
         Me.TextBrowseBtn.TabIndex = 4
@@ -74,7 +75,7 @@ Partial Class ExportAnkiFrm
         '
         'PNGBrowseBtn
         '
-        Me.PNGBrowseBtn.Location = New System.Drawing.Point(457, 56)
+        Me.PNGBrowseBtn.Location = New System.Drawing.Point(451, 163)
         Me.PNGBrowseBtn.Name = "PNGBrowseBtn"
         Me.PNGBrowseBtn.Size = New System.Drawing.Size(75, 23)
         Me.PNGBrowseBtn.TabIndex = 5
@@ -83,18 +84,27 @@ Partial Class ExportAnkiFrm
         '
         'ExportBtn
         '
-        Me.ExportBtn.Location = New System.Drawing.Point(245, 103)
+        Me.ExportBtn.Location = New System.Drawing.Point(239, 210)
         Me.ExportBtn.Name = "ExportBtn"
         Me.ExportBtn.Size = New System.Drawing.Size(75, 23)
         Me.ExportBtn.TabIndex = 6
         Me.ExportBtn.Text = "Export"
         Me.ExportBtn.UseVisualStyleBackColor = True
         '
+        'TagFilter1
+        '
+        Me.TagFilter1.DataSource = Nothing
+        Me.TagFilter1.Location = New System.Drawing.Point(74, 12)
+        Me.TagFilter1.Name = "TagFilter1"
+        Me.TagFilter1.Size = New System.Drawing.Size(421, 100)
+        Me.TagFilter1.TabIndex = 7
+        '
         'ExportAnkiFrm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(563, 138)
+        Me.ClientSize = New System.Drawing.Size(557, 258)
+        Me.Controls.Add(Me.TagFilter1)
         Me.Controls.Add(Me.ExportBtn)
         Me.Controls.Add(Me.PNGBrowseBtn)
         Me.Controls.Add(Me.TextBrowseBtn)
@@ -115,4 +125,5 @@ Partial Class ExportAnkiFrm
     Friend WithEvents TextBrowseBtn As System.Windows.Forms.Button
     Friend WithEvents PNGBrowseBtn As System.Windows.Forms.Button
     Friend WithEvents ExportBtn As System.Windows.Forms.Button
+    Friend WithEvents TagFilter1 As Global.SignWriterStudio.Dictionary.TagFilter
 End Class

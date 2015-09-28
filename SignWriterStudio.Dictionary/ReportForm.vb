@@ -4,7 +4,7 @@ Public Class ReportForm
 
     Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
         Dim rptViewr = New ReportViewer()
-        Dim tagFilterValues = GetTagFilterValues(TagFilter1)
+        Dim tagFilterValues = TagFilter1.GetTagFilterValues()
         Dim dt = Dictionary.GetDictionaryEntriesPaging("%", tagFilterValues, Integer.MaxValue, 0)
         Dim dt1 = NormalizeandSort(dt)
         rptViewr.DataTable = dt1
@@ -56,12 +56,4 @@ Public Class ReportForm
     End Function
 
     Public Property Dictionary() As SWDict
-    Private Shared Function GetTagFilterValues(ByVal tagFilter As TagFilter) As TagFilterValues
-        Dim tagFilterValues = New TagFilterValues()
-        tagFilterValues.Filter = tagFilter.CBFilter.Checked
-        tagFilterValues.AllExcept = tagFilter.CBAllBut.Checked
-        tagFilterValues.Tags = tagFilter.TagListControl1.TagValues
-
-        Return tagFilterValues
-    End Function
 End Class

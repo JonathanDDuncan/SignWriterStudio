@@ -4,11 +4,11 @@ Imports SignWriterStudio.SWClasses
 Imports System.Text
 
 Public Class ExportAnki
-    Public Shared Sub ExportExternalPng(ByVal csvFilename As String, ByVal pngFolder As String, ByVal myDictionary As SWDict)
+    Public Shared Sub ExportExternalPng(ByVal csvFilename As String, ByVal pngFolder As String, ByVal myDictionary As SWDict, ByVal dt As DataTable)
         If File.Exists(csvFilename) Then File.Delete(csvFilename)
         Using writer As StreamWriter = New StreamWriter(csvFilename)
 
-            Dim signs = ExportPng.GetSignsinDictionary(myDictionary)
+            Dim signs = ExportPng.GetSignsinDictionary(dt, myDictionary)
             For Each sign In signs
                 Dim gloss = sign.Gloss
                 Dim glosses = sign.Glosses

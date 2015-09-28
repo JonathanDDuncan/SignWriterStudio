@@ -11,7 +11,11 @@ Public Class ExportAnkiFrm
     End Sub
 
     Private Sub ExportBtn_Click(sender As Object, e As EventArgs) Handles ExportBtn.Click
-        ExportAnki.ExportExternalPng(TextFilenameTb.Text, PNGFolderTb.Text, MyDictionary)
+
+        Dim tagFilterValues = TagFilter1.GetTagFilterValues()
+        Dim dt = MyDictionary.GetDictionaryEntriesPaging("%", tagFilterValues, Integer.MaxValue, 0)
+
+        ExportAnki.ExportExternalPng(TextFilenameTb.Text, PNGFolderTb.Text, MyDictionary, dt)
         MessageBox.Show("Export finished!")
     End Sub
 
