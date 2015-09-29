@@ -2092,15 +2092,15 @@ Public Class SWDictForm
 
    
     Private Sub TagFilter1_ValueChanged(sender As Object, args As EventArgs) Handles TagFilter1.ValueChanged
-        Dim newTagFilterValues = GetTagFilterValues(TagFilter1)
-        Dim reFilter = ShouldRefilter(newTagFilterValues, currentTagFilterValues)
+        If DictionaryLoaded Then
+            Dim newTagFilterValues = GetTagFilterValues(TagFilter1)
+            Dim reFilter = ShouldRefilter(newTagFilterValues, currentTagFilterValues)
 
-        currentTagFilterValues = newTagFilterValues
-        If (reFilter) Then
-            LoadPage()
+            currentTagFilterValues = newTagFilterValues
+            If (reFilter) Then
+                LoadPage()
+            End If
         End If
-
-
     End Sub
 
     Private Shared Function ShouldRefilter(ByVal newTagFilterValues As TagFilterValues, ByVal previousTagFilterValues As TagFilterValues) As Boolean

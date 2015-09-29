@@ -15,11 +15,58 @@
             </summary>
             <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
         </member>
+        <member name="E:BufferedPainting.BufferedPainter`1.PaintVisualState">
+            <summary>
+            Fired when the control must be painted in a particular state.
+            </summary>
+        </member>
         <member name="M:BufferedPainting.BufferedPainter`1.OnPaintVisualState(BufferedPainting.BufferedPaintEventArgs{`0})">
             <summary>
             Raises the PaintVisualState event.
             </summary>
             <param name="e">BufferedPaintEventArgs instance.</param>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.BufferedPaintSupported">
+            <summary>
+            Gets whether buffered painting is supported for the current OS/configuration.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Control">
+            <summary>
+            Gets the control this instance is attached to.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.DefaultDuration">
+            <summary>
+            Gets or sets the default animation duration (in milliseconds) for state transitions. The default is zero (not animated).
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Enabled">
+            <summary>
+            Gets or sets whether animation is enabled.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.DefaultState">
+            <summary>
+            Gets or sets the default visual state. The default value is 'default(TState)'.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Transitions">
+            <summary>
+            Gets the collection of state transitions and their animation durations. 
+            Only one item for each unique state transition is permitted.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.Triggers">
+            <summary>
+            Gets the collection of state change triggers. 
+            Only one item for each unique combination of type and visual state is permitted.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPainter`1.State">
+            <summary>
+            Gets or sets the current visual state.
+            </summary>
         </member>
         <member name="M:BufferedPainting.BufferedPainter`1.#ctor(System.Windows.Forms.Control)">
             <summary>
@@ -69,59 +116,27 @@
             Deactivates buffered painting.
             </summary>
         </member>
-        <member name="E:BufferedPainting.BufferedPainter`1.PaintVisualState">
-            <summary>
-            Fired when the control must be painted in a particular state.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.BufferedPaintSupported">
-            <summary>
-            Gets whether buffered painting is supported for the current OS/configuration.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.Control">
-            <summary>
-            Gets the control this instance is attached to.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.DefaultDuration">
-            <summary>
-            Gets or sets the default animation duration (in milliseconds) for state transitions. The default is zero (not animated).
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.Enabled">
-            <summary>
-            Gets or sets whether animation is enabled.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.DefaultState">
-            <summary>
-            Gets or sets the default visual state. The default value is 'default(TState)'.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.Transitions">
-            <summary>
-            Gets the collection of state transitions and their animation durations. 
-            Only one item for each unique state transition is permitted.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.Triggers">
-            <summary>
-            Gets the collection of state change triggers. 
-            Only one item for each unique combination of type and visual state is permitted.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPainter`1.State">
-            <summary>
-            Gets or sets the current visual state.
-            </summary>
-        </member>
         <member name="T:BufferedPainting.BufferedPaintTransition`1">
             <summary>
             Represents a transition between two visual states. Describes the duration of the animation. 
             Two transitions are considered equal if they represent the same change in visual state.
             </summary>
             <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintTransition`1.FromState">
+            <summary>
+            Gets the previous visual state.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintTransition`1.ToState">
+            <summary>
+            Gets the new visual state.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.BufferedPaintTransition`1.Duration">
+            <summary>
+            Gets or sets the duration (in milliseconds) of the animation.
+            </summary>
         </member>
         <member name="M:BufferedPainting.BufferedPaintTransition`1.#ctor(`0,`0,System.Int32)">
             <summary>
@@ -144,27 +159,32 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:BufferedPainting.BufferedPaintTransition`1.FromState">
-            <summary>
-            Gets the previous visual state.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPaintTransition`1.ToState">
-            <summary>
-            Gets the new visual state.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.BufferedPaintTransition`1.Duration">
-            <summary>
-            Gets or sets the duration (in milliseconds) of the animation.
-            </summary>
-        </member>
         <member name="T:BufferedPainting.VisualStateTrigger`1">
             <summary>
             Represents a trigger for a particular visual state. 
             Two triggers are considered equal if they are of the same type and visual state.
             </summary>
             <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.Type">
+            <summary>
+            Gets the type of trigger.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.State">
+            <summary>
+            Gets the visual state applied when the trigger occurs.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.Bounds">
+            <summary>
+            Gets or sets the bounds within which the trigger applies.
+            </summary>
+        </member>
+        <member name="P:BufferedPainting.VisualStateTrigger`1.Anchor">
+            <summary>
+            Gets or sets how the bounds are anchored to the edge of the control.
+            </summary>
         </member>
         <member name="M:BufferedPainting.VisualStateTrigger`1.#ctor(BufferedPainting.VisualStateTriggerTypes,`0,System.Drawing.Rectangle,System.Windows.Forms.AnchorStyles)">
             <summary>
@@ -186,26 +206,6 @@
             Serves as a hash function for a particular type.
             </summary>
             <returns></returns>
-        </member>
-        <member name="P:BufferedPainting.VisualStateTrigger`1.Type">
-            <summary>
-            Gets the type of trigger.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.VisualStateTrigger`1.State">
-            <summary>
-            Gets the visual state applied when the trigger occurs.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.VisualStateTrigger`1.Bounds">
-            <summary>
-            Gets or sets the bounds within which the trigger applies.
-            </summary>
-        </member>
-        <member name="P:BufferedPainting.VisualStateTrigger`1.Anchor">
-            <summary>
-            Gets or sets how the bounds are anchored to the edge of the control.
-            </summary>
         </member>
         <member name="T:BufferedPainting.VisualStateTriggerTypes">
             <summary>
@@ -233,13 +233,6 @@
             </summary>
             <typeparam name="TState">Any type representing the visual state of the control.</typeparam>
         </member>
-        <member name="M:BufferedPainting.BufferedPaintEventArgs`1.#ctor(`0,System.Drawing.Graphics)">
-            <summary>
-            Initialises a new instance of the BufferedPaintEventArgs class.
-            </summary>
-            <param name="state">Visual state to paint.</param>
-            <param name="graphics">Graphics object on which to paint.</param>
-        </member>
         <member name="P:BufferedPainting.BufferedPaintEventArgs`1.State">
             <summary>
             Gets the visual state to paint.
@@ -249,6 +242,13 @@
             <summary>
             Gets the Graphics object on which to paint.
             </summary>
+        </member>
+        <member name="M:BufferedPainting.BufferedPaintEventArgs`1.#ctor(`0,System.Drawing.Graphics)">
+            <summary>
+            Initialises a new instance of the BufferedPaintEventArgs class.
+            </summary>
+            <param name="state">Visual state to paint.</param>
+            <param name="graphics">Graphics object on which to paint.</param>
         </member>
         <member name="T:DropDownControls.IEnumerableToDataTable.ConvertDataTable">
             <summary>
@@ -283,6 +283,26 @@
             <summary>
             Represents a Windows combo box control that, when bound to a data source, is capable of 
             displaying items in groups/categories.
+            </summary>
+        </member>
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DataView">
+            <summary>
+            Filterable dataview for combobox items
+            </summary>
+        </member>
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DataSource">
+            <summary>
+            Gets or sets the data source for this GroupedComboBox.
+            </summary>
+        </member>
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DrawMode">
+            <summary>
+            Gets a value indicating whether the drawing of elements in the list will be handled by user code. 
+            </summary>
+        </member>
+        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.GroupMember">
+            <summary>
+            Gets or sets the property to use when grouping items in the list.
             </summary>
         </member>
         <member name="M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.#ctor">
@@ -430,25 +450,5 @@
             <param name="e">An System.EventArgs that contains the event data.</param>
         </member>
         <!-- Badly formed XML comment ignored for member "M:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.FilterableGroupableDataSource(System.Collections.Generic.IEnumerable{DropDownControls.FilteredGroupedComboBox.GroupedColoredComboBoxItem})" -->
-        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DataView">
-            <summary>
-            Filterable dataview for combobox items
-            </summary>
-        </member>
-        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DataSource">
-            <summary>
-            Gets or sets the data source for this GroupedComboBox.
-            </summary>
-        </member>
-        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.DrawMode">
-            <summary>
-            Gets a value indicating whether the drawing of elements in the list will be handled by user code. 
-            </summary>
-        </member>
-        <member name="P:DropDownControls.FilteredGroupedComboBox.FilteredGroupedComboBox.GroupMember">
-            <summary>
-            Gets or sets the property to use when grouping items in the list.
-            </summary>
-        </member>
     </members>
 </doc>
