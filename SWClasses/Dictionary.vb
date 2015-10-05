@@ -3,6 +3,7 @@ Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Windows.Forms
 Imports System.Dynamic
+Imports NUnit.Framework
 Imports SignWriterStudio.Database.Dictionary
 Imports SignWriterStudio.General.All
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSet
@@ -846,6 +847,8 @@ Public NotInheritable Class SWDict
         'Get Current idSWSign
         'Dim idSWSign As Integer '= GetidSWSign(idDictionary)
 
+        If sign.SortString Is Nothing Then sign.SortString = "" 'Cannot save null value to SortString
+
         UpdateSortString(idDictionary, sign.SortString, conn, trans)
 
         'Save Frames
@@ -1167,18 +1170,26 @@ Public NotInheritable Class SWDict
     End Sub
 
     Private Function GetDictionaryEntriesCount(ByVal searchWord As String, ByVal tagFilterValues As TagFilterValues) As Integer
+        Dim filter = (tagFilterValues IsNot Nothing) AndAlso tagFilterValues.Filter
+        Dim allExcept = (tagFilterValues IsNot Nothing) AndAlso tagFilterValues.AllExcept
+        Dim tags = If(tagFilterValues Is Nothing, New List(Of String), tagFilterValues.Tags)
+
         If BilingualMode Then
-            Return DbTags.SignsbyGlosses.SignsbyGlossesBilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, tagFilterValues.Filter, tagFilterValues.AllExcept, tagFilterValues.Tags)
+            Return DbTags.SignsbyGlosses.SignsbyGlossesBilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, filter, allExcept, tags)
         Else
-            Return DbTags.SignsbyGlosses.SignsByGlossesUnilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, tagFilterValues.Filter, tagFilterValues.AllExcept, tagFilterValues.Tags)
+            Return DbTags.SignsbyGlosses.SignsByGlossesUnilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, filter, allExcept, tags)
         End If
     End Function
 
     Public Function GetDictionaryEntriesPaging(ByVal searchWord As String, ByVal tagFilterValues As TagFilterValues, ByVal pageSize As Integer, ByVal skip As Integer) As DataTable
+        Dim filter = (tagFilterValues IsNot Nothing) AndAlso tagFilterValues.Filter
+        Dim allExcept = (tagFilterValues IsNot Nothing) AndAlso tagFilterValues.AllExcept
+        Dim tags = If(tagFilterValues Is Nothing, New List(Of String), tagFilterValues.Tags)
+
         If BilingualMode Then
-            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip, tagFilterValues.Filter, tagFilterValues.AllExcept, tagFilterValues.Tags))
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip, filter, allExcept, tags))
         Else
-            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsByGlossesUnilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, pageSize, skip, tagFilterValues.Filter,tagFilterValues.AllExcept, tagFilterValues.Tags ))
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsByGlossesUnilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, pageSize, skip, filter, allExcept, tags))
         End If
     End Function
 
