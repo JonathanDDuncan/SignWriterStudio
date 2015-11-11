@@ -6,8 +6,8 @@ Namespace SignPuddleAPITests
   
     <TestClass()>
     Public Class SignPuddleAPITest
-        Private ReadOnly _username = "TestSignWriterStudio"
-        Private ReadOnly _password = "123456"
+        Private ReadOnly _username = "Jonathan"
+        Private ReadOnly _password = "54321"
 
         <TestMethod()> Public Sub AddEntryTest()
 
@@ -143,6 +143,35 @@ Namespace SignPuddleAPITests
 
             Assert.IsTrue(isLoggedin)
             Assert.IsTrue(webPage.Contains("<input type=hidden name=""sid"" value=""" & sid & """>") AndAlso webPage.Contains("Terms and Titles"))
+
+        End Sub
+
+        <TestMethod()> Public Sub GetExportTest()
+
+            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim isLoggedin = api.IsLoggedIn
+            Dim ui = "1"
+            Dim sgn = "16"
+            Dim sid = "511"
+
+            Dim webPage = api.GetExport(ui, sgn, sid)
+
+
+            Assert.IsTrue(isLoggedin)
+            Assert.IsTrue(webPage.Contains("<?xml version=""1.0"""))
+
+        End Sub
+
+        <TestMethod()> Public Sub GetPuddlesTest()
+
+            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim isLoggedin = api.IsLoggedIn
+
+            Dim webPage = api.GetPuddles()
+
+
+            Assert.IsTrue(isLoggedin)
+            Assert.IsTrue(webPage.Contains("SignPuddle Home Directory"))
 
         End Sub
         '<form method="POST" action="/signpuddle2.0/canvas.php"><input type="hidden" name="ui" value="1"><input type="hidden" name="sgn" value="16"><input type="hidden" name="sid" value="541"><input type="hidden" name="name" value="541"><input type="hidden" name="action" value="Delete"><button type="submit"><img src="data/ui/1/45.png" border="0" title="Delete Entry"></button></form>

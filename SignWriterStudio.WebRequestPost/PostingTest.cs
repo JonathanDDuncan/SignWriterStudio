@@ -12,7 +12,8 @@ namespace SignWriterStudio.WebSessions
         [TestMethod]
         public void LoginandTest()
         {
-           
+            var ui = "1";
+            var sgn = "16";
             var loginuri = "http://www.signbank.org/signpuddle2.0/login.php";
             var username = "TestSignWriterStudio";
             var password = "123456";
@@ -33,7 +34,8 @@ namespace SignWriterStudio.WebSessions
         [TestMethod]
         public void SaveToPuddleTest()
         {
-         
+            var ui = "1";
+            var sgn = "16";
             var loginuri = "http://www.signbank.org/signpuddle2.0/login.php";
             var username = "TestSignWriterStudio";
             var password = "123456";
@@ -44,7 +46,7 @@ namespace SignWriterStudio.WebSessions
 
             var uri = "http://www.signbank.org/signpuddle2.0/canvas.php";
 
-           
+
             var paramList = new List<Tuple<string, string>>
             {
                 Tuple.Create("ui", "1"),
@@ -69,6 +71,6 @@ namespace SignWriterStudio.WebSessions
             Assert.IsTrue(stillLoggedIn);
 
         }
-       
+
     }
 }

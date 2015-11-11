@@ -75,7 +75,7 @@ namespace SignWriterStudio.WebSessions
 
         public static bool IsLoggedIn(string webpageStr)
         {
-            var loggedin = !webpageStr.Contains("Invalid password") && webpageStr.Contains("logout.php");
+            var loggedin = !(webpageStr.Contains("Invalid password") ||webpageStr.Contains("Invalid user name")) && webpageStr.Contains("logout.php");
             return loggedin;
         }
 

@@ -94,6 +94,11 @@ Partial Class SWDictForm
         Me.DeleteEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DuplicateEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SignPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SignInToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SignOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SendToPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteFromPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.DictionaryDataGridView = New System.Windows.Forms.DataGridView()
@@ -328,6 +333,7 @@ Partial Class SWDictForm
         '
         'TagFilter1
         '
+        Me.TagFilter1.AssumeFiltering = False
         Me.TagFilter1.DataSource = Nothing
         Me.TagFilter1.Location = New System.Drawing.Point(1120, 3)
         Me.TagFilter1.Name = "TagFilter1"
@@ -441,7 +447,7 @@ Partial Class SWDictForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 3)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(126, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(218, 24)
         Me.MenuStrip1.TabIndex = 12
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -515,7 +521,7 @@ Partial Class SWDictForm
         '
         'TSMIEdit
         '
-        Me.TSMIEdit.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem1, Me.PasteToolStripMenuItem1, Me.DeleteEntryToolStripMenuItem, Me.AddNewEntryToolStripMenuItem, Me.DuplicateEntryToolStripMenuItem})
+        Me.TSMIEdit.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem1, Me.PasteToolStripMenuItem1, Me.DeleteEntryToolStripMenuItem, Me.AddNewEntryToolStripMenuItem, Me.DuplicateEntryToolStripMenuItem, Me.SignPuddleToolStripMenuItem})
         Me.TSMIEdit.Name = "TSMIEdit"
         Me.TSMIEdit.Size = New System.Drawing.Size(39, 20)
         Me.TSMIEdit.Text = "Edit"
@@ -628,6 +634,37 @@ Partial Class SWDictForm
         Me.DuplicateEntryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
         Me.DuplicateEntryToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
         Me.DuplicateEntryToolStripMenuItem.Text = "Duplicate Entry"
+        '
+        'SignPuddleToolStripMenuItem
+        '
+        Me.SignPuddleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SignInToolStripMenuItem, Me.SignOutToolStripMenuItem, Me.SendToPuddleToolStripMenuItem, Me.DeleteFromPuddleToolStripMenuItem})
+        Me.SignPuddleToolStripMenuItem.Name = "SignPuddleToolStripMenuItem"
+        Me.SignPuddleToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
+        Me.SignPuddleToolStripMenuItem.Text = "SignPuddle"
+        '
+        'SignInToolStripMenuItem
+        '
+        Me.SignInToolStripMenuItem.Name = "SignInToolStripMenuItem"
+        Me.SignInToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SignInToolStripMenuItem.Text = "Sign in"
+        '
+        'SignOutToolStripMenuItem
+        '
+        Me.SignOutToolStripMenuItem.Name = "SignOutToolStripMenuItem"
+        Me.SignOutToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SignOutToolStripMenuItem.Text = "Sign out"
+        '
+        'SendToPuddleToolStripMenuItem
+        '
+        Me.SendToPuddleToolStripMenuItem.Name = "SendToPuddleToolStripMenuItem"
+        Me.SendToPuddleToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SendToPuddleToolStripMenuItem.Text = "Send to Puddle"
+        '
+        'DeleteFromPuddleToolStripMenuItem
+        '
+        Me.DeleteFromPuddleToolStripMenuItem.Name = "DeleteFromPuddleToolStripMenuItem"
+        Me.DeleteFromPuddleToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.DeleteFromPuddleToolStripMenuItem.Text = "Delete from Puddle"
         '
         'HelpToolStripMenuItem
         '
@@ -1027,4 +1064,9 @@ Partial Class SWDictForm
     Friend WithEvents Pager1 As Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager
     Friend WithEvents TagFilter1 As Global.SignWriterStudio.Dictionary.TagFilter
     Friend WithEvents ViewReportPDFWordExcelToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SignPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SignInToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SignOutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SendToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DeleteFromPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

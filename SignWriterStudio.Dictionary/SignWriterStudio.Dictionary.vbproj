@@ -65,6 +65,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Referenced\DropDownControls.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -166,6 +169,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Normalization.vb" />
+    <Compile Include="Puddle.vb" />
     <Compile Include="ReportForm.Designer.vb">
       <DependentUpon>ReportForm.vb</DependentUpon>
     </Compile>
@@ -176,6 +180,12 @@
       <DependentUpon>ReportViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignPuddleSignIn.Designer.vb">
+      <DependentUpon>SignPuddleSignIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SignPuddleSignIn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SignPuddleAPITests\SignPuddleAPITest.vb" />
@@ -243,6 +253,9 @@
     <EmbeddedResource Include="Reports\Report2.rdlc" />
     <EmbeddedResource Include="Reports\ReportViewer.resx">
       <DependentUpon>ReportViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignPuddleSignIn.resx">
+      <DependentUpon>SignPuddleSignIn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SWDictionary.resx">
       <DependentUpon>SWDictionary.vb</DependentUpon>

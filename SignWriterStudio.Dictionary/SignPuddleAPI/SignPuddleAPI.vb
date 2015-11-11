@@ -1,27 +1,36 @@
-﻿
-Imports SignWriterStudio.WebSessions
+﻿Imports SignWriterStudio.WebSessions
 
 Namespace SignPuddleApi
 
     Public Class SignPuddleApi
-        Private ReadOnly _entrypointUri As String
+        Private ReadOnly _baseentrypointUri As String
+        Private ReadOnly _canvasentrypointUri As String
         Private ReadOnly _post As WebSession
         Private ReadOnly _loginUri As String
+        Private ReadOnly _exportUri As String
 
         Property IsLoggedIn() As Boolean
 
-        Public Sub New(ByVal username As String, ByVal password As String, Optional ByVal entrypointUri As String = Nothing, Optional ByVal loginUri As String = Nothing)
-            If (String.IsNullOrEmpty(entrypointUri)) Then
-                _entrypointUri = "http://www.signbank.org/signpuddle2.0/canvas.php"
+        Public Sub New(ByVal username As String, ByVal password As String, Optional ByVal canvasentrypointUri As String = Nothing, Optional ByVal loginUri As String = Nothing, Optional ByVal exportentrypointUri As String = Nothing)
+            _baseentrypointUri = "http://www.signbank.org/signpuddle2.0/"
+
+
+            If (String.IsNullOrEmpty(canvasentrypointUri)) Then
+                _canvasentrypointUri = _baseentrypointUri + "canvas.php"
             Else
-                _entrypointUri = entrypointUri
+                _canvasentrypointUri = canvasentrypointUri
             End If
 
-
-            If (String.IsNullOrEmpty(entrypointUri)) Then
-                _loginUri = "http://www.signbank.org/signpuddle2.0/login.php"
+            If (String.IsNullOrEmpty(loginUri)) Then
+                _loginUri = _baseentrypointUri + "login.php"
             Else
                 _loginUri = loginUri
+            End If
+
+            If (String.IsNullOrEmpty(exportentrypointUri)) Then
+                _exportUri = _baseentrypointUri + "export.php"
+            Else
+                _exportUri = exportentrypointUri
             End If
 
             _post = New WebSession()
@@ -83,7 +92,7 @@ Namespace SignPuddleApi
 
             'If (IsLoggedIn) Then
             If True Then
-                Dim webpage = _post.Post(_entrypointUri, paramList)
+                Dim webpage = _post.Post(_canvasentrypointUri, paramList)
                 Return webpage
             Else
                 Throw New ArgumentException("You must be logged in before doing operations.")
@@ -106,5 +115,65 @@ Namespace SignPuddleApi
             Dim webPage = CallApi(ui, sgn, sid, action, sid, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
             Return webPage
         End Function
+        Public Function GetExport(ByVal ui As String, ByVal sgn As String, ByVal sid As String) As String
+            Const action As String = "View"
+            Dim webPage = CallExportApi(ui, sgn, sid, action, sid, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
+            Return webPage
+        End Function
+
+        Private Function CallExportApi(ByVal ui As String, ByVal sgn As String, ByVal s As String, ByVal action As String, ByVal sid As String, ByVal o1 As Object, ByVal o2 As Object, ByVal o3 As Object, ByVal o4 As Object, ByVal o5 As Object, ByVal o6 As Object, ByVal o7 As Object, ByVal o8 As Object, ByVal o9 As Object, ByVal o10 As Object, ByVal o As Object) As String
+            Dim paramList = New List(Of Tuple(Of String, String))
+
+            AddParam(paramList, "ui", ui)
+            AddParam(paramList, "sgn", sgn)
+            AddParam(paramList, "action", "Start")
+            Dim webpage1 = _post.Post(_exportUri, paramList)
+
+            AddParam(paramList, "ui", ui)
+            AddParam(paramList, "sgn", sgn)
+            AddParam(paramList, "export_list", sid)
+            AddParam(paramList, "ex_source", "Selected")
+            AddParam(paramList, "action", action)
+            'AddParam(paramList, "name", name)
+
+            'If trm IsNot Nothing Then
+            '    For Each term As String In trm
+            '        AddParam(paramList, "trm[]", term)
+            '    Next
+            'End If
+
+            'AddParam(paramList, "txt", txt)
+            'AddParam(paramList, "sgntxt", sgntxt)
+            'AddParam(paramList, "video", video)
+            'AddParam(paramList, "src", src)
+            'AddParam(paramList, "top", top)
+            'AddParam(paramList, "prev", prev)
+            'AddParam(paramList, "nextStr", nextStr)
+            'AddParam(paramList, "ext", ext)
+            'AddParam(paramList, "list", List)
+            'AddParam(paramList, "imageBaseName", imageBaseName)
+
+
+            'If (IsLoggedIn) Then
+            If True Then
+                Dim webpage = _post.Post(_exportUri, paramList)
+                Return webpage
+            Else
+                Throw New ArgumentException("You must be logged in before doing operations.")
+            End If
+        End Function
+
+        Public Function GetPuddles() As String
+            Dim paramList = New List(Of Tuple(Of String, String))
+
+            'If (IsLoggedIn) Then
+            If True Then
+                Dim webpage = _post.Post("http://www.signbank.org/signpuddle2.0/index.php?ui=1", paramList)
+                Return webpage
+            Else
+                Throw New ArgumentException("You must be logged in before doing operations.")
+            End If
+        End Function
+
     End Class
 End Namespace

@@ -3,12 +3,9 @@ Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Data.OleDb
-Imports System.Security.Cryptography
 Imports SignWriterStudio.DbTags
 Imports DropDownControls.FilteredGroupedComboBox
 Imports System.Dynamic
-Imports DropDownControls.IEnumerableToDataTable
-Imports NUnit.Framework
 Imports Microsoft.VisualBasic.FileIO
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Settings
@@ -22,7 +19,6 @@ Imports System.Xml
 Imports System.Text
 Imports System.Data.SqlClient
 Imports System.Linq
-Imports Microsoft.Reporting.WinForms
 
 Public Class SWDictForm
     Dim WithEvents SPMLImportbw As BackgroundWorker ' With {.WorkerReportsProgress = True}
@@ -79,7 +75,7 @@ Public Class SWDictForm
 
     Private Sub LoadDictionary(Optional ask As Boolean = True)
         isLoading = True
-
+        SetPuddleMenu(False)
         SWSignSource.Visible = False
         SignSource.Visible = False
         PhotoSource.Visible = False
@@ -1124,6 +1120,10 @@ Public Class SWDictForm
 
     Private _importedSigns As Tuple(Of Integer, Integer, Integer)
     Private currentTagFilterValues As TagFilterValues
+    Private _puddleLoggedIn As Boolean
+    Private _puddleSgn As String
+    Private _puddleName As String
+    Private _puddleApi As SignPuddleApi.SignPuddleApi
 
     Private Sub ImportFileDialog_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) _
         Handles ImportFileDialog.FileOk
@@ -2149,4 +2149,31 @@ Public Class SWDictForm
         Dim taVer As New DictionaryDataSetTableAdapters.VersionTableAdapter
         Return taVer.Connection.ConnectionString
     End Function
+
+    Private Sub SignInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SignInToolStripMenuItem.Click
+        Dim signPuddleSignIn = New SignPuddleSignIn()
+        signPuddleSignIn.ShowDialog()
+        If (signPuddleSignIn.IsLoggedIn) Then
+            _puddleLoggedIn = True
+            _puddleSgn = signPuddleSignIn.Sgn
+            _puddleName = signPuddleSignIn.Name
+            _puddleApi = signPuddleSignIn.SignPuddleApi 
+        End If
+        SetPuddleMenu(_puddleLoggedIn)
+    End Sub
+
+    Private Sub SetPuddleMenu(ByVal puddleLoggedIn As Boolean)
+        SignInToolStripMenuItem.Enabled = Not puddleLoggedIn
+        SignOutToolStripMenuItem.Enabled = puddleLoggedIn
+        SendToPuddleToolStripMenuItem.Enabled = puddleLoggedIn
+        DeleteFromPuddleToolStripMenuItem.Enabled = puddleLoggedIn
+    End Sub
+
+    Private Sub SignOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SignOutToolStripMenuItem.Click
+        _puddleLoggedIn = False
+        _puddleSgn = String.Empty
+        _puddleName = String.Empty
+        _puddleApi = Nothing
+        SetPuddleMenu(_puddleLoggedIn)
+    End Sub
 End Class
