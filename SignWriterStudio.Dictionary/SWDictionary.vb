@@ -453,15 +453,26 @@ Public Class SWDictForm
             ds.Tables.Add(dt)
 
             changedDs = ds.GetChanges
+
             If changedDs IsNot Nothing AndAlso changedDs.Tables.Count >= 1 Then
-                _myDictionary.UpdateDictionaryEntries(
-                    _myDictionary.ConvertUnilingualDTtoBilingualDt(changedDs.Tables(0)),
+                Dim uniligualChanges = _myDictionary.ConvertUnilingualDTtoBilingualDt(changedDs.Tables(0))
+              
+
+                _myDictionary.UpdateDictionaryEntries(uniligualChanges,
                     _myDictionary.FirstGlossLanguage, _myDictionary.SecondGlossLanguage, conn, trans)
-            End If
+
+             End If
 
         End If
         dt.AcceptChanges()
     End Sub
+
+
+
+
+    Private Function AskAddToPuddle() As Boolean
+        Return MessageBox.Show("Would you like to add the new entries to SignPuddle?", "Add entry to SignPuddle", MessageBoxButtons.YesNo) = DialogResult.Yes
+    End Function
 
     Sub UpdateDataset()
 
@@ -1926,9 +1937,9 @@ Public Class SWDictForm
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
         Using conn
             Try
+                AskDeleteFromPuddle(id,conn,trans)
                 _myDictionary.DeleteSign(id, conn, trans)
-                'MyDictionary.DictionaryBindingSource1.
-                'MyDictionary.DictionaryBindingSource1.Remove()
+
                 DictionaryDataGridView.Rows.Remove(row)
             Catch ex As SQLiteException
                 LogError(ex, "SQLite Exception " & ex.GetType().Name)
@@ -1940,6 +1951,24 @@ Public Class SWDictForm
 
             End Try
         End Using
+    End Sub
+
+    Private Sub AskDeleteFromPuddle(ByVal id As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction)
+        If _puddleLoggedIn Then
+            Dim sid As String
+            If id <> 0 Then
+                Dim currentSign = _myDictionary.GetSWSign(id, conn, trans)
+
+                sid = currentSign.SignPuddleId
+            End If
+
+            If Not String.IsNullOrEmpty(sid) Then
+                Dim btnResult = MessageBox.Show("Would you like to remove the entry from SignPuddle too?", "Delete from Puddle", MessageBoxButtons.YesNo)
+                If btnResult = DialogResult.Yes Then
+                    DeleteFromPuddle(id, "", conn, trans)
+                End If
+            End If
+        End If
     End Sub
 
     Private Sub BindingNavigatorDeleteItem_Click(sender As Object, e As EventArgs) _
@@ -2090,7 +2119,7 @@ Public Class SWDictForm
         btnShowSource.Text = If(SWSignSource.Visible, "Hide Sources", "Show Sources")
     End Sub
 
-   
+
     Private Sub TagFilter1_ValueChanged(sender As Object, args As EventArgs) Handles TagFilter1.ValueChanged
         If DictionaryLoaded Then
             Dim newTagFilterValues = GetTagFilterValues(TagFilter1)
@@ -2157,7 +2186,7 @@ Public Class SWDictForm
             _puddleLoggedIn = True
             _puddleSgn = signPuddleSignIn.Sgn
             _puddleName = signPuddleSignIn.Name
-            _puddleApi = signPuddleSignIn.SignPuddleApi 
+            _puddleApi = signPuddleSignIn.SignPuddleApi
         End If
         SetPuddleMenu(_puddleLoggedIn)
     End Sub
@@ -2176,4 +2205,98 @@ Public Class SWDictForm
         _puddleApi = Nothing
         SetPuddleMenu(_puddleLoggedIn)
     End Sub
+    
+    Private Sub SendToPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToPuddleToolStripMenuItem.Click
+        Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+        Dim gloss As String = DictionaryDataGridView.CurrentRow.Cells("gloss1").Value
+        Dim glosses As String = DictionaryDataGridView.CurrentRow.Cells("glosses1").Value
+        Dim sign As SwSign = Nothing
+        If idDictionary1 <> 0 Then
+            sign = _myDictionary.GetSWSign(idDictionary1)
+        End If
+        
+        SaveDataGrid()
+        SendToPuddle(sign, gloss,glosses)
+    End Sub
+
+    Private Sub SendToPuddle(ByVal swSign As SwSign, ByVal gloss As String, ByVal glosses As String)
+        Dim converter = New SpmlConverter()
+
+        Dim sgntxt = SpmlConverter.Fsw2Ksw(converter.GetFsw(swSign))
+        Dim txt = ConcatenatePuddleText(swSign.PuddleText)
+        Dim prev = swSign.PuddlePrev
+        Dim nextStr = swSign.PuddleNext
+        Dim src = swSign.SWritingSource
+        Dim video = swSign.PuddleVideoLink
+
+        Dim trm = GetSignTerms(gloss, glosses)
+        Dim webPageResult = _puddleApi.AddEntry("1", _puddleSgn, sgntxt, txt, "", prev, nextStr, src, video, trm)
+        Dim wasAdded = _puddleApi.WasAdded(webPageResult)
+
+        If Not wasAdded Then
+            MessageBox.Show("There was an error adding the sign " & gloss & " to the puddle")
+        End If
+    End Sub
+
+    Private Shared Function ConcatenatePuddleText(ByVal puddleText As List(Of String)) As String
+        Dim sb As New StringBuilder()
+
+        For Each pText As String In puddleText
+            sb.AppendLine(pText)
+        Next
+        Return sb.ToString()
+    End Function
+
+    Private Shared Function GetSignTerms(ByVal gloss As String, ByVal glosses As String) As List(Of String)
+        Dim terms = New List(Of String)
+        If gloss IsNot Nothing Then
+            terms.Add(gloss)
+            If glosses IsNot Nothing Then
+                terms.AddRange(glosses.Split(","))
+            End If
+        End If
+
+        Return terms
+    End Function
+
+    Private Sub DeleteFromPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteFromPuddleToolStripMenuItem.Click
+        Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+        Dim gloss As String = DictionaryDataGridView.CurrentRow.Cells("gloss1").Value
+        DeleteFromPuddle(idDictionary1,gloss)
+    End Sub
+
+    Private Sub DeleteFromPuddle(ByVal idDictionary1 As Integer, ByVal gloss As String, Optional ByVal conn As SQLiteConnection = Nothing, Optional ByVal trans As SQLiteTransaction = Nothing)
+        Dim sid As String
+        Dim currentSign As SwSign
+        If idDictionary1 <> 0 Then
+            If conn Is Nothing Then
+                currentSign = _myDictionary.GetSWSign(idDictionary1)
+            Else
+                currentSign = _myDictionary.GetSWSign(idDictionary1, conn, trans)
+            End If
+
+            If currentSign IsNot Nothing Then
+                sid = currentSign.SignPuddleId
+            End If
+        End If
+
+        If String.IsNullOrEmpty(sid) Then
+            MessageBox.Show("Entry for " & gloss & " does not have SignPuddle Id.")
+        Else
+            Dim webPageResult = _puddleApi.DeleteEntry("1", _puddleSgn, sid)
+
+            Dim wasDeleted = _puddleApi.WasDeleted(webPageResult)
+
+            If Not wasDeleted Then
+                MessageBox.Show("The sign " & gloss & " could not be deleted from the puddle.")
+            End If
+        End If
+    End Sub
+End Class
+
+Public Class AddedEntry
+
+    Public Property ID() As Long
+    Public Property Gloss() As String
+    Public Property Glosses() As String
 End Class

@@ -175,5 +175,22 @@ Namespace SignPuddleApi
             End If
         End Function
 
+        Public Function WasAdded(ByVal webPage As String) As Boolean
+            Dim added = True
+
+            added = added AndAlso webPage.Contains("SignText data:")
+            added = added AndAlso webPage.Contains("Modified:")
+            added = added AndAlso webPage.Contains("Puddle Page:")
+
+            Return added
+        End Function
+
+        Public Function WasDeleted(ByVal webPage As String) As Boolean
+            Dim deleted = True
+
+            deleted = deleted AndAlso webPage IsNot Nothing AndAlso webPage.Contains("Entry deleted")
+           
+            Return deleted
+        End Function
     End Class
 End Namespace

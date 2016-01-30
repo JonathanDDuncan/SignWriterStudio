@@ -73,7 +73,7 @@ Namespace SignPuddleAPITests
             Assert.IsTrue(webPage.Contains(txt))
             Assert.IsTrue(webPage.Contains(term1))
             Assert.IsTrue(webPage.Contains(term2))
-
+            Assert.IsTrue(api.WasAdded(webPage))
 
         End Sub
 

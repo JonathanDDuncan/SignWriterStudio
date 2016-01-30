@@ -35,7 +35,9 @@ Namespace SignWriterStudio.Dictionary
         Private Shared Function GetToRemove(ByVal deletedDs As DataSet, ByVal toRemove As List(Of List(Of String))) As List(Of List(Of String))
             If deletedDs IsNot Nothing AndAlso deletedDs.Tables(0) IsNot Nothing Then
                 For Each row As DataRow In deletedDs.Tables(0).Rows
-                    toRemove.Add(New List(Of String)() From {row.Item("IDDictionary").ToString(), row("Tags", DataRowVersion.Current).ToString()})
+                    If Not row.RowState = DataRowState.Deleted Then
+                        toRemove.Add(New List(Of String)() From {row.Item("IDDictionary").ToString(), row("Tags", DataRowVersion.Current).ToString()})
+                    End If
                 Next
             End If
             Return toRemove
