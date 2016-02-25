@@ -180,7 +180,7 @@ Namespace SignPuddleApi
 
             added = added AndAlso webPage.Contains("SignText data:")
             added = added AndAlso webPage.Contains("Modified:")
-            added = added AndAlso webPage.Contains("Puddle Page:")
+            added = added AndAlso webPage.Contains("Puddle Page")
 
             Return added
         End Function
@@ -191,6 +191,18 @@ Namespace SignPuddleApi
             deleted = deleted AndAlso webPage IsNot Nothing AndAlso webPage.Contains("Entry deleted")
            
             Return deleted
+        End Function
+
+        Public Function GetFirsSidInWebPage(ByVal webPageResult As String) As String
+
+            Dim puddlePageEndIndex = webPageResult.IndexOf("Puddle Page", StringComparison.Ordinal) + 11
+
+            Dim nextTagIndex = webPageResult.IndexOf("<", puddlePageEndIndex, StringComparison.Ordinal)
+
+            Dim sidStr = webPageResult.Substring(puddlePageEndIndex, nextTagIndex - (puddlePageEndIndex))
+            
+            Return Trim(sidStr)
+
         End Function
     End Class
 End Namespace

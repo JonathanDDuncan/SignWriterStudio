@@ -324,6 +324,10 @@
       <Project>{4E9D9258-A74E-496E-A6AF-7C65DF81EFD6}</Project>
       <Name>SPML</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SQLiteAdapters\SQLiteAdapters.vbproj">
+      <Project>{4209648f-47e6-432b-aa93-f7fd16b1fb0b}</Project>
+      <Name>SQLiteAdapters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SWClasses\SWClasses.vbproj">
       <Project>{d9040341-bdba-49a4-99bf-d91657183283}</Project>
       <Name>SWClasses</Name>

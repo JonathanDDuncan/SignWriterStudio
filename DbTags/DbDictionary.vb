@@ -1,5 +1,7 @@
 ﻿Imports System.Runtime.InteropServices
+Imports System.Dynamic
 Imports SignWriterStudio.SQLiteAdapters
+Imports System.Text
 
 Public Class DbDictionary
     Inherits BaseTableAdapter
@@ -24,7 +26,26 @@ Public Class DbDictionary
 
     End Function
 
+    Public Shared Function UpdateSignPuddleId(ByVal path As String, ByVal signWriterGuid As Guid?, ByVal signPuddleId As String) As IQueryResult
+        Const where As String = " SignWriterGuid "
+        Dim columns = New List(Of String)()
+        columns.Add("GUID")
+        columns.Add("IDSignPuddle")
 
+        Dim values = New List(Of List(Of String))() From {New List(Of String)() From {GuidtoBlob(signWriterGuid.GetValueOrDefault()), signPuddleId}}
+        
+        Dim dict = New DbDictionary()
+        Dim query = dict.CreateUpdateQuery(path, Nothing)
+        query.Columns = columns
+        query.Values = values
+        query.Where = where
+
+        Dim result = query.Execute()
+
+        Return result
+    End Function
+
+  
     Public Shared Function GetIdDoNotExport(path As String) As List(Of String)
         Const where As String = " isPrivate "
         Dim columns = New List(Of String)()
@@ -66,6 +87,8 @@ Public Class DbDictionary
             list1.Add(str)
         Next
         Return list1
- 
+
     End Function
+
+
 End Class

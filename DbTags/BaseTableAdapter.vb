@@ -1,5 +1,6 @@
 ﻿Imports System.Dynamic
 Imports SignWriterStudio.SQLiteAdapters
+Imports System.Text
 
 Public Class BaseTableAdapter
     Public Property PrimaryKey() As String
@@ -63,5 +64,21 @@ Public Class BaseTableAdapter
         End If
 
         Return item
+    End Function
+
+    Public Shared Function GuidtoBlob(ByVal signWriterGuid As Guid) As String
+        Return "'" & ByteArrayToHexString(signWriterGuid.ToByteArray())
+    End Function
+
+    Public Shared Function ByteArrayToHexString(bytes As Byte()) As String
+        Dim result As New StringBuilder(bytes.Length * 2)
+        Const hexAlphabet As String = "0123456789ABCDEF"
+
+        For Each B As Byte In bytes
+            result.Append(hexAlphabet(CInt(B >> 4)))
+            result.Append(hexAlphabet(CInt(B And &HF)))
+        Next
+
+        Return result.ToString()
     End Function
 End Class

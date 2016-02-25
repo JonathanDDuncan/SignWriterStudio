@@ -58,6 +58,7 @@ Public Class StringUtil
         If columnName IsNot Nothing AndAlso id IsNot Nothing Then
             Return SquareBracket(columnName) & " = " & SingleQuote(Convert.ToString(id))
         End If
+ 
         Return Nothing
     End Function
 
@@ -86,6 +87,12 @@ Public Class StringUtil
     End Function
 
     Public Shared Function SingleQuote(ByVal s As String) As String
-        Return "'" & s & "'"
+        If (s.StartsWith("'")) Then
+            'GUID Blob
+            Return "X" & "'" & s.Substring(1, (s.Length - 1)) & "'"
+
+        Else
+            Return "'" & s & "'"
+        End If
     End Function
 End Class
