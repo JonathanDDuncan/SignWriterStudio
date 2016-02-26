@@ -1,8 +1,10 @@
-
+Option Strict Off
 Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Data.OleDb
+Imports Microsoft.ReportingServices.Interfaces
+Imports Newtonsoft.Json
 Imports SignWriterStudio.DbTags
 Imports DropDownControls.FilteredGroupedComboBox
 Imports System.Dynamic
@@ -2195,6 +2197,7 @@ Public Class SWDictForm
         SignInToolStripMenuItem.Enabled = Not puddleLoggedIn
         SignOutToolStripMenuItem.Enabled = puddleLoggedIn
         SendToPuddleToolStripMenuItem.Enabled = puddleLoggedIn
+        SendSelectedEntriesToPuddleToolStripMenuItem.Enabled = puddleLoggedIn
         DeleteFromPuddleToolStripMenuItem.Enabled = puddleLoggedIn
     End Sub
 
@@ -2207,7 +2210,15 @@ Public Class SWDictForm
     End Sub
 
     Private Sub SendToPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToPuddleToolStripMenuItem.Click
+        SaveDataGrid()
+
         Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+        Dim allTags = _myDictionary.GetTags()
+        SendEntrytoPuddle(idDictionary1, allTags)
+    End Sub
+
+    Private Sub SendEntrytoPuddle(ByVal idDictionary1 As Integer, ByVal allTags As List(Of ExpandoObject))
+
         Dim gloss As String
         Dim glosses As String
         If Not IsDbNull(DictionaryDataGridView.CurrentRow.Cells("gloss1").Value) Then
@@ -2221,17 +2232,60 @@ Public Class SWDictForm
             sign = _myDictionary.GetSWSign(idDictionary1)
         End If
 
-        SaveDataGrid()
-        SendToPuddle(sign, gloss, glosses)
+        Dim tags1 = _myDictionary.GetTagEntries(New List(Of String)() From {idDictionary1.ToString})
+        Dim tagNames = GetTagNames(allTags, tags1)
+        SendToPuddle(sign, gloss, glosses, tagNames)
     End Sub
 
-    Private Sub SendToPuddle(ByVal swSign As SwSign, ByVal gloss As String, ByVal glosses As String)
+    Private Function GetTagNames(ByVal allTags As List(Of ExpandoObject), ByVal tags1 As List(Of ExpandoObject)) As List(Of String)
+        Dim tagNames = New List(Of String)
+        For Each Tag As Object In tags1
+            Dim idTag = Tag.idTag
+            Dim idTagParent = GetParentGuid(allTags, idTag)
+
+            Dim tagName = GetTagName(allTags, idTag)
+            Dim tagParentName = GetTagParentName(allTags, idTagParent)
+            tagNames.Add(tagParentName & ":" & tagName)
+        Next
+
+        If (tagNames.Any()) Then
+
+            Return tagNames
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Function GetTagParentName(ByVal allTags As List(Of ExpandoObject), ByVal idTag As Guid) As Object
+        Return GetTagName(allTags, idTag)
+    End Function
+
+    Private Function GetTagName(allTags As List(Of ExpandoObject), idTag As Guid) As String
+        For Each Tag As Object In allTags
+            If Tag.IdTag = idTag Then
+                Return Tag.Description
+            End If
+        Next
+        Return String.Empty
+    End Function
+    Private Function GetParentGuid(allTags As List(Of ExpandoObject), idTag As Guid) As Guid
+        For Each Tag As Object In allTags
+            If Tag.IdTag = idTag Then
+                Return Tag.Parent
+            End If
+        Next
+        Return System.Guid.Empty
+    End Function
+    Private Sub SendToPuddle(ByVal swSign As SwSign, ByVal gloss As String, ByVal glosses As String, ByVal tagNames As List(Of String))
         Dim converter = New SpmlConverter()
 
         Dim sgntxt = SpmlConverter.Fsw2Ksw(converter.GetFsw(swSign))
         Dim txt = ConcatenatePuddleText(swSign.PuddleText)
 
-        'Dim SignWriterJson = GetSignWriterJson(swSign)
+        Dim signWriterJson = GetSignWriterJson(swSign, tagNames)
+        If (Not String.IsNullOrEmpty(signWriterJson)) Then
+            txt &= signWriterJson
+        End If
 
         Dim prev = swSign.PuddlePrev
         Dim nextStr = swSign.PuddleNext
@@ -2246,7 +2300,7 @@ Public Class SWDictForm
         Else
             webPageResult = _puddleApi.AddEntry("1", _puddleSgn, sgntxt, txt, "", prev, nextStr, src, video, trm)
         End If
-        
+
         Dim sid = _puddleApi.GetFirsSidInWebPage(webPageResult)
         Dim wasAdded = _puddleApi.WasAdded(webPageResult)
 
@@ -2268,13 +2322,16 @@ Public Class SWDictForm
     End Sub
 
 
-    'Private Function GetSignWriterJson(ByVal swSign As SwSign) As String
-    '    Dim signWriterJson = New SignWriterStudio()
-
-    '    signWriterJson.SignWriterGuid = swSign.SignWriterGuid
-
-    '    Return Json
-    'End Function
+    Private Shared Function GetSignWriterJson(ByVal swSign As SwSign, ByVal tagNames As List(Of String)) As String
+        Dim signWriterJson = New SignWriterStudio.Dictionary.Json.SignWriterStudioJson()
+        signWriterJson.SignWriterStudio = New SignWriterStudio.Dictionary.Json.SignWriterStudio()
+        signWriterJson.SignWriterStudio.Guid = swSign.SignWriterGuid
+        signWriterJson.SignWriterStudio.Tags = tagNames
+ 
+        Dim json = Newtonsoft.Json.JsonConvert.SerializeObject(signWriterJson,
+            New JsonSerializerSettings With {.NullValueHandling = NullValueHandling.Ignore})
+        Return json
+    End Function
 
     Private Shared Function ConcatenatePuddleText(ByVal puddleText As List(Of String)) As String
         Dim sb As New StringBuilder()
@@ -2330,6 +2387,24 @@ Public Class SWDictForm
             End If
         End If
     End Sub
+
+    Private Sub SendSelectedEntriesToPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendSelectedEntriesToPuddleToolStripMenuItem.Click
+
+        Dim rowIds = New List(Of Tuple(Of Long, Object))()
+
+        For Each row In DictionaryDataGridView.SelectedRows
+            Dim id = CLng(row.Cells("IDDictionary").Value)
+            rowIds.Add(Tuple.Create(id, row))
+        Next
+        SaveDataGrid()
+        Dim allTags = _myDictionary.GetTags()
+        For Each tuple As Tuple(Of Long, Object) In rowIds
+            SendEntrytoPuddle(tuple.Item1, allTags)
+        Next
+    End Sub
+
+
+
 End Class
 
 Public Class AddedEntry

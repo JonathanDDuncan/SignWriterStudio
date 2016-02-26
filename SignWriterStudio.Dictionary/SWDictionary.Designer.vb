@@ -98,6 +98,7 @@ Partial Class SWDictForm
         Me.SignInToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SignOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendToPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SendSelectedEntriesToPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteFromPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -637,7 +638,7 @@ Partial Class SWDictForm
         '
         'SignPuddleToolStripMenuItem
         '
-        Me.SignPuddleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SignInToolStripMenuItem, Me.SignOutToolStripMenuItem, Me.SendToPuddleToolStripMenuItem, Me.DeleteFromPuddleToolStripMenuItem})
+        Me.SignPuddleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SignInToolStripMenuItem, Me.SignOutToolStripMenuItem, Me.SendToPuddleToolStripMenuItem, Me.SendSelectedEntriesToPuddleToolStripMenuItem, Me.DeleteFromPuddleToolStripMenuItem})
         Me.SignPuddleToolStripMenuItem.Name = "SignPuddleToolStripMenuItem"
         Me.SignPuddleToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
         Me.SignPuddleToolStripMenuItem.Text = "SignPuddle"
@@ -645,25 +646,31 @@ Partial Class SWDictForm
         'SignInToolStripMenuItem
         '
         Me.SignInToolStripMenuItem.Name = "SignInToolStripMenuItem"
-        Me.SignInToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SignInToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.SignInToolStripMenuItem.Text = "Sign in"
         '
         'SignOutToolStripMenuItem
         '
         Me.SignOutToolStripMenuItem.Name = "SignOutToolStripMenuItem"
-        Me.SignOutToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SignOutToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.SignOutToolStripMenuItem.Text = "Sign out"
         '
         'SendToPuddleToolStripMenuItem
         '
         Me.SendToPuddleToolStripMenuItem.Name = "SendToPuddleToolStripMenuItem"
-        Me.SendToPuddleToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SendToPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.SendToPuddleToolStripMenuItem.Text = "Send to Puddle"
+        '
+        'SendSelectedEntriesToPuddleToolStripMenuItem
+        '
+        Me.SendSelectedEntriesToPuddleToolStripMenuItem.Name = "SendSelectedEntriesToPuddleToolStripMenuItem"
+        Me.SendSelectedEntriesToPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.SendSelectedEntriesToPuddleToolStripMenuItem.Text = "Send Selected Entries to Puddle"
         '
         'DeleteFromPuddleToolStripMenuItem
         '
         Me.DeleteFromPuddleToolStripMenuItem.Name = "DeleteFromPuddleToolStripMenuItem"
-        Me.DeleteFromPuddleToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.DeleteFromPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.DeleteFromPuddleToolStripMenuItem.Text = "Delete from Puddle"
         '
         'HelpToolStripMenuItem
@@ -1069,4 +1076,5 @@ Partial Class SWDictForm
     Friend WithEvents SignOutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SendToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DeleteFromPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SendSelectedEntriesToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

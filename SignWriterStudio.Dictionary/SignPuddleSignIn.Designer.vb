@@ -60,6 +60,7 @@ Partial Class SignPuddleSignIn
         '
         Me.TBPassword.Location = New System.Drawing.Point(101, 50)
         Me.TBPassword.Name = "TBPassword"
+        Me.TBPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TBPassword.Size = New System.Drawing.Size(100, 20)
         Me.TBPassword.TabIndex = 3
         '
@@ -89,7 +90,7 @@ Partial Class SignPuddleSignIn
         Me.LblPuddle.TabIndex = 6
         Me.LblPuddle.Text = "Puddle"
         '
-        'SignPuddle_Sign_In
+        'SignPuddleSignIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font

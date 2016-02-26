@@ -178,7 +178,7 @@ Namespace SignPuddleApi
         Public Function WasAdded(ByVal webPage As String) As Boolean
             Dim added = True
 
-            added = added AndAlso webPage.Contains("SignText data:")
+            'added = added AndAlso webPage.Contains("SignText data:")
             added = added AndAlso webPage.Contains("Modified:")
             added = added AndAlso webPage.Contains("Puddle Page")
 
