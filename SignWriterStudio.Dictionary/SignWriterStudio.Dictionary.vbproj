@@ -71,6 +71,10 @@
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
@@ -190,6 +194,7 @@
     </Compile>
     <Compile Include="SignPuddleAPITests\SignPuddleAPITest.vb" />
     <Compile Include="SignPuddleAPI\SignPuddleAPI.vb" />
+    <Compile Include="SignWriterStudio.vb" />
     <Compile Include="SWDictionary.Designer.vb">
       <DependentUpon>SWDictionary.vb</DependentUpon>
     </Compile>
@@ -323,6 +328,10 @@
     <ProjectReference Include="..\SPML\SPML.vbproj">
       <Project>{4E9D9258-A74E-496E-A6AF-7C65DF81EFD6}</Project>
       <Name>SPML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLiteAdapters\SQLiteAdapters.vbproj">
+      <Project>{4209648f-47e6-432b-aa93-f7fd16b1fb0b}</Project>
+      <Name>SQLiteAdapters</Name>
     </ProjectReference>
     <ProjectReference Include="..\SWClasses\SWClasses.vbproj">
       <Project>{d9040341-bdba-49a4-99bf-d91657183283}</Project>

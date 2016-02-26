@@ -202,7 +202,7 @@ Public NotInheritable Class SWDict
         End Using
     End Sub
 
-    Public Sub SignstoDictionary(ByVal signs As ICollection(Of SwSign), ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
+    Public Sub SignstoDictionaryInsert(ByVal signs As ICollection(Of SwSign), ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
         Dim dictionaryTa As New DictionaryTableAdapter
 
         'Dim timestart = Now()
@@ -274,7 +274,7 @@ Public NotInheritable Class SWDict
 
     End Sub
 
-    Public Function GetSymbolSearchDt(ByVal connectionString As String, _
+   Public Function GetSymbolSearchDt(ByVal connectionString As String, _
      ByVal queryStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
 
         Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
