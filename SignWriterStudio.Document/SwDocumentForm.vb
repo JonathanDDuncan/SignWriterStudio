@@ -490,6 +490,19 @@ Public NotInheritable Class SwDocumentForm
         End If
     End Sub
 
+    Private Sub Gloss2SignRealTime()
+        Dim glossToSignRealTime As New GlossToSignRealTime
+        Dim dialogRes As DialogResult = glossToSignRealTime.ShowDialog()
+
+        If (dialogRes = DialogResult.OK) Then
+            SignstoDocument(glossToSignRealTime.Signs)
+            glossToSignRealTime.Dispose()
+            DocumentChanged = True
+        ElseIf (dialogRes = DialogResult.Cancel) Then
+            glossToSignRealTime.Dispose()
+        End If
+    End Sub
+
     Private Sub SaveDocumentFileDialog_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) _
         Handles SaveDocumentFileDialog.FileOk
         SaveDocument(SaveDocumentFileDialog.FileName)
@@ -1188,5 +1201,9 @@ Public NotInheritable Class SwDocumentForm
         Dim int32Rect = New Rectangle(xMin, yMin, xMax - xMin, yMax - yMin)
         Return int32Rect
     End Function
+
+    Private Sub GlossToSignRealTimeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GlossToSignRealTimeToolStripMenuItem.Click
+        Gloss2SignRealTime()
+    End Sub
 End Class
 
