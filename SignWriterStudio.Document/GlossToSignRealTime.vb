@@ -1,8 +1,11 @@
+Imports SignWriterStudio.Dictionary
 Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.Settings
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSet
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Settings.SettingsPublic
+Imports SignWriterStudio.SWEditor
+
 Public Class GlossToSignRealTime
     Dim Dictionary As New SWDict
     Friend Signs As SwCollection(Of SwSign)
@@ -80,18 +83,18 @@ Public Class GlossToSignRealTime
         Dim IDs = New List(Of Tuple(Of Integer, String))
 
         For Each control As Control In Me.FlowLayoutPanel1.Controls
-            Dim glossToSignControl As GlossToSignControl = CType(control, GlossToSignControl)
-            dt = glossToSignControl.GlossToSignDataGridView.DataSource
+            Dim glossToSignControl As GlossToSignRealTimeControl = CType(control, GlossToSignRealTimeControl)
+            dt = glossToSignControl.FoundWordDt
             rows = dt.Select("Selected=True")
             If rows.Length > 0 Then
                 idDictionary = rows(0).IDDictionary
                 If Not idDictionary = 0 Then
                     IDs.Add(Tuple.Create(idDictionary, ""))
                 Else
-                    IDs.Add(Tuple.Create(0, glossToSignControl.LBGloss.Text))
+                    IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text))
                 End If
             Else
-                IDs.Add(Tuple.Create(0, glossToSignControl.LBGloss.Text))
+                IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text))
             End If
         Next
         Signs = Dictionary.GetGlosstoSign(IDs)
@@ -126,6 +129,11 @@ Public Class GlossToSignRealTime
         ColorControl(glossToSignRealTimeControl, glossToSignRealTimeControl.ResultType)
         AddHandler glossToSignRealTimeControl.CurrentGlossControlChanged, AddressOf glossToSignRealTimeControl_CurrentGlossControlChanged
         AddHandler glossToSignRealTimeControl.SearchTextChanged, AddressOf GlossToSignRealTimeControl_SearchTextChanged
+        AddHandler glossToSignRealTimeControl.InsertBefore, AddressOf GlossToSignRealTimeControl_InsertBefore
+        AddHandler glossToSignRealTimeControl.InsertAfter, AddressOf GlossToSignRealTimeControl_InsertAfter
+        AddHandler glossToSignRealTimeControl.DeleteEntry, AddressOf GlossToSignRealTimeControl_DeleteEntry
+        AddHandler glossToSignRealTimeControl.AddFromDict, AddressOf GlossToSignRealTimeControl_AddFromDict
+
 
         glossToSignRealTimeControl.Value = GetId(glossToSignRealTimeControl.FoundWordDt)
         glossToSignRealTimeControl.Image = GetImage(glossToSignRealTimeControl.FoundWordDt)
@@ -300,7 +308,7 @@ Public Class GlossToSignRealTime
             GlossToSignDataGridView.Sort(GlossToSignDataGridView.Columns("gloss1"), System.ComponentModel.ListSortDirection.Ascending)
         End If
     End Sub
-    Private Sub GlossToSignDataGridView_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GlossToSignDataGridView.CellContentClick
+    Private Sub GlossToSignDataGridView_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
         If Not (e.RowIndex = -1) And Not (e.ColumnIndex = -1) Then
             If sender.CurrentCell.OwningColumn.DataPropertyName = "Selected" Then
                 For Each row As DataGridViewRow In GlossToSignDataGridView.Rows
@@ -321,13 +329,13 @@ Public Class GlossToSignRealTime
         FlowLayoutPanel1.SetFlowBreak(e.Control, True)
     End Sub
 
-    Private Sub GlossToSignDataGridView_Validated(sender As Object, e As EventArgs) Handles GlossToSignDataGridView.Validated
+    Private Sub GlossToSignDataGridView_Validated(sender As Object, e As EventArgs)
         _currentGlossControl.Value = GetId(CType(GlossToSignDataGridView.DataSource, DataTable))
         _currentGlossControl.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable))
     End Sub
 
     Private Function GetImage(dt As Object) As Image
-       Dim image As Image = Nothing
+        Dim image As Image = Nothing
         If dt IsNot Nothing Then
             Dim rows = dt.Select("Selected=True")
             If rows.Length > 0 Then
@@ -349,5 +357,76 @@ Public Class GlossToSignRealTime
             End If
         End If
         Return idDictionary
+    End Function
+
+    Private Sub GlossToSignRealTimeControl_InsertBefore(control As Document.GlossToSignRealTimeControl)
+        Dim index = FlowLayoutPanel1.Controls.IndexOf(control)
+        Dim insertIndex As Integer
+        insertIndex = index - 1
+        If insertIndex < 0 Then
+            insertIndex = 0
+        End If
+        InsertGlossControl("", insertIndex)
+    End Sub
+
+    Private Sub GlossToSignRealTimeControl_InsertAfter(control As Document.GlossToSignRealTimeControl)
+        Dim index = FlowLayoutPanel1.Controls.IndexOf(control)
+        InsertGlossControl("", index + 1)
+    End Sub
+
+    Private Sub GlossToSignRealTimeControl_DeleteEntry(control As Document.GlossToSignRealTimeControl)
+        FlowLayoutPanel1.Controls.Remove(control)
+    End Sub
+
+    Private Sub GlossToSignRealTimeControl_AddFromDict(control As Document.GlossToSignRealTimeControl)
+        Dim signDict As New SwLayoutControl
+
+        Dim result As Tuple(Of Integer, SwSign) = OpenDictionary(signDict.DocumentSign)
+        If result IsNot Nothing Then
+
+            Dim idDict As Integer = result.Item1
+            
+            'Dim dictionary1 As New SWDict()
+             
+            Dim selectedColumn As New DataColumn
+            selectedColumn.ColumnName = "Selected"
+            selectedColumn.DataType = Type.GetType("System.Boolean")
+
+            Dim dt = Dictionary.GetSignbyId(SettingsPublic.LastDictionaryString, idDict)
+            dt.Columns.Add(selectedColumn)
+            Dim row1 = dt.Rows(0)
+            row1.Item("Selected") = True
+            control.TextBox1.Text = row1.Item("gloss1")
+            control.FoundWordDt = dt
+
+            control.Value = GetId(control.FoundWordDt)
+            control.Image = GetImage(control.FoundWordDt)
+            control.ResultType = 0
+            ColorControl(control, control.ResultType)
+        End If
+    End Sub
+    Public Function OpenDictionary(documentSign As SwDocumentSign) As Tuple(Of Integer, SwSign)
+        Dim idDictionary As Integer
+        Dim swDictForm As SWDictForm
+
+        swDictForm = New SWDictForm(New Editor())
+
+        Dim f1 As New Form With {.Name = ToString()}
+        swDictForm.CallingForm = f1
+
+        Dim dialogRes As DialogResult = swDictForm.ShowDialog()
+        If (dialogRes = DialogResult.OK) Then
+            idDictionary = swDictForm.IDDictionaryResult
+            swDictForm.Dispose()
+            If Not idDictionary = 0 Then
+                Dim dictionary1 As New SWDict
+                'documentSign.IncorporateSWSign(dictionary1.GetSWSign(idDictionary))
+                Return Tuple.Create(idDictionary, dictionary1.GetSWSign(idDictionary))
+            End If
+        ElseIf (dialogRes = DialogResult.Cancel) Then
+            swDictForm.Dispose()
+            Return Nothing
+        End If
+        Return Nothing
     End Function
 End Class

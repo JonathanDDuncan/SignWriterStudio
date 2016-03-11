@@ -274,8 +274,8 @@ Public NotInheritable Class SWDict
 
     End Sub
 
-   Public Function GetSymbolSearchDt(ByVal connectionString As String, _
-     ByVal queryStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+    Public Function GetSymbolSearchDt(ByVal connectionString As String, _
+      ByVal queryStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
 
         Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
         Dim signsbyGlossesBilingualTableAdapter As New SignsbyGlossesBilingualTableAdapter()
@@ -1716,4 +1716,23 @@ Public NotInheritable Class SWDict
     End Sub
 
 
+    Public Function GetSignbyId(ByVal connectionString As String, ByVal idDict As Integer) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        
+        Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        Dim signsbyGlossesBilingualTableAdapter As New SignsbyGlossesBilingualTableAdapter()
+        Dim strConection = CreateConnectionStringFromPath(connectionString)
+
+        Using connection As New SQLiteConnection(strConection)
+            Dim results = signsbyGlossesBilingualTableAdapter.GetDataByID(DefaultSignLanguage, idDict, FirstGlossLanguage, SecondGlossLanguage)
+
+            For Each signsbyGlossesBilingualRow As SignsbyGlossesBilingualRow In results
+                dt.ImportRow(signsbyGlossesBilingualRow)
+            Next
+
+
+            connection.Close()
+        End Using
+
+        Return dt
+    End Function
 End Class

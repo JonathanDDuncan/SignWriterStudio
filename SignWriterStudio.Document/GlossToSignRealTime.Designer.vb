@@ -32,14 +32,16 @@ Partial Class GlossToSignRealTime
         Me.TBGlossNotFound = New System.Windows.Forms.TextBox()
         Me.BtnAccept = New System.Windows.Forms.Button()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
-        Me.GlossToSignDataGridView = New System.Windows.Forms.DataGridView()
-        Me.Selected = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
         Me.GlossMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.InsertGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GlossToSignDataGridView = New System.Windows.Forms.DataGridView()
+        Me.Selected = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.gloss1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.glosses1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
         BtnCancel = New System.Windows.Forms.Button()
         CType(Me.WordsbyLanguagesTransBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,11 +52,8 @@ Partial Class GlossToSignRealTime
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
-        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer3.Panel1.SuspendLayout()
-        Me.SplitContainer3.SuspendLayout()
-        CType(Me.GlossToSignDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GlossMenuStrip.SuspendLayout()
+        CType(Me.GlossToSignDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnCancel
@@ -169,52 +168,10 @@ Partial Class GlossToSignRealTime
         '
         'SplitContainer2.Panel2
         '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer3)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.GlossToSignDataGridView)
         Me.SplitContainer2.Size = New System.Drawing.Size(980, 384)
         Me.SplitContainer2.SplitterDistance = 485
         Me.SplitContainer2.TabIndex = 5
-        '
-        'SplitContainer3
-        '
-        Me.SplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer3.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer3.Name = "SplitContainer3"
-        '
-        'SplitContainer3.Panel1
-        '
-        Me.SplitContainer3.Panel1.Controls.Add(Me.GlossToSignDataGridView)
-        Me.SplitContainer3.Size = New System.Drawing.Size(491, 384)
-        Me.SplitContainer3.SplitterDistance = 201
-        Me.SplitContainer3.TabIndex = 6
-        '
-        'GlossToSignDataGridView
-        '
-        Me.GlossToSignDataGridView.AllowUserToAddRows = False
-        Me.GlossToSignDataGridView.AllowUserToDeleteRows = False
-        Me.GlossToSignDataGridView.AllowUserToOrderColumns = True
-        Me.GlossToSignDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.GlossToSignDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GlossToSignDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Selected, Me.SWriting})
-        Me.GlossToSignDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GlossToSignDataGridView.GridColor = System.Drawing.SystemColors.AppWorkspace
-        Me.GlossToSignDataGridView.Location = New System.Drawing.Point(0, 0)
-        Me.GlossToSignDataGridView.Name = "GlossToSignDataGridView"
-        Me.GlossToSignDataGridView.Size = New System.Drawing.Size(201, 384)
-        Me.GlossToSignDataGridView.TabIndex = 5
-        '
-        'Selected
-        '
-        Me.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.Selected.DataPropertyName = "Selected"
-        Me.Selected.HeaderText = "Select"
-        Me.Selected.Name = "Selected"
-        Me.Selected.Width = 43
-        '
-        'SWriting
-        '
-        Me.SWriting.DataPropertyName = "SWriting"
-        Me.SWriting.HeaderText = "Sign"
-        Me.SWriting.Name = "SWriting"
         '
         'GlossMenuStrip
         '
@@ -240,6 +197,54 @@ Partial Class GlossToSignRealTime
         Me.RemoveGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.RemoveGlossToolStripMenuItem.Text = "Remove Gloss"
         '
+        'GlossToSignDataGridView
+        '
+        Me.GlossToSignDataGridView.AllowUserToAddRows = False
+        Me.GlossToSignDataGridView.AllowUserToDeleteRows = False
+        Me.GlossToSignDataGridView.AllowUserToOrderColumns = True
+        Me.GlossToSignDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.GlossToSignDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GlossToSignDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Selected, Me.SWriting, Me.gloss1, Me.glosses1, Me.IDDictionary})
+        Me.GlossToSignDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GlossToSignDataGridView.GridColor = System.Drawing.SystemColors.AppWorkspace
+        Me.GlossToSignDataGridView.Location = New System.Drawing.Point(0, 0)
+        Me.GlossToSignDataGridView.Name = "GlossToSignDataGridView"
+        Me.GlossToSignDataGridView.Size = New System.Drawing.Size(491, 384)
+        Me.GlossToSignDataGridView.TabIndex = 4
+        '
+        'Selected
+        '
+        Me.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.Selected.DataPropertyName = "Selected"
+        Me.Selected.HeaderText = "Select"
+        Me.Selected.Name = "Selected"
+        Me.Selected.Width = 43
+        '
+        'SWriting
+        '
+        Me.SWriting.DataPropertyName = "SWriting"
+        Me.SWriting.HeaderText = "Sign"
+        Me.SWriting.Name = "SWriting"
+        '
+        'gloss1
+        '
+        Me.gloss1.DataPropertyName = "gloss1"
+        Me.gloss1.HeaderText = "gloss"
+        Me.gloss1.Name = "gloss1"
+        '
+        'glosses1
+        '
+        Me.glosses1.DataPropertyName = "glosses1"
+        Me.glosses1.HeaderText = "glosses"
+        Me.glosses1.Name = "glosses1"
+        '
+        'IDDictionary
+        '
+        Me.IDDictionary.DataPropertyName = "IDDictionary"
+        Me.IDDictionary.HeaderText = "IDDictionary"
+        Me.IDDictionary.Name = "IDDictionary"
+        Me.IDDictionary.Visible = False
+        '
         'GlossToSignRealTime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -260,11 +265,8 @@ Partial Class GlossToSignRealTime
         Me.SplitContainer2.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
-        Me.SplitContainer3.Panel1.ResumeLayout(False)
-        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer3.ResumeLayout(False)
-        CType(Me.GlossToSignDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GlossMenuStrip.ResumeLayout(False)
+        CType(Me.GlossToSignDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -286,5 +288,7 @@ Partial Class GlossToSignRealTime
     Friend WithEvents GlossToSignDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents Selected As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents SWriting As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents SplitContainer3 As System.Windows.Forms.SplitContainer
+    Friend WithEvents gloss1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents glosses1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents IDDictionary As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

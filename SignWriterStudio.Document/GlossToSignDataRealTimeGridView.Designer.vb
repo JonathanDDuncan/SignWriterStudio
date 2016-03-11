@@ -27,6 +27,10 @@ Partial Class GlossToSignRealTimeControl
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.btnInsertBefore = New System.Windows.Forms.Button()
+        Me.btnInsertAfter = New System.Windows.Forms.Button()
+        Me.btnAddFromDict = New System.Windows.Forms.Button()
+        Me.Delete = New System.Windows.Forms.Button()
         CType(Me.SignsbyGlossesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DictionaryDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +61,7 @@ Partial Class GlossToSignRealTimeControl
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(127, 3)
+        Me.PictureBox1.Location = New System.Drawing.Point(216, 3)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(112, 111)
         Me.PictureBox1.TabIndex = 5
@@ -65,7 +69,7 @@ Partial Class GlossToSignRealTimeControl
         '
         'PictureBox2
         '
-        Me.PictureBox2.Location = New System.Drawing.Point(245, 3)
+        Me.PictureBox2.Location = New System.Drawing.Point(264, 3)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(112, 111)
         Me.PictureBox2.TabIndex = 6
@@ -73,11 +77,47 @@ Partial Class GlossToSignRealTimeControl
         '
         'PictureBox3
         '
-        Me.PictureBox3.Location = New System.Drawing.Point(363, 3)
+        Me.PictureBox3.Location = New System.Drawing.Point(308, 3)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(112, 111)
         Me.PictureBox3.TabIndex = 7
         Me.PictureBox3.TabStop = False
+        '
+        'btnInsertBefore
+        '
+        Me.btnInsertBefore.Location = New System.Drawing.Point(0, 26)
+        Me.btnInsertBefore.Name = "btnInsertBefore"
+        Me.btnInsertBefore.Size = New System.Drawing.Size(75, 23)
+        Me.btnInsertBefore.TabIndex = 8
+        Me.btnInsertBefore.Text = "Insert Before"
+        Me.btnInsertBefore.UseVisualStyleBackColor = True
+        '
+        'btnInsertAfter
+        '
+        Me.btnInsertAfter.Location = New System.Drawing.Point(0, 84)
+        Me.btnInsertAfter.Name = "btnInsertAfter"
+        Me.btnInsertAfter.Size = New System.Drawing.Size(75, 23)
+        Me.btnInsertAfter.TabIndex = 9
+        Me.btnInsertAfter.Text = "Insert After"
+        Me.btnInsertAfter.UseVisualStyleBackColor = True
+        '
+        'btnAddFromDict
+        '
+        Me.btnAddFromDict.Location = New System.Drawing.Point(92, 26)
+        Me.btnAddFromDict.Name = "btnAddFromDict"
+        Me.btnAddFromDict.Size = New System.Drawing.Size(118, 23)
+        Me.btnAddFromDict.TabIndex = 10
+        Me.btnAddFromDict.Text = "Add from Dict"
+        Me.btnAddFromDict.UseVisualStyleBackColor = True
+        '
+        'Delete
+        '
+        Me.Delete.Location = New System.Drawing.Point(0, 55)
+        Me.Delete.Name = "Delete"
+        Me.Delete.Size = New System.Drawing.Size(75, 23)
+        Me.Delete.TabIndex = 11
+        Me.Delete.Text = "Delete"
+        Me.Delete.UseVisualStyleBackColor = True
         '
         'GlossToSignRealTimeControl
         '
@@ -85,8 +125,12 @@ Partial Class GlossToSignRealTimeControl
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.AutoSize = True
-        Me.Controls.Add(Me.PictureBox3)
+        Me.Controls.Add(Me.Delete)
+        Me.Controls.Add(Me.btnAddFromDict)
+        Me.Controls.Add(Me.btnInsertAfter)
+        Me.Controls.Add(Me.btnInsertBefore)
         Me.Controls.Add(Me.PictureBox2)
+        Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.TextBox1)
         Me.Name = "GlossToSignRealTimeControl"
@@ -132,5 +176,9 @@ Partial Class GlossToSignRealTimeControl
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
+    Friend WithEvents btnInsertBefore As System.Windows.Forms.Button
+    Friend WithEvents btnInsertAfter As System.Windows.Forms.Button
+    Friend WithEvents btnAddFromDict As System.Windows.Forms.Button
+    Friend WithEvents Delete As System.Windows.Forms.Button
 
 End Class
