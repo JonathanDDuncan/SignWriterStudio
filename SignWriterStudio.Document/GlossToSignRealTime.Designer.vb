@@ -32,16 +32,16 @@ Partial Class GlossToSignRealTime
         Me.TBGlossNotFound = New System.Windows.Forms.TextBox()
         Me.BtnAccept = New System.Windows.Forms.Button()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.GlossMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.InsertGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ChangeGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RemoveGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GlossToSignDataGridView = New System.Windows.Forms.DataGridView()
         Me.Selected = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
         Me.gloss1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.glosses1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GlossMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.InsertGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         BtnCancel = New System.Windows.Forms.Button()
         CType(Me.WordsbyLanguagesTransBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,8 +52,8 @@ Partial Class GlossToSignRealTime
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
-        Me.GlossMenuStrip.SuspendLayout()
         CType(Me.GlossToSignDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GlossMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnCancel
@@ -173,30 +173,6 @@ Partial Class GlossToSignRealTime
         Me.SplitContainer2.SplitterDistance = 485
         Me.SplitContainer2.TabIndex = 5
         '
-        'GlossMenuStrip
-        '
-        Me.GlossMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertGlossToolStripMenuItem, Me.ChangeGlossToolStripMenuItem, Me.RemoveGlossToolStripMenuItem})
-        Me.GlossMenuStrip.Name = "GlossMenuStrip"
-        Me.GlossMenuStrip.Size = New System.Drawing.Size(149, 70)
-        '
-        'InsertGlossToolStripMenuItem
-        '
-        Me.InsertGlossToolStripMenuItem.Name = "InsertGlossToolStripMenuItem"
-        Me.InsertGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
-        Me.InsertGlossToolStripMenuItem.Text = "Insert Gloss"
-        '
-        'ChangeGlossToolStripMenuItem
-        '
-        Me.ChangeGlossToolStripMenuItem.Name = "ChangeGlossToolStripMenuItem"
-        Me.ChangeGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
-        Me.ChangeGlossToolStripMenuItem.Text = "Change Gloss"
-        '
-        'RemoveGlossToolStripMenuItem
-        '
-        Me.RemoveGlossToolStripMenuItem.Name = "RemoveGlossToolStripMenuItem"
-        Me.RemoveGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
-        Me.RemoveGlossToolStripMenuItem.Text = "Remove Gloss"
-        '
         'GlossToSignDataGridView
         '
         Me.GlossToSignDataGridView.AllowUserToAddRows = False
@@ -245,6 +221,30 @@ Partial Class GlossToSignRealTime
         Me.IDDictionary.Name = "IDDictionary"
         Me.IDDictionary.Visible = False
         '
+        'GlossMenuStrip
+        '
+        Me.GlossMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertGlossToolStripMenuItem, Me.ChangeGlossToolStripMenuItem, Me.RemoveGlossToolStripMenuItem})
+        Me.GlossMenuStrip.Name = "GlossMenuStrip"
+        Me.GlossMenuStrip.Size = New System.Drawing.Size(149, 70)
+        '
+        'InsertGlossToolStripMenuItem
+        '
+        Me.InsertGlossToolStripMenuItem.Name = "InsertGlossToolStripMenuItem"
+        Me.InsertGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.InsertGlossToolStripMenuItem.Text = "Insert Gloss"
+        '
+        'ChangeGlossToolStripMenuItem
+        '
+        Me.ChangeGlossToolStripMenuItem.Name = "ChangeGlossToolStripMenuItem"
+        Me.ChangeGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.ChangeGlossToolStripMenuItem.Text = "Change Gloss"
+        '
+        'RemoveGlossToolStripMenuItem
+        '
+        Me.RemoveGlossToolStripMenuItem.Name = "RemoveGlossToolStripMenuItem"
+        Me.RemoveGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.RemoveGlossToolStripMenuItem.Text = "Remove Gloss"
+        '
         'GlossToSignRealTime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -265,8 +265,8 @@ Partial Class GlossToSignRealTime
         Me.SplitContainer2.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
-        Me.GlossMenuStrip.ResumeLayout(False)
         CType(Me.GlossToSignDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GlossMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

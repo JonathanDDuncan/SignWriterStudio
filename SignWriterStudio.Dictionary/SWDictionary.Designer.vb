@@ -995,7 +995,7 @@ Partial Class SWDictForm
     Friend WithEvents CBGloss1 As System.Windows.Forms.ComboBox
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents TBSearch As System.Windows.Forms.TextBox
+    Public WithEvents TBSearch As System.Windows.Forms.TextBox
     Friend WithEvents LBGlossLang2 As System.Windows.Forms.Label
     Friend WithEvents LBGlossLang1 As System.Windows.Forms.Label
     Friend WithEvents LBSearch As System.Windows.Forms.Label

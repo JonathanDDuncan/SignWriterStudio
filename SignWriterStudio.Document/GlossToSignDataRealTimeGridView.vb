@@ -16,7 +16,7 @@ Public Class GlossToSignRealTimeControl
 
     Event DeleteEntry(glossToSignRealTimeControl As GlossToSignRealTimeControl)
 
-    Event AddFromDict(glossToSignRealTimeControl As GlossToSignRealTimeControl)
+    Event AddFromDict(glossToSignRealTimeControl As GlossToSignRealTimeControl, searchText As String)
 
 
 
@@ -139,6 +139,6 @@ Public Class GlossToSignRealTimeControl
     End Sub
 
     Private Sub btnAddFromDict_Click(sender As Object, e As EventArgs) Handles btnAddFromDict.Click
-        RaiseEvent AddFromDict(Me)
+        RaiseEvent AddFromDict(Me, TextBox1.Text)
     End Sub
  End Class

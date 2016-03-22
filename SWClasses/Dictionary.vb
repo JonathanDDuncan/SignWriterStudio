@@ -1193,7 +1193,7 @@ Public NotInheritable Class SWDict
         End If
     End Function
 
-    Private Shared Function ConvertoSignsbyGlossesBilingualDataTable(ByVal eoList As IEnumerable(Of ExpandoObject)) As DictionaryDataGridTable
+    Public Shared Function ConvertoSignsbyGlossesBilingualDataTable(ByVal eoList As IEnumerable(Of ExpandoObject)) As DictionaryDataGridTable
         Dim table = New DictionaryDataGridTable()
 
         For Each eo As ExpandoObject In eoList

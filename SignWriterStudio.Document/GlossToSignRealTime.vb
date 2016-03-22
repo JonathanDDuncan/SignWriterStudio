@@ -1,3 +1,4 @@
+Imports System.Data.Common.CommandTrees.ExpressionBuilder
 Imports SignWriterStudio.Dictionary
 Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.Settings
@@ -19,7 +20,7 @@ Public Class GlossToSignRealTime
 
     Sub GlossToSignControlEventHandler(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles glossToSignRealTimeControl.MouseDown
 
-        MsgBox("Received Event.")
+        'MsgBox("Received Event.")
     End Sub
 
     Private Sub GlossToSign_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -40,11 +41,18 @@ Public Class GlossToSignRealTime
 
     Private Sub FindifTextinClipboard()
         Dim clipboardText = Clipboard.GetText()
-        If Not String.IsNullOrEmpty(clipboardText) Then
+        If Not String.IsNullOrEmpty(clipboardText) AndAlso Not IsJson(clipboardText) Then
             TBGlossToSign.Text = clipboardText
-            GlossToSign()
+            Dim glossToSignArray As String() = GetGlossToSignArray()
+            If glossToSignArray.Count < 16 Then
+                GlossToSign()
+            End If
         End If
     End Sub
+
+    Private Function IsJson(ByVal str As String) As Boolean
+        Return str.StartsWith("{")
+    End Function
 
     Private Sub btnGlossToSign_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGlossToSign.Click
         GlossToSign()
@@ -54,14 +62,7 @@ Public Class GlossToSignRealTime
         Try
             FlowLayoutPanel1.Controls.Clear()
             _glossNotFound.Clear()
-            Dim glossToSignArray() As String
-            'Dim Delimiters() As String = {" ", ",", ".", "?", "¿", "!", Chr(34), vbCrLf}
-            Dim delimiters() As String = {" ", Chr(34), vbCrLf}
-            Dim textString As String = TBGlossToSign.Text
-            textString = textString.Replace("{", "").Replace("}", "").Replace("}", "").Replace("(", "").Replace(")", "")
-            textString = textString.Replace(",", " , ").Replace(".", " . ").Replace("!", " ! ").Replace("¡", " ¡ ").Replace("?", " ? ").Replace("¿", " ¿ ").Replace(":", " : ").Replace(";", " ; ").Replace("   ", " ").Replace("  ", " ")
-            glossToSignArray = textString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
-            glossToSignArray = glossToSignArray.Where(Function(x) Not String.IsNullOrWhiteSpace(x) AndAlso x IsNot Environment.NewLine).ToArray()
+            Dim glossToSignArray As String() = GetGlossToSignArray()
             Dim i As Integer
             For i = 0 To glossToSignArray.GetUpperBound(0)
                 AddGlossControl(glossToSignArray(i))
@@ -74,9 +75,22 @@ Public Class GlossToSignRealTime
 
     End Sub
 
+    Private Function GetGlossToSignArray() As String()
+
+        Dim glossToSignArray() As String
+        'Dim Delimiters() As String = {" ", ",", ".", "?", "¿", "!", Chr(34), vbCrLf}
+        Dim delimiters() As String = {" ", Chr(34), vbCrLf}
+        Dim textString As String = TBGlossToSign.Text
+        textString = textString.Replace("{", "").Replace("}", "").Replace("}", "").Replace("(", "").Replace(")", "")
+        textString = textString.Replace(",", " , ").Replace(".", " . ").Replace("!", " ! ").Replace("¡", " ¡ ").Replace("?", " ? ").Replace("¿", " ¿ ").Replace(":", " : ").Replace(";", " ; ").Replace("   ", " ").Replace("  ", " ")
+        glossToSignArray = textString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
+        glossToSignArray = glossToSignArray.Where(Function(x) Not String.IsNullOrWhiteSpace(x) AndAlso x IsNot Environment.NewLine).ToArray()
+        Return glossToSignArray
+    End Function
+
     Private Sub BtnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAccept.Click
-        Dim dt As SignsbyGlossesUnilingualDataTable
-        Dim rows() As SignsbyGlossesUnilingualRow
+        Dim dt As DataTable
+        Dim rows() As DataRow
         Dim idDictionary As Integer
 
 
@@ -87,7 +101,7 @@ Public Class GlossToSignRealTime
             dt = glossToSignControl.FoundWordDt
             rows = dt.Select("Selected=True")
             If rows.Length > 0 Then
-                idDictionary = rows(0).IDDictionary
+                idDictionary = rows(0).Item("IDDictionary")
                 If Not idDictionary = 0 Then
                     IDs.Add(Tuple.Create(idDictionary, ""))
                 Else
@@ -120,7 +134,7 @@ Public Class GlossToSignRealTime
 
         'foundWordsDt = result.Item1
 
-        CheckFirstItem(result.Item1)
+        CheckMatchingGlossOrFirstItem(result.Item1, searchString)
 
         glossToSignRealTimeControl.FoundWordDt = result.Item1
         glossToSignRealTimeControl.ResultType = result.Item2
@@ -155,8 +169,8 @@ Public Class GlossToSignRealTime
         Dim ta As New SignsbyGlossesUnilingualTableAdapter
         Dim resultType = 2 'Signs matched full word
         If Not searchString = "" Then
-            foundWordsDt = ta.GetData(DefaultSignLanguage, FirstGlossLanguage, searchString)
-            resultType = 0
+            'foundWordsDt = ta.GetData(DefaultSignLanguage, FirstGlossLanguage, searchString)
+            'resultType = 0
 
             'If no exact search found
             If Not searchString.Contains("%") Then
@@ -180,9 +194,22 @@ Public Class GlossToSignRealTime
                     _glossNotFound.Add(notfound, notfound)
                 End If
             End If
-
+            If IfExactMatch(searchString, foundWordsDt.Rows) Then
+                resultType = 0
+            End If
         End If
         Return Tuple.Create(foundWordsDt, resultType)
+    End Function
+
+    Private Function IfExactMatch(ByVal searchString As String, ByVal dataRowCollection As DataRowCollection) As Boolean
+        Dim search = searchString.Replace("%", "")
+        For Each row As DataRow In dataRowCollection
+            Dim glosses = Split(row.Item("glosses1"), ",").Select(Function(x) x.Trim)
+            If row.Item("gloss1") = search OrElse glosses.Contains(search) Then
+                Return True
+            End If
+        Next
+        Return False
     End Function
 
     Private Sub ColorControl(ByVal glossToSignContr As GlossToSignRealTimeControl, ByVal resultType As Integer)
@@ -196,16 +223,28 @@ Public Class GlossToSignRealTime
         End Select
     End Sub
 
-    Private Sub CheckFirstItem(ByVal foundWordsDt As SignsbyGlossesUnilingualDataTable)
+    Private Sub CheckMatchingGlossOrFirstItem(ByVal foundWordsDt As SignsbyGlossesUnilingualDataTable, ByVal searchString As Object)
 
         Dim selectedColumn As New DataColumn
         selectedColumn.ColumnName = "Selected"
         selectedColumn.DataType = Type.GetType("System.Boolean")
 
         foundWordsDt.Columns.Add(selectedColumn)
+        Dim checked = False
         If foundWordsDt.Rows IsNot Nothing AndAlso foundWordsDt.Rows.Count > 0 Then
-            Dim row = foundWordsDt.Rows(0)
-            row.Item(selectedColumn) = True
+            Dim search = searchString.Replace("%", "")
+            For Each row As DataRow In foundWordsDt.Rows
+                Dim glosses = Split(row.Item("glosses1"), ",").Select(Function(x) x.Trim)
+                If row.Item("gloss1") = search OrElse glosses.Contains(search) Then
+                    row.Item(selectedColumn) = True
+                    checked = True
+                    Exit For
+                End If
+            Next
+            If Not checked Then
+                Dim row = foundWordsDt.Rows(0)
+                row.Item(selectedColumn) = True
+            End If
         End If
     End Sub
 
@@ -294,11 +333,15 @@ Public Class GlossToSignRealTime
 
     Private Sub GlossToSignRealTimeControl_SearchTextChanged(ByVal glosstosignrealtimecontrol1 As GlossToSignRealTimeControl, ByVal searchtext As String)
         Dim result = Search(searchtext)
-        CheckFirstItem(result.Item1)
-        glossToSignRealTimeControl.FoundWordDt = result.Item1
-        ColorControl(glossToSignRealTimeControl, result.Item2)
-        glossToSignRealTimeControl.ContextMenuStrip = GlossMenuStrip
-        GlossToSignDataGridView.DataSource = glossToSignRealTimeControl.FoundWordDt
+        CheckMatchingGlossOrFirstItem(result.Item1, searchtext)
+        glosstosignrealtimecontrol1.FoundWordDt = result.Item1
+        glosstosignrealtimecontrol1.ResultType = result.Item2
+        ColorControl(glosstosignrealtimecontrol1, result.Item2)
+        glosstosignrealtimecontrol1.ContextMenuStrip = GlossMenuStrip
+        GlossToSignDataGridView.DataSource = glosstosignrealtimecontrol1.FoundWordDt
+
+        glosstosignrealtimecontrol1.Value = GetId(CType(GlossToSignDataGridView.DataSource, DataTable))
+        glosstosignrealtimecontrol1.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable))
     End Sub
 
     Private Sub GlossToSignDataGridView_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -308,17 +351,7 @@ Public Class GlossToSignRealTime
             GlossToSignDataGridView.Sort(GlossToSignDataGridView.Columns("gloss1"), System.ComponentModel.ListSortDirection.Ascending)
         End If
     End Sub
-    Private Sub GlossToSignDataGridView_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
-        If Not (e.RowIndex = -1) And Not (e.ColumnIndex = -1) Then
-            If sender.CurrentCell.OwningColumn.DataPropertyName = "Selected" Then
-                For Each row As DataGridViewRow In GlossToSignDataGridView.Rows
-                    row.Cells("Selected").Value = False
-                Next
-            End If
-        End If
-    End Sub
-
-    Public WriteOnly Property SetBackColor() As Color
+  Public WriteOnly Property SetBackColor() As Color
         Set(ByVal value As Color)
             GlossToSignDataGridView.BackgroundColor = value
             GlossToSignDataGridView.BackColor = value
@@ -329,7 +362,7 @@ Public Class GlossToSignRealTime
         FlowLayoutPanel1.SetFlowBreak(e.Control, True)
     End Sub
 
-    Private Sub GlossToSignDataGridView_Validated(sender As Object, e As EventArgs)
+    Private Sub GlossToSignDataGridView_Validated(sender As Object, e As EventArgs) Handles GlossToSignDataGridView.Validated
         _currentGlossControl.Value = GetId(CType(GlossToSignDataGridView.DataSource, DataTable))
         _currentGlossControl.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable))
     End Sub
@@ -378,16 +411,16 @@ Public Class GlossToSignRealTime
         FlowLayoutPanel1.Controls.Remove(control)
     End Sub
 
-    Private Sub GlossToSignRealTimeControl_AddFromDict(control As Document.GlossToSignRealTimeControl)
+    Private Sub GlossToSignRealTimeControl_AddFromDict(control As Document.GlossToSignRealTimeControl, searchText As String)
         Dim signDict As New SwLayoutControl
 
-        Dim result As Tuple(Of Integer, SwSign) = OpenDictionary(signDict.DocumentSign)
+        Dim result As Tuple(Of Integer, SwSign) = OpenDictionary(signDict.DocumentSign, searchText)
         If result IsNot Nothing Then
 
             Dim idDict As Integer = result.Item1
-            
+
             'Dim dictionary1 As New SWDict()
-             
+
             Dim selectedColumn As New DataColumn
             selectedColumn.ColumnName = "Selected"
             selectedColumn.DataType = Type.GetType("System.Boolean")
@@ -429,4 +462,38 @@ Public Class GlossToSignRealTime
         End If
         Return Nothing
     End Function
+    Public Function OpenDictionary(documentSign As SwDocumentSign, searchText As String) As Tuple(Of Integer, SwSign)
+        Dim idDictionary As Integer
+        Dim swDictForm As SWDictForm
+
+        swDictForm = New SWDictForm(New Editor())
+
+        Dim f1 As New Form With {.Name = ToString()}
+        swDictForm.CallingForm = f1
+        swDictForm.TBSearch.Text = searchText
+        Dim dialogRes As DialogResult = swDictForm.ShowDialog()
+        If (dialogRes = DialogResult.OK) Then
+            idDictionary = swDictForm.IDDictionaryResult
+            swDictForm.Dispose()
+            If Not idDictionary = 0 Then
+                Dim dictionary1 As New SWDict
+                'documentSign.IncorporateSWSign(dictionary1.GetSWSign(idDictionary))
+                Return Tuple.Create(idDictionary, dictionary1.GetSWSign(idDictionary))
+            End If
+        ElseIf (dialogRes = DialogResult.Cancel) Then
+            swDictForm.Dispose()
+            Return Nothing
+        End If
+        Return Nothing
+    End Function
+
+    Private Sub GlossToSignDataGridView_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles GlossToSignDataGridView.CellContentClick
+        If Not (e.RowIndex = -1) And Not (e.ColumnIndex = -1) Then
+            If sender.CurrentCell.OwningColumn.DataPropertyName = "Selected" Then
+                For Each row As DataGridViewRow In GlossToSignDataGridView.Rows
+                    row.Cells("Selected").Value = False
+                Next
+            End If
+        End If
+    End Sub
 End Class

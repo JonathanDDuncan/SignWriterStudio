@@ -20,9 +20,6 @@ Partial Class GlossToSignRealTimeControl
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.SignsbyGlossesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DictionaryDataSet = New SignWriterStudio.Database.Dictionary.DictionaryDataSet()
-        Me.SignsbyGlossesUnilingualTableAdapter = New SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters.SignsbyGlossesUnilingualTableAdapter()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
@@ -31,30 +28,19 @@ Partial Class GlossToSignRealTimeControl
         Me.btnInsertAfter = New System.Windows.Forms.Button()
         Me.btnAddFromDict = New System.Windows.Forms.Button()
         Me.Delete = New System.Windows.Forms.Button()
-        CType(Me.SignsbyGlossesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DictionaryDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SignsbyGlossesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DictionaryDataSet = New SignWriterStudio.Database.Dictionary.DictionaryDataSet()
+        Me.SignsbyGlossesUnilingualTableAdapter = New SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters.SignsbyGlossesUnilingualTableAdapter()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SignsbyGlossesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DictionaryDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'SignsbyGlossesBindingSource
-        '
-        Me.SignsbyGlossesBindingSource.DataMember = "SignsbyGlossesUnilingual"
-        Me.SignsbyGlossesBindingSource.DataSource = Me.DictionaryDataSet
-        '
-        'DictionaryDataSet
-        '
-        Me.DictionaryDataSet.DataSetName = "Database.DictionaryDataSet"
-        Me.DictionaryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'SignsbyGlossesUnilingualTableAdapter
-        '
-        Me.SignsbyGlossesUnilingualTableAdapter.ClearBeforeFill = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(0, 0)
+        Me.TextBox1.Location = New System.Drawing.Point(255, 161)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(121, 20)
         Me.TextBox1.TabIndex = 4
@@ -63,7 +49,7 @@ Partial Class GlossToSignRealTimeControl
         '
         Me.PictureBox1.Location = New System.Drawing.Point(216, 3)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(112, 111)
+        Me.PictureBox1.Size = New System.Drawing.Size(112, 154)
         Me.PictureBox1.TabIndex = 5
         Me.PictureBox1.TabStop = False
         '
@@ -71,7 +57,7 @@ Partial Class GlossToSignRealTimeControl
         '
         Me.PictureBox2.Location = New System.Drawing.Point(264, 3)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(112, 111)
+        Me.PictureBox2.Size = New System.Drawing.Size(112, 154)
         Me.PictureBox2.TabIndex = 6
         Me.PictureBox2.TabStop = False
         '
@@ -79,7 +65,7 @@ Partial Class GlossToSignRealTimeControl
         '
         Me.PictureBox3.Location = New System.Drawing.Point(308, 3)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(112, 111)
+        Me.PictureBox3.Size = New System.Drawing.Size(112, 154)
         Me.PictureBox3.TabIndex = 7
         Me.PictureBox3.TabStop = False
         '
@@ -119,6 +105,20 @@ Partial Class GlossToSignRealTimeControl
         Me.Delete.Text = "Delete"
         Me.Delete.UseVisualStyleBackColor = True
         '
+        'SignsbyGlossesBindingSource
+        '
+        Me.SignsbyGlossesBindingSource.DataMember = "SignsbyGlossesUnilingual"
+        Me.SignsbyGlossesBindingSource.DataSource = Me.DictionaryDataSet
+        '
+        'DictionaryDataSet
+        '
+        Me.DictionaryDataSet.DataSetName = "Database.DictionaryDataSet"
+        Me.DictionaryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'SignsbyGlossesUnilingualTableAdapter
+        '
+        Me.SignsbyGlossesUnilingualTableAdapter.ClearBeforeFill = True
+        '
         'GlossToSignRealTimeControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -134,12 +134,12 @@ Partial Class GlossToSignRealTimeControl
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.TextBox1)
         Me.Name = "GlossToSignRealTimeControl"
-        Me.Size = New System.Drawing.Size(485, 117)
-        CType(Me.SignsbyGlossesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DictionaryDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Size = New System.Drawing.Size(431, 184)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SignsbyGlossesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DictionaryDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
