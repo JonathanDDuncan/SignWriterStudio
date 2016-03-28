@@ -33,7 +33,7 @@ Public Class DbDictionary
         columns.Add("IDSignPuddle")
 
         Dim values = New List(Of List(Of String))() From {New List(Of String)() From {GuidtoBlob(signWriterGuid.GetValueOrDefault()), signPuddleId}}
-        
+
         Dim dict = New DbDictionary()
         Dim query = dict.CreateUpdateQuery(path, Nothing)
         query.Columns = columns
@@ -45,7 +45,7 @@ Public Class DbDictionary
         Return result
     End Function
 
-  
+
     Public Shared Function GetIdDoNotExport(path As String) As List(Of String)
         Const where As String = " isPrivate "
         Dim columns = New List(Of String)()

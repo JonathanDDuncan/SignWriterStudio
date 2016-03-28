@@ -1193,7 +1193,7 @@ Public NotInheritable Class SWDict
         End If
     End Function
 
-    Public Shared Function ConvertoSignsbyGlossesBilingualDataTable(ByVal eoList As IEnumerable(Of ExpandoObject)) As DictionaryDataGridTable
+    Private Shared Function ConvertoSignsbyGlossesBilingualDataTable(ByVal eoList As IEnumerable(Of ExpandoObject)) As DictionaryDataGridTable
         Dim table = New DictionaryDataGridTable()
 
         For Each eo As ExpandoObject In eoList
@@ -1717,7 +1717,7 @@ Public NotInheritable Class SWDict
 
 
     Public Function GetSignbyId(ByVal connectionString As String, ByVal idDict As Integer) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
-        
+
         Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
         Dim signsbyGlossesBilingualTableAdapter As New SignsbyGlossesBilingualTableAdapter()
         Dim strConection = CreateConnectionStringFromPath(connectionString)
