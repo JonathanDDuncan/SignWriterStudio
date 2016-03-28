@@ -53,7 +53,7 @@ Partial Class GlossToSignControl
         Me.GlossToSignDataGridView.AutoGenerateColumns = false
         Me.GlossToSignDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.GlossToSignDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GlossToSignDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Selected, Me.SWriting, Me.gloss1, Me.glosses1, Me.IDDictionary})
+        Me.GlossToSignDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SWriting, Me.gloss1, Me.glosses1, Me.IDDictionary, Me.Selected})
         Me.GlossToSignDataGridView.DataSource = Me.SignsbyGlossesBindingSource
         Me.GlossToSignDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GlossToSignDataGridView.GridColor = System.Drawing.SystemColors.AppWorkspace
@@ -93,7 +93,7 @@ Partial Class GlossToSignControl
         Me.IDDictionary.DataPropertyName = "IDDictionary"
         Me.IDDictionary.HeaderText = "IDDictionary"
         Me.IDDictionary.Name = "IDDictionary"
-        Me.IDDictionary.Visible = false
+        Me.IDDictionary.Visible = False
         '
         'SignsbyGlossesBindingSource
         '
@@ -107,14 +107,14 @@ Partial Class GlossToSignControl
         '
         'SignsbyGlossesUnilingualTableAdapter
         '
-        Me.SignsbyGlossesUnilingualTableAdapter.ClearBeforeFill = true
+        Me.SignsbyGlossesUnilingualTableAdapter.ClearBeforeFill = True
         '
         'GlossToSignControl
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoScroll = true
-        Me.AutoSize = true
+        Me.AutoScroll = True
+        Me.AutoSize = True
         Me.Controls.Add(Me.LBGloss)
         Me.Controls.Add(Me.GlossToSignDataGridView)
         Me.Name = "GlossToSignControl"

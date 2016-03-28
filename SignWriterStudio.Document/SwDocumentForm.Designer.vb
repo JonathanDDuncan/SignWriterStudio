@@ -61,11 +61,13 @@ Partial Class SwDocumentForm
         Me.PasteFSWDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToSignPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyAsFSWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyAsImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SignsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromDictionaryF10ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GlossToSignToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GlossToSignRealTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PicturesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromDictionaryPhotoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -73,7 +75,6 @@ Partial Class SwDocumentForm
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SwFlowLayoutPanel1 = New SignWriterStudio.SWClasses.SwFlowLayoutPanel()
-        Me.CopyAsImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictBoxContextMenuStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -317,6 +318,12 @@ Partial Class SwDocumentForm
         Me.CopyAsFSWToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.CopyAsFSWToolStripMenuItem.Text = "Copy as FSW"
         '
+        'CopyAsImageToolStripMenuItem
+        '
+        Me.CopyAsImageToolStripMenuItem.Name = "CopyAsImageToolStripMenuItem"
+        Me.CopyAsImageToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CopyAsImageToolStripMenuItem.Text = "Copy as Image"
+        '
         'AddToolStripMenuItem2
         '
         Me.AddToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SignsToolStripMenuItem1, Me.PicturesToolStripMenuItem2})
@@ -326,7 +333,7 @@ Partial Class SwDocumentForm
         '
         'SignsToolStripMenuItem1
         '
-        Me.SignsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromEditorToolStripMenuItem, Me.FromDictionaryF10ToolStripMenuItem, Me.GlossToSignToolStripMenuItem})
+        Me.SignsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromEditorToolStripMenuItem, Me.FromDictionaryF10ToolStripMenuItem, Me.GlossToSignToolStripMenuItem, Me.GlossToSignRealTimeToolStripMenuItem})
         Me.SignsToolStripMenuItem1.Name = "SignsToolStripMenuItem1"
         Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.SignsToolStripMenuItem1.Text = "Signs"
@@ -335,22 +342,28 @@ Partial Class SwDocumentForm
         '
         Me.FromEditorToolStripMenuItem.Name = "FromEditorToolStripMenuItem"
         Me.FromEditorToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9
-        Me.FromEditorToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.FromEditorToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
         Me.FromEditorToolStripMenuItem.Text = "From Editor"
         '
         'FromDictionaryF10ToolStripMenuItem
         '
         Me.FromDictionaryF10ToolStripMenuItem.Name = "FromDictionaryF10ToolStripMenuItem"
         Me.FromDictionaryF10ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10
-        Me.FromDictionaryF10ToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.FromDictionaryF10ToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
         Me.FromDictionaryF10ToolStripMenuItem.Text = "From Dictionary"
         '
         'GlossToSignToolStripMenuItem
         '
         Me.GlossToSignToolStripMenuItem.Name = "GlossToSignToolStripMenuItem"
-        Me.GlossToSignToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.G), System.Windows.Forms.Keys)
-        Me.GlossToSignToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.GlossToSignToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
         Me.GlossToSignToolStripMenuItem.Text = "Gloss to Sign"
+        '
+        'GlossToSignRealTimeToolStripMenuItem
+        '
+        Me.GlossToSignRealTimeToolStripMenuItem.Name = "GlossToSignRealTimeToolStripMenuItem"
+        Me.GlossToSignRealTimeToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.G), System.Windows.Forms.Keys)
+        Me.GlossToSignRealTimeToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
+        Me.GlossToSignRealTimeToolStripMenuItem.Text = "Gloss to Sign RealTime"
         '
         'PicturesToolStripMenuItem2
         '
@@ -409,12 +422,6 @@ Partial Class SwDocumentForm
         Me.SwFlowLayoutPanel1.SpaceBetweenCols = 10
         Me.SwFlowLayoutPanel1.TabIndex = 0
         Me.SwFlowLayoutPanel1.WrapContents = False
-        '
-        'CopyAsImageToolStripMenuItem
-        '
-        Me.CopyAsImageToolStripMenuItem.Name = "CopyAsImageToolStripMenuItem"
-        Me.CopyAsImageToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
-        Me.CopyAsImageToolStripMenuItem.Text = "Copy as Image"
         '
         'SwDocumentForm
         '
@@ -485,4 +492,5 @@ Partial Class SwDocumentForm
     Friend WithEvents PasteToSignPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopyAsImageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GlossToSignRealTimeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
