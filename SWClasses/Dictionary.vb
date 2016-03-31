@@ -495,8 +495,8 @@ Public NotInheritable Class SWDict
         taPuddleText.FillByIDDictionary(dt, idDictionary)
         Return dt
     End Function
-    Function GetGlosstoSign(ds As List(Of Tuple(Of Integer, String))) As SwCollection(Of SwSign)
-        Dim signs = New SwCollection(Of SwSign)
+    Function GetGlosstoSign(ds As List(Of Tuple(Of Integer, String, Integer))) As List(Of Tuple(Of SwSign, Integer))
+        Dim signs = New List(Of Tuple(Of SwSign, Integer))
         Dim conn As SQLiteConnection = GetNewDictionaryConnection()
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
         Using conn
@@ -505,13 +505,13 @@ Public NotInheritable Class SWDict
 
                 For Each id In ds
                     If id.Item1 > 0 Then
-                        signs.Add(GetSWSign(id.Item1, conn, trans))
+                        signs.Add(Tuple.Create(GetSWSign(id.Item1, conn, trans), id.Item3))
                     Else
                         Dim blankSign As New SwSign
                         If id.Item2 = String.Empty Then
                             blankSign.Gloss = id.Item2
                         End If
-                        signs.Add(blankSign)
+                        signs.Add(Tuple.Create(blankSign, id.Item3))
                     End If
                 Next
 

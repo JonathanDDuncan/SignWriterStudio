@@ -477,18 +477,18 @@ Public NotInheritable Class SwDocumentForm
         DocumentChanged = True
     End Sub
 
-    Private Sub Gloss2Sign()
-        Dim glossToSign As New GlossToSign
-        Dim dialogRes As DialogResult = glossToSign.ShowDialog()
+    'Private Sub Gloss2Sign()
+    '    Dim glossToSign As New GlossToSign
+    '    Dim dialogRes As DialogResult = glossToSign.ShowDialog()
 
-        If (dialogRes = DialogResult.OK) Then
-            SignstoDocument(glossToSign.Signs)
-            glossToSign.Dispose()
-            DocumentChanged = True
-        ElseIf (dialogRes = DialogResult.Cancel) Then
-            glossToSign.Dispose()
-        End If
-    End Sub
+    '    If (dialogRes = DialogResult.OK) Then
+    '        SignstoDocument(glossToSign.Signs)
+    '        glossToSign.Dispose()
+    '        DocumentChanged = True
+    '    ElseIf (dialogRes = DialogResult.Cancel) Then
+    '        glossToSign.Dispose()
+    '    End If
+    'End Sub
 
     Private Sub Gloss2SignRealTime()
         Dim glossToSignRealTime As New GlossToSignRealTime
@@ -797,12 +797,12 @@ Public NotInheritable Class SwDocumentForm
     End Sub
 
 
-    Friend Sub SignstoDocument(ByVal signs As SwCollection(Of SwSign))
+    Friend Sub SignstoDocument(ByVal signs As List(Of Tuple(Of SwSign, Integer)))
         Show()
         SwFlowLayoutPanel1.SuspendLayout()
-        For Each sign As SwSign In signs
+        For Each sign In signs
 
-            Document.AddSWSign(sign)
+            Document.AddSWSignLane(sign.Item1, sign.Item2)
         Next
         SwFlowLayoutPanel1.ResumeLayout()
     End Sub
@@ -1081,10 +1081,10 @@ Public NotInheritable Class SwDocumentForm
         DocumentChanged = True
     End Sub
 
-    Private Sub GlossToSignToolStripMenuItem_Click(sender As Object, e As EventArgs) _
-        Handles GlossToSignToolStripMenuItem.Click
-        Gloss2Sign()
-    End Sub
+    'Private Sub GlossToSignToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+    '    Gloss2Sign()
+    'End Sub
 
     Private Sub PasteFSWDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) _
         Handles PasteFSWDocumentToolStripMenuItem.Click

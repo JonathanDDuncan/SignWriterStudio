@@ -66,7 +66,6 @@ Partial Class SwDocumentForm
         Me.SignsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromDictionaryF10ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GlossToSignToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GlossToSignRealTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PicturesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -333,7 +332,7 @@ Partial Class SwDocumentForm
         '
         'SignsToolStripMenuItem1
         '
-        Me.SignsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromEditorToolStripMenuItem, Me.FromDictionaryF10ToolStripMenuItem, Me.GlossToSignToolStripMenuItem, Me.GlossToSignRealTimeToolStripMenuItem})
+        Me.SignsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromEditorToolStripMenuItem, Me.FromDictionaryF10ToolStripMenuItem, Me.GlossToSignRealTimeToolStripMenuItem})
         Me.SignsToolStripMenuItem1.Name = "SignsToolStripMenuItem1"
         Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.SignsToolStripMenuItem1.Text = "Signs"
@@ -342,28 +341,22 @@ Partial Class SwDocumentForm
         '
         Me.FromEditorToolStripMenuItem.Name = "FromEditorToolStripMenuItem"
         Me.FromEditorToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9
-        Me.FromEditorToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
+        Me.FromEditorToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.FromEditorToolStripMenuItem.Text = "From Editor"
         '
         'FromDictionaryF10ToolStripMenuItem
         '
         Me.FromDictionaryF10ToolStripMenuItem.Name = "FromDictionaryF10ToolStripMenuItem"
         Me.FromDictionaryF10ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10
-        Me.FromDictionaryF10ToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
+        Me.FromDictionaryF10ToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.FromDictionaryF10ToolStripMenuItem.Text = "From Dictionary"
-        '
-        'GlossToSignToolStripMenuItem
-        '
-        Me.GlossToSignToolStripMenuItem.Name = "GlossToSignToolStripMenuItem"
-        Me.GlossToSignToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
-        Me.GlossToSignToolStripMenuItem.Text = "Gloss to Sign"
         '
         'GlossToSignRealTimeToolStripMenuItem
         '
         Me.GlossToSignRealTimeToolStripMenuItem.Name = "GlossToSignRealTimeToolStripMenuItem"
         Me.GlossToSignRealTimeToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.G), System.Windows.Forms.Keys)
-        Me.GlossToSignRealTimeToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
-        Me.GlossToSignRealTimeToolStripMenuItem.Text = "Gloss to Sign RealTime"
+        Me.GlossToSignRealTimeToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.GlossToSignRealTimeToolStripMenuItem.Text = "Gloss to Sign"
         '
         'PicturesToolStripMenuItem2
         '
@@ -486,7 +479,6 @@ Partial Class SwDocumentForm
     Friend WithEvents FromFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FromDictionaryPhotoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FromDictionarySignToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents GlossToSignToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PasteFSWDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopyAsFSWToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PasteToSignPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

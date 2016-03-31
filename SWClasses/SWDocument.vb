@@ -75,7 +75,7 @@ Imports Newtonsoft.Json
     End Property
     '
     Private ReadOnly _documentSigns As New SwCollection(Of SwDocumentSign)()
-    Public ReadOnly Property DocumentSigns() As SWCollection(Of SwDocumentSign)
+    Public ReadOnly Property DocumentSigns() As SwCollection(Of SwDocumentSign)
         Get
             Return _documentSigns
         End Get
@@ -107,6 +107,31 @@ Imports Newtonsoft.Json
         layoutControl1.Refresh()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
+    Public Sub AddSWSignLane(ByVal sign As SwSign, ByVal lane As Integer)
+        ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 begin
+        Dim documentSign As SwDocumentSign = ConverSWSignToSWDocumentSign(sign)
+        SetLane(documentSign, lane)
+
+        DocumentSigns.Add(documentSign)
+
+        Dim layoutControl1 As New SwLayoutControl
+        layoutControl1.DocumentSign = documentSign
+        MySWFlowLayoutPanel.Controls.Add(layoutControl1)
+        MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
+        layoutControl1.Refresh()
+        ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
+    End Sub
+
+    Private Sub SetLane(ByVal documentSign As SwDocumentSign, ByVal lane As Integer)
+        If lane = 1 Then
+            documentSign.Lane = AnchorStyles.Left
+        ElseIf lane = 2 Then
+            documentSign.Lane = AnchorStyles.None
+        ElseIf lane = 3 Then
+            documentSign.Lane = AnchorStyles.Right
+        End If
+    End Sub
+
     Public Sub AddSWSign(ByVal documentSign As SwDocumentSign)
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 begin
         DocumentSigns.Add(documentSign)

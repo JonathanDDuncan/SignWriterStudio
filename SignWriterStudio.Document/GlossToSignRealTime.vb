@@ -9,7 +9,7 @@ Imports SignWriterStudio.SWEditor
 
 Public Class GlossToSignRealTime
     Dim Dictionary As New SWDict
-    Friend Signs As SwCollection(Of SwSign)
+    Friend Signs As List(Of Tuple(Of SwSign, Integer))
     Dim _rightClickDownSender As Object
     Dim _clickedControl As GlossToSignRealTimeControl
     'Dim Settings As SerializableSettings
@@ -94,7 +94,7 @@ Public Class GlossToSignRealTime
         Dim idDictionary As Integer
 
 
-        Dim IDs = New List(Of Tuple(Of Integer, String))
+        Dim IDs = New List(Of Tuple(Of Integer, String, Integer))
 
         For Each control As Control In Me.FlowLayoutPanel1.Controls
             Dim glossToSignControl As GlossToSignRealTimeControl = CType(control, GlossToSignRealTimeControl)
@@ -103,12 +103,12 @@ Public Class GlossToSignRealTime
             If rows.Length > 0 Then
                 idDictionary = rows(0).Item("IDDictionary")
                 If Not idDictionary = 0 Then
-                    IDs.Add(Tuple.Create(idDictionary, ""))
+                    IDs.Add(Tuple.Create(idDictionary, "", glossToSignControl.Lane))
                 Else
-                    IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text))
+                    IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text, glossToSignControl.Lane))
                 End If
             Else
-                IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text))
+                IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text, glossToSignControl.Lane))
             End If
         Next
         Signs = Dictionary.GetGlosstoSign(IDs)
