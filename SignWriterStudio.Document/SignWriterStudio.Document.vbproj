@@ -122,6 +122,7 @@
     <Compile Include="GlossToSignDataGridView.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="MultiplesTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
