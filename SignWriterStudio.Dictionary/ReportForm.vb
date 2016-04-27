@@ -97,7 +97,7 @@ Public Class ReportForm
     Private Sub ReportChanged(ByVal comboBox As ComboBox)
         Dim selectedValue = comboBox.SelectedValue
 
-        Select Case selectedValue
+        Select Case selectedValue.Item1
             Case 1
                 Report1Chosen()
             Case 2
