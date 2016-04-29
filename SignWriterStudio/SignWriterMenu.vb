@@ -132,6 +132,7 @@ Public Class SignWriterMenu
         'monitor.TrackException(e)
     End Sub
     Private Sub frmSignWriterMenu_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+
         Try
             'StoreKey.GenKey_SaveInContainer("SignWriterStudio")
             'StoreKey.GenKey_SaveInContainer("software")
@@ -146,13 +147,13 @@ Public Class SignWriterMenu
 
             'CA = New ClientApp(Me.AcercaDE)
             Dim connStrUi As String = CreateConnectionString(Paths.Join(Paths.ApplicationPath, "swsui.dat"))
-            If CheckSQLiteConnectionString(connStrUi) Then
+            If CheckSqLiteConnectionString(connStrUi) Then
                 UI.Cultures.SetCultureConnectionString(connStrUi)
             Else
                 UI.Cultures.SetCultureConnectionString("")
             End If
             Dim connStrIswa As String = CreateConnectionString(Paths.Join(Paths.ApplicationPath, "ISWA2010.dat"))
-            If CheckSQLiteConnectionString(connStrIswa) Then
+            If CheckSqLiteConnectionString(connStrIswa) Then
                 SymbolCache.Iswa2010.ISWA2010ConnectionString = connStrIswa
 
             Else
@@ -160,7 +161,7 @@ Public Class SignWriterMenu
             End If
             Dim connStrSettings As String = CreateConnectionString(Paths.Join(Paths.ApplicationPath, "Settings.dat"))
             'MessageBox.Show(connStrSettings)
-            If CheckSQLiteConnectionString(connStrSettings) Then
+            If CheckSqLiteConnectionString(connStrSettings) Then
                 SettingsPublic.SettingsConnectionString = connStrSettings
 
             Else

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "SignWriter Studio 1.2"
-#define MyAppVerName "SignWriter Studio 1.2.4.0"
+#define MyAppVerName "SignWriter Studio 1.2.5.0"
 #define MyAppPublisher "Jonathan Duncan"
 #define MyAppURL "http://www.signwriterstudio.com/"
 #define MyAppExeName "SignWriterStudio.exe"
@@ -42,8 +42,24 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "{#BaseSourceDir}\SignWriterStudio\Sample Dictionary.SWS"; DestDir: "{userdocs}\SignWriter Studio Sample Files"; Flags: ignoreversion 
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.Database.Document.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SWEditor.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SWS.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SPML.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\General.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\Settings.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SWClasses.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SymbolCache.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\nunit.framework.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.UI.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.Document.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.Dictionary.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.ImageEditor.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.Database.Dictionary.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\TagList.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DropDownControls.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DbTags.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLiteAdapters.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\System.Data.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\nunit.framework.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\System.Data.SQLite.Linq.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -59,11 +75,6 @@ Source: "{#BaseSourceDir}\SignWriterStudio.Document\SWSDocument Blank.dat"; Dest
 Source: "{#BaseSourceDir}\SignWriterStudio\Sample Document.SWSDoc"; DestDir: "{userdocs}\SignWriter Studio Sample Files"; Flags: ignoreversion
 
 Source: "{#BaseSourceDir}\SymbolCache\ISWA2010.dat"; DestDir: "{app}"; Flags: ignoreversion
-; Source: "{#BaseSourceDir}\SignWriterStudio\DN4\DN4Setup.exe"; DestDir: "{app}\DN4"; Flags: ignoreversion
-; Source: "{#BaseSourceDir}\SignWriterStudio\DN4\DN4.application"; DestDir: "{app}\DN4"; Flags: ignoreversion
-; Source: "{#BaseSourceDir}\SignWriterStudio\DN4\Application Files\DN4_1_0_0_0\DN4.application"; DestDir: "{app}\DN4\Application Files\DN4_1_0_0_0"; Flags: ignoreversion
-; Source: "{#BaseSourceDir}\SignWriterStudio\DN4\Application Files\DN4_1_0_0_0\DN4.exe.manifest"; DestDir: "{app}\DN4\Application Files\DN4_1_0_0_0"; Flags: ignoreversion
-; Source: "{#BaseSourceDir}\SignWriterStudio\DN4\Application Files\DN4_1_0_0_0\DN4.exe.deploy"; DestDir: "{app}\DN4\Application Files\DN4_1_0_0_0"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
@@ -75,6 +86,5 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Fil
 
 [Run]
 Filename: "{app}\{#VCRedist2010}"; Parameters: "/q /norestart" ; Description: "{cm:LaunchProgram,{#VCRedistName}}"; Flags: hidewizard
-; Filename: "{app}\DN4\{#MyDotNetStrapper}"; Description: "{cm:LaunchProgram,{app}{#MyDotNetName}}"; Flags: hidewizard
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#MyAppName}}"; Flags: nowait postinstall skipifsilent
 
