@@ -135,6 +135,7 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CBExactSearch = New System.Windows.Forms.CheckBox()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -306,6 +307,7 @@ Partial Class SWDictForm
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.AutoScroll = True
+        Me.SplitContainer1.Panel1.Controls.Add(Me.CBExactSearch)
         Me.SplitContainer1.Panel1.Controls.Add(Me.TagFilter1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnShowSource)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnTagsForm)
@@ -448,7 +450,7 @@ Partial Class SWDictForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 3)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(218, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(126, 24)
         Me.MenuStrip1.TabIndex = 12
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -952,6 +954,16 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.Visible = False
         '
+        'CBExactSearch
+        '
+        Me.CBExactSearch.AutoSize = True
+        Me.CBExactSearch.Location = New System.Drawing.Point(2, 59)
+        Me.CBExactSearch.Name = "CBExactSearch"
+        Me.CBExactSearch.Size = New System.Drawing.Size(90, 17)
+        Me.CBExactSearch.TabIndex = 21
+        Me.CBExactSearch.Text = "Exact Search"
+        Me.CBExactSearch.UseVisualStyleBackColor = True
+        '
         'SWDictForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1077,4 +1089,5 @@ Partial Class SWDictForm
     Friend WithEvents SendToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DeleteFromPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SendSelectedEntriesToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CBExactSearch As System.Windows.Forms.CheckBox
 End Class

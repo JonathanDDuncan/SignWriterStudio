@@ -203,7 +203,7 @@ Public Class SWDictForm
                 PreLoadEntries()
                 Dim search As String
 
-                If Not TBSearch.Text.Contains("%") Then
+                If Not TBSearch.Text.Contains("%") AndAlso Not CBExactSearch.Checked Then
                     search = "%" & TBSearch.Text & "%"
                 Else
                     search = TBSearch.Text

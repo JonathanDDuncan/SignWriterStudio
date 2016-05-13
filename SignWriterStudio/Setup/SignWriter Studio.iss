@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "SignWriter Studio 1.2"
-#define MyAppVerName "SignWriter Studio 1.2.5.0"
+#define MyAppVerName "SignWriter Studio "
 #define MyAppPublisher "Jonathan Duncan"
 #define MyAppURL "http://www.signwriterstudio.com/"
 #define MyAppExeName "SignWriterStudio.exe"
@@ -18,7 +18,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{8CBC68CB-1C7A-49FA-93A5-EBF694FAA397}
 AppName={#MyAppName}
-AppVerName={#MyAppVerName}
+AppVerName={#MyAppVerName}{#MyVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
@@ -27,7 +27,7 @@ DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 LicenseFile= {#BaseSourceDir}\SignWriterStudio\License.txt
 OutputDir={#BaseSourceDir}\SignWriterStudio\Setup
-OutputBaseFilename={#MyAppVerName}
+OutputBaseFilename={#MyAppVerName}{#MyVersion}
 Compression=lzma
 SolidCompression=yes
 
