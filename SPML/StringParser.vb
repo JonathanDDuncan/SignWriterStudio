@@ -49,7 +49,7 @@ Public Module StringParser
         Return ""
     End Function
     Public Function IsBuildString(str As String) As Boolean
-        Const pattern As String = "[BLMR]([0-9]{3}x[0-9]{3})*(S[123][0-9a-f]{2}[0-5][0-9a-f][0-9]{3}x[0-9]{3})*"
+        Const pattern As String = "[BLMR]([0-9]{3}x[0-9]{3})(S[123][0-9a-f]{2}[0-5][0-9a-f][0-9]{3}x[0-9]{3})*"
 
         Dim result = Text.RegularExpressions.Regex.IsMatch(str, pattern)
         Return result
