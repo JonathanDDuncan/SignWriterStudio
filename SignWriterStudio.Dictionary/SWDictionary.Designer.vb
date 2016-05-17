@@ -55,6 +55,7 @@ Partial Class SWDictForm
         Me.CBGloss2 = New System.Windows.Forms.ComboBox()
         Me.CBGloss1 = New System.Windows.Forms.ComboBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.CBExactSearch = New System.Windows.Forms.CheckBox()
         Me.TagFilter1 = New Global.SignWriterStudio.Dictionary.TagFilter()
         Me.btnShowSource = New System.Windows.Forms.Button()
         Me.btnTagsForm = New System.Windows.Forms.Button()
@@ -75,6 +76,7 @@ Partial Class SWDictForm
         Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SignListsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportFingerSpellingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportToAnkiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportToHTMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewReportPDFWordExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -135,7 +137,6 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CBExactSearch = New System.Windows.Forms.CheckBox()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,6 +335,16 @@ Partial Class SWDictForm
         Me.SplitContainer1.SplitterDistance = 73
         Me.SplitContainer1.TabIndex = 4
         '
+        'CBExactSearch
+        '
+        Me.CBExactSearch.AutoSize = True
+        Me.CBExactSearch.Location = New System.Drawing.Point(2, 59)
+        Me.CBExactSearch.Name = "CBExactSearch"
+        Me.CBExactSearch.Size = New System.Drawing.Size(90, 17)
+        Me.CBExactSearch.TabIndex = 21
+        Me.CBExactSearch.Text = "Exact Search"
+        Me.CBExactSearch.UseVisualStyleBackColor = True
+        '
         'TagFilter1
         '
         Me.TagFilter1.AssumeFiltering = False
@@ -450,13 +461,13 @@ Partial Class SWDictForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 3)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(126, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(218, 24)
         Me.MenuStrip1.TabIndex = 12
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ToolStripMenuItem1
         '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewSignWriterStudioFileToolStripMenuItem, Me.OpenSignWriterStudioFileToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem, Me.SignListsToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.ExportToAnkiToolStripMenuItem, Me.ExportToHTMLToolStripMenuItem, Me.ViewReportPDFWordExcelToolStripMenuItem})
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewSignWriterStudioFileToolStripMenuItem, Me.OpenSignWriterStudioFileToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem, Me.SignListsToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.ExportFingerSpellingToolStripMenuItem, Me.ExportToAnkiToolStripMenuItem, Me.ExportToHTMLToolStripMenuItem, Me.ViewReportPDFWordExcelToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(37, 20)
         Me.ToolStripMenuItem1.Text = "File"
@@ -503,6 +514,12 @@ Partial Class SWDictForm
         Me.OptionsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
         Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
         Me.OptionsToolStripMenuItem.Text = "Op&tions ..."
+        '
+        'ExportFingerSpellingToolStripMenuItem
+        '
+        Me.ExportFingerSpellingToolStripMenuItem.Name = "ExportFingerSpellingToolStripMenuItem"
+        Me.ExportFingerSpellingToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ExportFingerSpellingToolStripMenuItem.Text = "Export FingerSpelling text file..."
         '
         'ExportToAnkiToolStripMenuItem
         '
@@ -954,16 +971,6 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.Visible = False
         '
-        'CBExactSearch
-        '
-        Me.CBExactSearch.AutoSize = True
-        Me.CBExactSearch.Location = New System.Drawing.Point(2, 59)
-        Me.CBExactSearch.Name = "CBExactSearch"
-        Me.CBExactSearch.Size = New System.Drawing.Size(90, 17)
-        Me.CBExactSearch.TabIndex = 21
-        Me.CBExactSearch.Text = "Exact Search"
-        Me.CBExactSearch.UseVisualStyleBackColor = True
-        '
         'SWDictForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1090,4 +1097,5 @@ Partial Class SWDictForm
     Friend WithEvents DeleteFromPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SendSelectedEntriesToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CBExactSearch As System.Windows.Forms.CheckBox
+    Friend WithEvents ExportFingerSpellingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

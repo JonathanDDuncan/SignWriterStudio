@@ -1993,7 +1993,7 @@ Public Class SWDictForm
     Private Sub ExportToAnkiToolStripMenuItem_Click(sender As Object, e As EventArgs) _
         Handles ExportToAnkiToolStripMenuItem.Click
         SaveDataGrid()
-        Dim ankiFrm = New ExportAnkiFrm
+        Dim ankiFrm = New ExportFingerSpellingFrm
         ankiFrm.TagFilter1.TagListControl1.SelectionItemList(GetTagsData())
         ankiFrm.TagFilter1.AssumeFiltering = True
         ankiFrm.MyDictionary = _myDictionary
@@ -2327,7 +2327,7 @@ Public Class SWDictForm
         signWriterJson.SignWriterStudio = New SignWriterStudio.Dictionary.Json.SignWriterStudio()
         signWriterJson.SignWriterStudio.Guid = swSign.SignWriterGuid
         signWriterJson.SignWriterStudio.Tags = tagNames
- 
+
         Dim json = Newtonsoft.Json.JsonConvert.SerializeObject(signWriterJson,
             New JsonSerializerSettings With {.NullValueHandling = NullValueHandling.Ignore})
         Return json
@@ -2405,6 +2405,14 @@ Public Class SWDictForm
 
 
 
+    Private Sub ExportFingerSpellingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportFingerSpellingToolStripMenuItem.Click
+        SaveDataGrid()
+        Dim fingerSpellingFrm = New ExportFingerSpellingFrm
+        fingerSpellingFrm.TagFilter1.TagListControl1.SelectionItemList(GetTagsData())
+        fingerSpellingFrm.TagFilter1.AssumeFiltering = True
+        fingerSpellingFrm.MyDictionary = _myDictionary
+        fingerSpellingFrm.Show()
+    End Sub
 End Class
 
 Public Class AddedEntry

@@ -136,6 +136,13 @@
     <Compile Include="DataGridViewPager\Pager.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ExportFingerSpelling.vb" />
+    <Compile Include="ExportFingerSpellingFrm.Designer.vb">
+      <DependentUpon>ExportFingerSpellingFrm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ExportFingerSpellingFrm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ExportFields.vb" />
     <Compile Include="ExportHtml.vb" />
     <Compile Include="ExportHtmlFrm.Designer.vb">
@@ -236,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataGridViewPager\Pager.resx">
       <DependentUpon>Pager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportFingerSpellingFrm.resx">
+      <DependentUpon>ExportFingerSpellingFrm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportHtmlFrm.resx">
       <DependentUpon>ExportHtmlFrm.vb</DependentUpon>
