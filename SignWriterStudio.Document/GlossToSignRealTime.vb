@@ -436,7 +436,7 @@ Public Class GlossToSignRealTime
     Private Sub GlossToSignRealTimeControl_InsertBefore(control As Document.GlossToSignRealTimeControl)
         Dim index = FlowLayoutPanel1.Controls.IndexOf(control)
         Dim insertIndex As Integer
-        insertIndex = index - 1
+        insertIndex = index
         If insertIndex < 0 Then
             insertIndex = 0
         End If
