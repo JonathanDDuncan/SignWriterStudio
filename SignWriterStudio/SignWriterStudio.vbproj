@@ -198,6 +198,7 @@
     <None Include="Sample Dictionary.SWS" />
     <None Include="Sample Document.SWSDoc" />
     <None Include="Setup\SignWriter Studio.iss" />
+    <None Include="Setup\SignWriterStudio.manifest.json" />
     <None Include="SignWriterStudio.pfx" />
   </ItemGroup>
   <ItemGroup>

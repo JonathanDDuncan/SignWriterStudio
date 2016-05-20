@@ -61,7 +61,7 @@ Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DropDownControls.dll"; De
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DbTags.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLiteAdapters.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\System.Data.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BaseSourceDir}\Foreign Dll\nunit.framework.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\nunit.framework.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\System.Data.SQLite.Linq.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\vcredist_x86.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Settings\Settings.dat"; DestDir: "{app}"; Flags: ignoreversion
