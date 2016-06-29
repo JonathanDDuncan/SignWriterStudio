@@ -6,6 +6,12 @@ Public Class ExportPng
     Public Shared Function GetFilename(ByVal gloss As String, ByVal id As String, Optional ByVal suffix As String = "") As String
         Return (CleanFileName(gloss) + " " + id + suffix + ".png").Replace(" ", "")
     End Function
+    Public Shared Function SavePng(ByVal gloss As String, ByVal guid As Guid, ByVal pngFolder As String, ByVal png As Image, ByVal suffix As String) As String
+        Dim filename As String = GetFilename(gloss, guid.ToString, suffix)
+
+        SavePng(pngFolder, filename, png)
+        Return filename
+    End Function
 
     Public Shared Sub SavePng(pngFolder As String, filename As String, png As Image)
         If Not File.Exists(pngFolder) Then

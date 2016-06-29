@@ -1993,7 +1993,7 @@ Public Class SWDictForm
     Private Sub ExportToAnkiToolStripMenuItem_Click(sender As Object, e As EventArgs) _
         Handles ExportToAnkiToolStripMenuItem.Click
         SaveDataGrid()
-        Dim ankiFrm = New ExportFingerSpellingFrm
+        Dim ankiFrm = New ExportAnkiFrm
         ankiFrm.TagFilter1.TagListControl1.SelectionItemList(GetTagsData())
         ankiFrm.TagFilter1.AssumeFiltering = True
         ankiFrm.MyDictionary = _myDictionary
