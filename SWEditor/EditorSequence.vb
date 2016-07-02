@@ -144,7 +144,8 @@ Partial Public Class Editor
     End Sub
 
     Private Sub TVSequence_DragDrop(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles TVSequence.DragDrop
-        If e.Data.GetData(GetType(System.String)).ToString = PBsymbolOut.Name Then
+        Dim temp = e.Data.GetData(GetType(System.String))
+        If temp IsNot Nothing AndAlso temp.ToString = PBsymbolOut.Name Then
             CurrentFrame.AddSequenceItem(Me.symbolOut.SymbolDetails)
             LoadSequence()
             Area = AreaEnm.Sequence

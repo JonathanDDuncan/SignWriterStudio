@@ -97,7 +97,9 @@ Public Class ReportForm
     Private Sub ReportChanged(ByVal comboBox As ComboBox)
         Dim selectedValue = comboBox.SelectedValue
 
-        Select Case selectedValue.Item1
+        Dim value = If(TypeOf selectedValue Is Tuple(Of Integer, String), selectedValue.Item1, selectedValue)
+
+        Select Case value
             Case 1
                 Report1Chosen()
             Case 2
