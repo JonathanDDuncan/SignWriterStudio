@@ -334,7 +334,7 @@ Partial Class SwDocumentForm
         '
         Me.SignsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromEditorToolStripMenuItem, Me.FromDictionaryF10ToolStripMenuItem, Me.GlossToSignRealTimeToolStripMenuItem})
         Me.SignsToolStripMenuItem1.Name = "SignsToolStripMenuItem1"
-        Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(116, 22)
         Me.SignsToolStripMenuItem1.Text = "Signs"
         '
         'FromEditorToolStripMenuItem
@@ -362,7 +362,7 @@ Partial Class SwDocumentForm
         '
         Me.PicturesToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromFileToolStripMenuItem, Me.FromDictionaryPhotoToolStripMenuItem, Me.FromDictionarySignToolStripMenuItem1})
         Me.PicturesToolStripMenuItem2.Name = "PicturesToolStripMenuItem2"
-        Me.PicturesToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.PicturesToolStripMenuItem2.Size = New System.Drawing.Size(116, 22)
         Me.PicturesToolStripMenuItem2.Text = "Pictures"
         '
         'FromFileToolStripMenuItem

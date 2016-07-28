@@ -1,7 +1,6 @@
 Imports System.Drawing.Printing
 Imports System.ComponentModel
 Imports System.IO
-Imports SignWriterStudio.Database.Dictionary
 Imports SignWriterStudio.Settings
 Imports SignWriterStudio.General
 Imports Newtonsoft.Json.Converters
@@ -14,6 +13,13 @@ Imports System.Text
 
 Public NotInheritable Class SwDocumentForm
     Private _documentValue As New SwDocument
+
+    Dim isDrag As Boolean = False
+    Dim isSelect As Boolean = False
+    Dim screenSelectRectangle = Rectangle.Empty
+    Dim screenSelectStartPoint = Point.Empty
+    Dim selectStartPoint = Point.Empty
+    Dim selectRectangle = Rectangle.Empty
 
     Friend Property Document() As SwDocument
         Get
@@ -311,8 +317,6 @@ Public NotInheritable Class SwDocumentForm
 
     Private ReadOnly _swDocumentPrintPages As New SWPrintPages
     Private ReadOnly _printSwFlowLayoutPanel As New SwFlowLayoutPanel
-    Private _intPrintAreaHeight, _intPrintAreaWidth, _marginLeft, _marginTop As Int32
-
 
     Private Sub SetupPage(ByVal pagetoPrint As Integer)
         _printSwFlowLayoutPanel.SuspendLayout()
@@ -1081,11 +1085,6 @@ Public NotInheritable Class SwDocumentForm
         DocumentChanged = True
     End Sub
 
-    'Private Sub GlossToSignToolStripMenuItem_Click(sender As Object, e As EventArgs)
-
-    '    Gloss2Sign()
-    'End Sub
-
     Private Sub PasteFSWDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) _
         Handles PasteFSWDocumentToolStripMenuItem.Click
         Dim clipboardText = Clipboard.GetText()
@@ -1175,14 +1174,14 @@ Public NotInheritable Class SwDocumentForm
         Return bmp
     End Function
 
-    Public Sub DrawControl(control As Control, bitmap As Bitmap)
+    Private Sub DrawControl(control As Control, bitmap As Bitmap)
         control.DrawToBitmap(bitmap, control.Bounds)
         For Each childControl As Control In control.Controls
             DrawControl(childControl, bitmap)
         Next
     End Sub
 
-    Friend Sub DrawLines(ByVal bitmap As Bitmap)
+    Private Sub DrawLines(ByVal bitmap As Bitmap)
         Dim layoutEng = SwFlowLayoutPanel1.LayoutEng
         If layoutEng.LayoutEngineSettings.DrawColumnLines Then
             Dim g As Graphics = Graphics.FromImage(bitmap)
@@ -1204,6 +1203,84 @@ Public NotInheritable Class SwDocumentForm
 
     Private Sub GlossToSignRealTimeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GlossToSignRealTimeToolStripMenuItem.Click
         Gloss2SignRealTime()
+    End Sub
+
+    Private Sub SwFlowLayoutPanel1_MouseMove(sender As Object, e As MouseEventArgs) Handles SwFlowLayoutPanel1.MouseMove
+        If isSelect Then
+            If isDrag Then
+                SwFlowLayoutPanel1.Refresh()
+                screenSelectRectangle = CreateRectangle(screenSelectStartPoint, sender.PointToScreen(New Point(e.X, e.Y)))
+                ' Draw the new rectangle by calling DrawReversibleFrame again.  
+                ControlPaint.DrawReversibleFrame(screenSelectRectangle, BackColor, _
+                     FrameStyle.Dashed)
+            End If
+        End If
+    End Sub
+
+    Private Sub SwFlowLayoutPanel1_MouseUp(sender As Object, e As MouseEventArgs) Handles SwFlowLayoutPanel1.MouseUp
+        If isSelect Then
+            isDrag = False
+            SwFlowLayoutPanel1.Refresh()
+            selectRectangle = CreateRectangle(selectStartPoint, New Point(e.X, e.Y))
+            SelectControls()
+
+            screenSelectRectangle = Rectangle.Empty
+            screenSelectStartPoint = Point.Empty
+            selectStartPoint = Point.Empty
+            selectRectangle = Rectangle.Empty
+        End If
+
+    End Sub
+
+    Private Function CreateRectangle(ByVal point1 As Point, ByVal point2 As Point) As Rectangle
+        Dim rX = Math.Min(point1.X, point2.X)
+        Dim rY = Math.Min(point1.Y, point2.Y)
+        Dim rWidth = Math.Abs(point1.X - point2.X)
+        Dim rHeight = Math.Abs(point1.Y - point2.Y)
+        Return New Rectangle(rX, rY, rWidth, rHeight)
+    End Function
+
+    Private Sub SelectControls()
+        For Each c As Control In SwFlowLayoutPanel1.Controls
+            If Not selectRectangle = Rectangle.Empty Then
+                If selectRectangle.IntersectsWith(c.Bounds) Then
+                    Dim control As SwLayoutControl = TryCast(c, SwLayoutControl)
+                    If (control IsNot Nothing) Then
+                        control.Selected = True
+                    End If
+                End If
+            End If
+        Next
+    End Sub
+
+    Private Sub UnSelectControls()
+        For Each c As Control In SwFlowLayoutPanel1.Controls
+            Dim control As SwLayoutControl = TryCast(c, SwLayoutControl)
+            If (control IsNot Nothing) Then
+                control.Selected = False
+            End If
+        Next
+    End Sub
+
+    Private Sub SwFlowLayoutPanel1_MouseDown(sender As Object, e As MouseEventArgs) Handles SwFlowLayoutPanel1.MouseDown
+        isSelect = True
+        UnSelectControls()
+
+        sender.Cursor = Cursors.Cross
+        screenSelectRectangle = Rectangle.Empty
+        selectRectangle = Rectangle.Empty
+
+        ' Set the isDrag variable to true and get the starting point 
+        ' by using the PointToScreen method to convert form coordinates to
+        ' screen coordinates.
+        If (e.Button = Windows.Forms.MouseButtons.Left) Then
+            isDrag = True
+        End If
+
+        Dim control As Control = CType(sender, Control)
+
+        screenSelectStartPoint = control.PointToScreen(New Point(e.X, e.Y))
+        selectStartPoint = New Point(e.X, e.Y)
     End Sub
 End Class
 

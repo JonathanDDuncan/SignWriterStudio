@@ -26,8 +26,31 @@ Public NotInheritable Class SwLayoutControl
         End Set
     End Property
 
+    Property Selected() As Boolean
+        Get
+            Return _selected1
+        End Get
+        Set(value As Boolean)
+            If Not value = _selected1 Then
+                _selected1 = value
+                SetBackgroundColor()
+            End If
+        End Set
+    End Property
+
+    Private Sub SetBackgroundColor()
+        If Selected Then
+            DocumentSign().BkColor = Color.Blue
+        Else
+            DocumentSign().BkColor = Color.White
+        End If
+        DocumentSign().Render()
+        Refresh()
+    End Sub
+
     Private _symbolToolTip As New Windows.Forms.ToolTip()
     Private _isToolTipSet As Boolean
+    Private _selected1 As Boolean
 
     ' Associations
 
