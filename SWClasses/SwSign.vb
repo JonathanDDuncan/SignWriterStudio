@@ -380,27 +380,11 @@ Imports Microsoft.VisualBasic
 
    
     Public Sub SetClipboard()
-        Dim str = SerializeJson(Me)
-        'Dim myDataObject As New Windows.Forms.DataObject()
-        'myDataObject.SetData("SWSign", False, str)
+        Dim str = Json.SerializeJson(Me)
         Clipboard.SetText(str)
-
-
     End Sub
 
-    Private Shared Function SerializeJson(obj As Object) As String
-
-        Dim sb As StringBuilder = New StringBuilder()
-        Dim sw As StringWriter = New StringWriter(sb)
-        Dim jsonWriter As JsonSerializer = New JsonSerializer()
-
-        jsonWriter.Converters.Add(New JavaScriptDateTimeConverter())
-        jsonWriter.NullValueHandling = NullValueHandling.Ignore
-        jsonWriter.Serialize(sw, obj)
-        Return sb.ToString()
-    End Function
-
-    Public Sub SetClipboardImage()
+   Public Sub SetClipboardImage()
         Dim img = Render()
         Clipboard.SetImage(img)
         img.Dispose()

@@ -82,7 +82,7 @@ Partial Class SwDocumentForm
         '
         Me.PictBoxContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditSignInEditorToolStripMenuItem, Me.SaveToDictionaryToolStripMenuItem, Me.RemoveSignToolStripMenuItem, Me.AToolStripMenuItem, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem, Me.LaneToolStripMenuItem, Me.PropertiesToolStripMenuItem, Me.CopyToolStripMenuItem, Me.PasteToolStripMenuItem, Me.BeginningOfColumnToolStripMenuItem})
         Me.PictBoxContextMenuStrip.Name = "DocumentContextMenuStrip"
-        Me.PictBoxContextMenuStrip.Size = New System.Drawing.Size(235, 230)
+        Me.PictBoxContextMenuStrip.Size = New System.Drawing.Size(235, 252)
         '
         'EditSignInEditorToolStripMenuItem
         '

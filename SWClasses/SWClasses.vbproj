@@ -113,6 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Json.vb" />
     <Compile Include="ReportTitleRow.vb" />
     <Compile Include="ReportTitleTable.vb">
       <SubType>Component</SubType>

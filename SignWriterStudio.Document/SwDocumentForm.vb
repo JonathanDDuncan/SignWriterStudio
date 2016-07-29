@@ -1,6 +1,7 @@
 Imports System.Drawing.Printing
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports SignWriterStudio.Settings
 Imports SignWriterStudio.General
 Imports Newtonsoft.Json.Converters
@@ -20,6 +21,7 @@ Public NotInheritable Class SwDocumentForm
     Dim screenSelectStartPoint = Point.Empty
     Dim selectStartPoint = Point.Empty
     Dim selectRectangle = Rectangle.Empty
+    Dim controlsSelected As Boolean = False
 
     Friend Property Document() As SwDocument
         Get
@@ -534,33 +536,6 @@ Public NotInheritable Class SwDocumentForm
         SaveDocument(DocumentFilename)
     End Sub
 
-    'Protected Property Id() As Integer
-    '    Get
-    '        Throw New NotImplementedException()
-    '    End Get
-    '    Set(ByVal value As Integer)
-    '        Throw New NotImplementedException()
-    '    End Set
-    'End Property
-
-    'Protected Property Line2() As String
-    '    Get
-    '        Throw New NotImplementedException()
-    '    End Get
-    '    Set(ByVal value As String)
-    '        Throw New NotImplementedException()
-    '    End Set
-    'End Property
-
-    'Protected Property Line1() As String
-    '    Get
-    '        Throw New NotImplementedException()
-    '    End Get
-    '    Set(ByVal value As String)
-    '        Throw New NotImplementedException()
-    '    End Set
-    'End Property
-
     Private Sub OpenDocumentFileDialog_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) _
         Handles OpenDocumentFileDialog.FileOk
         OpenDocument(OpenDocumentFileDialog.FileName)
@@ -568,7 +543,6 @@ Public NotInheritable Class SwDocumentForm
 
     Public Sub OpenDocument(ByVal filename As String)
         Try
-
             Dim serializer = New JsonSerializer()
             serializer.Converters.Add(New JavaScriptDateTimeConverter())
             serializer.NullValueHandling = NullValueHandling.Ignore
@@ -577,13 +551,10 @@ Public NotInheritable Class SwDocumentForm
             Using sw = New StreamReader(DocumentFilename)
                 Using reader = New JsonTextReader(sw)
 
-
                     Document = serializer.Deserialize(Of SwDocument)(reader)
                     RemoveFirstFrame(Document)
 
                     DocumentChanged = False
-
-
                     SaveToolStripMenuItem2.Enabled = True
                 End Using
             End Using
@@ -640,17 +611,43 @@ Public NotInheritable Class SwDocumentForm
 
     Private Sub CopySign()
         If RightClickDownSender IsNot Nothing AndAlso
-            RightClickDownSender.GetType.ToString = "SignWriterStudio.SWClasses.SwLayoutControl" Then
+            RightClickDownSender.GetType Is GetType(SwLayoutControl) Then
 
             Dim layoutControl As SwLayoutControl = CType(RightClickDownSender, SwLayoutControl)
             If layoutControl.DocumentSign.IsSign Then
-                Dim sign = CType(layoutControl.DocumentSign, SwSign)
-                sign.SetClipboard()
+                If controlsSelected Then
+                    Dim selectedControls As List(Of SwDocumentSign) =
+                        GetListSelectedControls().Select(Function(x As SwLayoutControl) As SwDocumentSign
+                                                             x.DocumentSign().BkColor = Color.White
+                                                             Return x.DocumentSign()
+                                                         End Function).ToList()
+                    SendSignsToClipboard(selectedControls)
+                Else
+                    Dim sign = CType(layoutControl.DocumentSign, SwSign)
+                    sign.SetClipboard()
+                End If
             Else
                 Clipboard.SetImage(layoutControl.Image)
             End If
         End If
     End Sub
+
+    Private Sub SendSignsToClipboard(ByVal selectedControls As List(Of SwDocumentSign))
+        Dim str = Json.SerializeJson(selectedControls)
+        Clipboard.SetText(str)
+    End Sub
+
+    Private Function GetListSelectedControls() As List(Of SwLayoutControl)
+        Dim selectedControls = New List(Of SwLayoutControl)()
+        For Each c As Control In SwFlowLayoutPanel1.Controls
+            Dim control As SwLayoutControl = TryCast(c, SwLayoutControl)
+            If control IsNot Nothing AndAlso control.Selected Then
+                selectedControls.Add(control)
+            End If
+        Next
+
+        Return selectedControls
+    End Function
 
     Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
         Handles PasteToolStripMenuItem.Click
@@ -668,8 +665,29 @@ Public NotInheritable Class SwDocumentForm
         End If
 
         If Clipboard.ContainsText Then
+            Dim clipboardText As String = Clipboard.GetText
+            If clipboardText.Contains("[{") Then
+                Try
+
+                    Dim signs = DeSerializeJson(Of List(Of SwDocumentSign))(clipboardText)
+                    If signs IsNot Nothing Then
+                        UnSelectControls()
+                        signs.Reverse()
+                        For Each sign As SwDocumentSign In signs
+                            sign.Frames.RemoveAt(0)
+                            Document.AddSWSign(sign, instertAt)
+                        Next
+                    End If
+                    DocumentChanged = True
+                    Return
+                Catch ex As ArgumentException
+                    'Swallow is not json
+                End Try
+            End If
+
             Try
-                Dim sign = DeSerializeJson(Of SwSign)(Clipboard.GetText)
+
+                Dim sign = DeSerializeJson(Of SwSign)(clipboardText)
                 If sign IsNot Nothing Then
                     sign.Frames.RemoveAt(0)
                     Document.AddSWSign(sign, instertAt)
@@ -1034,7 +1052,7 @@ Public NotInheritable Class SwDocumentForm
         SwFlowLayoutPanel1.PerformLayout()
     End Sub
 
-    Private Shared Sub PictBoxContextMenuStrip_Opening(sender As Object, e As CancelEventArgs) _
+    Private Sub PictBoxContextMenuStrip_Opening(sender As Object, e As CancelEventArgs) _
         Handles PictBoxContextMenuStrip.Opening
 
         Dim cms As ContextMenuStrip = DirectCast(sender, ContextMenuStrip)
@@ -1042,6 +1060,34 @@ Public NotInheritable Class SwDocumentForm
         Dim pictParent As SwFlowLayoutPanel = DirectCast(ctrl.Parent, SwFlowLayoutPanel)
 
         pictParent.RightClickedControl = ctrl
+
+        SetVisibleItems(controlsSelected)
+    End Sub
+
+    Private Sub SetVisibleItems(ByVal selected As Boolean)
+        If selected Then
+            EditSignInEditorToolStripMenuItem.Visible = False
+            SaveToDictionaryToolStripMenuItem.Visible = False
+            RemoveSignToolStripMenuItem.Visible = True
+            MoveUpToolStripMenuItem.Visible = False
+            MoveDownToolStripMenuItem.Visible = False
+            LaneToolStripMenuItem.Visible = True
+            PropertiesToolStripMenuItem.Visible = False
+            CopyToolStripMenuItem.Visible = True
+            PasteToolStripMenuItem.Visible = True
+            BeginningOfColumnToolStripMenuItem.Visible = False
+        Else
+            EditSignInEditorToolStripMenuItem.Visible = True
+            SaveToDictionaryToolStripMenuItem.Visible = True
+            RemoveSignToolStripMenuItem.Visible = True
+            MoveUpToolStripMenuItem.Visible = True
+            MoveDownToolStripMenuItem.Visible = True
+            LaneToolStripMenuItem.Visible = True
+            PropertiesToolStripMenuItem.Visible = True
+            CopyToolStripMenuItem.Visible = True
+            PasteToolStripMenuItem.Visible = True
+            BeginningOfColumnToolStripMenuItem.Visible = True
+        End If
     End Sub
 
     Private Sub LoadSettings()
@@ -1247,6 +1293,7 @@ Public NotInheritable Class SwDocumentForm
                     Dim control As SwLayoutControl = TryCast(c, SwLayoutControl)
                     If (control IsNot Nothing) Then
                         control.Selected = True
+                        controlsSelected = True
                     End If
                 End If
             End If
@@ -1260,6 +1307,7 @@ Public NotInheritable Class SwDocumentForm
                 control.Selected = False
             End If
         Next
+        controlsSelected = False
     End Sub
 
     Private Sub SwFlowLayoutPanel1_MouseDown(sender As Object, e As MouseEventArgs) Handles SwFlowLayoutPanel1.MouseDown
