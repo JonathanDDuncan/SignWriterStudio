@@ -2170,11 +2170,6 @@ Public Class SWDictForm
         reportForm.Show()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        Dim path = GetConnectionString()
-        Dim listIdDictionary = DbDictionary.GetAllIds(path)
-        Dim affectedRows = DbTagsDictionary.InsertTag(path, listIdDictionary, "d58d8114-7dc4-4d3d-9594-ee3756ed1854")
-    End Sub
 
     Private Function GetConnectionString() As String
         Dim taVer As New DictionaryDataSetTableAdapters.VersionTableAdapter
@@ -2412,6 +2407,47 @@ Public Class SWDictForm
         fingerSpellingFrm.TagFilter1.AssumeFiltering = True
         fingerSpellingFrm.MyDictionary = _myDictionary
         fingerSpellingFrm.Show()
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+
+    End Sub
+    Private Sub AddSignsinNewDictNoImageDibujoGroup1()
+        Dim path = GetConnectionString()
+        Dim listIdDictionary = DbDictionary.GetAllIds(path)
+
+        Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)        Dim list = New List(Of String)()
+        Dim newDict = New Guid("16D3558D-0767-4B2E-83D1-A5A02BD5052D")
+        For Each entry As Object In entries
+            If entry.IdTag = newDict Then
+                Dim dictEntry = DbDictionary.GetDictionaryEntries(path, "IDDictionary = " & entry.IDDictionary)
+                Dim foundEntry As Object = (dictEntry.TabularResults.FirstOrDefault).FirstOrDefault
+
+                If foundEntry IsNot Nothing AndAlso IsDbNull(foundEntry.Photo) Then
+                    list.Add(entry.IDDictionary)
+                End If
+
+
+            End If
+        Next
+        Dim dibujoGroup1 = New Guid("2F716EBB-561C-480F-8996-0ED0C34A1832") 
+
+        Dim affectedRows = DbTagsDictionary.InsertTag(path, list, dibujoGroup1.ToString())
+    End Sub
+    Private Sub AddNewDicttoPreviousDictEntries()
+        Dim path = GetConnectionString()
+        Dim listIdDictionary = DbDictionary.GetAllIds(path)
+
+        Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)        Dim list = New List(Of String)()
+        Dim previousDictionary = New Guid("D58D8114-7DC4-4D3D-9594-EE3756ED1854")
+        For Each entry As Object In entries
+            If entry.IdTag = previousDictionary Then
+                list.Add(entry.IDDictionary)
+            End If
+        Next
+        Dim newDictionary = New Guid("16D3558D-0767-4B2E-83D1-A5A02BD5052D")
+
+        Dim affectedRows = DbTagsDictionary.InsertTag(path, list, newDictionary.ToString())
     End Sub
 End Class
 

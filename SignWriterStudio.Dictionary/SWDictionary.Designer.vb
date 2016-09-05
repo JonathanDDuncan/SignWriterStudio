@@ -55,6 +55,7 @@ Partial Class SWDictForm
         Me.CBGloss2 = New System.Windows.Forms.ComboBox()
         Me.CBGloss1 = New System.Windows.Forms.ComboBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.CBExactSearch = New System.Windows.Forms.CheckBox()
         Me.TagFilter1 = New Global.SignWriterStudio.Dictionary.TagFilter()
         Me.btnShowSource = New System.Windows.Forms.Button()
@@ -308,6 +309,7 @@ Partial Class SWDictForm
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.AutoScroll = True
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Button1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.CBExactSearch)
         Me.SplitContainer1.Panel1.Controls.Add(Me.TagFilter1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnShowSource)
@@ -334,6 +336,15 @@ Partial Class SWDictForm
         Me.SplitContainer1.Size = New System.Drawing.Size(1533, 533)
         Me.SplitContainer1.SplitterDistance = 73
         Me.SplitContainer1.TabIndex = 4
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(982, 38)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(120, 23)
+        Me.Button1.TabIndex = 22
+        Me.Button1.Text = "Add New Tag"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'CBExactSearch
         '
@@ -461,7 +472,7 @@ Partial Class SWDictForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 3)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(218, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(126, 24)
         Me.MenuStrip1.TabIndex = 12
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -1098,4 +1109,5 @@ Partial Class SWDictForm
     Friend WithEvents SendSelectedEntriesToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CBExactSearch As System.Windows.Forms.CheckBox
     Friend WithEvents ExportFingerSpellingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class
