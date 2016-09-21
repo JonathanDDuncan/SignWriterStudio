@@ -1,11 +1,13 @@
 'Option Strict On
 Imports System.Drawing
-Imports System.ComponentModel
+
 Imports SignWriterStudio.SWClasses
 Imports System.Windows.Forms
-Imports SignWriterStudio.SymbolCache.SWSymbolCache
-Imports SignWriterStudio.SWS
 
+Imports SignWriterStudio.SWS
+Imports CefSharp
+
+Imports CefSharp.MinimalExample.WinForms
 ' FILE: E:/Mis Documentos/Jonathan/SignWritingDocs/Cs//cs
 
 ' In this section you can add your own using directives
@@ -88,7 +90,7 @@ Partial Public Class Editor
     Private Sub Accept()
         CurrentFrame.UnSelectSymbols()
         EditorUndo.Clear()
-        DialogResult = Windows.Forms.DialogResult.OK
+        DialogResult = DialogResult.OK
         Hide()
     End Sub
 
@@ -98,7 +100,7 @@ Partial Public Class Editor
     End Sub
     Private Sub Cancel()
         EditorUndo.Clear()
-        DialogResult = Windows.Forms.DialogResult.Cancel
+        DialogResult = DialogResult.Cancel
         Hide()
     End Sub
     Public Property Sign() As SwSign
@@ -674,6 +676,9 @@ Partial Public Class Editor
         LoadSequence()
     End Sub
      
+    Private Sub QuickSignEditorBtn_Click(sender As Object, e As EventArgs) Handles QuickSignEditorBtn.Click
+        MinimalExample.WinForms.Program.ShowForm()
+    End Sub
 End Class
 
 Public Class DeglossChoosers

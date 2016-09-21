@@ -155,7 +155,7 @@ Public Class GlossToSignRealTime
         Signs = Dictionary.GetGlosstoSign(IDs)
 
 
-        DialogResult = Windows.Forms.DialogResult.OK
+        DialogResult = DialogResult.OK
         Close()
     End Sub
     Private Sub AddGlossControl(ByVal searchString As String)
@@ -304,7 +304,7 @@ Public Class GlossToSignRealTime
         FlowLayoutPanel1.Controls.SetChildIndex(glossToSignControl1, index)
     End Sub
     Private Sub BtnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
 

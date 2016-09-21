@@ -35,7 +35,7 @@ Public Class DocumentSettings
 
     Private Sub BtnBackgroundcolor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBackgroundcolor.Click
         Dim diagres As DialogResult = Me.ColorDialog1.ShowDialog()
-        If diagres = Windows.Forms.DialogResult.OK Then
+        If diagres = DialogResult.OK Then
             BtnBackgroundcolor.BackColor = Me.ColorDialog1.Color
         End If
     End Sub

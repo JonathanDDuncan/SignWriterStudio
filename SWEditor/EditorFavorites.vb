@@ -29,7 +29,7 @@ Partial Public Class Editor
     End Sub
 
 
-    Private Sub Favorites_KeyDown(ByVal sender As Object, ByVal e As Windows.Forms.KeyEventArgs)
+    Private Sub Favorites_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Select Case e.KeyCode
             Case Keys.F1
                 Help.ShowHelp(Me, "SignWriterStudio.chm", "favoritesymbols.htm")
@@ -155,19 +155,19 @@ Partial Public Class Editor
     Private Sub RemoveFavorite()
         'Dim Favorites As Settings.Favorites
         Dim favoriteName = CBFavorites.Text
-        If MessageBox.Show("Do you really want to remove favorite '" & favoriteName & "'?", "Remove favorite", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+        If MessageBox.Show("Do you really want to remove favorite '" & favoriteName & "'?", "Remove favorite", MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Dim rowsAffected As Integer = Settings.Favorites.DeleteFavorite(favoriteName)
 
             If Not rowsAffected = 1 Then
                 MessageBox.Show("There was an error deleting Favorite Entry")
             Else
                 TVFavoriteSymbols.Nodes.Clear()
-                TVFavoriteLoad()
+                TvFavoriteLoad()
             End If
         End If
     End Sub
 
-    Private Sub TVFavoriteSymbols_AfterSelect(ByVal sender As Object, ByVal e As Windows.Forms.TreeViewEventArgs) Handles TVFavoriteSymbols.AfterSelect
+    Private Sub TVFavoriteSymbols_AfterSelect(ByVal sender As Object, ByVal e As TreeViewEventArgs) Handles TVFavoriteSymbols.AfterSelect
         If e.Action = TreeViewAction.ByKeyboard Then
             CBFavorites.Text = TVFavoriteSymbols.SelectedNode.Text
         ElseIf e.Action = TreeViewAction.ByMouse OrElse e.Action = TreeViewAction.Unknown Then
@@ -216,7 +216,7 @@ Partial Public Class Editor
         Area = AreaEnm.Favorites
     End Sub
 
-    Private Sub TVFavoriteSymbols_MouseDown(ByVal sender As Object, ByVal e As Windows.Forms.MouseEventArgs) Handles TVFavoriteSymbols.MouseDown
+    Private Sub TVFavoriteSymbols_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles TVFavoriteSymbols.MouseDown
         TVFavoriteSymbols.SelectedNode = TVFavoriteSymbols.GetNodeAt(e.X, e.Y)
         Dim currentTreeNode As TreeNode = TVFavoriteSymbols.SelectedNode
         AddedFavoriteByDrop = False
@@ -224,7 +224,7 @@ Partial Public Class Editor
         If currentTreeNode IsNot Nothing Then
             TVFavoriteSymbols.DoDragDrop(TVFavoriteSymbols.Name, DragDropEffects.Copy)
         End If
-        If TVFavoriteSymbols.SelectedNode IsNot Nothing AndAlso e.Button = Windows.Forms.MouseButtons.Left Then
+        If TVFavoriteSymbols.SelectedNode IsNot Nothing AndAlso e.Button = MouseButtons.Left Then
             AddSelectedFavorite()
         End If
     End Sub

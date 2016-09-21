@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,7 +11,7 @@
     <AssemblyName>SWEditor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
@@ -237,6 +237,10 @@
     <None Include="Resources\VerticalHand.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CefSharp.MinimalExample.WinForms\CefSharp.MinimalExample.WinForms.csproj">
+      <Project>{c043fff7-5f71-4ffc-989a-e09e18548589}</Project>
+      <Name>CefSharp.MinimalExample.WinForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\General\General\General.vbproj">
       <Project>{800E41F9-9663-47D2-A0B2-A61BB6EEB4CC}</Project>
       <Name>General</Name>

@@ -1321,7 +1321,7 @@ Public NotInheritable Class SwDocumentForm
         ' Set the isDrag variable to true and get the starting point 
         ' by using the PointToScreen method to convert form coordinates to
         ' screen coordinates.
-        If (e.Button = Windows.Forms.MouseButtons.Left) Then
+        If (e.Button = MouseButtons.Left) Then
             isDrag = True
         End If
 

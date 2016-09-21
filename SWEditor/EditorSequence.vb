@@ -13,7 +13,7 @@ Partial Public Class Editor
     End Sub
     Private SequenceRightClickedNode As TreeNode
     Private Sub TVSequence_NodeMouseClick(sender As Object, e As System.Windows.Forms.TreeNodeMouseClickEventArgs) Handles TVSequence.NodeMouseClick
-        If e.Button = Windows.Forms.MouseButtons.Right Then
+        If e.Button = MouseButtons.Right Then
 
             SequenceRightClickedNode = e.Node
         End If

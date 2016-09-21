@@ -74,10 +74,10 @@ Public Class SignWriterMenu
         Dim swsOptions As New SWOptions
 
         Dim dialogRes As DialogResult = swsOptions.ShowDialog()
-        If (dialogRes = Windows.Forms.DialogResult.OK) Then
+        If (dialogRes = DialogResult.OK) Then
             'Action to take when accepted
             swsOptions.Close()
-        ElseIf (dialogRes = Windows.Forms.DialogResult.Cancel) Then
+        ElseIf (dialogRes = DialogResult.Cancel) Then
             swsOptions.Close()
         End If
 
@@ -122,7 +122,7 @@ Public Class SignWriterMenu
         Show()
     End Sub
 
-    Private Shared Sub frmSignWriter1_FormClosing(ByVal sender As Object, ByVal e As Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+    Private Shared Sub frmSignWriter1_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
         My.Application.Log.WriteEntry("End of SignWriterStudio " & Microsoft.VisualBasic.DateAndTime.Now().ToString)
     End Sub
 

@@ -3,7 +3,7 @@ Imports SignWriterStudio.SWClasses
 Public Class SWLayoutControlProperties
     Friend DocumentSign As New SwDocumentSign
 
-    Private Sub SWLayoutControlProperties_KeyDown(ByVal sender As Object, ByVal e As Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    Private Sub SWLayoutControlProperties_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
         Help.ShowHelp(Me, "SignWriterStudio.chm", "signeditor.htm")
     End Sub
 
@@ -30,14 +30,14 @@ Public Class SWLayoutControlProperties
             DocumentSign.Glosses = TBGlosses.Text
             DocumentSign.SetlanguageIso(CBGlossLang.SelectedValue)
             DocumentSign.SetSignLanguageIso(CBSLanguage.SelectedValue)
-            DialogResult = Windows.Forms.DialogResult.OK
+            DialogResult = DialogResult.OK
             Close()
         End If
 
     End Sub
 
     Private Sub BtnCancel_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles BtnCancel.Click
-        DialogResult = Windows.Forms.DialogResult.Cancel
+        DialogResult = DialogResult.Cancel
         Close()
     End Sub
  
