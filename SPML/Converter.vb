@@ -158,7 +158,39 @@ Public NotInheritable Class SpmlConverter
         Next
         Return newSign
     End Function
+    'Simplify two function that take idSignlanguage as Int or as String
     Public Shared Function FswtoSwSign(ByVal fsw As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SwSign
+        Dim newSign As New SwSign
+        Dim sequenceStr As String
+        Dim symbolsStr As String
+
+        newSign.SetlanguageIso(idCulture)
+        newSign.SetSignLanguageIso(idSignLanguage)
+        newSign.BkColor = Color.White
+        newSign.SignWriterGuid = Guid.NewGuid
+
+        sequenceStr = fsw.GetSequenceBuildStr()
+        symbolsStr = fsw.GetSymbolsBuildStr()
+
+        For Each Symbol In SpmlSymbolsToSwSymbols(symbolsStr)
+            Symbol.Handcolor = Color.Black.ToArgb
+            Symbol.Palmcolor = Color.White.ToArgb
+            newSign.Frames(0).SignSymbols.Add(Symbol)
+        Next
+        Dim I As Integer
+
+        For Each seq In SpmlSequence(sequenceStr)
+            I += 1
+            If SymbolExists(seq) Then
+                newSign.Frames(0).Sequences.Add(New SWSequence(seq, I))
+            End If
+        Next
+
+        newSign.Frames(0).CenterSymbols()
+
+        Return newSign
+    End Function
+    Public Shared Function FswtoSwSign(ByVal fsw As String, ByVal idSignLanguage As String, ByVal idCulture As String) As SwSign
         Dim newSign As New SwSign
         Dim sequenceStr As String
         Dim symbolsStr As String

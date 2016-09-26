@@ -1,7 +1,6 @@
 'Option Strict On
 Imports System.Drawing
 
-Imports System.IO
 Imports SignWriterStudio.SWClasses
 Imports System.Windows.Forms
 
@@ -208,8 +207,23 @@ Partial Public Class Editor
     End Sub
     Dim AddingUndo As Boolean
     Private browser As ChromiumWebBrowser
-    Private FSW As String
-    '= False
+    Private _fsw1 As String
+
+    Public Property FSW As String
+        Get
+            Return _fsw1
+        End Get
+        Set(value As String)
+            _fsw1 = value
+            SetFsw(_fsw1)
+        End Set
+    End Property
+
+    Private Sub SetFsw(ByVal fsw As String)
+        mySWSign = SpmlConverter.FswtoSwSign(fsw, mySWSign.LanguageIso, mySWSign.SignLanguageIso)
+        DisplaySign()
+    End Sub
+
     Private Sub AddUndo()
 
         If AddingUndo Then
@@ -695,11 +709,17 @@ Partial Public Class Editor
             browser = browserForm.browser
 
             AddHandler browser.FrameLoadEnd, AddressOf FrameLoadEnd
+ 
+            browser.RegisterJsObject("callbackObj", New CallbackObjectForJs(Me))
+
+            browserForm.ShowDialog()
+            
         Catch ex As Exception
             MessageBox.Show(ex.Message & ex.StackTrace)
         End Try
 
     End Sub
+  
 
     Private Function FrameLoadEnd(sender As IWebBrowser, args As FrameLoadEndEventArgs) As EventHandler(Of FrameLoadEndEventArgs)
 
@@ -710,11 +730,33 @@ Partial Public Class Editor
             Dim script As String = "window.initialFSW = '" & FSW & "'; alert('value of window.initialFSW is ' + window.initialFSW);" & vbCrLf &
             "var sign = sw10.symbolsList(window.initialFSW);" & vbCrLf &
             "app.ports.receiveSign.send(sign);"
+
+           
+
             args.Frame.ExecuteJavaScriptAsync(script)
         End If
         Return Nothing
     End Function
+    Public Class CallbackObjectForJs
+        Private myEditor As Editor
+
+        Public Sub New(editor As Editor)
+
+            myEditor = editor
+        End Sub
+        Public Sub setFsw(fsw As String)
+            myEditor.FSW = fsw
+
+         
+        End Sub
+        Public Sub showMessage(msg As String)
+            'Read Note
+            MessageBox.Show(msg)
+        End Sub
+    End Class
+
  
+
 End Class
 
 Public Class DeglossChoosers

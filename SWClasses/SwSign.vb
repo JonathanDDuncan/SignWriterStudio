@@ -94,6 +94,7 @@ Imports Microsoft.VisualBasic
             MessageBox.Show("Language not found for: " & idCulture.ToString(CultureInfo.InvariantCulture), "", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, mbo, False)
         End If
     End Sub
+  
     Public Sub SetlanguageIso(ByVal cultureName As String)
         '        Dim CultureValue As String = CStr(TACultures.CheckExistsCulturebyName(cultureName))
         '        If CultureValue = cultureName Then
@@ -104,7 +105,7 @@ Imports Microsoft.VisualBasic
         '            MessageBox.Show("Language not found for: " & cultureName, "", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MBO, False)
         '        End If
     End Sub
-
+  
     Private _gloss As String
     Public Property Gloss() As String
         Get
@@ -452,7 +453,9 @@ Imports Microsoft.VisualBasic
         End If
     End Sub
 
-    Private _disposedValue As Boolean '= False        ' To detect redundant calls
+    Private _disposedValue As Boolean
+    Private _languageIsoId As Long
+    '= False        ' To detect redundant calls
 
     ' IDisposable
     Protected Overridable Sub Dispose(ByVal disposing As Boolean)
