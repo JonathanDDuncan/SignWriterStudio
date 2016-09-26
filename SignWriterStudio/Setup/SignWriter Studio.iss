@@ -60,6 +60,27 @@ Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\TagList.dll"; DestDir: "{
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DropDownControls.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DbTags.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLiteAdapters.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.BrowserSubprocess.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.WinForms.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.MinimalExample.WinForms.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.BrowserSubprocess.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_extensions.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\d3dcompiler_43.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libcef.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libGLESv2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\icudtl.dat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_100_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_200_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\devtools_resources.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\locales\*.pak"; DestDir: "{app}\locales"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\natives_blob.bin"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\snapshot_blob.bin"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\dist\*"; DestDir: "{app}\dist"; Flags: ignoreversion recursesubdirs
 Source: "{#BaseSourceDir}\Foreign Dll\System.Data.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\nunit.framework.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\System.Data.SQLite.Linq.dll"; DestDir: "{app}"; Flags: ignoreversion

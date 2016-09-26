@@ -312,7 +312,7 @@ Partial Public Class Editor
                 AreaChooserColor(ActiveAreaColor)
 
             Case AreaEnm.Sequence
-                
+
                 AreaSequenceColor(ActiveAreaColor)
                 ActiveControl = Nothing
 
@@ -619,7 +619,7 @@ Partial Public Class Editor
         End If
     End Sub
 
-    Private Sub TVSequence_MouseEnter(sender As System.Object, e As System.EventArgs) 
+    Private Sub TVSequence_MouseEnter(sender As System.Object, e As System.EventArgs)
         Area = AreaEnm.Sequence
     End Sub
 
@@ -655,7 +655,7 @@ Partial Public Class Editor
     End Sub
 
     Private Sub btnSugg1_Click(sender As Object, e As EventArgs) Handles btnSugg1.Click
-       
+
         Dim sequences = SignSpelling.OrderSuggestion1(mySWSign)
 
         If (sequences IsNot Nothing) Then
@@ -665,8 +665,8 @@ Partial Public Class Editor
         End If
     End Sub
 
-     Public Function OrderSuggestion1(ByVal swSign As SwSign, ByVal canAsk As Boolean) As IEnumerable(Of SWSequence)
-        Return SignSpelling.OrderSuggestion1(swSign,canAsk)
+    Public Function OrderSuggestion1(ByVal swSign As SwSign, ByVal canAsk As Boolean) As IEnumerable(Of SWSequence)
+        Return SignSpelling.OrderSuggestion1(swSign, canAsk)
     End Function
 
     Private Sub btnSugg2_Click(sender As Object, e As EventArgs) Handles btnSugg2.Click
@@ -675,9 +675,14 @@ Partial Public Class Editor
         CurrentFrame.AddSequences(sequences)
         LoadSequence()
     End Sub
-     
+
     Private Sub QuickSignEditorBtn_Click(sender As Object, e As EventArgs) Handles QuickSignEditorBtn.Click
-        MinimalExample.WinForms.Program.ShowForm()
+        Try
+            MinimalExample.WinForms.Program.ShowForm()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & ex.StackTrace)
+        End Try
+
     End Sub
 End Class
 
