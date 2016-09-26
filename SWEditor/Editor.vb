@@ -1,6 +1,7 @@
 'Option Strict On
 Imports System.Drawing
 
+Imports System.IO
 Imports SignWriterStudio.SWClasses
 Imports System.Windows.Forms
 
@@ -8,6 +9,8 @@ Imports SignWriterStudio.SWS
 Imports CefSharp
 
 Imports CefSharp.MinimalExample.WinForms
+Imports Microsoft.VisualBasic
+
 ' FILE: E:/Mis Documentos/Jonathan/SignWritingDocs/Cs//cs
 
 ' In this section you can add your own using directives
@@ -19,6 +22,8 @@ Imports CefSharp.MinimalExample.WinForms
 '          *       @see OtherClasses
 '          *       @author Jonathan Duncan
 '          */
+Imports CefSharp.WinForms
+Imports SPML
 
 ''' <summary>
 ''' Class for editing SignWriting
@@ -201,7 +206,10 @@ Partial Public Class Editor
         Me.FirstLoad = True
 
     End Sub
-    Dim AddingUndo As Boolean '= False
+    Dim AddingUndo As Boolean
+    Private browser As ChromiumWebBrowser
+    Private FSW As String
+    '= False
     Private Sub AddUndo()
 
         If AddingUndo Then
@@ -678,12 +686,35 @@ Partial Public Class Editor
 
     Private Sub QuickSignEditorBtn_Click(sender As Object, e As EventArgs) Handles QuickSignEditorBtn.Click
         Try
-            MinimalExample.WinForms.Program.ShowForm()
+            Dim conv As New SpmlConverter
+
+            Dim fsw As String = conv.GetFsw(Sign())
+            Me.FSW = fsw
+            Dim browserForm = Program.GetBrowserForm()
+
+            browser = browserForm.browser
+
+            AddHandler browser.FrameLoadEnd, AddressOf FrameLoadEnd
         Catch ex As Exception
             MessageBox.Show(ex.Message & ex.StackTrace)
         End Try
 
     End Sub
+
+    Private Function FrameLoadEnd(sender As IWebBrowser, args As FrameLoadEndEventArgs) As EventHandler(Of FrameLoadEndEventArgs)
+
+
+        'Wait for the MainFrame to finish loading
+        If (args.Frame.IsMain) Then
+
+            Dim script As String = "window.initialFSW = '" & FSW & "'; alert('value of window.initialFSW is ' + window.initialFSW);" & vbCrLf &
+            "var sign = sw10.symbolsList(window.initialFSW);" & vbCrLf &
+            "app.ports.receiveSign.send(sign);"
+            args.Frame.ExecuteJavaScriptAsync(script)
+        End If
+        Return Nothing
+    End Function
+ 
 End Class
 
 Public Class DeglossChoosers

@@ -26,7 +26,7 @@ namespace CefSharp.MinimalExample.WinForms
             Application.Run(browser);
         }
 
-        public static void ShowForm()
+        public static BrowserForm GetBrowserForm()
         {
             //For Windows 7 and above, best to include relevant app.manifest entries as well
             Cef.EnableHighDPISupport();
@@ -38,8 +38,11 @@ namespace CefSharp.MinimalExample.WinForms
             if (!Cef.IsInitialized)
                 Cef.Initialize(settings, shutdownOnProcessExit: false, performDependencyCheck: true);
 
-            var browser = new BrowserForm();
-            browser.ShowDialog();
+            var browserform = new BrowserForm();
+          
+            browserform.Show();
+            return browserform;
+           
         }
     }
 }

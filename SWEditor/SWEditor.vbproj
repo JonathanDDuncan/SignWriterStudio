@@ -81,6 +81,8 @@
     <NoWarn>42353,42354,42355</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CefSharp, Version=51.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138" />
+    <Reference Include="CefSharp.WinForms, Version=51.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SignWriterStudio\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -248,6 +250,10 @@
     <ProjectReference Include="..\Settings\Settings.vbproj">
       <Project>{5917D821-BB0B-4EFF-BE9C-BCEAE1DA82DB}</Project>
       <Name>Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPML\SPML.vbproj">
+      <Project>{4E9D9258-A74E-496E-A6AF-7C65DF81EFD6}</Project>
+      <Name>SPML</Name>
     </ProjectReference>
     <ProjectReference Include="..\SWClasses\SWClasses.vbproj">
       <Project>{D9040341-BDBA-49A4-99BF-D91657183283}</Project>

@@ -11,7 +11,7 @@ namespace CefSharp.MinimalExample.WinForms
 {
     public partial class BrowserForm : Form
     {
-        private readonly ChromiumWebBrowser browser;
+        public readonly ChromiumWebBrowser browser;
 
         public BrowserForm()
         {
@@ -27,7 +27,7 @@ namespace CefSharp.MinimalExample.WinForms
             {
                 Dock = DockStyle.Fill,
             };
-
+            
             // Allow the use of local resources in the browser
             BrowserSettings browserSettings = new BrowserSettings();
             browserSettings.FileAccessFromFileUrls = CefState.Enabled;
@@ -43,25 +43,19 @@ namespace CefSharp.MinimalExample.WinForms
 
             var bitness = Environment.Is64BitProcess ? "x64" : "x86";
             var version = String.Format("Chromium: {0}, CEF: {1}, CefSharp: {2}, Environment: {3}", Cef.ChromiumVersion, Cef.CefVersion, Cef.CefSharpVersion, bitness);
-            
         }
- 
-         
  
         private void OnBrowserTitleChanged(object sender, TitleChangedEventArgs args)
         {
             this.InvokeOnUiThreadIfRequired(() => Text = args.Title);
         }
   
-       
         private void ExitMenuItemClick(object sender, EventArgs e)
         {
             browser.Dispose();
             Cef.Shutdown();
             Close();
         }
- 
-         
  
     }
 }
