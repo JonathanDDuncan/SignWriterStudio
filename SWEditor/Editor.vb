@@ -727,12 +727,10 @@ Partial Public Class Editor
         'Wait for the MainFrame to finish loading
         If (args.Frame.IsMain) Then
 
-            Dim script As String = "window.initialFSW = '" & FSW & "'; alert('value of window.initialFSW is ' + window.initialFSW);" & vbCrLf &
+            Dim script As String = "window.initialFSW = '" & FSW & "';" & vbCrLf &
             "var sign = sw10.symbolsList(window.initialFSW);" & vbCrLf &
             "app.ports.receiveSign.send(sign);"
-
-           
-
+            
             args.Frame.ExecuteJavaScriptAsync(script)
         End If
         Return Nothing
