@@ -5,6 +5,8 @@ Imports System.Drawing
 'Imports System.Windows.Forms
 Imports System.IO
 Imports System.Windows.Forms
+Imports System.Diagnostics.Eventing.Reader
+Imports NUnit.Framework.Constraints
 Imports SignWriterStudio.SWClasses
 Imports System.Text
 Imports SignWriterStudio.SWS
@@ -60,18 +62,18 @@ Public NotInheritable Class SpmlConverter
         Return spml1
 
     End Function
-    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As SWCollection(Of SwSign)
+    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As SwCollection(Of SwSign)
 
         Dim spml1 As SPMLDataSet = LoadSPML(xmlFilename, bw)
         Return SpmlToSWSigns(spml1, idSignLanguage, idCulture, bw)
     End Function
-    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SWCollection(Of SwSign)
+    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SwCollection(Of SwSign)
 
         Dim spml1 As SPMLDataSet = LoadSPML(xmlFilename)
         Return SpmlToSWSigns(spml1, idSignLanguage, idCulture)
     End Function
-    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As SWCollection(Of SwSign)
-        Dim signs As New SWCollection(Of SwSign)
+    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As SwCollection(Of SwSign)
+        Dim signs As New SwCollection(Of SwSign)
         Dim I As Integer
         Dim entries = spml.entry
         Dim count As Integer = entries.Rows.Count
@@ -86,8 +88,8 @@ Public NotInheritable Class SpmlConverter
 
         Return signs
     End Function
-    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SWCollection(Of SwSign)
-        Dim signs As New SWCollection(Of SwSign)
+    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SwCollection(Of SwSign)
+        Dim signs As New SwCollection(Of SwSign)
         Dim entries = spml.entry
         For Each entryRow As SPMLDataSet.entryRow In entries.Rows
             signs.Add(EntryToSWSign(entryRow, idSignLanguage, idCulture))
@@ -109,23 +111,23 @@ Public NotInheritable Class SpmlConverter
         newSign.SetSignLanguageIso(idSignLanguage)
         newSign.SignPuddleId = entryRow.id
         newSign.BkColor = Color.White
-        newSign.SWritingSource = UnEncodeXML(entryRow.src)
+        newSign.SWritingSource = UnEncodeXml(entryRow.src)
         If IsNumeric(entryRow.cdt) Then
             newSign.Created = EpochToDateTime(Convert.ToInt32(entryRow.cdt))
         End If
         If IsNumeric(entryRow.mdt) Then
             newSign.LastModified = EpochToDateTime(Convert.ToInt32(entryRow.mdt))
         End If
-        newSign.SignPuddleUser = UnEncodeXML(entryRow.usr)
+        newSign.SignPuddleUser = UnEncodeXml(entryRow.usr)
         Dim guid1 As Guid
         If Guid.TryParse(entryRow.uuid, guid1) Then
             newSign.SignWriterGuid = guid1
         End If
-        newSign.PuddlePrev = UnEncodeXML(entryRow.prev)
-        newSign.PuddleNext = UnEncodeXML(entryRow._next)
-        newSign.PuddlePng = UnEncodeXML(entryRow.png)
-        newSign.PuddleSvg = UnEncodeXML(entryRow.svg)
-        newSign.PuddleVideoLink = UnEncodeXML(entryRow.video)
+        newSign.PuddlePrev = UnEncodeXml(entryRow.prev)
+        newSign.PuddleNext = UnEncodeXml(entryRow._next)
+        newSign.PuddlePng = UnEncodeXml(entryRow.png)
+        newSign.PuddleSvg = UnEncodeXml(entryRow.svg)
+        newSign.PuddleVideoLink = UnEncodeXml(entryRow.video)
 
 
         termRows = entryRow.GettermRows
@@ -154,7 +156,7 @@ Public NotInheritable Class SpmlConverter
 
         textRows = entryRow.GettextRows
         For Each txt In textRows
-            newSign.PuddleText.Add(UnEncodeXML(txt.text_Text))
+            newSign.PuddleText.Add(UnEncodeXml(txt.text_Text))
         Next
         Return newSign
     End Function
@@ -234,7 +236,7 @@ Public NotInheritable Class SpmlConverter
         Dim symbolsStr As String
 
 
-        Dim fswArray = fsw.Split(New [Char]() {" "c, CChar(vbCrLf())}, StringSplitOptions.RemoveEmptyEntries)
+        Dim fswArray = fsw.Split(New [Char]() {" "c, CChar(VbCrLf())}, StringSplitOptions.RemoveEmptyEntries)
 
         For Each FSWitem In fswArray
             Dim newSign = New SwSign
@@ -272,7 +274,7 @@ Public NotInheritable Class SpmlConverter
         Dim symbolsStr As String
 
 
-        Dim fswArray = fsw.Split(New [Char]() {" "c, CChar(vbCrLf())}, StringSplitOptions.RemoveEmptyEntries)
+        Dim fswArray = fsw.Split(New [Char]() {" "c, CChar(VbCrLf())}, StringSplitOptions.RemoveEmptyEntries)
 
         For Each FSWitem In fswArray
             Dim newSign = New SwDocumentSign
@@ -320,11 +322,11 @@ Public NotInheritable Class SpmlConverter
         Dim I As Integer
         For Each txt In listofTerms
             If I = 0 Then
-                gloss = UnEncodeXML(Trim(txt))
+                gloss = UnEncodeXml(Trim(txt))
             ElseIf I = count - 1 Then
-                glosses.Append(UnEncodeXML(Trim(txt)))
+                glosses.Append(UnEncodeXml(Trim(txt)))
             Else
-                glosses.Append(UnEncodeXML(Trim(txt)))
+                glosses.Append(UnEncodeXml(Trim(txt)))
                 glosses.Append(", ")
             End If
             I += 1
@@ -409,7 +411,7 @@ Public NotInheritable Class SpmlConverter
     End Sub
 
     Private Sub SpmlWriteLine(str As String)
-        SpmlWrite(str & vbCrLf())
+        SpmlWrite(str & VbCrLf())
     End Sub
 
 
@@ -425,13 +427,13 @@ Public NotInheritable Class SpmlConverter
         If myExportSettings.EntireDictionary Then
             Dim dictionary1 As New SWDict
             dictionary1.BilingualMode = False
-            dictionary1.DefaultSignLanguage = Dictionary.DefaultSignLanguage
-            dictionary1.FirstGlossLanguage = Dictionary.FirstGlossLanguage
+            dictionary1.DefaultSignLanguage = dictionary.DefaultSignLanguage
+            dictionary1.FirstGlossLanguage = dictionary.FirstGlossLanguage
             dictionary1.SearchText("%")
             dt = CType(dictionary1.DictionaryBindingSource1.DataSource, DataTable)
         Else
             'Use current datatables
-            dt = CType(Dictionary.DictionaryBindingSource1.DataSource, DataTable)
+            dt = CType(dictionary.DictionaryBindingSource1.DataSource, DataTable)
         End If
 
 
@@ -459,7 +461,7 @@ Public NotInheritable Class SpmlConverter
     Private Sub AssignPuddleIds(dt As DataTable)
         Dim lastInteger As Integer = 0
         Dim idDict As New Dictionary(Of Integer, Integer)
-        For Each row As DataRow In DT.Rows
+        For Each row As DataRow In dt.Rows
             If IsNumeric(row("IDSignPuddle")) Then
                 If Not idDict.ContainsKey(CInt(row("IDSignPuddle"))) Then
                     Dim id As Integer = CInt(row("IDSignPuddle"))
@@ -469,8 +471,8 @@ Public NotInheritable Class SpmlConverter
                 End If
             End If
         Next
-        For Each row As DataRow In DT.Rows
-            If IsDBNull(row("IDSignPuddle")) OrElse CStr(row("IDSignPuddle")) = String.Empty Then
+        For Each row As DataRow In dt.Rows
+            If IsDbNull(row("IDSignPuddle")) OrElse CStr(row("IDSignPuddle")) = String.Empty Then
                 Do
                     lastInteger += 1
                 Loop Until (Not idDict.ContainsKey(lastInteger))
@@ -519,12 +521,12 @@ Public NotInheritable Class SpmlConverter
         sb.Append(" ")
         sb.Append("type=")
         sb.Append(ControlChars.Quote)
-        sb.Append(EncodeXML(typ))
+        sb.Append(EncodeXml(typ))
         sb.Append(ControlChars.Quote)
         sb.Append(" ")
         sb.Append("puddle=")
         sb.Append(ControlChars.Quote)
-        sb.Append(EncodeXML(puddle))
+        sb.Append(EncodeXml(puddle))
         sb.Append(ControlChars.Quote)
         sb.Append(" ")
         sb.Append("cdt=")
@@ -550,11 +552,11 @@ Public NotInheritable Class SpmlConverter
         Dim idSignPuddle As Integer
         Dim newPerc As Integer
         Dim oldPerc As Integer
-        AssignPuddleIds(DT)
+        AssignPuddleIds(dt)
         If bw IsNot Nothing Then
             bw.ReportProgress(6)
         End If
-        For Each row As DataRow In DT.Rows
+        For Each row As DataRow In dt.Rows
 
             dictionarySign = dictionary.GetSWSignCached(CInt(row("IDDictionary")))
 
@@ -612,8 +614,8 @@ Public NotInheritable Class SpmlConverter
         Dim frame As SWFrame = sign.Frames.FirstOrDefault
         frame.CenterSpmlSymbols(New Point(500, 500))
         sb.Append(CreateSequenceBuildString(frame))
-        sb.Append(CreateFSWSymbolBuildString(frame))
-
+        sb.Append(CreateFswSymbolBuildString(frame))
+        sb.Append(CreateStyling(sign, frame))
         Return sb.ToString
     End Function
     Public Function GetFsw(ByVal sign As SwDocumentSign) As String
@@ -621,8 +623,8 @@ Public NotInheritable Class SpmlConverter
         Dim frame As SWFrame = sign.Frames.FirstOrDefault
         frame.CenterSpmlSymbols(New Point(500, 500))
         sb.Append(CreateSequenceBuildString(frame))
-        sb.Append(CreateFSWSymbolBuildString(frame, sign.Lane))
-
+        sb.Append(CreateFswSymbolBuildString(frame, sign.Lane))
+        sb.Append(CreateStyling(sign, frame))
         Return sb.ToString
     End Function
     Private Function CreateAdditionalTermsTag(sign As SwSign) As String
@@ -630,13 +632,13 @@ Public NotInheritable Class SpmlConverter
         Dim sb As New StringBuilder
         sb.Append(preSpace)
         If Not Trim(sign.Gloss) = String.Empty Then
-            sb.AppendLine(CreateTerm(CdataWrap(EncodeXML(Trim(sign.Gloss)))))
+            sb.AppendLine(CreateTerm(CdataWrap(EncodeXml(Trim(sign.Gloss)))))
         End If
         If Not Trim(sign.Glosses) = String.Empty Then
             Dim glossArray = sign.Glosses.Split(CChar(","))
             For Each Gloss In From gloss1 In glossArray Where Not Trim(gloss1) = String.Empty
                 sb.Append(preSpace)
-                sb.AppendLine(CreateTerm(CdataWrap(EncodeXML(Trim(Gloss)))))
+                sb.AppendLine(CreateTerm(CdataWrap(EncodeXml(Trim(Gloss)))))
             Next
         End If
         If Not sign.Gloss = String.Empty OrElse Not sign.Glosses = String.Empty Then
@@ -650,7 +652,7 @@ Public NotInheritable Class SpmlConverter
         Dim sb As New StringBuilder
         If sign.PuddleText.Count > 0 Then
             For Each txt In sign.PuddleText
-                If isSignBox(txt) Then
+                If IsSignBox(txt) Then
                     sb.Append(CreateTagNormal("text", txt))
                 Else
                     sb.Append(CreateTag("text", txt))
@@ -675,7 +677,7 @@ Public NotInheritable Class SpmlConverter
             sb.Append("<")
             sb.Append(tagName)
             sb.Append(">")
-            sb.Append(CdataWrap(EncodeXML(dataStr)))
+            sb.Append(CdataWrap(EncodeXml(dataStr)))
             sb.Append("</")
             sb.Append(tagName)
             sb.AppendLine(">")
@@ -685,13 +687,13 @@ Public NotInheritable Class SpmlConverter
         End If
     End Function
     Private Function CreateTagNormal(tagName As String, dataStr As String) As String
-        If Not DataStr = String.Empty Then
+        If Not dataStr = String.Empty Then
             Dim sb As New StringBuilder
             sb.Append("  ")
             sb.Append("<")
             sb.Append(tagName)
             sb.Append(">")
-            sb.Append(EncodeXML(DataStr))
+            sb.Append(EncodeXml(dataStr))
             sb.Append("</")
             sb.Append(tagName)
             sb.AppendLine(">")
@@ -706,7 +708,7 @@ Public NotInheritable Class SpmlConverter
         '<entry id="2" cdt="1172438870" mdt="1216741367" usr="admin">
         sb.Append("<entry id=")
         sb.Append(ControlChars.Quote)
-        sb.Append(EncodeXML(IDSignPuddle.ToString()))
+        sb.Append(EncodeXml(idSignPuddle.ToString()))
         sb.Append(ControlChars.Quote)
         sb.Append(" uuid=")
         sb.Append(ControlChars.Quote)
@@ -727,19 +729,19 @@ Public NotInheritable Class SpmlConverter
         If Not dictionarySign.SignPuddleUser = String.Empty Then
             sb.Append(" usr=")
             sb.Append(ControlChars.Quote)
-            sb.Append(EncodeXML(dictionarySign.SignPuddleUser))
+            sb.Append(EncodeXml(dictionarySign.SignPuddleUser))
             sb.Append(ControlChars.Quote)
         End If
         If Not dictionarySign.PuddlePrev = String.Empty Then
             sb.Append(" prev=")
             sb.Append(ControlChars.Quote)
-            sb.Append(EncodeXML(dictionarySign.PuddlePrev))
+            sb.Append(EncodeXml(dictionarySign.PuddlePrev))
             sb.Append(ControlChars.Quote)
         End If
         If Not dictionarySign.PuddleNext = String.Empty Then
             sb.Append(" next=")
             sb.Append(ControlChars.Quote)
-            sb.Append(EncodeXML(dictionarySign.PuddleNext))
+            sb.Append(EncodeXml(dictionarySign.PuddleNext))
             sb.Append(ControlChars.Quote)
         End If
         sb.Append(">")
@@ -753,19 +755,19 @@ Public NotInheritable Class SpmlConverter
     Private Sub WriteSymbolBuildString(ByVal frame As SWFrame)
 
         Dim symbol As SWSignSymbol
-        Frame.SignSymbols.Sort()
+        frame.SignSymbols.Sort()
 
         Dim ptu As PlainTextUnit
         Dim ptUs As New List(Of PlainTextUnit)
         'Put an M if not a punctuation
-        If Not (Frame.SignSymbols.Count = 1 AndAlso IsPunctuationSymbol(Frame.SignSymbols(0).Code)) Then
+        If Not (frame.SignSymbols.Count = 1 AndAlso IsPunctuationSymbol(frame.SignSymbols(0).Code)) Then
             ''Todo Get Proper Bounds
             'Frame.CenterSPMLSymbols(New Point(500, 500))
 
-            ptu = New PlainTextUnit With {.Type = PlainTextUnitType.M, .MaxCoordinates = SWFrame.GetMaxCoordinate(Frame)}
+            ptu = New PlainTextUnit With {.Type = PlainTextUnitType.M, .MaxCoordinates = SWFrame.GetMaxCoordinate(frame)}
             ptUs.Add(ptu)
         End If
-        For Each symbol In Frame.SignSymbols
+        For Each symbol In frame.SignSymbols
             ptu = New PlainTextUnit
             ptu.FromSwsSignSymbol(symbol)
             ptUs.Add(ptu)
@@ -878,6 +880,114 @@ Public NotInheritable Class SpmlConverter
         End If
         Return (sb.ToString)
     End Function
+    Private Function CreateStyling(ByVal swSign As SwSign, ByVal frame As SWFrame) As String
+        Dim sb1 As New StringBuilder
+
+
+        'not implemented in SWS
+        'Color for full sign
+        '-D_blue_
+
+        '--D03_blue_
+
+        'not implemented in SWS colorizes each symbol
+        'Colorize - All Symbols
+        '-C
+
+        'not implemented in SWS
+        'Padding - All Symbols
+        '-P10
+
+        'Background - All Symbols
+        '-G_lightblue_
+        If Not swSign.BkColor.ToArgb() = -1 Then
+            sb1.Append("G")
+            sb1.Append(Rgb(swSign.BkColor))
+        End If
+        'not implemented in SWS
+        'Detail Colors - All Symbols
+        '-D_red_
+
+        'not implemented in SWS
+        'Detail Colors - All Symbols
+        '-D_red,yellow_
+
+        'not implemented in SWS
+        'Zoom Level - All Symbols
+        '-Z6.4
+
+        'not implemented in SWS
+        'Combinations - All Symbols
+        '-P10G_lightblue_D_red,yellow_Z4
+        '-CP10G_lightblue_Z4
+        Dim i = 0
+        Dim detailsb As New StringBuilder
+        Dim zoomsb As New StringBuilder
+        For Each symbol In frame.SignSymbols
+            i += 1
+            'Detail Colors - Specific Symbols
+            '--D01_red,yellow_
+            '--D02_red,transparent_
+            '--D03_red_
+            Dim detailColor = GetDetailColor(i, symbol)
+            If Not detailColor = String.Empty Then
+                detailsb.Append(detailColor)
+            End If
+            'Zoom Level - Specific Symbols
+            '--Z01,2
+            Dim symbolZoom = GetSymbolZoom(i, symbol)
+            If Not symbolZoom = String.Empty Then
+                zoomsb.Append(symbolZoom)
+            End If
+            '--Z02,2,480x490
+            '--Z03,2,510x500
+        Next
+
+        If (detailsb.Length + zoomsb.Length) > 0 Then
+            sb1.Append("-")
+        End If
+        If (detailsb.Length) > 0 Then
+            sb1.Append(detailsb.ToString)
+        End If
+        If (zoomsb.Length) > 0 Then
+            sb1.Append(zoomsb.ToString)
+        End If
+        'Complex Styling
+        '-P10G_lightblue_Z2-D01_red_D02_blue_D06_red_D07_blue_Z05,2
+
+        If sb1.Length > 0 Then
+            Return "-" & sb1.ToString
+        Else
+            Return ""
+        End If
+
+    End Function
+
+    Private Function Rgb(ByVal color1 As Color) As String
+        Return Hex(color1.ToArgb()).Substring(2, 6).ToLowerInvariant
+    End Function
+
+    Private Function GetSymbolZoom(ByVal index As Integer, ByVal symbol As SWSignSymbol) As String
+        Dim zoomStr = String.Empty
+        If Not Math.Abs(symbol.Size - 1) < 0.1 Then
+            zoomStr = "Z" & index.ToString("D2") & "," & symbol.Size
+        End If
+
+        Return zoomStr
+    End Function
+
+    Private Function GetDetailColor(ByVal index As Integer, ByVal symbol As SWSignSymbol) As String
+        Dim detailStr = String.Empty
+
+        If Not symbol.Palmcolor = -1 Then
+            detailStr = "D" & index.ToString("D2") & "_" & Rgb(Color.FromArgb(symbol.Handcolor)) & "," & Rgb(Color.FromArgb(symbol.Palmcolor)) & "_"
+        ElseIf Not symbol.Handcolor = -16777216 Then
+            detailStr = "D" & index.ToString("D2") & "_" & Rgb(Color.FromArgb(symbol.Handcolor)) & "_"
+        End If
+
+        Return detailStr
+    End Function
+
     Friend Class PlainTextUnit
         Public Type As PlainTextUnitType
         Public MaxCoordinates As Point
@@ -916,8 +1026,8 @@ Public NotInheritable Class SpmlConverter
         R
     End Enum
 
-    Public Sub CleanImportedSigns(signs As SWCollection(Of SwSign))
-        For Each Sign In Signs
+    Public Sub CleanImportedSigns(signs As SwCollection(Of SwSign))
+        For Each Sign In signs
             CleanSign(Sign)
         Next
     End Sub
