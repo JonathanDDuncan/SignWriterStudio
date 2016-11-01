@@ -1,0 +1,1083 @@
+﻿/*
+This is an example of how to use the image sprite in your own CSS files
+*/
+.hands-10000 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 69px;
+	background: url('hands12.png') -1px -1px;
+}
+.hands-10010 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 73px;
+	background: url('hands12.png') -1px -71px;
+}
+.hands-10020 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 71px;
+	background: url('hands12.png') -1px -145px;
+}
+.hands-10030 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 47px;
+	background: url('hands12.png') -1px -217px;
+}
+.hands-10040 {
+/* You may have to set 'display: block' */
+	width: 49px;
+	height: 48px;
+	background: url('hands12.png') -1px -265px;
+}
+.hands-10050 {
+/* You may have to set 'display: block' */
+	width: 47px;
+	height: 47px;
+	background: url('hands12.png') -1px -314px;
+}
+.hands-10100 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 64px;
+	background: url('hands12.png') -1px -362px;
+}
+.hands-10110 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 62px;
+	background: url('hands12.png') -1px -427px;
+}
+.hands-10120 {
+/* You may have to set 'display: block' */
+	width: 35px;
+	height: 65px;
+	background: url('hands12.png') -1px -490px;
+}
+.hands-10130 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 46px;
+	background: url('hands12.png') -1px -556px;
+}
+.hands-10140 {
+/* You may have to set 'display: block' */
+	width: 48px;
+	height: 45px;
+	background: url('hands12.png') -1px -603px;
+}
+.hands-10150 {
+/* You may have to set 'display: block' */
+	width: 51px;
+	height: 42px;
+	background: url('hands12.png') -1px -649px;
+}
+.hands-10200 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 66px;
+	background: url('hands12.png') -1px -692px;
+}
+.hands-10210 {
+/* You may have to set 'display: block' */
+	width: 36px;
+	height: 66px;
+	background: url('hands12.png') -1px -759px;
+}
+.hands-10220 {
+/* You may have to set 'display: block' */
+	width: 40px;
+	height: 66px;
+	background: url('hands12.png') -1px -826px;
+}
+.hands-10230 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 45px;
+	background: url('hands12.png') -1px -893px;
+}
+.hands-10240 {
+/* You may have to set 'display: block' */
+	width: 55px;
+	height: 49px;
+	background: url('hands12.png') -1px -939px;
+}
+.hands-10250 {
+/* You may have to set 'display: block' */
+	width: 55px;
+	height: 48px;
+	background: url('hands12.png') -1px -989px;
+}
+.hands-10300 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 64px;
+	background: url('hands12.png') -1px -1038px;
+}
+.hands-10310 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 64px;
+	background: url('hands12.png') -1px -1103px;
+}
+.hands-10320 {
+/* You may have to set 'display: block' */
+	width: 37px;
+	height: 64px;
+	background: url('hands12.png') -1px -1168px;
+}
+.hands-10330 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 49px;
+	background: url('hands12.png') -1px -1233px;
+}
+.hands-10340 {
+/* You may have to set 'display: block' */
+	width: 48px;
+	height: 48px;
+	background: url('hands12.png') -1px -1283px;
+}
+.hands-10350 {
+/* You may have to set 'display: block' */
+	width: 39px;
+	height: 39px;
+	background: url('hands12.png') -1px -1332px;
+}
+.hands-10400 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 64px;
+	background: url('hands12.png') -1px -1372px;
+}
+.hands-10410 {
+/* You may have to set 'display: block' */
+	width: 40px;
+	height: 64px;
+	background: url('hands12.png') -1px -1437px;
+}
+.hands-10420 {
+/* You may have to set 'display: block' */
+	width: 47px;
+	height: 64px;
+	background: url('hands12.png') -1px -1502px;
+}
+.hands-10430 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 52px;
+	background: url('hands12.png') -1px -1567px;
+}
+.hands-10440 {
+/* You may have to set 'display: block' */
+	width: 46px;
+	height: 43px;
+	background: url('hands12.png') -1px -1620px;
+}
+.hands-10450 {
+/* You may have to set 'display: block' */
+	width: 39px;
+	height: 42px;
+	background: url('hands12.png') -1px -1664px;
+}
+.hands-10500 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 65px;
+	background: url('hands12.png') -1px -1707px;
+}
+.hands-10510 {
+/* You may have to set 'display: block' */
+	width: 37px;
+	height: 65px;
+	background: url('hands12.png') -1px -1773px;
+}
+.hands-10520 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 65px;
+	background: url('hands12.png') -1px -1839px;
+}
+.hands-10530 {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 47px;
+	background: url('hands12.png') -1px -1905px;
+}
+.hands-10540 {
+/* You may have to set 'display: block' */
+	width: 48px;
+	height: 44px;
+	background: url('hands12.png') -1px -1953px;
+}
+.hands-10550 {
+/* You may have to set 'display: block' */
+	width: 44px;
+	height: 47px;
+	background: url('hands12.png') -1px -1998px;
+}
+.hands-10600 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 61px;
+	background: url('hands12.png') -1px -2046px;
+}
+.hands-10610 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 61px;
+	background: url('hands12.png') -1px -2108px;
+}
+.hands-10620 {
+/* You may have to set 'display: block' */
+	width: 35px;
+	height: 60px;
+	background: url('hands12.png') -1px -2170px;
+}
+.hands-10630 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 48px;
+	background: url('hands12.png') -1px -2231px;
+}
+.hands-10640 {
+/* You may have to set 'display: block' */
+	width: 47px;
+	height: 47px;
+	background: url('hands12.png') -1px -2280px;
+}
+.hands-10650 {
+/* You may have to set 'display: block' */
+	width: 50px;
+	height: 42px;
+	background: url('hands12.png') -1px -2328px;
+}
+.hands-10700 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 59px;
+	background: url('hands12.png') -1px -2371px;
+}
+.hands-10710 {
+/* You may have to set 'display: block' */
+	width: 36px;
+	height: 59px;
+	background: url('hands12.png') -1px -2431px;
+}
+.hands-10720 {
+/* You may have to set 'display: block' */
+	width: 37px;
+	height: 59px;
+	background: url('hands12.png') -1px -2491px;
+}
+.hands-10730 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 44px;
+	background: url('hands12.png') -1px -2551px;
+}
+.hands-10740 {
+/* You may have to set 'display: block' */
+	width: 47px;
+	height: 40px;
+	background: url('hands12.png') -1px -2596px;
+}
+.hands-10750 {
+/* You may have to set 'display: block' */
+	width: 44px;
+	height: 33px;
+	background: url('hands12.png') -1px -2637px;
+}
+.hands-10800 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 57px;
+	background: url('hands12.png') -1px -2671px;
+}
+.hands-10810 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 57px;
+	background: url('hands12.png') -1px -2729px;
+}
+.hands-10820 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 54px;
+	background: url('hands12.png') -1px -2787px;
+}
+.hands-10830 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 45px;
+	background: url('hands12.png') -1px -2842px;
+}
+.hands-10840 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 49px;
+	background: url('hands12.png') -1px -2888px;
+}
+.hands-10850 {
+/* You may have to set 'display: block' */
+	width: 43px;
+	height: 42px;
+	background: url('hands12.png') -1px -2938px;
+}
+.hands-10900 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 52px;
+	background: url('hands12.png') -1px -2981px;
+}
+.hands-10910 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 58px;
+	background: url('hands12.png') -1px -3034px;
+}
+.hands-10920 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 57px;
+	background: url('hands12.png') -1px -3093px;
+}
+.hands-10930 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 38px;
+	background: url('hands12.png') -1px -3151px;
+}
+.hands-10940 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 39px;
+	background: url('hands12.png') -1px -3190px;
+}
+.hands-10950 {
+/* You may have to set 'display: block' */
+	width: 46px;
+	height: 38px;
+	background: url('hands12.png') -1px -3230px;
+}
+.hands-10a00 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 59px;
+	background: url('hands12.png') -1px -3269px;
+}
+.hands-10a10 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 59px;
+	background: url('hands12.png') -1px -3329px;
+}
+.hands-10a20 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 60px;
+	background: url('hands12.png') -1px -3389px;
+}
+.hands-10a30 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 54px;
+	background: url('hands12.png') -1px -3450px;
+}
+.hands-10a40 {
+/* You may have to set 'display: block' */
+	width: 41px;
+	height: 53px;
+	background: url('hands12.png') -1px -3505px;
+}
+.hands-10a50 {
+/* You may have to set 'display: block' */
+	width: 54px;
+	height: 39px;
+	background: url('hands12.png') -1px -3559px;
+}
+.hands-10b00 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 59px;
+	background: url('hands12.png') -1px -3599px;
+}
+.hands-10b10 {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 59px;
+	background: url('hands12.png') -1px -3659px;
+}
+.hands-10b20 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 59px;
+	background: url('hands12.png') -1px -3719px;
+}
+.hands-10b30 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 51px;
+	background: url('hands12.png') -1px -3779px;
+}
+.hands-10b40 {
+/* You may have to set 'display: block' */
+	width: 45px;
+	height: 43px;
+	background: url('hands12.png') -1px -3831px;
+}
+.hands-10b50 {
+/* You may have to set 'display: block' */
+	width: 41px;
+	height: 30px;
+	background: url('hands12.png') -1px -3875px;
+}
+.hands-10c00 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 55px;
+	background: url('hands12.png') -1px -3906px;
+}
+.hands-10c10 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 55px;
+	background: url('hands12.png') -1px -3962px;
+}
+.hands-10c20 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 57px;
+	background: url('hands12.png') -1px -4018px;
+}
+.hands-10c30 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 52px;
+	background: url('hands12.png') -1px -4076px;
+}
+.hands-10c40 {
+/* You may have to set 'display: block' */
+	width: 43px;
+	height: 46px;
+	background: url('hands12.png') -1px -4129px;
+}
+.hands-10c50 {
+/* You may have to set 'display: block' */
+	width: 43px;
+	height: 27px;
+	background: url('hands12.png') -1px -4176px;
+}
+.hands-10d00 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 58px;
+	background: url('hands12.png') -1px -4204px;
+}
+.hands-10d10 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 60px;
+	background: url('hands12.png') -1px -4263px;
+}
+.hands-10d20 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 60px;
+	background: url('hands12.png') -1px -4324px;
+}
+.hands-10d30 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 51px;
+	background: url('hands12.png') -1px -4385px;
+}
+.hands-10d40 {
+/* You may have to set 'display: block' */
+	width: 47px;
+	height: 50px;
+	background: url('hands12.png') -1px -4437px;
+}
+.hands-10d50 {
+/* You may have to set 'display: block' */
+	width: 48px;
+	height: 43px;
+	background: url('hands12.png') -1px -4488px;
+}
+.hands-10e00 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 66px;
+	background: url('hands12.png') -1px -4532px;
+}
+.hands-10e10 {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 66px;
+	background: url('hands12.png') -1px -4599px;
+}
+.hands-10e20 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 66px;
+	background: url('hands12.png') -1px -4666px;
+}
+.hands-10e30 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 47px;
+	background: url('hands12.png') -1px -4733px;
+}
+.hands-10e40 {
+/* You may have to set 'display: block' */
+	width: 45px;
+	height: 47px;
+	background: url('hands12.png') -1px -4781px;
+}
+.hands-10e50 {
+/* You may have to set 'display: block' */
+	width: 52px;
+	height: 39px;
+	background: url('hands12.png') -1px -4829px;
+}
+.hands-10f00 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 64px;
+	background: url('hands12.png') -1px -4869px;
+}
+.hands-10f10 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 64px;
+	background: url('hands12.png') -1px -4934px;
+}
+.hands-10f20 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 65px;
+	background: url('hands12.png') -1px -4999px;
+}
+.hands-10f30 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 38px;
+	background: url('hands12.png') -1px -5065px;
+}
+.hands-10f40 {
+/* You may have to set 'display: block' */
+	width: 39px;
+	height: 45px;
+	background: url('hands12.png') -1px -5104px;
+}
+.hands-10f50 {
+/* You may have to set 'display: block' */
+	width: 50px;
+	height: 40px;
+	background: url('hands12.png') -1px -5150px;
+}
+.hands-11000 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 62px;
+	background: url('hands12.png') -1px -5191px;
+}
+.hands-11010 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 62px;
+	background: url('hands12.png') -1px -5254px;
+}
+.hands-11020 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 62px;
+	background: url('hands12.png') -1px -5317px;
+}
+.hands-11030 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 47px;
+	background: url('hands12.png') -1px -5380px;
+}
+.hands-11040 {
+/* You may have to set 'display: block' */
+	width: 43px;
+	height: 45px;
+	background: url('hands12.png') -1px -5428px;
+}
+.hands-11050 {
+/* You may have to set 'display: block' */
+	width: 42px;
+	height: 40px;
+	background: url('hands12.png') -1px -5474px;
+}
+.hands-11100 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 54px;
+	background: url('hands12.png') -1px -5515px;
+}
+.hands-11110 {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 54px;
+	background: url('hands12.png') -1px -5570px;
+}
+.hands-11120 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 52px;
+	background: url('hands12.png') -1px -5625px;
+}
+.hands-11130 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 39px;
+	background: url('hands12.png') -1px -5678px;
+}
+.hands-11140 {
+/* You may have to set 'display: block' */
+	width: 36px;
+	height: 41px;
+	background: url('hands12.png') -1px -5718px;
+}
+.hands-11150 {
+/* You may have to set 'display: block' */
+	width: 39px;
+	height: 38px;
+	background: url('hands12.png') -1px -5760px;
+}
+.hands-11200 {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 57px;
+	background: url('hands12.png') -1px -5799px;
+}
+.hands-11210 {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 57px;
+	background: url('hands12.png') -1px -5857px;
+}
+.hands-11220 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 57px;
+	background: url('hands12.png') -1px -5915px;
+}
+.hands-11230 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 50px;
+	background: url('hands12.png') -1px -5973px;
+}
+.hands-11240 {
+/* You may have to set 'display: block' */
+	width: 54px;
+	height: 46px;
+	background: url('hands12.png') -1px -6024px;
+}
+.hands-11250 {
+/* You may have to set 'display: block' */
+	width: 56px;
+	height: 39px;
+	background: url('hands12.png') -1px -6071px;
+}
+.hands-11300 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 66px;
+	background: url('hands12.png') -1px -6111px;
+}
+.hands-11310 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 65px;
+	background: url('hands12.png') -1px -6178px;
+}
+.hands-11320 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 66px;
+	background: url('hands12.png') -1px -6244px;
+}
+.hands-11330 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 49px;
+	background: url('hands12.png') -1px -6311px;
+}
+.hands-11340 {
+/* You may have to set 'display: block' */
+	width: 49px;
+	height: 47px;
+	background: url('hands12.png') -1px -6361px;
+}
+.hands-11350 {
+/* You may have to set 'display: block' */
+	width: 49px;
+	height: 40px;
+	background: url('hands12.png') -1px -6409px;
+}
+.hands-11400 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 68px;
+	background: url('hands12.png') -1px -6450px;
+}
+.hands-11410 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 68px;
+	background: url('hands12.png') -1px -6519px;
+}
+.hands-11420 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 68px;
+	background: url('hands12.png') -1px -6588px;
+}
+.hands-11430 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 46px;
+	background: url('hands12.png') -1px -6657px;
+}
+.hands-11440 {
+/* You may have to set 'display: block' */
+	width: 42px;
+	height: 43px;
+	background: url('hands12.png') -1px -6704px;
+}
+.hands-11450 {
+/* You may have to set 'display: block' */
+	width: 52px;
+	height: 44px;
+	background: url('hands12.png') -1px -6748px;
+}
+.hands-11500 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 63px;
+	background: url('hands12.png') -1px -6793px;
+}
+.hands-11510 {
+/* You may have to set 'display: block' */
+	width: 23px;
+	height: 68px;
+	background: url('hands12.png') -1px -6857px;
+}
+.hands-11520 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 68px;
+	background: url('hands12.png') -1px -6926px;
+}
+.hands-11530 {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 42px;
+	background: url('hands12.png') -1px -6995px;
+}
+.hands-11540 {
+/* You may have to set 'display: block' */
+	width: 39px;
+	height: 48px;
+	background: url('hands12.png') -1px -7038px;
+}
+.hands-11550 {
+/* You may have to set 'display: block' */
+	width: 51px;
+	height: 45px;
+	background: url('hands12.png') -1px -7087px;
+}
+.hands-11600 {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 68px;
+	background: url('hands12.png') -1px -7133px;
+}
+.hands-11610 {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 68px;
+	background: url('hands12.png') -1px -7202px;
+}
+.hands-11620 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 68px;
+	background: url('hands12.png') -1px -7271px;
+}
+.hands-11630 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 50px;
+	background: url('hands12.png') -1px -7340px;
+}
+.hands-11640 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 55px;
+	background: url('hands12.png') -1px -7391px;
+}
+.hands-11650 {
+/* You may have to set 'display: block' */
+	width: 38px;
+	height: 53px;
+	background: url('hands12.png') -1px -7447px;
+}
+.hands-11700 {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 67px;
+	background: url('hands12.png') -1px -7501px;
+}
+.hands-11710 {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 67px;
+	background: url('hands12.png') -1px -7569px;
+}
+.hands-11720 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 67px;
+	background: url('hands12.png') -1px -7637px;
+}
+.hands-11730 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 49px;
+	background: url('hands12.png') -1px -7705px;
+}
+.hands-11740 {
+/* You may have to set 'display: block' */
+	width: 37px;
+	height: 54px;
+	background: url('hands12.png') -1px -7755px;
+}
+.hands-11750 {
+/* You may have to set 'display: block' */
+	width: 58px;
+	height: 54px;
+	background: url('hands12.png') -1px -7810px;
+}
+.hands-11800 {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 64px;
+	background: url('hands12.png') -1px -7865px;
+}
+.hands-11810 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 64px;
+	background: url('hands12.png') -1px -7930px;
+}
+.hands-11820 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 57px;
+	background: url('hands12.png') -1px -7995px;
+}
+.hands-11830 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 50px;
+	background: url('hands12.png') -1px -8053px;
+}
+.hands-11840 {
+/* You may have to set 'display: block' */
+	width: 46px;
+	height: 49px;
+	background: url('hands12.png') -1px -8104px;
+}
+.hands-11850 {
+/* You may have to set 'display: block' */
+	width: 57px;
+	height: 49px;
+	background: url('hands12.png') -1px -8154px;
+}
+.hands-11900 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 60px;
+	background: url('hands12.png') -1px -8204px;
+}
+.hands-11910 {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 65px;
+	background: url('hands12.png') -1px -8265px;
+}
+.hands-11920 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 60px;
+	background: url('hands12.png') -1px -8331px;
+}
+.hands-11930 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 50px;
+	background: url('hands12.png') -1px -8392px;
+}
+.hands-11940 {
+/* You may have to set 'display: block' */
+	width: 54px;
+	height: 40px;
+	background: url('hands12.png') -1px -8443px;
+}
+.hands-11950 {
+/* You may have to set 'display: block' */
+	width: 55px;
+	height: 31px;
+	background: url('hands12.png') -1px -8484px;
+}
+.hands-11a00 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 68px;
+	background: url('hands12.png') -1px -8516px;
+}
+.hands-11a10 {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 69px;
+	background: url('hands12.png') -1px -8585px;
+}
+.hands-11a20 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 68px;
+	background: url('hands12.png') -1px -8655px;
+}
+.hands-11a30 {
+/* You may have to set 'display: block' */
+	width: 32px;
+	height: 54px;
+	background: url('hands12.png') -1px -8724px;
+}
+.hands-11a40 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 54px;
+	background: url('hands12.png') -1px -8779px;
+}
+.hands-11a50 {
+/* You may have to set 'display: block' */
+	width: 44px;
+	height: 53px;
+	background: url('hands12.png') -1px -8834px;
+}
+.hands-11b00 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 67px;
+	background: url('hands12.png') -1px -8888px;
+}
+.hands-11b10 {
+/* You may have to set 'display: block' */
+	width: 33px;
+	height: 67px;
+	background: url('hands12.png') -1px -8956px;
+}
+.hands-11b20 {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 67px;
+	background: url('hands12.png') -1px -9024px;
+}
+.hands-11b30 {
+/* You may have to set 'display: block' */
+	width: 31px;
+	height: 50px;
+	background: url('hands12.png') -1px -9092px;
+}
+.hands-11b40 {
+/* You may have to set 'display: block' */
+	width: 41px;
+	height: 49px;
+	background: url('hands12.png') -1px -9143px;
+}
+.hands-11b50 {
+/* You may have to set 'display: block' */
+	width: 48px;
+	height: 40px;
+	background: url('hands12.png') -1px -9193px;
+}
+.hands-11c00 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 67px;
+	background: url('hands12.png') -1px -9234px;
+}
+.hands-11c10 {
+/* You may have to set 'display: block' */
+	width: 23px;
+	height: 67px;
+	background: url('hands12.png') -1px -9302px;
+}
+.hands-11c20 {
+/* You may have to set 'display: block' */
+	width: 27px;
+	height: 67px;
+	background: url('hands12.png') -1px -9370px;
+}
+.hands-11c30 {
+/* You may have to set 'display: block' */
+	width: 28px;
+	height: 50px;
+	background: url('hands12.png') -1px -9438px;
+}
+.hands-11c40 {
+/* You may have to set 'display: block' */
+	width: 29px;
+	height: 50px;
+	background: url('hands12.png') -1px -9489px;
+}
+.hands-11c50 {
+/* You may have to set 'display: block' */
+	width: 48px;
+	height: 49px;
+	background: url('hands12.png') -1px -9540px;
+}
+.hands-11d00 {
+/* You may have to set 'display: block' */
+	width: 23px;
+	height: 58px;
+	background: url('hands12.png') -1px -9590px;
+}
+.hands-11d10 {
+/* You may have to set 'display: block' */
+	width: 24px;
+	height: 56px;
+	background: url('hands12.png') -1px -9649px;
+}
+.hands-11d20 {
+/* You may have to set 'display: block' */
+	width: 22px;
+	height: 58px;
+	background: url('hands12.png') -1px -9706px;
+}
+.hands-11d30 {
+/* You may have to set 'display: block' */
+	width: 20px;
+	height: 36px;
+	background: url('hands12.png') -1px -9765px;
+}
+.hands-11d40 {
+/* You may have to set 'display: block' */
+	width: 20px;
+	height: 33px;
+	background: url('hands12.png') -1px -9802px;
+}
+.hands-11d50 {
+/* You may have to set 'display: block' */
+	width: 21px;
+	height: 37px;
+	background: url('hands12.png') -1px -9836px;
+}

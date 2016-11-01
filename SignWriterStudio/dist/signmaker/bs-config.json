@@ -1,0 +1,9 @@
+{
+
+
+   "injectchanges" : true,
+    "files" : "./**/*.{js, html, css}",
+    "server" : { "baseDir" : "./" },
+    "https" : false,
+    "browser" : ["google-chrome", "firefox"]
+}
