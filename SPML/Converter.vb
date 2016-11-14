@@ -62,18 +62,18 @@ Public NotInheritable Class SpmlConverter
         Return spml1
 
     End Function
-    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As SwCollection(Of SwSign)
+    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As List(Of SwSign)
 
         Dim spml1 As SPMLDataSet = LoadSPML(xmlFilename, bw)
         Return SpmlToSWSigns(spml1, idSignLanguage, idCulture, bw)
     End Function
-    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SwCollection(Of SwSign)
+    Public Function ImportSPML(ByVal xmlFilename As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As List(Of SwSign)
 
         Dim spml1 As SPMLDataSet = LoadSPML(xmlFilename)
         Return SpmlToSWSigns(spml1, idSignLanguage, idCulture)
     End Function
-    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As SwCollection(Of SwSign)
-        Dim signs As New SwCollection(Of SwSign)
+    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer, ByVal bw As System.ComponentModel.BackgroundWorker) As List(Of SwSign)
+        Dim signs As New List(Of SwSign)
         Dim I As Integer
         Dim entries = spml.entry
         Dim count As Integer = entries.Rows.Count
@@ -88,8 +88,8 @@ Public NotInheritable Class SpmlConverter
 
         Return signs
     End Function
-    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SwCollection(Of SwSign)
-        Dim signs As New SwCollection(Of SwSign)
+    Private Shared Function SpmlToSWSigns(ByVal spml As SPMLDataSet, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As List(Of SwSign)
+        Dim signs As New List(Of SwSign)
         Dim entries = spml.entry
         For Each entryRow As SPMLDataSet.entryRow In entries.Rows
             signs.Add(EntryToSWSign(entryRow, idSignLanguage, idCulture))
@@ -755,7 +755,8 @@ Public NotInheritable Class SpmlConverter
     Private Sub WriteSymbolBuildString(ByVal frame As SWFrame)
 
         Dim symbol As SWSignSymbol
-        frame.SignSymbols.Sort()
+        frame.SignSymbolsSort()
+
 
         Dim ptu As PlainTextUnit
         Dim ptUs As New List(Of PlainTextUnit)
@@ -778,7 +779,7 @@ Public NotInheritable Class SpmlConverter
 
 
         Dim symbol As SWSignSymbol
-        frame.SignSymbols.Sort()
+        frame.SignSymbolsSort()
 
         Dim ptu As PlainTextUnit
         Dim ptuType As PlainTextUnitType
@@ -810,7 +811,7 @@ Public NotInheritable Class SpmlConverter
 
 
         Dim symbol As SWSignSymbol
-        frame.SignSymbols.Sort()
+        frame.SignSymbolsSort()
 
         Dim ptu As PlainTextUnit
         Dim ptuType As PlainTextUnitType
@@ -868,7 +869,7 @@ Public NotInheritable Class SpmlConverter
         Dim symbol As SWSymbol
 
         Dim ptu As PlainTextUnit
-        frame.Sequences.Sort()
+        frame.SignSymbolsSort()
         If frame.Sequences.Count > 0 Then
             sb.Append("A")
             For Each sequence In frame.Sequences
@@ -1026,7 +1027,7 @@ Public NotInheritable Class SpmlConverter
         R
     End Enum
 
-    Public Sub CleanImportedSigns(signs As SwCollection(Of SwSign))
+    Public Sub CleanImportedSigns(signs As List(Of SwSign))
         For Each Sign In signs
             CleanSign(Sign)
         Next

@@ -156,9 +156,9 @@ Imports Microsoft.VisualBasic
         End Set
     End Property
 
-    Private _frames As New SwCollection(Of SWFrame)()
+    Private _frames As New List(Of SWFrame)()
 
-    Public ReadOnly Property Frames() As SwCollection(Of SWFrame)
+    Public ReadOnly Property Frames() As List(Of SWFrame)
         Get
             Return _frames
         End Get
@@ -427,7 +427,7 @@ Imports Microsoft.VisualBasic
         ' section 127-0-0-1--6e0e347d:11b574a5270:-8000:0000000000000A0A begin
         Dim swSignClone As SwSign = CType(MemberwiseClone(), SwSign)
         'Created new in the Sign
-        '        SWSignClone.Frames = New SWCollection(Of SWFrame)
+        '        SWSignClone.Frames = New List(Of SWFrame)
         swSignClone.NewCollections()
         Dim frame As SWFrame
         For I As Integer = 0 To Frames.Count - 1
@@ -444,7 +444,7 @@ Imports Microsoft.VisualBasic
         Return CType(Cloning(), SwSign)
     End Function
     Private Sub NewCollections()
-        _frames = New SwCollection(Of SWFrame)
+        _frames = New List(Of SWFrame)
     End Sub
 
     Public Sub New()

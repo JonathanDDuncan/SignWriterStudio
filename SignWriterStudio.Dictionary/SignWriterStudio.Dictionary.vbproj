@@ -277,10 +277,6 @@
       <DependentUpon>SWDictionary.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SWSearch.resx">
-      <DependentUpon>SWSearch.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="TagFilter.resx">
       <DependentUpon>TagFilter.vb</DependentUpon>
     </EmbeddedResource>

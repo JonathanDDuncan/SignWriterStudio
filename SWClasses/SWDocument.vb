@@ -74,8 +74,8 @@ Imports Newtonsoft.Json
         End Set
     End Property
     '
-    Private ReadOnly _documentSigns As New SwCollection(Of SwDocumentSign)()
-    Public ReadOnly Property DocumentSigns() As SwCollection(Of SwDocumentSign)
+    Private ReadOnly _documentSigns As New List(Of SwDocumentSign)()
+    Public ReadOnly Property DocumentSigns() As List(Of SwDocumentSign)
         Get
             Return _documentSigns
         End Get

@@ -849,6 +849,22 @@ Partial Public Class Editor
         DisplaySign()
     End Sub
 
+    Private Sub MoveBottomMenuItem_Click(sender As Object, e As EventArgs) Handles MoveBottomMenuItem.Click
+        MoveBottom()
+    End Sub
+    Private Sub MoveBottom()
+        AddUndo()
+        CurrentFrame.MoveSymbolBottom()
+        DisplaySign()
+    End Sub
+    Private Sub MoveTopMenuItem_Click(sender As Object, e As EventArgs) Handles MoveTopMenuItem.Click
+        MoveTop()
+    End Sub
+    Private Sub MoveTop()
+        AddUndo()
+        CurrentFrame.MoveSymbolTop()
+        DisplaySign()
+    End Sub
     Private Sub TSMIDuplicateSymbols_Click(sender As Object, e As EventArgs) Handles TSMIDuplicateSymbols.Click
         DuplicateSymbols()
         DisplaySign()

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DictionaryViewDataSet" targetNamespace="http://tempuri.org/DictionaryViewDataSet.xsd" xmlns:mstns="http://tempuri.org/DictionaryViewDataSet.xsd" xmlns="http://tempuri.org/DictionaryViewDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="LESHO___Copy__7_ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="LESHO___Copy__7_ConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SignWriterStudio.Dictionary.My.MySettings.GlobalReference.Default.LESHO___Copy__7_ConnectionString" Provider="System.Data.SQLite.EF6" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DictionaryViewTableAdapter" GeneratorDataComponentClassName="DictionaryViewTableAdapter" Name="DictionaryView" UserDataComponentName="DictionaryViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="LESHO___Copy__7_ConnectionString (MySettings)" DbObjectName="main.DictionaryView" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT [IDDictionary], [IDSignLanguage], [IDSignPuddle], [isPrivate], [SWriting], [Photo], [Sign], [SWritingSource], [PhotoSource], [SignSource], [GUID], [LastModified], [IDDictionaryGloss1], [Culture1], [gloss1], [glosses1], [IDDictionaryGloss2], [Culture2], [gloss2], [glosses2], [Tags], [Sorting] FROM [DictionaryView]</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDDictionary" DataSetColumn="IDDictionary" />
+              <Mapping SourceColumn="IDSignLanguage" DataSetColumn="IDSignLanguage" />
+              <Mapping SourceColumn="IDSignPuddle" DataSetColumn="IDSignPuddle" />
+              <Mapping SourceColumn="isPrivate" DataSetColumn="isPrivate" />
+              <Mapping SourceColumn="SWriting" DataSetColumn="SWriting" />
+              <Mapping SourceColumn="Photo" DataSetColumn="Photo" />
+              <Mapping SourceColumn="Sign" DataSetColumn="Sign" />
+              <Mapping SourceColumn="SWritingSource" DataSetColumn="SWritingSource" />
+              <Mapping SourceColumn="PhotoSource" DataSetColumn="PhotoSource" />
+              <Mapping SourceColumn="SignSource" DataSetColumn="SignSource" />
+              <Mapping SourceColumn="GUID" DataSetColumn="GUID" />
+              <Mapping SourceColumn="LastModified" DataSetColumn="LastModified" />
+              <Mapping SourceColumn="IDDictionaryGloss1" DataSetColumn="IDDictionaryGloss1" />
+              <Mapping SourceColumn="Culture1" DataSetColumn="Culture1" />
+              <Mapping SourceColumn="gloss1" DataSetColumn="gloss1" />
+              <Mapping SourceColumn="glosses1" DataSetColumn="glosses1" />
+              <Mapping SourceColumn="IDDictionaryGloss2" DataSetColumn="IDDictionaryGloss2" />
+              <Mapping SourceColumn="Culture2" DataSetColumn="Culture2" />
+              <Mapping SourceColumn="gloss2" DataSetColumn="gloss2" />
+              <Mapping SourceColumn="glosses2" DataSetColumn="glosses2" />
+              <Mapping SourceColumn="Tags" DataSetColumn="Tags" />
+              <Mapping SourceColumn="Sorting" DataSetColumn="Sorting" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DictionaryViewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DictionaryViewDataSet" msprop:Generator_UserDSName="DictionaryViewDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DictionaryView" msprop:Generator_TableClassName="DictionaryViewDataTable" msprop:Generator_TableVarName="tableDictionaryView" msprop:Generator_TablePropName="DictionaryView" msprop:Generator_RowDeletingName="DictionaryViewRowDeleting" msprop:Generator_RowChangingName="DictionaryViewRowChanging" msprop:Generator_RowEvHandlerName="DictionaryViewRowChangeEventHandler" msprop:Generator_RowDeletedName="DictionaryViewRowDeleted" msprop:Generator_UserTableName="DictionaryView" msprop:Generator_RowChangedName="DictionaryViewRowChanged" msprop:Generator_RowEvArgName="DictionaryViewRowChangeEvent" msprop:Generator_RowClassName="DictionaryViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDDictionary" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="IDDictionary" msprop:Generator_ColumnVarNameInTable="columnIDDictionary" msprop:Generator_ColumnPropNameInTable="IDDictionaryColumn" msprop:Generator_UserColumnName="IDDictionary" type="xs:string" />
+              <xs:element name="IDSignLanguage" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="IDSignLanguage" msprop:Generator_ColumnVarNameInTable="columnIDSignLanguage" msprop:Generator_ColumnPropNameInTable="IDSignLanguageColumn" msprop:Generator_UserColumnName="IDSignLanguage" type="xs:string" minOccurs="0" />
+              <xs:element name="IDSignPuddle" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="IDSignPuddle" msprop:Generator_ColumnVarNameInTable="columnIDSignPuddle" msprop:Generator_ColumnPropNameInTable="IDSignPuddleColumn" msprop:Generator_UserColumnName="IDSignPuddle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="isPrivate" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="isPrivate" msprop:Generator_ColumnVarNameInTable="columnisPrivate" msprop:Generator_ColumnPropNameInTable="isPrivateColumn" msprop:Generator_UserColumnName="isPrivate" type="xs:string" minOccurs="0" />
+              <xs:element name="SWriting" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="SWriting" msprop:Generator_ColumnVarNameInTable="columnSWriting" msprop:Generator_ColumnPropNameInTable="SWritingColumn" msprop:Generator_UserColumnName="SWriting" type="xs:string" minOccurs="0" />
+              <xs:element name="Photo" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Photo" msprop:Generator_ColumnVarNameInTable="columnPhoto" msprop:Generator_ColumnPropNameInTable="PhotoColumn" msprop:Generator_UserColumnName="Photo" type="xs:string" minOccurs="0" />
+              <xs:element name="Sign" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Sign" msprop:Generator_ColumnVarNameInTable="columnSign" msprop:Generator_ColumnPropNameInTable="SignColumn" msprop:Generator_UserColumnName="Sign" type="xs:string" minOccurs="0" />
+              <xs:element name="SWritingSource" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="SWritingSource" msprop:Generator_ColumnVarNameInTable="columnSWritingSource" msprop:Generator_ColumnPropNameInTable="SWritingSourceColumn" msprop:Generator_UserColumnName="SWritingSource" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PhotoSource" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="PhotoSource" msprop:Generator_ColumnVarNameInTable="columnPhotoSource" msprop:Generator_ColumnPropNameInTable="PhotoSourceColumn" msprop:Generator_UserColumnName="PhotoSource" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SignSource" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="SignSource" msprop:Generator_ColumnVarNameInTable="columnSignSource" msprop:Generator_ColumnPropNameInTable="SignSourceColumn" msprop:Generator_UserColumnName="SignSource" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GUID" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="GUID" msprop:Generator_ColumnVarNameInTable="columnGUID" msprop:Generator_ColumnPropNameInTable="GUIDColumn" msprop:Generator_UserColumnName="GUID" type="xs:string" minOccurs="0" />
+              <xs:element name="LastModified" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="LastModified" msprop:Generator_ColumnVarNameInTable="columnLastModified" msprop:Generator_ColumnPropNameInTable="LastModifiedColumn" msprop:Generator_UserColumnName="LastModified" type="xs:string" minOccurs="0" />
+              <xs:element name="IDDictionaryGloss1" msprop:Generator_ColumnVarNameInTable="columnIDDictionaryGloss1" msprop:Generator_ColumnPropNameInRow="IDDictionaryGloss1" msprop:Generator_ColumnPropNameInTable="IDDictionaryGloss1Column" msprop:Generator_UserColumnName="IDDictionaryGloss1" type="xs:long" />
+              <xs:element name="Culture1" msprop:Generator_ColumnVarNameInTable="columnCulture1" msprop:Generator_ColumnPropNameInRow="Culture1" msprop:Generator_ColumnPropNameInTable="Culture1Column" msprop:Generator_UserColumnName="Culture1" type="xs:long" minOccurs="0" />
+              <xs:element name="gloss1" msprop:Generator_ColumnVarNameInTable="columngloss1" msprop:Generator_ColumnPropNameInRow="gloss1" msprop:Generator_ColumnPropNameInTable="gloss1Column" msprop:Generator_UserColumnName="gloss1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="glosses1" msprop:Generator_ColumnVarNameInTable="columnglosses1" msprop:Generator_ColumnPropNameInRow="glosses1" msprop:Generator_ColumnPropNameInTable="glosses1Column" msprop:Generator_UserColumnName="glosses1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDDictionaryGloss2" msprop:Generator_ColumnVarNameInTable="columnIDDictionaryGloss2" msprop:Generator_ColumnPropNameInRow="IDDictionaryGloss2" msprop:Generator_ColumnPropNameInTable="IDDictionaryGloss2Column" msprop:Generator_UserColumnName="IDDictionaryGloss2" type="xs:long" />
+              <xs:element name="Culture2" msprop:Generator_ColumnVarNameInTable="columnCulture2" msprop:Generator_ColumnPropNameInRow="Culture2" msprop:Generator_ColumnPropNameInTable="Culture2Column" msprop:Generator_UserColumnName="Culture2" type="xs:long" minOccurs="0" />
+              <xs:element name="gloss2" msprop:Generator_ColumnVarNameInTable="columngloss2" msprop:Generator_ColumnPropNameInRow="gloss2" msprop:Generator_ColumnPropNameInTable="gloss2Column" msprop:Generator_UserColumnName="gloss2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="glosses2" msprop:Generator_ColumnVarNameInTable="columnglosses2" msprop:Generator_ColumnPropNameInRow="glosses2" msprop:Generator_ColumnPropNameInTable="glosses2Column" msprop:Generator_UserColumnName="glosses2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tags" msprop:Generator_ColumnVarNameInTable="columnTags" msprop:Generator_ColumnPropNameInRow="Tags" msprop:Generator_ColumnPropNameInTable="TagsColumn" msprop:Generator_UserColumnName="Tags" type="xs:anyType" minOccurs="0" />
+              <xs:element name="Sorting" msprop:Generator_ColumnVarNameInTable="columnSorting" msprop:Generator_ColumnPropNameInRow="Sorting" msprop:Generator_ColumnPropNameInTable="SortingColumn" msprop:Generator_UserColumnName="Sorting" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -360,7 +360,7 @@ Public NotInheritable Class SWDict
         ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000795 end
     End Sub
 
-    Sub DeleteSigns(selectedSigns As SwCollection(Of Tuple(Of SwSign, DictionaryRow)), ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
+    Sub DeleteSigns(selectedSigns As List(Of Tuple(Of SwSign, DictionaryRow)), ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
         For Each Sign In selectedSigns
             DeleteSign(Sign.Item2.IDDictionary, conn, trans)
         Next

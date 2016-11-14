@@ -5,7 +5,7 @@ Imports SignWriterStudio.SWClasses
 Imports System.Data.SQLite
 
 Public Class CompareSigns
-    Public Property SignsToCompare As SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))
+    Public Property SignsToCompare As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))
     Public ListToShow As New BindingList(Of CompareItem)
 
     Private Sub CompareSigns_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -22,11 +22,11 @@ Public Class CompareSigns
 
 
     Private Function PrepareListtoShow(SignstoCompare As  _
-                                          SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))) _
+                                          List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))) _
         As BindingList(Of CompareItem)
-        
-        dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
-        dim trans As SQLiteTransaction =   SWDict.GetNewDictionaryTransaction(conn)
+
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
 
         Using conn
             Try

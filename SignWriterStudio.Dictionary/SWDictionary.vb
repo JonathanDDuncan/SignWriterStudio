@@ -1146,14 +1146,14 @@ Public Class SWDictForm
             classifiedSigns _
                 As  _
                 Tuple _
-                (Of SwCollection(Of SwSign), 
-                SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), 
-                SwCollection(Of SwSign))
+                (Of List(Of SwSign), 
+                List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), 
+                List(Of SwSign))
         Try
-            Dim signs As SwCollection(Of SwSign)
+            Dim signs As List(Of SwSign)
             Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
             Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
-            Dim selectedSigns As SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
+            Dim selectedSigns As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
 
             Dim spmlConverter As New SpmlConverter
             signs = spmlConverter.ImportSPML(ImportFileDialog.FileName, _myDictionary.DefaultSignLanguage,
@@ -1267,10 +1267,10 @@ Public Class SWDictForm
         End Try
     End Sub
 
-    Private Shared Function GetOnlyWithSequence(ByVal swCollection As SwCollection(Of SwSign)) _
-        As SwCollection(Of SwSign)
-        Dim newSignList = New SwCollection(Of SwSign)
-        For Each sign As SwSign In swCollection
+    Private Shared Function GetOnlyWithSequence(ByVal List As List(Of SwSign)) _
+        As List(Of SwSign)
+        Dim newSignList = New List(Of SwSign)
+        For Each sign As SwSign In List
             If sign.Frames.First().Sequences.Count > 0 AndAlso sign.SWritingSource.ToLower().Contains("Val".ToLower()) _
                 Then
                 newSignList.Add(sign)
@@ -1279,9 +1279,9 @@ Public Class SWDictForm
         Return newSignList
     End Function
 
-    Private Shared Function GetOnlyWithTagSort(ByVal swCollection As SwCollection(Of SwSign)) As SwCollection(Of SwSign)
-        Dim newSignList = New SwCollection(Of SwSign)
-        For Each sign As SwSign In swCollection
+    Private Shared Function GetOnlyWithTagSort(ByVal List As List(Of SwSign)) As List(Of SwSign)
+        Dim newSignList = New List(Of SwSign)
+        For Each sign As SwSign In List
             If _
                 sign.Frames.First().Sequences.Count > 0 AndAlso sign.SWritingSource.ToLower().Contains("Tag".ToLower()) AndAlso
                 sign.SWritingSource.ToLower().Contains("Sort".ToLower()) Then
@@ -1291,23 +1291,23 @@ Public Class SWDictForm
         Return newSignList
     End Function
 
-    Private Sub DisposeSigns(ByVal swCollection As SwCollection(Of SwSign))
-        For Each sign1 As SwSign In swCollection
+    Private Sub DisposeSigns(ByVal List As List(Of SwSign))
+        For Each sign1 As SwSign In List
             sign1.Dispose()
         Next
     End Sub
 
     Private Sub SPMLImportbw_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) ' Handles SPMLImportbw.DoWork
-        Dim Args = CType(e.Argument, Tuple(Of SwCollection(Of SwSign), BackgroundWorker))
+        Dim Args = CType(e.Argument, Tuple(Of List(Of SwSign), BackgroundWorker))
 
         _myDictionary.SignstoDictionary(Args.Item1, Args.Item2)
     End Sub
 
     Private Function SelectedSignsToCollection(
                                                SelectedSigns As  _
-                                                  SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))) _
-        As SwCollection(Of SwSign)
-        Dim Coll As New SwCollection(Of SwSign)
+                                                  List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))) _
+        As List(Of SwSign)
+        Dim Coll As New List(Of SwSign)
         For Each SelectedSign In SelectedSigns
             Coll.Add(SelectedSign.Item1)
         Next
@@ -1643,15 +1643,15 @@ Public Class SWDictForm
         SaveDataGrid(conn, trans)
     End Sub
 
-    Private Function ClassifySigns(ByVal Signs As SwCollection(Of SwSign), ByRef conn As SQLiteConnection,
+    Private Function ClassifySigns(ByVal Signs As List(Of SwSign), ByRef conn As SQLiteConnection,
                                    ByRef trans As SQLiteTransaction) _
         As  _
         Tuple _
-            (Of SwCollection(Of SwSign), SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), 
-                SwCollection(Of SwSign))
-        Dim signsToAdd As New SwCollection(Of SwSign)
-        Dim signsNotModified As New SwCollection(Of SwSign)
-        Dim signstoCompare As New SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))
+            (Of List(Of SwSign), List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), 
+                List(Of SwSign))
+        Dim signsToAdd As New List(Of SwSign)
+        Dim signsNotModified As New List(Of SwSign)
+        Dim signstoCompare As New List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))
         Static allCachedDictionaryDataTable As DataTable
         Dim taDictionary As New DictionaryTableAdapter
         taDictionary.AssignConnection(conn, trans)
@@ -1684,10 +1684,10 @@ Public Class SWDictForm
 
     Private Function SelectComparedSigns(
                                          ByVal signsToCompare As  _
-                                            SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)),
+                                            List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)),
                                          ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) _
-        As SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
-        Dim signsToOverwrite As New SwCollection(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
+        As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
+        Dim signsToOverwrite As New List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
         Dim compareSigns As New CompareSigns
         If signsToCompare.Count > 0 Then
             'compareSigns.Conn = conn

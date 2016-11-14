@@ -4,7 +4,7 @@ Imports SignWriterStudio.SWClasses
 Friend Class SignSpelling
     Private Shared _ranking As Integer = 0
     Private Shared _canceling As Boolean
-    Public Shared Function OrderSuggestion1(ByVal sign As SwSign, Optional canAsk As Boolean = True) As SwCollection(Of SWSequence)
+    Public Shared Function OrderSuggestion1(ByVal sign As SwSign, Optional canAsk As Boolean = True) As List(Of SWSequence)
         Dim symbs As IEnumerable(Of SWSignSymbol) = GetSWSignSymbols(sign.Frames.FirstOrDefault())
         Dim symbols = symbs.ToList()
         _ranking = 0
@@ -98,9 +98,9 @@ Friend Class SignSpelling
         Return newSequence
     End Function
 
-    Private Shared Function EmptySequence() As SwCollection(Of SWSequence)
+    Private Shared Function EmptySequence() As List(Of SWSequence)
 
-        Return New SwCollection(Of SWSequence)()
+        Return New List(Of SWSequence)()
     End Function
 
     Private Shared Function GetSWSignSymbols(ByVal swFrame As SWFrame) As IEnumerable(Of SWSignSymbol)
@@ -157,7 +157,7 @@ Friend Class SignSpelling
     End Function
 
     Private Shared Function SequencesBetween(ByVal symbols As List(Of SWSignSymbol), ByVal codeFrom As Integer, ByVal codeTo As Integer) As IEnumerable(Of SWSequence)
-        Dim sequences As New SwCollection(Of SWSequence)()
+        Dim sequences As New List(Of SWSequence)()
         Dim matchingSymbols = symbols.Where(Function(x) x.Code >= codeFrom AndAlso x.Code <= codeTo).ToList()
 
         For Each symbol As SWSignSymbol In matchingSymbols
@@ -186,9 +186,9 @@ Friend Class SignSpelling
         Return SequencesBetween(symbols, 49057, 50064)
     End Function
 
-    Private Shared Function GetLocationHand(ByVal symbols As List(Of SWSignSymbol), ByVal dominantHand As Boolean, Optional ByVal rightDominant As Boolean = True) As SwCollection(Of SWSequence)
-        Dim locationHands As New SwCollection(Of SWSequence)()
-        Dim hands As SwCollection(Of SWSignSymbol)
+    Private Shared Function GetLocationHand(ByVal symbols As List(Of SWSignSymbol), ByVal dominantHand As Boolean, Optional ByVal rightDominant As Boolean = True) As List(Of SWSequence)
+        Dim locationHands As New List(Of SWSequence)()
+        Dim hands As List(Of SWSignSymbol)
         If dominantHand Then
             hands = GetDominantHands(GetLocationHands(symbols), rightDominant)
         Else
@@ -208,7 +208,7 @@ Friend Class SignSpelling
         Return symbols.Where(Function(x) x.Code >= 62081 AndAlso x.Code <= 62112)
     End Function
 
-    Private Shared Sub AddtoSequence(ByVal symbol As SWSignSymbol, ByVal symbols As List(Of SWSignSymbol), ByVal newSequences As SwCollection(Of SWSequence))
+    Private Shared Sub AddtoSequence(ByVal symbol As SWSignSymbol, ByVal symbols As List(Of SWSignSymbol), ByVal newSequences As List(Of SWSequence))
         If symbol IsNot Nothing Then
             _ranking += 1
             symbols.Remove(symbol)
@@ -219,7 +219,7 @@ Friend Class SignSpelling
             End If
         End If
     End Sub
-    Private Shared Sub AddtoSequence(sequences As IEnumerable(Of SWSequence), ByVal newSequences As SwCollection(Of SWSequence))
+    Private Shared Sub AddtoSequence(sequences As IEnumerable(Of SWSequence), ByVal newSequences As List(Of SWSequence))
 
         If sequences IsNot Nothing Then
             For Each sequence As SWSequence In sequences
@@ -228,7 +228,7 @@ Friend Class SignSpelling
         End If
     End Sub
     Private Shared Function GetHand(ByVal symbols As List(Of SWSignSymbol), ByVal dominantHand As Boolean, ByVal isBeginning As Boolean, ByVal canAsk As Boolean, Optional ByVal rightDominant As Boolean = True) As SWSignSymbol
-        Dim hands As SwCollection(Of SWSignSymbol)
+        Dim hands As List(Of SWSignSymbol)
         Dim foundSymbol As SWSignSymbol = Nothing
         If dominantHand Then
             hands = GetDominantHands(symbols, rightDominant)
@@ -263,7 +263,7 @@ Friend Class SignSpelling
 
     Private Shared Function GetHandByCurveArrow(ByVal dominantHand As Boolean, ByVal symbols As List(Of SWSignSymbol), ByVal isBeginning As Boolean, ByVal rightDominant As Boolean) As SWSignSymbol
         Dim arrows = GetCurveArrows(symbols)
-        Dim hands As SwCollection(Of SWSignSymbol)
+        Dim hands As List(Of SWSignSymbol)
 
         If dominantHand Then
             hands = GetDominantHands(symbols, rightDominant)
@@ -281,7 +281,7 @@ Friend Class SignSpelling
     End Function
     Private Shared Function GetHandByRotationArrow(ByVal dominantHand As Boolean, ByVal symbols As List(Of SWSignSymbol), ByVal isBeginning As Boolean, ByVal rightDominant As Boolean) As SWSignSymbol
         Dim arrows = GetRotationArrows(symbols, dominantHand, rightDominant)
-        Dim hands As SwCollection(Of SWSignSymbol)
+        Dim hands As List(Of SWSignSymbol)
 
         If dominantHand Then
             hands = GetDominantHands(symbols, rightDominant)
@@ -299,7 +299,7 @@ Friend Class SignSpelling
     End Function
 
 
-    Private Shared Function GetHandByCurveArrowPosition(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol), ByVal isBeginning As Boolean) As List(Of SWSignSymbol)
+    Private Shared Function GetHandByCurveArrowPosition(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol), ByVal isBeginning As Boolean) As List(Of SWSignSymbol)
         Dim handsinPosition As List(Of SWSignSymbol)
         If isBeginning Then
             handsinPosition = GetHandsBehindCurveArrow(arrows, hands)
@@ -310,7 +310,7 @@ Friend Class SignSpelling
         Return handsinPosition
 
     End Function
-    Private Shared Function GetHandByRotationArrowPosition(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol), ByVal isBeginning As Boolean) As List(Of SWSignSymbol)
+    Private Shared Function GetHandByRotationArrowPosition(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol), ByVal isBeginning As Boolean) As List(Of SWSignSymbol)
         Dim handsinPosition As List(Of SWSignSymbol)
         If isBeginning Then
             handsinPosition = GetHandsBehindRotationArrow(arrows, hands)
@@ -322,7 +322,7 @@ Friend Class SignSpelling
 
     End Function
 
-    Private Shared Function GetHandsInFrontofCurveArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol)) As List(Of SWSignSymbol)
+    Private Shared Function GetHandsInFrontofCurveArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol)) As List(Of SWSignSymbol)
         Dim handsFound = New List(Of SWSignSymbol)
         For Each arrow As SWSignSymbol In arrows
             For Each hand As SWSignSymbol In hands
@@ -334,7 +334,7 @@ Friend Class SignSpelling
         Return handsFound
 
     End Function
-    Private Shared Function GetHandsInFrontofRotationArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol)) As List(Of SWSignSymbol)
+    Private Shared Function GetHandsInFrontofRotationArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol)) As List(Of SWSignSymbol)
         Dim handsFound = New List(Of SWSignSymbol)
         For Each arrow As SWSignSymbol In arrows
             For Each hand As SWSignSymbol In hands
@@ -391,7 +391,7 @@ Friend Class SignSpelling
     End Function
 
 
-    Private Shared Function GetHandsBehindCurveArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol)) As List(Of SWSignSymbol)
+    Private Shared Function GetHandsBehindCurveArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol)) As List(Of SWSignSymbol)
         Dim handsFound = New List(Of SWSignSymbol)
         For Each arrow As SWSignSymbol In arrows
             For Each hand As SWSignSymbol In hands
@@ -403,7 +403,7 @@ Friend Class SignSpelling
         Return handsFound
 
     End Function
-    Private Shared Function GetHandsBehindRotationArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol)) As List(Of SWSignSymbol)
+    Private Shared Function GetHandsBehindRotationArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol)) As List(Of SWSignSymbol)
         Dim handsFound = New List(Of SWSignSymbol)
         For Each arrow As SWSignSymbol In arrows
             For Each hand As SWSignSymbol In hands
@@ -521,7 +521,7 @@ Friend Class SignSpelling
 
     Private Shared Function GetHandByStraightArrow(ByVal dominantHand As Boolean, ByVal symbols As List(Of SWSignSymbol), ByVal isBeginning As Boolean, ByVal rightDominant As Boolean) As SWSignSymbol
         Dim arrows = GetStraightArrows(symbols)
-        Dim hands As SwCollection(Of SWSignSymbol)
+        Dim hands As List(Of SWSignSymbol)
 
         If dominantHand Then
             hands = GetDominantHands(symbols, rightDominant)
@@ -538,7 +538,7 @@ Friend Class SignSpelling
         End If
     End Function
 
-    Private Shared Function GetHandByStraightArrowPosition(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol), ByVal isBeginning As Boolean) As List(Of SWSignSymbol)
+    Private Shared Function GetHandByStraightArrowPosition(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol), ByVal isBeginning As Boolean) As List(Of SWSignSymbol)
         Dim handsinPosition As List(Of SWSignSymbol)
         If isBeginning Then
             handsinPosition = GetHandsBehindStraightArrow(arrows, hands)
@@ -549,7 +549,7 @@ Friend Class SignSpelling
         Return handsinPosition
     End Function
 
-    Private Shared Function GetHandsInFrontofStraightArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol)) As List(Of SWSignSymbol)
+    Private Shared Function GetHandsInFrontofStraightArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol)) As List(Of SWSignSymbol)
         Dim handsFound = New List(Of SWSignSymbol)
         For Each arrow As SWSignSymbol In arrows
             For Each hand As SWSignSymbol In hands
@@ -618,7 +618,7 @@ Friend Class SignSpelling
         Return hand.Y < arrow.Y
     End Function
 
-    Private Shared Function GetHandsBehindStraightArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As SwCollection(Of SWSignSymbol)) As List(Of SWSignSymbol)
+    Private Shared Function GetHandsBehindStraightArrow(ByVal arrows As List(Of SWSignSymbol), ByVal hands As List(Of SWSignSymbol)) As List(Of SWSignSymbol)
         Dim handsFound = New List(Of SWSignSymbol)
         For Each arrow As SWSignSymbol In arrows
             For Each hand As SWSignSymbol In hands
@@ -666,7 +666,7 @@ Friend Class SignSpelling
         Return returnList
     End Function
 
-    Private Shared Function AskHandSymbols(ByVal dominantHand As Boolean, ByVal hands As SwCollection(Of SWSignSymbol), ByVal canAsk As Boolean, ByVal isBeginning As Boolean) As SWSignSymbol
+    Private Shared Function AskHandSymbols(ByVal dominantHand As Boolean, ByVal hands As List(Of SWSignSymbol), ByVal canAsk As Boolean, ByVal isBeginning As Boolean) As SWSignSymbol
         Dim foundSymbol As SWSignSymbol = Nothing
         If _canceling Then
             Return foundSymbol
@@ -712,8 +712,8 @@ Friend Class SignSpelling
         Return answer
     End Function
 
-    Private Shared Function GetDominantHands(ByVal symbols As IEnumerable(Of SWSignSymbol), ByVal rightDominant As Boolean) As SwCollection(Of SWSignSymbol)
-        Dim dominantHands = New SwCollection(Of SWSignSymbol)()
+    Private Shared Function GetDominantHands(ByVal symbols As IEnumerable(Of SWSignSymbol), ByVal rightDominant As Boolean) As List(Of SWSignSymbol)
+        Dim dominantHands = New List(Of SWSignSymbol)()
 
         Dim dominantHand As Integer
 
@@ -732,8 +732,8 @@ Friend Class SignSpelling
         Return dominantHands
     End Function
 
-    Private Shared Function GetNonDominantHands(ByVal symbols As IEnumerable(Of SWSignSymbol), ByVal rightDominant As Boolean) As SwCollection(Of SWSignSymbol)
-        Dim nonDominantHands = New SwCollection(Of SWSignSymbol)()
+    Private Shared Function GetNonDominantHands(ByVal symbols As IEnumerable(Of SWSignSymbol), ByVal rightDominant As Boolean) As List(Of SWSignSymbol)
+        Dim nonDominantHands = New List(Of SWSignSymbol)()
 
         Dim nonDominantHand As Integer
 
@@ -753,7 +753,7 @@ Friend Class SignSpelling
     End Function
 
     Private Shared Function GetMovement(ByVal symbols As List(Of SWSignSymbol), ByVal dominantHand As Boolean, ByVal nth As Integer, ByVal canAsk As Boolean, ByVal hand As SWSignSymbol, Optional ByVal rightDominant As Boolean = True) As SWSignSymbol
-        Dim movements As SwCollection(Of SWSignSymbol)
+        Dim movements As List(Of SWSignSymbol)
         Dim foundSymbol As SWSignSymbol = Nothing
         If dominantHand Then
             movements = GetDominantMovements(symbols, rightDominant)
@@ -781,7 +781,7 @@ Friend Class SignSpelling
         End If
     End Function
 
-    Private Shared Function GetClosestMovement(ByVal movements As SwCollection(Of SWSignSymbol), ByVal hand As SWSignSymbol) As SWSignSymbol
+    Private Shared Function GetClosestMovement(ByVal movements As List(Of SWSignSymbol), ByVal hand As SWSignSymbol) As SWSignSymbol
         Dim closestMovement As SWSignSymbol = Nothing
         Dim closestDistance = Double.MaxValue
         For Each movement As SWSignSymbol In movements
@@ -805,7 +805,7 @@ Friend Class SignSpelling
         End If
     End Function
 
-    Private Shared Function AskForMovements(ByVal dominantHand As Boolean, ByVal movements As SwCollection(Of SWSignSymbol), ByVal canAsk As Boolean, ByVal nth As Integer, ByVal foundSymbol As SWSignSymbol) As SWSignSymbol
+    Private Shared Function AskForMovements(ByVal dominantHand As Boolean, ByVal movements As List(Of SWSignSymbol), ByVal canAsk As Boolean, ByVal nth As Integer, ByVal foundSymbol As SWSignSymbol) As SWSignSymbol
         If _canceling Then
             Return foundSymbol
         End If
@@ -843,8 +843,8 @@ Friend Class SignSpelling
         Return foundSymbol
     End Function
 
-    Private Shared Function GetDominantMovements(ByVal symbols As List(Of SWSignSymbol), ByVal rightDominant As Boolean) As SwCollection(Of SWSignSymbol)
-        Dim dominantMovements = New SwCollection(Of SWSignSymbol)()
+    Private Shared Function GetDominantMovements(ByVal symbols As List(Of SWSignSymbol), ByVal rightDominant As Boolean) As List(Of SWSignSymbol)
+        Dim dominantMovements = New List(Of SWSignSymbol)()
 
         For Each symbol As SWSignSymbol In symbols
             If IsDominantMovement(symbol, rightDominant) Then
@@ -855,8 +855,8 @@ Friend Class SignSpelling
         Return dominantMovements
     End Function
 
-    Private Shared Function GetNonDominantMovements(ByVal symbols As List(Of SWSignSymbol), ByVal rightDominant As Boolean) As SwCollection(Of SWSignSymbol)
-        Dim nonDominantMovements = New SwCollection(Of SWSignSymbol)()
+    Private Shared Function GetNonDominantMovements(ByVal symbols As List(Of SWSignSymbol), ByVal rightDominant As Boolean) As List(Of SWSignSymbol)
+        Dim nonDominantMovements = New List(Of SWSignSymbol)()
 
         For Each symbol As SWSignSymbol In symbols
             If IsNonDominantMovement(symbol, rightDominant) Then
@@ -945,9 +945,9 @@ Friend Class SignSpelling
         Return (From symbol In symbols Where symbol.SymbolDetails.Category = 3).ToList()
     End Function
 
-    Public Shared Function OrderSuggestion2(ByVal symbs As SwCollection(Of SWSignSymbol)) As SwCollection(Of SWSequence)
+    Public Shared Function OrderSuggestion2(ByVal symbs As List(Of SWSignSymbol)) As List(Of SWSequence)
         Dim symbols = symbs.ToList()
-        Dim newSequence As New SwCollection(Of SWSequence)()
+        Dim newSequence As New List(Of SWSequence)()
         '1) Single hand - BaseSymbol order 
         '2) Orientation - Fill and Rotation
         '3) Second hand - BaseSymbol order

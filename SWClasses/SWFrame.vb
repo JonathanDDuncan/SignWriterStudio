@@ -130,24 +130,24 @@ Imports SignWriterStudio.SWS
 
     Private ReadOnly _myGuid As Guid
 
-    Private _signSymbols As New SwCollection(Of SWSignSymbol)()
-    Public ReadOnly Property SignSymbols() As SwCollection(Of SWSignSymbol)
+    Private _signSymbols As New List(Of SWSignSymbol)()
+    Public ReadOnly Property SignSymbols() As List(Of SWSignSymbol)
         Get
             Return _signSymbols
         End Get
-        'Set(ByVal value As SWCollection(Of SWSignSymbol))
+        'Set(ByVal value As List(Of SWSignSymbol))
         '    _SignSymbols = value
         'End Set
     End Property
 
-    Private _sequences As New SwCollection(Of SWSequence)()
+    Private _sequences As New List(Of SWSequence)()
 
 
-    Public ReadOnly Property Sequences() As SwCollection(Of SWSequence)
+    Public ReadOnly Property Sequences() As List(Of SWSequence)
         Get
             Return _sequences
         End Get
-        'Set(ByVal value As SWCollection(Of SWSequence))
+        'Set(ByVal value As List(Of SWSequence))
         '    _Sequences = value
         'End Set
     End Property
@@ -236,7 +236,7 @@ Imports SignWriterStudio.SWS
 
         If Not index = 0 Then
             Dim sequence As SWSequence = Sequences.Item(index)
-            Sequences.Sort()
+            Sequences.Sort(AddressOf CompareSequencesByRank)
             Sequences.Remove(sequence)
             Sequences.Insert(index - 1, sequence)
             RenumberSequenceRank()
@@ -246,7 +246,7 @@ Imports SignWriterStudio.SWS
     Public Sub MoveSequenceDown(ByVal index As Integer)
         If Not index = Sequences.Count - 1 Then
             Dim sequence As SWSequence = Sequences.Item(index)
-            Sequences.Sort()
+            Sequences.Sort(AddressOf CompareSequencesByRank)
             Sequences.Remove(sequence)
             Sequences.Insert(index + 1, sequence)
             RenumberSequenceRank()
@@ -267,7 +267,90 @@ Imports SignWriterStudio.SWS
             sequence.Rank = I
         Next
     End Sub
-  
+    Private Shared Function CompareSequencesByRank( _
+      ByVal x As SWSequence, ByVal y As SWSequence) As Integer
+
+
+        If x Is Nothing Then
+            If y Is Nothing Then
+                ' If x is Nothing and y is Nothing, they're
+                ' equal. 
+                Return 0
+            Else
+                ' If x is Nothing and y is not Nothing, y
+                ' is greater. 
+                Return -1
+            End If
+        Else
+            ' If x is not Nothing...
+            '
+            If y Is Nothing Then
+                ' ...and y is Nothing, x is greater.
+                Return 1
+            Else
+                ' ...and y is not Nothing, compare the 
+                ' lengths of the two strings.
+                '
+                Dim retval As Integer = _
+                    x.Rank.CompareTo(y.Rank)
+
+                If retval <> 0 Then
+                    ' If the strings are not of equal length,
+                    ' the longer string is greater.
+                    '
+                    Return retval
+                Else
+                    ' If the strings are of equal length,
+                    ' sort them with ordinary string comparison.
+                    '
+                    Return x.CompareTo(y)
+                End If
+            End If
+        End If
+
+    End Function
+    Private Shared Function CompareSignSymbolsByZ( _
+   ByVal x As SWSignSymbol, ByVal y As SWSignSymbol) As Integer
+
+
+        If x Is Nothing Then
+            If y Is Nothing Then
+                ' If x is Nothing and y is Nothing, they're
+                ' equal. 
+                Return 0
+            Else
+                ' If x is Nothing and y is not Nothing, y
+                ' is greater. 
+                Return -1
+            End If
+        Else
+            ' If x is not Nothing...
+            '
+            If y Is Nothing Then
+                ' ...and y is Nothing, x is greater.
+                Return 1
+            Else
+                ' ...and y is not Nothing, compare the 
+                ' lengths of the two strings.
+                '
+                Dim retval As Integer = _
+                    x.Z.CompareTo(y.Z)
+
+                If retval <> 0 Then
+                    ' If the strings are not of equal length,
+                    ' the longer string is greater.
+                    '
+                    Return retval
+                Else
+                    ' If the strings are of equal length,
+                    ' sort them with ordinary string comparison.
+                    '
+                    Return x.CompareTo(y)
+                End If
+            End If
+        End If
+
+    End Function
     Public Shared Sub LoadSequence(ByVal tv As TreeView, ByVal frame As SWFrame, cm As ContextMenuStrip)
         Dim newNode As TreeNode
         Dim imgList As New ImageList
@@ -275,7 +358,7 @@ Imports SignWriterStudio.SWS
         Dim symbol As New SWSignSymbol
         Const imageHeight As Integer = 50
         Const imageWidth As Integer = 55
-        frame.Sequences.Sort()
+        frame.Sequences.Sort(AddressOf CompareSequencesByRank)
         imgList.ImageSize = New Size(imageWidth, imageHeight)
         'CreateSequenceImageList
         For I As Integer = 0 To frame.Sequences.Count - 1
@@ -736,6 +819,34 @@ Imports SignWriterStudio.SWS
             End If
         Next
     End Sub
+    Public Sub MoveSymbolBottom()
+        Dim symbol As SWSignSymbol
+        RenumberZ()
+        For Each symbol In SignSymbols
+
+            If symbol.IsSelected Then
+
+                symbol.Z = -1
+                Exit For
+
+            End If
+        Next
+        RenumberZ()
+    End Sub
+    Public Sub MoveSymbolTop()
+        Dim symbol As SWSignSymbol
+        RenumberZ()
+        For Each symbol In SignSymbols
+
+            If symbol.IsSelected Then
+ 
+                  symbol.Z = SignSymbols.Count + 1
+
+                Exit For
+            End If
+        Next
+        RenumberZ()
+    End Sub
     Public Sub MoveSymbolUp()
         Dim symbol As SWSignSymbol
         RenumberZ()
@@ -755,7 +866,7 @@ Imports SignWriterStudio.SWS
     Public Sub DuplicateSelected()
         Dim symbol As SWSignSymbol
         Dim newSymbol As SWSignSymbol
-        Dim changeSymbolIns As SwCollection(Of SWSignSymbol) = CType(SignSymbols.FindAll(AddressOf Selected), SwCollection(Of SWSignSymbol))
+        Dim changeSymbolIns As List(Of SWSignSymbol) = CType(SignSymbols.FindAll(AddressOf Selected), List(Of SWSignSymbol))
 
         For Each symbol In changeSymbolIns
             newSymbol = symbol.Clone
@@ -1165,8 +1276,8 @@ Imports SignWriterStudio.SWS
         Dim sequence As SWSequence
         Dim symbol As SWSignSymbol
         'Create new with the Frame
-        '        FrameClone.Sequences = New SWCollection(Of SWSequence)
-        '        FrameClone.SignSymbols = New SWCollection(Of SWSignSymbol)
+        '        FrameClone.Sequences = New List(Of SWSequence)
+        '        FrameClone.SignSymbols = New List(Of SWSignSymbol)
         frameClone.NewCollections()
         For I As Integer = 0 To Sequences.Count - 1
             sequence = Sequences(I)
@@ -1180,8 +1291,8 @@ Imports SignWriterStudio.SWS
         Return frameClone
     End Function
     Private Sub NewCollections()
-        _sequences = New SwCollection(Of SWSequence)
-        _signSymbols = New SwCollection(Of SWSignSymbol)
+        _sequences = New List(Of SWSequence)
+        _signSymbols = New List(Of SWSignSymbol)
 
     End Sub
     Private _disposedValue As Boolean '= False        ' To detect redundant calls
@@ -1199,6 +1310,8 @@ Imports SignWriterStudio.SWS
         _disposedValue = True
     End Sub
 
+  
+
 #Region " IDisposable Support "
     ' This code added by Visual Basic to correctly implement the disposable pattern.
     Public Sub Dispose() Implements IDisposable.Dispose
@@ -1209,10 +1322,15 @@ Imports SignWriterStudio.SWS
 #End Region
 
 
-    Public Sub AddSequences(ByVal sequencestoAdd As SwCollection(Of SWSequence))
+    Public Sub AddSequences(ByVal sequencestoAdd As List(Of SWSequence))
         For Each swSequence As SWSequence In sequencestoAdd
             Sequences.Add(swSequence)
         Next
 
+    End Sub
+
+
+    Public Sub SignSymbolsSort()
+        Me.SignSymbols.Sort(AddressOf CompareSignSymbolsByZ)
     End Sub
 End Class

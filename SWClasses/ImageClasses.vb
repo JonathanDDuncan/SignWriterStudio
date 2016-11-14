@@ -42,7 +42,7 @@ Public NotInheritable Class SWDrawing
         Dim SymbolImage As Image
         Dim g As Graphics
         Dim imageAttributes As New ImageAttributes()
-        Dim FrameImage As New SwCollection(Of Image)
+        Dim FrameImage As New List(Of Image)
         Dim StartFrameIndex As Integer
         Dim EndFrameIndex As Integer
         Dim CurrentFrameIndex As Integer
@@ -72,10 +72,10 @@ Public NotInheritable Class SWDrawing
             If grid Then
                 DrawGrid(g, BMTemp.Width, BMTemp.Height)
             End If
-            Frame.SignSymbols.Sort()
+            Frame.SignSymbolsSort()
 
             Dim SortedFramSymbols = Frame.SignSymbols.OrderBy(Function(x) x.Z).ToList()
-            'Dim Colors As SWCollection(Of Color)
+
             Dim I As Integer
             If SortedFramSymbols.Count = 0 Then
                 Dim EmptyBitmap As New Bitmap(20, 20, PixelFormat.Format32bppPArgb)
@@ -234,8 +234,8 @@ Public NotInheritable Class SWDrawing
         End If
     End Function
 
-    Public Shared Function ColorsContained(ByVal bmp As Bitmap) As SwCollection(Of Color)
-        Dim Entries As New SWCollection(Of Color)
+    Public Shared Function ColorsContained(ByVal bmp As Bitmap) As List(Of Color)
+        Dim Entries As New List(Of Color)
         Dim PixColor As Color
         For I = 0 To bmp.Width - 1
             For J = 0 To bmp.Height - 1
@@ -249,7 +249,7 @@ Public NotInheritable Class SWDrawing
         Return Entries
     End Function
 
-    Public Shared Function JoinFrameImages(ByVal frameImages As SwCollection(Of Image)) As Image
+    Public Shared Function JoinFrameImages(ByVal frameImages As List(Of Image)) As Image
         Dim FinalHeight As Integer ' = 0
         Dim FinalWidth As Integer = 1
         Dim FrameImage As Image

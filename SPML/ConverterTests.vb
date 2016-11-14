@@ -13,7 +13,7 @@ Imports NUnit.Framework
 Public Class ConverterTests
     Inherits AssertionHelper
     Dim SC As New SPMLConverter
-    Dim TestSigns1 As SWCollection(Of SwSign)
+    Dim TestSigns1 As List(Of SwSign)
     Dim BW As New ComponentModel.BackgroundWorker
     Dim TestFilename As String
     '    <TestFixtureSetUp()> _

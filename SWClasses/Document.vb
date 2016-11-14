@@ -80,7 +80,7 @@ Public Class SWPrintPages
     Public LastPrintedPage As Integer
     Public TotalPages As Integer
     Public CurrentPage As Integer
-    Public PrintPages As New SWCollection(Of Page)
+    Public PrintPages As New List(Of Page)
     Public IsPrinting As Boolean '= False
     Public PrintSize As New Size
     Public LeftMargin As Integer

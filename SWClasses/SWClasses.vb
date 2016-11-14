@@ -154,7 +154,7 @@ Public NotInheritable Class SymbolsToTreeView
     Private Shared Sub SaveImageList(ByVal imgList As ImageList, ByVal filename As String)
 
         'Dim ImgStream As ImageListStreamer = ImgList.ImageStream
-        Dim listtoSave As New SWCollection(Of ImageInfo)
+        Dim listtoSave As New List(Of ImageInfo)
         For I As Integer = 0 To imgList.Images.Count - 1
             Dim img As Image = imgList.Images(I)
             Dim imgInfo As New ImageInfo
@@ -172,12 +172,12 @@ Public NotInheritable Class SymbolsToTreeView
     End Sub
     Private Shared Function LoadImageList(ByVal imgList As ImageList, ByVal filename As String) As Integer
 
-        Dim listtoLoad As New SWCollection(Of ImageInfo)
+        Dim listtoLoad As New List(Of ImageInfo)
         Dim imgListXml As New Xml.XmlDocument
         imgListXml.Load(filename)
 
 
-        listtoLoad = CType(DESerializeObject(imgListXml, listtoLoad.GetType), SWCollection(Of ImageInfo))
+        listtoLoad = CType(DESerializeObject(imgListXml, listtoLoad.GetType), List(Of ImageInfo))
         For Each imgInfo As ImageInfo In listtoLoad
             imgList.Images.Add(imgInfo.Key, ByteArraytoImage(imgInfo.Image))
 
