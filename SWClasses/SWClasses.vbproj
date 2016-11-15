@@ -122,7 +122,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Search.vb" />
-    <Compile Include="SWCollection.vb" />
     <Compile Include="SWDocument.vb" />
     <Compile Include="SWDocumentSign.vb" />
     <Compile Include="SwFlowLayoutPanel.vb">

@@ -199,6 +199,10 @@
             
             .symbol {
                 position: absolute;
+               
+            }
+            
+           .symbol, .font-30 {
                 font-size: 30px;
             }
             
@@ -220,8 +224,7 @@
                 border-color: black;
                 border-style: solid;
                 padding: 2px;
-                /*float: left;
-                display: inline-block;*/
+                padding-top: 10px;
             }
             
             td {
