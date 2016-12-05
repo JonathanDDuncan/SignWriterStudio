@@ -135,6 +135,10 @@ Public NotInheritable Class SwDocumentForm
         SaveDocumentFileDialog.FilterIndex = 1
         SaveDocumentFileDialog.RestoreDirectory = True
 
+        SaveFileDialogNewDocument.Filter = "SignWriter Studio™ Document (*.SWSDoc)|*.SWSDoc|All files (*.*)|*.*"
+        SaveFileDialogNewDocument.FilterIndex = 1
+        SaveFileDialogNewDocument.RestoreDirectory = True
+
         DocumentSetup()
         OpenLastDocument()
     End Sub
@@ -511,10 +515,10 @@ Public NotInheritable Class SwDocumentForm
 
     Private Sub SaveDocumentFileDialog_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) _
         Handles SaveDocumentFileDialog.FileOk
-        SaveDocument(SaveDocumentFileDialog.FileName)
+        SaveDocument(Document, SaveDocumentFileDialog.FileName)
     End Sub
 
-    Private Sub SaveDocument(filename As String)
+    Private Sub SaveDocument(document1 As SwDocument, filename As String)
 
         Dim serializer = New JsonSerializer()
         serializer.Converters.Add(New JavaScriptDateTimeConverter())
@@ -523,7 +527,7 @@ Public NotInheritable Class SwDocumentForm
         Using sw = New StreamWriter(DocumentFilename)
             Using writer = New JsonTextWriter(sw)
 
-                serializer.Serialize(writer, Document)
+                serializer.Serialize(writer, document1)
 
                 DocumentChanged = False
 
@@ -533,7 +537,7 @@ Public NotInheritable Class SwDocumentForm
     End Sub
 
     Private Sub SaveCurrentDocument()
-        SaveDocument(DocumentFilename)
+        SaveDocument(Document, DocumentFilename)
     End Sub
 
     Private Sub OpenDocumentFileDialog_FileOk(ByVal sender As Object, ByVal e As CancelEventArgs) _
@@ -1076,6 +1080,7 @@ Public NotInheritable Class SwDocumentForm
             CopyToolStripMenuItem.Visible = True
             PasteToolStripMenuItem.Visible = True
             BeginningOfColumnToolStripMenuItem.Visible = False
+            SaveToAnotherDocumentToolStripMenuItem.Visible = True
         Else
             EditSignInEditorToolStripMenuItem.Visible = True
             SaveToDictionaryToolStripMenuItem.Visible = True
@@ -1087,6 +1092,7 @@ Public NotInheritable Class SwDocumentForm
             CopyToolStripMenuItem.Visible = True
             PasteToolStripMenuItem.Visible = True
             BeginningOfColumnToolStripMenuItem.Visible = True
+            SaveToAnotherDocumentToolStripMenuItem.Visible = False
         End If
     End Sub
 
@@ -1329,6 +1335,26 @@ Public NotInheritable Class SwDocumentForm
 
         screenSelectStartPoint = control.PointToScreen(New Point(e.X, e.Y))
         selectStartPoint = New Point(e.X, e.Y)
+    End Sub
+      
+    Private Sub SaveToAnotherDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToAnotherDocumentToolStripMenuItem.Click
+        SaveFileDialogNewDocument.ShowDialog()
+    End Sub
+
+    Private Sub SaveFileDialogNewDocument_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialogNewDocument.FileOk
+        Dim document1 As SwDocument = New SwDocument()
+        Dim selectedControls = GetListSelectedControls()
+        For Each selectedControl As SwLayoutControl In selectedControls
+
+            selectedControl.Selected = False
+            selectedControl.Refresh()
+            document1.DocumentSigns.Add(selectedControl.DocumentSign)
+
+        Next
+
+        SaveDocument(document1, SaveFileDialogNewDocument.FileName)
+
+
     End Sub
 End Class
 

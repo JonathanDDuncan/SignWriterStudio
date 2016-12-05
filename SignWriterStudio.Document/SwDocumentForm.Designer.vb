@@ -74,13 +74,15 @@ Partial Class SwDocumentForm
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SwFlowLayoutPanel1 = New SignWriterStudio.SWClasses.SwFlowLayoutPanel()
+        Me.SaveToAnotherDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveFileDialogNewDocument = New System.Windows.Forms.SaveFileDialog()
         Me.PictBoxContextMenuStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PictBoxContextMenuStrip
         '
-        Me.PictBoxContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditSignInEditorToolStripMenuItem, Me.SaveToDictionaryToolStripMenuItem, Me.RemoveSignToolStripMenuItem, Me.AToolStripMenuItem, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem, Me.LaneToolStripMenuItem, Me.PropertiesToolStripMenuItem, Me.CopyToolStripMenuItem, Me.PasteToolStripMenuItem, Me.BeginningOfColumnToolStripMenuItem})
+        Me.PictBoxContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditSignInEditorToolStripMenuItem, Me.SaveToDictionaryToolStripMenuItem, Me.RemoveSignToolStripMenuItem, Me.AToolStripMenuItem, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem, Me.LaneToolStripMenuItem, Me.PropertiesToolStripMenuItem, Me.CopyToolStripMenuItem, Me.PasteToolStripMenuItem, Me.BeginningOfColumnToolStripMenuItem, Me.SaveToAnotherDocumentToolStripMenuItem})
         Me.PictBoxContextMenuStrip.Name = "DocumentContextMenuStrip"
         Me.PictBoxContextMenuStrip.Size = New System.Drawing.Size(235, 252)
         '
@@ -416,6 +418,15 @@ Partial Class SwDocumentForm
         Me.SwFlowLayoutPanel1.TabIndex = 0
         Me.SwFlowLayoutPanel1.WrapContents = False
         '
+        'SaveToAnotherDocumentToolStripMenuItem
+        '
+        Me.SaveToAnotherDocumentToolStripMenuItem.Name = "SaveToAnotherDocumentToolStripMenuItem"
+        Me.SaveToAnotherDocumentToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.SaveToAnotherDocumentToolStripMenuItem.Text = "Save to Another Document"
+        '
+        'SaveFileDialogNewDocument
+        '
+        '
         'SwDocumentForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -485,4 +496,6 @@ Partial Class SwDocumentForm
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopyAsImageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GlossToSignRealTimeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveToAnotherDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveFileDialogNewDocument As System.Windows.Forms.SaveFileDialog
 End Class
