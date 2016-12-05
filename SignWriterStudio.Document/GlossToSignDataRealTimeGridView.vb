@@ -1,8 +1,3 @@
-Imports SignWriterStudio.Dictionary
-Imports SignWriterStudio.Database.Dictionary
-Imports SignWriterStudio.SWClasses
-Imports SignWriterStudio.SWEditor
-
 Public Class GlossToSignRealTimeControl
     Private _foundWordDt1 As DataTable
     Private _image1 As Image
@@ -12,14 +7,16 @@ Public Class GlossToSignRealTimeControl
 
     Event InsertBefore(glossToSignRealTimeControl As GlossToSignRealTimeControl)
 
+    Event MoveUp(glossToSignRealTimeControl As GlossToSignRealTimeControl)
+
+    Event MoveDown(glossToSignRealTimeControl As GlossToSignRealTimeControl)
+
     Event InsertAfter(glossToSignRealTimeControl As GlossToSignRealTimeControl)
 
     Event DeleteEntry(glossToSignRealTimeControl As GlossToSignRealTimeControl)
 
     Event AddFromDict(glossToSignRealTimeControl As GlossToSignRealTimeControl, searchText As String)
-
-
-
+    
     Public Property FoundWordDt() As DataTable
         Get
             Return _foundWordDt1
@@ -70,7 +67,7 @@ Public Class GlossToSignRealTimeControl
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-        RaiseEvent SearchTextChanged(Me, TextBox1.Text)
+        RaiseEvent SearchTextChanged(Me, Trim(TextBox1.Text))
     End Sub
 
     Private Sub TextBox1_Enter(sender As Object, e As EventArgs) Handles TextBox1.Enter, MyBase.Enter, MyBase.Click, PictureBox1.Click, PictureBox2.Click, PictureBox3.Click
@@ -141,4 +138,12 @@ Public Class GlossToSignRealTimeControl
     Private Sub btnAddFromDict_Click(sender As Object, e As EventArgs) Handles btnAddFromDict.Click
         RaiseEvent AddFromDict(Me, TextBox1.Text)
     End Sub
- End Class
+
+    Private Sub btnMoveUp_Click(sender As Object, e As EventArgs) Handles btnMoveUp.Click
+        RaiseEvent MoveUp(Me)
+    End Sub
+
+    Private Sub btnMoveDown_Click(sender As Object, e As EventArgs) Handles btnMoveDown.Click
+        RaiseEvent MoveDown(Me)
+    End Sub
+End Class

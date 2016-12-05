@@ -31,6 +31,8 @@ Partial Class GlossToSignRealTimeControl
         Me.SignsbyGlossesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DictionaryDataSet = New SignWriterStudio.Database.Dictionary.DictionaryDataSet()
         Me.SignsbyGlossesUnilingualTableAdapter = New SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters.SignsbyGlossesUnilingualTableAdapter()
+        Me.btnMoveDown = New System.Windows.Forms.Button()
+        Me.btnMoveUp = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +82,7 @@ Partial Class GlossToSignRealTimeControl
         '
         'btnInsertAfter
         '
-        Me.btnInsertAfter.Location = New System.Drawing.Point(0, 84)
+        Me.btnInsertAfter.Location = New System.Drawing.Point(0, 55)
         Me.btnInsertAfter.Name = "btnInsertAfter"
         Me.btnInsertAfter.Size = New System.Drawing.Size(75, 23)
         Me.btnInsertAfter.TabIndex = 9
@@ -98,9 +100,9 @@ Partial Class GlossToSignRealTimeControl
         '
         'Delete
         '
-        Me.Delete.Location = New System.Drawing.Point(0, 55)
+        Me.Delete.Location = New System.Drawing.Point(92, 55)
         Me.Delete.Name = "Delete"
-        Me.Delete.Size = New System.Drawing.Size(75, 23)
+        Me.Delete.Size = New System.Drawing.Size(118, 23)
         Me.Delete.TabIndex = 11
         Me.Delete.Text = "Delete"
         Me.Delete.UseVisualStyleBackColor = True
@@ -119,12 +121,32 @@ Partial Class GlossToSignRealTimeControl
         '
         Me.SignsbyGlossesUnilingualTableAdapter.ClearBeforeFill = True
         '
+        'btnMoveDown
+        '
+        Me.btnMoveDown.Location = New System.Drawing.Point(3, 127)
+        Me.btnMoveDown.Name = "btnMoveDown"
+        Me.btnMoveDown.Size = New System.Drawing.Size(75, 23)
+        Me.btnMoveDown.TabIndex = 13
+        Me.btnMoveDown.Text = "Move down"
+        Me.btnMoveDown.UseVisualStyleBackColor = True
+        '
+        'btnMoveUp
+        '
+        Me.btnMoveUp.Location = New System.Drawing.Point(3, 98)
+        Me.btnMoveUp.Name = "btnMoveUp"
+        Me.btnMoveUp.Size = New System.Drawing.Size(75, 23)
+        Me.btnMoveUp.TabIndex = 12
+        Me.btnMoveUp.Text = "Move up"
+        Me.btnMoveUp.UseVisualStyleBackColor = True
+        '
         'GlossToSignRealTimeControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.AutoSize = True
+        Me.Controls.Add(Me.btnMoveDown)
+        Me.Controls.Add(Me.btnMoveUp)
         Me.Controls.Add(Me.Delete)
         Me.Controls.Add(Me.btnAddFromDict)
         Me.Controls.Add(Me.btnInsertAfter)
@@ -180,5 +202,7 @@ Partial Class GlossToSignRealTimeControl
     Friend WithEvents btnInsertAfter As System.Windows.Forms.Button
     Friend WithEvents btnAddFromDict As System.Windows.Forms.Button
     Friend WithEvents Delete As System.Windows.Forms.Button
+    Friend WithEvents btnMoveDown As System.Windows.Forms.Button
+    Friend WithEvents btnMoveUp As System.Windows.Forms.Button
 
 End Class

@@ -1,5 +1,4 @@
-Imports System.Data.Common.CommandTrees.ExpressionBuilder
-Imports NUnit.Framework
+
 Imports SignWriterStudio.Dictionary
 Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.Settings
@@ -11,13 +10,12 @@ Imports SignWriterStudio.SWEditor
 Public Class GlossToSignRealTime
     Dim Dictionary As New SWDict
     Friend Signs As List(Of Tuple(Of SwSign, Integer))
-    Dim _rightClickDownSender As Object
     Dim _clickedControl As GlossToSignRealTimeControl
-    'Dim Settings As SerializableSettings
+
     Dim WithEvents glossToSignRealTimeControl As New GlossToSignRealTimeControl
-    'Private _glossNotFound As String = ""
+
     Private _glossNotFound As Dictionary(Of String, String) = New Dictionary(Of String, String)
-    Dim _currentGlossControl As Document.GlossToSignRealTimeControl
+    Dim _currentGlossControl As GlossToSignRealTimeControl
 
     Sub GlossToSignControlEventHandler(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles glossToSignRealTimeControl.MouseDown
 
@@ -38,6 +36,7 @@ Public Class GlossToSignRealTime
         Dictionary.DefaultSignLanguage = DefaultSignLanguage
 
         FindifTextinClipboard()
+
     End Sub
 
     Private Sub FindifTextinClipboard()
@@ -79,7 +78,7 @@ Public Class GlossToSignRealTime
     Private Function GetGlossToSignArray() As String()
 
         Dim glossToSignArray() As String
-        'Dim Delimiters() As String = {" ", ",", ".", "?", "¿", "!", Chr(34), vbCrLf}
+
         Dim delimiters() As String = {" ", Chr(34), vbCrLf}
         Dim textString As String = TBGlossToSign.Text
         textString = textString.Replace("{", "").Replace("}", "").Replace("}", "").Replace("(", "").Replace(")", "")
@@ -172,9 +171,7 @@ Public Class GlossToSignRealTime
         AddHandler glossToSignRealTimeControl.MouseDown, AddressOf Me.GlossToSignControlEventHandler
         glossToSignRealTimeControl.TextBox1.Text = searchString
         Dim result = Search(searchString)
-
-        'foundWordsDt = result.Item1
-
+         
         CheckMatchingGlossOrFirstItem(result.Item1, searchString)
 
         glossToSignRealTimeControl.FoundWordDt = result.Item1
@@ -188,7 +185,8 @@ Public Class GlossToSignRealTime
         AddHandler glossToSignRealTimeControl.InsertAfter, AddressOf GlossToSignRealTimeControl_InsertAfter
         AddHandler glossToSignRealTimeControl.DeleteEntry, AddressOf GlossToSignRealTimeControl_DeleteEntry
         AddHandler glossToSignRealTimeControl.AddFromDict, AddressOf GlossToSignRealTimeControl_AddFromDict
-
+        AddHandler glossToSignRealTimeControl.MoveUp, AddressOf GlossToSignRealTimeControl_MoveUp
+        AddHandler glossToSignRealTimeControl.MoveDown, AddressOf GlossToSignRealTimeControl_MoveDown
 
         glossToSignRealTimeControl.Value = GetId(glossToSignRealTimeControl.FoundWordDt)
         glossToSignRealTimeControl.Image = GetImage(glossToSignRealTimeControl.FoundWordDt)
@@ -210,9 +208,7 @@ Public Class GlossToSignRealTime
         Dim ta As New SignsbyGlossesUnilingualTableAdapter
         Dim resultType = 2 'Signs matched full word
         If Not searchString = "" Then
-            'foundWordsDt = ta.GetData(DefaultSignLanguage, FirstGlossLanguage, searchString)
-            'resultType = 0
-
+            
             'If no exact search found
             If Not searchString.Contains("%") Then
                 If foundWordsDt.Rows.Count = 0 Then
@@ -304,8 +300,8 @@ Public Class GlossToSignRealTime
         FlowLayoutPanel1.Controls.SetChildIndex(glossToSignControl1, index)
     End Sub
     Private Sub BtnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Me.DialogResult = DialogResult.Cancel
-        Me.Close()
+        DialogResult = DialogResult.Cancel
+        Close()
     End Sub
 
     Private Sub InsertGlossToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles InsertGlossToolStripMenuItem.Click
@@ -316,11 +312,10 @@ Public Class GlossToSignRealTime
         End If
     End Sub
     Private Sub GlossMenuStrip_Opening(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles GlossMenuStrip.Opening
-        Dim ContextMenuStrip As ContextMenuStrip
         If sender IsNot Nothing AndAlso sender.GetType.ToString = "System.Windows.Forms.ContextMenuStrip" Then
 
-            ContextMenuStrip = CType(sender, ContextMenuStrip)
-            'FlowLayoutPanel1.Controls.Add()
+            Dim ContextMenuStrip = CType(sender, ContextMenuStrip)
+
             _clickedControl = FlowLayoutPanel1.GetChildAtPoint(FlowLayoutPanel1.PointToClient(ContextMenuStrip.Location))
         End If
 
@@ -335,7 +330,7 @@ Public Class GlossToSignRealTime
     End Sub
     Private Sub RemoveGlossControl(ByVal Index As Integer)
         If Not (Index < 0 Or Index > Me.FlowLayoutPanel1.Controls.Count - 1) Then
-            Me.FlowLayoutPanel1.Controls.RemoveAt(Index)
+            FlowLayoutPanel1.Controls.RemoveAt(Index)
         End If
     End Sub
 
@@ -391,6 +386,8 @@ Public Class GlossToSignRealTime
         If GlossToSignDataGridView.DataSource IsNot Nothing Then
             GlossToSignDataGridView.Sort(GlossToSignDataGridView.Columns("gloss1"), System.ComponentModel.ListSortDirection.Ascending)
         End If
+
+
     End Sub
     Public WriteOnly Property SetBackColor() As Color
         Set(ByVal value As Color)
@@ -433,6 +430,30 @@ Public Class GlossToSignRealTime
         Return idDictionary
     End Function
 
+    Private Sub GlossToSignRealTimeControl_MoveDown(ByVal control As GlossToSignRealTimeControl)
+        Dim index = FlowLayoutPanel1.Controls.IndexOf(control)
+        Dim moveIndex As Integer
+        moveIndex = index + 1
+        If moveIndex > FlowLayoutPanel1.Controls.Count Then
+        Else
+            MoveControl(control, moveIndex)
+        End If
+
+    End Sub
+
+    Private Sub GlossToSignRealTimeControl_MoveUp(ByVal control As GlossToSignRealTimeControl)
+        Dim index = FlowLayoutPanel1.Controls.IndexOf(control)
+        Dim moveIndex As Integer
+        moveIndex = index - 1
+        If moveIndex < 0 Then
+            moveIndex = 0
+        End If
+        MoveControl(control, moveIndex)
+    End Sub
+
+    Private Sub MoveControl(ByVal control As GlossToSignRealTimeControl, ByVal index As Integer)      
+        FlowLayoutPanel1.Controls.SetChildIndex(control, index)
+    End Sub
     Private Sub GlossToSignRealTimeControl_InsertBefore(control As Document.GlossToSignRealTimeControl)
         Dim index = FlowLayoutPanel1.Controls.IndexOf(control)
         Dim insertIndex As Integer
@@ -459,9 +480,7 @@ Public Class GlossToSignRealTime
         If result IsNot Nothing Then
 
             Dim idDict As Integer = result.Item1
-
-            'Dim dictionary1 As New SWDict()
-
+             
             Dim selectedColumn As New DataColumn
             selectedColumn.ColumnName = "Selected"
             selectedColumn.DataType = Type.GetType("System.Boolean")
@@ -494,7 +513,7 @@ Public Class GlossToSignRealTime
             swDictForm.Dispose()
             If Not idDictionary = 0 Then
                 Dim dictionary1 As New SWDict
-                'documentSign.IncorporateSWSign(dictionary1.GetSWSign(idDictionary))
+
                 Return Tuple.Create(idDictionary, dictionary1.GetSWSign(idDictionary))
             End If
         ElseIf (dialogRes = DialogResult.Cancel) Then
@@ -518,7 +537,7 @@ Public Class GlossToSignRealTime
             swDictForm.Dispose()
             If Not idDictionary = 0 Then
                 Dim dictionary1 As New SWDict
-                'documentSign.IncorporateSWSign(dictionary1.GetSWSign(idDictionary))
+
                 Return Tuple.Create(idDictionary, dictionary1.GetSWSign(idDictionary))
             End If
         ElseIf (dialogRes = DialogResult.Cancel) Then
@@ -537,4 +556,19 @@ Public Class GlossToSignRealTime
             End If
         End If
     End Sub
+
+    Private Sub GlossToSignDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GlossToSignDataGridView.CellClick
+        Dim sd = CType(sender, DataGridView)
+
+        For Each row In sd.Rows
+            row.Cells("Selected").Value = False
+        Next
+
+        Dim clickedrow = sd.Rows(e.RowIndex)
+        clickedrow.Cells("Selected").Value = True
+
+        sd.EndEdit()
+        TBGlossToSign.Focus()
+    End Sub
+     
 End Class
