@@ -278,7 +278,13 @@ Public NotInheritable Class SwDocumentForm
     End Sub
 
     Private Sub RemoveSign()
-        If RightClickDownSender IsNot Nothing Then
+        Dim selectedControls = SwFlowLayoutPanel1.GetListSelectedControls()
+
+        If selectedControls.Count > 0 Then
+            For Each selectedControl As SwLayoutControl In selectedControls
+                Document.RemoveSWSign(selectedControl)
+            Next
+        ElseIf RightClickDownSender IsNot Nothing Then
             Document.RemoveSWSign(CType(RightClickDownSender, SwLayoutControl))
 
         End If
@@ -465,7 +471,7 @@ Public NotInheritable Class SwDocumentForm
         DocumentChanged = True
         Return dialogRes
     End Function
-
+    
     Private Sub SwFlowLayoutPanel1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) _
         Handles SwFlowLayoutPanel1.DragDrop
         'Moving a Sign
@@ -524,6 +530,7 @@ Public NotInheritable Class SwDocumentForm
         serializer.Converters.Add(New JavaScriptDateTimeConverter())
         serializer.NullValueHandling = NullValueHandling.Ignore
         DocumentFilename = filename
+        UnSelectControls()
         Using sw = New StreamWriter(DocumentFilename)
             Using writer = New JsonTextWriter(sw)
 
@@ -613,6 +620,10 @@ Public NotInheritable Class SwDocumentForm
         CopySign()
     End Sub
 
+    Private Sub CutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CutToolStripMenuItem.Click
+        CopySign()
+        RemoveSign()
+    End Sub
     Private Sub CopySign()
         If RightClickDownSender IsNot Nothing AndAlso
             RightClickDownSender.GetType Is GetType(SwLayoutControl) Then
@@ -621,10 +632,10 @@ Public NotInheritable Class SwDocumentForm
             If layoutControl.DocumentSign.IsSign Then
                 If controlsSelected Then
                     Dim selectedControls As List(Of SwDocumentSign) =
-                        GetListSelectedControls().Select(Function(x As SwLayoutControl) As SwDocumentSign
-                                                             x.DocumentSign().BkColor = Color.White
-                                                             Return x.DocumentSign()
-                                                         End Function).ToList()
+                        SwFlowLayoutPanel1.GetListSelectedControls().Select(Function(x As SwLayoutControl) As SwDocumentSign
+                                                                                x.DocumentSign().BkColor = Color.White
+                                                                                Return x.DocumentSign()
+                                                                            End Function).ToList()
                     SendSignsToClipboard(selectedControls)
                 Else
                     Dim sign = CType(layoutControl.DocumentSign, SwSign)
@@ -641,19 +652,7 @@ Public NotInheritable Class SwDocumentForm
         Clipboard.SetText(str)
     End Sub
 
-    Private Function GetListSelectedControls() As List(Of SwLayoutControl)
-        Dim selectedControls = New List(Of SwLayoutControl)()
-        For Each c As Control In SwFlowLayoutPanel1.Controls
-            Dim control As SwLayoutControl = TryCast(c, SwLayoutControl)
-            If control IsNot Nothing AndAlso control.Selected Then
-                selectedControls.Add(control)
-            End If
-        Next
-
-        Return selectedControls
-    End Function
-
-    Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
+ Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
         Handles PasteToolStripMenuItem.Click
         PasteSign()
     End Sub
@@ -953,7 +952,7 @@ Public NotInheritable Class SwDocumentForm
         End If
         Return Nothing
     End Function
-
+    
     Private Sub SWLayoutControl_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) Handles Me.DragDrop
         'Moving a Sign
 
@@ -1078,6 +1077,7 @@ Public NotInheritable Class SwDocumentForm
             LaneToolStripMenuItem.Visible = True
             PropertiesToolStripMenuItem.Visible = False
             CopyToolStripMenuItem.Visible = True
+            CutToolStripMenuItem.Visible = True
             PasteToolStripMenuItem.Visible = True
             BeginningOfColumnToolStripMenuItem.Visible = False
             SaveToAnotherDocumentToolStripMenuItem.Visible = True
@@ -1090,6 +1090,7 @@ Public NotInheritable Class SwDocumentForm
             LaneToolStripMenuItem.Visible = True
             PropertiesToolStripMenuItem.Visible = True
             CopyToolStripMenuItem.Visible = True
+            CutToolStripMenuItem.Visible = True
             PasteToolStripMenuItem.Visible = True
             BeginningOfColumnToolStripMenuItem.Visible = True
             SaveToAnotherDocumentToolStripMenuItem.Visible = False
@@ -1336,14 +1337,14 @@ Public NotInheritable Class SwDocumentForm
         screenSelectStartPoint = control.PointToScreen(New Point(e.X, e.Y))
         selectStartPoint = New Point(e.X, e.Y)
     End Sub
-      
+
     Private Sub SaveToAnotherDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToAnotherDocumentToolStripMenuItem.Click
         SaveFileDialogNewDocument.ShowDialog()
     End Sub
 
     Private Sub SaveFileDialogNewDocument_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialogNewDocument.FileOk
         Dim document1 As SwDocument = New SwDocument()
-        Dim selectedControls = GetListSelectedControls()
+        Dim selectedControls = SwFlowLayoutPanel1.GetListSelectedControls()
         For Each selectedControl As SwLayoutControl In selectedControls
 
             selectedControl.Selected = False
@@ -1356,5 +1357,6 @@ Public NotInheritable Class SwDocumentForm
 
 
     End Sub
+
 End Class
 

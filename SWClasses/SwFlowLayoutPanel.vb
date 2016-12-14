@@ -32,6 +32,7 @@ Public NotInheritable Class SwFlowLayoutPanel
     'Public mySWDocumentSign As ArrayList
     'Public mySWDocumentImage As ArrayList
     Public LayoutEng As New SwLayoutEngine
+    Private _selectedControls1 As List(Of SwLayoutControl)
     ' Operations
     Public Property Direction() As FlowDirection
         Get
@@ -86,18 +87,33 @@ Public NotInheritable Class SwFlowLayoutPanel
     Private Sub SWFlowLayoutPanel_Paint(ByVal sender As Object, ByVal e As Windows.Forms.PaintEventArgs) Handles Me.Paint
         DrawLines()
     End Sub
+
+    Public Sub MoveControlsInFrontof(ByVal swLayoutControls As List(Of SwLayoutControl), ByVal beforesign As SwLayoutControl)
+        For Each signtomove As SwLayoutControl In swLayoutControls
+            Dim beforeSignIndex As Integer?
+            beforeSignIndex = GetControlIndex(beforesign)
+            If beforeSignIndex.HasValue AndAlso signtomove IsNot Nothing Then
+                MoveControl(beforesign, beforeSignIndex, signtomove)
+            End If
+        Next
+    End Sub
     Public Sub MoveControlInFrontof(signtomove As SwLayoutControl, beforesign As SwLayoutControl)
         Dim beforeSignIndex As Integer?
         beforeSignIndex = GetControlIndex(beforesign)
         If beforeSignIndex.HasValue AndAlso signtomove IsNot Nothing Then
-            Controls.SetChildIndex(signtomove, beforeSignIndex.Value)
-
-
-            Dim docBeforeSignIndex As Integer? = GetSignIndex(beforesign.DocumentSign)
-            MySWDocument.DocumentSigns.Remove(signtomove.DocumentSign)
-            If docBeforeSignIndex.HasValue Then MySWDocument.DocumentSigns.Insert(docBeforeSignIndex.Value, signtomove.DocumentSign)
+            MoveControl(beforesign, beforeSignIndex, signtomove)
         End If
     End Sub
+
+    Private Sub MoveControl(ByVal beforesign As SwLayoutControl, ByVal beforeSignIndex As Integer?, ByVal signtomove As SwLayoutControl)
+
+        Controls.SetChildIndex(signtomove, beforeSignIndex.Value)
+
+        Dim docBeforeSignIndex As Integer? = GetSignIndex(beforesign.DocumentSign)
+        MySWDocument.DocumentSigns.Remove(signtomove.DocumentSign)
+        If docBeforeSignIndex.HasValue Then MySWDocument.DocumentSigns.Insert(docBeforeSignIndex.Value, signtomove.DocumentSign)
+    End Sub
+
     Private Function GetControlIndex(swLayoutControl As Control) As Integer?
         If Controls.Contains(swLayoutControl) Then
             Return Controls.GetChildIndex(swLayoutControl)
@@ -117,4 +133,22 @@ Public NotInheritable Class SwFlowLayoutPanel
     Public Sub New()
         VerticalScroll.Maximum = 0
     End Sub
+
+    ReadOnly Property SelectedControls() As List(Of SwLayoutControl)
+        Get
+            Return GetListSelectedControls()
+        End Get
+
+    End Property
+
+    Public Function GetListSelectedControls() As List(Of SwLayoutControl)
+        Dim selectedControls1 = New List(Of SwLayoutControl)()
+        For Each c As Control In Controls
+            Dim control As SwLayoutControl = TryCast(c, SwLayoutControl)
+            If control IsNot Nothing AndAlso control.Selected Then
+                selectedControls1.Add(control)
+            End If
+        Next
+        Return selectedControls1
+    End Function
 End Class

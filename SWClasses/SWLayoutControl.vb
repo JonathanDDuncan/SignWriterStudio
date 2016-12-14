@@ -202,7 +202,14 @@ Public NotInheritable Class SwLayoutControl
     Private Sub MoveControlBefore(signtomove As SwLayoutControl, beforesign As SwLayoutControl)
         If Parent IsNot Nothing Then
             Dim parentCtrl = TryCast(Parent, SwFlowLayoutPanel)
-            parentCtrl.MoveControlInFrontof(signtomove, beforesign)
+
+            Dim selectedControls = parentCtrl.SelectedControls()
+            If selectedControls.Count > 0 Then
+                parentCtrl.MoveControlsInFrontof(selectedControls, beforesign)
+            Else
+                parentCtrl.MoveControlInFrontof(signtomove, beforesign)
+            End If
+
         End If
     End Sub
 

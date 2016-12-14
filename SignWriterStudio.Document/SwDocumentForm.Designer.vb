@@ -36,8 +36,10 @@ Partial Class SwDocumentForm
         Me.RightToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BeginningOfColumnToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveToAnotherDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.PrintSWDocument = New System.Drawing.Printing.PrintDocument()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
@@ -74,7 +76,6 @@ Partial Class SwDocumentForm
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SwFlowLayoutPanel1 = New SignWriterStudio.SWClasses.SwFlowLayoutPanel()
-        Me.SaveToAnotherDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialogNewDocument = New System.Windows.Forms.SaveFileDialog()
         Me.PictBoxContextMenuStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -82,9 +83,9 @@ Partial Class SwDocumentForm
         '
         'PictBoxContextMenuStrip
         '
-        Me.PictBoxContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditSignInEditorToolStripMenuItem, Me.SaveToDictionaryToolStripMenuItem, Me.RemoveSignToolStripMenuItem, Me.AToolStripMenuItem, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem, Me.LaneToolStripMenuItem, Me.PropertiesToolStripMenuItem, Me.CopyToolStripMenuItem, Me.PasteToolStripMenuItem, Me.BeginningOfColumnToolStripMenuItem, Me.SaveToAnotherDocumentToolStripMenuItem})
+        Me.PictBoxContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditSignInEditorToolStripMenuItem, Me.SaveToDictionaryToolStripMenuItem, Me.RemoveSignToolStripMenuItem, Me.AToolStripMenuItem, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem, Me.LaneToolStripMenuItem, Me.PropertiesToolStripMenuItem, Me.CopyToolStripMenuItem, Me.CutToolStripMenuItem, Me.PasteToolStripMenuItem, Me.BeginningOfColumnToolStripMenuItem, Me.SaveToAnotherDocumentToolStripMenuItem})
         Me.PictBoxContextMenuStrip.Name = "DocumentContextMenuStrip"
-        Me.PictBoxContextMenuStrip.Size = New System.Drawing.Size(235, 252)
+        Me.PictBoxContextMenuStrip.Size = New System.Drawing.Size(235, 296)
         '
         'EditSignInEditorToolStripMenuItem
         '
@@ -158,6 +159,12 @@ Partial Class SwDocumentForm
         Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
         Me.CopyToolStripMenuItem.Text = "Copy"
         '
+        'CutToolStripMenuItem
+        '
+        Me.CutToolStripMenuItem.Name = "CutToolStripMenuItem"
+        Me.CutToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.CutToolStripMenuItem.Text = "Cut"
+        '
         'PasteToolStripMenuItem
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
@@ -169,6 +176,12 @@ Partial Class SwDocumentForm
         Me.BeginningOfColumnToolStripMenuItem.Name = "BeginningOfColumnToolStripMenuItem"
         Me.BeginningOfColumnToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
         Me.BeginningOfColumnToolStripMenuItem.Text = "Force to Beginning of Column"
+        '
+        'SaveToAnotherDocumentToolStripMenuItem
+        '
+        Me.SaveToAnotherDocumentToolStripMenuItem.Name = "SaveToAnotherDocumentToolStripMenuItem"
+        Me.SaveToAnotherDocumentToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.SaveToAnotherDocumentToolStripMenuItem.Text = "Save to Another Document"
         '
         'PrintPreviewDialog1
         '
@@ -418,12 +431,6 @@ Partial Class SwDocumentForm
         Me.SwFlowLayoutPanel1.TabIndex = 0
         Me.SwFlowLayoutPanel1.WrapContents = False
         '
-        'SaveToAnotherDocumentToolStripMenuItem
-        '
-        Me.SaveToAnotherDocumentToolStripMenuItem.Name = "SaveToAnotherDocumentToolStripMenuItem"
-        Me.SaveToAnotherDocumentToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
-        Me.SaveToAnotherDocumentToolStripMenuItem.Text = "Save to Another Document"
-        '
         'SaveFileDialogNewDocument
         '
         '
@@ -498,4 +505,5 @@ Partial Class SwDocumentForm
     Friend WithEvents GlossToSignRealTimeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveToAnotherDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveFileDialogNewDocument As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents CutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
