@@ -143,18 +143,18 @@ Partial Public Class Editor
 
     End Sub
     Private Sub LoadFirstTime()
-         
+
         KeyPreview = True
         'TODO check if needed to be set each time editor loads.
         PBSign.AllowDrop = True
 
         HandChooser.EditorForm = Me
         ArrowChooser.EditorForm = Me
- 
+
         TvFavoriteLoad()
- 
+
         AllGroupSymbols_Load()
- 
+
         FilterRootShape.DataSource = ISWARootShapesQuickTableAdapter.GetData()
 
         FilterActionFinger.DataSource = ISWAActionFingersTableAdapter.GetData().DefaultView
@@ -170,10 +170,10 @@ Partial Public Class Editor
         HandsClassifiedBindingSource.DataSource = DT
 
         BaseGroupSuggestion_Load()
-         
+
         TCSymbols.SelectedTab = TPAllSymbols
         TCSymbols.SelectedTab = TPFavorites
-         
+
         FirstLoad = True
 
     End Sub
@@ -270,7 +270,7 @@ Partial Public Class Editor
                 ActiveControl = FilterRootShape
             Case AreaEnm.Choose
                 ActiveControl = Nothing
-                'TCSymbols.SelectTab(TPChooser)
+                TCSymbols.SelectTab(TPChooser)
                 If TVChooser.Visible Then
                     TVChooser.Select()
                 ElseIf HandChooser.GBFills.Visible Then
@@ -318,53 +318,53 @@ Partial Public Class Editor
     End Sub
     Private Sub Me_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         'Change Active Keyboard area
-        Select Case e.KeyCode
 
-            Case Keys.F5
-                Area = AreaEnm.Favorites
-                e.SuppressKeyPress = True
-                e.Handled = True
-                Exit Sub
-            Case Keys.F6
-                Area = AreaEnm.AllGroups
-                e.SuppressKeyPress = True
-                e.Handled = True
-                Exit Sub
-            Case Keys.F7
-                Area = AreaEnm.Search
-                e.SuppressKeyPress = True
-                e.Handled = True
-                Exit Sub
-            Case Keys.F8
-                Area = AreaEnm.Sequence
-                e.SuppressKeyPress = True
-                e.Handled = True
-                Exit Sub
-            Case Keys.F9
-                Area = AreaEnm.Choose
-                e.SuppressKeyPress = True
-                e.Handled = True
-                Exit Sub
-            Case Keys.F12
-                Area = AreaEnm.Sign
-                e.SuppressKeyPress = True
-                e.Handled = True
-                Exit Sub
-            Case Keys.Enter
-                If e.Control Then
-                    Accept()
-                    e.SuppressKeyPress = True
-                    e.Handled = True
-                    Exit Sub
-                End If
-            Case Keys.F4
-                If e.Alt Then
-                    Cancel()
-                    e.SuppressKeyPress = True
-                    e.Handled = True
-                    Exit Sub
-                End If
-        End Select
+        If e.Control Then
+            Select Case e.KeyCode
+
+                Case Keys.D1
+                    SetArea(e, AreaEnm.Favorites)
+                Case Keys.NumPad1
+                    SetArea(e, AreaEnm.Favorites)
+                Case Keys.D2
+                    SetArea(e, AreaEnm.AllGroups)
+                Case Keys.NumPad2
+                    SetArea(e, AreaEnm.AllGroups)
+                Case Keys.D3
+                    SetArea(e, AreaEnm.Search)
+                Case Keys.NumPad3
+                    SetArea(e, AreaEnm.Search)
+                Case Keys.D4
+                    SetArea(e, AreaEnm.Choose)
+                Case Keys.NumPad4
+                    SetArea(e, AreaEnm.Choose)
+                Case Keys.D5
+                    SetArea(e, AreaEnm.Sign)
+                Case Keys.NumPad5
+                    SetArea(e, AreaEnm.Sign)
+                Case Keys.D6
+                    SetArea(e, AreaEnm.Sequence)
+                Case Keys.NumPad6
+                    SetArea(e, AreaEnm.Sequence)
+            End Select
+        Else
+            Select Case e.KeyCode
+                Case Keys.Enter
+                    If e.Control Then
+                        Accept()
+                        e.SuppressKeyPress = True
+                        e.Handled = True
+                        Exit Sub
+                    End If
+                Case Keys.F4
+                    If e.Alt Then
+                        Cancel()
+                        e.SuppressKeyPress = True
+                        e.Handled = True
+                        Exit Sub
+                    End If
+            End Select
+        End If
         Select Case Area
             Case AreaEnm.AllGroups
                 AllGroups_KeyDown(sender, e)
@@ -388,6 +388,14 @@ Partial Public Class Editor
                 Sign_KeyDown(sender, e)
         End Select
     End Sub
+
+    Private Sub SetArea(ByVal e As KeyEventArgs, ByVal a As AreaEnm)
+
+        Area = a
+        e.SuppressKeyPress = True
+        e.Handled = True
+    End Sub
+
     Private Shared Sub SelectNode(ByVal TV As TreeView, ByVal Index As Integer)
         If Index - 1 <= TV.Nodes.Count - 1 Then
             TV.CollapseAll()
@@ -550,9 +558,9 @@ Partial Public Class Editor
             ArrowChooser.Visible = False
 
             ResetHandFilter()
-             
+
             Area = AreaEnm.Favorites
-            
+
             If mySWSign IsNot Nothing Then
                 CurrentFrame = GetCurrentFrame(mySWSign)
             Else
@@ -582,11 +590,11 @@ Partial Public Class Editor
     Private Sub CopyImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToolStripMenuItem.Click
         mySWSign.SetClipboardImage()
     End Sub
-    
+
     Private Sub CBFavorites_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBFavorites.SelectedIndexChanged
 
     End Sub
-    
+
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         AddSelectedFavorite()
     End Sub
@@ -629,7 +637,7 @@ Partial Public Class Editor
     Private Sub QuickSignEditorBtn_Click(sender As Object, e As EventArgs) Handles QuickSignEditorBtn.Click
         Try
             Dim conv As New SpmlConverter
-            
+
             FSW = conv.GetFsw(Sign())
             Dim browserForm = Program.GetBrowserForm()
 
