@@ -877,4 +877,20 @@ Public Class HandChooser
         VP1.Checked = True
         isLoading = False
     End Sub
+
+    Private Sub PBHandR4_Click(sender As Object, e As EventArgs) Handles PBHandR4.Click
+        HandR4.Checked = True
+    End Sub
+
+    Private Sub PBHandR1_Click(sender As Object, e As EventArgs) Handles PBHandR1.Click
+        HandR1.Checked = True
+    End Sub
+
+    Private Sub PBHandR2_Click(sender As Object, e As EventArgs) Handles PBHandR2.Click
+        HandR3.Checked = True
+    End Sub
+
+    Private Sub PBHandR3_Click(sender As Object, e As EventArgs) Handles PBHandR3.Click
+        HandR2.Checked = True
+    End Sub
 End Class

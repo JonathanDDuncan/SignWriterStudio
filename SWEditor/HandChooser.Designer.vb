@@ -29,6 +29,7 @@ Partial Class HandChooser
         Me.HandR4 = New SignWriterStudio.General.RadioButtonFull()
         Me.HandR1 = New SignWriterStudio.General.RadioButtonFull()
         Me.HandR2 = New SignWriterStudio.General.RadioButtonFull()
+        Me.HandR3 = New SignWriterStudio.General.RadioButtonFull()
         Me.CBHand = New System.Windows.Forms.ComboBox()
         Me.GBRotations = New System.Windows.Forms.GroupBox()
         Me.HP5 = New SignWriterStudio.General.RadioButtonFull()
@@ -49,16 +50,15 @@ Partial Class HandChooser
         Me.VP8 = New SignWriterStudio.General.RadioButtonFull()
         Me.PBHorizHand = New System.Windows.Forms.PictureBox()
         Me.PBVertHand = New System.Windows.Forms.PictureBox()
-        Me.HandR3 = New SignWriterStudio.General.RadioButtonFull()
-        Me.GBFills.SuspendLayout
-        CType(Me.PBHandR4,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.PBHandR3,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.PBHandR2,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.PBHandR1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.GBRotations.SuspendLayout
-        CType(Me.PBHorizHand,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.PBVertHand,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        Me.GBFills.SuspendLayout()
+        CType(Me.PBHandR4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBHandR3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBHandR2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBHandR1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GBRotations.SuspendLayout()
+        CType(Me.PBHorizHand, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBVertHand, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'GBFills
         '
@@ -74,7 +74,7 @@ Partial Class HandChooser
         Me.GBFills.Name = "GBFills"
         Me.GBFills.Size = New System.Drawing.Size(168, 69)
         Me.GBFills.TabIndex = 56
-        Me.GBFills.TabStop = false
+        Me.GBFills.TabStop = False
         Me.GBFills.Text = "Palm Facing"
         '
         'PBHandR4
@@ -84,7 +84,7 @@ Partial Class HandChooser
         Me.PBHandR4.Size = New System.Drawing.Size(35, 35)
         Me.PBHandR4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PBHandR4.TabIndex = 27
-        Me.PBHandR4.TabStop = false
+        Me.PBHandR4.TabStop = False
         '
         'PBHandR3
         '
@@ -93,7 +93,7 @@ Partial Class HandChooser
         Me.PBHandR3.Size = New System.Drawing.Size(35, 35)
         Me.PBHandR3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PBHandR3.TabIndex = 26
-        Me.PBHandR3.TabStop = false
+        Me.PBHandR3.TabStop = False
         '
         'PBHandR2
         '
@@ -102,7 +102,7 @@ Partial Class HandChooser
         Me.PBHandR2.Size = New System.Drawing.Size(35, 35)
         Me.PBHandR2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PBHandR2.TabIndex = 25
-        Me.PBHandR2.TabStop = false
+        Me.PBHandR2.TabStop = False
         '
         'PBHandR1
         '
@@ -111,11 +111,11 @@ Partial Class HandChooser
         Me.PBHandR1.Size = New System.Drawing.Size(35, 35)
         Me.PBHandR1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PBHandR1.TabIndex = 24
-        Me.PBHandR1.TabStop = false
+        Me.PBHandR1.TabStop = False
         '
         'HandR4
         '
-        Me.HandR4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.HandR4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HandR4.Location = New System.Drawing.Point(12, 13)
         Me.HandR4.Margin = New System.Windows.Forms.Padding(0)
         Me.HandR4.Name = "HandR4"
@@ -123,22 +123,22 @@ Partial Class HandChooser
         Me.HandR4.TabIndex = 23
         Me.HandR4.Tag = "4"
         Me.HandR4.Text = "/"
-        Me.HandR4.UseVisualStyleBackColor = true
+        Me.HandR4.UseVisualStyleBackColor = True
         '
         'HandR1
         '
-        Me.HandR1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!)
+        Me.HandR1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.HandR1.Location = New System.Drawing.Point(53, 12)
         Me.HandR1.Name = "HandR1"
         Me.HandR1.Size = New System.Drawing.Size(29, 28)
         Me.HandR1.TabIndex = 17
         Me.HandR1.Tag = "1"
         Me.HandR1.Text = "*"
-        Me.HandR1.UseVisualStyleBackColor = true
+        Me.HandR1.UseVisualStyleBackColor = True
         '
         'HandR2
         '
-        Me.HandR2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!)
+        Me.HandR2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.HandR2.Location = New System.Drawing.Point(127, 10)
         Me.HandR2.Name = "HandR2"
         Me.HandR2.Size = New System.Drawing.Size(32, 31)
@@ -146,11 +146,23 @@ Partial Class HandChooser
         Me.HandR2.Tag = "2"
         Me.HandR2.Text = "+"
         Me.HandR2.TextAlign = System.Drawing.ContentAlignment.TopRight
-        Me.HandR2.UseVisualStyleBackColor = true
+        Me.HandR2.UseVisualStyleBackColor = True
+        '
+        'HandR3
+        '
+        Me.HandR3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.HandR3.Location = New System.Drawing.Point(89, 10)
+        Me.HandR3.Name = "HandR3"
+        Me.HandR3.Size = New System.Drawing.Size(32, 31)
+        Me.HandR3.TabIndex = 28
+        Me.HandR3.Tag = "3"
+        Me.HandR3.Text = "-"
+        Me.HandR3.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.HandR3.UseVisualStyleBackColor = True
         '
         'CBHand
         '
-        Me.CBHand.FormattingEnabled = true
+        Me.CBHand.FormattingEnabled = True
         Me.CBHand.Items.AddRange(New Object() {"Right Hand", "Left Hand"})
         Me.CBHand.Location = New System.Drawing.Point(28, 3)
         Me.CBHand.Name = "CBHand"
@@ -181,7 +193,7 @@ Partial Class HandChooser
         Me.GBRotations.Name = "GBRotations"
         Me.GBRotations.Size = New System.Drawing.Size(150, 297)
         Me.GBRotations.TabIndex = 57
-        Me.GBRotations.TabStop = false
+        Me.GBRotations.TabStop = False
         Me.GBRotations.Text = "Plane"
         '
         'HP5
@@ -193,7 +205,7 @@ Partial Class HandChooser
         Me.HP5.TabIndex = 13
         Me.HP5.Tag = "5"
         Me.HP5.Text = "2"
-        Me.HP5.UseVisualStyleBackColor = true
+        Me.HP5.UseVisualStyleBackColor = True
         '
         'HP1
         '
@@ -204,7 +216,7 @@ Partial Class HandChooser
         Me.HP1.TabIndex = 9
         Me.HP1.Tag = "1"
         Me.HP1.Text = "8"
-        Me.HP1.UseVisualStyleBackColor = true
+        Me.HP1.UseVisualStyleBackColor = True
         '
         'HP2
         '
@@ -215,11 +227,11 @@ Partial Class HandChooser
         Me.HP2.TabIndex = 16
         Me.HP2.Tag = "2"
         Me.HP2.Text = "7"
-        Me.HP2.UseVisualStyleBackColor = true
+        Me.HP2.UseVisualStyleBackColor = True
         '
         'HP3
         '
-        Me.HP3.AutoSize = true
+        Me.HP3.AutoSize = True
         Me.HP3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.HP3.Location = New System.Drawing.Point(7, 206)
         Me.HP3.Name = "HP3"
@@ -227,7 +239,7 @@ Partial Class HandChooser
         Me.HP3.TabIndex = 15
         Me.HP3.Tag = "3"
         Me.HP3.Text = "4"
-        Me.HP3.UseVisualStyleBackColor = true
+        Me.HP3.UseVisualStyleBackColor = True
         '
         'HP4
         '
@@ -238,7 +250,7 @@ Partial Class HandChooser
         Me.HP4.TabIndex = 14
         Me.HP4.Tag = "4"
         Me.HP4.Text = "1"
-        Me.HP4.UseVisualStyleBackColor = true
+        Me.HP4.UseVisualStyleBackColor = True
         '
         'HP6
         '
@@ -249,18 +261,18 @@ Partial Class HandChooser
         Me.HP6.TabIndex = 12
         Me.HP6.Tag = "6"
         Me.HP6.Text = "3"
-        Me.HP6.UseVisualStyleBackColor = true
+        Me.HP6.UseVisualStyleBackColor = True
         '
         'HP7
         '
-        Me.HP7.AutoSize = true
+        Me.HP7.AutoSize = True
         Me.HP7.Location = New System.Drawing.Point(105, 206)
         Me.HP7.Name = "HP7"
         Me.HP7.Size = New System.Drawing.Size(31, 17)
         Me.HP7.TabIndex = 11
         Me.HP7.Tag = "7"
         Me.HP7.Text = "6"
-        Me.HP7.UseVisualStyleBackColor = true
+        Me.HP7.UseVisualStyleBackColor = True
         '
         'HP8
         '
@@ -271,7 +283,7 @@ Partial Class HandChooser
         Me.HP8.TabIndex = 10
         Me.HP8.Tag = "8"
         Me.HP8.Text = "9"
-        Me.HP8.UseVisualStyleBackColor = true
+        Me.HP8.UseVisualStyleBackColor = True
         '
         'VP5
         '
@@ -282,11 +294,11 @@ Partial Class HandChooser
         Me.VP5.TabIndex = 5
         Me.VP5.Tag = "5"
         Me.VP5.Text = "2"
-        Me.VP5.UseVisualStyleBackColor = true
+        Me.VP5.UseVisualStyleBackColor = True
         '
         'VP1
         '
-        Me.VP1.AutoSize = true
+        Me.VP1.AutoSize = True
         Me.VP1.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.VP1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.VP1.Location = New System.Drawing.Point(67, 8)
@@ -295,7 +307,7 @@ Partial Class HandChooser
         Me.VP1.TabIndex = 1
         Me.VP1.Tag = "1"
         Me.VP1.Text = "8"
-        Me.VP1.UseVisualStyleBackColor = true
+        Me.VP1.UseVisualStyleBackColor = True
         '
         'VP2
         '
@@ -306,7 +318,7 @@ Partial Class HandChooser
         Me.VP2.TabIndex = 8
         Me.VP2.Tag = "2"
         Me.VP2.Text = "7"
-        Me.VP2.UseVisualStyleBackColor = true
+        Me.VP2.UseVisualStyleBackColor = True
         '
         'VP3
         '
@@ -317,7 +329,7 @@ Partial Class HandChooser
         Me.VP3.TabIndex = 7
         Me.VP3.Tag = "3"
         Me.VP3.Text = "4"
-        Me.VP3.UseVisualStyleBackColor = true
+        Me.VP3.UseVisualStyleBackColor = True
         '
         'VP4
         '
@@ -328,7 +340,7 @@ Partial Class HandChooser
         Me.VP4.TabIndex = 6
         Me.VP4.Tag = "4"
         Me.VP4.Text = "1"
-        Me.VP4.UseVisualStyleBackColor = true
+        Me.VP4.UseVisualStyleBackColor = True
         '
         'VP6
         '
@@ -339,7 +351,7 @@ Partial Class HandChooser
         Me.VP6.TabIndex = 4
         Me.VP6.Tag = "6"
         Me.VP6.Text = "3"
-        Me.VP6.UseVisualStyleBackColor = true
+        Me.VP6.UseVisualStyleBackColor = True
         '
         'VP7
         '
@@ -349,7 +361,7 @@ Partial Class HandChooser
         Me.VP7.TabIndex = 3
         Me.VP7.Tag = "7"
         Me.VP7.Text = "6"
-        Me.VP7.UseVisualStyleBackColor = true
+        Me.VP7.UseVisualStyleBackColor = True
         '
         'VP8
         '
@@ -360,43 +372,31 @@ Partial Class HandChooser
         Me.VP8.TabIndex = 2
         Me.VP8.Tag = "8"
         Me.VP8.Text = "9"
-        Me.VP8.UseVisualStyleBackColor = true
+        Me.VP8.UseVisualStyleBackColor = True
         '
         'PBHorizHand
         '
         Me.PBHorizHand.BackColor = System.Drawing.Color.Transparent
-        Me.PBHorizHand.Image = CType(resources.GetObject("PBHorizHand.Image"),System.Drawing.Image)
+        Me.PBHorizHand.Image = CType(resources.GetObject("PBHorizHand.Image"), System.Drawing.Image)
         Me.PBHorizHand.InitialImage = Nothing
         Me.PBHorizHand.Location = New System.Drawing.Point(39, 202)
         Me.PBHorizHand.Name = "PBHorizHand"
         Me.PBHorizHand.Size = New System.Drawing.Size(65, 30)
         Me.PBHorizHand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PBHorizHand.TabIndex = 19
-        Me.PBHorizHand.TabStop = false
+        Me.PBHorizHand.TabStop = False
         '
         'PBVertHand
         '
         Me.PBVertHand.BackColor = System.Drawing.Color.Transparent
-        Me.PBVertHand.Image = CType(resources.GetObject("PBVertHand.Image"),System.Drawing.Image)
+        Me.PBVertHand.Image = CType(resources.GetObject("PBVertHand.Image"), System.Drawing.Image)
         Me.PBVertHand.InitialImage = Nothing
         Me.PBVertHand.Location = New System.Drawing.Point(43, 39)
         Me.PBVertHand.Name = "PBVertHand"
         Me.PBVertHand.Size = New System.Drawing.Size(65, 65)
         Me.PBVertHand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PBVertHand.TabIndex = 18
-        Me.PBVertHand.TabStop = false
-        '
-        'HandR3
-        '
-        Me.HandR3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!)
-        Me.HandR3.Location = New System.Drawing.Point(89, 10)
-        Me.HandR3.Name = "HandR3"
-        Me.HandR3.Size = New System.Drawing.Size(32, 31)
-        Me.HandR3.TabIndex = 28
-        Me.HandR3.Tag = "3"
-        Me.HandR3.Text = "-"
-        Me.HandR3.TextAlign = System.Drawing.ContentAlignment.TopRight
-        Me.HandR3.UseVisualStyleBackColor = true
+        Me.PBVertHand.TabStop = False
         '
         'HandChooser
         '
