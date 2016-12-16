@@ -129,6 +129,7 @@ Imports SignWriterStudio
         Me.TSMIDeleteSign = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteCtrlVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TPSequence = New System.Windows.Forms.GroupBox()
+        Me.PanelSpelling = New System.Windows.Forms.Panel()
         Me.TVSequence = New System.Windows.Forms.TreeView()
         Me.btnHelp = New System.Windows.Forms.Button()
         Me.btnSugg2 = New System.Windows.Forms.Button()
@@ -162,7 +163,6 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PanelSpelling = New System.Windows.Forms.Panel()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
@@ -194,22 +194,23 @@ Imports SignWriterStudio
         CType(Me.PBSign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSPBSign.SuspendLayout()
         Me.TPSequence.SuspendLayout()
+        Me.PanelSpelling.SuspendLayout()
         CType(Me.ISWABaseSymbolsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SequenceMenuStrip.SuspendLayout()
-        Me.PanelSpelling.SuspendLayout()
         Me.SuspendLayout()
         '
         'SCSWEditor
         '
         Me.SCSWEditor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SCSWEditor.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
         Me.SCSWEditor.Location = New System.Drawing.Point(0, 0)
         Me.SCSWEditor.Name = "SCSWEditor"
         '
         'SCSWEditor.Panel1
         '
+        Me.SCSWEditor.Panel1.AutoScroll = True
+        Me.SCSWEditor.Panel1.AutoScrollMinSize = New System.Drawing.Size(20, 0)
         Me.SCSWEditor.Panel1.Controls.Add(Me.TCSymbols)
         '
         'SCSWEditor.Panel2
@@ -702,8 +703,6 @@ Imports SignWriterStudio
         'SCRightSide
         '
         Me.SCRightSide.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SCRightSide.FixedPanel = System.Windows.Forms.FixedPanel.Panel2
-        Me.SCRightSide.IsSplitterFixed = True
         Me.SCRightSide.Location = New System.Drawing.Point(0, 0)
         Me.SCRightSide.Name = "SCRightSide"
         '
@@ -713,6 +712,8 @@ Imports SignWriterStudio
         '
         'SCRightSide.Panel2
         '
+        Me.SCRightSide.Panel2.AutoScroll = True
+        Me.SCRightSide.Panel2.AutoScrollMinSize = New System.Drawing.Size(20, 0)
         Me.SCRightSide.Panel2.Controls.Add(Me.TPSequence)
         Me.SCRightSide.Size = New System.Drawing.Size(825, 633)
         Me.SCRightSide.SplitterDistance = 485
@@ -1184,6 +1185,18 @@ Imports SignWriterStudio
         Me.TPSequence.TabStop = False
         Me.TPSequence.Text = "Spelling"
         '
+        'PanelSpelling
+        '
+        Me.PanelSpelling.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelSpelling.AutoScroll = True
+        Me.PanelSpelling.Controls.Add(Me.TVSequence)
+        Me.PanelSpelling.Location = New System.Drawing.Point(0, 100)
+        Me.PanelSpelling.Name = "PanelSpelling"
+        Me.PanelSpelling.Size = New System.Drawing.Size(336, 533)
+        Me.PanelSpelling.TabIndex = 64
+        '
         'TVSequence
         '
         Me.TVSequence.AllowDrop = True
@@ -1422,18 +1435,6 @@ Imports SignWriterStudio
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'PanelSpelling
-        '
-        Me.PanelSpelling.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PanelSpelling.AutoScroll = True
-        Me.PanelSpelling.Controls.Add(Me.TVSequence)
-        Me.PanelSpelling.Location = New System.Drawing.Point(0, 100)
-        Me.PanelSpelling.Name = "PanelSpelling"
-        Me.PanelSpelling.Size = New System.Drawing.Size(336, 533)
-        Me.PanelSpelling.TabIndex = 64
-        '
         'Editor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1477,11 +1478,11 @@ Imports SignWriterStudio
         CType(Me.PBSign, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMSPBSign.ResumeLayout(False)
         Me.TPSequence.ResumeLayout(False)
+        Me.PanelSpelling.ResumeLayout(False)
         CType(Me.ISWABaseSymbolsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SequenceMenuStrip.ResumeLayout(False)
-        Me.PanelSpelling.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
