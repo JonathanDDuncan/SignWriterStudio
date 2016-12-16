@@ -1,5 +1,4 @@
 Imports System.Windows.Forms
-Imports System.Diagnostics.Eventing.Reader
 Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.SymbolCache.SWSymbolCache
 Imports SignWriterStudio.General
@@ -12,6 +11,7 @@ Public Class HandChooser
 
     Private _editorForm As Editor
     Private isLoading As Boolean
+
     Public Property EditorForm() As Editor
         Get
             Return _editorForm
@@ -20,7 +20,17 @@ Public Class HandChooser
             _editorForm = value
         End Set
     End Property
-    Dim UpdateSignSymbolSelected As Boolean '= False
+    'Dim UpdateSignSymbolSelected As Boolean '= False
+    Public ReadOnly Property Hand() As Integer
+        Get
+            If RBRightHand.Checked Then
+                Return 0
+            Else
+                Return 1
+            End If
+        End Get
+
+    End Property
 
 #Region "Choose"
     Public Sub Reset(ByVal code As Integer, Optional ByVal hand As Integer? = Nothing)
@@ -35,7 +45,7 @@ Public Class HandChooser
         'Dim Category = mySWsymbol.category
         Dim Fill As Integer = symbol.SymbolDetails.Fill
         Dim Rotation As Integer = symbol.SymbolDetails.Rotation
-        If CBHand.SelectedIndex = 0 Then
+        If RBRightHand.Checked Then
             'Right Hand
             Select Case Fill
                 Case 1, 4
@@ -50,7 +60,7 @@ Public Class HandChooser
                 Case 3, 6
                     HandR2.Checked = True
             End Select
-        ElseIf CBHand.SelectedIndex = 1 Then
+        ElseIf RBLeftHand.Checked Then
             'Left Hand
             Select Case Fill
                 Case 1, 4
@@ -76,7 +86,7 @@ Public Class HandChooser
             Dim Rotation As Integer = symbol.SymbolDetails.Rotation
 
             If Category = 1 Then
-                If CBHand.SelectedIndex = 0 Then
+                If RBRightHand.Checked Then
                     'Right Hand
                     If 1 <= Fill AndAlso Fill <= 3 Then ' Vertical plane
                         If Not HandR4.Checked Then
@@ -160,7 +170,7 @@ Public Class HandChooser
                             End Select
                         End If
                     End If
-                ElseIf CBHand.SelectedIndex = 1 Then 'Left hand
+                ElseIf RBLeftHand.Checked Then 'Left hand
                     If 1 <= Fill AndAlso Fill <= 3 Then ' Vertical plane
                         If Not HandR4.Checked Then
                             Select Case Rotation
@@ -283,21 +293,30 @@ Public Class HandChooser
         End If
     End Sub
 
-    Private Sub SetRotationControls(ByVal code As Integer)
-        SetFill(code)
-        SetRotation(code)
+    'Private Sub SetRotationControls(ByVal code As Integer)
+    '    SetFill(code)
+    '    SetRotation(code)
 
-    End Sub
+    'End Sub
     Private Sub SetHand(ByVal code As Integer, ByVal hand As Integer?)
         If hand.HasValue Then
-            CBHand.SelectedIndex = hand.Value
+            SetHand(hand.Value)
         Else
             Dim Symbol As New SWSignSymbol With {.Code = code}
-            CBHand.SelectedIndex = Symbol.Hand
+            SetHand(Symbol.Hand)
         End If
     End Sub
+
+    Private Sub SetHand(ByVal value As Integer)
+        If value = 0 Then
+            RBRightHand.Checked = True
+        Else
+            RBLeftHand.Checked = True
+        End If
+    End Sub
+
     Friend Sub Choose_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
-        Dim ControlActive As Control = CType(EditorForm.ActiveControl, Control)
+        Dim ControlActive As Control = EditorForm.ActiveControl
         Select Case e.KeyCode
             Case Keys.F1
                 Help.ShowHelp(Me, "SignWriterStudio.chm", "handchooser.htm")
@@ -536,7 +555,7 @@ Public Class HandChooser
                 If ControlActive IsNot Nothing Then
                     Select Case ControlActive.Name
                         Case HandR1.Name, HandR3.Name, HandR2.Name, HandR4.Name
-                            CBHand.Focus()
+                            RBRightHand.Focus()
                         Case VP1.Name, VP2.Name, VP3.Name, VP4.Name, VP5.Name, VP6.Name, VP7.Name, VP8.Name
                             HandR1.Focus()
                         Case HP1.Name, HP2.Name, HP3.Name, HP4.Name, HP5.Name, HP6.Name, HP7.Name, HP8.Name
@@ -551,7 +570,7 @@ Public Class HandChooser
                         Case VP1.Name, VP2.Name, VP3.Name, VP4.Name, VP5.Name, VP6.Name, VP7.Name, VP8.Name
                             HP1.Focus()
                         Case HP1.Name, HP2.Name, HP3.Name, HP4.Name, HP5.Name, HP6.Name, HP7.Name, HP8.Name
-                            CBHand.Focus()
+                            RBRightHand.Focus()
                     End Select
                 End If
             Case Keys.Right
@@ -649,31 +668,31 @@ Public Class HandChooser
         End Select
     End Sub
     Private Sub NextHand()
-        If Me.CBHand.SelectedIndex = 0 Then
-            Me.CBHand.SelectedIndex = 1
+        If RBRightHand.Checked Then
+            RBLeftHand.Checked = True
         Else
-            Me.CBHand.SelectedIndex = 0
+            RBRightHand.Checked = True
         End If
     End Sub
-    Dim ChangingSelected As Boolean '= False
-    Private Sub ChangeChangeSymbolIn(ByVal NewSymbol As SWSignSymbol)
-        'Dim symbol As SWSignSymbol
-        If Not ChangingSelected Then
-            ChangingSelected = True
+    'Dim ChangingSelected As Boolean '= False
+    'Private Sub ChangeChangeSymbolIn(ByVal NewSymbol As SWSignSymbol)
+    '    'Dim symbol As SWSignSymbol
+    '    If Not ChangingSelected Then
+    '        ChangingSelected = True
 
-            NewSymbol.IsSelected = True
+    '        NewSymbol.IsSelected = True
 
-            If Not UpdateSignSymbolSelected Then
-                UpdateSignSymbolSelected = True
-                If Not isLoading Then RaiseEvent ChangeSymbol(Me, New EventArgs)
+    '        If Not UpdateSignSymbolSelected Then
+    '            UpdateSignSymbolSelected = True
+    '            If Not isLoading Then RaiseEvent ChangeSymbol(Me, New EventArgs)
 
 
-                UpdateSignSymbolSelected = False
+    '            UpdateSignSymbolSelected = False
 
-            End If
-            ChangingSelected = False
-        End If
-    End Sub
+    '        End If
+    '        ChangingSelected = False
+    '    End If
+    'End Sub
     Private Function VerticalSelected() As Boolean
         If VP1.Checked Or VP2.Checked Or VP3.Checked Or VP4.Checked Or VP5.Checked Or VP6.Checked Or VP7.Checked Or VP8.Checked Then
             Return True
@@ -682,7 +701,7 @@ Public Class HandChooser
         End If
     End Function
     Friend Function NewFill() As Integer
-        If CBHand.SelectedIndex = 0 Then '"Right Hand" Then
+        If RBRightHand.Checked Then '"Right Hand" Then
             If VP1.Checked Or VP2.Checked Or VP3.Checked Or VP4.Checked Or VP5.Checked Or VP6.Checked Or VP7.Checked Or VP8.Checked Then
                 If HandR1.Checked Then
                     Return 1
@@ -711,7 +730,7 @@ Public Class HandChooser
             Else
                 Return 0
             End If
-        ElseIf CBHand.SelectedIndex = 1 Then 'Left Hand" Then
+        ElseIf RBLeftHand.Checked Then 'Left Hand" Then
             If VP1.Checked Or VP2.Checked Or VP3.Checked Or VP4.Checked Or VP5.Checked Or VP6.Checked Or VP7.Checked Or VP8.Checked Then
                 If HandR1.Checked Then
                     Return 1
@@ -747,7 +766,7 @@ Public Class HandChooser
         Dim IntRotation As Integer = 0
 
         If Category = 1 Then
-            If (CBHand.SelectedIndex = 0 And Not HandR4.Checked) Or (CBHand.SelectedIndex = 1 And HandR4.Checked) Then
+            If (RBRightHand.Checked And Not HandR4.Checked) Or (RBLeftHand.Checked And HandR4.Checked) Then
                 If VP1.Checked Or HP1.Checked Then
                     IntRotation = 1
                 ElseIf VP2.Checked Or HP2.Checked Then
@@ -768,7 +787,7 @@ Public Class HandChooser
                     IntRotation = 0
                 End If
 
-            ElseIf (CBHand.SelectedIndex = 1 And Not HandR4.Checked) Or (CBHand.SelectedIndex = 0 And HandR4.Checked) Then
+            ElseIf (RBLeftHand.Checked And Not HandR4.Checked) Or (RBRightHand.Checked And HandR4.Checked) Then
                 If VP1.Checked Or HP1.Checked Then
                     IntRotation = 9
                 ElseIf VP2.Checked Or HP2.Checked Then
@@ -795,10 +814,10 @@ Public Class HandChooser
         End If
         Return IntRotation
     End Function
-    Friend Sub CBHand_SelectedIndChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBHand.SelectedIndexChanged
+    Friend Sub CBHand_SelectedIndChanged(ByVal sender As System.Object, ByVal e As EventArgs) Handles RBLeftHand.CheckedChanged, RBRightHand.CheckedChanged
         'If Not isLoading Then
         Try
-            If CBHand.SelectedIndex = 0 Then 'CBHand.SelectedItem = "Right Hand" Then
+            If RBRightHand.Checked Then 'CBHand.SelectedItem = "Right Hand" Then
                 PBHandR1.Image = GetImagebyId("01-05-001-01-01-01")
                 PBHandR2.Image = GetImagebyId("01-05-001-01-02-01")
                 PBHandR3.Image = GetImagebyId("01-05-001-01-03-01")
@@ -815,7 +834,7 @@ Public Class HandChooser
             If Not isLoading Then RaiseEvent ChangeSymbol(Me, New EventArgs)
 
         Catch ex As Exception
-            General.LogError(ex, "")
+            LogError(ex, "")
             MessageBox.Show(ex.Message)
         End Try
 
@@ -833,17 +852,17 @@ Public Class HandChooser
 
 #End Region
 
-    Private Sub Hand_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles HandR1.CheckedChanged, HandR2.CheckedChanged, HandR4.CheckedChanged, HandR3.CheckedChanged
+    Private Sub Hand_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles HandR1.CheckedChanged, HandR2.CheckedChanged, HandR4.CheckedChanged, HandR3.CheckedChanged
         Dim RB As RadioButtonFull = CType(sender, RadioButtonFull)
         If Not isLoading AndAlso RB.Checked = True Then RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
 
-    Private Sub HP_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles HP1.CheckedChanged, HP2.CheckedChanged, HP3.CheckedChanged, HP4.CheckedChanged, HP5.CheckedChanged, HP6.CheckedChanged, HP7.CheckedChanged, HP8.CheckedChanged
+    Private Sub HP_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles HP1.CheckedChanged, HP2.CheckedChanged, HP3.CheckedChanged, HP4.CheckedChanged, HP5.CheckedChanged, HP6.CheckedChanged, HP7.CheckedChanged, HP8.CheckedChanged
         Dim RB As RadioButtonFull = CType(sender, RadioButtonFull)
         If Not isLoading AndAlso RB.Checked = True Then RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
 
-    Private Sub VP_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles VP1.CheckedChanged, VP2.CheckedChanged, VP3.CheckedChanged, VP4.CheckedChanged, VP5.CheckedChanged, VP6.CheckedChanged, VP7.CheckedChanged, VP8.CheckedChanged
+    Private Sub VP_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles VP1.CheckedChanged, VP2.CheckedChanged, VP3.CheckedChanged, VP4.CheckedChanged, VP5.CheckedChanged, VP6.CheckedChanged, VP7.CheckedChanged, VP8.CheckedChanged
         Dim RB As RadioButtonFull = CType(sender, RadioButtonFull)
         If Not isLoading AndAlso RB.Checked = True Then RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
@@ -870,11 +889,13 @@ Public Class HandChooser
     End Sub
 
 
-    Private Sub HandChooser_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub HandChooser_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         isLoading = True
-        CBHand.SelectedIndex = 0
+        RBRightHand.Checked = True
         HandR1.Checked = True
         VP1.Checked = True
+        PBRightHand.Image = GetImagebyId("01-05-001-01-03-01")
+        PBLeftHand.Image = GetImagebyId("01-05-001-01-03-09")
         isLoading = False
     End Sub
 
@@ -892,5 +913,13 @@ Public Class HandChooser
 
     Private Sub PBHandR3_Click(sender As Object, e As EventArgs) Handles PBHandR3.Click
         HandR2.Checked = True
+    End Sub
+
+    Private Sub PBRightHand_Click(sender As Object, e As EventArgs) Handles PBRightHand.Click
+        RBRightHand.Checked = True
+    End Sub
+
+    Private Sub PBLeftHand_Click(sender As Object, e As EventArgs) Handles PBLeftHand.Click
+        RBLeftHand.Checked = True
     End Sub
 End Class

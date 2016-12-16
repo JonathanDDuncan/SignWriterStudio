@@ -460,7 +460,7 @@ Partial Public Class Editor
             'If NewSignSymbol.IsValid Then
             AddUndo()
             InsertSymbolIntoSign(newSignSymbol.Code, pPoint.X - SymbolStartOffset.X, pPoint.Y - SymbolStartOffset.Y,
-                                 Color.Black, Color.White, HandChooser.CBHand.SelectedIndex)
+                                 Color.Black, Color.White, HandChooser.Hand)
             Area = AreaEnm.Sign
             'End If
         ElseIf e.Data.GetData(GetType(String)).ToString = TVAllGroups.Name Then
@@ -974,7 +974,7 @@ Partial Public Class Editor
 
     Private Sub InsertSymbolIntoSign(ByVal code As Integer)
         Me.mySWSign.Frames(Me.mySWSign.CurrentFrameIndex).UnSelectSymbols()
-        CurrentFrame.InsertSymbolIntoSign(code, True, 0, 0, Color.Black, Color.White, HandChooser.CBHand.SelectedIndex)
+        CurrentFrame.InsertSymbolIntoSign(code, True, 0, 0, Color.Black, Color.White, HandChooser.Hand)
     End Sub
 
     Private Sub TSMIDeleteSign_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TSMIDeleteSign.Click
@@ -1162,7 +1162,7 @@ Partial Public Class Editor
         If CurrentFrame.SelectedSymbolCount = 1 Then
             AddUndo()
             'Replace selected symbol
-            ChangeChangeSymbolIn(Me.symbolOut, HandChooser.CBHand.SelectedIndex)
+            ChangeChangeSymbolIn(Me.symbolOut, HandChooser.Hand)
         End If
     End Sub
 

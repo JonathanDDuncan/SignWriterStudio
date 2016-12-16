@@ -30,7 +30,6 @@ Partial Class HandChooser
         Me.HandR1 = New SignWriterStudio.General.RadioButtonFull()
         Me.HandR2 = New SignWriterStudio.General.RadioButtonFull()
         Me.HandR3 = New SignWriterStudio.General.RadioButtonFull()
-        Me.CBHand = New System.Windows.Forms.ComboBox()
         Me.GBRotations = New System.Windows.Forms.GroupBox()
         Me.HP5 = New SignWriterStudio.General.RadioButtonFull()
         Me.HP1 = New SignWriterStudio.General.RadioButtonFull()
@@ -50,6 +49,11 @@ Partial Class HandChooser
         Me.VP8 = New SignWriterStudio.General.RadioButtonFull()
         Me.PBHorizHand = New System.Windows.Forms.PictureBox()
         Me.PBVertHand = New System.Windows.Forms.PictureBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.PBRightHand = New System.Windows.Forms.PictureBox()
+        Me.PBLeftHand = New System.Windows.Forms.PictureBox()
+        Me.RBRightHand = New SignWriterStudio.General.RadioButtonFull()
+        Me.RBLeftHand = New SignWriterStudio.General.RadioButtonFull()
         Me.GBFills.SuspendLayout()
         CType(Me.PBHandR4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBHandR3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,6 +62,9 @@ Partial Class HandChooser
         Me.GBRotations.SuspendLayout()
         CType(Me.PBHorizHand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBVertHand, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        CType(Me.PBRightHand, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBLeftHand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GBFills
@@ -70,9 +77,9 @@ Partial Class HandChooser
         Me.GBFills.Controls.Add(Me.HandR1)
         Me.GBFills.Controls.Add(Me.HandR2)
         Me.GBFills.Controls.Add(Me.HandR3)
-        Me.GBFills.Location = New System.Drawing.Point(3, 30)
+        Me.GBFills.Location = New System.Drawing.Point(2, 88)
         Me.GBFills.Name = "GBFills"
-        Me.GBFills.Size = New System.Drawing.Size(168, 69)
+        Me.GBFills.Size = New System.Drawing.Size(168, 73)
         Me.GBFills.TabIndex = 56
         Me.GBFills.TabStop = False
         Me.GBFills.Text = "Palm Facing"
@@ -160,15 +167,6 @@ Partial Class HandChooser
         Me.HandR3.TextAlign = System.Drawing.ContentAlignment.TopRight
         Me.HandR3.UseVisualStyleBackColor = True
         '
-        'CBHand
-        '
-        Me.CBHand.FormattingEnabled = True
-        Me.CBHand.Items.AddRange(New Object() {"Right Hand", "Left Hand"})
-        Me.CBHand.Location = New System.Drawing.Point(28, 3)
-        Me.CBHand.Name = "CBHand"
-        Me.CBHand.Size = New System.Drawing.Size(121, 21)
-        Me.CBHand.TabIndex = 55
-        '
         'GBRotations
         '
         Me.GBRotations.Controls.Add(Me.HP5)
@@ -189,9 +187,9 @@ Partial Class HandChooser
         Me.GBRotations.Controls.Add(Me.VP8)
         Me.GBRotations.Controls.Add(Me.PBHorizHand)
         Me.GBRotations.Controls.Add(Me.PBVertHand)
-        Me.GBRotations.Location = New System.Drawing.Point(13, 105)
+        Me.GBRotations.Location = New System.Drawing.Point(12, 163)
         Me.GBRotations.Name = "GBRotations"
-        Me.GBRotations.Size = New System.Drawing.Size(150, 297)
+        Me.GBRotations.Size = New System.Drawing.Size(150, 301)
         Me.GBRotations.TabIndex = 57
         Me.GBRotations.TabStop = False
         Me.GBRotations.Text = "Plane"
@@ -398,27 +396,83 @@ Partial Class HandChooser
         Me.PBVertHand.TabIndex = 18
         Me.PBVertHand.TabStop = False
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.PBRightHand)
+        Me.GroupBox1.Controls.Add(Me.PBLeftHand)
+        Me.GroupBox1.Controls.Add(Me.RBRightHand)
+        Me.GroupBox1.Controls.Add(Me.RBLeftHand)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(168, 79)
+        Me.GroupBox1.TabIndex = 57
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Hand"
+        '
+        'PBRightHand
+        '
+        Me.PBRightHand.Location = New System.Drawing.Point(97, 34)
+        Me.PBRightHand.Name = "PBRightHand"
+        Me.PBRightHand.Size = New System.Drawing.Size(35, 35)
+        Me.PBRightHand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PBRightHand.TabIndex = 26
+        Me.PBRightHand.TabStop = False
+        '
+        'PBLeftHand
+        '
+        Me.PBLeftHand.Location = New System.Drawing.Point(24, 34)
+        Me.PBLeftHand.Name = "PBLeftHand"
+        Me.PBLeftHand.Size = New System.Drawing.Size(35, 35)
+        Me.PBLeftHand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PBLeftHand.TabIndex = 25
+        Me.PBLeftHand.TabStop = False
+        '
+        'RBRightHand
+        '
+        Me.RBRightHand.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
+        Me.RBRightHand.Location = New System.Drawing.Point(97, 12)
+        Me.RBRightHand.Name = "RBRightHand"
+        Me.RBRightHand.Size = New System.Drawing.Size(62, 22)
+        Me.RBRightHand.TabIndex = 19
+        Me.RBRightHand.Tag = "2"
+        Me.RBRightHand.Text = "Right"
+        Me.RBRightHand.UseVisualStyleBackColor = True
+        '
+        'RBLeftHand
+        '
+        Me.RBLeftHand.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
+        Me.RBLeftHand.Location = New System.Drawing.Point(25, 12)
+        Me.RBLeftHand.Name = "RBLeftHand"
+        Me.RBLeftHand.Size = New System.Drawing.Size(57, 22)
+        Me.RBLeftHand.TabIndex = 28
+        Me.RBLeftHand.Tag = "3"
+        Me.RBLeftHand.Text = "Left"
+        Me.RBLeftHand.UseVisualStyleBackColor = True
+        '
         'HandChooser
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GBFills)
-        Me.Controls.Add(Me.CBHand)
         Me.Controls.Add(Me.GBRotations)
         Me.Name = "HandChooser"
-        Me.Size = New System.Drawing.Size(175, 412)
-        Me.GBFills.ResumeLayout(false)
-        CType(Me.PBHandR4,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PBHandR3,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PBHandR2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PBHandR1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GBRotations.ResumeLayout(false)
-        Me.GBRotations.PerformLayout
-        CType(Me.PBHorizHand,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PBVertHand,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        Me.Size = New System.Drawing.Size(175, 467)
+        Me.GBFills.ResumeLayout(False)
+        CType(Me.PBHandR4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBHandR3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBHandR2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBHandR1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GBRotations.ResumeLayout(False)
+        Me.GBRotations.PerformLayout()
+        CType(Me.PBHorizHand, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBVertHand, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        CType(Me.PBRightHand, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBLeftHand, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Friend WithEvents GBFills As System.Windows.Forms.GroupBox
     Friend WithEvents PBHandR4 As System.Windows.Forms.PictureBox
     Friend WithEvents PBHandR3 As System.Windows.Forms.PictureBox
@@ -427,7 +481,6 @@ End Sub
     Friend WithEvents HandR4 As RadioButtonFull
     Friend WithEvents HandR1 As RadioButtonFull
     Friend WithEvents HandR2 As RadioButtonFull
-    Friend WithEvents CBHand As System.Windows.Forms.ComboBox
     Friend WithEvents GBRotations As System.Windows.Forms.GroupBox
     Friend WithEvents HP5 As RadioButtonFull
     Friend WithEvents HP1 As RadioButtonFull
@@ -448,5 +501,10 @@ End Sub
     Friend WithEvents PBHorizHand As System.Windows.Forms.PictureBox
     Friend WithEvents PBVertHand As System.Windows.Forms.PictureBox
     Friend WithEvents HandR3 As SignWriterStudio.General.RadioButtonFull
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents PBRightHand As System.Windows.Forms.PictureBox
+    Friend WithEvents PBLeftHand As System.Windows.Forms.PictureBox
+    Friend WithEvents RBRightHand As SignWriterStudio.General.RadioButtonFull
+    Friend WithEvents RBLeftHand As SignWriterStudio.General.RadioButtonFull
 
 End Class

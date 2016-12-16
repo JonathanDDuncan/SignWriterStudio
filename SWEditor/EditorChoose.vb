@@ -129,7 +129,7 @@ Partial Public Class Editor
 
     End Sub
     Private Sub HandChooser_ChangeChangeSymbolIn(ByVal sender As Object, ByVal e As EventArgs) Handles HandChooser.ChangeSelectedSym
-        ChangeChangeSymbolIn(Me.symbolOut, HandChooser.CBHand.SelectedIndex)
+        ChangeChangeSymbolIn(Me.symbolOut, HandChooser.Hand)
     End Sub
     Private Sub HandChooser_Find(ByVal sender As Object, ByVal e As EventArgs) Handles HandChooser.Find
         AllGroupsFind(Me.symbolOut.Code)
@@ -339,7 +339,7 @@ Partial Public Class Editor
                 e.Handled = True
             Case Keys.C
                 If e.Alt Then
-                    Me.ChangeChangeSymbolIn(symbolOut, HandChooser.CBHand.SelectedIndex)
+                    Me.ChangeChangeSymbolIn(symbolOut, HandChooser.Hand)
                 End If
                 e.SuppressKeyPress = True
                 e.Handled = True
