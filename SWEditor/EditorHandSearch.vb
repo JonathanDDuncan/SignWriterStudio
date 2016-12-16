@@ -38,9 +38,9 @@ Partial Public Class Editor
             Case Keys.Enter
                 If TVHand.Nodes.Count > 0 AndAlso TVHand.SelectedNode IsNot Nothing Then
 
-                    Me.symbolIn.Code = SWSymbol.CodefromId(TVHand.SelectedNode.Name)
+                    symbolIn.Code = SWSymbol.CodefromId(TVHand.SelectedNode.Name)
 
-                    Me.symbolOut.Code = Me.symbolIn.Code
+                    symbolOut.Code = symbolIn.Code
 
                     Choose_Focus()
                     Area = AreaEnm.Choose
@@ -61,11 +61,11 @@ Partial Public Class Editor
     End Sub
 
 
-    Private Sub FilterRootShape_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles FilterRootShape.SelectedIndexChanged, FilterActionFinger.SelectedIndexChanged, FilterThumbPosition.SelectedIndexChanged, FilterMultipleFingers.SelectedIndexChanged
+    Private Sub FilterRootShape_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FilterRootShape.SelectedIndexChanged, FilterActionFinger.SelectedIndexChanged, FilterThumbPosition.SelectedIndexChanged, FilterMultipleFingers.SelectedIndexChanged
         ResetResults()
     End Sub
 
-    Private Sub Filte_CheckStateChanged(sender As System.Object, e As System.EventArgs) Handles FilterThumb.CheckStateChanged, FilterIndex.CheckStateChanged, FilterMiddle.CheckedChanged, FilterRing.CheckedChanged, FilterBaby.CheckedChanged
+    Private Sub Filte_CheckStateChanged(sender As Object, e As EventArgs) Handles FilterThumb.CheckStateChanged, FilterIndex.CheckStateChanged, FilterMiddle.CheckedChanged, FilterRing.CheckedChanged, FilterBaby.CheckedChanged
         ResetResults()
     End Sub
 
@@ -86,16 +86,16 @@ Partial Public Class Editor
     End Sub
     Private Sub BaseGroupSuggestion_Load()
         FilterSymbolName.AutoCompleteMode = AutoCompleteMode.Suggest
-        Me.FilterSymbolName.AutoCompleteSource = AutoCompleteSource.CustomSource
+        FilterSymbolName.AutoCompleteSource = AutoCompleteSource.CustomSource
 
-        Dim DT As SymbolCache.ISWA2010DataSet.basesymbolDataTable = Me.ISWABaseSymbolsTableAdapter.GetDataBySymbolNameHand
-        Dim ACCS As AutoCompleteStringCollection = Me.FilterSymbolName.AutoCompleteCustomSource
+        Dim DT As SymbolCache.ISWA2010DataSet.basesymbolDataTable = ISWABaseSymbolsTableAdapter.GetDataBySymbolNameHand
+        Dim ACCS As AutoCompleteStringCollection = FilterSymbolName.AutoCompleteCustomSource
         For Each Row As SymbolCache.ISWA2010DataSet.basesymbolRow In DT.Rows
             ACCS.Add(Row.bs_name)
         Next
     End Sub
     Private Function NextThumb() As CheckState
-        Select Case Me.FilterThumb.CheckState
+        Select Case FilterThumb.CheckState
             Case CheckState.Checked
                 Return CheckState.Unchecked
             Case CheckState.Indeterminate
@@ -105,7 +105,7 @@ Partial Public Class Editor
         End Select
     End Function
     Private Function NextIndex() As CheckState
-        Select Case Me.FilterIndex.CheckState
+        Select Case FilterIndex.CheckState
             Case CheckState.Checked
                 Return CheckState.Unchecked
             Case CheckState.Indeterminate
@@ -115,7 +115,7 @@ Partial Public Class Editor
         End Select
     End Function
     Private Function NextMiddle() As CheckState
-        Select Case Me.FilterMiddle.CheckState
+        Select Case FilterMiddle.CheckState
             Case CheckState.Checked
                 Return CheckState.Unchecked
             Case CheckState.Indeterminate
@@ -125,7 +125,7 @@ Partial Public Class Editor
         End Select
     End Function
     Private Function NextRing() As CheckState
-        Select Case Me.FilterRing.CheckState
+        Select Case FilterRing.CheckState
             Case CheckState.Checked
                 Return CheckState.Unchecked
             Case CheckState.Indeterminate
@@ -135,7 +135,7 @@ Partial Public Class Editor
         End Select
     End Function
     Private Function NextBaby() As CheckState
-        Select Case Me.FilterBaby.CheckState
+        Select Case FilterBaby.CheckState
             Case CheckState.Checked
                 Return CheckState.Unchecked
             Case CheckState.Indeterminate
@@ -159,91 +159,91 @@ Partial Public Class Editor
         Dim strFilter As String = String.Empty
         SetFilterCategorized(strFilter)
         SetFilterFingers(strFilter)
-        'Me.TextBox3.Text = strFilter
+        'TextBox3.Text = strFilter
         If strFilter = String.Empty Then
-            Me.HandsClassifiedBindingSource.Filter = Nothing
+            HandsClassifiedBindingSource.Filter = Nothing
         Else
-            Me.HandsClassifiedBindingSource.Filter = strFilter
+            HandsClassifiedBindingSource.Filter = strFilter
         End If
         TVHandLoad(strFilter)
         TVHand.Focus()
 
     End Sub
     Private Sub SetFilterFingers(ByRef strFilter As String)
-        If Not Me.FilterThumb.CheckState = CheckState.Indeterminate Then
+        If Not FilterThumb.CheckState = CheckState.Indeterminate Then
             If strFilter = String.Empty Then
-                strFilter = "Thumb=" & IsChecked(Me.FilterThumb.CheckState).ToString
+                strFilter = "Thumb=" & IsChecked(FilterThumb.CheckState).ToString
             Else
-                strFilter = strFilter & " AND Thumb=" & IsChecked(Me.FilterThumb.CheckState).ToString
+                strFilter = strFilter & " AND Thumb=" & IsChecked(FilterThumb.CheckState).ToString
             End If
 
         End If
-        If Not Me.FilterIndex.CheckState = CheckState.Indeterminate Then
+        If Not FilterIndex.CheckState = CheckState.Indeterminate Then
             If strFilter = String.Empty Then
-                strFilter = "Index=" & IsChecked(Me.FilterIndex.CheckState).ToString
+                strFilter = "Index=" & IsChecked(FilterIndex.CheckState).ToString
             Else
-                strFilter = strFilter & " AND Index=" & IsChecked(Me.FilterIndex.CheckState).ToString
+                strFilter = strFilter & " AND Index=" & IsChecked(FilterIndex.CheckState).ToString
             End If
         End If
-        If Not Me.FilterMiddle.CheckState = CheckState.Indeterminate Then
+        If Not FilterMiddle.CheckState = CheckState.Indeterminate Then
             If strFilter = String.Empty Then
-                strFilter = "Middle=" & IsChecked(Me.FilterMiddle.CheckState).ToString
+                strFilter = "Middle=" & IsChecked(FilterMiddle.CheckState).ToString
             Else
-                strFilter = strFilter & " AND Middle=" & IsChecked(Me.FilterMiddle.CheckState).ToString
+                strFilter = strFilter & " AND Middle=" & IsChecked(FilterMiddle.CheckState).ToString
             End If
         End If
-        If Not Me.FilterRing.CheckState = CheckState.Indeterminate Then
+        If Not FilterRing.CheckState = CheckState.Indeterminate Then
             If strFilter = String.Empty Then
-                strFilter = "Ring=" & IsChecked(Me.FilterRing.CheckState).ToString
+                strFilter = "Ring=" & IsChecked(FilterRing.CheckState).ToString
             Else
-                strFilter = strFilter & " AND Ring=" & IsChecked(Me.FilterRing.CheckState).ToString
+                strFilter = strFilter & " AND Ring=" & IsChecked(FilterRing.CheckState).ToString
             End If
 
         End If
-        If Not Me.FilterBaby.CheckState = CheckState.Indeterminate Then
+        If Not FilterBaby.CheckState = CheckState.Indeterminate Then
             If strFilter = String.Empty Then
-                strFilter = "Baby=" & IsChecked(Me.FilterBaby.CheckState).ToString
+                strFilter = "Baby=" & IsChecked(FilterBaby.CheckState).ToString
             Else
-                strFilter = strFilter & " AND Baby=" & IsChecked(Me.FilterBaby.CheckState).ToString
+                strFilter = strFilter & " AND Baby=" & IsChecked(FilterBaby.CheckState).ToString
             End If
 
         End If
     End Sub
     Private Sub SetFilterCategorized(ByRef strFilter As String)
-        If Not (Me.FilterRootShape.SelectedIndex = -1 Or Me.FilterRootShape.SelectedIndex = 0 Or Me.FilterRootShape.SelectedValue Is Nothing) Then
+        If Not (FilterRootShape.SelectedIndex = -1 Or FilterRootShape.SelectedIndex = 0 Or FilterRootShape.SelectedValue Is Nothing) Then
             If strFilter = String.Empty Then
-                strFilter = "[IDRootShapeQuick]=" & Me.FilterRootShape.SelectedValue.ToString
+                strFilter = "[IDRootShapeQuick]=" & FilterRootShape.SelectedValue.ToString
             Else
-                strFilter = strFilter & " AND [IDRootShapeQuick]=" & Me.FilterRootShape.SelectedValue.ToString
+                strFilter = strFilter & " AND [IDRootShapeQuick]=" & FilterRootShape.SelectedValue.ToString
             End If
         End If
-        If Not (Me.FilterSymbolName.Text = String.Empty) Then
+        If Not (FilterSymbolName.Text = String.Empty) Then
             If strFilter = String.Empty Then
-                strFilter = "[bs_name] LIKE '%" & Me.FilterSymbolName.Text & "%'"
+                strFilter = "[bs_name] LIKE '%" & FilterSymbolName.Text & "%'"
             Else
-                strFilter = strFilter & " AND [bs_name]LIKE '%" & Me.FilterSymbolName.Text & "%'"
+                strFilter = strFilter & " AND [bs_name]LIKE '%" & FilterSymbolName.Text & "%'"
             End If
 
         End If
-        If Not (Me.FilterActionFinger.SelectedIndex = -1 Or Me.FilterActionFinger.SelectedIndex = 0 Or Me.FilterActionFinger.SelectedValue Is Nothing) Then
+        If Not (FilterActionFinger.SelectedIndex = -1 Or FilterActionFinger.SelectedIndex = 0 Or FilterActionFinger.SelectedValue Is Nothing) Then
             If strFilter = String.Empty Then
-                strFilter = "[IDActionFinger]=" & Me.FilterActionFinger.SelectedValue.ToString
+                strFilter = "[IDActionFinger]=" & FilterActionFinger.SelectedValue.ToString
             Else
-                strFilter = strFilter & " AND [IDActionFinger]=" & Me.FilterActionFinger.SelectedValue.ToString
+                strFilter = strFilter & " AND [IDActionFinger]=" & FilterActionFinger.SelectedValue.ToString
             End If
         End If
-        If Not (Me.FilterMultipleFingers.SelectedIndex = -1 Or Me.FilterMultipleFingers.SelectedIndex = 0 Or Me.FilterMultipleFingers.SelectedValue Is Nothing) Then
+        If Not (FilterMultipleFingers.SelectedIndex = -1 Or FilterMultipleFingers.SelectedIndex = 0 Or FilterMultipleFingers.SelectedValue Is Nothing) Then
             If strFilter = String.Empty Then
-                strFilter = "[IDMultipleFinger]=" & Me.FilterMultipleFingers.SelectedValue.ToString
+                strFilter = "[IDMultipleFinger]=" & FilterMultipleFingers.SelectedValue.ToString
             Else
-                strFilter = strFilter & " AND [IDMultipleFinger]=" & Me.FilterMultipleFingers.SelectedValue.ToString
+                strFilter = strFilter & " AND [IDMultipleFinger]=" & FilterMultipleFingers.SelectedValue.ToString
             End If
         End If
-        If Not (Me.FilterThumbPosition.SelectedIndex = -1 Or Me.FilterThumbPosition.SelectedIndex = 0 Or Me.FilterThumbPosition.SelectedValue Is Nothing) Then
+        If Not (FilterThumbPosition.SelectedIndex = -1 Or FilterThumbPosition.SelectedIndex = 0 Or FilterThumbPosition.SelectedValue Is Nothing) Then
             If strFilter = String.Empty Then
-                strFilter = "[IDThumbPosition]=" & Me.FilterThumbPosition.SelectedValue.ToString.ToString
+                strFilter = "[IDThumbPosition]=" & FilterThumbPosition.SelectedValue.ToString.ToString
             Else
-                strFilter = strFilter & " AND [IDThumbPosition]=" & Me.FilterThumbPosition.SelectedValue.ToString
+                strFilter = strFilter & " AND [IDThumbPosition]=" & FilterThumbPosition.SelectedValue.ToString
             End If
         End If
     End Sub
@@ -254,17 +254,17 @@ Partial Public Class Editor
         ImageSize.Width = 50
         TVHand.Nodes.Clear()
 
-        Dim DataTable1 As Data.DataTable
+        Dim DataTable1 As DataTable
         Dim FilteredView As DataView
-        DataTable1 = CType(Me.HandsClassifiedBindingSource.DataSource, DataTable)
+        DataTable1 = CType(HandsClassifiedBindingSource.DataSource, DataTable)
         FilteredView = New DataView(DataTable1)
         'Set up image list
         If HandImageList.Images.Count < 1 Then
 
             ' Assign the ImageList to the TreeView.
             HandImageList.Images.Clear()
-            Dim CacheRows As SignWriterStudio.SymbolCache.ISWA2010DataSet.cacheRow()
-            Dim TA As New SignWriterStudio.SymbolCache.ISWA2010DataSetTableAdapters.cacheTableAdapter
+            Dim CacheRows As SymbolCache.ISWA2010DataSet.cacheRow()
+            Dim TA As New SymbolCache.ISWA2010DataSetTableAdapters.cacheTableAdapter
             CacheRows = TA.GetDataBaseHands.Select()
             HandImageList = SWDrawing.LoadImageList(HandImageList, CacheRows, ImageSize.Height, ImageSize.Width, Color.OrangeRed)
 
@@ -297,25 +297,25 @@ Partial Public Class Editor
         End If
         TVHand.EndUpdate()
     End Sub
-    Private Sub btnFilter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnFilter.Click
+    Private Sub btnFilter_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnFilter.Click
         SetFilter()
     End Sub
 
-    Private Sub Reset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnReset.Click
+    Private Sub Reset_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BtnReset.Click
         ResetHandFilter()
     End Sub
     Private Sub ResetHandFilter()
         If Not isLoading Then
-            Me.FilterThumb.CheckState = CheckState.Indeterminate
-            Me.FilterIndex.CheckState = CheckState.Indeterminate
-            Me.FilterMiddle.CheckState = CheckState.Indeterminate
-            Me.FilterRing.CheckState = CheckState.Indeterminate
-            Me.FilterBaby.CheckState = CheckState.Indeterminate
-            Me.FilterRootShape.SelectedIndex = 0
-            Me.FilterThumbPosition.SelectedIndex = 0
-            Me.FilterActionFinger.SelectedIndex = 0
-            Me.FilterMultipleFingers.SelectedIndex = 0
-            Me.FilterSymbolName.Text = String.Empty
+            FilterThumb.CheckState = CheckState.Indeterminate
+            FilterIndex.CheckState = CheckState.Indeterminate
+            FilterMiddle.CheckState = CheckState.Indeterminate
+            FilterRing.CheckState = CheckState.Indeterminate
+            FilterBaby.CheckState = CheckState.Indeterminate
+            FilterRootShape.SelectedIndex = 0
+            FilterThumbPosition.SelectedIndex = 0
+            FilterActionFinger.SelectedIndex = 0
+            FilterMultipleFingers.SelectedIndex = 0
+            FilterSymbolName.Text = String.Empty
             ResetResults()
         End If
     End Sub
@@ -332,16 +332,14 @@ Partial Public Class Editor
         Dim clickedNode As TreeNode = e.Node
         If clickedNode IsNot Nothing Then
 
-            Me.symbolIn.Code = SWSymbol.CodefromId(clickedNode.Name)
-            'Me.symbolIn.Update()
-            Me.symbolOut.Code = Me.symbolIn.Code
-            'Me.symbolOut.Update()
-
+            symbolIn.Code = SWSymbol.CodefromId(clickedNode.Name)
+            symbolOut.Code = symbolIn.Code
+          
             If TVChooser.Visible Then
                 TVChooser.Select()
                 TVChooser.Focus()
                 TVExpand(TVChooser)
-            ElseIf Me.HandChooser.Visible Then
+            ElseIf HandChooser.Visible Then
                 HandChooser.GBFills.Select()
                 HandChooser.GBFills.Focus()
             Else
@@ -351,7 +349,7 @@ Partial Public Class Editor
         End If
 
     End Sub
-    Private Sub TPSearch_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TPSearch.MouseEnter
+    Private Sub TPSearch_MouseEnter(ByVal sender As Object, ByVal e As EventArgs) Handles TPSearch.MouseEnter
         If Not Area = AreaEnm.Search Then
             Area = AreaEnm.Search
         End If

@@ -8,21 +8,9 @@ Partial Public Class Editor
     Private ChooserLoading As Boolean
     Dim ChangingSelected As Boolean '= False
     Private Sub SetupChoosers()
-        'Choose_Focus()
-        If TVChooser.Visible Then
-            'TVChooser.Select()
-            'TVChooser.Focus()
+       If TVChooser.Visible Then
             TVExpand(TVChooser)
-        ElseIf HandChooser.Visible Then
-            'HandChooser.GBFills.Select()
-            'HandChooser.GBFills.Focus()
-        ElseIf HandChooser.Visible Then
-            'ArrowChooser.VP1.Select()
-            'ArrowChooser.VP1.Focus()
-        Else
-            'PBSign.Select()
-            'PBSign.Focus()
-        End If
+       End If
     End Sub
     Private Sub DisplayChooseControls(ByVal code As Integer)
         Dim mySWsymbol As New SWSymbol With {.Code = code}

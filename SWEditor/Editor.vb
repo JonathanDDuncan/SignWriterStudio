@@ -32,7 +32,7 @@ Partial Public Class Editor
 #Region "Header"
     Dim FirstLoad As Boolean '= False
     Dim HandImageList As New ImageList()
-    Dim SymbolsList As New ImageList()
+    ReadOnly SymbolsList As New ImageList()
     '     *
     '          */
     Public mySWSign As New SwSign
@@ -44,7 +44,7 @@ Partial Public Class Editor
     '     *
     '          */
 
-    Dim EditorUndo As New SignWriterStudio.General.Undo(Of SwSign)
+    ReadOnly EditorUndo As New General.Undo(Of SwSign)
 
     Dim SymbolStartOffset As Point
     Dim StartPoint As Point
@@ -74,11 +74,11 @@ Partial Public Class Editor
     ''' Sub Clear all symbols from sign
     ''' </summary>
     Public Sub ClearAll()
-        If Me.mySWSign IsNot Nothing Then
-            Me.mySWSign.Frames.Clear()
+        If mySWSign IsNot Nothing Then
+            mySWSign.Frames.Clear()
 
         End If
-        Me.EditorUndo.Clear()
+        EditorUndo.Clear()
 
         'Ensure Test final changes to object
 #If AssertTest Then
@@ -88,7 +88,7 @@ Partial Public Class Editor
 #End If
     End Sub
 
-    Friend Sub btnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAccept.Click
+    Friend Sub btnAccept_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnAccept.Click
         Accept()
     End Sub
     Private Sub Accept()
@@ -99,7 +99,7 @@ Partial Public Class Editor
     End Sub
 
 
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles btnCancel.Click
         Cancel()
     End Sub
     Private Sub Cancel()
@@ -121,13 +121,13 @@ Partial Public Class Editor
         End Set
     End Property
     Private Sub SignInit()
-        Me.mySWSign.CurrentFrameIndex = 0
-        CurrentFrame = GetCurrentFrame(Me.mySWSign)
+        mySWSign.CurrentFrameIndex = 0
+        CurrentFrame = GetCurrentFrame(mySWSign)
         LoadSequence()
-        Me.DisplaySign()
+        DisplaySign()
     End Sub
 
-    Private Sub Editor_Activated(sender As Object, e As System.EventArgs) Handles Me.Activated
+    Private Sub Editor_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         If JustLoaded Then
             Area = AreaEnm.Favorites
             JustLoaded = False
@@ -143,42 +143,18 @@ Partial Public Class Editor
 
     End Sub
     Private Sub LoadFirstTime()
-
-
-
-
-
-        'Dim designMode = (LicenseManager.UsageMode = LicenseUsageMode.Designtime)
-        'SWEditorProgressBar.Text = "SignWriter Studio™ SignEditor is loading ..."
-        'SWEditorProgressBar.ProgressBar1.Minimum = 0
-        'SWEditorProgressBar.ProgressBar1.Maximum = 100
-        'SWEditorProgressBar.ProgressBar1.Value = 0
-
+         
         KeyPreview = True
         'TODO check if needed to be set each time editor loads.
         PBSign.AllowDrop = True
 
         HandChooser.EditorForm = Me
         ArrowChooser.EditorForm = Me
-
-        'LoadTranslations()
-
-        'SWEditorProgressBar.ProgressBar1.Value = 10
-
-        'Load Favorites
+ 
         TvFavoriteLoad()
-
-        'SWEditorProgressBar.ProgressBar1.Value = 30
-
-        'Load All Group Symbols
+ 
         AllGroupSymbols_Load()
-
-        'SWEditorProgressBar.ProgressBar1.Value = 50
-
-        'SWEditorProgressBar.ProgressBar1.Value = 55
-
-        'Load Search Selections
-
+ 
         FilterRootShape.DataSource = ISWARootShapesQuickTableAdapter.GetData()
 
         FilterActionFinger.DataSource = ISWAActionFingersTableAdapter.GetData().DefaultView
@@ -194,15 +170,11 @@ Partial Public Class Editor
         HandsClassifiedBindingSource.DataSource = DT
 
         BaseGroupSuggestion_Load()
-
-        'SWEditorProgressBar.ProgressBar1.Value = 70
-
+         
         TCSymbols.SelectedTab = TPAllSymbols
         TCSymbols.SelectedTab = TPFavorites
-
-        'SWEditorProgressBar.ProgressBar1.Value = 80
-
-        Me.FirstLoad = True
+         
+        FirstLoad = True
 
     End Sub
     Dim AddingUndo As Boolean
@@ -219,8 +191,8 @@ Partial Public Class Editor
         End Set
     End Property
 
-    Private Sub SetFsw(ByVal fsw As String)
-        mySWSign = SpmlConverter.FswtoSwSign(fsw, mySWSign.LanguageIso, mySWSign.SignLanguageIso)
+    Private Sub SetFsw(ByVal fsw1 As String)
+        mySWSign = SpmlConverter.FswtoSwSign(fsw1, mySWSign.LanguageIso, mySWSign.SignLanguageIso)
         DisplaySign()
     End Sub
 
@@ -230,64 +202,38 @@ Partial Public Class Editor
             MessageBox.Show("Recurring function Call")
         End If
         AddingUndo = True
-        Me.EditorUndo.Add(Me.mySWSign.Clone)
+        EditorUndo.Add(mySWSign.Clone)
         AddingUndo = False
     End Sub
 
     Private Sub Undo()
-        Dim Sign As SwSign = Me.EditorUndo.Undo(Me.mySWSign.Clone)
-        If Sign IsNot Nothing Then
-            Me.mySWSign = Sign
-            Me.CurrentFrame = Me.GetCurrentFrame(Me.mySWSign)
-            Me.DisplaySign()
+        Dim Sign1 As SwSign = EditorUndo.Undo(mySWSign.Clone)
+        If Sign1 IsNot Nothing Then
+            mySWSign = Sign1
+            CurrentFrame = GetCurrentFrame(mySWSign)
+            DisplaySign()
         End If
     End Sub
 
 
     Private Sub Redo()
-        Dim Sign As SwSign = Me.EditorUndo.Redo(Me.mySWSign.Clone)
-        If Sign IsNot Nothing Then
-            Me.mySWSign = Sign
-            Me.CurrentFrame = Me.GetCurrentFrame(Me.mySWSign)
-            Me.DisplaySign()
+        Dim Sign1 As SwSign = EditorUndo.Redo(mySWSign.Clone)
+        If Sign1 IsNot Nothing Then
+            mySWSign = Sign1
+            CurrentFrame = GetCurrentFrame(mySWSign)
+            DisplaySign()
         End If
     End Sub
 
-    'Private Sub LoadTranslations()
-    '    'TPFavorites.Text = Database.UI.UICGetTranslation("SWEditor", "TPFavorites", 54)
-    '    'Me.BtnRemoveSymbol.Text = Database.UI.UICGetTranslation("SWEditor", "BtnRemoveSymbol", 54)
-    '    'Me.BtnAddSymbol.Text = Database.UI.UICGetTranslation("SWEditor", "BtnAddSymbol", 54)
-    '    'TPSearch.Text = Database.UI.UICGetTranslation("SWEditor", "TPSearch", 54)
-    '    'Me.LBThumbPosition.Text = Database.UI.UICGetTranslation("SWEditor", "LBThumbPosition", 54)
-    '    'Me.BtnReset.Text = Database.UI.UICGetTranslation("SWEditor", "BtnReset", 54)
-    '    'Me.BtnFilter.Text = Database.UI.UICGetTranslation("SWEditor", "BtnFilter", 54)
-    '    'Me.BtnBaseGroupName.Text = Database.UI.UICGetTranslation("SWEditor", "BtnBaseGroupName", 54)
-    '    'Me.LbMultipleFinger.Text = Database.UI.UICGetTranslation("SWEditor", "LbMultipleFinger", 54)
-    '    'Me.LBActionFinger.Text = Database.UI.UICGetTranslation("SWEditor", "LBActionFinger", 54)
-    '    'Me.LBRootShape.Text = Database.UI.UICGetTranslation("SWEditor", "LBRootShape", 54)
-    '    'Me.GBSign.Text = Database.UI.UICGetTranslation("SWEditor", "GBSign", 54)
-    '    'Me.TSMICopy.Text = Database.UI.UICGetTranslation("SWEditor", "TSMICopy", 54)
-    '    'Me.TSMICopyCrop.Text = Database.UI.UICGetTranslation("SWEditor", "TSMICopyCrop", 54)
-    '    'Me.TSMICenter.Text = Database.UI.UICGetTranslation("SWEditor", "TSMICenter", 54)
-    '    'Me.TSMICenterHead.Text = Database.UI.UICGetTranslation("SWEditor", "TSMICenterHead", 54)
-    '    'Me.TSMIRemoveSymbols.Text = Database.UI.UICGetTranslation("SWEditor", "TSMIRemove", 54)
-    '    'Me.TSMIDuplicateSymbols.Text = Database.UI.UICGetTranslation("SWEditor", "TSMIDuplicate", 54)
-    '    'Me.TSMIMoveUp.Text = Database.UI.UICGetTranslation("SWEditor", "MoveUpToolStripMenuItem", 54)
-    '    'Me.TSMIMoveDown.Text = Database.UI.UICGetTranslation("SWEditor", "MoveDownToolStripMenuItem", 54)
-    '    'HandChooser.GBFills.Text = Database.UI.UICGetTranslation("SWEditor", "GBFills", 54)
-    '    'Me.LBSequence.Text = Database.UI.UICGetTranslation("SWEditor", "LBSequence", 54)
-    '    'HandChooser.Text = Database.UI.UICGetTranslation("SWEditor", "GBRotations", 54)
-    '    'TPSequence.Text = Database.UI.UICGetTranslation("SWEditor", "TabPage1", 54)
-    '    'Me.Text = Database.UI.UICGetTranslation("SWEditor", "Me", 54)
-    '    'TPAllSymbols.Text = Database.UI.UICGetTranslation("SWEditor", "TPAllSymbols", 54)
-    'End Sub
     Public Property Area() As AreaEnm
         Get
             Return _Area
         End Get
         Set(ByVal value As AreaEnm)
-            _Area = value
-            SetArea()
+            If (Not _Area = value) Then
+                _Area = value
+                SetArea()
+            End If
         End Set
     End Property
     Private Sub SetArea()
@@ -324,7 +270,7 @@ Partial Public Class Editor
                 ActiveControl = FilterRootShape
             Case AreaEnm.Choose
                 ActiveControl = Nothing
-
+                'TCSymbols.SelectTab(TPChooser)
                 If TVChooser.Visible Then
                     TVChooser.Select()
                 ElseIf HandChooser.GBFills.Visible Then
@@ -341,7 +287,7 @@ Partial Public Class Editor
             Case AreaEnm.Sign
                 ActiveControl = Nothing
                 AreaSignColor(ActiveAreaColor)
-                ActiveControl = PBSign
+                ActiveControl = PanelSign
         End Select
     End Sub
     Private Sub AreaSequenceColor(color As Color)
@@ -350,10 +296,9 @@ Partial Public Class Editor
     End Sub
     Private Sub AreaSignColor(color As Color)
         GBSign.BackColor = color
-
+        SCRightSide.BackColor = color
     End Sub
     Private Sub AreaChooserColor(color As Color)
-        GBChooser.BackColor = color
         TVChooser.BackColor = color
         HandChooser.BackColor = color
         ArrowChooser.BackColor = color
@@ -519,36 +464,36 @@ Partial Public Class Editor
 
 
 
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs)
-        Dim DeglossChoosers1 = New DeglossChoosers
-        Dim DeglossedList As List(Of DeglossResult) = DeglossChoosers1.GetDeglossed(TVAllGroups)
+    'Private Sub Button1_Click(sender As System.Object, e As System.EventArgs)
+    '    Dim DeglossChoosers1 = New DeglossChoosers
+    '    Dim DeglossedList As List(Of DeglossResult) = DeglossChoosers1.GetDeglossed(TVAllGroups)
 
-        Dim sb As New System.Text.StringBuilder
+    '    Dim sb As New System.Text.StringBuilder
 
-        For Each item In DeglossedList
-            sb.Append("UPDATE basesymbol SET ")
-            sb.Append("UseArrowChooser " & "=" & TrueFalse(item.UseArrowChooser))
-            sb.Append(", ShowWallPlane " & "=" & TrueFalse(item.ShowWallPlane))
-            sb.Append(", ShowWallPlaneImage " & "=" & TrueFalse(item.ShowWallPlaneImage))
-            sb.Append(", ShowFloorPlane " & "=" & TrueFalse(item.ShowFloorPlane))
-            sb.Append(", ShowFloorPlaneImage " & "=" & TrueFalse(item.ShowFloorPlaneImage))
-            sb.Append(", ShowFlip " & "=" & TrueFalse(item.ShowFlip))
-            sb.Append(", ShowVP3VP7 " & "=" & TrueFalse(item.ShowVP3VP7))
-            sb.AppendLine("  WHERE  bs_sym_code = " & item.Code & ";")
-        Next
+    '    For Each item In DeglossedList
+    '        sb.Append("UPDATE basesymbol SET ")
+    '        sb.Append("UseArrowChooser " & "=" & TrueFalse(item.UseArrowChooser))
+    '        sb.Append(", ShowWallPlane " & "=" & TrueFalse(item.ShowWallPlane))
+    '        sb.Append(", ShowWallPlaneImage " & "=" & TrueFalse(item.ShowWallPlaneImage))
+    '        sb.Append(", ShowFloorPlane " & "=" & TrueFalse(item.ShowFloorPlane))
+    '        sb.Append(", ShowFloorPlaneImage " & "=" & TrueFalse(item.ShowFloorPlaneImage))
+    '        sb.Append(", ShowFlip " & "=" & TrueFalse(item.ShowFlip))
+    '        sb.Append(", ShowVP3VP7 " & "=" & TrueFalse(item.ShowVP3VP7))
+    '        sb.AppendLine("  WHERE  bs_sym_code = " & item.Code & ";")
+    '    Next
 
-        Using outfile As New IO.StreamWriter("ShowArrowsUpdate.txt")
-            outfile.Write(sb.ToString())
-        End Using
-    End Sub
+    '    Using outfile As New IO.StreamWriter("ShowArrowsUpdate.txt")
+    '        outfile.Write(sb.ToString())
+    '    End Using
+    'End Sub
 
-    Private Function TrueFalse(bool As Boolean) As String
-        If bool Then
-            Return "1"
-        Else
-            Return "0"
-        End If
-    End Function
+    'Private Function TrueFalse(bool As Boolean) As String
+    '    If bool Then
+    '        Return "1"
+    '    Else
+    '        Return "0"
+    '    End If
+    'End Function
 
     Private Sub CMSPBSign_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles CMSPBSign.Opening
 
@@ -558,26 +503,21 @@ Partial Public Class Editor
         Help.ShowHelp(Me, "SignWriterStudio.chm", "signeditor.htm")
     End Sub
 
-    Private Sub GBChooser_MouseHover(sender As System.Object, e As System.EventArgs) Handles GBChooser.MouseHover
-        If Not Area = AreaEnm.Choose Then
-            Area = AreaEnm.Choose
-        End If
-    End Sub
 
-    Private Sub TPFavorites_MouseEnter(sender As System.Object, e As System.EventArgs) Handles TPFavorites.MouseEnter
+    Private Sub TPFavorites_MouseEnter(sender As System.Object, e As EventArgs) Handles TPFavorites.MouseEnter
         If Not Area = AreaEnm.Favorites Then
             Area = AreaEnm.Favorites
         End If
     End Sub
 
-    Private Sub TPAllSymbols_MouseEnter(sender As System.Object, e As System.EventArgs) Handles TPAllSymbols.MouseEnter
+    Private Sub TPAllSymbols_MouseEnter(sender As System.Object, e As EventArgs) Handles TPAllSymbols.MouseEnter
         If Not Area = AreaEnm.AllGroups Then
             Area = AreaEnm.AllGroups
         End If
     End Sub
 
 
-    Private Sub GBSign_MouseHover(sender As System.Object, e As System.EventArgs) Handles GBSign.MouseHover
+    Private Sub GBSign_MouseHover(sender As System.Object, e As EventArgs) Handles GBSign.MouseHover
         If Not Area = AreaEnm.Sign Then
             Area = AreaEnm.Sign
         End If
@@ -585,23 +525,24 @@ Partial Public Class Editor
 
 
 
-    Private Sub TVHand_MouseEnter(sender As System.Object, e As System.EventArgs) Handles TVHand.MouseEnter
+    Private Sub TVHand_MouseEnter(sender As System.Object, e As EventArgs) Handles TVHand.MouseEnter
         If Not Area = AreaEnm.Search Then
             Area = AreaEnm.Search
         End If
     End Sub
 
-    Private Sub Editor_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+
+    Private Sub PBSign_MouseHover(sender As Object, e As EventArgs) Handles PBSign.MouseHover
+        If Not Area = AreaEnm.Sign Then
+            Area = AreaEnm.Sign
+        End If
+    End Sub
+
+    Private Sub Editor_Load(sender As Object, e As EventArgs) Handles Me.Load
         JustLoaded = True
         isLoading = True
-        If (Not Me.DesignMode) Then
-            'SWEditorProgressBar.Text = "SignWriter Studio™ SignEditor is loading ..."
-            'SWEditorProgressBar.ProgressBar1.Minimum = 0
-            'SWEditorProgressBar.ProgressBar1.Maximum = 100
-            'SWEditorProgressBar.ProgressBar1.Value = 0
-            'SWEditorProgressBar.Show()
-
-            If Not Me.FirstLoad Then
+        If (Not DesignMode) Then
+            If Not FirstLoad Then
                 LoadFirstTime()
             End If
 
@@ -609,24 +550,17 @@ Partial Public Class Editor
             ArrowChooser.Visible = False
 
             ResetHandFilter()
-
-            'SWEditorProgressBar.ProgressBar1.Value = 85
-
+             
             Area = AreaEnm.Favorites
-
-            'SWEditorProgressBar.ProgressBar1.Value = 90
-
-            If Me.mySWSign IsNot Nothing Then
-                CurrentFrame = GetCurrentFrame(Me.mySWSign)
+            
+            If mySWSign IsNot Nothing Then
+                CurrentFrame = GetCurrentFrame(mySWSign)
             Else
-                Me.mySWSign = New SwSign
-                CurrentFrame = GetCurrentFrame(Me.mySWSign)
+                mySWSign = New SwSign
+                CurrentFrame = GetCurrentFrame(mySWSign)
             End If
-            Me.DisplaySign()
+            DisplaySign()
             PBSign.Invalidate()
-
-            'SWEditorProgressBar.ProgressBar1.Value = 100
-            'SWEditorProgressBar.Hide()
             ResetHandFilter()
         End If
         isLoading = False
@@ -641,24 +575,18 @@ Partial Public Class Editor
         End If
     End Sub
 
-    Private Sub TVSequence_MouseEnter(sender As System.Object, e As System.EventArgs)
+    Private Sub TVSequence_MouseEnter(sender As System.Object, e As EventArgs) Handles TVSequence.MouseEnter
         Area = AreaEnm.Sequence
     End Sub
 
-    Private Sub ArrowChooser_Load(sender As System.Object, e As System.EventArgs) Handles ArrowChooser.Load
-
-    End Sub
-
     Private Sub CopyImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToolStripMenuItem.Click
-        Me.mySWSign.SetClipboardImage()
+        mySWSign.SetClipboardImage()
     End Sub
-
-
+    
     Private Sub CBFavorites_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBFavorites.SelectedIndexChanged
 
     End Sub
-
-
+    
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         AddSelectedFavorite()
     End Sub
@@ -701,42 +629,38 @@ Partial Public Class Editor
     Private Sub QuickSignEditorBtn_Click(sender As Object, e As EventArgs) Handles QuickSignEditorBtn.Click
         Try
             Dim conv As New SpmlConverter
-
-            Dim fsw As String = conv.GetFsw(Sign())
-            Me.FSW = fsw
+            
+            FSW = conv.GetFsw(Sign())
             Dim browserForm = Program.GetBrowserForm()
 
             browser = browserForm.browser
 
             AddHandler browser.FrameLoadEnd, AddressOf FrameLoadEnd
- 
+
             browser.RegisterJsObject("callbackObj", New CallbackObjectForJs(Me))
 
             browserForm.ShowDialog()
-            
+
         Catch ex As Exception
             MessageBox.Show(ex.Message & ex.StackTrace)
         End Try
 
     End Sub
-  
 
     Private Function FrameLoadEnd(sender As IWebBrowser, args As FrameLoadEndEventArgs) As EventHandler(Of FrameLoadEndEventArgs)
-
-
         'Wait for the MainFrame to finish loading
         If (args.Frame.IsMain) Then
 
             Dim script As String = "window.initialFSW = '" & FSW & "';" & vbCrLf &
             "var sign = sw10.symbolsList(window.initialFSW);" & vbCrLf &
             "app.ports.receiveSign.send(sign);"
-            
+
             args.Frame.ExecuteJavaScriptAsync(script)
         End If
         Return Nothing
     End Function
     Public Class CallbackObjectForJs
-        Private myEditor As Editor
+        Private ReadOnly myEditor As Editor
 
         Public Sub New(editor As Editor)
 
@@ -745,15 +669,13 @@ Partial Public Class Editor
         Public Sub setFsw(fsw As String)
             myEditor.FSW = fsw
 
-         
+
         End Sub
         Public Sub showMessage(msg As String)
             'Read Note
             MessageBox.Show(msg)
         End Sub
     End Class
-     
-
 
 End Class
 

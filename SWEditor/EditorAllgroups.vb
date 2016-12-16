@@ -117,7 +117,7 @@ Partial Public Class Editor
 
             _updateChooser = True
         End If
-        TCSymbols.SelectTab("TPAllSymbols")
+        TCSymbols.SelectTab(TPChooser)
     End Sub
     Private Sub symbolIn_SymbolChanged(ByVal sender As Object, ByVal e As EventArgs) Handles symbolIn.SymbolChanged
 
