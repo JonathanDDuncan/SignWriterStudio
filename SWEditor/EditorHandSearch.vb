@@ -159,7 +159,7 @@ Partial Public Class Editor
         Dim strFilter As String = String.Empty
         SetFilterCategorized(strFilter)
         SetFilterFingers(strFilter)
-        'TextBox3.Text = strFilter
+
         If strFilter = String.Empty Then
             HandsClassifiedBindingSource.Filter = Nothing
         Else
