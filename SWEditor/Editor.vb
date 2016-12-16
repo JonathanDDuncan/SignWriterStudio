@@ -125,6 +125,7 @@ Partial Public Class Editor
         CurrentFrame = GetCurrentFrame(mySWSign)
         LoadSequence()
         DisplaySign()
+
     End Sub
 
     Private Sub Editor_Activated(sender As Object, e As EventArgs) Handles Me.Activated
@@ -556,9 +557,7 @@ Partial Public Class Editor
 
             HandChooser.Visible = False
             ArrowChooser.Visible = False
-
-            ResetHandFilter()
-
+ 
             Area = AreaEnm.Favorites
 
             If mySWSign IsNot Nothing Then
@@ -569,10 +568,10 @@ Partial Public Class Editor
             End If
             DisplaySign()
             PBSign.Invalidate()
-            ResetHandFilter()
+
         End If
         isLoading = False
-
+        ResetHandFilter()
     End Sub
     Private Shared Sub TVExpand(ByVal TV As TreeView)
         If TV.SelectedNode IsNot Nothing Then
@@ -684,7 +683,7 @@ Partial Public Class Editor
             MessageBox.Show(msg)
         End Sub
     End Class
-
+ 
 End Class
 
 Public Class DeglossChoosers
