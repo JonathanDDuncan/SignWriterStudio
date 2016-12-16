@@ -269,9 +269,11 @@ Imports SignWriterStudio
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TVFavoriteSymbols.FullRowSelect = True
         Me.TVFavoriteSymbols.HotTracking = True
+        Me.TVFavoriteSymbols.Indent = 5
         Me.TVFavoriteSymbols.ItemHeight = 100
         Me.TVFavoriteSymbols.Location = New System.Drawing.Point(3, 59)
         Me.TVFavoriteSymbols.Name = "TVFavoriteSymbols"
+        Me.TVFavoriteSymbols.ShowLines = False
         Me.TVFavoriteSymbols.ShowNodeToolTips = True
         Me.TVFavoriteSymbols.Size = New System.Drawing.Size(259, 545)
         Me.TVFavoriteSymbols.TabIndex = 2
@@ -341,7 +343,9 @@ Imports SignWriterStudio
         Me.TVAllGroups.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TVAllGroups.FullRowSelect = True
         Me.TVAllGroups.HotTracking = True
+        Me.TVAllGroups.Indent = 19
         Me.TVAllGroups.ItemHeight = 55
+        Me.TVAllGroups.LabelEdit = True
         Me.TVAllGroups.Location = New System.Drawing.Point(3, 3)
         Me.TVAllGroups.Name = "TVAllGroups"
         Me.TVAllGroups.ShowNodeToolTips = True
@@ -384,10 +388,12 @@ Imports SignWriterStudio
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TVHand.HotTracking = True
+        Me.TVHand.Indent = 5
         Me.TVHand.ItemHeight = 55
         Me.TVHand.Location = New System.Drawing.Point(3, 150)
         Me.TVHand.Margin = New System.Windows.Forms.Padding(3, 3, 3, 100)
         Me.TVHand.Name = "TVHand"
+        Me.TVHand.ShowLines = False
         Me.TVHand.ShowNodeToolTips = True
         Me.TVHand.Size = New System.Drawing.Size(259, 454)
         Me.TVHand.TabIndex = 49
@@ -705,9 +711,11 @@ Imports SignWriterStudio
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TVChooser.BackColor = System.Drawing.Color.White
         Me.TVChooser.HotTracking = True
+        Me.TVChooser.Indent = 5
         Me.TVChooser.ItemHeight = 55
         Me.TVChooser.Location = New System.Drawing.Point(-1, 52)
         Me.TVChooser.Name = "TVChooser"
+        Me.TVChooser.ShowLines = False
         Me.TVChooser.ShowNodeToolTips = True
         Me.TVChooser.Size = New System.Drawing.Size(266, 556)
         Me.TVChooser.TabIndex = 67
@@ -1215,9 +1223,11 @@ Imports SignWriterStudio
         Me.TVSequence.BackColor = System.Drawing.Color.White
         Me.TVSequence.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TVSequence.HotTracking = True
+        Me.TVSequence.Indent = 5
         Me.TVSequence.ItemHeight = 55
         Me.TVSequence.Location = New System.Drawing.Point(0, 0)
         Me.TVSequence.Name = "TVSequence"
+        Me.TVSequence.ShowLines = False
         Me.TVSequence.ShowNodeToolTips = True
         Me.TVSequence.Size = New System.Drawing.Size(336, 533)
         Me.TVSequence.TabIndex = 51
