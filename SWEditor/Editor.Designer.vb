@@ -60,7 +60,8 @@ Imports SignWriterStudio
         Me.FilterIndex = New System.Windows.Forms.CheckBox()
         Me.PBHand = New System.Windows.Forms.PictureBox()
         Me.TPChooser = New System.Windows.Forms.TabPage()
-        Me.btnAddReplace = New System.Windows.Forms.Button()
+        Me.btnChooserAdd = New System.Windows.Forms.Button()
+        Me.btnChooserReplace = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.PBsymbolOut = New System.Windows.Forms.PictureBox()
         Me.ArrowChooser = New SignWriterStudio.SWEditor.ArrowChooser()
@@ -616,7 +617,8 @@ Imports SignWriterStudio
         '
         'TPChooser
         '
-        Me.TPChooser.Controls.Add(Me.btnAddReplace)
+        Me.TPChooser.Controls.Add(Me.btnChooserAdd)
+        Me.TPChooser.Controls.Add(Me.btnChooserReplace)
         Me.TPChooser.Controls.Add(Me.TextBox1)
         Me.TPChooser.Controls.Add(Me.PBsymbolOut)
         Me.TPChooser.Controls.Add(Me.ArrowChooser)
@@ -630,15 +632,25 @@ Imports SignWriterStudio
         Me.TPChooser.Text = "Chooser"
         Me.TPChooser.UseVisualStyleBackColor = True
         '
-        'btnAddReplace
+        'btnChooserAdd
         '
-        Me.btnAddReplace.Location = New System.Drawing.Point(138, 8)
-        Me.btnAddReplace.Name = "btnAddReplace"
-        Me.btnAddReplace.Size = New System.Drawing.Size(94, 22)
-        Me.btnAddReplace.TabIndex = 71
-        Me.btnAddReplace.Text = "Add / Replace"
-        Me.SymbolToolTip.SetToolTip(Me.btnAddReplace, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.btnAddReplace.UseVisualStyleBackColor = True
+        Me.btnChooserAdd.Location = New System.Drawing.Point(138, 36)
+        Me.btnChooserAdd.Name = "btnChooserAdd"
+        Me.btnChooserAdd.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserAdd.TabIndex = 72
+        Me.btnChooserAdd.Text = "Add"
+        Me.SymbolToolTip.SetToolTip(Me.btnChooserAdd, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.btnChooserAdd.UseVisualStyleBackColor = True
+        '
+        'btnChooserReplace
+        '
+        Me.btnChooserReplace.Location = New System.Drawing.Point(138, 8)
+        Me.btnChooserReplace.Name = "btnChooserReplace"
+        Me.btnChooserReplace.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserReplace.TabIndex = 71
+        Me.btnChooserReplace.Text = "Replace"
+        Me.SymbolToolTip.SetToolTip(Me.btnChooserReplace, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.btnChooserReplace.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
@@ -694,10 +706,10 @@ Imports SignWriterStudio
         Me.TVChooser.BackColor = System.Drawing.Color.White
         Me.TVChooser.HotTracking = True
         Me.TVChooser.ItemHeight = 55
-        Me.TVChooser.Location = New System.Drawing.Point(-1, 39)
+        Me.TVChooser.Location = New System.Drawing.Point(-1, 52)
         Me.TVChooser.Name = "TVChooser"
         Me.TVChooser.ShowNodeToolTips = True
-        Me.TVChooser.Size = New System.Drawing.Size(266, 569)
+        Me.TVChooser.Size = New System.Drawing.Size(266, 556)
         Me.TVChooser.TabIndex = 67
         '
         'SCRightSide
@@ -1605,7 +1617,7 @@ Imports SignWriterStudio
     Friend WithEvents MoveTopMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MoveBottomMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TPChooser As System.Windows.Forms.TabPage
-    Friend WithEvents btnAddReplace As System.Windows.Forms.Button
+    Friend WithEvents btnChooserReplace As System.Windows.Forms.Button
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents PBsymbolOut As System.Windows.Forms.PictureBox
     Friend WithEvents ArrowChooser As SignWriterStudio.SWEditor.ArrowChooser
@@ -1627,5 +1639,6 @@ Imports SignWriterStudio
     Friend WithEvents btnDelete As System.Windows.Forms.Button
     Friend WithEvents PanelSign As System.Windows.Forms.Panel
     Friend WithEvents PanelSpelling As System.Windows.Forms.Panel
+    Friend WithEvents btnChooserAdd As System.Windows.Forms.Button
 
 End Class

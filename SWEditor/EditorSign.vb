@@ -10,7 +10,7 @@ Partial Public Class Editor
 #Region "Sign"
 
     Public Function ToImage() As Image
-        Return Me.mySWSign.render
+        Return Me.mySWSign.Render
     End Function
 
     Private Sub Sign_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
@@ -93,7 +93,7 @@ Partial Public Class Editor
             Case Keys.Enter
                 AddUndo()
                 If CurrentFrame.SelectedSymbolCount > 0 Then
-                    CurrentFrame.UNSelectSymbols()
+                    CurrentFrame.UnSelectSymbols()
                     DisplaySign()
                 Else
                     If CurrentFrame.SignSymbols.Count > 0 Then
@@ -516,7 +516,7 @@ Partial Public Class Editor
                     If symbol.IsSelected Then
                         symbolIn.Code = symbol.Code
                         HandChooser.Reset(symbol.Code, symbol.Hand)
-                        AllGroupsFind(symbol.Code, false)
+                        AllGroupsFind(symbol.Code, False)
 
                         UpdateSignSymbolSelected = False
                         Exit Sub
@@ -530,8 +530,8 @@ Partial Public Class Editor
 
     Private Sub PBsymbolOut_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles PBsymbolOut.MouseDown
         If PBsymbolOut.Image IsNot Nothing Then
-            Me.SymbolStartOffset = New Point(CInt(e.X + 2 - (PBsymbolOut.Width - PBsymbolOut.Image.Width)/2),
-                                             CInt(e.Y + 1 - (PBsymbolOut.Height - PBsymbolOut.Image.Height)/2))
+            Me.SymbolStartOffset = New Point(CInt(e.X + 2 - (PBsymbolOut.Width - PBsymbolOut.Image.Width) / 2),
+                                             CInt(e.Y + 1 - (PBsymbolOut.Height - PBsymbolOut.Image.Height) / 2))
             If PBsymbolOut.Image IsNot Nothing Then
                 PBsymbolOut.DoDragDrop(PBsymbolOut.Name, DragDropEffects.Copy)
             End If
@@ -562,8 +562,8 @@ Partial Public Class Editor
             For Each Symbol In CurrentFrame.SignSymbols
                 'CheckRowInformation(Row)
                 'TestRegion the size and location of current symbol
-                TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y, CInt(Symbol.SymbolDetails.Width*Symbol.Size),
-                                                      CInt(Symbol.SymbolDetails.Height*Symbol.Size)))
+                TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y, CInt(Symbol.SymbolDetails.Width * Symbol.Size),
+                                                      CInt(Symbol.SymbolDetails.Height * Symbol.Size)))
                 'If Symbol is selected and the mousedown was on top
                 If TestRegion.IsVisible(StartPoint) Then
                     'Clicked on a  symbol
@@ -581,8 +581,8 @@ Partial Public Class Editor
                     For Each Symbol In CurrentFrame.SignSymbols
                         'TestRegion the size and location of current symbol
                         TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y,
-                                                              CInt(Symbol.SymbolDetails.Width*Symbol.Size),
-                                                              CInt(Symbol.SymbolDetails.Height*Symbol.Size)))
+                                                              CInt(Symbol.SymbolDetails.Width * Symbol.Size),
+                                                              CInt(Symbol.SymbolDetails.Height * Symbol.Size)))
                         'If Symbol is selected and the mousedown was on top
                         If TestRegion.IsVisible(StartPoint) Then
                             'Clicked on a  symbol
@@ -605,8 +605,8 @@ Partial Public Class Editor
                     For Each Symbol In CurrentFrame.SignSymbols
                         'TestRegion the size and location of current symbol
                         TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y,
-                                                              CInt(Symbol.SymbolDetails.Width*Symbol.Size),
-                                                              CInt(Symbol.SymbolDetails.Height*Symbol.Size)))
+                                                              CInt(Symbol.SymbolDetails.Width * Symbol.Size),
+                                                              CInt(Symbol.SymbolDetails.Height * Symbol.Size)))
                         'If Symbol unselected and the mousedown was on top
                         If TestRegion.IsVisible(StartPoint) Then
                             'Clicked on a  symbol
@@ -622,12 +622,12 @@ Partial Public Class Editor
                     'is on unselected Symbol and Control Key not down
                     'Unselect other symbols and begin DragDrop for this symbol.
                     'Select current symbol
-                    CurrentFrame.UNSelectSymbols()
+                    CurrentFrame.UnSelectSymbols()
                     For Each Symbol In CurrentFrame.SignSymbols
                         'TestRegion the size and location of current symbol
                         TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y,
-                                                              CInt(Symbol.SymbolDetails.Width*Symbol.Size),
-                                                              CInt(Symbol.SymbolDetails.Height*Symbol.Size)))
+                                                              CInt(Symbol.SymbolDetails.Width * Symbol.Size),
+                                                              CInt(Symbol.SymbolDetails.Height * Symbol.Size)))
                         'If Symbol is selected and the mousedown was on top
                         If TestRegion.IsVisible(StartPoint) Then
                             'Clicked on a  symbol
@@ -647,7 +647,7 @@ Partial Public Class Editor
                     isSelecting = True
                 Else
                     'Didn´t click on a selected symbol. Unselect all symbols. Control Key not down
-                    CurrentFrame.UNSelectSymbols()
+                    CurrentFrame.UnSelectSymbols()
                     'Didn´t click on a symbol.  
                     isSelecting = True
                 End If
@@ -695,8 +695,8 @@ Partial Public Class Editor
             Dim Symbol As SWSignSymbol
             For Each Symbol In CurrentFrame.SignSymbols
                 'CheckRowInformation(Row)
-                TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y, CInt(Symbol.SymbolDetails.Width*Symbol.Size),
-                                                      CInt(Symbol.SymbolDetails.Height*Symbol.Size)))
+                TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y, CInt(Symbol.SymbolDetails.Width * Symbol.Size),
+                                                      CInt(Symbol.SymbolDetails.Height * Symbol.Size)))
                 'If in selection rectangle
 
                 If TestRegion.IsVisible(MovePoint) Then
@@ -744,8 +744,8 @@ Partial Public Class Editor
                         For Each Symbol In CurrentFrame.SignSymbols
                             'TestRegion the size and location of current symbol
                             TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y,
-                                                                  CInt(Symbol.SymbolDetails.Width*Symbol.Size),
-                                                                  CInt(Symbol.SymbolDetails.Height*Symbol.Size)))
+                                                                  CInt(Symbol.SymbolDetails.Width * Symbol.Size),
+                                                                  CInt(Symbol.SymbolDetails.Height * Symbol.Size)))
                             'If Symbol unselected and the mousedown was on top
                             If TestRegion.IsVisible(SelectionRec) Then
                                 'Clicked on a  symbol
@@ -757,13 +757,13 @@ Partial Public Class Editor
                             End If
                         Next
                     Else
-                        CurrentFrame.UNSelectSymbols()
+                        CurrentFrame.UnSelectSymbols()
                         'Add to Selection
                         For Each Symbol In CurrentFrame.SignSymbols
                             'TestRegion the size and location of current symbol
                             TestRegion = New Region(New Rectangle(Symbol.X, Symbol.Y,
-                                                                  CInt(Symbol.SymbolDetails.Width*Symbol.Size),
-                                                                  CInt(Symbol.SymbolDetails.Height*Symbol.Size)))
+                                                                  CInt(Symbol.SymbolDetails.Width * Symbol.Size),
+                                                                  CInt(Symbol.SymbolDetails.Height * Symbol.Size)))
                             'If Symbol unselected and the mousedown was on top
                             If TestRegion.IsVisible(SelectionRec) Then
                                 'Clicked on a  symbol
@@ -886,7 +886,7 @@ Partial Public Class Editor
         Dim result As DialogResult = ColorDialog1.ShowDialog()
 
         If (result = DialogResult.OK) Then
-            Me.mySWSign.BKColor = ColorDialog1.Color
+            Me.mySWSign.BkColor = ColorDialog1.Color
             'Me.mySWSign.BKColor = Color.Transparent
         End If
         DisplaySign()
@@ -934,7 +934,7 @@ Partial Public Class Editor
 
             If (isPunctuation(code) AndAlso Not SignhasSymbols(mySWSign)) OrElse (Not isPunctuation(code)) Then
                 AddUndo()
-                CurrentFrame.UNSelectSymbols()
+                CurrentFrame.UnSelectSymbols()
                 CurrentFrame.InsertSymbolIntoSign(code, True, X, y, HandColor, PalmColor, Hand)
                 LoadSequence()
             Else
@@ -973,7 +973,7 @@ Partial Public Class Editor
     End Sub
 
     Private Sub InsertSymbolIntoSign(ByVal code As Integer)
-        Me.mySWSign.Frames(Me.mySWSign.CurrentFrameIndex).UNSelectSymbols()
+        Me.mySWSign.Frames(Me.mySWSign.CurrentFrameIndex).UnSelectSymbols()
         CurrentFrame.InsertSymbolIntoSign(code, True, 0, 0, Color.Black, Color.White, HandChooser.CBHand.SelectedIndex)
     End Sub
 
@@ -984,7 +984,7 @@ Partial Public Class Editor
     Private Sub DeleteSign()
         AddUndo()
         CurrentFrame.EraseSign()
-        CurrentFrame.UNSelectSymbols()
+        CurrentFrame.UnSelectSymbols()
         DisplaySign()
     End Sub
 
@@ -1069,7 +1069,7 @@ Partial Public Class Editor
         If Clipboard.ContainsText() Then
             AddUndo()
             Dim str = Clipboard.GetText
-            Dim deserializedSign = DeSerializeJson (Of SwSign)(str)
+            Dim deserializedSign = DeSerializeJson(Of SwSign)(str)
             If deserializedSign IsNot Nothing Then
                 Dim frame2 As SWFrame = deserializedSign.Frames.Skip(1).Take(1).FirstOrDefault()
                 If frame2 IsNot Nothing Then
@@ -1083,13 +1083,13 @@ Partial Public Class Editor
         End If
     End Sub
 
-    Private Function DeSerializeJson (Of T)(ByVal json As String) As T
+    Private Function DeSerializeJson(Of T)(ByVal json As String) As T
         Dim serializer = New JsonSerializer()
         serializer.Converters.Add(New JavaScriptDateTimeConverter())
         serializer.NullValueHandling = NullValueHandling.Ignore
         Dim obj As T = Nothing
         Try
-            obj = JsonConvert.DeserializeObject (Of T)(json, New JavaScriptDateTimeConverter())
+            obj = JsonConvert.DeserializeObject(Of T)(json, New JavaScriptDateTimeConverter())
         Catch ex As Exception
             Throw (New Exception("Could not deserialize object." & ex.Message, ex))
         End Try
@@ -1158,18 +1158,20 @@ Partial Public Class Editor
         DisplaySign()
     End Sub
 
-    Private Sub btnAddReplace_Click(sender As Object, e As EventArgs) Handles btnAddReplace.Click
+    Private Sub btnChooserReplace_Click(sender As Object, e As EventArgs) Handles btnChooserReplace.Click
         If CurrentFrame.SelectedSymbolCount = 1 Then
             AddUndo()
             'Replace selected symbol
             ChangeChangeSymbolIn(Me.symbolOut, HandChooser.CBHand.SelectedIndex)
-        Else
-            AddUndo()
-            'Add Symbol
-            Dim NewSignSymbol As SWSignSymbol = Me.symbolOut.Clone
-            InsertSymbolIntoSign(NewSignSymbol.Code)
-            DisplaySign()
         End If
+    End Sub
+
+    Private Sub btnChooserAdd_Click(sender As Object, e As EventArgs) Handles btnChooserAdd.Click
+        AddUndo()
+        'Add Symbol
+        Dim NewSignSymbol As SWSignSymbol = Me.symbolOut.Clone
+        InsertSymbolIntoSign(NewSignSymbol.Code)
+        DisplaySign()
     End Sub
 
     Private Sub SeperateSymbolsToolStripMenuItem_Click(sender As Object, e As EventArgs) _
