@@ -112,9 +112,9 @@ Partial Public Class Editor
         End If
         If TreeNodes.Length > 0 Then
             _updateChooser = updateChooser
-
+            TVAllGroups.CollapseAll()
             TVAllGroups.SelectedNode = TreeNodes(0)
-
+            TreeNodes(0).Expand()
             _updateChooser = True
         End If
         TCSymbols.SelectTab(TPChooser)

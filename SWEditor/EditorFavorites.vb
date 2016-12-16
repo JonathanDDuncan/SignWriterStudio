@@ -224,7 +224,11 @@ Partial Public Class Editor
         If currentTreeNode IsNot Nothing Then
             TVFavoriteSymbols.DoDragDrop(TVFavoriteSymbols.Name, DragDropEffects.Copy)
         End If
-        If TVFavoriteSymbols.SelectedNode IsNot Nothing AndAlso e.Button = MouseButtons.Left Then
+      
+    End Sub
+
+    Private Sub TVFavoriteSymbols_DoubleClick(sender As Object, e As EventArgs) Handles TVFavoriteSymbols.DoubleClick
+        If TVFavoriteSymbols.SelectedNode IsNot Nothing Then
             AddSelectedFavorite()
         End If
     End Sub

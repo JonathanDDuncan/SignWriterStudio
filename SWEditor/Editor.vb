@@ -258,7 +258,7 @@ Partial Public Class Editor
                 If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPFavorites.Name) Then
                     TCSymbols.SelectTab(TPFavorites)
                     TVFavoriteSymbols.Focus()
-                    'TVFavoriteSymbols.SelectedNode = TVFavoriteSymbols.Nodes.Item(0)
+
                 End If
                 AreaFavoritesColor(ActiveAreaColor)
 
