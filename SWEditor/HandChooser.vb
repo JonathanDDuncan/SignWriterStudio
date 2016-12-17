@@ -33,9 +33,9 @@ Public Class HandChooser
     End Property
 
 #Region "Choose"
-    Public Sub Reset(ByVal code As Integer, Optional ByVal hand As Integer? = Nothing)
+    Public Sub Reset(ByVal code As Integer, Optional ByVal hand1 As Integer? = Nothing)
         isLoading = True
-        SetHand(code, hand)
+        SetHand(code, hand1)
         SetFill(code)
         SetRotation(code)
         isLoading = False
@@ -298,9 +298,9 @@ Public Class HandChooser
     '    SetRotation(code)
 
     'End Sub
-    Private Sub SetHand(ByVal code As Integer, ByVal hand As Integer?)
-        If hand.HasValue Then
-            SetHand(hand.Value)
+    Private Sub SetHand(ByVal code As Integer, ByVal hand1 As Integer?)
+        If hand1.HasValue Then
+            SetHand(hand1.Value)
         Else
             Dim Symbol As New SWSignSymbol With {.Code = code}
             SetHand(Symbol.Hand)

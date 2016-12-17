@@ -1,7 +1,6 @@
 Option Strict On
-Imports SignWriterStudio.SWClasses
 Imports System.Windows.Forms
-
+Imports SignWriterStudio.SymbolCache.SWSymbolCache
 Imports SignWriterStudio.SWS
 
 Public Class ArrowChooser
@@ -78,12 +77,11 @@ Public Class ArrowChooser
 
             End If
         End If
-
     End Sub
     Public Sub Reset(ByVal code As Integer)
         Dim Symbol As New SWSymbol With {.Code = code}
         If Symbol.IsValid Then
-            SetFills(Symbol.Fills)
+            SetFills(Symbol.Id, Symbol.Fills)
             SetPlanes(code)
             SetFill(Symbol.Fill)
             SetRotation(code)
@@ -98,64 +96,13 @@ Public Class ArrowChooser
             CBFlip.Visible = DT.Rows(0).Field(Of Boolean)("ShowFlip")
             ShowVP3VP7(DT.Rows(0).Field(Of Boolean)("ShowVP3VP7"))
         End If
-
-
-
-
-        'Dim ValidRotations As Integer = Symbol.Rotations '.Fills 'SymbolCache.Iswa2010.SC.GetFills(Symbol.Code)
-        'Dim Category As Integer = Symbol.Category
-        'Dim Group As Integer = Symbol.Group
-        'If Category = 2 Then
-        '    Select Case Group
-        '        Case 1, 2, 4, 7, 8, 10
-        '            'Selectors no image
-        '            'Symbols, Hit Wall Ceiling or Floor, selector no images
-        '            ShowWallPlane(True, False)
-        '            ShowFloorPlane(False, False)
-        '        Case 3, 5
-        '            If Group = 3 AndAlso ((Symbol.Symbol = 7 AndAlso (Symbol.Variation = 2 OrElse Symbol.Variation = 3)) OrElse (Symbol.Symbol = 8 AndAlso Symbol.Variation = 4)) Then
-        '                'Wall Plane only
-        '                ShowWallPlane(True, True)
-        '                ShowFloorPlane(False, False)
-        '            Else
-        '                'Wall Plane and Floor Plane with images
-        '                ShowWallPlane(True, True)
-        '                ShowFloorPlane(True, True)
-        '            End If
-        '        Case 6
-        '            'Wall Plane selector with image
-        '            ShowWallPlane(True, False)
-        '            ShowFloorPlane(False, False)
-        '        Case 9
-        '            'Floor Plane selector with image
-        '            ShowWallPlane(False, False)
-        '            ShowFloorPlane(True, False)
-        '    End Select
-        '    If ValidRotations = 16 OrElse ValidRotations = -16 OrElse ValidRotations = 4 Then
-        '        CBFlip.Visible = True
-        '    Else
-        '        CBFlip.Visible = False
-        '    End If
-
-        '    Select Case ValidRotations
-        '        Case -8, -16
-        '            VP3.Visible = False
-        '            VP7.Visible = False
-
-
-        '    End Select
-        'Else
-        '    'Don't show selectors
-        '    ShowWallPlane(False, False)
-        '    ShowFloorPlane(False, False)
-        'End If
     End Sub
     Private Sub ShowVP3VP7(bool As Boolean)
         VP3.Visible = bool
         VP7.Visible = bool
     End Sub
     Private Sub ShowWallPlane(ByVal Show As Boolean, ByVal Image As Boolean)
-        Me.PBVertHand.Visible = Image
+        PBVertHand.Visible = Image
         VP1.Visible = Show
         VP2.Visible = Show
         VP3.Visible = Show
@@ -166,7 +113,7 @@ Public Class ArrowChooser
         VP8.Visible = Show
     End Sub
     Private Sub ShowFloorPlane(ByVal Show As Boolean, ByVal Image As Boolean)
-        Me.PBHorizHand.Visible = Image
+        PBHorizHand.Visible = Image
         HP1.Visible = Show
         HP2.Visible = Show
         HP3.Visible = Show
@@ -176,46 +123,109 @@ Public Class ArrowChooser
         HP7.Visible = Show
         HP8.Visible = Show
     End Sub
-    Private Sub SetFills(ByVal fills As Integer)
+    Private Sub SetFills(ByVal id As String, ByVal fills As Integer)
         If fills = 3 Then
-            Me.CBFill.Items.Clear()
-            Me.CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands"})
+            CBFill.Items.Clear()
+            CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands"})
 
+            RB1.Text = "Right Hand"
+            RB2.Text = "Left Hand"
+            RB3.Text = "Superposed Hands"
+            RB4.Text = ""
+            RB5.Text = ""
+            RB6.Text = ""
+            RB1.Visible = True
+            RB2.Visible = True
+            RB3.Visible = True
+            RB4.Visible = False
+            RB5.Visible = False
+            RB6.Visible = False
+            PB1.Visible = True
+            PB2.Visible = True
+            PB3.Visible = True
+            PB4.Visible = False
+            PB5.Visible = False
+            PB6.Visible = False
+            PB1.Image = GetImagebyId(GetFillId(id, 1))
+            PB2.Image = GetImagebyId(GetFillId(id, 2))
+            PB3.Image = GetImagebyId(GetFillId(id, 3))
+            PB4.Image = Nothing
+            PB5.Image = Nothing
+            PB6.Image = Nothing
+            RB1.Checked = True
         ElseIf fills = 4 Then
-            Me.CBFill.Items.Clear()
-            Me.CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands", "No Arrowhead"})
+            CBFill.Items.Clear()
+            CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands", "No Arrowhead"})
+
+            RB1.Text = "Right Hand"
+            RB2.Text = "Left Hand"
+            RB3.Text = "Superposed Hands"
+            RB4.Text = "No Arrowhead"
+            RB5.Text = ""
+            RB6.Text = ""
+
+            RB1.Visible = True
+            RB2.Visible = True
+            RB3.Visible = True
+            RB4.Visible = True
+            RB5.Visible = False
+            RB6.Visible = False
+            PB1.Visible = True
+            PB2.Visible = True
+            PB3.Visible = True
+            PB4.Visible = True
+            PB5.Visible = False
+            PB6.Visible = False
+            PB1.Image = GetImagebyId(GetFillId(id, 1))
+            PB2.Image = GetImagebyId(GetFillId(id, 2))
+            PB3.Image = GetImagebyId(GetFillId(id, 3))
+            PB4.Image = GetImagebyId(GetFillId(id, 4))
+            PB5.Image = Nothing
+            PB6.Image = Nothing
+            RB1.Checked = True
 
         ElseIf fills = 6 Then
-            Me.CBFill.Items.Clear()
-            Me.CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands", "Right Hand Flipped", "Left Hand Flipped", "Superposed HandsFlipped"})
+            CBFill.Items.Clear()
+            CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands", "Right Hand Flipped", "Left Hand Flipped", "Superposed HandsFlipped"})
+
+            RB1.Text = "Right Hand"
+            RB2.Text = "Left Hand"
+            RB3.Text = "Superposed Hands"
+            RB4.Text = "Right Hand Flipped"
+            RB5.Text = "Left Hand Flipped"
+            RB6.Text = "Superposed HandsFlipped"
+            RB1.Visible = True
+            RB2.Visible = True
+            RB3.Visible = True
+            RB4.Visible = True
+            RB5.Visible = True
+            RB6.Visible = True
+            PB1.Visible = True
+            PB2.Visible = True
+            PB3.Visible = True
+            PB4.Visible = True
+            PB5.Visible = True
+            PB6.Visible = True
+            PB1.Image = GetImagebyId(GetFillId(id, 1))
+            PB2.Image = GetImagebyId(GetFillId(id, 2))
+            PB3.Image = GetImagebyId(GetFillId(id, 3))
+            PB4.Image = GetImagebyId(GetFillId(id, 4))
+            PB5.Image = GetImagebyId(GetFillId(id, 5))
+            PB6.Image = GetImagebyId(GetFillId(id, 6))
+            RB1.Checked = True
 
         End If
     End Sub
-    'Private Sub SetRotationControls()
 
-    '    'If CurrentFrame.SelectedSymbolCount = 1 Then
-    '    '    Dim Symbol As SWSignSymbol
-    '    '    For Each Symbol In CurrentFrame.SignSymbols
-    '    '        If Symbol.isSelected Then
-    '    '            SetHand(Symbol)
-    '    '            SetFill(Symbol)
-    '    '            SetRotation(Symbol)
+    Private Function GetFillId(ByVal id As String, ByVal fill As Integer) As String
+        Dim prefix = id.Substring(0, 12)
+        Dim middle = "-0" & fill
+        Dim suffix = id.Substring(15, 3)
+        Return prefix & middle & suffix
+    End Function
 
-    '    '            Exit Sub
-    '    '        End If
-    '    '    Next
-    '    'End If
-    'End Sub
-    'Private Sub SetRotationControls(ByVal Symbol As SWSymbol)
-    '    SetFill(Symbol)
-    '    SetRotation(Symbol)
-    '    'Me.TextBox1.Text = Symbol.Id
-    'End Sub
-    'Friend Sub SetHand(ByVal Symbol As SWSymbol)
-    '    CBFill.SelectedIndex = Symbol.Hand
-    'End Sub
     Friend Sub Choose_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
-        'Dim ControlActive As Object = EditorForm.ActiveControl
+
         Select Case e.KeyCode
             Case Keys.F1
                 Help.ShowHelp(Me, "SignWriterStudio.chm", "arrowchooser.htm")
@@ -401,7 +411,7 @@ Public Class ArrowChooser
                     e.Handled = True
                 End If
             Case Keys.Subtract
-                Me.CBFlip.Checked = Not Me.CBFlip.Checked
+                CBFlip.Checked = Not CBFlip.Checked
                 e.SuppressKeyPress = True
                 e.Handled = True
             Case Keys.C
@@ -428,30 +438,13 @@ Public Class ArrowChooser
     End Sub
 
     Private Sub NextHand()
-        Dim NextIndex As Integer = Me.CBFill.SelectedIndex + 1
-        If NextIndex > Me.CBFill.Items.Count - 1 Then
+        Dim NextIndex As Integer = CBFill.SelectedIndex + 1
+        If NextIndex > CBFill.Items.Count - 1 Then
             NextIndex = 0
         End If
-        Me.CBFill.SelectedIndex = NextIndex
+        CBFill.SelectedIndex = NextIndex
     End Sub
-    '    Dim ChangingSelected As Boolean = False
-    'Private Sub ChangeChangeSymbolIn(ByVal NewSymbol As SWSignSymbol)
-    '    If Not ChangingSelected Then
-    '        ChangingSelected = True
-
-    '        NewSymbol.isSelected = True
-
-    '        If Not UpdateSignSymbolSelected Then
-    '            UpdateSignSymbolSelected = True
-    '            RaiseEvent ChangeSymbol()
-
-
-    '            UpdateSignSymbolSelected = False
-
-    '        End If
-    '        ChangingSelected = False
-    '    End If
-    'End Sub
+ 
     Private Function VerticalSelected() As Boolean
         If VP1.Checked Or VP2.Checked Or VP3.Checked Or VP4.Checked Or VP5.Checked Or VP6.Checked Or VP7.Checked Or VP8.Checked Then
             Return True
@@ -518,107 +511,28 @@ Public Class ArrowChooser
                 End If
 
             End If
-            'If CBFlip.Checked = False Then
-            '    If VP1.Checked Then
-            '        IntRotation = 1
-            '    ElseIf VP2.Checked Then
-            '        IntRotation = 2
-            '    ElseIf VP3.Checked Then
-            '        IntRotation = 3
-            '    ElseIf VP4.Checked Then
-            '        IntRotation = 4
-            '    ElseIf VP5.Checked Then
-            '        IntRotation = 5
-            '    ElseIf VP6.Checked Then
-            '        IntRotation = 6
-            '    ElseIf VP7.Checked Then
-            '        IntRotation = 7
-            '    ElseIf VP8.Checked Then
-            '        IntRotation = 8
-
-            '    ElseIf HP1.Checked Then
-            '        IntRotation = 9
-            '    ElseIf HP2.Checked Then
-            '        IntRotation = 16
-            '    ElseIf HP3.Checked Then
-            '        IntRotation = 15
-            '    ElseIf HP4.Checked Then
-            '        IntRotation = 14
-            '    ElseIf HP5.Checked Then
-            '        IntRotation = 13
-            '    ElseIf HP6.Checked Then
-            '        IntRotation = 12
-            '    ElseIf HP7.Checked Then
-            '        IntRotation = 11
-            '    ElseIf HP8.Checked Then
-            '        IntRotation = 10
-            '    Else
-            '        IntRotation = 0
-            '    End If
-
-            'Else
-            '    If VP1.Checked Then
-            '        IntRotation = 9
-            '    ElseIf VP2.Checked Then
-            '        IntRotation = 16
-            '    ElseIf VP3.Checked Then
-            '        IntRotation = 15
-            '    ElseIf VP4.Checked Then
-            '        IntRotation = 14
-            '    ElseIf VP5.Checked Then
-            '        IntRotation = 13
-            '    ElseIf VP6.Checked Then
-            '        IntRotation = 12
-            '    ElseIf VP7.Checked Then
-            '        IntRotation = 11
-            '    ElseIf VP8.Checked Then
-            '        IntRotation = 10
-
-            '    ElseIf HP1.Checked Then
-            '        IntRotation = 1
-            '    ElseIf HP2.Checked Then
-            '        IntRotation = 2
-            '    ElseIf HP3.Checked Then
-            '        IntRotation = 3
-            '    ElseIf HP4.Checked Then
-            '        IntRotation = 4
-            '    ElseIf HP5.Checked Then
-            '        IntRotation = 5
-            '    ElseIf HP6.Checked Then
-            '        IntRotation = 6
-            '    ElseIf HP7.Checked Then
-            '        IntRotation = 7
-            '    ElseIf HP8.Checked Then
-            '        IntRotation = 8
-            '    Else
-            '        IntRotation = 0
-
-            '    End If
-
-            'End If
+          
         End If
         Return IntRotation
     End Function
 
 #End Region
+     
 
-    'Private Sub Hand_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs)
-    '    RaiseEvent ChangeSymbol()
-    'End Sub
-
-    Private Sub HP_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles HP1.CheckedChanged, HP2.CheckedChanged, HP3.CheckedChanged, HP4.CheckedChanged, HP5.CheckedChanged, HP6.CheckedChanged, HP7.CheckedChanged, HP8.CheckedChanged
+    Private Sub HP_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles HP1.CheckedChanged, HP2.CheckedChanged, HP3.CheckedChanged, HP4.CheckedChanged, HP5.CheckedChanged, HP6.CheckedChanged, HP7.CheckedChanged, HP8.CheckedChanged
         RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
 
-    Private Sub VP_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles VP1.CheckedChanged, VP2.CheckedChanged, VP3.CheckedChanged, VP4.CheckedChanged, VP5.CheckedChanged, VP6.CheckedChanged, VP7.CheckedChanged, VP8.CheckedChanged
+    Private Sub VP_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles VP1.CheckedChanged, VP2.CheckedChanged, VP3.CheckedChanged, VP4.CheckedChanged, VP5.CheckedChanged, VP6.CheckedChanged, VP7.CheckedChanged, VP8.CheckedChanged
         RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
 
-    Private Sub CBFlip_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBFlip.CheckedChanged
+    Private Sub CBFlip_CheckedChanged(ByVal sender As System.Object, ByVal e As EventArgs) Handles CBFlip.CheckedChanged
         RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
 
-    Private Sub CBFill_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBFill.SelectedIndexChanged
+    Private Sub CBFill_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As EventArgs) Handles CBFill.SelectedIndexChanged
         RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
+   
 End Class

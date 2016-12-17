@@ -42,9 +42,29 @@ Partial Class ArrowChooser
         Me.PBHorizHand = New System.Windows.Forms.PictureBox()
         Me.PBVertHand = New System.Windows.Forms.PictureBox()
         Me.CBFlip = New System.Windows.Forms.CheckBox()
+        Me.GBFills = New System.Windows.Forms.GroupBox()
+        Me.PB4 = New System.Windows.Forms.PictureBox()
+        Me.PB6 = New System.Windows.Forms.PictureBox()
+        Me.PB5 = New System.Windows.Forms.PictureBox()
+        Me.RB4 = New SignWriterStudio.General.RadioButtonFull()
+        Me.RB5 = New SignWriterStudio.General.RadioButtonFull()
+        Me.RB6 = New SignWriterStudio.General.RadioButtonFull()
+        Me.PB1 = New System.Windows.Forms.PictureBox()
+        Me.PB3 = New System.Windows.Forms.PictureBox()
+        Me.PB2 = New System.Windows.Forms.PictureBox()
+        Me.RB1 = New SignWriterStudio.General.RadioButtonFull()
+        Me.RB2 = New SignWriterStudio.General.RadioButtonFull()
+        Me.RB3 = New SignWriterStudio.General.RadioButtonFull()
         Me.GBRotations.SuspendLayout()
         CType(Me.PBHorizHand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBVertHand, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GBFills.SuspendLayout()
+        CType(Me.PB4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PB6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PB5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PB1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PB3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PB2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CBFill
@@ -76,7 +96,7 @@ Partial Class ArrowChooser
         Me.GBRotations.Controls.Add(Me.VP8)
         Me.GBRotations.Controls.Add(Me.PBHorizHand)
         Me.GBRotations.Controls.Add(Me.PBVertHand)
-        Me.GBRotations.Location = New System.Drawing.Point(13, 105)
+        Me.GBRotations.Location = New System.Drawing.Point(5, 409)
         Me.GBRotations.Name = "GBRotations"
         Me.GBRotations.Size = New System.Drawing.Size(150, 297)
         Me.GBRotations.TabIndex = 57
@@ -288,26 +308,191 @@ Partial Class ArrowChooser
         'CBFlip
         '
         Me.CBFlip.AutoSize = True
-        Me.CBFlip.Location = New System.Drawing.Point(54, 68)
+        Me.CBFlip.Location = New System.Drawing.Point(46, 372)
         Me.CBFlip.Name = "CBFlip"
         Me.CBFlip.Size = New System.Drawing.Size(42, 17)
         Me.CBFlip.TabIndex = 58
         Me.CBFlip.Text = "&Flip"
         Me.CBFlip.UseVisualStyleBackColor = True
         '
+        'GBFills
+        '
+        Me.GBFills.Controls.Add(Me.PB4)
+        Me.GBFills.Controls.Add(Me.PB6)
+        Me.GBFills.Controls.Add(Me.PB5)
+        Me.GBFills.Controls.Add(Me.RB4)
+        Me.GBFills.Controls.Add(Me.RB5)
+        Me.GBFills.Controls.Add(Me.RB6)
+        Me.GBFills.Controls.Add(Me.PB1)
+        Me.GBFills.Controls.Add(Me.PB3)
+        Me.GBFills.Controls.Add(Me.PB2)
+        Me.GBFills.Controls.Add(Me.RB1)
+        Me.GBFills.Controls.Add(Me.RB2)
+        Me.GBFills.Controls.Add(Me.RB3)
+        Me.GBFills.Location = New System.Drawing.Point(5, 44)
+        Me.GBFills.Name = "GBFills"
+        Me.GBFills.Size = New System.Drawing.Size(168, 235)
+        Me.GBFills.TabIndex = 59
+        Me.GBFills.TabStop = False
+        Me.GBFills.Text = "Types"
+        '
+        'PB4
+        '
+        Me.PB4.Location = New System.Drawing.Point(9, 170)
+        Me.PB4.Name = "PB4"
+        Me.PB4.Size = New System.Drawing.Size(35, 35)
+        Me.PB4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PB4.TabIndex = 33
+        Me.PB4.TabStop = False
+        '
+        'PB6
+        '
+        Me.PB6.Location = New System.Drawing.Point(126, 170)
+        Me.PB6.Name = "PB6"
+        Me.PB6.Size = New System.Drawing.Size(35, 35)
+        Me.PB6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PB6.TabIndex = 32
+        Me.PB6.TabStop = False
+        '
+        'PB5
+        '
+        Me.PB5.Location = New System.Drawing.Point(67, 170)
+        Me.PB5.Name = "PB5"
+        Me.PB5.Size = New System.Drawing.Size(35, 35)
+        Me.PB5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PB5.TabIndex = 31
+        Me.PB5.TabStop = False
+        '
+        'RB4
+        '
+        Me.RB4.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.RB4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        Me.RB4.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.RB4.Location = New System.Drawing.Point(0, 119)
+        Me.RB4.Margin = New System.Windows.Forms.Padding(0)
+        Me.RB4.Name = "RB4"
+        Me.RB4.Size = New System.Drawing.Size(55, 48)
+        Me.RB4.TabIndex = 30
+        Me.RB4.Tag = "4"
+        Me.RB4.Text = "Text4"
+        Me.RB4.UseVisualStyleBackColor = True
+        '
+        'RB5
+        '
+        Me.RB5.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.RB5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        Me.RB5.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.RB5.Location = New System.Drawing.Point(58, 119)
+        Me.RB5.Name = "RB5"
+        Me.RB5.Size = New System.Drawing.Size(55, 48)
+        Me.RB5.TabIndex = 29
+        Me.RB5.Tag = "1"
+        Me.RB5.Text = "Text5"
+        Me.RB5.UseVisualStyleBackColor = True
+        '
+        'RB6
+        '
+        Me.RB6.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.RB6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        Me.RB6.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.RB6.Location = New System.Drawing.Point(117, 119)
+        Me.RB6.Name = "RB6"
+        Me.RB6.Size = New System.Drawing.Size(55, 48)
+        Me.RB6.TabIndex = 34
+        Me.RB6.Tag = "3"
+        Me.RB6.Text = "Text6"
+        Me.RB6.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.RB6.UseVisualStyleBackColor = True
+        '
+        'PB1
+        '
+        Me.PB1.Location = New System.Drawing.Point(10, 64)
+        Me.PB1.Name = "PB1"
+        Me.PB1.Size = New System.Drawing.Size(35, 35)
+        Me.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PB1.TabIndex = 27
+        Me.PB1.TabStop = False
+        '
+        'PB3
+        '
+        Me.PB3.Location = New System.Drawing.Point(127, 64)
+        Me.PB3.Name = "PB3"
+        Me.PB3.Size = New System.Drawing.Size(35, 35)
+        Me.PB3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PB3.TabIndex = 25
+        Me.PB3.TabStop = False
+        '
+        'PB2
+        '
+        Me.PB2.Location = New System.Drawing.Point(68, 64)
+        Me.PB2.Name = "PB2"
+        Me.PB2.Size = New System.Drawing.Size(35, 35)
+        Me.PB2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PB2.TabIndex = 24
+        Me.PB2.TabStop = False
+        '
+        'RB1
+        '
+        Me.RB1.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.RB1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        Me.RB1.Location = New System.Drawing.Point(0, 13)
+        Me.RB1.Margin = New System.Windows.Forms.Padding(0)
+        Me.RB1.Name = "RB1"
+        Me.RB1.Size = New System.Drawing.Size(55, 48)
+        Me.RB1.TabIndex = 23
+        Me.RB1.Tag = "4"
+        Me.RB1.Text = "Text1"
+        Me.RB1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RB1.UseVisualStyleBackColor = True
+        '
+        'RB2
+        '
+        Me.RB2.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.RB2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        Me.RB2.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.RB2.Location = New System.Drawing.Point(58, 13)
+        Me.RB2.Name = "RB2"
+        Me.RB2.Size = New System.Drawing.Size(55, 48)
+        Me.RB2.TabIndex = 17
+        Me.RB2.Tag = "1"
+        Me.RB2.Text = "Text2"
+        Me.RB2.UseVisualStyleBackColor = True
+        '
+        'RB3
+        '
+        Me.RB3.CheckAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.RB3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        Me.RB3.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.RB3.Location = New System.Drawing.Point(117, 13)
+        Me.RB3.Name = "RB3"
+        Me.RB3.Size = New System.Drawing.Size(55, 48)
+        Me.RB3.TabIndex = 28
+        Me.RB3.Tag = "3"
+        Me.RB3.Text = "Text3"
+        Me.RB3.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.RB3.UseVisualStyleBackColor = True
+        '
         'ArrowChooser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.GBFills)
         Me.Controls.Add(Me.CBFlip)
         Me.Controls.Add(Me.CBFill)
         Me.Controls.Add(Me.GBRotations)
         Me.Name = "ArrowChooser"
-        Me.Size = New System.Drawing.Size(175, 412)
+        Me.Size = New System.Drawing.Size(175, 558)
         Me.GBRotations.ResumeLayout(False)
         Me.GBRotations.PerformLayout()
         CType(Me.PBHorizHand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBVertHand, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GBFills.ResumeLayout(False)
+        CType(Me.PB4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PB6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PB5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PB1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PB3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PB2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -333,5 +518,18 @@ Partial Class ArrowChooser
     Friend WithEvents PBHorizHand As System.Windows.Forms.PictureBox
     Friend WithEvents PBVertHand As System.Windows.Forms.PictureBox
     Friend WithEvents CBFlip As System.Windows.Forms.CheckBox
+    Friend WithEvents GBFills As System.Windows.Forms.GroupBox
+    Friend WithEvents PB4 As System.Windows.Forms.PictureBox
+    Friend WithEvents PB6 As System.Windows.Forms.PictureBox
+    Friend WithEvents PB5 As System.Windows.Forms.PictureBox
+    Friend WithEvents RB4 As SignWriterStudio.General.RadioButtonFull
+    Friend WithEvents RB5 As SignWriterStudio.General.RadioButtonFull
+    Friend WithEvents RB6 As SignWriterStudio.General.RadioButtonFull
+    Friend WithEvents PB1 As System.Windows.Forms.PictureBox
+    Friend WithEvents PB3 As System.Windows.Forms.PictureBox
+    Friend WithEvents PB2 As System.Windows.Forms.PictureBox
+    Friend WithEvents RB1 As SignWriterStudio.General.RadioButtonFull
+    Friend WithEvents RB2 As SignWriterStudio.General.RadioButtonFull
+    Friend WithEvents RB3 As SignWriterStudio.General.RadioButtonFull
 
 End Class
