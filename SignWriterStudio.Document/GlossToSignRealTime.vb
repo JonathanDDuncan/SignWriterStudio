@@ -554,6 +554,9 @@ Public Class GlossToSignRealTime
                     row.Cells("Selected").Value = False
                 Next
             End If
+            Dim sd = CType(sender, DataGridView)
+            Dim clickedrow = sd.Rows(e.RowIndex)
+            clickedrow.Cells("Selected").Value = True
         End If
     End Sub
 
