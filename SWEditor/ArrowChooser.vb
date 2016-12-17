@@ -9,7 +9,7 @@ Public Class ArrowChooser
     Event Accept As EventHandler(Of EventArgs)
     Event Find As EventHandler(Of EventArgs)
     Event ChangeSelectedSym As EventHandler(Of EventArgs)
-  
+    Private Property TypeItems() As Integer
     Private _editorForm As Editor
     Public Property EditorForm() As Editor
         Get
@@ -23,8 +23,44 @@ Public Class ArrowChooser
 
 #Region "Choose"
     Private Sub SetFill(ByVal fill As Integer)
-        CBFill.SelectedIndex = fill - 1
+        SetType(fill)
     End Sub
+    Private Sub SetType(ByVal fill As Integer)
+        Select Case fill
+            Case 1
+                RB1.Checked = True
+            Case 2
+                RB2.Checked = True
+            Case 3
+                RB3.Checked = True
+            Case 4
+                RB4.Checked = True
+            Case 5
+                RB5.Checked = True
+            Case 6
+                RB6.Checked = True
+        End Select
+    End Sub
+
+    Private Function TypeValue() As Integer
+        Dim value = 0
+        If RB1.Checked = True Then
+            value = 1
+        ElseIf RB2.Checked = True Then
+            value = 2
+        ElseIf RB3.Checked = True Then
+            value = 3
+        ElseIf RB4.Checked = True Then
+            value = 4
+        ElseIf RB5.Checked = True Then
+            value = 5
+        ElseIf RB6.Checked = True Then
+            value = 6
+        End If
+        Return value - 1
+
+    End Function
+
     Private Sub SetRotation(ByVal code As Integer)
         Dim Symbol As New SWSymbol With {.Code = code}
         Dim Category As Integer = Symbol.Category
@@ -124,13 +160,11 @@ Public Class ArrowChooser
         HP8.Visible = Show
     End Sub
     Private Sub SetFills(ByVal id As String, ByVal fills As Integer)
-        If fills = 3 Then
-            CBFill.Items.Clear()
-            CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands"})
-
-            RB1.Text = "Right Hand"
-            RB2.Text = "Left Hand"
-            RB3.Text = "Superposed Hands"
+        TypeItems = fills
+        If TypeItems = 3 Then
+            RB1.Text = "Right"
+            RB2.Text = "Left"
+            RB3.Text = "Super- posed"
             RB4.Text = ""
             RB5.Text = ""
             RB6.Text = ""
@@ -153,13 +187,10 @@ Public Class ArrowChooser
             PB5.Image = Nothing
             PB6.Image = Nothing
             RB1.Checked = True
-        ElseIf fills = 4 Then
-            CBFill.Items.Clear()
-            CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands", "No Arrowhead"})
-
-            RB1.Text = "Right Hand"
-            RB2.Text = "Left Hand"
-            RB3.Text = "Superposed Hands"
+        ElseIf TypeItems = 4 Then
+            RB1.Text = "Right"
+            RB2.Text = "Left"
+            RB3.Text = "Super- posed"
             RB4.Text = "No Arrowhead"
             RB5.Text = ""
             RB6.Text = ""
@@ -184,16 +215,13 @@ Public Class ArrowChooser
             PB6.Image = Nothing
             RB1.Checked = True
 
-        ElseIf fills = 6 Then
-            CBFill.Items.Clear()
-            CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands", "Right Hand Flipped", "Left Hand Flipped", "Superposed HandsFlipped"})
-
-            RB1.Text = "Right Hand"
-            RB2.Text = "Left Hand"
-            RB3.Text = "Superposed Hands"
-            RB4.Text = "Right Hand Flipped"
-            RB5.Text = "Left Hand Flipped"
-            RB6.Text = "Superposed HandsFlipped"
+        ElseIf TypeItems = 6 Then
+           RB1.Text = "Right"
+            RB2.Text = "Left"
+            RB3.Text = "Super- posed"
+            RB4.Text = "Right Flipped"
+            RB5.Text = "Left Flipped"
+            RB6.Text = "Super- posed Flipped"
             RB1.Visible = True
             RB2.Visible = True
             RB3.Visible = True
@@ -216,6 +244,9 @@ Public Class ArrowChooser
 
         End If
     End Sub
+
+
+
 
     Private Function GetFillId(ByVal id As String, ByVal fill As Integer) As String
         Dim prefix = id.Substring(0, 12)
@@ -438,13 +469,13 @@ Public Class ArrowChooser
     End Sub
 
     Private Sub NextHand()
-        Dim NextIndex As Integer = CBFill.SelectedIndex + 1
-        If NextIndex > CBFill.Items.Count - 1 Then
+        Dim NextIndex As Integer = TypeValue() + 1
+        If NextIndex > TypeItems - 1 Then
             NextIndex = 0
         End If
-        CBFill.SelectedIndex = NextIndex
+        SetType(NextIndex)
     End Sub
- 
+
     Private Function VerticalSelected() As Boolean
         If VP1.Checked Or VP2.Checked Or VP3.Checked Or VP4.Checked Or VP5.Checked Or VP6.Checked Or VP7.Checked Or VP8.Checked Then
             Return True
@@ -460,7 +491,7 @@ Public Class ArrowChooser
         End If
     End Function
     Friend Function NewFill() As Integer
-        Return CBFill.SelectedIndex + 1
+        Return TypeValue() + 1
     End Function
     Friend Function NewRotation(ByVal code As Integer) As Integer
         Dim IntRotation As Integer ' = 0
@@ -511,13 +542,13 @@ Public Class ArrowChooser
                 End If
 
             End If
-          
+
         End If
         Return IntRotation
     End Function
 
 #End Region
-     
+
 
     Private Sub HP_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles HP1.CheckedChanged, HP2.CheckedChanged, HP3.CheckedChanged, HP4.CheckedChanged, HP5.CheckedChanged, HP6.CheckedChanged, HP7.CheckedChanged, HP8.CheckedChanged
         RaiseEvent ChangeSymbol(Me, New EventArgs)
@@ -531,8 +562,32 @@ Public Class ArrowChooser
         RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
 
-    Private Sub CBFill_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As EventArgs) Handles CBFill.SelectedIndexChanged
+    Private Sub TypeChanged(ByVal sender As System.Object, ByVal e As EventArgs) Handles RB1.CheckedChanged, RB2.CheckedChanged, RB3.CheckedChanged, RB4.CheckedChanged, RB5.CheckedChanged, RB6.CheckedChanged
         RaiseEvent ChangeSymbol(Me, New EventArgs)
     End Sub
-   
+
+    Private Sub PB1_Click(sender As Object, e As EventArgs) Handles PB1.Click
+        RB1.Checked = True
+    End Sub
+
+    Private Sub PB2_Click(sender As Object, e As EventArgs) Handles PB2.Click
+        RB2.Checked = True
+    End Sub
+
+    Private Sub PB3_Click(sender As Object, e As EventArgs) Handles PB3.Click
+        RB3.Checked = True
+    End Sub
+
+    Private Sub PB4_Click(sender As Object, e As EventArgs) Handles PB4.Click
+        RB4.Checked = True
+    End Sub
+
+    Private Sub PB5_Click(sender As Object, e As EventArgs) Handles PB5.Click
+        RB5.Checked = True
+    End Sub
+
+    Private Sub PB6_Click(sender As Object, e As EventArgs) Handles PB6.Click
+        RB6.Checked = True
+    End Sub
+
 End Class

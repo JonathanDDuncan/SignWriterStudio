@@ -21,7 +21,6 @@ Partial Class ArrowChooser
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CBFill = New System.Windows.Forms.ComboBox()
         Me.GBRotations = New System.Windows.Forms.GroupBox()
         Me.HP5 = New SignWriterStudio.General.RadioButtonFull()
         Me.HP1 = New SignWriterStudio.General.RadioButtonFull()
@@ -67,15 +66,6 @@ Partial Class ArrowChooser
         CType(Me.PB2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'CBFill
-        '
-        Me.CBFill.FormattingEnabled = True
-        Me.CBFill.Items.AddRange(New Object() {"Right Hand", "Left Hand", "Superposed Hands", "No Arrow"})
-        Me.CBFill.Location = New System.Drawing.Point(31, 3)
-        Me.CBFill.Name = "CBFill"
-        Me.CBFill.Size = New System.Drawing.Size(121, 21)
-        Me.CBFill.TabIndex = 55
-        '
         'GBRotations
         '
         Me.GBRotations.Controls.Add(Me.HP5)
@@ -96,7 +86,7 @@ Partial Class ArrowChooser
         Me.GBRotations.Controls.Add(Me.VP8)
         Me.GBRotations.Controls.Add(Me.PBHorizHand)
         Me.GBRotations.Controls.Add(Me.PBVertHand)
-        Me.GBRotations.Location = New System.Drawing.Point(5, 409)
+        Me.GBRotations.Location = New System.Drawing.Point(10, 263)
         Me.GBRotations.Name = "GBRotations"
         Me.GBRotations.Size = New System.Drawing.Size(150, 297)
         Me.GBRotations.TabIndex = 57
@@ -308,7 +298,7 @@ Partial Class ArrowChooser
         'CBFlip
         '
         Me.CBFlip.AutoSize = True
-        Me.CBFlip.Location = New System.Drawing.Point(46, 372)
+        Me.CBFlip.Location = New System.Drawing.Point(67, 244)
         Me.CBFlip.Name = "CBFlip"
         Me.CBFlip.Size = New System.Drawing.Size(42, 17)
         Me.CBFlip.TabIndex = 58
@@ -329,7 +319,7 @@ Partial Class ArrowChooser
         Me.GBFills.Controls.Add(Me.RB1)
         Me.GBFills.Controls.Add(Me.RB2)
         Me.GBFills.Controls.Add(Me.RB3)
-        Me.GBFills.Location = New System.Drawing.Point(5, 44)
+        Me.GBFills.Location = New System.Drawing.Point(7, 3)
         Me.GBFills.Name = "GBFills"
         Me.GBFills.Size = New System.Drawing.Size(168, 235)
         Me.GBFills.TabIndex = 59
@@ -338,27 +328,27 @@ Partial Class ArrowChooser
         '
         'PB4
         '
-        Me.PB4.Location = New System.Drawing.Point(9, 170)
+        Me.PB4.Location = New System.Drawing.Point(0, 173)
         Me.PB4.Name = "PB4"
-        Me.PB4.Size = New System.Drawing.Size(35, 35)
+        Me.PB4.Size = New System.Drawing.Size(50, 50)
         Me.PB4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PB4.TabIndex = 33
         Me.PB4.TabStop = False
         '
         'PB6
         '
-        Me.PB6.Location = New System.Drawing.Point(126, 170)
+        Me.PB6.Location = New System.Drawing.Point(117, 173)
         Me.PB6.Name = "PB6"
-        Me.PB6.Size = New System.Drawing.Size(35, 35)
+        Me.PB6.Size = New System.Drawing.Size(50, 50)
         Me.PB6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PB6.TabIndex = 32
         Me.PB6.TabStop = False
         '
         'PB5
         '
-        Me.PB5.Location = New System.Drawing.Point(67, 170)
+        Me.PB5.Location = New System.Drawing.Point(58, 173)
         Me.PB5.Name = "PB5"
-        Me.PB5.Size = New System.Drawing.Size(35, 35)
+        Me.PB5.Size = New System.Drawing.Size(50, 50)
         Me.PB5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PB5.TabIndex = 31
         Me.PB5.TabStop = False
@@ -406,27 +396,27 @@ Partial Class ArrowChooser
         '
         'PB1
         '
-        Me.PB1.Location = New System.Drawing.Point(10, 64)
+        Me.PB1.Location = New System.Drawing.Point(1, 67)
         Me.PB1.Name = "PB1"
-        Me.PB1.Size = New System.Drawing.Size(35, 35)
+        Me.PB1.Size = New System.Drawing.Size(50, 50)
         Me.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PB1.TabIndex = 27
         Me.PB1.TabStop = False
         '
         'PB3
         '
-        Me.PB3.Location = New System.Drawing.Point(127, 64)
+        Me.PB3.Location = New System.Drawing.Point(118, 67)
         Me.PB3.Name = "PB3"
-        Me.PB3.Size = New System.Drawing.Size(35, 35)
+        Me.PB3.Size = New System.Drawing.Size(50, 50)
         Me.PB3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PB3.TabIndex = 25
         Me.PB3.TabStop = False
         '
         'PB2
         '
-        Me.PB2.Location = New System.Drawing.Point(68, 64)
+        Me.PB2.Location = New System.Drawing.Point(59, 67)
         Me.PB2.Name = "PB2"
-        Me.PB2.Size = New System.Drawing.Size(35, 35)
+        Me.PB2.Size = New System.Drawing.Size(50, 50)
         Me.PB2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PB2.TabIndex = 24
         Me.PB2.TabStop = False
@@ -478,7 +468,6 @@ Partial Class ArrowChooser
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.GBFills)
         Me.Controls.Add(Me.CBFlip)
-        Me.Controls.Add(Me.CBFill)
         Me.Controls.Add(Me.GBRotations)
         Me.Name = "ArrowChooser"
         Me.Size = New System.Drawing.Size(175, 558)
@@ -497,7 +486,6 @@ Partial Class ArrowChooser
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CBFill As System.Windows.Forms.ComboBox
     Friend WithEvents GBRotations As System.Windows.Forms.GroupBox
     Friend WithEvents HP5 As RadioButtonFull
     Friend WithEvents HP1 As RadioButtonFull
