@@ -683,7 +683,7 @@ Partial Public Class Editor
             MessageBox.Show(msg)
         End Sub
     End Class
- 
+  
 End Class
 
 Public Class DeglossChoosers

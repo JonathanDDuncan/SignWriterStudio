@@ -120,9 +120,6 @@ Partial Public Class Editor
         TCSymbols.SelectTab(TPChooser)
     End Sub
     Private Sub symbolIn_SymbolChanged(ByVal sender As Object, ByVal e As EventArgs) Handles symbolIn.SymbolChanged
-
-        'symbolOut.Code = (MakeNewSymbol(symbolIn.Code, symbolOut.Code, HandChooser.NewFill, HandChooser.NewRotation(Me.symbolIn.SymbolDetails.Category)))
-
         If _updateChooser Then
             symbolOut.Code = symbolIn.Code
             DisplayChooseControls(symbolOut.Code)
@@ -130,38 +127,23 @@ Partial Public Class Editor
     End Sub
 
     Private Sub TVAllGroups_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles TVAllGroups.MouseDown
+       
+  
+    End Sub
+
+
+    Private Sub TVAllGroups_Click(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles TVAllGroups.Click
         TVAllGroups.SelectedNode = TVAllGroups.GetNodeAt(e.X, e.Y)
         Dim CurrentTreeNode As TreeNode = TVAllGroups.SelectedNode
 
         If CurrentTreeNode IsNot Nothing Then
+            CurrentTreeNode.Expand()
             TVAllGroups.DoDragDrop(TVAllGroups.Name, DragDropEffects.Copy)
         End If
-        'Let AfterSelect event Change the symbol
-        'If TVAllGroups.SelectedNode IsNot Nothing Then
-        '    ChangeSymbolIn(SWSymbol.CodefromId(TVAllGroups.SelectedNode.Name))
-        '    'ChangeSymbolIn(SWSymbol.CodefromId(Name))
-        '    'Area = AreaEnm.Choose
-        '    'symbolIn.Hand = SWSign.GuessIfRightorLeft(symbolIn.SymbolDetails.Fill)
-        '    'HandChooser.Reset(symbolIn.Code)
-
-        'End If
     End Sub
-
-    Private Sub HandleCreateNewCode(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If Not isLoading Then
-            symbolOut.Code = MakeNewSymbol(symbolIn.Code, symbolOut.Code, HandChooser.NewFill, HandChooser.NewRotation(Me.symbolIn.SymbolDetails.Category))
-            If CurrentFrame IsNot Nothing AndAlso CurrentFrame.SelectedSymbolCount = 1 Then
-                'If Not UpdateSignSymbolSelected Then
-                '    ChangeChangeSymbolIn(symbolOut)
-                DisplaySign()
-                'End If
-            End If
-        End If
-    End Sub
-    Private Sub TVAllGroups_AfterSelect(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TreeViewEventArgs) Handles TVAllGroups.AfterSelect
-        If e.Action = TreeViewAction.ByMouse OrElse e.Action = TreeViewAction.Unknown Then
-
-            If TVAllGroups.SelectedNode IsNot Nothing Then
+    
+    Private Sub TVAllGroups_DoubleClick(sender As Object, e As EventArgs) Handles TVAllGroups.DoubleClick
+       If TVAllGroups.SelectedNode IsNot Nothing Then
 
                 Dim nodeName As String = TVAllGroups.SelectedNode.Name
                 If CheckId(nodeName) And _updateChooser Then
@@ -169,7 +151,7 @@ Partial Public Class Editor
                     'Area = AreaEnm.Choose
                 End If
             End If
-        End If
-    End Sub
+        End Sub
+     
 #End Region
 End Class
