@@ -251,7 +251,7 @@ Public Class ArrowChooser
     Private Function GetFillId(ByVal id As String, ByVal fill As Integer) As String
         Dim prefix = id.Substring(0, 12)
         Dim middle = "-0" & fill
-        Dim suffix = id.Substring(15, 3)
+        Dim suffix = "-01"
         Return prefix & middle & suffix
     End Function
 
