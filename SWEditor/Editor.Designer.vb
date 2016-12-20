@@ -129,6 +129,8 @@ Imports SignWriterStudio
         Me.TSMICopy = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIDeleteSign = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteCtrlVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnAccept = New System.Windows.Forms.Button()
         Me.TPSequence = New System.Windows.Forms.GroupBox()
         Me.PanelSpelling = New System.Windows.Forms.Panel()
         Me.TVSequence = New System.Windows.Forms.TreeView()
@@ -141,8 +143,6 @@ Imports SignWriterStudio
         Me.BtnAddSign = New System.Windows.Forms.Button()
         Me.BtnDown = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnAccept = New System.Windows.Forms.Button()
         Me.lblBaseGroupName = New System.Windows.Forms.Label()
         Me.lblMultipleFinger = New System.Windows.Forms.Label()
         Me.lblActionFinger = New System.Windows.Forms.Label()
@@ -217,8 +217,6 @@ Imports SignWriterStudio
         'SCSWEditor.Panel2
         '
         Me.SCSWEditor.Panel2.Controls.Add(Me.SCRightSide)
-        Me.SCSWEditor.Panel2.Controls.Add(Me.btnCancel)
-        Me.SCSWEditor.Panel2.Controls.Add(Me.btnAccept)
         Me.SCSWEditor.Size = New System.Drawing.Size(1102, 633)
         Me.SCSWEditor.SplitterDistance = 273
         Me.SCSWEditor.TabIndex = 0
@@ -766,6 +764,8 @@ Imports SignWriterStudio
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GBSign.Controls.Add(Me.QuickSignEditorBtn)
+        Me.GBSign.Controls.Add(Me.btnCancel)
+        Me.GBSign.Controls.Add(Me.btnAccept)
         Me.GBSign.Controls.Add(Me.grid)
         Me.GBSign.Location = New System.Drawing.Point(0, 0)
         Me.GBSign.Name = "GBSign"
@@ -777,7 +777,7 @@ Imports SignWriterStudio
         '
         'QuickSignEditorBtn
         '
-        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(45, 20)
+        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(189, 19)
         Me.QuickSignEditorBtn.Name = "QuickSignEditorBtn"
         Me.QuickSignEditorBtn.Size = New System.Drawing.Size(94, 22)
         Me.QuickSignEditorBtn.TabIndex = 63
@@ -789,7 +789,7 @@ Imports SignWriterStudio
         '
         Me.grid.Appearance = System.Windows.Forms.Appearance.Button
         Me.grid.AutoSize = True
-        Me.grid.Location = New System.Drawing.Point(3, 18)
+        Me.grid.Location = New System.Drawing.Point(147, 19)
         Me.grid.Name = "grid"
         Me.grid.Size = New System.Drawing.Size(36, 23)
         Me.grid.TabIndex = 66
@@ -1185,6 +1185,26 @@ Imports SignWriterStudio
         Me.PasteCtrlVToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.PasteCtrlVToolStripMenuItem.Text = "Paste into Sign"
         '
+        'btnCancel
+        '
+        Me.btnCancel.Location = New System.Drawing.Point(67, 19)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(52, 23)
+        Me.btnCancel.TabIndex = 58
+        Me.btnCancel.Text = "Cancel"
+        Me.SymbolToolTip.SetToolTip(Me.btnCancel, "Cancel [Alt-F4]")
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'btnAccept
+        '
+        Me.btnAccept.Location = New System.Drawing.Point(9, 19)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(52, 23)
+        Me.btnAccept.TabIndex = 57
+        Me.btnAccept.Text = "Accept"
+        Me.SymbolToolTip.SetToolTip(Me.btnAccept, "Accept Sign [Ctrl-Enter]")
+        Me.btnAccept.UseVisualStyleBackColor = True
+        '
         'TPSequence
         '
         Me.TPSequence.Controls.Add(Me.PanelSpelling)
@@ -1330,26 +1350,6 @@ Imports SignWriterStudio
         Me.btnDelete.Text = "Delete Selected DeleteSelectedSequence(TVSequence.SelectedNode)"
         Me.SymbolToolTip.SetToolTip(Me.btnDelete, "Delete [Del]")
         Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'btnCancel
-        '
-        Me.btnCancel.Location = New System.Drawing.Point(564, 549)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancel.TabIndex = 58
-        Me.btnCancel.Text = "Cancel"
-        Me.SymbolToolTip.SetToolTip(Me.btnCancel, "Cancel [Alt-F4]")
-        Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'btnAccept
-        '
-        Me.btnAccept.Location = New System.Drawing.Point(406, 549)
-        Me.btnAccept.Name = "btnAccept"
-        Me.btnAccept.Size = New System.Drawing.Size(75, 23)
-        Me.btnAccept.TabIndex = 57
-        Me.btnAccept.Text = "Accept"
-        Me.SymbolToolTip.SetToolTip(Me.btnAccept, "Accept Sign [Ctrl-Enter]")
-        Me.btnAccept.UseVisualStyleBackColor = True
         '
         'lblBaseGroupName
         '
