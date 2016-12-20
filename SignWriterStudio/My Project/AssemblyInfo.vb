@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("SignWriting program for sign languages")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("SignWriter Studio™")> 
-<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2013 Jonathan Duncan All Rights Reserved")> 
+<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2016 Jonathan Duncan All Rights Reserved")> 
 <Assembly: AssemblyTrademark("SignWriter Studio™")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.2.5.8")> 
-<Assembly: AssemblyFileVersion("1.2.5.8")> 
+<Assembly: AssemblyVersion("1.2.5.9")> 
+<Assembly: AssemblyFileVersion("1.2.5.9")> 
