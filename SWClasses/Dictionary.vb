@@ -539,7 +539,9 @@ Public NotInheritable Class SWDict
                 sign = New SwSign
                 sign.BkColor = Color.FromArgb(dtDictionary(0).bkColor)
                 _taDictionaryGloss.AssignConnection(conn, trans)
-                Dim dtDictionaryGloss As Database.Dictionary.DictionaryDataSet.DictionaryGlossDataTable = _taDictionaryGloss.GetDataByIDDictionayandLanguage(idDictionary, My.Settings.FirstGlossLanguage)
+
+                'TODO there is a bug as regards the gloss language was FirstGlossLanguage but was bringing up empty gloss with number 54 set to SecondGlossLanguge which is set to 157
+                Dim dtDictionaryGloss As Database.Dictionary.DictionaryDataSet.DictionaryGlossDataTable = _taDictionaryGloss.GetDataByIDDictionayandLanguage(idDictionary, My.Settings.SecondGlossLanguage)
 
                 If dtDictionaryGloss.Count > 0 Then
                     sign.Gloss = dtDictionaryGloss(0).gloss

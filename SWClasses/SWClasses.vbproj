@@ -200,6 +200,9 @@
       <DependentUpon>Progress.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SWLayoutControl.resx">
+      <DependentUpon>SWLayoutControl.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

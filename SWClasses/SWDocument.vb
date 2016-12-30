@@ -113,7 +113,7 @@ Imports Newtonsoft.Json
         SetLane(documentSign, lane)
 
         DocumentSigns.Add(documentSign)
-
+        documentSign.IncorporateSWSign(sign)
         Dim layoutControl1 As New SwLayoutControl
         layoutControl1.DocumentSign = documentSign
         MySWFlowLayoutPanel.Controls.Add(layoutControl1)
@@ -165,6 +165,7 @@ Imports Newtonsoft.Json
         MySWFlowLayoutPanel.Controls.Add(layoutControl1)
         MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
         MySWFlowLayoutPanel.Controls.SetChildIndex(layoutControl1, insertIndex)
+        layoutControl1.Refresh1()
         layoutControl1.Refresh()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
@@ -175,9 +176,11 @@ Imports Newtonsoft.Json
         For Each documentSign As SwDocumentSign In DocumentSigns
             Dim layoutControl1 As New SwLayoutControl
             layoutControl1.DocumentSign = documentSign
+
             MySWFlowLayoutPanel.Controls.Add(layoutControl1)
             'MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
             layoutControl1.ContextMenuStrip = MySWControlMenuStrip
+            layoutControl1.Refresh1()
             layoutControl1.Refresh()
         Next
         MySWFlowLayoutPanel.ResumeLayout()

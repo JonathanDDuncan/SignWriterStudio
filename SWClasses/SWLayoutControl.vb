@@ -4,13 +4,16 @@ Imports System.Windows.Forms
 Imports System.Drawing
 
 Public NotInheritable Class SwLayoutControl
-    Inherits PictureBox
+    Inherits UserControl
+    'Inherits PictureBox
     Implements ICloneable
 
     ' Attributes
     Public Property RightClickDownSender As SwLayoutControl
     Public Property LeftClickDownSender As SwLayoutControl
     Public SwFlowLayoutPanel1 As SwFlowLayoutPanel
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents TBGloss As System.Windows.Forms.TextBox
     Private _swDocumentSign As SwDocumentSign
     Public Property DocumentSign() As SwDocumentSign
         Get
@@ -51,6 +54,7 @@ Public NotInheritable Class SwLayoutControl
     Private _symbolToolTip As New Windows.Forms.ToolTip()
     Private _isToolTipSet As Boolean
     Private _selected1 As Boolean
+    Private _image1 As Image
 
     ' Associations
 
@@ -68,19 +72,35 @@ Public NotInheritable Class SwLayoutControl
         End Set
     End Property
 
+    Public ReadOnly Property Image() As Image
+        Get
+            Return PictureBox1.Image
+        End Get
+
+    End Property
+
     Public Overrides Sub Refresh()
 
         If DocumentSign.IsSign Then
             If DocumentSign IsNot Nothing AndAlso DocumentSign.Frames IsNot Nothing AndAlso DocumentSign.Frames.Count > 0 Then
-                Image = SWDrawing.DrawSWDrawing(DocumentSign, -1, DocumentSign.FramePadding, False)
+                PictureBox1.Image = SWDrawing.DrawSWDrawing(DocumentSign, -1, DocumentSign.FramePadding, False)
+            End If
+            If DocumentSign IsNot Nothing Then
+
+                If Not DocumentSign.Glosses = String.Empty Then
+                    TBGloss.Text = DocumentSign.Gloss & ", " & DocumentSign.Glosses
+                Else
+                    TBGloss.Text = DocumentSign.Gloss
+                End If
             End If
 
             DocumentSignRefresh()
         Else
             Padding = New Padding(0)
             If DocumentSign.DocumentImage IsNot Nothing Then
-                Image = DocumentSign.DocumentImage
-                Size = Image.Size
+                PictureBox1.Image = DocumentSign.DocumentImage
+                Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGloss.Height)
+
             End If
         End If
 
@@ -89,8 +109,8 @@ Public NotInheritable Class SwLayoutControl
     Private Sub DocumentSignRefresh()
         With DocumentSign
             Padding = New Padding(0)
-            If Image IsNot Nothing Then
-                Size = Image.Size
+            If PictureBox1.Image IsNot Nothing Then
+                Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGloss.Height)
             End If
         End With
     End Sub
@@ -162,6 +182,7 @@ Public NotInheritable Class SwLayoutControl
     End Sub
 
     Public Sub New()
+        InitializeComponent()
         Width = 1
         Height = 1
         _symbolToolTip.AutoPopDelay = 5000
@@ -213,4 +234,49 @@ Public NotInheritable Class SwLayoutControl
         End If
     End Sub
 
+    Private Sub InitializeComponent()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TBGloss = New System.Windows.Forms.TextBox()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(131, 143)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
+        'TBGloss
+        '
+        Me.TBGloss.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TBGloss.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TBGloss.Location = New System.Drawing.Point(0, 143)
+        Me.TBGloss.Multiline = True
+        Me.TBGloss.Name = "TBGloss"
+        Me.TBGloss.Size = New System.Drawing.Size(131, 20)
+        Me.TBGloss.TabIndex = 1
+        Me.TBGloss.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'SwLayoutControl
+        '
+        Me.Controls.Add(Me.TBGloss)
+        Me.Controls.Add(Me.PictureBox1)
+        Me.Name = "SwLayoutControl"
+        Me.Size = New System.Drawing.Size(131, 163)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+
+    Public Sub Refresh1()
+        PictureBox1.Refresh()
+        TBGloss.Text = DocumentSign.Gloss + DocumentSign.Glosses
+    End Sub
 End Class

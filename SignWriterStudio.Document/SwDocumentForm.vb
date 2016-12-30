@@ -587,6 +587,7 @@ Public NotInheritable Class SwDocumentForm
             sign.Frames.RemoveAt(0)
         Next
     End Sub
+    
 
     Private Sub SaveToDictionaryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
         Handles SaveToDictionaryToolStripMenuItem.Click
