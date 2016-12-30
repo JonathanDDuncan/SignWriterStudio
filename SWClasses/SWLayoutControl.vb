@@ -84,21 +84,15 @@ Public NotInheritable Class SwLayoutControl
         If DocumentSign.IsSign Then
             If DocumentSign IsNot Nothing AndAlso DocumentSign.Frames IsNot Nothing AndAlso DocumentSign.Frames.Count > 0 Then
                 PictureBox1.Image = SWDrawing.DrawSWDrawing(DocumentSign, -1, DocumentSign.FramePadding, False)
+                PictureBox1.Size = PictureBox1.Image.Size
             End If
-            If DocumentSign IsNot Nothing Then
-
-                If Not DocumentSign.Glosses = String.Empty Then
-                    TBGloss.Text = DocumentSign.Gloss & ", " & DocumentSign.Glosses
-                Else
-                    TBGloss.Text = DocumentSign.Gloss
-                End If
-            End If
-
+            
             DocumentSignRefresh()
         Else
             Padding = New Padding(0)
             If DocumentSign.DocumentImage IsNot Nothing Then
                 PictureBox1.Image = DocumentSign.DocumentImage
+                PictureBox1.Size = PictureBox1.Image.Size
                 Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGloss.Height)
 
             End If
@@ -106,13 +100,35 @@ Public NotInheritable Class SwLayoutControl
 
         MyBase.Refresh()
     End Sub
-    Private Sub DocumentSignRefresh()
+    Public Sub InitializeText()
+
+        If DocumentSign.IsSign Then
+        
+            If DocumentSign IsNot Nothing Then
+
+                If Not DocumentSign.Glosses.Trim = String.Empty Then
+                    TBGloss.Text = DocumentSign.Gloss & ", " & DocumentSign.Glosses
+                Else
+                    TBGloss.Text = DocumentSign.Gloss
+                End If
+            End If
+            ResizeTextBox()
+            DocumentSignRefresh()
+         
+        End If
+
+        MyBase.Refresh()
+    End Sub
+    Public Sub DocumentSignRefresh()
         With DocumentSign
+
             Padding = New Padding(0)
             If PictureBox1.Image IsNot Nothing Then
-                Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGloss.Height)
+                PictureBox1.Location = New Point(0, 0)
+                Size = New Size(MinWidth, PictureBox1.Image.Size.Height + TBGloss.Height)
             End If
         End With
+
     End Sub
 
 
@@ -242,9 +258,7 @@ Public NotInheritable Class SwLayoutControl
         '
         'PictureBox1
         '
-        Me.PictureBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(131, 143)
@@ -253,8 +267,8 @@ Public NotInheritable Class SwLayoutControl
         '
         'TBGloss
         '
-        Me.TBGloss.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TBGloss.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.TBGloss.BackColor = System.Drawing.SystemColors.Window
         Me.TBGloss.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TBGloss.Location = New System.Drawing.Point(0, 143)
         Me.TBGloss.Multiline = True
@@ -274,9 +288,25 @@ Public NotInheritable Class SwLayoutControl
         Me.PerformLayout()
 
     End Sub
+ 
 
-    Public Sub Refresh1()
-        PictureBox1.Refresh()
-        TBGloss.Text = DocumentSign.Gloss + DocumentSign.Glosses
+    Private Sub TBGloss_TextChanged(sender As Object, e As EventArgs) Handles TBGloss.TextChanged
+        ResizeTextBox()
+        DocumentSignRefresh()
     End Sub
+
+    Private Sub ResizeTextBox()
+        Dim TextSize = TBGloss.CreateGraphics().MeasureString(TBGloss.Text,
+                                                           TBGloss.Font,
+                                                           MinWidth(),
+                                                           New StringFormat(0))
+
+        TBGloss.Height = Convert.ToInt32(TextSize.Height)
+        TBGloss.Width = MinWidth()
+        TBGloss.Location = New Point(0, PictureBox1.Image.Height)
+    End Sub
+    Private Function MinWidth() As Integer
+        Return Math.Max(PictureBox1.Image.Size.Width, 50)
+    End Function
+
 End Class

@@ -11,6 +11,7 @@ Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.SWEditor
 Imports SPML
 Imports System.Text
+Imports System.Linq
 
 Public NotInheritable Class SwDocumentForm
     Private _documentValue As New SwDocument
@@ -587,7 +588,7 @@ Public NotInheritable Class SwDocumentForm
             sign.Frames.RemoveAt(0)
         Next
     End Sub
-    
+
 
     Private Sub SaveToDictionaryToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
         Handles SaveToDictionaryToolStripMenuItem.Click
@@ -1197,6 +1198,7 @@ Public NotInheritable Class SwDocumentForm
 
     Private Sub CopyAsImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyAsImageToolStripMenuItem.Click
         SwFlowLayoutPanel1.HorizontalScroll.Value = 0
+        SwFlowLayoutPanel1.Refresh()
         Dim controlCollection As Control.ControlCollection = SwFlowLayoutPanel1.Controls
 
         Dim image = CropImage(GetPanelImage(SwFlowLayoutPanel1.DisplayRectangle, controlCollection), GetDocumentBounds(controlCollection), 5)
@@ -1220,8 +1222,9 @@ Public NotInheritable Class SwDocumentForm
         Dim g As Graphics = Graphics.FromImage(bmp)
 
         g.Clear(Color.White)
+      
+        For Each control As Control In panelControls.Cast(Of Control).ToList().OrderByDescending(Function(b) panelControls.GetChildIndex(b))
 
-        For Each control As Control In panelControls
             DrawControl(control, bmp)
         Next
         DrawLines(bmp)
@@ -1230,9 +1233,6 @@ Public NotInheritable Class SwDocumentForm
 
     Private Sub DrawControl(control As Control, bitmap As Bitmap)
         control.DrawToBitmap(bitmap, control.Bounds)
-        For Each childControl As Control In control.Controls
-            DrawControl(childControl, bitmap)
-        Next
     End Sub
 
     Private Sub DrawLines(ByVal bitmap As Bitmap)

@@ -118,7 +118,9 @@ Imports Newtonsoft.Json
         layoutControl1.DocumentSign = documentSign
         MySWFlowLayoutPanel.Controls.Add(layoutControl1)
         MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
+
         layoutControl1.Refresh()
+        layoutControl1.InitializeText()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
 
@@ -165,7 +167,7 @@ Imports Newtonsoft.Json
         MySWFlowLayoutPanel.Controls.Add(layoutControl1)
         MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
         MySWFlowLayoutPanel.Controls.SetChildIndex(layoutControl1, insertIndex)
-        layoutControl1.Refresh1()
+        layoutControl1.DocumentSignRefresh()
         layoutControl1.Refresh()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
@@ -180,7 +182,7 @@ Imports Newtonsoft.Json
             MySWFlowLayoutPanel.Controls.Add(layoutControl1)
             'MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
             layoutControl1.ContextMenuStrip = MySWControlMenuStrip
-            layoutControl1.Refresh1()
+            layoutControl1.DocumentSignRefresh()
             layoutControl1.Refresh()
         Next
         MySWFlowLayoutPanel.ResumeLayout()
@@ -206,6 +208,7 @@ Imports Newtonsoft.Json
             Next
 
         End If
+
         Return documentSign
     End Function
 
