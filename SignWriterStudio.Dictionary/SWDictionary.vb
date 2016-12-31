@@ -2410,13 +2410,15 @@ Public Class SWDictForm
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-
+
+
     End Sub
     Private Sub AddSignsinNewDictNoImageDibujoGroup1()
         Dim path = GetConnectionString()
         Dim listIdDictionary = DbDictionary.GetAllIds(path)
 
-        Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)        Dim list = New List(Of String)()
+        Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)
+        Dim list = New List(Of String)()
         Dim newDict = New Guid("16D3558D-0767-4B2E-83D1-A5A02BD5052D")
         For Each entry As Object In entries
             If entry.IdTag = newDict Then
@@ -2430,7 +2432,9 @@ Public Class SWDictForm
 
             End If
         Next
-        Dim dibujoGroup1 = New Guid("2F716EBB-561C-480F-8996-0ED0C34A1832") 
+
+        Dim dibujoGroup1 = New Guid("2F716EBB-561C-480F-8996-0ED0C34A1832")
+
 
         Dim affectedRows = DbTagsDictionary.InsertTag(path, list, dibujoGroup1.ToString())
     End Sub
@@ -2438,14 +2442,16 @@ Public Class SWDictForm
         Dim path = GetConnectionString()
         Dim listIdDictionary = DbDictionary.GetAllIds(path)
 
-        Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)        Dim list = New List(Of String)()
+        Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)
+        Dim list = New List(Of String)()
         Dim previousDictionary = New Guid("D58D8114-7DC4-4D3D-9594-EE3756ED1854")
         For Each entry As Object In entries
             If entry.IdTag = previousDictionary Then
                 list.Add(entry.IDDictionary)
             End If
         Next
-        Dim newDictionary = New Guid("16D3558D-0767-4B2E-83D1-A5A02BD5052D")
+
+        Dim newDictionary = New Guid("16D3558D-0767-4B2E-83D1-A5A02BD5052D")
 
         Dim affectedRows = DbTagsDictionary.InsertTag(path, list, newDictionary.ToString())
     End Sub
