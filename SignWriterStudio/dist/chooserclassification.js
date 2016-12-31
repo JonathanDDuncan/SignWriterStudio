@@ -445,7 +445,7 @@ var chooserclassification =
       "symbolpng" : "",
       "groupchooser" : "handgroupchooser",
       "common" : true,
-      "feature" : "hasbent",
+      "feature" : "hascurve",
       "rowname" : "fist",
       "colname" : "middle",
       "rank" : 25,
@@ -1329,7 +1329,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "base",
       "rowname" : "angle",
-      "colname" : "baby",
+      "colname" : "thumb",
       "rank" : 74,
       "groupchoosername" : ""
     },
@@ -1365,7 +1365,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "base",
       "rowname" : "angle",
-      "colname" : "baby",
+      "colname" : "thumb",
       "rank" : 76,
       "groupchoosername" : ""
     },
@@ -2463,7 +2463,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "allstraight",
       "rowname" : "angle",
-      "colname" : "ring",
+      "colname" : "baby",
       "rank" : 137,
       "groupchoosername" : ""
     },
@@ -2481,7 +2481,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "hasangle",
       "rowname" : "angle",
-      "colname" : "ring",
+      "colname" : "baby",
       "rank" : 138,
       "groupchoosername" : ""
     },
@@ -3021,7 +3021,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "hasangle",
       "rowname" : "angle",
-      "colname" : "ring",
+      "colname" : "baby",
       "rank" : 168,
       "groupchoosername" : ""
     },
@@ -3093,9 +3093,9 @@ var chooserclassification =
       "common" : false,
       "feature" : "allstraight",
       "rowname" : "fist",
-      "colname" : "ring",
+      "colname" : "baby",
       "rank" : 172,
-      "groupchoosername" : "fistringnotcommon"
+      "groupchoosername" : "fistbabynotcommon"
     },
     {
       "base" : 428,
@@ -3111,9 +3111,9 @@ var chooserclassification =
       "common" : false,
       "feature" : "hasbent",
       "rowname" : "fist",
-      "colname" : "ring",
+      "colname" : "baby",
       "rank" : 173,
-      "groupchoosername" : "fistringnotcommon"
+      "groupchoosername" : "fistbabynotcommon"
     },
     {
       "base" : 429,
@@ -3129,9 +3129,9 @@ var chooserclassification =
       "common" : false,
       "feature" : "hasbent",
       "rowname" : "fist",
-      "colname" : "ring",
+      "colname" : "baby",
       "rank" : 174,
-      "groupchoosername" : "fistringnotcommon"
+      "groupchoosername" : "fistbabynotcommon"
     },
     {
       "base" : 430,
@@ -3543,9 +3543,9 @@ var chooserclassification =
       "common" : false,
       "feature" : "allstraight",
       "rowname" : "fist",
-      "colname" : "middle",
+      "colname" : "baby",
       "rank" : 197,
-      "groupchoosername" : "fistmiddlenotcommon"
+      "groupchoosername" : "fistbabynotcommon"
     },
     {
       "base" : 453,
@@ -6099,7 +6099,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "twist",
-      "colname" : "wallwall",
+      "colname" : "wallspiral",
       "rank" : 339,
       "groupchoosername" : ""
     },
@@ -6117,7 +6117,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "twisttwist",
-      "colname" : "wallwall",
+      "colname" : "wallspiral",
       "rank" : 340,
       "groupchoosername" : ""
     },
@@ -6135,7 +6135,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "twisttwist",
-      "colname" : "wallwall",
+      "colname" : "wallspiral",
       "rank" : 341,
       "groupchoosername" : ""
     },
@@ -8133,7 +8133,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "rotationsingle",
-      "colname" : "floorfloor",
+      "colname" : "floorfloorhit",
       "rank" : 452,
       "groupchoosername" : ""
     },
@@ -8151,7 +8151,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "rotationdouble",
-      "colname" : "floorfloor",
+      "colname" : "floorfloorhit",
       "rank" : 453,
       "groupchoosername" : ""
     },
@@ -8169,7 +8169,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "rotationalternating",
-      "colname" : "floorfloor",
+      "colname" : "floorfloorhit",
       "rank" : 454,
       "groupchoosername" : ""
     },
@@ -8403,7 +8403,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "rotationsingle",
-      "colname" : "floorfloor",
+      "colname" : "floorfloorhit",
       "rank" : 467,
       "groupchoosername" : ""
     },
@@ -8421,7 +8421,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "rotationdouble",
-      "colname" : "floorfloor",
+      "colname" : "floorfloorhit",
       "rank" : 468,
       "groupchoosername" : ""
     },
@@ -8439,7 +8439,7 @@ var chooserclassification =
       "common" : false,
       "feature" : "none",
       "rowname" : "rotationalternating",
-      "colname" : "floorfloor",
+      "colname" : "floorfloorhit",
       "rank" : 469,
       "groupchoosername" : ""
     },
@@ -11790,7 +11790,7 @@ var chooserclassification =
     {
       "choosertype" : "colname",
       "name" : "wallwall",
-      "value" : 1,
+      "value" : 2,
       "symbolgroup" : ""
     },
     {
@@ -11819,6 +11819,12 @@ var chooserclassification =
     },
     {
       "choosertype" : "colname",
+      "name" : "wallspiral",
+      "value" : 1,
+      "symbolgroup" : ""
+    },
+    {
+      "choosertype" : "colname",
       "name" : "index",
       "value" : 2,
       "symbolgroup" : ""
@@ -11832,7 +11838,7 @@ var chooserclassification =
     {
       "choosertype" : "colname",
       "name" : "wallfloor",
-      "value" : 2,
+      "value" : 3,
       "symbolgroup" : ""
     },
     {
@@ -11874,7 +11880,13 @@ var chooserclassification =
     {
       "choosertype" : "colname",
       "name" : "floorfloor",
-      "value" : 3,
+      "value" : 4,
+      "symbolgroup" : ""
+    },
+    {
+      "choosertype" : "colname",
+      "name" : "floorfloorhit",
+      "value" : 5,
       "symbolgroup" : ""
     },
     {
@@ -11922,7 +11934,7 @@ var chooserclassification =
     {
       "choosertype" : "colname",
       "name" : "floorwall",
-      "value" : 4,
+      "value" : 6,
       "symbolgroup" : ""
     },
     {
@@ -11946,13 +11958,13 @@ var chooserclassification =
     {
       "choosertype" : "colname",
       "name" : "hitwall",
-      "value" : 5,
+      "value" : 7,
       "symbolgroup" : ""
     },
     {
       "choosertype" : "colname",
       "name" : "hitchest",
-      "value" : 6,
+      "value" : 8,
       "symbolgroup" : ""
     },
     {
