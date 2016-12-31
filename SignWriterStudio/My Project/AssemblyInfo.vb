@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("SignWriting program for sign languages")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("SignWriter Studio™")> 
-<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2016 Jonathan Duncan All Rights Reserved")> 
+<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2017 Jonathan Duncan All Rights Reserved")> 
 <Assembly: AssemblyTrademark("SignWriter Studio™")> 
 
 <Assembly: ComVisible(False)>
