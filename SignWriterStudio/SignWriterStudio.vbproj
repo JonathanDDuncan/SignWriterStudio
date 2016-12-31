@@ -259,6 +259,12 @@
     <Content Include="dist\images\hands910.png.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="dist\img\floorplane.png" />
+    <Content Include="dist\img\floorplanesmall.png" />
+    <Content Include="dist\img\horizontalhand.png" />
+    <Content Include="dist\img\verticalhand.png" />
+    <Content Include="dist\img\wallplane.png" />
+    <Content Include="dist\img\wallplanesmall.png" />
     <Content Include="dist\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
