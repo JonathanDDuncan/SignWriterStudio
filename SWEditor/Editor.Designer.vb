@@ -71,6 +71,8 @@ Imports SignWriterStudio
         Me.SPSignView = New System.Windows.Forms.SplitContainer()
         Me.GBSign = New System.Windows.Forms.GroupBox()
         Me.QuickSignEditorBtn = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnAccept = New System.Windows.Forms.Button()
         Me.grid = New System.Windows.Forms.CheckBox()
         Me.PanelSign = New System.Windows.Forms.Panel()
         Me.PBSign = New System.Windows.Forms.PictureBox()
@@ -129,8 +131,6 @@ Imports SignWriterStudio
         Me.TSMICopy = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIDeleteSign = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteCtrlVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnAccept = New System.Windows.Forms.Button()
         Me.TPSequence = New System.Windows.Forms.GroupBox()
         Me.PanelSpelling = New System.Windows.Forms.Panel()
         Me.TVSequence = New System.Windows.Forms.TreeView()
@@ -218,7 +218,7 @@ Imports SignWriterStudio
         '
         Me.SCSWEditor.Panel2.Controls.Add(Me.SCRightSide)
         Me.SCSWEditor.Size = New System.Drawing.Size(1102, 633)
-        Me.SCSWEditor.SplitterDistance = 273
+        Me.SCSWEditor.SplitterDistance = 352
         Me.SCSWEditor.TabIndex = 0
         '
         'TCSymbols
@@ -231,7 +231,7 @@ Imports SignWriterStudio
         Me.TCSymbols.Location = New System.Drawing.Point(0, 0)
         Me.TCSymbols.Name = "TCSymbols"
         Me.TCSymbols.SelectedIndex = 0
-        Me.TCSymbols.Size = New System.Drawing.Size(273, 633)
+        Me.TCSymbols.Size = New System.Drawing.Size(352, 633)
         Me.TCSymbols.TabIndex = 0
         '
         'TPFavorites
@@ -244,7 +244,7 @@ Imports SignWriterStudio
         Me.TPFavorites.Location = New System.Drawing.Point(4, 22)
         Me.TPFavorites.Name = "TPFavorites"
         Me.TPFavorites.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPFavorites.Size = New System.Drawing.Size(265, 607)
+        Me.TPFavorites.Size = New System.Drawing.Size(344, 607)
         Me.TPFavorites.TabIndex = 1
         Me.TPFavorites.Text = "Favorites"
         Me.SymbolToolTip.SetToolTip(Me.TPFavorites, "Favorites [F5]")
@@ -273,7 +273,7 @@ Imports SignWriterStudio
         Me.TVFavoriteSymbols.Name = "TVFavoriteSymbols"
         Me.TVFavoriteSymbols.ShowLines = False
         Me.TVFavoriteSymbols.ShowNodeToolTips = True
-        Me.TVFavoriteSymbols.Size = New System.Drawing.Size(259, 545)
+        Me.TVFavoriteSymbols.Size = New System.Drawing.Size(338, 545)
         Me.TVFavoriteSymbols.TabIndex = 2
         '
         'BtnRemoveSymbol
@@ -733,8 +733,8 @@ Imports SignWriterStudio
         Me.SCRightSide.Panel2.AutoScroll = True
         Me.SCRightSide.Panel2.AutoScrollMinSize = New System.Drawing.Size(20, 0)
         Me.SCRightSide.Panel2.Controls.Add(Me.TPSequence)
-        Me.SCRightSide.Size = New System.Drawing.Size(825, 633)
-        Me.SCRightSide.SplitterDistance = 485
+        Me.SCRightSide.Size = New System.Drawing.Size(746, 633)
+        Me.SCRightSide.SplitterDistance = 498
         Me.SCRightSide.TabIndex = 68
         '
         'SPSignView
@@ -754,7 +754,7 @@ Imports SignWriterStudio
         '
         Me.SPSignView.Panel2.AutoScroll = True
         Me.SPSignView.Panel2.Controls.Add(Me.PanelSign)
-        Me.SPSignView.Size = New System.Drawing.Size(485, 633)
+        Me.SPSignView.Size = New System.Drawing.Size(498, 633)
         Me.SPSignView.SplitterDistance = 55
         Me.SPSignView.TabIndex = 67
         '
@@ -769,7 +769,7 @@ Imports SignWriterStudio
         Me.GBSign.Controls.Add(Me.grid)
         Me.GBSign.Location = New System.Drawing.Point(0, 0)
         Me.GBSign.Name = "GBSign"
-        Me.GBSign.Size = New System.Drawing.Size(485, 55)
+        Me.GBSign.Size = New System.Drawing.Size(498, 55)
         Me.GBSign.TabIndex = 56
         Me.GBSign.TabStop = False
         Me.GBSign.Text = "Sign"
@@ -784,6 +784,26 @@ Imports SignWriterStudio
         Me.QuickSignEditorBtn.Text = "QuickSignEditor"
         Me.SymbolToolTip.SetToolTip(Me.QuickSignEditorBtn, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
         Me.QuickSignEditorBtn.UseVisualStyleBackColor = True
+        '
+        'btnCancel
+        '
+        Me.btnCancel.Location = New System.Drawing.Point(67, 19)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(52, 23)
+        Me.btnCancel.TabIndex = 58
+        Me.btnCancel.Text = "Cancel"
+        Me.SymbolToolTip.SetToolTip(Me.btnCancel, "Cancel [Alt-F4]")
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'btnAccept
+        '
+        Me.btnAccept.Location = New System.Drawing.Point(9, 19)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(52, 23)
+        Me.btnAccept.TabIndex = 57
+        Me.btnAccept.Text = "Accept"
+        Me.SymbolToolTip.SetToolTip(Me.btnAccept, "Accept Sign [Ctrl-Enter]")
+        Me.btnAccept.UseVisualStyleBackColor = True
         '
         'grid
         '
@@ -803,7 +823,7 @@ Imports SignWriterStudio
         Me.PanelSign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelSign.Location = New System.Drawing.Point(0, 0)
         Me.PanelSign.Name = "PanelSign"
-        Me.PanelSign.Size = New System.Drawing.Size(485, 574)
+        Me.PanelSign.Size = New System.Drawing.Size(498, 574)
         Me.PanelSign.TabIndex = 43
         '
         'PBSign
@@ -1185,26 +1205,6 @@ Imports SignWriterStudio
         Me.PasteCtrlVToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.PasteCtrlVToolStripMenuItem.Text = "Paste into Sign"
         '
-        'btnCancel
-        '
-        Me.btnCancel.Location = New System.Drawing.Point(67, 19)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(52, 23)
-        Me.btnCancel.TabIndex = 58
-        Me.btnCancel.Text = "Cancel"
-        Me.SymbolToolTip.SetToolTip(Me.btnCancel, "Cancel [Alt-F4]")
-        Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'btnAccept
-        '
-        Me.btnAccept.Location = New System.Drawing.Point(9, 19)
-        Me.btnAccept.Name = "btnAccept"
-        Me.btnAccept.Size = New System.Drawing.Size(52, 23)
-        Me.btnAccept.TabIndex = 57
-        Me.btnAccept.Text = "Accept"
-        Me.SymbolToolTip.SetToolTip(Me.btnAccept, "Accept Sign [Ctrl-Enter]")
-        Me.btnAccept.UseVisualStyleBackColor = True
-        '
         'TPSequence
         '
         Me.TPSequence.Controls.Add(Me.PanelSpelling)
@@ -1220,7 +1220,7 @@ Imports SignWriterStudio
         Me.TPSequence.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TPSequence.Location = New System.Drawing.Point(0, 0)
         Me.TPSequence.Name = "TPSequence"
-        Me.TPSequence.Size = New System.Drawing.Size(336, 633)
+        Me.TPSequence.Size = New System.Drawing.Size(244, 633)
         Me.TPSequence.TabIndex = 68
         Me.TPSequence.TabStop = False
         Me.TPSequence.Text = "Spelling"
@@ -1234,7 +1234,7 @@ Imports SignWriterStudio
         Me.PanelSpelling.Controls.Add(Me.TVSequence)
         Me.PanelSpelling.Location = New System.Drawing.Point(0, 100)
         Me.PanelSpelling.Name = "PanelSpelling"
-        Me.PanelSpelling.Size = New System.Drawing.Size(336, 533)
+        Me.PanelSpelling.Size = New System.Drawing.Size(244, 533)
         Me.PanelSpelling.TabIndex = 64
         '
         'TVSequence
@@ -1249,7 +1249,7 @@ Imports SignWriterStudio
         Me.TVSequence.Name = "TVSequence"
         Me.TVSequence.ShowLines = False
         Me.TVSequence.ShowNodeToolTips = True
-        Me.TVSequence.Size = New System.Drawing.Size(336, 533)
+        Me.TVSequence.Size = New System.Drawing.Size(244, 533)
         Me.TVSequence.TabIndex = 51
         '
         'btnHelp
