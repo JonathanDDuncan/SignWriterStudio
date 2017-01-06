@@ -177,6 +177,7 @@ Imports Newtonsoft.Json
         MySWFlowLayoutPanel.SuspendLayout()
         For Each documentSign As SwDocumentSign In DocumentSigns
             Dim layoutControl1 As New SwLayoutControl
+
             layoutControl1.DocumentSign = documentSign
 
             MySWFlowLayoutPanel.Controls.Add(layoutControl1)
@@ -184,6 +185,7 @@ Imports Newtonsoft.Json
             layoutControl1.ContextMenuStrip = MySWControlMenuStrip
             layoutControl1.DocumentSignRefresh()
             layoutControl1.Refresh()
+            layoutControl1.InitializeText()
         Next
         MySWFlowLayoutPanel.ResumeLayout()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
