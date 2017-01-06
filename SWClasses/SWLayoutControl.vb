@@ -106,7 +106,7 @@ Public NotInheritable Class SwLayoutControl
         
             If DocumentSign IsNot Nothing Then
 
-                If Not DocumentSign.Glosses.Trim = String.Empty Then
+                If DocumentSign.Glosses IsNot Nothing AndAlso Not DocumentSign.Glosses.Trim = String.Empty Then
                     TBGloss.Text = DocumentSign.Gloss & ", " & DocumentSign.Glosses
                 Else
                     TBGloss.Text = DocumentSign.Gloss
@@ -296,7 +296,8 @@ Public NotInheritable Class SwLayoutControl
     End Sub
 
     Private Sub ResizeTextBox()
-        Dim TextSize = TBGloss.CreateGraphics().MeasureString(TBGloss.Text,
+        Dim text1 = If(TBGloss.Text IsNot Nothing AndAlso TBGloss.Text = String.Empty, " ", TBGloss.Text)
+        Dim TextSize = TBGloss.CreateGraphics().MeasureString(text1,
                                                            TBGloss.Font,
                                                            MinWidth(),
                                                            New StringFormat(0))
