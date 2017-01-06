@@ -186,14 +186,14 @@ Public NotInheritable Class SwLayoutControl
         MyBase.OnMouseMove(e)
     End Sub
 
-    Private Sub SWLayoutControl_DragDrop(sender As Object, e As Windows.Forms.DragEventArgs) Handles Me.DragDrop
+    Private Sub SWLayoutControl_DragDrop(sender As Object, e As Windows.Forms.DragEventArgs) Handles Me.DragDrop, PictureBox1.DragDrop
         Dim obj = e.Data.GetData("SignWriterStudio.SWClasses.SwLayoutControl")
         Dim signtoMove As SwLayoutControl = CType(obj, SwLayoutControl)
         MoveControlBefore(signtoMove, Me)
     End Sub
 
 
-    Private Shared Sub SWLayoutControl_DragEnter(ByVal sender As Object, ByVal e As Windows.Forms.DragEventArgs) Handles Me.DragEnter
+    Private Shared Sub SWLayoutControl_DragEnter(ByVal sender As Object, ByVal e As Windows.Forms.DragEventArgs) Handles Me.DragEnter, PictureBox1.DragEnter
         e.Effect = DragDropEffects.Copy Or DragDropEffects.Move
     End Sub
 
@@ -211,19 +211,19 @@ Public NotInheritable Class SwLayoutControl
         AllowDrop = True
     End Sub
 
-    Private Sub SWLayoutControl_MouseDown(sender As Object, e As Windows.Forms.MouseEventArgs) Handles Me.MouseDown
+    Private Sub SWLayoutControl_MouseDown(sender As Object, e As Windows.Forms.MouseEventArgs) Handles Me.MouseDown, PictureBox1.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            LeftClickDownSender = CType(sender, SwLayoutControl)
+            LeftClickDownSender = Me
             RightClickDownSender = Nothing
             DoDragDrop(Me, DragDropEffects.Copy)
         End If
 
     End Sub
 
-    Private Sub PictBox_MouseEnter(ByVal sender As Object, ByVal e As EventArgs) Handles Me.MouseEnter
+    Private Sub PictBox_MouseEnter(ByVal sender As Object, ByVal e As EventArgs) Handles Me.MouseEnter, PictureBox1.MouseEnter
         _symbolToolTip.Active = True
     End Sub
-    Private Sub PictBox_MouseLeave(ByVal sender As Object, ByVal e As EventArgs) Handles Me.MouseLeave
+    Private Sub PictBox_MouseLeave(ByVal sender As Object, ByVal e As EventArgs) Handles Me.MouseLeave, PictureBox1.MouseLeave
         _symbolToolTip.Active = False
     End Sub
     Public Function Clone() As Object Implements ICloneable.Clone
