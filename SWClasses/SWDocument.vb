@@ -143,6 +143,7 @@ Imports Newtonsoft.Json
         MySWFlowLayoutPanel.Controls.Add(layoutControl1)
         MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
         layoutControl1.Refresh()
+        layoutControl1.InitializeText()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
     Public Sub AddSWSign(ByVal sign As SwSign, ByVal insertIndex As Integer)
@@ -156,6 +157,7 @@ Imports Newtonsoft.Json
         MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
         MySWFlowLayoutPanel.Controls.SetChildIndex(layoutControl1, insertIndex)
         layoutControl1.Refresh()
+        layoutControl1.InitializeText()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
     Public Sub AddSWSign(ByVal documentSign As SwDocumentSign, ByVal insertIndex As Integer)
@@ -169,6 +171,7 @@ Imports Newtonsoft.Json
         MySWFlowLayoutPanel.Controls.SetChildIndex(layoutControl1, insertIndex)
         layoutControl1.DocumentSignRefresh()
         layoutControl1.Refresh()
+        layoutControl1.InitializeText()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
     Public Sub Refresh()

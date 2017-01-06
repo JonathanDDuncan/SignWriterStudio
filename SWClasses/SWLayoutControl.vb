@@ -12,8 +12,8 @@ Public NotInheritable Class SwLayoutControl
     Public Property RightClickDownSender As SwLayoutControl
     Public Property LeftClickDownSender As SwLayoutControl
     Public SwFlowLayoutPanel1 As SwFlowLayoutPanel
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents TBGloss As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox1 As Windows.Forms.PictureBox
+    Friend WithEvents TBGloss As Windows.Forms.TextBox
     Private _swDocumentSign As SwDocumentSign
     Public Property DocumentSign() As SwDocumentSign
         Get
@@ -54,7 +54,7 @@ Public NotInheritable Class SwLayoutControl
     Private _symbolToolTip As New Windows.Forms.ToolTip()
     Private _isToolTipSet As Boolean
     Private _selected1 As Boolean
-    Private _image1 As Image
+
 
     ' Associations
 
