@@ -42,6 +42,7 @@ Partial Class GlossToSignRealTime
         Me.InsertGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CBUseSearchedGloss = New System.Windows.Forms.CheckBox()
         BtnCancel = New System.Windows.Forms.Button()
         CType(Me.WordsbyLanguagesTransBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +116,7 @@ Partial Class GlossToSignRealTime
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.CBUseSearchedGloss)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.TBGlossNotFound)
         Me.SplitContainer1.Panel1.Controls.Add(BtnCancel)
@@ -245,6 +247,16 @@ Partial Class GlossToSignRealTime
         Me.RemoveGlossToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.RemoveGlossToolStripMenuItem.Text = "Remove Gloss"
         '
+        'CBUseSearchedGloss
+        '
+        Me.CBUseSearchedGloss.AutoSize = True
+        Me.CBUseSearchedGloss.Location = New System.Drawing.Point(337, 33)
+        Me.CBUseSearchedGloss.Name = "CBUseSearchedGloss"
+        Me.CBUseSearchedGloss.Size = New System.Drawing.Size(134, 17)
+        Me.CBUseSearchedGloss.TabIndex = 8
+        Me.CBUseSearchedGloss.Text = "Use searched for gloss"
+        Me.CBUseSearchedGloss.UseVisualStyleBackColor = True
+        '
         'GlossToSignRealTime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -291,4 +303,5 @@ Partial Class GlossToSignRealTime
     Friend WithEvents gloss1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents glosses1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents IDDictionary As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CBUseSearchedGloss As System.Windows.Forms.CheckBox
 End Class

@@ -135,7 +135,7 @@ Public Class GlossToSignRealTime
 
 
         Dim IDs = New List(Of Tuple(Of Integer, String, Integer))
-
+        Dim gloss = New List(Of String)
         For Each control As Control In Me.FlowLayoutPanel1.Controls
             Dim glossToSignControl As GlossToSignRealTimeControl = CType(control, GlossToSignRealTimeControl)
             dt = glossToSignControl.FoundWordDt
@@ -150,12 +150,24 @@ Public Class GlossToSignRealTime
             Else
                 IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text, glossToSignControl.Lane))
             End If
+            gloss.Add(glossToSignControl.Gloss)
         Next
         Signs = Dictionary.GetGlosstoSign(IDs)
 
+        If CBUseSearchedGloss.Checked Then
+            UseSearchedGloss(Signs, gloss)
+        End If
 
         DialogResult = DialogResult.OK
         Close()
+    End Sub
+
+    Private Sub UseSearchedGloss(ByVal signs As List(Of Tuple(Of SwSign, Integer)), ByVal gloss As List(Of String))
+        Dim zippedlist = signs.Zip(gloss, Function(a, b) Tuple.Create(a, b))
+        For Each tuple As Tuple(Of Tuple(Of SwSign, Integer), String) In zippedlist
+            tuple.Item1.Item1.Gloss = tuple.Item2
+            tuple.Item1.Item1.Glosses = ""
+        Next
     End Sub
     Private Sub AddGlossControl(ByVal searchString As String)
         Dim glossToSignControl1 = GetGtoSControl(searchString)

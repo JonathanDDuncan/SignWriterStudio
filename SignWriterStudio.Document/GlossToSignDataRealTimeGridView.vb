@@ -1,6 +1,7 @@
 Public Class GlossToSignRealTimeControl
     Private _foundWordDt1 As DataTable
     Private _image1 As Image
+    Private _gloss1 As String
 
 
     Event SearchTextChanged(glossToSignRealTimeControl As GlossToSignRealTimeControl, searchText As String)
@@ -16,7 +17,7 @@ Public Class GlossToSignRealTimeControl
     Event DeleteEntry(glossToSignRealTimeControl As GlossToSignRealTimeControl)
 
     Event AddFromDict(glossToSignRealTimeControl As GlossToSignRealTimeControl, searchText As String)
-    
+
     Public Property FoundWordDt() As DataTable
         Get
             Return _foundWordDt1
@@ -27,6 +28,13 @@ Public Class GlossToSignRealTimeControl
     End Property
 
     Public Property ResultType() As Integer
+
+    Public ReadOnly Property Gloss() As String
+        Get
+            Return TextBox1.Text
+        End Get
+
+    End Property
 
     Public Property Value() As Integer
     Public Property Lane() As Integer = 2
