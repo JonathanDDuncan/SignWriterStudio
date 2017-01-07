@@ -86,24 +86,32 @@ Public NotInheritable Class SwLayoutControl
                 PictureBox1.Image = SWDrawing.DrawSWDrawing(DocumentSign, -1, DocumentSign.FramePadding, False)
                 PictureBox1.Size = PictureBox1.Image.Size
             End If
-            
-            DocumentSignRefresh()
+
+            SetPictureSizeLocation()
         Else
             Padding = New Padding(0)
             If DocumentSign.DocumentImage IsNot Nothing Then
                 PictureBox1.Image = DocumentSign.DocumentImage
                 PictureBox1.Size = PictureBox1.Image.Size
-                Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGloss.Height)
+
 
             End If
         End If
+         
+        ResizeTextBox()
+        SetControlSize()
 
         MyBase.Refresh()
     End Sub
+
+    Private Sub SetControlSize()
+        Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGloss.Height)
+    End Sub
+
     Public Sub InitializeText()
 
         If DocumentSign.IsSign Then
-        
+
             If DocumentSign IsNot Nothing Then
 
                 If DocumentSign.Glosses IsNot Nothing AndAlso Not DocumentSign.Glosses.Trim = String.Empty Then
@@ -113,13 +121,13 @@ Public NotInheritable Class SwLayoutControl
                 End If
             End If
             ResizeTextBox()
-            DocumentSignRefresh()
-         
+            SetPictureSizeLocation()
+
         End If
 
         MyBase.Refresh()
     End Sub
-    Public Sub DocumentSignRefresh()
+    Public Sub SetPictureSizeLocation()
         With DocumentSign
 
             Padding = New Padding(0)
@@ -131,6 +139,20 @@ Public NotInheritable Class SwLayoutControl
 
     End Sub
 
+    Private Sub ResizeTextBox()
+        Dim text1 = If(TBGloss.Text IsNot Nothing AndAlso TBGloss.Text = String.Empty, " ", TBGloss.Text)
+        Dim TextSize = TBGloss.CreateGraphics().MeasureString(text1,
+                                                           TBGloss.Font,
+                                                           MinWidth(),
+                                                           New StringFormat(0))
+
+        TBGloss.Height = Convert.ToInt32(TextSize.Height)
+        TBGloss.Width = MinWidth()
+        TBGloss.Location = New Point(0, PictureBox1.Image.Height)
+    End Sub
+    Private Function MinWidth() As Integer
+        Return Math.Max(PictureBox1.Image.Size.Width, 50)
+    End Function
 
     Protected Overrides Sub OnMousemove(ByVal e As Windows.Forms.MouseEventArgs)
         Dim newTooltipString As String = String.Empty
@@ -288,26 +310,12 @@ Public NotInheritable Class SwLayoutControl
         Me.PerformLayout()
 
     End Sub
- 
+
 
     Private Sub TBGloss_TextChanged(sender As Object, e As EventArgs) Handles TBGloss.TextChanged
         ResizeTextBox()
-        DocumentSignRefresh()
+        SetPictureSizeLocation()
     End Sub
 
-    Private Sub ResizeTextBox()
-        Dim text1 = If(TBGloss.Text IsNot Nothing AndAlso TBGloss.Text = String.Empty, " ", TBGloss.Text)
-        Dim TextSize = TBGloss.CreateGraphics().MeasureString(text1,
-                                                           TBGloss.Font,
-                                                           MinWidth(),
-                                                           New StringFormat(0))
-
-        TBGloss.Height = Convert.ToInt32(TextSize.Height)
-        TBGloss.Width = MinWidth()
-        TBGloss.Location = New Point(0, PictureBox1.Image.Height)
-    End Sub
-    Private Function MinWidth() As Integer
-        Return Math.Max(PictureBox1.Image.Size.Width, 50)
-    End Function
 
 End Class

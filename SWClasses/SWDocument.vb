@@ -169,7 +169,7 @@ Imports Newtonsoft.Json
         MySWFlowLayoutPanel.Controls.Add(layoutControl1)
         MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
         MySWFlowLayoutPanel.Controls.SetChildIndex(layoutControl1, insertIndex)
-        layoutControl1.DocumentSignRefresh()
+        layoutControl1.SetPictureSizeLocation()
         layoutControl1.Refresh()
         layoutControl1.InitializeText()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
@@ -186,7 +186,7 @@ Imports Newtonsoft.Json
             MySWFlowLayoutPanel.Controls.Add(layoutControl1)
             'MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
             layoutControl1.ContextMenuStrip = MySWControlMenuStrip
-            layoutControl1.DocumentSignRefresh()
+            layoutControl1.SetPictureSizeLocation()
             layoutControl1.Refresh()
             layoutControl1.InitializeText()
         Next
