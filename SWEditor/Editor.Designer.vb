@@ -256,6 +256,7 @@ Imports SignWriterStudio
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(103, 47)
         Me.btnAdd.TabIndex = 5
+        Me.btnAdd.TabStop = False
         Me.btnAdd.Text = "Add"
         Me.SymbolToolTip.SetToolTip(Me.btnAdd, "Add from Sign [Ins]")
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -282,6 +283,7 @@ Imports SignWriterStudio
         Me.BtnRemoveSymbol.Name = "BtnRemoveSymbol"
         Me.BtnRemoveSymbol.Size = New System.Drawing.Size(68, 23)
         Me.BtnRemoveSymbol.TabIndex = 3
+        Me.BtnRemoveSymbol.TabStop = False
         Me.BtnRemoveSymbol.Text = "Remove"
         Me.SymbolToolTip.SetToolTip(Me.BtnRemoveSymbol, "Remove Selected Favorite [Del]")
         Me.BtnRemoveSymbol.UseVisualStyleBackColor = True
@@ -292,6 +294,7 @@ Imports SignWriterStudio
         Me.BtnNewFavorite.Name = "BtnNewFavorite"
         Me.BtnNewFavorite.Size = New System.Drawing.Size(68, 23)
         Me.BtnNewFavorite.TabIndex = 4
+        Me.BtnNewFavorite.TabStop = False
         Me.BtnNewFavorite.Text = "New"
         Me.SymbolToolTip.SetToolTip(Me.BtnNewFavorite, "Add from Sign [Ins]")
         Me.BtnNewFavorite.UseVisualStyleBackColor = True
@@ -329,7 +332,7 @@ Imports SignWriterStudio
         Me.TPAllSymbols.Location = New System.Drawing.Point(4, 22)
         Me.TPAllSymbols.Name = "TPAllSymbols"
         Me.TPAllSymbols.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPAllSymbols.Size = New System.Drawing.Size(265, 607)
+        Me.TPAllSymbols.Size = New System.Drawing.Size(344, 607)
         Me.TPAllSymbols.TabIndex = 0
         Me.TPAllSymbols.Text = "All"
         Me.SymbolToolTip.SetToolTip(Me.TPAllSymbols, "All Symbols [F6]")
@@ -347,7 +350,7 @@ Imports SignWriterStudio
         Me.TVAllGroups.Location = New System.Drawing.Point(3, 3)
         Me.TVAllGroups.Name = "TVAllGroups"
         Me.TVAllGroups.ShowNodeToolTips = True
-        Me.TVAllGroups.Size = New System.Drawing.Size(259, 601)
+        Me.TVAllGroups.Size = New System.Drawing.Size(338, 601)
         Me.TVAllGroups.TabIndex = 1
         '
         'TPSearch
@@ -374,7 +377,7 @@ Imports SignWriterStudio
         Me.TPSearch.Location = New System.Drawing.Point(4, 22)
         Me.TPSearch.Name = "TPSearch"
         Me.TPSearch.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPSearch.Size = New System.Drawing.Size(265, 607)
+        Me.TPSearch.Size = New System.Drawing.Size(344, 607)
         Me.TPSearch.TabIndex = 2
         Me.TPSearch.Text = "Search"
         Me.SymbolToolTip.SetToolTip(Me.TPSearch, "Hand Search [F7]")
@@ -393,7 +396,7 @@ Imports SignWriterStudio
         Me.TVHand.Name = "TVHand"
         Me.TVHand.ShowLines = False
         Me.TVHand.ShowNodeToolTips = True
-        Me.TVHand.Size = New System.Drawing.Size(259, 454)
+        Me.TVHand.Size = New System.Drawing.Size(338, 454)
         Me.TVHand.TabIndex = 49
         '
         'LBThumbPosition
@@ -631,7 +634,7 @@ Imports SignWriterStudio
         Me.TPChooser.Location = New System.Drawing.Point(4, 22)
         Me.TPChooser.Name = "TPChooser"
         Me.TPChooser.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPChooser.Size = New System.Drawing.Size(265, 607)
+        Me.TPChooser.Size = New System.Drawing.Size(344, 607)
         Me.TPChooser.TabIndex = 3
         Me.TPChooser.Text = "Chooser"
         Me.TPChooser.UseVisualStyleBackColor = True
@@ -685,7 +688,7 @@ Imports SignWriterStudio
         Me.ArrowChooser.Location = New System.Drawing.Point(40, 65)
         Me.ArrowChooser.Margin = New System.Windows.Forms.Padding(4)
         Me.ArrowChooser.Name = "ArrowChooser"
-        Me.ArrowChooser.Size = New System.Drawing.Size(202, 546)
+        Me.ArrowChooser.Size = New System.Drawing.Size(281, 546)
         Me.ArrowChooser.TabIndex = 70
         Me.ArrowChooser.Visible = False
         '
@@ -699,7 +702,7 @@ Imports SignWriterStudio
         Me.HandChooser.Location = New System.Drawing.Point(42, 65)
         Me.HandChooser.Margin = New System.Windows.Forms.Padding(4)
         Me.HandChooser.Name = "HandChooser"
-        Me.HandChooser.Size = New System.Drawing.Size(200, 565)
+        Me.HandChooser.Size = New System.Drawing.Size(279, 565)
         Me.HandChooser.TabIndex = 69
         '
         'TVChooser
@@ -715,7 +718,7 @@ Imports SignWriterStudio
         Me.TVChooser.Name = "TVChooser"
         Me.TVChooser.ShowLines = False
         Me.TVChooser.ShowNodeToolTips = True
-        Me.TVChooser.Size = New System.Drawing.Size(266, 556)
+        Me.TVChooser.Size = New System.Drawing.Size(345, 556)
         Me.TVChooser.TabIndex = 67
         '
         'SCRightSide
@@ -781,6 +784,7 @@ Imports SignWriterStudio
         Me.QuickSignEditorBtn.Name = "QuickSignEditorBtn"
         Me.QuickSignEditorBtn.Size = New System.Drawing.Size(94, 22)
         Me.QuickSignEditorBtn.TabIndex = 63
+        Me.QuickSignEditorBtn.TabStop = False
         Me.QuickSignEditorBtn.Text = "QuickSignEditor"
         Me.SymbolToolTip.SetToolTip(Me.QuickSignEditorBtn, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
         Me.QuickSignEditorBtn.UseVisualStyleBackColor = True
@@ -791,6 +795,7 @@ Imports SignWriterStudio
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(52, 23)
         Me.btnCancel.TabIndex = 58
+        Me.btnCancel.TabStop = False
         Me.btnCancel.Text = "Cancel"
         Me.SymbolToolTip.SetToolTip(Me.btnCancel, "Cancel [Alt-F4]")
         Me.btnCancel.UseVisualStyleBackColor = True
@@ -801,6 +806,7 @@ Imports SignWriterStudio
         Me.btnAccept.Name = "btnAccept"
         Me.btnAccept.Size = New System.Drawing.Size(52, 23)
         Me.btnAccept.TabIndex = 57
+        Me.btnAccept.TabStop = False
         Me.btnAccept.Text = "Accept"
         Me.SymbolToolTip.SetToolTip(Me.btnAccept, "Accept Sign [Ctrl-Enter]")
         Me.btnAccept.UseVisualStyleBackColor = True
@@ -813,6 +819,7 @@ Imports SignWriterStudio
         Me.grid.Name = "grid"
         Me.grid.Size = New System.Drawing.Size(36, 23)
         Me.grid.TabIndex = 66
+        Me.grid.TabStop = False
         Me.grid.Text = "Grid"
         Me.grid.UseVisualStyleBackColor = True
         '
@@ -1269,6 +1276,7 @@ Imports SignWriterStudio
         Me.btnSugg2.Name = "btnSugg2"
         Me.btnSugg2.Size = New System.Drawing.Size(102, 21)
         Me.btnSugg2.TabIndex = 59
+        Me.btnSugg2.TabStop = False
         Me.btnSugg2.Text = "Suggestion 2"
         Me.SymbolToolTip.SetToolTip(Me.btnSugg2, "Add Selected Symbols from Sign [Ctrl-Ins]")
         Me.btnSugg2.UseVisualStyleBackColor = True
@@ -1281,6 +1289,7 @@ Imports SignWriterStudio
         Me.BtnDeleteAll.Name = "BtnDeleteAll"
         Me.BtnDeleteAll.Size = New System.Drawing.Size(101, 21)
         Me.BtnDeleteAll.TabIndex = 57
+        Me.BtnDeleteAll.TabStop = False
         Me.BtnDeleteAll.Text = "Delete All"
         Me.SymbolToolTip.SetToolTip(Me.BtnDeleteAll, "Delete All [Ctrl-Del]")
         Me.BtnDeleteAll.UseVisualStyleBackColor = True
@@ -1292,6 +1301,7 @@ Imports SignWriterStudio
         Me.btnSugg1.Name = "btnSugg1"
         Me.btnSugg1.Size = New System.Drawing.Size(102, 21)
         Me.btnSugg1.TabIndex = 58
+        Me.btnSugg1.TabStop = False
         Me.btnSugg1.Text = "Suggestion"
         Me.SymbolToolTip.SetToolTip(Me.btnSugg1, "Add Selected Symbols from Sign [Ctrl-Ins]")
         Me.btnSugg1.UseVisualStyleBackColor = True
@@ -1303,6 +1313,7 @@ Imports SignWriterStudio
         Me.BtnAddChooser.Name = "BtnAddChooser"
         Me.BtnAddChooser.Size = New System.Drawing.Size(102, 21)
         Me.BtnAddChooser.TabIndex = 52
+        Me.BtnAddChooser.TabStop = False
         Me.BtnAddChooser.Text = "Add from Chooser"
         Me.SymbolToolTip.SetToolTip(Me.BtnAddChooser, "Add from Chooser [Ins]")
         Me.BtnAddChooser.UseVisualStyleBackColor = True
@@ -1325,6 +1336,7 @@ Imports SignWriterStudio
         Me.BtnAddSign.Name = "BtnAddSign"
         Me.BtnAddSign.Size = New System.Drawing.Size(102, 21)
         Me.BtnAddSign.TabIndex = 54
+        Me.BtnAddSign.TabStop = False
         Me.BtnAddSign.Text = "Add from Sign"
         Me.SymbolToolTip.SetToolTip(Me.BtnAddSign, "Add Selected Symbols from Sign [Ctrl-Ins]")
         Me.BtnAddSign.UseVisualStyleBackColor = True
@@ -1347,6 +1359,7 @@ Imports SignWriterStudio
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(101, 21)
         Me.btnDelete.TabIndex = 56
+        Me.btnDelete.TabStop = False
         Me.btnDelete.Text = "Delete Selected DeleteSelectedSequence(TVSequence.SelectedNode)"
         Me.SymbolToolTip.SetToolTip(Me.btnDelete, "Delete [Del]")
         Me.btnDelete.UseVisualStyleBackColor = True
