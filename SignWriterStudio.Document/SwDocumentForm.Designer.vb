@@ -75,8 +75,9 @@ Partial Class SwDocumentForm
         Me.FromDictionarySignToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SwFlowLayoutPanel1 = New SignWriterStudio.SWClasses.SwFlowLayoutPanel()
         Me.SaveFileDialogNewDocument = New System.Windows.Forms.SaveFileDialog()
+        Me.SwFlowLayoutPanel1 = New SignWriterStudio.SWClasses.SwFlowLayoutPanel()
+        Me.ShowGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictBoxContextMenuStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -85,7 +86,7 @@ Partial Class SwDocumentForm
         '
         Me.PictBoxContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditSignInEditorToolStripMenuItem, Me.SaveToDictionaryToolStripMenuItem, Me.RemoveSignToolStripMenuItem, Me.AToolStripMenuItem, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem, Me.LaneToolStripMenuItem, Me.PropertiesToolStripMenuItem, Me.CopyToolStripMenuItem, Me.CutToolStripMenuItem, Me.PasteToolStripMenuItem, Me.BeginningOfColumnToolStripMenuItem, Me.SaveToAnotherDocumentToolStripMenuItem})
         Me.PictBoxContextMenuStrip.Name = "DocumentContextMenuStrip"
-        Me.PictBoxContextMenuStrip.Size = New System.Drawing.Size(235, 296)
+        Me.PictBoxContextMenuStrip.Size = New System.Drawing.Size(235, 274)
         '
         'EditSignInEditorToolStripMenuItem
         '
@@ -296,7 +297,7 @@ Partial Class SwDocumentForm
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem2, Me.LayoutToolStripMenuItem, Me.PasteFSWDocumentToolStripMenuItem, Me.PasteToSignPuddleToolStripMenuItem, Me.CopyAsFSWToolStripMenuItem, Me.CopyAsImageToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem2, Me.LayoutToolStripMenuItem, Me.PasteFSWDocumentToolStripMenuItem, Me.PasteToSignPuddleToolStripMenuItem, Me.CopyAsFSWToolStripMenuItem, Me.CopyAsImageToolStripMenuItem, Me.ShowGlossToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "Edit"
@@ -349,7 +350,7 @@ Partial Class SwDocumentForm
         '
         Me.SignsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromEditorToolStripMenuItem, Me.FromDictionaryF10ToolStripMenuItem, Me.GlossToSignRealTimeToolStripMenuItem})
         Me.SignsToolStripMenuItem1.Name = "SignsToolStripMenuItem1"
-        Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(116, 22)
+        Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.SignsToolStripMenuItem1.Text = "Signs"
         '
         'FromEditorToolStripMenuItem
@@ -377,7 +378,7 @@ Partial Class SwDocumentForm
         '
         Me.PicturesToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromFileToolStripMenuItem, Me.FromDictionaryPhotoToolStripMenuItem, Me.FromDictionarySignToolStripMenuItem1})
         Me.PicturesToolStripMenuItem2.Name = "PicturesToolStripMenuItem2"
-        Me.PicturesToolStripMenuItem2.Size = New System.Drawing.Size(116, 22)
+        Me.PicturesToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
         Me.PicturesToolStripMenuItem2.Text = "Pictures"
         '
         'FromFileToolStripMenuItem
@@ -414,6 +415,9 @@ Partial Class SwDocumentForm
         Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(118, 22)
         Me.HelpToolStripMenuItem1.Text = "Help"
         '
+        'SaveFileDialogNewDocument
+        '
+        '
         'SwFlowLayoutPanel1
         '
         Me.SwFlowLayoutPanel1.AllowDrop = True
@@ -431,8 +435,14 @@ Partial Class SwDocumentForm
         Me.SwFlowLayoutPanel1.TabIndex = 0
         Me.SwFlowLayoutPanel1.WrapContents = False
         '
-        'SaveFileDialogNewDocument
+        'ShowGlossToolStripMenuItem
         '
+        Me.ShowGlossToolStripMenuItem.Checked = True
+        Me.ShowGlossToolStripMenuItem.CheckOnClick = True
+        Me.ShowGlossToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ShowGlossToolStripMenuItem.Name = "ShowGlossToolStripMenuItem"
+        Me.ShowGlossToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ShowGlossToolStripMenuItem.Text = "Show gloss"
         '
         'SwDocumentForm
         '
@@ -506,4 +516,5 @@ Partial Class SwDocumentForm
     Friend WithEvents SaveToAnotherDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveFileDialogNewDocument As System.Windows.Forms.SaveFileDialog
     Friend WithEvents CutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ShowGlossToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

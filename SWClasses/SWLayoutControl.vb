@@ -54,6 +54,7 @@ Public NotInheritable Class SwLayoutControl
     Private _symbolToolTip As New Windows.Forms.ToolTip()
     Private _isToolTipSet As Boolean
     Private _selected1 As Boolean
+    Private _showGloss1 As Boolean = True
 
 
     ' Associations
@@ -79,6 +80,18 @@ Public NotInheritable Class SwLayoutControl
 
     End Property
 
+    Public Property ShowGloss() As Boolean
+        Get
+            Return _showGloss1
+        End Get
+        Set(value As Boolean)
+            _showGloss1 = value
+            ResizeTextBox()
+            Refresh()
+            SetPictureSizeLocation()
+        End Set
+    End Property
+
     Public Overrides Sub Refresh()
 
         If DocumentSign.IsSign Then
@@ -97,7 +110,7 @@ Public NotInheritable Class SwLayoutControl
 
             End If
         End If
-         
+
         ResizeTextBox()
         SetControlSize()
 
@@ -105,7 +118,11 @@ Public NotInheritable Class SwLayoutControl
     End Sub
 
     Private Sub SetControlSize()
-        Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGloss.Height)
+        Dim TBGlossHeight = 0
+        If ShowGloss Then
+            TBGlossHeight = TBGloss.Height
+        End If
+        Size = New Size(PictureBox1.Image.Size.Width, PictureBox1.Image.Size.Height + TBGlossHeight)
     End Sub
 
     Public Sub InitializeText()
@@ -133,21 +150,32 @@ Public NotInheritable Class SwLayoutControl
             Padding = New Padding(0)
             If PictureBox1.Image IsNot Nothing Then
                 PictureBox1.Location = New Point(0, 0)
-                Size = New Size(MinWidth, PictureBox1.Image.Size.Height + TBGloss.Height)
+                Dim TBGlossHeight = 0
+                If ShowGloss Then
+                    TBGlossHeight = TBGloss.Height
+                End If
+                Size = New Size(MinWidth, PictureBox1.Image.Size.Height + TBGlossHeight)
             End If
         End With
 
     End Sub
 
     Private Sub ResizeTextBox()
-        Dim text1 = If(TBGloss.Text IsNot Nothing AndAlso TBGloss.Text = String.Empty, " ", TBGloss.Text)
-        Dim TextSize = TBGloss.CreateGraphics().MeasureString(text1,
-                                                           TBGloss.Font,
-                                                           MinWidth(),
-                                                           New StringFormat(0))
+        If ShowGloss Then
 
-        TBGloss.Height = Convert.ToInt32(TextSize.Height)
-        TBGloss.Width = MinWidth()
+            Dim text1 = If(TBGloss.Text IsNot Nothing AndAlso TBGloss.Text = String.Empty, " ", TBGloss.Text)
+            Dim TextSize = TBGloss.CreateGraphics().MeasureString(text1,
+                                                               TBGloss.Font,
+                                                               MinWidth(),
+                                                               New StringFormat(0))
+
+            TBGloss.Height = Convert.ToInt32(TextSize.Height)
+            TBGloss.Width = MinWidth()
+        Else
+            TBGloss.Height = 0
+            TBGloss.Width = 0
+
+        End If
         TBGloss.Location = New Point(0, PictureBox1.Image.Height)
     End Sub
     Private Function MinWidth() As Integer

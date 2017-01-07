@@ -471,7 +471,7 @@ Public NotInheritable Class SwDocumentForm
         DocumentChanged = True
         Return dialogRes
     End Function
-    
+
     Private Sub SwFlowLayoutPanel1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) _
         Handles SwFlowLayoutPanel1.DragDrop
         'Moving a Sign
@@ -653,8 +653,8 @@ Public NotInheritable Class SwDocumentForm
         Clipboard.SetText(str)
     End Sub
 
- Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
-        Handles PasteToolStripMenuItem.Click
+    Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) _
+           Handles PasteToolStripMenuItem.Click
         PasteSign()
     End Sub
 
@@ -953,7 +953,7 @@ Public NotInheritable Class SwDocumentForm
         End If
         Return Nothing
     End Function
-    
+
     Private Sub SWLayoutControl_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) Handles Me.DragDrop
         'Moving a Sign
 
@@ -1357,6 +1357,16 @@ Public NotInheritable Class SwDocumentForm
 
 
     End Sub
+     
+    Private Sub UpdateShowGloss(ByVal checked As Boolean)
+        For Each ctrl As SwLayoutControl In SwFlowLayoutPanel1.Controls
+            ctrl.ShowGloss = checked
+        Next
+        Refresh()
+    End Sub
 
+    Private Sub ShowGlossToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ShowGlossToolStripMenuItem.CheckedChanged
+        UpdateShowGloss(ShowGlossToolStripMenuItem.Checked)
+    End Sub
 End Class
 
