@@ -13091,12 +13091,6 @@ var chooserclassification =
     },
     {
       "choosertype" : "punctuation",
-      "name" : "comma",
-      "value" : 1,
-      "symbolgroup" : ""
-    },
-    {
-      "choosertype" : "punctuation",
       "name" : "period",
       "value" : 2,
       "symbolgroup" : ""
@@ -13105,12 +13099,6 @@ var chooserclassification =
       "choosertype" : "punctuation",
       "name" : "semicolon",
       "value" : 3,
-      "symbolgroup" : ""
-    },
-    {
-      "choosertype" : "punctuation",
-      "name" : "parentheses",
-      "value" : 4,
       "symbolgroup" : ""
     },
     {

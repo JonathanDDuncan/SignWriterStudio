@@ -70,6 +70,8 @@ Partial Public Class Editor
     End Enum
 #End Region
 #Region "Editor"
+    Shared BrowserForm As BrowserForm
+
     ''' <summary>
     ''' Sub Clear all symbols from sign
     ''' </summary>
@@ -638,7 +640,7 @@ Partial Public Class Editor
             Dim conv As New SpmlConverter
 
             FSW = conv.GetFsw(Sign())
-            Dim browserForm = Program.GetBrowserForm()
+            BrowserForm = Program.GetBrowserForm()
 
             browser = browserForm.browser
 
@@ -675,9 +677,20 @@ Partial Public Class Editor
         End Sub
         Public Sub setFsw(fsw As String)
             myEditor.FSW = fsw
-
-
         End Sub
+        Public Sub hideOverlay(str As String)
+            HideQuickSignEditor()
+        End Sub
+        Delegate Sub HideQuickSignEditorCallback()
+        Private Sub HideQuickSignEditor()
+            If BrowserForm.InvokeRequired Then
+                Dim d As New HideQuickSignEditorCallback(AddressOf HideQuickSignEditor)
+                BrowserForm.Invoke(d, New Object() {})
+            Else
+                BrowserForm.Hide()
+            End If
+        End Sub
+
         Public Sub showMessage(msg As String)
             'Read Note
             MessageBox.Show(msg)
@@ -685,6 +698,7 @@ Partial Public Class Editor
     End Class
   
 End Class
+ 
 
 Public Class DeglossChoosers
     Public Function GetDeglossed(tv As TreeView) As List(Of DeglossResult)
