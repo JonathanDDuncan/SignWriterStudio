@@ -1016,59 +1016,85 @@ Public Class SWDictForm
     End Sub
 
     Private Sub OpenEditor()
+        If Not _myDictionary.DictionaryBindingSource1.Current.GetType.ToString = "System.Object" Then
 
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
-        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
-        Using conn
-            Try
-                If Not _myDictionary.DictionaryBindingSource1.Current.GetType.ToString = "System.Object" Then
+            If DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "Photo" Then
+                ColumnClicked = DictionaryColumn.Photo
 
-                    If DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "Photo" Then
-                        ColumnClicked = DictionaryColumn.Photo
+                If Information.IsDBNull(DictionaryDataGridView.CurrentCell.Value) Then
+                    OpenImage.ShowDialog()
+                Else
+                    EditImage()
+                End If
+            ElseIf DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "Sign" Then
+                ColumnClicked = DictionaryColumn.Sign
+                If Information.IsDBNull(DictionaryDataGridView.CurrentCell.Value) Then
+                    OpenImage.ShowDialog()
+                Else
+                    EditImage()
+                End If
 
-                        If Information.IsDBNull(DictionaryDataGridView.CurrentCell.Value) Then
-                            OpenImage.ShowDialog()
-                        Else
-                            EditImage()
-                        End If
-                    ElseIf DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "Sign" Then
-                        ColumnClicked = DictionaryColumn.Sign
-                        If Information.IsDBNull(DictionaryDataGridView.CurrentCell.Value) Then
-                            OpenImage.ShowDialog()
-                        Else
-                            EditImage()
-                        End If
+            ElseIf _
+                DictionaryDataGridView.CurrentCell IsNot Nothing AndAlso
+                DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "SWriting" Then
+                ColumnClicked = DictionaryColumn.SWriting
+                Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+                If idDictionary1 <> 0 Then
 
-                    ElseIf _
-                        DictionaryDataGridView.CurrentCell IsNot Nothing AndAlso
-                        DictionaryDataGridView.CurrentCell.OwningColumn.DataPropertyName = "SWriting" Then
-                        ColumnClicked = DictionaryColumn.SWriting
-                        Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
-                        If idDictionary1 <> 0 Then
-                            Editor.ClearAll()
-                            Editor.Sign = _myDictionary.GetSWSign(idDictionary1, conn, trans)
-                            Dim dialogRes As DialogResult = Editor.ShowDialog()
-                            If (dialogRes = DialogResult.OK) Then
-                                SaveSignWriting(conn, trans, idDictionary1)
-                            End If
-                        Else
+                    OpenSignEditorThenSave(idDictionary1)
+                Else
+                    Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+                    Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+                    Using conn
+                        Try
                             ColumnClicked = Nothing
                             SaveDataGrid(conn, trans)
-                        End If
-                    End If
+
+                            trans.Commit()
+
+                        Catch ex As SQLiteException
+                            LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+                            MessageBox.Show(ex.ToString)
+                            If trans IsNot Nothing Then trans.Rollback()
+                        Finally
+                            conn.Close()
+                        End Try
+                    End Using
                 End If
-                trans.Commit()
-                'MessageBox.Show((Now() - timestart).TotalSeconds.ToString)
-            Catch ex As SQLiteException
-                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+            End If
+        End If
+    End Sub
 
-                MessageBox.Show(ex.ToString)
-                If trans IsNot Nothing Then trans.Rollback()
-            Finally
-                conn.Close()
+    Private Sub OpenSignEditorThenSave(idDictionary As Integer)
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
 
-            End Try
-        End Using
+        Editor.ClearAll()
+        Editor.Sign = _myDictionary.GetSWSign(idDictionary, conn, trans)
+        'Keep SignEditor if error saving sign
+        Dim continuewithdictionary = False
+        Dim dialogRes As DialogResult
+
+        Do
+            dialogRes = Editor.ShowDialog()
+            If (dialogRes = DialogResult.OK) Then
+                Try
+                    SaveSignWriting(conn, trans, idDictionary)
+
+                    continuewithdictionary = True
+                Catch ex As Exception
+                    MessageBox.Show("An error occured, could not save sign. " & ex.Message)
+                    trans.Rollback()
+                    trans.Dispose()
+
+                    trans = SWDict.GetNewDictionaryTransaction(conn)
+                End Try
+            Else
+                continuewithdictionary = True
+            End If
+        Loop While continuewithdictionary = False
+        trans.Commit()
     End Sub
 
     Private Sub ToolStripLabel1_Click(ByVal sender As Object, ByVal e As EventArgs)
@@ -1602,33 +1628,19 @@ Public Class SWDictForm
     End Sub
 
     Private Sub btnEditSignWriting_Click(sender As Object, e As EventArgs) Handles btnEditSignWriting.Click
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
-        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
-        Using conn
-            Try
-                If DictionaryDataGridView.CurrentRow IsNot Nothing Then
-                    Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
-                    If idDictionary1 <> 0 Then
-                        Editor.ClearAll()
-                        Editor.Sign = _myDictionary.GetSWSign(idDictionary1, conn, trans)
-                        Dim dialogRes As DialogResult = Editor.ShowDialog()
-                        If (dialogRes = DialogResult.OK) Then
-                            SaveSignWriting(conn, trans, idDictionary1)
-                        End If
-                    End If
+        Try
+            If DictionaryDataGridView.CurrentRow IsNot Nothing Then
+                Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+                If idDictionary1 <> 0 Then
+                    OpenSignEditorThenSave(idDictionary1)
                 End If
-                trans.Commit()
-                'MessageBox.Show((Now() - timestart).TotalSeconds.ToString)
-            Catch ex As SQLiteException
-                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+            End If
 
-                MessageBox.Show(ex.ToString)
-                If trans IsNot Nothing Then trans.Rollback()
-            Finally
-                conn.Close()
+        Catch ex As SQLiteException
+            LogError(ex, "SQLite Exception " & ex.GetType().Name)
+            MessageBox.Show(ex.ToString)
+        End Try
 
-            End Try
-        End Using
     End Sub
 
     Private Sub SaveSignWriting(ByVal conn As SQLiteConnection, ByRef trans As SQLiteTransaction,

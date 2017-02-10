@@ -107,7 +107,10 @@ Public NotInheritable Class SWDict
         Return CType(dictionaryTa.PublicConnection.Clone, SQLiteConnection)
     End Function
     Public Shared Function GetNewDictionaryTransaction(ByVal conn As SQLiteConnection) As SQLiteTransaction
-        conn.Open()
+        If Not conn.State = ConnectionState.Open Then
+            conn.Open()
+        End If
+
         Return conn.BeginTransaction
     End Function
 
