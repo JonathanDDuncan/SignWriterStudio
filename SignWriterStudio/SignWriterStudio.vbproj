@@ -283,6 +283,7 @@
     <Content Include="BlankDict.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="dist\assets\styles\SuttonSignWriting.css" />
     <Content Include="dist\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

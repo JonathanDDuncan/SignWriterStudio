@@ -661,7 +661,7 @@ Partial Public Class Editor
         If (args.Frame.IsMain) Then
 
             Dim script As String = "window.initialFSW = '" & FSW & "';" & vbCrLf &
-            "var sign = sw10.symbolsList(window.initialFSW);" & vbCrLf &
+            "var sign = ssw.symbolsList(window.initialFSW);" & vbCrLf &
             "app.ports.receiveSign.send(sign);"
 
             args.Frame.ExecuteJavaScriptAsync(script)
@@ -675,17 +675,24 @@ Partial Public Class Editor
 
             myEditor = editor
         End Sub
+        Delegate Sub setFswCallback(fsw As String)
         Public Sub setFsw(fsw As String)
-            myEditor.FSW = fsw
+            If myEditor.InvokeRequired Then
+                Dim d As New setFswCallback(AddressOf setFsw)
+                myEditor.Invoke(d, New Object() {fsw})
+            Else
+                myEditor.FSW = fsw
+            End If
+
         End Sub
         Public Sub hideOverlay(str As String)
             HideQuickSignEditor()
         End Sub
         Delegate Sub HideQuickSignEditorCallback()
         Private Sub HideQuickSignEditor()
-            If BrowserForm.InvokeRequired Then
+            If myEditor.InvokeRequired Then
                 Dim d As New HideQuickSignEditorCallback(AddressOf HideQuickSignEditor)
-                BrowserForm.Invoke(d, New Object() {})
+                myEditor.Invoke(d, New Object() {})
             Else
                 BrowserForm.Hide()
             End If
