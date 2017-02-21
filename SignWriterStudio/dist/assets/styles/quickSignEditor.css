@@ -33,7 +33,7 @@
                 background-color: lightyellow;
                 position: fixed;
                 top: 0;
-                padding-right: 50px; 
+                padding-right: 50px;
                 z-index: 2;
             }
             
@@ -56,18 +56,15 @@
             }
             
             .sym-fill {
-                font-family: 'SignWriting 2010 Filling';
+                font-family: 'SuttonSignWritingFill';
                 fill: white;
+                display: block;
             }
             
             .sym-line {
-                font-family: 'SignWriting 2010';
+                font-family: 'SuttonSignWriting';
                 fill: black;
-            }
-            
-            .disablePanZoom {
-                -ms-touch-action: none;
-                touch-action: none;
+                display: block;
             }
             
             .sym-fill,
@@ -115,7 +112,6 @@
                 position: relative;
                 display: inline-block;
                 height: 33px;
-                /*min-width: 33px;*/
                 border-radius: 2px;
                 border: 1px solid #AAA;
                 background-position: 50% 50%;
@@ -191,27 +187,6 @@
                 left: 2px;
                 bottom: 7px;
             }
-            /*scale svg to size of parent */
-            
-            .scaletoparent {
-                position: absolute;
-                display: block;
-                top: 2.5%;
-                bottom: 2.5%;
-                left: 2.5%;
-                right: 2.5%;
-                margin: auto;
-                max-width: 95%;
-                max-height: 95%;
-                cursor: default;
-            }
-            
-            .scaletoparent div {
-                display: block;
-                position: absolute;
-                top: 6px;
-                margin: auto;
-            }
             
             .symbol {
                 position: absolute;
@@ -243,7 +218,8 @@
                 padding-top: 10px;
             }
             
-            td, .center{
+            td,
+            .center {
                 text-align: center;
                 vertical-align: middle;
             }
@@ -257,13 +233,65 @@
                 background-color: lightsteelblue;
                 top: -10px;
             }
-
-             .pressed {
-                background-color: darkslategray;
-              
+            
+            .pressed {
+                background-color: darkslategray !important;
             }
-
-              .activemode {
-                background-color: paleturquoise;
-              
+            
+            .activemode {
+                background-color: paleturquoise !important;
+            }
+            
+            .centerdiv {
+                position: absolute;
+                margin: auto;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+            
+            .centerdivcontainer {
+                position: relative;
+                width: inherit;
+                height: inherit;
+            }
+            
+            .centerspan {
+                position: absolute;
+                display: inline-block;
+            }
+            
+            .centerspancontainer {
+                position: relative;
+                text-align: center;
+                vertical-align: middle;
+                display: table-cell;
+            }
+            
+            .border {
+                border-width: 1px;
+                border-color: black;
+                border-style: solid;
+            }
+            
+            .hover {
+                text-shadow: none;
+                -webkit-transition: 300ms ease-out 0s;
+                -moz-transition: 300ms ease-out 0s;
+                -o-transition: 300ms ease-out 0s;
+                transition: 300ms ease-out 0s;
+            }
+            
+            .hover:hover {
+                text-shadow: -1px 1px 15px gold, 1px -1px 15px gold;
+            }
+            
+            .signview div {
+                position: absolute;
+            }
+            
+            .signview div svg {
+                top: 0;
+                left: 0;
             }
