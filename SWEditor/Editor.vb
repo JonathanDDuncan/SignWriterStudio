@@ -190,14 +190,8 @@ Partial Public Class Editor
         End Get
         Set(value As String)
             _fsw1 = value
-            SetFsw(_fsw1)
         End Set
     End Property
-
-    Private Sub SetFsw(ByVal fsw1 As String)
-        mySWSign = SpmlConverter.FswtoSwSign(fsw1, mySWSign.LanguageIso, mySWSign.SignLanguageIso)
-        DisplaySign()
-    End Sub
 
     Private Sub AddUndo()
 
@@ -649,6 +643,9 @@ Partial Public Class Editor
             browser.RegisterJsObject("callbackObj", New CallbackObjectForJs(Me))
 
             browserForm.ShowDialog()
+
+            Sign = SpmlConverter.FswtoSwSign(FSW, mySWSign.LanguageIso, mySWSign.SignLanguageIso)
+            DisplaySign()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message & ex.StackTrace)
