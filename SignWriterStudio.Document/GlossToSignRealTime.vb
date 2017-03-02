@@ -83,6 +83,8 @@ Public Class GlossToSignRealTime
         Dim textString As String = TBGlossToSign.Text
         textString = textString.Replace("{", "").Replace("}", "").Replace("}", "").Replace("(", "").Replace(")", "")
         textString = textString.Replace(",", " , ").Replace(".", " . ").Replace("!", " ! ").Replace("¡", " ¡ ").Replace("?", " ? ").Replace("¿", " ¿ ").Replace(":", " : ").Replace(";", " ; ").Replace("   ", " ").Replace("  ", " ")
+        textString = textString.Replace(vbTab, " ")
+
         glossToSignArray = textString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
         Dim glossToSignArray1 = glossToSignArray.Where(Function(x) Not String.IsNullOrWhiteSpace(x) AndAlso x IsNot Environment.NewLine).ToArray()
         Dim glossToSignArray2 = MultipleSigns(glossToSignArray1)
