@@ -8,11 +8,11 @@ Namespace SignPuddleAPITests
     Public Class SignPuddleAPITest
         Private ReadOnly _username = "Jonathan"
         Private ReadOnly _password = "54321"
-
+        Private ReadOnly siteurl = "http://www.signbank.org/signpuddle2.0/"
         <TestMethod()> Public Sub AddEntryTest()
 
 
-            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim api = New SignPuddleApi.SignPuddleApi(siteurl, _username, _password)
             Dim isLoggedin = api.IsLoggedIn
             Dim ui = "1"
             Dim sgn = "16"
@@ -43,9 +43,9 @@ Namespace SignPuddleAPITests
 
         End Sub
         <TestMethod()> Public Sub AddFSWEntryTest()
-
+          
             'TODO THis test is not working, SignPuddle will not accept FSW only KSW
-            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim api = New SignPuddleApi.SignPuddleApi(siteurl, _username, _password)
             Dim isLoggedin = api.IsLoggedIn
             Dim ui = "1"
             Dim sgn = "16"
@@ -79,7 +79,7 @@ Namespace SignPuddleAPITests
 
         <TestMethod()> Public Sub UpdateEntryTest()
           
-            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim api = New SignPuddleApi.SignPuddleApi(siteurl, _username, _password)
             Dim isLoggedin = api.IsLoggedIn
             Dim ui = "1"
             Dim sgn = "16"
@@ -113,7 +113,7 @@ Namespace SignPuddleAPITests
 
         <TestMethod()> Public Sub DeleteEntryTest()
 
-            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim api = New SignPuddleApi.SignPuddleApi(siteurl, _username, _password)
             Dim isLoggedin = api.IsLoggedIn
             Dim ui = "1"
             Dim sgn = "16"
@@ -130,7 +130,7 @@ Namespace SignPuddleAPITests
         End Sub
         <TestMethod()> Public Sub GetEntryTest()
 
-            Dim api = New SignPuddleApi.SignPuddleApi(_username, "")
+            Dim api = New SignPuddleApi.SignPuddleApi(siteurl, _username, "")
             Dim isLoggedin = api.IsLoggedIn
             Dim ui = "1"
             Dim sgn = "16"
@@ -148,7 +148,7 @@ Namespace SignPuddleAPITests
 
         <TestMethod()> Public Sub GetExportTest()
 
-            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim api = New SignPuddleApi.SignPuddleApi(siteurl, _username, _password)
             Dim isLoggedin = api.IsLoggedIn
             Dim ui = "1"
             Dim sgn = "16"
@@ -164,10 +164,10 @@ Namespace SignPuddleAPITests
 
         <TestMethod()> Public Sub GetPuddlesTest()
 
-            Dim api = New SignPuddleApi.SignPuddleApi(_username, _password)
+            Dim api = New SignPuddleApi.SignPuddleApi(siteurl, _username, _password)
             Dim isLoggedin = api.IsLoggedIn
 
-            Dim webPage = api.GetPuddles()
+            Dim webPage = api.GetPuddles(siteurl)
 
 
             Assert.IsTrue(isLoggedin)

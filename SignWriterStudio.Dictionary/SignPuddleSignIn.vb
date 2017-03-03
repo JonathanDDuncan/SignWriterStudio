@@ -3,19 +3,20 @@
 Public Class SignPuddleSignIn
 
     Private Sub SignPuddle_Sign_In_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GetPuddles()
+        GetPuddles(TBSiteUrl.Text)
     End Sub
 
-    Private Sub GetPuddles()
-        Dim api = New SignPuddleApi.SignPuddleApi("", "")
+    Private Sub GetPuddles(siteurl As String)
+        Dim api = New SignPuddleApi.SignPuddleApi(siteurl, "", "")
 
-        Dim webPage = api.GetPuddles()
+        Dim webPage = api.GetPuddles(siteurl)
 
         Dim puddles = PuddlesFromWebPage(webPage)
         LoadPuddlesComboBox(puddles)
     End Sub
 
     Private Sub LoadPuddlesComboBox(ByVal puddles As List(Of Puddle))
+        CBPuddles.Items.Clear()
         For Each puddle1 As Puddle In puddles
             CBPuddles.Items.Add(puddle1)
 
@@ -26,11 +27,48 @@ Public Class SignPuddleSignIn
     End Sub
 
     Private Function PuddlesFromWebPage(ByVal webPage As String) As List(Of Puddle)
+        Dim puddles As List(Of Puddle)
+        If webPage.Contains("uconn") Then
+            puddles = GetUconnPuddles(webPage)
+
+        Else
+            puddles = GetSignBankPuddles(webPage)
+        End If
+        Return puddles
+    End Function
+    Private Function GetUconnPuddles(ByVal webPage As String) As List(Of Puddle)
+
+        Dim puddles = New List(Of Puddle)
 
         Dim html As HtmlDocument = New HtmlDocument()
         html.LoadHtml(webPage)
         Dim document = html.DocumentNode
+
+        Dim forms = document.SelectNodes("//form[@action='index.php']")
+        For Each htmlNode As HtmlNode In forms
+            Dim puddle = New Puddle()
+            Dim sgnnode = htmlNode.ParentNode.SelectSingleNode("input[@name='sgn']")
+            If sgnnode IsNot Nothing Then
+                Dim sgn = sgnnode.GetAttributeValue("value", "")
+                puddle.Sgn = sgn
+            End If
+            Dim puddleNamenode = htmlNode.ParentNode.SelectSingleNode("button/table/tr/td/font")
+            If puddleNamenode IsNot Nothing Then
+                Dim puddlname = puddleNamenode.InnerText()
+                puddle.Name = puddlname
+            End If
+            puddles.Add(puddle)
+        Next
+        Return puddles
+    End Function
+    Private Function GetSignBankPuddles(ByVal webPage As String) As List(Of Puddle)
+
         Dim puddles = New List(Of Puddle)
+
+        Dim html As HtmlDocument = New HtmlDocument()
+        html.LoadHtml(webPage)
+        Dim document = html.DocumentNode
+
         Dim forms = document.SelectNodes("//form[@action='index.php']")
         For Each htmlNode As HtmlNode In forms
             Dim puddle = New Puddle()
@@ -50,8 +88,8 @@ Public Class SignPuddleSignIn
     End Function
 
     Private Sub BtnSignIn_Click(sender As Object, e As EventArgs) Handles BtnSignIn.Click
-        SignPuddleApi = New SignPuddleApi.SignPuddleApi(TBUsername.Text, TBPassword.Text)
-
+        SignPuddleApi = New SignPuddleApi.SignPuddleApi(TBSiteUrl.Text, TBUsername.Text, TBPassword.Text)
+        '"http://www.signbank.org/signpuddle2.0/"
         If Not SignPuddleApi.IsLoggedIn Then
             MessageBox.Show("Could not log into account")
         Else
@@ -73,5 +111,8 @@ Public Class SignPuddleSignIn
 
 
     Public Property Sgn() As String
-
+     
+    Private Sub TBSiteUrl_TextChanged(sender As Object, e As EventArgs) Handles TBSiteUrl.TextChanged
+        GetPuddles(TBSiteUrl.Text)
+    End Sub
 End Class

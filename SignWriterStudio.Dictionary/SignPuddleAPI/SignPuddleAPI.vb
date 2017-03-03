@@ -11,8 +11,8 @@ Namespace SignPuddleApi
 
         Property IsLoggedIn() As Boolean
 
-        Public Sub New(ByVal username As String, ByVal password As String, Optional ByVal canvasentrypointUri As String = Nothing, Optional ByVal loginUri As String = Nothing, Optional ByVal exportentrypointUri As String = Nothing)
-            _baseentrypointUri = "http://www.signbank.org/signpuddle2.0/"
+        Public Sub New(ByVal baseentrypointUri As String, ByVal username As String, ByVal password As String, Optional ByVal canvasentrypointUri As String = Nothing, Optional ByVal loginUri As String = Nothing, Optional ByVal exportentrypointUri As String = Nothing)
+            _baseentrypointUri = baseentrypointUri
 
 
             If (String.IsNullOrEmpty(canvasentrypointUri)) Then
@@ -163,12 +163,12 @@ Namespace SignPuddleApi
             End If
         End Function
 
-        Public Function GetPuddles() As String
+        Public Function GetPuddles(siteurl As String) As String
             Dim paramList = New List(Of Tuple(Of String, String))
 
             'If (IsLoggedIn) Then
             If True Then
-                Dim webpage = _post.Post("http://www.signbank.org/signpuddle2.0/index.php?ui=1", paramList)
+                Dim webpage = _post.Post(siteurl + "index.php?ui=1", paramList)
                 Return webpage
             Else
                 Throw New ArgumentException("You must be logged in before doing operations.")
