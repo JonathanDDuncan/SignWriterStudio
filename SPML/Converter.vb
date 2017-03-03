@@ -628,6 +628,14 @@ Public NotInheritable Class SpmlConverter
         sb.Append(CreateStyling(sign, frame))
         Return sb.ToString
     End Function
+
+    Public Function GetBuild(ByVal sign As SwSign) As String
+        Dim sb As New StringBuilder
+        Dim frame As SWFrame = sign.Frames.FirstOrDefault
+        frame.CenterSpmlSymbols(New Point(500, 500))
+        sb.Append(CreateSymbolBuildString(frame))
+        Return sb.ToString
+    End Function
     Private Function CreateAdditionalTermsTag(sign As SwSign) As String
         Const preSpace As String = "  "
         Dim sb As New StringBuilder
@@ -815,7 +823,23 @@ Public NotInheritable Class SpmlConverter
 
         Return CreatePtUs(ptUs)
     End Function
+    Private Function CreateSymbolBuildString(ByVal frame As SWFrame) As String
+        Dim build As New StringBuilder()
 
+        Dim symbol As SWSignSymbol
+        frame.SignSymbolsSort()
+
+        For Each symbol In frame.SignSymbols
+            build.Append(symbol.SymbolDetails.Id)
+            build.Append(",")
+            build.Append(symbol.X)
+            build.Append(",")
+            build.Append(symbol.Y)
+            build.Append(",")
+        Next
+
+        Return build.ToString()
+    End Function
     Friend Shared Function CreateKswSymbolBuildString(ByVal frame As SWFrame, Optional lane As AnchorStyles = AnchorStyles.None) As String
 
 

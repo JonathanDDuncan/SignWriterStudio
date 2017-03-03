@@ -102,9 +102,11 @@ Public NotInheritable Class SWDict
         count = CLng(_taSignsbyGlossesUnilingual.Count(DefaultSignLanguage, FirstGlossLanguage))
         Return count
     End Function
-    Public Shared Function GetNewDictionaryConnection() As SQLiteConnection
+    Public Shared Function GetNewDictionaryConnection(connectionString As String) As SQLiteConnection
         Dim dictionaryTa As New DictionaryTableAdapter
-        Return CType(dictionaryTa.PublicConnection.Clone, SQLiteConnection)
+        Dim conn As SQLiteConnection = CType(dictionaryTa.PublicConnection.Clone, SQLiteConnection)
+        conn.ConnectionString = connectionString
+        Return conn
     End Function
     Public Shared Function GetNewDictionaryTransaction(ByVal conn As SQLiteConnection) As SQLiteTransaction
         If Not conn.State = ConnectionState.Open Then
@@ -115,7 +117,7 @@ Public NotInheritable Class SWDict
     End Function
 
     Public Sub SignstoDictionary(ByVal signs As ICollection(Of SwSign), ByVal bw As System.ComponentModel.BackgroundWorker)
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
         Using conn
             Try
@@ -406,7 +408,7 @@ Public NotInheritable Class SWDict
 
     Public Sub DuplicateSign(ByVal rowtoInsert As DataRowView)
 
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
         Using conn
             Try
@@ -500,7 +502,7 @@ Public NotInheritable Class SWDict
     End Function
     Function GetGlosstoSign(ds As List(Of Tuple(Of Integer, String, Integer))) As List(Of Tuple(Of SwSign, Integer))
         Dim signs = New List(Of Tuple(Of SwSign, Integer))
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
         Using conn
             Try
@@ -630,7 +632,7 @@ Public NotInheritable Class SWDict
         Return sign
     End Function
     Public Function GetSWSign(ByVal idDictionary As Long) As SwSign
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
 
         Dim sign = GetSWSign(idDictionary, conn, trans)
@@ -829,7 +831,7 @@ Public NotInheritable Class SWDict
         _taswSignSequence.InsertQuery(idSWFrame, sequence.Code, sequence.Rank)
     End Sub
     Public Sub SaveSWSign(ByVal idDictionary As Long, ByVal sign As SwSign)
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
         Try
             SaveSWSign(idDictionary, sign, conn, trans)
@@ -885,7 +887,7 @@ Public NotInheritable Class SWDict
     '    SaveSWSign(Sign, False)
     'End Sub
     Public Sub SaveSWSign(ByVal sign As SwSign)
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
         Try
             SaveSWSign(sign, conn, trans)
@@ -1645,7 +1647,7 @@ Public NotInheritable Class SWDict
     End Sub
 
     Private Sub ResetAllSortStrings()
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
 
         Dim dictionaryTa As New DictionaryTableAdapter

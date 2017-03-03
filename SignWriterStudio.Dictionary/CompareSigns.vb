@@ -7,6 +7,11 @@ Imports System.Data.SQLite
 Public Class CompareSigns
     Public Property SignsToCompare As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))
     Public ListToShow As New BindingList(Of CompareItem)
+    Private _connectionString As String
+
+    Public Sub New(ByVal connectionString As String)
+        _connectionString = connectionString
+    End Sub
 
     Private Sub CompareSigns_Load(sender As Object, e As EventArgs) Handles Me.Load
         DataGridView1.AutoGenerateColumns = False
@@ -25,7 +30,7 @@ Public Class CompareSigns
                                           List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))) _
         As BindingList(Of CompareItem)
 
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(_connectionString)
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
 
         Using conn

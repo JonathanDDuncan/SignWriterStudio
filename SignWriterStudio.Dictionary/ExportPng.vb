@@ -38,20 +38,14 @@ Public Class ExportPng
         Dim list = New List(Of SignResult)()
 
 
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
-        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
-
         For Each row In dt.Rows
 
-            Dim sign = myDictionary.GetSWSign(row.IDDictionary, conn, trans)
+            Dim sign = myDictionary.GetSWSign(row.IDDictionary)
             Dim res = New SignResult(row.gloss1, row.glosses1, row.GUID, General.ByteArraytoImage(row.SWriting), General.ByteArraytoImage(row.Photo), General.ByteArraytoImage(row.Sign), row.SWritingSource, row.PhotoSource, row.SignSource, sign)
             list.Add(res)
 
         Next
-        trans.Commit()
-        trans.Dispose()
-        conn.Close()
-        conn.Dispose()
+       
 
         Return list
     End Function

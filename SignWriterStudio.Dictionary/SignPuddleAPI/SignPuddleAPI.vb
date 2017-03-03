@@ -38,22 +38,27 @@ Namespace SignPuddleApi
             IsLoggedIn = WebSession.IsLoggedIn(loginWebPage)
         End Sub
 
-        Public Function AddEntry(ByVal ui As String, ByVal sgn As String, ByVal sgntxt As String, ByVal txt As String, ByVal top As String,
+        Public Function AddEntry(ByVal ui As String, ByVal sgn As String, ByVal sgntxt As String, ByVal build As String, ByVal txt As String, ByVal top As String,
                                  ByVal prev As String, ByVal nextStr As String, ByVal src As String, ByVal video As String,
                                  ByVal trm As List(Of String)) As String
             Const action As String = "Add"
             Dim webPage = CallApi(ui, sgn, Nothing, action, Nothing, trm,
-                                         txt, sgntxt, video, src, top,
+                                         txt, sgntxt, build, video, src, top,
                                          prev, nextStr, Nothing, Nothing, Nothing)
             Return webPage
         End Function
 
-        Public Function UpdateEntry(ByVal ui As String, ByVal sgn As String, ByVal sid As String, ByVal sgntxt As String, ByVal txt As String,
+        Public Function UpdateEntry(ByVal ui As String, ByVal sgn As String, ByVal sid As String, ByVal sgntxt As String, ByVal build As String, ByVal txt As String,
                                     ByVal top As String, ByVal prev As String, ByVal nextStr As String, ByVal src As String, ByVal video As String,
                                     ByVal trm As List(Of String)) As String
+            Const rewrite As String = "rewrite"
+            Dim webPagerewrite = CallApi(ui, sgn, sid, rewrite, Nothing, Nothing,
+                                       Nothing, Nothing, build, Nothing, Nothing, Nothing,
+                                       Nothing, Nothing, Nothing, Nothing, Nothing)
+
             Const action As String = "Update"
             Dim webPage = CallApi(ui, sgn, sid, action, Nothing, trm,
-                                         txt, sgntxt, video, src, top,
+                                         txt, sgntxt, build, video, src, top,
                                          prev, nextStr, Nothing, Nothing, Nothing)
 
 
@@ -62,7 +67,7 @@ Namespace SignPuddleApi
 
 
         Private Function CallApi(ByVal ui As String, ByVal sgn As String, ByVal sid As String, ByVal action As String, ByVal name As String, ByVal trm As List(Of String),
-                                        ByVal txt As String, ByVal sgntxt As String, ByVal video As String, ByVal src As String, ByVal top As String,
+                                        ByVal txt As String, ByVal sgntxt As String, ByVal build As String, ByVal video As String, ByVal src As String, ByVal top As String,
                                         ByVal prev As String, ByVal nextStr As String, ByVal ext As String, ByVal list As String, ByVal imageBaseName As String)
             Dim paramList = New List(Of Tuple(Of String, String))
 
@@ -80,11 +85,12 @@ Namespace SignPuddleApi
 
             AddParam(paramList, "txt", txt)
             AddParam(paramList, "sgntxt", sgntxt)
+            AddParam(paramList, "build", build)
             AddParam(paramList, "video", video)
             AddParam(paramList, "src", src)
             AddParam(paramList, "top", top)
             AddParam(paramList, "prev", prev)
-            AddParam(paramList, "nextStr", nextStr)
+            AddParam(paramList, "next", nextStr)
             AddParam(paramList, "ext", ext)
             AddParam(paramList, "list", list)
             AddParam(paramList, "imageBaseName", imageBaseName)
@@ -107,12 +113,12 @@ Namespace SignPuddleApi
 
         Public Function DeleteEntry(ByVal ui As String, ByVal sgn As String, ByVal sid As String) As String
             Const action As String = "Delete"
-            Dim webPage = CallApi(ui, sgn, sid, action, sid, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
+            Dim webPage = CallApi(ui, sgn, sid, action, sid, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
             Return webPage
         End Function
         Public Function GetEntry(ByVal ui As String, ByVal sgn As String, ByVal sid As String) As String
             Const action As String = "Edit"
-            Dim webPage = CallApi(ui, sgn, sid, action, sid, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
+            Dim webPage = CallApi(ui, sgn, sid, action, sid, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
             Return webPage
         End Function
         Public Function GetExport(ByVal ui As String, ByVal sgn As String, ByVal sid As String) As String

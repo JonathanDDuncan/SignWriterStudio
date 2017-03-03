@@ -407,7 +407,7 @@ Public Class SWDictForm
         Try
             Dim saved = False
             Dim tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))) = Nothing
-            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
 
             Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
             Using conn
@@ -814,7 +814,7 @@ Public Class SWDictForm
         Dim fsw As String = GetTextFromClipboard()
 
         If IsBuildString(fsw) Then
-            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
             Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
             Using conn
                 Try
@@ -865,7 +865,7 @@ Public Class SWDictForm
                                 MessageBoxButtons.YesNo) = DialogResult.Yes Then
 
 
-                Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+                Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
                 Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
                 Using conn
                     Try
@@ -983,7 +983,7 @@ Public Class SWDictForm
 
     Private Sub DeleteCellInfo(ByVal CellAddress As Point)
 
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
         Using conn
             Try
@@ -1045,7 +1045,7 @@ Public Class SWDictForm
 
                     OpenSignEditorThenSave(idDictionary1)
                 Else
-                    Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+                    Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
                     Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
                     Using conn
                         Try
@@ -1069,7 +1069,7 @@ Public Class SWDictForm
     End Sub
 
     Private Sub OpenSignEditorThenSave(idDictionary As Integer)
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
 
         Editor.ClearAll()
@@ -1179,7 +1179,7 @@ Public Class SWDictForm
                 List(Of SwSign))
         Try
             Dim signs As List(Of SwSign)
-            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
             Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
             Dim selectedSigns As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
 
@@ -1230,7 +1230,7 @@ Public Class SWDictForm
             End Try
 
             Try
-                conn = SWDict.GetNewDictionaryConnection()
+                conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
                 trans = SWDict.GetNewDictionaryTransaction(conn)
                 Using conn
                     'Update current signs
@@ -1248,7 +1248,7 @@ Public Class SWDictForm
 
             Try
 
-                conn = SWDict.GetNewDictionaryConnection()
+                conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
                 trans = SWDict.GetNewDictionaryTransaction(conn)
                 Using conn
                     SWEditorProgressBar.ProgressBar1.Value = 0
@@ -1267,7 +1267,7 @@ Public Class SWDictForm
             End Try
 
             Try
-                conn = SWDict.GetNewDictionaryConnection()
+                conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
                 trans = SWDict.GetNewDictionaryTransaction(conn)
                 Using conn
                     'Add new signs
@@ -1704,7 +1704,7 @@ Public Class SWDictForm
                                          ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) _
         As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
         Dim signsToOverwrite As New List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
-        Dim compareSigns As New CompareSigns
+        Dim compareSigns As New CompareSigns(DictionaryConnectionString)
         If signsToCompare.Count > 0 Then
             'compareSigns.Conn = conn
             'compareSigns.Trans = trans
@@ -1728,7 +1728,7 @@ Public Class SWDictForm
 
     Private Function GetFsw() As String
 
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
         Using conn
             Try
@@ -1780,7 +1780,7 @@ Public Class SWDictForm
 
     Private Sub CopySign()
 
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
         Using conn
             Try
@@ -1951,7 +1951,7 @@ Public Class SWDictForm
     End Sub
 
     Private Sub DeleteEntry(ByVal id As Long, row As DataGridViewRow)
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
         Using conn
             Try
@@ -2045,7 +2045,7 @@ Public Class SWDictForm
     End Sub
 
     Public Sub SuggestSpellings()
-        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection()
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
 
         Try
@@ -2291,12 +2291,13 @@ Public Class SWDictForm
         Dim converter = New SpmlConverter()
 
         Dim sgntxt = SpmlConverter.Fsw2Ksw(converter.GetFsw(swSign))
+        Dim build = converter.GetBuild(swSign)
         Dim txt = ConcatenatePuddleText(swSign.PuddleText)
 
-        Dim signWriterJson = GetSignWriterJson(swSign, tagNames)
-        If (Not String.IsNullOrEmpty(signWriterJson)) Then
-            txt &= signWriterJson
-        End If
+        'Dim signWriterJson = GetSignWriterJson(swSign, tagNames)
+        'If (Not String.IsNullOrEmpty(signWriterJson)) Then
+        '    txt &= signWriterJson
+        'End If
 
         Dim prev = swSign.PuddlePrev
         Dim top = swSign.PuddleTop
@@ -2308,9 +2309,9 @@ Public Class SWDictForm
         Dim webPageResult As String
         Dim originalSid = swSign.SignPuddleId
         If (Not originalSid = String.Empty) Then
-            webPageResult = _puddleApi.UpdateEntry("1", _puddleSgn, originalSid, sgntxt, txt, top, prev, nextStr, src, video, trm)
+            webPageResult = _puddleApi.UpdateEntry("1", _puddleSgn, originalSid, sgntxt, build, txt, top, prev, nextStr, src, video, trm)
         Else
-            webPageResult = _puddleApi.AddEntry("1", _puddleSgn, sgntxt, txt, top, prev, nextStr, src, video, trm)
+            webPageResult = _puddleApi.AddEntry("1", _puddleSgn, sgntxt, build, txt, top, prev, nextStr, src, video, trm)
         End If
 
         Dim sid = _puddleApi.GetFirsSidInWebPage(webPageResult)

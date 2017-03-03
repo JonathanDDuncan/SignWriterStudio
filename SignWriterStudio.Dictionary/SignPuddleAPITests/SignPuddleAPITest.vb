@@ -18,6 +18,7 @@ Namespace SignPuddleAPITests
             Dim sgn = "16"
 
             Dim sgntxt = "M26x74S15a10n14xn74S15a18n26xn74S1000010x44S2ef213xn66S22c0010x1"
+            Dim build = Nothing
             Dim txt = "This is some text"
             Dim top = "5"
             Dim prev = "5"
@@ -31,7 +32,7 @@ Namespace SignPuddleAPITests
             trm.Add(term2)
 
 
-            Dim webPage = api.AddEntry(ui, sgn, sgntxt, txt, top, prev, nextStr, src, video, trm)
+            Dim webPage = api.AddEntry(ui, sgn, sgntxt, build, txt, top, prev, nextStr, src, video, trm)
 
 
             Assert.IsTrue(isLoggedin)
@@ -51,6 +52,7 @@ Namespace SignPuddleAPITests
             Dim sgn = "16"
 
             Dim sgntxt = "M523x516S2e008502x487S11920478x485"
+            Dim build = Nothing
             Dim txt = "This is some text"
             Dim top = "5"
             Dim prev = "5"
@@ -64,7 +66,7 @@ Namespace SignPuddleAPITests
             trm.Add(term2)
 
 
-            Dim webPage = api.AddEntry(ui, sgn, sgntxt, txt, top, prev, nextStr, src, video, trm)
+            Dim webPage = api.AddEntry(ui, sgn, sgntxt, build, txt, top, prev, nextStr, src, video, trm)
 
 
             Assert.IsTrue(isLoggedin)
@@ -86,6 +88,7 @@ Namespace SignPuddleAPITests
             Dim sid = "541"
 
             Dim sgntxt = "M26x74S15a10n14xn74S15a18n26xn74S1000010x44S2ef213xn66S22c0010x1"
+            Dim build = Nothing
             Dim txt = "This is some text"
             Dim top = "5"
             Dim prev = "5"
@@ -99,7 +102,7 @@ Namespace SignPuddleAPITests
             trm.Add(term4)
 
 
-            Dim webPage = api.UpdateEntry(ui, sgn, sid, sgntxt, txt, top, prev, nextStr, src, video, trm)
+            Dim webPage = api.UpdateEntry(ui, sgn, sid, sgntxt, build, txt, top, prev, nextStr, src, video, trm)
 
 
             Assert.IsTrue(isLoggedin)
