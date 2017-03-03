@@ -556,7 +556,6 @@ Public NotInheritable Class SWDict
                     sign.Created = dtDictionary(0).Created
                     sign.LastModified = dtDictionary(0).LastModified
                     sign.PuddleNext = dtDictionary(0).PuddleNext
-                    sign.PuddleNext = dtDictionary(0).PuddleNext
                     sign.PuddlePng = dtDictionary(0).PuddlePNG
                     sign.PuddlePrev = dtDictionary(0).PuddlePrev
                     sign.PuddleSvg = dtDictionary(0).PuddleSVG
@@ -689,7 +688,6 @@ Public NotInheritable Class SWDict
                     sign.SetSignLanguageIso(CInt(dtDictionary(0).IDSignLanguage))
                     sign.Created = dtDictionary(0).Created
                     sign.LastModified = dtDictionary(0).LastModified
-                    sign.PuddleNext = dtDictionary(0).PuddleNext
                     sign.PuddleNext = dtDictionary(0).PuddleNext
                     sign.PuddlePng = dtDictionary(0).PuddlePNG
                     sign.PuddlePrev = dtDictionary(0).PuddlePrev
