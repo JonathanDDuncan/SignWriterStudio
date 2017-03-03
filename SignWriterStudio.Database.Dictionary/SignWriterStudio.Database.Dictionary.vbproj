@@ -130,6 +130,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DictionaryDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DictionaryDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DictionaryDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -165,11 +170,10 @@
     <None Include="DictionaryDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DictionaryDataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>DictionaryDataSet1.Designer.vb</LastGenOutput>
     </None>
     <None Include="DictionaryDataSet.xss">
       <DependentUpon>DictionaryDataSet.xsd</DependentUpon>
-      <SubType>Designer</SubType>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
