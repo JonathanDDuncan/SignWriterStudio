@@ -163,7 +163,7 @@ Public NotInheritable Class SWDict
 
                     Dim sortWeight = SequencetoSortingString(sign.Frames(0).Sequences)
 
-                    dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink, sortWeight))
+                    dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddleTop, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink, sortWeight))
 
 
 
@@ -249,7 +249,7 @@ Public NotInheritable Class SWDict
 
             Dim sortOrder = SequencetoSortingString(sign.Frames(0).Sequences)
 
-            dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink, sortOrder))
+            dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddleTop, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink, sortOrder))
 
 
             frameId = CLng(frameTa.InsertGetId(dictionaryId, 0, sign.Frames(0).Bounds.Left, sign.Frames(0).Bounds.Top, sign.Frames(0).MinWidth, sign.Frames(0).MinHeight))
@@ -558,6 +558,7 @@ Public NotInheritable Class SWDict
                     sign.PuddleNext = dtDictionary(0).PuddleNext
                     sign.PuddlePng = dtDictionary(0).PuddlePNG
                     sign.PuddlePrev = dtDictionary(0).PuddlePrev
+                    sign.PuddleTop = dtDictionary(0).PuddleTop
                     sign.PuddleSvg = dtDictionary(0).PuddleSVG
                     sign.PuddleVideoLink = dtDictionary(0).PuddleVideoLink
                     sign.SignPuddleUser = dtDictionary(0).SignPuddleUser
@@ -691,6 +692,7 @@ Public NotInheritable Class SWDict
                     sign.PuddleNext = dtDictionary(0).PuddleNext
                     sign.PuddlePng = dtDictionary(0).PuddlePNG
                     sign.PuddlePrev = dtDictionary(0).PuddlePrev
+                    sign.PuddleTop = dtDictionary(0).PuddleTop
                     sign.PuddleSvg = dtDictionary(0).PuddleSVG
                     sign.PuddleVideoLink = dtDictionary(0).PuddleVideoLink
                     sign.SignPuddleUser = dtDictionary(0).SignPuddleUser

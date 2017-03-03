@@ -12,7 +12,7 @@ Public Class DbDictionary
         PrimaryKey = "IDDictionary"
         DefaultColumns = New List(Of String) From {"IDDictionary", "IDSignLanguage", "isPrivate", "bkColor", "SWriting", "Photo", "Sign", "SWritingSource",
                                                    "PhotoSource", "SignSource", "GUID", "Created", "LastModified", "IDSignPuddle", "SignPuddleUser",
-                                                   "PuddlePrev", "PuddleNext", "PuddlePNG", "PuddleSVG", "PuddleVideoLink", "Sorting"}
+                                                  "PuddleTop", "PuddlePrev", "PuddleNext", "PuddlePNG", "PuddleSVG", "PuddleVideoLink", "Sorting"}
     End Sub
 
 
