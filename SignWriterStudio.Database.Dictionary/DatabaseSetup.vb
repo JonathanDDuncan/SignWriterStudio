@@ -53,7 +53,7 @@ Public Module DatabaseSetup
                         Return Tuple.Create(False, todo)
                     End Try
                     Const currentVersion As Integer = 2
-                    Const currentMajor As Integer = 3
+                    Const currentMajor As Integer = 4
                     Const currentMinor As Integer = 0
                     Dim upgradeQuestion = "You need to upgrade your file '" & filename & "' before continuing. You may not be able to open it in previous versions. Make a backup before continuing. " & VbCrLf() & "Do you want to upgrade your file now? "
 
@@ -93,6 +93,14 @@ Public Module DatabaseSetup
 
                                 ask = False
                                 todo = UpgradeDatabase230(VersionString(firstRow.IDVersion, firstRow.Major, firstRow.Minor))
+                                wasUpdated = True
+                                Return CheckDictionary(ask, wasUpdated, todo)
+                            End If
+                        ElseIf firstRow.DatabaseName = "Dictionary" AndAlso firstRow.DatabaseType = "Dictionary" AndAlso firstRow.IDVersion = 2 AndAlso firstRow.Major = 3 AndAlso firstRow.Minor = 0 Then
+                            If Not ask OrElse MessageBox.Show(upgradeQuestion, "Upgrade file", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+
+                                ask = False
+                                todo = UpgradeDatabase240(VersionString(firstRow.IDVersion, firstRow.Major, firstRow.Minor))
                                 wasUpdated = True
                                 Return CheckDictionary(ask, wasUpdated, todo)
                             End If
@@ -150,6 +158,25 @@ Public Module DatabaseSetup
         AddDoNotExportTags()
 
         Return "AddDoNotExportTags"
+    End Function
+
+    Private Function UpgradeDatabase240(ByVal fromVersion As String) As String
+        Dim script240 = New List(Of String)
+
+        script240.Add("BEGIN TRANSACTION;")
+
+        script240.Add("ALTER TABLE Dictionary ADD COLUMN PuddleTop TEXT;")
+
+        script240.Add("UPDATE Version SET Major =4, Minor = 0, DatabaseName = ""Dictionary"", DatabaseType = ""Dictionary"" WHERE IDVersion=2;")
+
+
+        script240.Add("COMMIT;")
+
+        RunUpgradeScript(fromVersion, script240)
+
+
+
+        Return "Add PuddleTop field"
     End Function
 
     Private Sub AddDoNotExportTags()

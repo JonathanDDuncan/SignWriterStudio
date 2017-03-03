@@ -904,6 +904,8 @@ Partial Public Class SPMLDataSet
         
         Private columnnext As Global.System.Data.DataColumn
 
+        Private columntop As Global.System.Data.DataColumn
+
         Private columnentry_Id As Global.System.Data.DataColumn
 
         Private columnspml_Id As Global.System.Data.DataColumn
@@ -1033,6 +1035,14 @@ Partial Public Class SPMLDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property topColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntop
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property entry_IdColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnentry_Id
@@ -1084,11 +1094,11 @@ Partial Public Class SPMLDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Overloads Function AddentryRow(ByVal id As String, ByVal png As String, ByVal svg As String, ByVal video As String, ByVal uuid As String, ByVal src As String, ByVal cdt As String, ByVal mdt As String, ByVal usr As String, ByVal prev As String, ByVal _next As String, ByVal parentspmlRowByspml_entry As spmlRow) As entryRow
+        Public Overloads Function AddentryRow(ByVal id As String, ByVal png As String, ByVal svg As String, ByVal video As String, ByVal uuid As String, ByVal src As String, ByVal cdt As String, ByVal mdt As String, ByVal usr As String, ByVal prev As String, ByVal _next As String, ByVal top As String, ByVal parentspmlRowByspml_entry As spmlRow) As entryRow
             Dim rowentryRow As entryRow = CType(Me.NewRow, entryRow)
-            Dim columnValuesArray() As Object = New Object() {id, png, svg, video, uuid, src, cdt, mdt, usr, prev, _next, Nothing, Nothing}
+            Dim columnValuesArray() As Object = New Object() {id, png, svg, video, uuid, src, cdt, mdt, usr, prev, _next, top, Nothing, Nothing}
             If (Not (parentspmlRowByspml_entry) Is Nothing) Then
-                columnValuesArray(12) = parentspmlRowByspml_entry(9)
+                columnValuesArray(13) = parentspmlRowByspml_entry(9)
             End If
             rowentryRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowentryRow)
@@ -1123,6 +1133,7 @@ Partial Public Class SPMLDataSet
             Me.columnusr = MyBase.Columns("usr")
             Me.columnprev = MyBase.Columns("prev")
             Me.columnnext = MyBase.Columns("next")
+            Me.columntop = MyBase.Columns("top")
             Me.columnentry_Id = MyBase.Columns("entry_Id")
             Me.columnspml_Id = MyBase.Columns("spml_Id")
         End Sub
@@ -1155,6 +1166,8 @@ Partial Public Class SPMLDataSet
             Me.columnnext.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnnext")
             Me.columnnext.ExtendedProperties.Add("Generator_UserColumnName", "next")
             MyBase.Columns.Add(Me.columnnext)
+            Me.columntop = New Global.System.Data.DataColumn("top", GetType(String), Nothing, Global.System.Data.MappingType.Attribute)
+            MyBase.Columns.Add(Me.columntop)
             Me.columnentry_Id = New Global.System.Data.DataColumn("entry_Id", GetType(Integer), Nothing, Global.System.Data.MappingType.Hidden)
             MyBase.Columns.Add(Me.columnentry_Id)
             Me.columnspml_Id = New Global.System.Data.DataColumn("spml_Id", GetType(Integer), Nothing, Global.System.Data.MappingType.Hidden)
@@ -1167,6 +1180,7 @@ Partial Public Class SPMLDataSet
             Me.columnusr.Namespace = ""
             Me.columnprev.Namespace = ""
             Me.columnnext.Namespace = ""
+            Me.columntop.Namespace = ""
             Me.columnentry_Id.AutoIncrement = True
             Me.columnentry_Id.AllowDBNull = False
             Me.columnentry_Id.Unique = True
@@ -1405,7 +1419,7 @@ Partial Public Class SPMLDataSet
             Dim rowtextRow As textRow = CType(Me.NewRow, textRow)
             Dim columnValuesArray() As Object = New Object() {text_Text, Nothing}
             If (Not (parententryRowByentry_text) Is Nothing) Then
-                columnValuesArray(1) = parententryRowByentry_text(11)
+                columnValuesArray(1) = parententryRowByentry_text(12)
             End If
             rowtextRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowtextRow)
@@ -1674,7 +1688,7 @@ Partial Public Class SPMLDataSet
             Dim rowtermRow As termRow = CType(Me.NewRow, termRow)
             Dim columnValuesArray() As Object = New Object() {term_Text, Nothing}
             If (Not (parententryRowByentry_term) Is Nothing) Then
-                columnValuesArray(1) = parententryRowByentry_term(11)
+                columnValuesArray(1) = parententryRowByentry_term(12)
             End If
             rowtermRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowtermRow)
@@ -2861,6 +2875,21 @@ Partial Public Class SPMLDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property top() As String
+            Get
+                If Me.IstopNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableentry.topColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableentry.topColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property entry_Id() As Integer
             Get
                 Return CType(Me(Me.tableentry.entry_IdColumn), Integer)
@@ -3026,6 +3055,18 @@ Partial Public Class SPMLDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Set_nextNull()
             Me(Me.tableentry.nextColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IstopNull() As Boolean
+            Return Me.IsNull(Me.tableentry.topColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SettopNull()
+            Me(Me.tableentry.topColumn) = Global.System.Convert.DBNull
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _

@@ -123,6 +123,7 @@ Public NotInheritable Class SpmlConverter
         If Guid.TryParse(entryRow.uuid, guid1) Then
             newSign.SignWriterGuid = guid1
         End If
+        newSign.PuddleTop = UnEncodeXml(entryRow.top)
         newSign.PuddlePrev = UnEncodeXml(entryRow.prev)
         newSign.PuddleNext = UnEncodeXml(entryRow._next)
         newSign.PuddlePng = UnEncodeXml(entryRow.png)
@@ -744,6 +745,14 @@ Public NotInheritable Class SpmlConverter
             sb.Append(EncodeXml(dictionarySign.PuddleNext))
             sb.Append(ControlChars.Quote)
         End If
+
+        If Not dictionarySign.PuddleTop = String.Empty Then
+            sb.Append(" top=")
+            sb.Append(ControlChars.Quote)
+            sb.Append(EncodeXml(dictionarySign.PuddleTop))
+            sb.Append(ControlChars.Quote)
+        End If
+
         sb.Append(">")
         Return sb.ToString
     End Function

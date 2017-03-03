@@ -213,6 +213,15 @@ Imports Microsoft.VisualBasic
             _signPuddleUser = value
         End Set
     End Property
+    Private _puddleTop As String
+    Public Property PuddleTop() As String
+        Get
+            Return _puddleTop
+        End Get
+        Set(ByVal value As String)
+            _puddleTop = value
+        End Set
+    End Property
 
     Private _puddlePrev As String
     Public Property PuddlePrev() As String
