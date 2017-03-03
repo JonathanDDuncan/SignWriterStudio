@@ -98,7 +98,8 @@ Public Class SWDictForm
         ShowButtons()
         UpdateOptions()
         SetGlossTittles()
-        CheckDictionary(ask)
+
+        CheckDictionary(DictionaryConnectionString, ask)
 
         SWEditorProgressBar.Text = "SignWriter Studio™ Converting data ..."
         SWEditorProgressBar.ProgressBar1.Minimum = 0
@@ -137,9 +138,10 @@ Public Class SWDictForm
                             .Display = itemTag.Item("Description"), .Color = Color.FromArgb(itemTag.Item("Color"))}).ToList()
     End Function
 
-    Private Sub CheckDictionary(Optional ask As Boolean = True)
+    Private Sub CheckDictionary(ByVal connectionString As String, Optional ByVal ask As Boolean = True)
         Dim wasUpgraded = False
-        Dim result = DatabaseSetup.CheckDictionary(ask, wasUpgraded)
+
+        Dim result = DatabaseSetup.CheckDictionary(connectionString, ask, wasUpgraded)
 
         If Not result.Item1 Then
             MessageBox.Show("Choose or create a SignWriter Dictionary (.SWS) file before continuing.")
@@ -1400,10 +1402,12 @@ Public Class SWDictForm
     End Sub
 
     Public Sub OpenDictionary(filename As String)
-        If CheckSQLiteConnectionString(CreateConnectionString(filename)) Then
+        Dim connectionString = CreateConnectionString(filename)
+        If CheckSQLiteConnectionString(connectionString) Then
             SetDictionaryConnectionString(filename)
+
             Dim wasUpgraded = False
-            Dim result = DatabaseSetup.CheckDictionary(True, wasUpgraded)
+            Dim result = DatabaseSetup.CheckDictionary(connectionString, True, wasUpgraded)
 
             If result.Item1 Then
                 Dim languages As String = DictLanguages.LanguagesInDictionary
@@ -2295,6 +2299,7 @@ Public Class SWDictForm
         End If
 
         Dim prev = swSign.PuddlePrev
+        Dim top = swSign.PuddleTop
         Dim nextStr = swSign.PuddleNext
         Dim src = swSign.SWritingSource
         Dim video = swSign.PuddleVideoLink
@@ -2303,9 +2308,9 @@ Public Class SWDictForm
         Dim webPageResult As String
         Dim originalSid = swSign.SignPuddleId
         If (Not originalSid = String.Empty) Then
-            webPageResult = _puddleApi.UpdateEntry("1", _puddleSgn, originalSid, sgntxt, txt, "", prev, nextStr, src, video, trm)
+            webPageResult = _puddleApi.UpdateEntry("1", _puddleSgn, originalSid, sgntxt, txt, top, prev, nextStr, src, video, trm)
         Else
-            webPageResult = _puddleApi.AddEntry("1", _puddleSgn, sgntxt, txt, "", prev, nextStr, src, video, trm)
+            webPageResult = _puddleApi.AddEntry("1", _puddleSgn, sgntxt, txt, top, prev, nextStr, src, video, trm)
         End If
 
         Dim sid = _puddleApi.GetFirsSidInWebPage(webPageResult)
