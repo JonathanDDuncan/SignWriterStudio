@@ -64,7 +64,13 @@ Namespace SignPuddleApi
 
             Return webPage
         End Function
-
+        Public Function SendSign(ByVal ui As String, ByVal sgn As String, ByVal sid As String, ByVal build As String) As String
+            Const rewrite As String = "rewrite"
+            Dim webPagerewrite = CallApi(ui, sgn, sid, rewrite, Nothing, Nothing,
+                                       Nothing, Nothing, build, Nothing, Nothing, Nothing,
+                                       Nothing, Nothing, Nothing, Nothing, Nothing)
+            Return webPagerewrite
+        End Function
 
         Private Function CallApi(ByVal ui As String, ByVal sgn As String, ByVal sid As String, ByVal action As String, ByVal name As String, ByVal trm As List(Of String),
                                         ByVal txt As String, ByVal sgntxt As String, ByVal build As String, ByVal video As String, ByVal src As String, ByVal top As String,

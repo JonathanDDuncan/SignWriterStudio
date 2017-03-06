@@ -2210,6 +2210,7 @@ Public Class SWDictForm
         SendToPuddleToolStripMenuItem.Enabled = puddleLoggedIn
         SendSelectedEntriesToPuddleToolStripMenuItem.Enabled = puddleLoggedIn
         DeleteFromPuddleToolStripMenuItem.Enabled = puddleLoggedIn
+        SendSignToPuddleToolStripMenuItem.Enabled = puddleLoggedIn
     End Sub
 
     Private Sub SignOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SignOutToolStripMenuItem.Click
@@ -2247,6 +2248,22 @@ Public Class SWDictForm
         Dim tagNames = GetTagNames(allTags, tags1)
         SendToPuddle(sign, gloss, glosses, tagNames)
     End Sub
+    Private Sub SendEntrySigntoPuddle(ByVal idDictionary1 As Integer)
+        Dim gloss As String = ""
+
+        If Not IsDbNull(DictionaryDataGridView.CurrentRow.Cells("gloss1").Value) Then
+            gloss = DictionaryDataGridView.CurrentRow.Cells("gloss1").Value
+        End If
+
+        Dim sign As SwSign = Nothing
+        If idDictionary1 <> 0 Then
+            sign = _myDictionary.GetSWSign(idDictionary1)
+        End If
+
+
+        SendToPuddle(sign, gloss)
+    End Sub
+
 
     Private Function GetTagNames(ByVal allTags As List(Of ExpandoObject), ByVal tags1 As List(Of ExpandoObject)) As List(Of String)
         Dim tagNames = New List(Of String)
@@ -2326,7 +2343,24 @@ Public Class SWDictForm
             End If
         End If
     End Sub
+    Private Sub SendToPuddle(ByVal swSign As SwSign, gloss As String)
+        Dim converter = New SpmlConverter()
 
+
+        Dim build = converter.GetBuild(swSign)
+
+
+        Dim webPageResult As String
+        Dim originalSid = swSign.SignPuddleId
+        If (Not originalSid = String.Empty) Then
+            webPageResult = _puddleApi.SendSign("1", _puddleSgn, originalSid, build)
+        Else
+            MessageBox.Show("There was an error adding the sign " & gloss & " to the puddle. Create it first and send whole entry.")
+        End If
+
+        Dim sid = _puddleApi.GetFirsSidInWebPage(webPageResult)
+       
+    End Sub
     Private Sub SaveSign(ByVal signToSave As SwSign)
 
         Dim path = DictionaryConnectionString
@@ -2476,6 +2510,14 @@ Public Class SWDictForm
 
     Private Sub SplitContainer1_Panel1_Paint(sender As Object, e As PaintEventArgs) Handles SplitContainer1.Panel1.Paint
 
+    End Sub
+
+    Private Sub SendSignToPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendSignToPuddleToolStripMenuItem.Click
+        SaveDataGrid()
+
+        Dim idDictionary1 As Integer = DictionaryDataGridView.CurrentRow.Cells("IDDictionary").Value
+
+        SendEntrySigntoPuddle(idDictionary1)
     End Sub
 End Class
 
