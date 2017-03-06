@@ -131,6 +131,8 @@ Imports SignWriterStudio
         Me.TSMICopy = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIDeleteSign = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteCtrlVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MirrorSignToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeArrowHandsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TPSequence = New System.Windows.Forms.GroupBox()
         Me.PanelSpelling = New System.Windows.Forms.Panel()
         Me.TVSequence = New System.Windows.Forms.TreeView()
@@ -164,7 +166,6 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MirrorSignToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
@@ -847,7 +848,7 @@ Imports SignWriterStudio
         '
         'CMSPBSign
         '
-        Me.CMSPBSign.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIInsertsymbolOuts, Me.TSMIRemoveSymbols, Me.TSMIDuplicateSymbols, Me.ToolStripSeparator3, Me.TSMICenter, Me.TSMICenterHead, Me.OverlapSymbolsToolStripMenuItem, Me.SeperateSymbolsToolStripMenuItem, Me.MoveArea, Me.ToolStripSeparator2, Me.SelectAllToolStripMenuItem, Me.TSMINextSymbol, Me.TSMIPreviousSymbol, Me.TSMINextAddToSelected, Me.TSMIPreviousAddToSelected, Me.ToolStripSeparator5, Me.MoveTopMenuItem, Me.TSMIMoveUp, Me.TSMIMoveDown, Me.MoveBottomMenuItem, Me.ToolStripSeparator4, Me.ColorsToolStripMenuItem, Me.SizeToolStripMenuItem, Me.ToolStripSeparator1, Me.TSMIUndo, Me.TSMIRedo, Me.ToolStripSeparator6, Me.SignToolStripMenuItem, Me.MirrorSignToolStripMenuItem})
+        Me.CMSPBSign.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIInsertsymbolOuts, Me.TSMIRemoveSymbols, Me.TSMIDuplicateSymbols, Me.ToolStripSeparator3, Me.TSMICenter, Me.TSMICenterHead, Me.OverlapSymbolsToolStripMenuItem, Me.SeperateSymbolsToolStripMenuItem, Me.MoveArea, Me.ToolStripSeparator2, Me.SelectAllToolStripMenuItem, Me.TSMINextSymbol, Me.TSMIPreviousSymbol, Me.TSMINextAddToSelected, Me.TSMIPreviousAddToSelected, Me.ToolStripSeparator5, Me.MoveTopMenuItem, Me.TSMIMoveUp, Me.TSMIMoveDown, Me.MoveBottomMenuItem, Me.ToolStripSeparator4, Me.ColorsToolStripMenuItem, Me.SizeToolStripMenuItem, Me.ToolStripSeparator1, Me.TSMIUndo, Me.TSMIRedo, Me.ToolStripSeparator6, Me.SignToolStripMenuItem, Me.MirrorSignToolStripMenuItem, Me.ChangeArrowHandsToolStripMenuItem})
         Me.CMSPBSign.Name = "ContextMenuStrip1"
         Me.CMSPBSign.Size = New System.Drawing.Size(304, 568)
         '
@@ -1213,6 +1214,20 @@ Imports SignWriterStudio
         Me.PasteCtrlVToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.PasteCtrlVToolStripMenuItem.Text = "Paste into Sign"
         '
+        'MirrorSignToolStripMenuItem
+        '
+        Me.MirrorSignToolStripMenuItem.Name = "MirrorSignToolStripMenuItem"
+        Me.MirrorSignToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.MirrorSignToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.MirrorSignToolStripMenuItem.Text = "Mirror Sign"
+        '
+        'ChangeArrowHandsToolStripMenuItem
+        '
+        Me.ChangeArrowHandsToolStripMenuItem.Name = "ChangeArrowHandsToolStripMenuItem"
+        Me.ChangeArrowHandsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
+        Me.ChangeArrowHandsToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.ChangeArrowHandsToolStripMenuItem.Text = "Change arrow hands"
+        '
         'TPSequence
         '
         Me.TPSequence.Controls.Add(Me.PanelSpelling)
@@ -1471,13 +1486,6 @@ Imports SignWriterStudio
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'MirrorSignToolStripMenuItem
-        '
-        Me.MirrorSignToolStripMenuItem.Name = "MirrorSignToolStripMenuItem"
-        Me.MirrorSignToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.MirrorSignToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.MirrorSignToolStripMenuItem.Text = "Mirror Sign"
-        '
         'Editor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1672,5 +1680,6 @@ Imports SignWriterStudio
     Friend WithEvents PanelSpelling As System.Windows.Forms.Panel
     Friend WithEvents btnChooserAdd As System.Windows.Forms.Button
     Friend WithEvents MirrorSignToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ChangeArrowHandsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

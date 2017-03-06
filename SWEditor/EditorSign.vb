@@ -142,6 +142,13 @@ Partial Public Class Editor
                 e.SuppressKeyPress = True
                 e.Handled = True
                 Exit Sub
+            Case Keys.H
+                If e.Control Then
+                    ChangeArrowHands(mySWSign)
+                End If
+                e.SuppressKeyPress = True
+                e.Handled = True
+                Exit Sub
             Case Keys.C
                 If e.Control And e.Shift Then
                     CopySignImageCrop()
@@ -1193,6 +1200,19 @@ Partial Public Class Editor
 
     End Sub
 
+    Private Sub ChangeArrowHandsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeArrowHandsToolStripMenuItem.Click
+        ChangeArrowHands(mySWSign)
+    End Sub
+
+    Private Sub ChangeArrowHands(ByVal initialsign As SwSign)
+        Dim initialcurrentFrame = initialsign.Frames(initialsign.CurrentFrameIndex)
+
+        For Each symbol As SWSignSymbol In initialcurrentFrame.SignSymbols
+            ChangeArrowHands(symbol)
+        Next
+        DisplaySign()
+    End Sub
+
     Public Sub MirrorSign(initialsign As SwSign)
         Dim initialcurrentFrame = initialsign.Frames(initialsign.CurrentFrameIndex)
 
@@ -1205,8 +1225,7 @@ Partial Public Class Editor
     Private Sub mirrorSymbol(ByVal symbol As SWSignSymbol)
         Dim mirroredpositionx = 500 - symbol.X - symbol.SymbolDetails.Width
         Dim initialcode = symbol.Code
-        Dim mirroredssymbolcode As Integer
-       
+
         If isSymbolHand(symbol) Then
             If symbol.Hand = 0 Then
                 symbol.Hand = 1
@@ -1214,10 +1233,8 @@ Partial Public Class Editor
                 symbol.Hand = 0
             End If
         End If
-
-        mirroredssymbolcode = getmirroredssymbolcode(symbol)
-
-        symbol.Code = mirroredssymbolcode
+ 
+        symbol.Code = getmirroredssymbolcode(symbol)
 
         'Revert if new code is invalid
         If Not symbol.SymbolDetails.IsValid Then
@@ -1227,10 +1244,33 @@ Partial Public Class Editor
         symbol.X = mirroredpositionx
 
     End Sub
- 
+    Private Sub ChangeArrowHands(ByVal symbol As SWSignSymbol)
+
+        Dim initialcode = symbol.Code
+       
+        symbol.Code = changearrowhandfill(symbol)
+
+        'Revert if new code is invalid
+        If Not symbol.SymbolDetails.IsValid Then
+            symbol.Code = initialcode
+        End If
+
+
+
+    End Sub
+
 
     Private Function getmirroredssymbolcode(ByVal symbol As SWSignSymbol) As Integer
         Dim validrotations = SWSymbol.Rotations(symbol.Code)
+
+        Dim fill = symbol.SymbolDetails.Fill
+        
+        Dim mirroredrotation = mirrorRotation(symbol.SymbolDetails.Rotation, validrotations)
+        Return MakeNewSymbol(symbol.Code, symbol.Code, fill, mirroredrotation)
+    End Function
+
+    Private Function changearrowhandfill(ByVal symbol As SWSignSymbol) As Integer
+
         Dim cat = symbol.SymbolDetails.Category
         Dim fill = symbol.SymbolDetails.Fill
         'Switch right and left hand arrows
@@ -1241,8 +1281,8 @@ Partial Public Class Editor
                 fill = 1
             End If
         End If
-        Dim mirroredrotation = mirrorRotation(symbol.SymbolDetails.Rotation, validrotations)
-        Return MakeNewSymbol(symbol.Code, symbol.Code, fill, mirroredrotation)
+
+        Return MakeNewSymbol(symbol.Code, symbol.Code, fill, symbol.SymbolDetails.Rotation)
     End Function
 
     Private Function isSymbolHand(ByVal sign As SWSignSymbol) As Boolean
