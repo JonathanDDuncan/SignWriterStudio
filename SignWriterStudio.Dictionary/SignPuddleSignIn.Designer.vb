@@ -29,14 +29,14 @@ Partial Class SignPuddleSignIn
         Me.BtnSignIn = New System.Windows.Forms.Button()
         Me.CBPuddles = New System.Windows.Forms.ComboBox()
         Me.LblPuddle = New System.Windows.Forms.Label()
-        Me.TBSiteUrl = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.CBSiteUrl = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'LblUsername
         '
         Me.LblUsername.AutoSize = True
-        Me.LblUsername.Location = New System.Drawing.Point(27, 47)
+        Me.LblUsername.Location = New System.Drawing.Point(27, 69)
         Me.LblUsername.Name = "LblUsername"
         Me.LblUsername.Size = New System.Drawing.Size(60, 13)
         Me.LblUsername.TabIndex = 0
@@ -45,7 +45,7 @@ Partial Class SignPuddleSignIn
         'LblPassword
         '
         Me.LblPassword.AutoSize = True
-        Me.LblPassword.Location = New System.Drawing.Point(27, 75)
+        Me.LblPassword.Location = New System.Drawing.Point(27, 97)
         Me.LblPassword.Name = "LblPassword"
         Me.LblPassword.Size = New System.Drawing.Size(53, 13)
         Me.LblPassword.TabIndex = 1
@@ -53,14 +53,14 @@ Partial Class SignPuddleSignIn
         '
         'TBUsername
         '
-        Me.TBUsername.Location = New System.Drawing.Point(93, 44)
+        Me.TBUsername.Location = New System.Drawing.Point(93, 66)
         Me.TBUsername.Name = "TBUsername"
         Me.TBUsername.Size = New System.Drawing.Size(100, 20)
         Me.TBUsername.TabIndex = 2
         '
         'TBPassword
         '
-        Me.TBPassword.Location = New System.Drawing.Point(93, 72)
+        Me.TBPassword.Location = New System.Drawing.Point(93, 94)
         Me.TBPassword.Name = "TBPassword"
         Me.TBPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TBPassword.Size = New System.Drawing.Size(100, 20)
@@ -78,7 +78,7 @@ Partial Class SignPuddleSignIn
         'CBPuddles
         '
         Me.CBPuddles.FormattingEnabled = True
-        Me.CBPuddles.Location = New System.Drawing.Point(93, 115)
+        Me.CBPuddles.Location = New System.Drawing.Point(93, 39)
         Me.CBPuddles.Name = "CBPuddles"
         Me.CBPuddles.Size = New System.Drawing.Size(425, 21)
         Me.CBPuddles.TabIndex = 5
@@ -86,19 +86,11 @@ Partial Class SignPuddleSignIn
         'LblPuddle
         '
         Me.LblPuddle.AutoSize = True
-        Me.LblPuddle.Location = New System.Drawing.Point(27, 118)
+        Me.LblPuddle.Location = New System.Drawing.Point(27, 42)
         Me.LblPuddle.Name = "LblPuddle"
         Me.LblPuddle.Size = New System.Drawing.Size(40, 13)
         Me.LblPuddle.TabIndex = 6
         Me.LblPuddle.Text = "Puddle"
-        '
-        'TBSiteUrl
-        '
-        Me.TBSiteUrl.Location = New System.Drawing.Point(93, 12)
-        Me.TBSiteUrl.Name = "TBSiteUrl"
-        Me.TBSiteUrl.Size = New System.Drawing.Size(425, 20)
-        Me.TBSiteUrl.TabIndex = 8
-        Me.TBSiteUrl.Text = "http://www.signbank.org/signpuddle2.0/"
         '
         'Label1
         '
@@ -109,12 +101,22 @@ Partial Class SignPuddleSignIn
         Me.Label1.TabIndex = 7
         Me.Label1.Text = "Site Url"
         '
+        'CBSiteUrl
+        '
+        Me.CBSiteUrl.AutoCompleteCustomSource.AddRange(New String() {"http://signtyp.uconn.edu/signpuddle/", "http://www.signbank.org/signpuddle2.0/"})
+        Me.CBSiteUrl.FormattingEnabled = True
+        Me.CBSiteUrl.Items.AddRange(New Object() {"http://signtyp.uconn.edu/signpuddle/", "http://www.signbank.org/signpuddle2.0/"})
+        Me.CBSiteUrl.Location = New System.Drawing.Point(93, 12)
+        Me.CBSiteUrl.Name = "CBSiteUrl"
+        Me.CBSiteUrl.Size = New System.Drawing.Size(425, 21)
+        Me.CBSiteUrl.TabIndex = 9
+        '
         'SignPuddleSignIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(540, 195)
-        Me.Controls.Add(Me.TBSiteUrl)
+        Me.Controls.Add(Me.CBSiteUrl)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.LblPuddle)
         Me.Controls.Add(Me.CBPuddles)
@@ -136,6 +138,6 @@ Partial Class SignPuddleSignIn
     Friend WithEvents BtnSignIn As System.Windows.Forms.Button
     Friend WithEvents CBPuddles As System.Windows.Forms.ComboBox
     Friend WithEvents LblPuddle As System.Windows.Forms.Label
-    Friend WithEvents TBSiteUrl As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents CBSiteUrl As System.Windows.Forms.ComboBox
 End Class

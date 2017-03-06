@@ -3,7 +3,8 @@
 Public Class SignPuddleSignIn
 
     Private Sub SignPuddle_Sign_In_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GetPuddles(TBSiteUrl.Text)
+        'GetPuddles("http://signtyp.uconn.edu/signpuddle/")
+        CBSiteUrl.SelectedIndex = 0
     End Sub
 
     Private Sub GetPuddles(siteurl As String)
@@ -88,7 +89,7 @@ Public Class SignPuddleSignIn
     End Function
 
     Private Sub BtnSignIn_Click(sender As Object, e As EventArgs) Handles BtnSignIn.Click
-        SignPuddleApi = New SignPuddleApi.SignPuddleApi(TBSiteUrl.Text, TBUsername.Text, TBPassword.Text)
+        SignPuddleApi = New SignPuddleApi.SignPuddleApi(CBSiteUrl.Text, TBUsername.Text, TBPassword.Text)
         '"http://www.signbank.org/signpuddle2.0/"
         If Not SignPuddleApi.IsLoggedIn Then
             MessageBox.Show("Could not log into account")
@@ -112,7 +113,9 @@ Public Class SignPuddleSignIn
 
     Public Property Sgn() As String
      
-    Private Sub TBSiteUrl_TextChanged(sender As Object, e As EventArgs) Handles TBSiteUrl.TextChanged
-        GetPuddles(TBSiteUrl.Text)
+  
+
+    Private Sub CBSiteUrl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBSiteUrl.SelectedIndexChanged
+        GetPuddles(CBSiteUrl.Text)
     End Sub
 End Class
