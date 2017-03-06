@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
+Imports NUnit.Framework
 Imports Newtonsoft.Json.Converters
 Imports Newtonsoft.Json
 Imports SignWriterStudio.SWClasses
@@ -130,6 +131,13 @@ Partial Public Class Editor
 
                 ElseIf e.Alt Then
                     GetNextSymbol()
+                End If
+                e.SuppressKeyPress = True
+                e.Handled = True
+                Exit Sub
+            Case Keys.M
+                If e.Control Then
+                    MirrorSign(mySWSign)
                 End If
                 e.SuppressKeyPress = True
                 e.Handled = True
@@ -1180,6 +1188,124 @@ Partial Public Class Editor
         DisplaySign()
     End Sub
 
+    Private Sub MirrorSignToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MirrorSignToolStripMenuItem.Click
+        MirrorSign(mySWSign)
+
+    End Sub
+
+    Public Sub MirrorSign(initialsign As SwSign)
+        Dim initialcurrentFrame = initialsign.Frames(initialsign.CurrentFrameIndex)
+
+        For Each symbol As SWSignSymbol In initialcurrentFrame.SignSymbols
+            mirrorSymbol(symbol)
+        Next
+        DisplaySign()
+    End Sub
+
+    Private Sub mirrorSymbol(ByVal symbol As SWSignSymbol)
+        Dim mirroredpositionx = 500 - symbol.X - symbol.SymbolDetails.Width
+        Dim initialcode = symbol.Code
+        Dim mirroredssymbolcode As Integer
+       
+        If isSymbolHand(symbol) Then
+            If symbol.Hand = 0 Then
+                symbol.Hand = 1
+            Else
+                symbol.Hand = 0
+            End If
+        End If
+
+        mirroredssymbolcode = getmirroredssymbolcode(symbol)
+
+        symbol.Code = mirroredssymbolcode
+
+        'Revert if new code is invalid
+        If Not symbol.SymbolDetails.IsValid Then
+            symbol.Code = initialcode
+        End If
+
+        symbol.X = mirroredpositionx
+
+    End Sub
+ 
+
+    Private Function getmirroredssymbolcode(ByVal symbol As SWSignSymbol) As Integer
+        Dim validrotations = SWSymbol.Rotations(symbol.Code)
+        Dim cat = symbol.SymbolDetails.Category
+        Dim fill = symbol.SymbolDetails.Fill
+        'Switch right and left hand arrows
+        If cat = 2 Then
+            If fill = 1 Then
+                fill = 2
+            ElseIf fill = 2 Then
+                fill = 1
+            End If
+        End If
+        Dim mirroredrotation = mirrorRotation(symbol.SymbolDetails.Rotation, validrotations)
+        Return MakeNewSymbol(symbol.Code, symbol.Code, fill, mirroredrotation)
+    End Function
+
+    Private Function isSymbolHand(ByVal sign As SWSignSymbol) As Boolean
+        Return sign.SymbolDetails.Category = 1
+    End Function
+
+    Private Function mirrorRotation(ByVal rotation As Integer, ByVal validrotations As Integer) As Integer
+
+        Dim newrotation As Integer = rotation
+
+
+        If validrotations = 16 OrElse validrotations = -16 OrElse validrotations = 4 Then
+            If rotation = 1 Then
+                newrotation = 9
+            ElseIf rotation = 2 Then
+                newrotation = 10
+            ElseIf rotation = 3 Then
+                newrotation = 11
+            ElseIf rotation = 4 Then
+                newrotation = 12
+            ElseIf rotation = 5 Then
+                newrotation = 13
+            ElseIf rotation = 6 Then
+                newrotation = 14
+            ElseIf rotation = 7 Then
+                newrotation = 15
+            ElseIf rotation = 8 Then
+                newrotation = 16
+            ElseIf rotation = 9 Then
+                newrotation = 1
+            ElseIf rotation = 10 Then
+                newrotation = 2
+            ElseIf rotation = 11 Then
+                newrotation = 3
+            ElseIf rotation = 12 Then
+                newrotation = 4
+            ElseIf rotation = 13 Then
+                newrotation = 5
+            ElseIf rotation = 14 Then
+                newrotation = 6
+            ElseIf rotation = 15 Then
+                newrotation = 7
+            ElseIf rotation = 16 Then
+                newrotation = 8
+                End If
+            Else
+                If rotation = 2 Then
+                    newrotation = 8
+                ElseIf rotation = 8 Then
+                    newrotation = 2
+                ElseIf rotation = 3 Then
+                    newrotation = 7
+                ElseIf rotation = 7 Then
+                    newrotation = 3
+                ElseIf rotation = 4 Then
+                    newrotation = 6
+                ElseIf rotation = 6 Then
+                    newrotation = 4
+                End If
+
+            End If
+            Return newrotation
+    End Function
 #End Region
 
     Private Sub OnlyOnePunctuationError()
