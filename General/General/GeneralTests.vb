@@ -81,21 +81,19 @@ Public Class GeneralTests
 		Assert.AreEqual(byt, byt1 )
 	End Sub
 	<Test()> _
-		<ExpectedException(GetType(AssertionException))> _
-	Public Sub ImageToByteArrayFail1()
-		Dim Bmp As New Bitmap (5,5, drawing.Imaging.PixelFormat .Format32bppRgb)
-		Dim byt() As Byte = {137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 10, 8, 6, 0, 0, 0, 141, 50, 207, 189, 0, 0, 0, 1, 115, 82, 71, 66, 0, 174, 206, 28, 233, 0, 0, 0, 4, 103, 65, 77, 65, 0, 0, 177, 143, 11, 252, 97, 5, 0, 0, 0, 32, 99, 72, 82, 77, 0, 0, 122, 38, 0, 0, 128, 132, 0, 0, 250, 0, 0, 0, 128, 232, 0, 0, 117, 48, 0, 0, 234, 96, 0, 0, 58, 152, 0, 0, 23, 112, 156, 186, 81, 60, 0, 0, 0, 30, 73, 68, 65, 84, 40, 83, 99, 100, 96, 96, 248, 15, 196, 68, 1, 144, 66, 98, 48, 81, 138, 192, 182, 18, 99, 218, 8, 85, 8, 0, 177, 23, 90, 167, 145, 196, 111, 229, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130}
-		Dim Img As Image = ctype(bmp, Image)
-		Assert.AreEqual(byt, ImageToByteArray(Img, Nothing))
-	End Sub
+    Public Sub ImageToByteArrayFail1()
+        Dim Bmp As New Bitmap(5, 5, drawing.Imaging.PixelFormat.Format32bppRgb)
+        Dim byt() As Byte = {137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 10, 8, 6, 0, 0, 0, 141, 50, 207, 189, 0, 0, 0, 1, 115, 82, 71, 66, 0, 174, 206, 28, 233, 0, 0, 0, 4, 103, 65, 77, 65, 0, 0, 177, 143, 11, 252, 97, 5, 0, 0, 0, 32, 99, 72, 82, 77, 0, 0, 122, 38, 0, 0, 128, 132, 0, 0, 250, 0, 0, 0, 128, 232, 0, 0, 117, 48, 0, 0, 234, 96, 0, 0, 58, 152, 0, 0, 23, 112, 156, 186, 81, 60, 0, 0, 0, 30, 73, 68, 65, 84, 40, 83, 99, 100, 96, 96, 248, 15, 196, 68, 1, 144, 66, 98, 48, 81, 138, 192, 182, 18, 99, 218, 8, 85, 8, 0, 177, 23, 90, 167, 145, 196, 111, 229, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130}
+        Dim Img As Image = CType(Bmp, Image)
+        Assert.Throws(Of AssertionException)(Function() ImageToByteArray(Img, Nothing))
+    End Sub
 	<Test()> _
-		<ExpectedException(GetType(AssertionException))> _
-	Public Sub ImageToByteArrayTestFail2()
-		Dim Bmp As New Bitmap (10,10, drawing.Imaging.PixelFormat .Format32bppRgb)
-		Dim byt() As Byte = {137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 10, 8, 6, 0, 0, 0, 141, 50, 207, 189, 0, 0, 0, 1, 115, 82, 71, 66, 0, 174, 206, 28, 233, 0, 0, 0, 4, 103, 65, 77, 65, 0, 0, 177, 143, 11, 252, 97, 5, 0, 0, 0, 32, 99, 72, 82, 77, 0, 0, 122, 38, 0, 0, 128, 132, 0, 0, 250, 0, 0, 0, 128, 232, 0, 0, 117, 48, 0, 0, 234, 96, 0, 0, 58, 152, 0, 0, 23, 112, 156, 186, 81, 60, 0, 0, 0, 30, 73, 68, 65, 84, 40, 83, 99, 100, 96, 96, 248, 15, 196, 68, 1, 144, 66, 98, 48, 81, 138, 192, 182, 18, 99, 218, 8, 85, 8, 0, 177, 23, 90, 167, 145, 196, 111, 229, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130}
-		Dim Img As Image = ctype(bmp, Image)
-		Assert.AreEqual(byt, ImageToByteArray(Nothing, Drawing.Imaging.ImageFormat.Png))
-	End Sub
+    Public Sub ImageToByteArrayTestFail2()
+        Dim Bmp As New Bitmap(10, 10, drawing.Imaging.PixelFormat.Format32bppRgb)
+        Dim byt() As Byte = {137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 10, 8, 6, 0, 0, 0, 141, 50, 207, 189, 0, 0, 0, 1, 115, 82, 71, 66, 0, 174, 206, 28, 233, 0, 0, 0, 4, 103, 65, 77, 65, 0, 0, 177, 143, 11, 252, 97, 5, 0, 0, 0, 32, 99, 72, 82, 77, 0, 0, 122, 38, 0, 0, 128, 132, 0, 0, 250, 0, 0, 0, 128, 232, 0, 0, 117, 48, 0, 0, 234, 96, 0, 0, 58, 152, 0, 0, 23, 112, 156, 186, 81, 60, 0, 0, 0, 30, 73, 68, 65, 84, 40, 83, 99, 100, 96, 96, 248, 15, 196, 68, 1, 144, 66, 98, 48, 81, 138, 192, 182, 18, 99, 218, 8, 85, 8, 0, 177, 23, 90, 167, 145, 196, 111, 229, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130}
+        Dim Img As Image = CType(bmp, Image)
+        Assert.Throws(Of AssertionException)(Function() ImageToByteArray(Nothing, Drawing.Imaging.ImageFormat.Png))
+    End Sub
 	
 	<Test()> _
 	Public Sub NulltoByteArrayTest1()
@@ -172,15 +170,13 @@ Public Class GeneralTests
 	End Sub
 	
 	<Test()> _
-		<ExpectedException(GetType(AssertionException))> _
-	Public Sub BinaryCountFail1()
-		BinaryCount(-1)
-	End Sub
-	<Test()> _
-		<ExpectedException(GetType(AssertionException))> _
-	Public Sub BinaryCountFail2()
-		BinaryCount(65536)
-	End Sub
+    Public Sub BinaryCountFail1()
+        Assert.Throws(Of AssertionException)(Function() BinaryCount(-1))
+    End Sub
+    <Test()> _
+    Public Sub BinaryCountFail2()
+        Assert.Throws(Of AssertionException)(Function() BinaryCount(65536))
+    End Sub
 	
 	<Test()> Public Shared Sub CheckSWIdTestPass()
 		

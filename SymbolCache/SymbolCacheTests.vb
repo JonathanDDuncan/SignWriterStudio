@@ -10,17 +10,15 @@ Imports Nunit.Framework.Constraints
 	End Sub
 		
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
      Public Shared Sub GetIdTestFail3()
         Dim SWSC As New SWSymbolCache
-        SWSC.GetId("a1-01-01-001-01-01")
+        Assert.Throws(Of AssertionException)(Function() SWSC.GetId("a1-01-01-001-01-01"))
     End Sub
 	
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
      Public Shared Sub GetCodeTestFail3()
         Dim SWSC As New SWSymbolCache
-        SWSC.GetCode(-5)
+        Assert.Throws(Of AssertionException)(Function() SWSC.GetCode(-5))
     End Sub
 	
 	
@@ -85,18 +83,15 @@ Imports Nunit.Framework.Constraints
 	End Sub
 	
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
      Public Shared Sub FlushCacheTestFail1()
         Dim SWSC As New SWSymbolCache
-        SWSC.FlushCache(-1)
+        Assert.Throws(Of AssertionException)(Sub() SWSC.FlushCache(-1))
     End Sub
 	
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
      Public Shared Sub FlushCacheTestFail2()
         Dim SWSC As New SWSymbolCache
-        SWSC.FlushCache(0)
-
+        Assert.Throws(Of AssertionException)(Sub() SWSC.FlushCache(0))
     End Sub
 	
 	<Test()> _
@@ -107,10 +102,9 @@ Imports Nunit.Framework.Constraints
 		
 	End Sub
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
      Public Shared Sub IsIdinCacheTestExcep()
         Dim SWSC As New SWSymbolCache
-        SWSC.isIdInCache(-5)
+        Assert.Throws(Of AssertionException)(Function() SWSC.isIdInCache(-5))
     End Sub
 	<Test()> _
 		Public Shared Sub LoadIdintoCacheTest()
@@ -121,10 +115,9 @@ Imports Nunit.Framework.Constraints
 	End Sub
 	
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
      Public Shared Sub LoadIdintoCacheTestExcep()
         Dim SWSC As New SWSymbolCache
-        SWSC.LoadIdintoCache("a1-01-001-01-01-01")
+        Assert.Throws(Of AssertionException)(Sub() SWSC.LoadIdintoCache("a1-01-001-01-01-01"))
     End Sub
 	
 	
@@ -147,10 +140,9 @@ Imports Nunit.Framework.Constraints
 		Assert.That(SWSC.isCodeinCache(259), Iz.False)
 	End Sub
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
      Public Shared Sub IsCodeinCacheTestExcep()
         Dim SWSC As New SWSymbolCache
-        SWSC.isCodeinCache(-5)
+        Assert.Throws(Of AssertionException)(Sub() SWSC.isCodeinCache(-5))
     End Sub
 	
 	<Test()> _
@@ -173,10 +165,9 @@ Imports Nunit.Framework.Constraints
 		Assert.That(SWSC.SymbolCacheDT.Count, Iz.EqualTo(1))
 	End Sub
     <Test()> _
-     <ExpectedException(GetType(AssertionException))> _
-     Public Shared Sub LoadCodeintoCacheTestExcep()
+    Public Shared Sub LoadCodeintoCacheTestExcep()
         Dim SWSC As New SWSymbolCache
-        SWSC.LoadCodeintoCache(-5)
+        Assert.Throws(Of AssertionException)(Sub() SWSC.LoadCodeintoCache(-5))
     End Sub
 	
 	
