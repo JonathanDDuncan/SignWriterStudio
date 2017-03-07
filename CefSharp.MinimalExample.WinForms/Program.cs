@@ -12,7 +12,7 @@ namespace CefSharp.MinimalExample.WinForms
         [STAThread]
         public static void Main()
         {
-            //For Windows 7 and above, best to include relevant app.manifest entries as well
+       //For Windows 7 and above, best to include relevant app.manifest entries as well
             Cef.EnableHighDPISupport();
 
             //Perform dependency check to make sure all relevant resources are in our output directory.
@@ -20,7 +20,7 @@ namespace CefSharp.MinimalExample.WinForms
 
             var settings = new CefSettings { RemoteDebuggingPort = 8088 };
 
-            Cef.Initialize(settings, shutdownOnProcessExit: false, performDependencyCheck: true);
+            Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
 
             var browser = new BrowserForm();
             Application.Run(browser);
@@ -36,7 +36,7 @@ namespace CefSharp.MinimalExample.WinForms
 
             var settings = new CefSettings { RemoteDebuggingPort = 8088 };
             if (!Cef.IsInitialized)
-                Cef.Initialize(settings, shutdownOnProcessExit: false, performDependencyCheck: true);
+                Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
 
             var browserform = new BrowserForm();
            
