@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>b8b3b302</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>19e3f51e</NuGetPackageImportStamp>
     <PublishUrl>C:\Users\Duncan\Documents\Visual Studio 2008\Projects\Published\SignWriterStudio\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -110,7 +110,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-  <Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -361,7 +361,7 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup> 
+  <ItemGroup>
     <ProjectReference Include="..\General\General\General.vbproj">
       <Project>{800E41F9-9663-47D2-A0B2-A61BB6EEB4CC}</Project>
       <Name>General</Name>
@@ -405,8 +405,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-     </Target>
-  
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
