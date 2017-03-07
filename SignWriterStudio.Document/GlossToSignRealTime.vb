@@ -1,4 +1,5 @@
 
+Imports SignWriterStudio.Database.Dictionary
 Imports SignWriterStudio.Dictionary
 Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.Settings
@@ -6,6 +7,7 @@ Imports SignWriterStudio.Database.Dictionary.DictionaryDataSet
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Settings.SettingsPublic
 Imports SignWriterStudio.SWEditor
+Imports System.Data.SQLite
 
 Public Class GlossToSignRealTime
     Dim Dictionary As New SWDict
@@ -185,7 +187,7 @@ Public Class GlossToSignRealTime
         AddHandler glossToSignRealTimeControl.MouseDown, AddressOf Me.GlossToSignControlEventHandler
         glossToSignRealTimeControl.TextBox1.Text = searchString
         Dim result = Search(searchString)
-         
+
         CheckMatchingGlossOrFirstItem(result.Item1, searchString)
 
         glossToSignRealTimeControl.FoundWordDt = result.Item1
@@ -219,10 +221,14 @@ Public Class GlossToSignRealTime
     Private Function Search(ByVal searchString As String) As Tuple(Of SignsbyGlossesUnilingualDataTable, Integer)
         Dim foundWordsDt As SignsbyGlossesUnilingualDataTable = New SignsbyGlossesUnilingualDataTable()
 
-        Dim ta As New SignsbyGlossesUnilingualTableAdapter
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+
+        Dim ta As New SignsbyGlossesUnilingualTableAdapter()
+        ta.AssignConnection(conn, trans)
         Dim resultType = 2 'Signs matched full word
         If Not searchString = "" Then
-            
+
             'If no exact search found
             If Not searchString.Contains("%") Then
                 If foundWordsDt.Rows.Count = 0 Then
@@ -249,6 +255,12 @@ Public Class GlossToSignRealTime
                 resultType = 0
             End If
         End If
+
+      
+        trans.Commit()
+        trans.Dispose()
+        conn.Close()
+        conn.Dispose()
         Return Tuple.Create(foundWordsDt, resultType)
     End Function
 
@@ -465,7 +477,7 @@ Public Class GlossToSignRealTime
         MoveControl(control, moveIndex)
     End Sub
 
-    Private Sub MoveControl(ByVal control As GlossToSignRealTimeControl, ByVal index As Integer)      
+    Private Sub MoveControl(ByVal control As GlossToSignRealTimeControl, ByVal index As Integer)
         FlowLayoutPanel1.Controls.SetChildIndex(control, index)
     End Sub
     Private Sub GlossToSignRealTimeControl_InsertBefore(control As Document.GlossToSignRealTimeControl)
@@ -494,7 +506,7 @@ Public Class GlossToSignRealTime
         If result IsNot Nothing Then
 
             Dim idDict As Integer = result.Item1
-             
+
             Dim selectedColumn As New DataColumn
             selectedColumn.ColumnName = "Selected"
             selectedColumn.DataType = Type.GetType("System.Boolean")
@@ -587,5 +599,5 @@ Public Class GlossToSignRealTime
         sd.EndEdit()
         TBGlossToSign.Focus()
     End Sub
-     
+
 End Class
