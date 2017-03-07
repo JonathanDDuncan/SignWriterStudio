@@ -9,6 +9,7 @@ Imports SignWriterStudio.Settings.SettingsPublic
 Imports SignWriterStudio.SWEditor
 Imports System.Data.SQLite
 
+
 Public Class GlossToSignRealTime
     Dim Dictionary As New SWDict
     Friend Signs As List(Of Tuple(Of SwSign, Integer))
@@ -256,7 +257,7 @@ Public Class GlossToSignRealTime
             End If
         End If
 
-      
+
         trans.Commit()
         trans.Dispose()
         conn.Close()
