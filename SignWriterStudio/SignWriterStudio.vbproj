@@ -288,8 +288,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="License.txt" />
-    <Content Include="SQLite.cs" />
-    <Content Include="SQLiteAsync.cs" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\DataSources\SignWriterStudio.My.MySettings.datasource" />
     <None Include="Resources\ArrowWallPlane.PNG" />
