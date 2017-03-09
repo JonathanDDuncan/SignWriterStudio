@@ -1736,6 +1736,7 @@ Public NotInheritable Class SWDict
         Dim strConection = CreateConnectionStringFromPath(connectionString)
 
         Using connection As New SQLiteConnection(strConection)
+            signsbyGlossesBilingualTableAdapter.AssignConnection(connection)
             Dim results = signsbyGlossesBilingualTableAdapter.GetDataByID(DefaultSignLanguage, idDict, FirstGlossLanguage, SecondGlossLanguage)
 
             For Each signsbyGlossesBilingualRow As SignsbyGlossesBilingualRow In results
