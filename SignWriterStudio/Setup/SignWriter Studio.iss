@@ -71,6 +71,8 @@ Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\icudtl.dat"; DestDir: "{a
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_100_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_200_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_extensions.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\devtools_resources.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef.pak"; DestDir: "{app}"; Flags: ignoreversionho
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libGLESv2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLite\SQLite.Interop.dll"; DestDir: "{app}"; Flags: ignoreversion
