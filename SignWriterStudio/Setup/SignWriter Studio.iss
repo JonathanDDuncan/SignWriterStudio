@@ -31,7 +31,7 @@ OutputBaseFilename={#MyAppVerName}{#MyVersion}
 Compression=lzma
 SolidCompression=yes
 
-                                    
+                                  
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
@@ -60,25 +60,25 @@ Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\TagList.dll"; DestDir: "{
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DropDownControls.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DbTags.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLiteAdapters.dll"; DestDir: "{app}"; Flags: ignoreversion
- Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.BrowserSubprocess.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.BrowserSubprocess.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.BrowserSubprocess.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.WinForms.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\CefSharp.MinimalExample.WinForms.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libcef.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\d3dcompiler_43.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\icudtl.dat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_100_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_200_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\cef_extensions.pak"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\libGLESv2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLite\SQLite.Interop.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLite\System.Data.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLite\System.Data.SQLite.EF6.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SQLite\System.Data.SQLite.Linq.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\packages\cef.redist.x86.3.2883.1552\CEF\x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Source: "{#BaseSourceDir}\packages\cef.redist.x86.3.2883.1552\CEF\locales\*"; DestDir: "{app}\locales"; Flags: ignoreversion recursesubdirs
-Source: "{#BaseSourceDir}\packages\cef.redist.x86.3.2883.1552\CEF\*"; DestDir: "{app}\"; Flags: ignoreversion
-Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\dist\*"; DestDir: "{app}\dist"; Flags: ignoreversion recursesubdirs
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\nunit.framework.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Foreign Dll\vcredist_x86.exe"; DestDir: "{app}"; Flags: ignoreversion
