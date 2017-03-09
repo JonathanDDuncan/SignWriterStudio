@@ -519,12 +519,18 @@ Public NotInheritable Class SWDict
                         signs.Add(Tuple.Create(blankSign, id.Item3))
                     End If
                 Next
-
+                trans.Commit()
+                trans.Dispose()
+                conn.Close()
+                conn.Dispose()
                 Return signs
 
 
             Catch
-
+                trans.Rollback()
+                trans.Dispose()
+                conn.Close()
+                conn.Dispose()
             End Try
 
         End Using
