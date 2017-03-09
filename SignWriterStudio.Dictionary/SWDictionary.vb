@@ -3,7 +3,6 @@ Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Data.OleDb
-Imports Microsoft.ReportingServices.Interfaces
 Imports Newtonsoft.Json
 Imports SignWriterStudio.DbTags
 Imports DropDownControls.FilteredGroupedComboBox
@@ -1125,10 +1124,9 @@ Public Class SWDictForm
         If DictionaryLoaded Then
             Dim newRow = DirectCast(DirectCast(_myDictionary.DictionaryBindingSource1.AddNew(), DataRowView).Row, DictionaryDataSet.SignsbyGlossesBilingualRow)
 
+            Dim newId As Integer = GetNewId(newId)
 
-            'Edit last added row so that it will save.
-            Dim taDictionary As New DictionaryTableAdapter
-            Dim newId As Integer = taDictionary.LastID + 1
+
             Dim currentRow As DataGridViewRow = Me.DictionaryDataGridView.CurrentRow
             currentRow.Cells("IDDictionary").Value = newId
             currentRow.Cells("SignLanguage").Value = _myDictionary.DefaultSignLanguage
@@ -1137,10 +1135,36 @@ Public Class SWDictForm
 
             SaveDataGrid()
             _myDictionary.DictionaryBindingSource1.ResetBindings(False)
+
+
         Else
             MessageBox.Show("Choose or create a SignWriter Dictionary (.SWS) file before continuing.")
         End If
     End Sub
+
+    Private Function GetNewId(ByVal newId As Integer) As Integer
+
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+
+        Try
+
+            'Edit last added row so that it will save.
+            Dim taDictionary As New DictionaryTableAdapter
+
+            taDictionary.AssignConnection(conn, trans)
+            newId = taDictionary.LastID + 1
+
+            trans.Commit()
+            conn.Close()
+        Catch ex As SQLiteException
+            LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+            MessageBox.Show(ex.ToString)
+            If trans IsNot Nothing Then trans.Rollback()
+        End Try
+        Return newId
+    End Function
 
     Private Sub DictionaryDataGridView_RowsAdded(ByVal sender As Object, ByVal e As DataGridViewRowsAddedEventArgs) _
         Handles DictionaryDataGridView.RowsAdded
@@ -2466,7 +2490,7 @@ Public Class SWDictForm
 
     End Sub
     Private Sub AddSignsinNewDictNoImageDibujoGroup1()
-        Dim path = GetConnectionString()
+        Dim path = DictionaryConnectionString()
         Dim listIdDictionary = DbDictionary.GetAllIds(path)
 
         Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)
@@ -2491,7 +2515,7 @@ Public Class SWDictForm
         Dim affectedRows = DbTagsDictionary.InsertTag(path, list, dibujoGroup1.ToString())
     End Sub
     Private Sub AddNewDicttoPreviousDictEntries()
-        Dim path = GetConnectionString()
+        Dim path = DictionaryConnectionString()
         Dim listIdDictionary = DbDictionary.GetAllIds(path)
 
         Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)
