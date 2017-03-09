@@ -5,40 +5,17 @@ Imports SignWriterStudio.Settings
 
 
 Public Class SignWriterMenu
-    'Friend CA As ClientApp
-
-    'Friend AcercaDE As New AcercaDE
     Friend WithEvents SaveSettingsDialog As New SaveFileDialog
     Friend WithEvents LoadSettingsDialog As New OpenFileDialog
-    'Friend WithEvents monitor As EQATEC.Analytics.Monitor.IAnalyticsMonitor = EQATEC.Analytics.Monitor.AnalyticsMonitorFactory.Create("7A55FE8188FD4072B11C3EA5D30EB7F9")
-    Private _swDictForm As Dictionary.SWDictForm
-    'Private SignLists As SignWriterStudio.SignList.SignLists
-    Private _swDocumentForm As Document.SwDocumentForm
-    'Private ImportExport As Document.ImportExport
-    'Sub NewVersion(ByVal sender As Object, ByVal e As EQATEC.Analytics.Monitor.VersionAvailableEventArgs) Handles monitor.VersionAvailable
-    '    MessageBox.Show("Version " & e.OfficialVersion.ToString & " is available")
-    'End Sub
 
+    Private _swDictForm As Dictionary.SWDictForm
+
+    Private _swDocumentForm As Document.SwDocumentForm
+    
     Private Sub CloseCerrarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles CloseCerrarToolStripMenuItem.Click
         Close()
     End Sub
-
-    'Private Sub HelpToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs)
-    '    Help.ShowHelp(Me, HelpProvider1.HelpNamespace)
-    'End Sub
-    'Private Sub indexToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs)
-    '    ' Show index of the help file.
-    '    Help.ShowHelpIndex(Me, hpAdvancedCHM.HelpNamespace)
-    'End Sub
-
-    'Private Sub searchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs)
-    '    ' Show the search tab of the help file.
-    '    Help.ShowHelp(Me, hpAdvancedCHM.HelpNamespace, HelpNavigator.Find, "")
-    'End Sub
-
-    'Private Sub ThemesHelpToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs)
-    '    Help.ShowHelp(Me, "SignWriterStudio.chm", "mainmenu.htm")
-    'End Sub
+     
     Sub LoadTranslation()
         ' Put the Imports statements at the beginning of the code module
 
@@ -113,12 +90,7 @@ Public Class SignWriterMenu
     Private Sub OpenDocument(filename As String)
         Hide()
         _swDocumentForm.OpenDocument(filename)
-        'If _swDocumentForm Is Nothing OrElse _swDocumentForm.IsDisposed Then
-        '    _swDocumentForm = New Document.SwDocumentForm
-        'End If
-        '_swDocumentForm.ShowDialog()
-
-        '_swDocumentForm.Close()
+       
         Show()
     End Sub
 
@@ -129,14 +101,12 @@ Public Class SignWriterMenu
     Sub MyHandler(ByVal sender As Object, ByVal args As UnhandledExceptionEventArgs)
         Dim e As Exception = DirectCast(args.ExceptionObject, Exception)
         MessageBox.Show("There has been an error in the application: " & e.Message)
-        'monitor.TrackException(e)
+
     End Sub
     Private Sub frmSignWriterMenu_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
 
         Try
-            'StoreKey.GenKey_SaveInContainer("SignWriterStudio")
-            'StoreKey.GenKey_SaveInContainer("software")
-            'Set up culture in thread for this session
+         
             Dim cd As AppDomain = AppDomain.CurrentDomain
 
             AddHandler cd.UnhandledException, AddressOf MyHandler
@@ -145,7 +115,6 @@ Public Class SignWriterMenu
             Dim swOptions As New SWOptions
             swOptions.SetCulture()
 
-            'CA = New ClientApp(Me.AcercaDE)
             Dim connStrUi As String = CreateConnectionString(Paths.Join(Paths.ApplicationPath, "swsui.dat"))
             If CheckSqLiteConnectionString(connStrUi) Then
                 UI.Cultures.SetCultureConnectionString(connStrUi)
@@ -160,15 +129,14 @@ Public Class SignWriterMenu
                 SymbolCache.Iswa2010.ISWA2010ConnectionString = ""
             End If
             Dim connStrSettings As String = CreateConnectionString(Paths.Join(Paths.ApplicationPath, "Settings.dat"))
-            'MessageBox.Show(connStrSettings)
+
             If CheckSqLiteConnectionString(connStrSettings) Then
                 SettingsPublic.SettingsConnectionString = connStrSettings
 
             Else
                 SettingsPublic.SettingsConnectionString = ""
-                'MessageBox.Show("Could not find settings file")
-            End If
 
+            End If
 
             Dim connStr As String = My.Settings.LastDictionaryString
             If CheckConnectionString(connStr) Then
@@ -177,8 +145,6 @@ Public Class SignWriterMenu
                 My.Settings.LastDictionaryString = ""
             End If
             SetFileAssociation()
-
-
 
             CheckForFiletoOpen()
 
@@ -189,7 +155,7 @@ Public Class SignWriterMenu
         Catch ex As Exception
             LogError(ex, "")
             MessageBox.Show(ex.Message)
-            'NotContinue()
+
             Application.Exit()
         End Try
     End Sub
@@ -240,15 +206,7 @@ Public Class SignWriterMenu
             End If
         End If
     End Sub
-    'Private Sub OpenDocument(ByVal filename As String)
-    '    'If SWDocumentForm Is Nothing OrElse SWDocumentForm.IsDisposed Then
-    '    '    SWDocumentForm = New Document.SWDocumentForm
-    '    'End If
-
-    '    'SWDocumentForm.OpenDocument(Filename)
-    '    'SWDocumentForm.ShowDialog()
-    '    'SWDocumentForm.Close()
-    'End Sub
+   
     Private Sub OpenDictionary(ByVal filename As String)
         If _swDictForm Is Nothing OrElse _swDictForm.IsDisposed Then
             _swDictForm = New Dictionary.SWDictForm(New SWEditor.Editor)
@@ -258,46 +216,16 @@ Public Class SignWriterMenu
         _swDictForm.ShowDialog()
         _swDictForm.Close()
     End Sub
-    'Private Sub OpenSignWriterStudioFileToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs)
-    '    OpenFileDialog1.InitialDirectory = ""
-    '    OpenFileDialog1.ShowDialog()
-    'End Sub
-
-    'Private Sub NewSignWriterStudioFileToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs)
-    '    SaveFileDialog1.ShowDialog()
-    'End Sub
-
-    'Private Sub AboutToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs)
-
-    'End Sub
-
+  
     Private Sub ExportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ExportSettingsToolStripMenuItem.Click
         MessageBox.Show("This option has been temporarily disabled because it is not yet fully functional.")
-
-        'ExportSettings()
+ 
     End Sub
-
-    'Private Sub ExportSettings()
-    '    Dim ss As New SerializableSettings
-    '    ss.Save()
-
-    '    SaveSettingsDialog.AddExtension = True
-    '    SaveSettingsDialog.AutoUpgradeEnabled = True
-    '    SaveSettingsDialog.CheckPathExists = True
-    '    SaveSettingsDialog.DefaultExt = "SWSSettings"
-    '    SaveSettingsDialog.ShowDialog()
-    'End Sub
+ 
 
     Private Sub ImportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ImportSettingsToolStripMenuItem.Click
         MessageBox.Show("This option has been temporarily disabled because it is not yet fully functional.")
-
-
-        'LoadSettingsDialog.AddExtension = True
-        'LoadSettingsDialog.AutoUpgradeEnabled = True
-        'LoadSettingsDialog.CheckPathExists = True
-        'LoadSettingsDialog.DefaultExt = "SWSSettings"
-        'LoadSettingsDialog.ShowDialog()
-
+         
     End Sub
 
     Private Sub SaveSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles SaveSettingsDialog.FileOk
@@ -356,15 +284,11 @@ Public Class SignWriterMenu
             fa1.IconPath = Paths.ApplicationPath & "\SignWriterStudio.ico"
             fa1.AddCommand("open", Paths.ApplicationPath & "\SignWriterStudio.exe ""%1""")
             fa1.Create()
-            'MessageBox.Show("SWSDOC assocation successful")
+
         Catch ex As Exception
             LogError(ex, "")
-            'My.Application.Log.WriteException(ex, _
-            '                  TraceEventType.Error, _
-            '                  "Exception ")
+            
         End Try
-
-
     End Sub
 
     Private Shared Sub AboutToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem1.Click

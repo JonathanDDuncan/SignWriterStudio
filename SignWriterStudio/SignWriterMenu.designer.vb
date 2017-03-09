@@ -168,16 +168,13 @@ Partial Class SignWriterMenu
         Me.PerformLayout()
 
     End Sub
-    'Friend WithEvents ASL_ListDataSet As SLVocabularyLists.ASL_ListDataSet
-    'Friend WithEvents ThemesTableAdapter As SLVocabularyLists.ASL_ListDataSetTableAdapters.ThemesTableAdapter
+    
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CloseCerrarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents HelpProvider1 As System.Windows.Forms.HelpProvider
     Friend WithEvents hpAdvancedCHM As System.Windows.Forms.HelpProvider
-    'Friend WithEvents UITranslationsDataSet As SLVocabularyLists.UITranslationsDataSet
-    'Friend WithEventsDatabase.Databases.CulturesTableAdapter As SLVocabularyLists.UITranslationsDataSetTableAdapters.CulturesTableAdapter
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SuitesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SignWritingDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
