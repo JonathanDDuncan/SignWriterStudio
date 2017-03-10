@@ -248,6 +248,15 @@
     <Content Include="dist\assets\lib\symbolsize.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="dist\assets\styles\css.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dist\assets\styles\icon.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dist\assets\styles\material.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="dist\assets\styles\quickSignEditor.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
