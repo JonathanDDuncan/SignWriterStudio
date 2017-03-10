@@ -131,6 +131,9 @@
     <Import Include="System.Diagnostics" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
+    <Compile Include="SettingsDataSet.vb">
+      <DependentUpon>SettingsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SettingsTests.vb" />
   </ItemGroup>
   <ItemGroup>
