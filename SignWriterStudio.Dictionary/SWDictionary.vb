@@ -1778,25 +1778,26 @@ Public Class SWDictForm
                             Dim conv As New SpmlConverter
 
                             Dim fsw As String = conv.GetFsw(sign)
+                            trans.Commit()
                             Return fsw
                         End If
 
                     Catch ex As Exception
                         LogError(ex, "Exception " & ex.GetType().Name)
-
-
+                        If trans IsNot Nothing Then trans.Rollback()
                     End Try
 
                 End If
-                trans.Commit()
+
             Catch ex As SQLiteException
                 LogError(ex, "SQLite Exception " & ex.GetType().Name)
 
                 MessageBox.Show(ex.ToString)
                 If trans IsNot Nothing Then trans.Rollback()
             Finally
+                 If trans IsNot Nothing Then trans.Dispose()
                 conn.Close()
-
+                conn.Dispose()
             End Try
         End Using
     End Function
