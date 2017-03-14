@@ -64,6 +64,7 @@ Partial Class SwDocumentForm
         Me.PasteToSignPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyAsFSWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyAsImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SignsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FromEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -77,7 +78,6 @@ Partial Class SwDocumentForm
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialogNewDocument = New System.Windows.Forms.SaveFileDialog()
         Me.SwFlowLayoutPanel1 = New SignWriterStudio.SWClasses.SwFlowLayoutPanel()
-        Me.ShowGlossToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictBoxContextMenuStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -306,38 +306,48 @@ Partial Class SwDocumentForm
         '
         Me.PasteToolStripMenuItem2.Name = "PasteToolStripMenuItem2"
         Me.PasteToolStripMenuItem2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteToolStripMenuItem2.Size = New System.Drawing.Size(179, 22)
+        Me.PasteToolStripMenuItem2.Size = New System.Drawing.Size(194, 22)
         Me.PasteToolStripMenuItem2.Text = "Paste"
         '
         'LayoutToolStripMenuItem
         '
         Me.LayoutToolStripMenuItem.Name = "LayoutToolStripMenuItem"
-        Me.LayoutToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.LayoutToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.LayoutToolStripMenuItem.Text = "Layout"
         '
         'PasteFSWDocumentToolStripMenuItem
         '
         Me.PasteFSWDocumentToolStripMenuItem.Name = "PasteFSWDocumentToolStripMenuItem"
-        Me.PasteFSWDocumentToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.PasteFSWDocumentToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.PasteFSWDocumentToolStripMenuItem.Text = "Paste FSW"
         '
         'PasteToSignPuddleToolStripMenuItem
         '
         Me.PasteToSignPuddleToolStripMenuItem.Name = "PasteToSignPuddleToolStripMenuItem"
-        Me.PasteToSignPuddleToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.PasteToSignPuddleToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.PasteToSignPuddleToolStripMenuItem.Text = "Copy to SignPuddle"
         '
         'CopyAsFSWToolStripMenuItem
         '
         Me.CopyAsFSWToolStripMenuItem.Name = "CopyAsFSWToolStripMenuItem"
-        Me.CopyAsFSWToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CopyAsFSWToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.CopyAsFSWToolStripMenuItem.Text = "Copy as FSW"
         '
         'CopyAsImageToolStripMenuItem
         '
         Me.CopyAsImageToolStripMenuItem.Name = "CopyAsImageToolStripMenuItem"
-        Me.CopyAsImageToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.CopyAsImageToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.CopyAsImageToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.CopyAsImageToolStripMenuItem.Text = "Copy as Image"
+        '
+        'ShowGlossToolStripMenuItem
+        '
+        Me.ShowGlossToolStripMenuItem.Checked = True
+        Me.ShowGlossToolStripMenuItem.CheckOnClick = True
+        Me.ShowGlossToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ShowGlossToolStripMenuItem.Name = "ShowGlossToolStripMenuItem"
+        Me.ShowGlossToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.ShowGlossToolStripMenuItem.Text = "Show gloss"
         '
         'AddToolStripMenuItem2
         '
@@ -350,7 +360,7 @@ Partial Class SwDocumentForm
         '
         Me.SignsToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromEditorToolStripMenuItem, Me.FromDictionaryF10ToolStripMenuItem, Me.GlossToSignRealTimeToolStripMenuItem})
         Me.SignsToolStripMenuItem1.Name = "SignsToolStripMenuItem1"
-        Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.SignsToolStripMenuItem1.Size = New System.Drawing.Size(116, 22)
         Me.SignsToolStripMenuItem1.Text = "Signs"
         '
         'FromEditorToolStripMenuItem
@@ -378,7 +388,7 @@ Partial Class SwDocumentForm
         '
         Me.PicturesToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FromFileToolStripMenuItem, Me.FromDictionaryPhotoToolStripMenuItem, Me.FromDictionarySignToolStripMenuItem1})
         Me.PicturesToolStripMenuItem2.Name = "PicturesToolStripMenuItem2"
-        Me.PicturesToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.PicturesToolStripMenuItem2.Size = New System.Drawing.Size(116, 22)
         Me.PicturesToolStripMenuItem2.Text = "Pictures"
         '
         'FromFileToolStripMenuItem
@@ -434,15 +444,6 @@ Partial Class SwDocumentForm
         Me.SwFlowLayoutPanel1.SpaceBetweenCols = 10
         Me.SwFlowLayoutPanel1.TabIndex = 0
         Me.SwFlowLayoutPanel1.WrapContents = False
-        '
-        'ShowGlossToolStripMenuItem
-        '
-        Me.ShowGlossToolStripMenuItem.Checked = True
-        Me.ShowGlossToolStripMenuItem.CheckOnClick = True
-        Me.ShowGlossToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ShowGlossToolStripMenuItem.Name = "ShowGlossToolStripMenuItem"
-        Me.ShowGlossToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
-        Me.ShowGlossToolStripMenuItem.Text = "Show gloss"
         '
         'SwDocumentForm
         '

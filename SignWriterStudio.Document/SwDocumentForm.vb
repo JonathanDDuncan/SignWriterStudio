@@ -663,51 +663,56 @@ Public NotInheritable Class SwDocumentForm
         Dim instertAt As Integer
 
         If RightClickDownSender IsNot Nothing AndAlso RightClickDownSender.GetType.Name.Contains("LayoutControl") Then
-            instertAt = SwFlowLayoutPanel1.Controls.GetChildIndex(layoutControl) + 1
+            If SwFlowLayoutPanel1.Controls.Contains(layoutControl) Then
+                instertAt = SwFlowLayoutPanel1.Controls.GetChildIndex(layoutControl) + 1
+            Else
+                instertAt = 0
+            End If
+
         Else
             instertAt = 0
         End If
 
-        If Clipboard.ContainsText Then
-            Dim clipboardText As String = Clipboard.GetText
-            If clipboardText.Contains("[{") Then
+            If Clipboard.ContainsText Then
+                Dim clipboardText As String = Clipboard.GetText
+                If clipboardText.Contains("[{") Then
+                    Try
+
+                        Dim signs = DeSerializeJson(Of List(Of SwDocumentSign))(clipboardText)
+                        If signs IsNot Nothing Then
+                            UnSelectControls()
+                            signs.Reverse()
+                            For Each sign As SwDocumentSign In signs
+                                sign.Frames.RemoveAt(0)
+                                Document.AddSWSign(sign, instertAt)
+                            Next
+                        End If
+                        DocumentChanged = True
+                        Return
+                    Catch ex As ArgumentException
+                        'Swallow is not json
+                    End Try
+                End If
+
                 Try
 
-                    Dim signs = DeSerializeJson(Of List(Of SwDocumentSign))(clipboardText)
-                    If signs IsNot Nothing Then
-                        UnSelectControls()
-                        signs.Reverse()
-                        For Each sign As SwDocumentSign In signs
-                            sign.Frames.RemoveAt(0)
-                            Document.AddSWSign(sign, instertAt)
-                        Next
+                    Dim sign = DeSerializeJson(Of SwSign)(clipboardText)
+                    If sign IsNot Nothing Then
+                        sign.Frames.RemoveAt(0)
+                        Document.AddSWSign(sign, instertAt)
                     End If
                     DocumentChanged = True
-                    Return
                 Catch ex As ArgumentException
                     'Swallow is not json
                 End Try
-            End If
 
-            Try
-
-                Dim sign = DeSerializeJson(Of SwSign)(clipboardText)
-                If sign IsNot Nothing Then
-                    sign.Frames.RemoveAt(0)
-                    Document.AddSWSign(sign, instertAt)
-                End If
+            ElseIf Clipboard.ContainsImage Then
+                Dim newSign As New SwDocumentSign
+                newSign.IsSign = False
+                newSign.DocumentImage = Clipboard.GetImage()
+                Document.AddSWSign(newSign, instertAt)
                 DocumentChanged = True
-            Catch ex As ArgumentException
-                'Swallow is not json
-            End Try
-
-        ElseIf Clipboard.ContainsImage Then
-            Dim newSign As New SwDocumentSign
-            newSign.IsSign = False
-            newSign.DocumentImage = Clipboard.GetImage()
-            Document.AddSWSign(newSign, instertAt)
-            DocumentChanged = True
-        End If
+            End If
 
 
     End Sub
