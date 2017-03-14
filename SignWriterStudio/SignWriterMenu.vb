@@ -1,4 +1,6 @@
 Option Explicit On
+
+Imports Microsoft.VisualBasic.Logging
 Imports SignWriterStudio.General
 Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.Settings
@@ -294,5 +296,9 @@ Public Class SignWriterMenu
     Private Shared Sub AboutToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem1.Click
         Dim ab As New About()
         ab.ShowDialog()
+    End Sub
+
+    Private Sub ShowLogFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowLogFilesToolStripMenuItem.Click
+       Process.Start(Application.UserAppDataPath)
     End Sub
 End Class

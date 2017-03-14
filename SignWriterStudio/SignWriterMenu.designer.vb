@@ -36,6 +36,7 @@ Partial Class SignWriterMenu
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.BtnDocument = New System.Windows.Forms.Button()
         Me.BtnDictionary = New System.Windows.Forms.Button()
+        Me.ShowLogFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -85,7 +86,7 @@ Partial Class SignWriterMenu
         '
         'SuitesToolStripMenuItem
         '
-        Me.SuitesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SignWritingDocumentToolStripMenuItem, Me.DictionaryToolStripMenuItem})
+        Me.SuitesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SignWritingDocumentToolStripMenuItem, Me.DictionaryToolStripMenuItem, Me.ShowLogFilesToolStripMenuItem})
         Me.SuitesToolStripMenuItem.Name = "SuitesToolStripMenuItem"
         Me.SuitesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.SuitesToolStripMenuItem.Text = "&Modules"
@@ -148,6 +149,12 @@ Partial Class SignWriterMenu
         Me.BtnDictionary.Text = "Dictionary"
         Me.BtnDictionary.UseVisualStyleBackColor = True
         '
+        'ShowLogFilesToolStripMenuItem
+        '
+        Me.ShowLogFilesToolStripMenuItem.Name = "ShowLogFilesToolStripMenuItem"
+        Me.ShowLogFilesToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.ShowLogFilesToolStripMenuItem.Text = "Show log files"
+        '
         'SignWriterMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -185,5 +192,6 @@ Partial Class SignWriterMenu
     Friend WithEvents BtnDocument As System.Windows.Forms.Button
     Friend WithEvents BtnDictionary As System.Windows.Forms.Button
     Friend WithEvents AboutToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ShowLogFilesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
