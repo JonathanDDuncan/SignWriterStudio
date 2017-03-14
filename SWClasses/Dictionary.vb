@@ -284,36 +284,31 @@ Public NotInheritable Class SWDict
 
         Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
         Dim signsbyGlossesBilingualTableAdapter As New SignsbyGlossesBilingualTableAdapter()
-        Dim dt1 As New Data.DataTable
+
         Dim strConection = CreateConnectionStringFromPath(connectionString)
 
-        Using connection As New SQLiteConnection(strConection)
-            Dim adapter As New SQLiteDataAdapter
-            adapter.SelectCommand = New SQLiteCommand(queryStr, connection)
-            'Dim cb As OleDb.OleDbCommandBuilder = New OleDb.OleDbCommandBuilder(adapter)
-            'TODO use one transaction
-            'TODO different search parameters
-            connection.Open()
+        Using conn As New SQLiteConnection(strConection)
+            Dim trans = SWDict.GetNewDictionaryTransaction(conn)
+            signsbyGlossesBilingualTableAdapter.AssignConnection(conn, trans)
 
+            'TODO different search parameters
+            Dim adapter As New SQLiteDataAdapter
+            Dim dt1 As New Data.DataTable
+            adapter.SelectCommand = New SQLiteCommand(queryStr, conn)
             adapter.Fill(dt1)
+
             Dim idNums = From row1 In dt1.Rows Select DirectCast(row1, DataRow).Item(0) Distinct
             For Each rowId As Long In idNums
 
                 Dim results = signsbyGlossesBilingualTableAdapter.GetDataByID(DefaultSignLanguage, rowId, FirstGlossLanguage, SecondGlossLanguage)
-                'Dim listofRows As New List(Of SignsbyGlossesBilingualRow)
+
                 For Each signsbyGlossesBilingualRow As SignsbyGlossesBilingualRow In results
-                    'listofRows.add(signsbyGlossesBilingualRow)
+
                     dt.ImportRow(signsbyGlossesBilingualRow)
                 Next
-                'For Each signsbyGlossesBilingualRow As SignsbyGlossesBilingualRow In listofRows
-                '    results.RemoveSignsbyGlossesBilingualRow(signsbyGlossesBilingualRow)
-                '    dt.AddSignsbyGlossesBilingualRow(signsbyGlossesBilingualRow)
-                'Next
-
+               
             Next
-
-
-            connection.Close()
+            conn.Close()
         End Using
 
         Return dt
