@@ -119,7 +119,7 @@ Public Class DatabaseDictionary
     End Function
 
     Public Shared Function GetTags() As List(Of ExpandoObject)
-        Dim path = DictionaryConnectionString
+        Dim path = DictionaryFilename
 
 
         Dim orderBy = New List(Of String)() From {"Rank"}
@@ -130,20 +130,20 @@ Public Class DatabaseDictionary
     End Function
 
     Public Shared Sub SaveTags(ByVal added As List(Of ExpandoObject), ByVal updated As List(Of ExpandoObject), ByVal removed As List(Of String))
-        Dim path = DictionaryConnectionString
+        Dim path = DictionaryFilename
 
         DbTags.DbTags.SaveTags(path, added, updated, removed)
 
     End Sub
 
     Public Shared Function GetTagEntries(ByVal entryIds As List(Of String)) As List(Of ExpandoObject)
-        Dim path = DictionaryConnectionString
+        Dim path = DictionaryFilename
 
         Return DbTags.DbTagsDictionary.GetTagEntries(path, entryIds)
     End Function
 
     Public Shared Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))))
-        Dim path = DictionaryConnectionString
+        Dim path = DictionaryFilename
         DbTags.DbTagsDictionary.SaveTagDictionary(path, tagChanges)
 
 
