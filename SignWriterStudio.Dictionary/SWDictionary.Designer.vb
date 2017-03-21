@@ -103,6 +103,7 @@ Partial Class SWDictForm
         Me.SendToPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendSelectedEntriesToPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteFromPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SendSignToPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.DictionaryDataGridView = New System.Windows.Forms.DataGridView()
@@ -138,7 +139,6 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SendSignToPuddleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,7 +334,7 @@ Partial Class SWDictForm
         Me.SplitContainer1.Panel2.AutoScroll = True
         Me.SplitContainer1.Panel2.Controls.Add(Me.DictionaryDataGridView)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Pager1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1533, 533)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1276, 533)
         Me.SplitContainer1.SplitterDistance = 73
         Me.SplitContainer1.TabIndex = 4
         '
@@ -704,6 +704,13 @@ Partial Class SWDictForm
         Me.DeleteFromPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.DeleteFromPuddleToolStripMenuItem.Text = "Delete from Puddle"
         '
+        'SendSignToPuddleToolStripMenuItem
+        '
+        Me.SendSignToPuddleToolStripMenuItem.Name = "SendSignToPuddleToolStripMenuItem"
+        Me.SendSignToPuddleToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SendSignToPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.SendSignToPuddleToolStripMenuItem.Text = "Send Sign to Puddle"
+        '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpToolStripMenuItem1})
@@ -715,7 +722,7 @@ Partial Class SWDictForm
         '
         Me.HelpToolStripMenuItem1.Name = "HelpToolStripMenuItem1"
         Me.HelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.HelpToolStripMenuItem1.Text = "&Help "
         '
         'DictionaryDataGridView
@@ -730,7 +737,7 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.DictionaryDataGridView.Name = "DictionaryDataGridView"
         Me.DictionaryDataGridView.RowTemplate.Height = 24
-        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1533, 428)
+        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1276, 428)
         Me.DictionaryDataGridView.TabIndex = 3
         Me.DictionaryDataGridView.VirtualMode = True
         '
@@ -860,7 +867,7 @@ Partial Class SWDictForm
         Me.Pager1.Name = "Pager1"
         Me.Pager1.PageSize = 20
         Me.Pager1.Search = Nothing
-        Me.Pager1.Size = New System.Drawing.Size(1533, 28)
+        Me.Pager1.Size = New System.Drawing.Size(1276, 28)
         Me.Pager1.TabIndex = 4
         Me.Pager1.TotalPages = 0
         Me.Pager1.TotalRowCount = 0
@@ -983,18 +990,11 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.Visible = False
         '
-        'SendSignToPuddleToolStripMenuItem
-        '
-        Me.SendSignToPuddleToolStripMenuItem.Name = "SendSignToPuddleToolStripMenuItem"
-        Me.SendSignToPuddleToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SendSignToPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
-        Me.SendSignToPuddleToolStripMenuItem.Text = "Send Sign to Puddle"
-        '
         'SWDictForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1533, 533)
+        Me.ClientSize = New System.Drawing.Size(1276, 533)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1

@@ -26,11 +26,11 @@ Public Class SWDictForm
     Dim WithEvents SPMLExportbw As New BackgroundWorker With {.WorkerReportsProgress = True}
     Dim SWEditorProgressBar As New Progress
     Private myExportSettings As New ExportSettings
-    'Friend WithEvents monitor As EQATEC.Analytics.Monitor.IAnalyticsMonitor = EQATEC.Analytics.Monitor.AnalyticsMonitorFactory.Create("7A55FE8188FD4072B11C3EA5D30EB7F9")
-    Private Editor As Editor
-    'Private ImportExport As SignWriterStudio.Document.ImportExport
 
-    Dim _myDictionary As New SWDict
+    Private Editor As Editor
+
+
+    Dim _myDictionary As New SWDict(DictionaryConnectionString)
     Dim ColumnClicked As DictionaryColumn
     Dim ClickedCell As DataGridViewCell
     Public CallingForm As Form
@@ -47,7 +47,6 @@ Public Class SWDictForm
             DictLoadedChanged()
         End Set
     End Property
-
 
     Public Enum DictionaryColumn
         Photo
@@ -82,7 +81,20 @@ Public Class SWDictForm
         PhotoSource.Visible = False
         AddHandler Pager1.PageChanged, AddressOf PageChanged
 
-        _myDictionary = New SWDict
+        CheckDictionary(DictionaryConnectionString, ask)
+
+        SetupDictionary(DictionaryConnectionString)
+        ShowButtons()
+
+        SWEditorProgressBar.Text = "SignWriter Studio™ Converting data ..."
+        SWEditorProgressBar.ProgressBar1.Minimum = 0
+        SWEditorProgressBar.ProgressBar1.Maximum = 100
+        SWEditorProgressBar.ProgressBar1.Value = 0
+
+        isLoading = False
+    End Sub
+    Private Sub SetupDictionary(connectionstring As String)
+        _myDictionary = New SWDict(connectionstring)
         _myDictionary.DictionaryBindingSource1.DataSource = SWDict.BlankDictionaryTable
 
         DictionaryDataGridView.AutoGenerateColumns = False
@@ -94,38 +106,21 @@ Public Class SWDictForm
         CBGloss2.DisplayMember = "gloss2"
         CBGloss2.ValueMember = "IDDictionary"
         DictionaryBindingNavigator.BindingSource = _myDictionary.DictionaryBindingSource1
-        ShowButtons()
+
         UpdateOptions()
         SetGlossTittles()
-
-        CheckDictionary(DictionaryConnectionString, ask)
-
-        SWEditorProgressBar.Text = "SignWriter Studio™ Converting data ..."
-        SWEditorProgressBar.ProgressBar1.Minimum = 0
-        SWEditorProgressBar.ProgressBar1.Maximum = 100
-        SWEditorProgressBar.ProgressBar1.Value = 0
-
-
-
-        isLoading = False
     End Sub
-
     Private Sub PageChanged(ByVal sender As Object, ByVal e As EventArgs)
         LoadPage()
     End Sub
 
-
-
     Private Function GetTagsData() As Object
-
         Return CreateGroupedComboBoxItems(_myDictionary.GetTags())
-
     End Function
 
     Private Shared Function CreateGroupedComboBoxItems(ByVal expandoObjecttags As List(Of ExpandoObject)) As List(Of GroupedColoredComboBoxItem)
 
         Dim dict = expandoObjecttags.Cast(Of IDictionary(Of String, Object))().ToList()
-
 
         Dim groups = dict.Where(Function(d) IsDbNull(d.Item("Parent")))
         Dim items = dict.Where(Function(d) Not IsDbNull(d.Item("Parent"))).ToList()
@@ -252,53 +247,7 @@ Public Class SWDictForm
 
         SaveDataGrid()
     End Sub
-
-    'Friend Sub LoadDictionaryAll()
-
-    '    If DictionaryLoaded Then
-    '        DictionaryDataGridView.SuspendLayout()
-    '        'Check if entries have been saved before reloading and losing changes.
-    '        Dim dt As DataTable = _myDictionary.DictionaryBindingSource1.DataSource
-    '        'Create dataset if not exists
-    '        If dt.DataSet Is Nothing Then
-    '            Dim ds As New DataSet
-    '            ds.Tables.Add(_myDictionary.DictionaryBindingSource1.DataSource)
-    '        End If
-    '        SaveDataGrid()
-    '        Const limit As Integer = 100
-    '        Dim limited As Boolean
-    '        Dim count = _myDictionary.SignsinDictionaryCount
-    '        If count > limit Then
-    '            Dim result =
-    '                    MessageBox.Show(
-    '                        "There are " & count &
-    '                        " signs in the dictionary.  It make take a while to display them all. Would you like to just show the first " &
-    '                        limit & "?", "Show all signs", MessageBoxButtons.YesNo)
-    '            limited = (result = DialogResult.Yes)
-    '        End If
-
-
-    '        If limited Then
-    '            _myDictionary.TopSigns(limit)
-
-    '        Else
-    '            _myDictionary.AllSigns()
-
-    '        End If
-
-
-    '        CBGloss1.DataSource = _myDictionary.DictionaryBindingSource1
-    '        CBGloss1.DisplayMember = "gloss1"
-    '        CBGloss1.ValueMember = "IDDictionary"
-    '        CBGloss2.DataSource = _myDictionary.DictionaryBindingSource2
-    '        CBGloss2.DisplayMember = "gloss2"
-    '        CBGloss2.ValueMember = "IDDictionary"
-    '        DictionaryDataGridView.ResumeLayout()
-    '    Else
-    '        MessageBox.Show("Choose a valid SignWriter file before continuing.")
-    '    End If
-    'End Sub
-
+ 
     Private Sub EditImage()
         Dim imageEditor As New ImageEditor.ImageEditor
         Dim image1 As Image =
@@ -325,9 +274,7 @@ Public Class SWDictForm
             'check for boundaries before performing delete: datatable is empty, or there is no selection
             If currentCell IsNot Nothing Then
                 'convert generic Current object returned by DataConnector to the typed movie row object
-                'Dim rowView As DataRowView = CType(Me.MyDictionary.DictionaryBindingSource1.DataSource.Current, DataRowView)
-                'Dim wordRow As DataRow = CType(rowView.Row, DataRow)
-
+ 
                 If ColumnClicked = DictionaryColumn.Photo Then
                     'open file as Readonly from file system, copy bytes, and assign to the image property of the current row
                     currentCell.Value = My.Computer.FileSystem.ReadAllBytes(filename)
@@ -1173,14 +1120,12 @@ Public Class SWDictForm
         End If
     End Sub
 
-    Public Sub New(ByVal editor1 As Editor) ', ByVal ImportExport As SignWriterStudio.Document.ImportExport)
+    Public Sub New(ByVal editor1 As Editor)
 
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
 
-        ' Add any initialization after the InitializeComponent() call.
         Editor = editor1
-        'Me.ImportExport = ImportExport
     End Sub
 
     Private _importedSigns As Tuple(Of Integer, Integer, Integer)
@@ -1428,7 +1373,7 @@ Public Class SWDictForm
     Public Sub OpenDictionary(filename As String)
         Dim connectionString = CreateConnectionString(filename)
         If CheckSQLiteConnectionString(connectionString) Then
-            SetDictionaryConnectionString(filename)
+            SetDictionaryFilename(filename)
 
             Dim wasUpgraded = False
             Dim result = DatabaseSetup.CheckDictionary(connectionString, True, wasUpgraded)
@@ -1449,7 +1394,7 @@ Public Class SWDictForm
                 MessageBox.Show(
                     "File '" & filename &
                     "' is not a valid SignWriter Studio file. Please choose a valid SignWriter file before continuing.")
-                SetDictionaryConnectionString("")
+                SetDictionaryFilename("")
                 Me.DictionaryLoaded = False
             End If
         End If
@@ -1457,23 +1402,19 @@ Public Class SWDictForm
 
     Private Sub SaveFileDialog1_FileOk_1(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
         CopyBlankDB(SaveFileDialog1.FileName)
-        SetDictionaryConnectionString(SaveFileDialog1.FileName)
+        SetDictionaryFilename(SaveFileDialog1.FileName)
         LoadDictionary(False)
-        'Dim source = Me.DictionaryDataGridView.DataSource
-        'source.
 
         Me.DictionaryLoaded = True
     End Sub
 
-    Friend Sub SetDictionaryConnectionString(ByVal FileName As String)
-
-        DictionaryConnectionString = FileName
-
+    Friend Sub SetDictionaryFilename(ByVal filename As String)
+        DictionaryFilename = filename
         ShowloadedFile()
     End Sub
 
     Private Sub ShowloadedFile()
-        Dim filename As String = GetCurrentDictFilename()
+        Dim filename As String = DictionaryFilename
         If File.Exists(filename) Then
             If Not (filename = String.Empty) Then
                 Me.Text = "SignWriter Studio™ - " & Path.GetFileName(filename) & " - " & GetSLNameandAcronym()
@@ -2388,7 +2329,7 @@ Public Class SWDictForm
     End Sub
     Private Sub SaveSign(ByVal signToSave As SwSign)
 
-        Dim path = DictionaryConnectionString
+        Dim path = DictionaryFilename
         DbDictionary.UpdateSignPuddleId(path, signToSave.SignWriterGuid, signToSave.SignPuddleId)
 
     End Sub
@@ -2491,7 +2432,7 @@ Public Class SWDictForm
 
     End Sub
     Private Sub AddSignsinNewDictNoImageDibujoGroup1()
-        Dim path = DictionaryConnectionString()
+        Dim path = DictionaryFilename
         Dim listIdDictionary = DbDictionary.GetAllIds(path)
 
         Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)
@@ -2516,7 +2457,7 @@ Public Class SWDictForm
         Dim affectedRows = DbTagsDictionary.InsertTag(path, list, dibujoGroup1.ToString())
     End Sub
     Private Sub AddNewDicttoPreviousDictEntries()
-        Dim path = DictionaryConnectionString()
+        Dim path = DictionaryFilename
         Dim listIdDictionary = DbDictionary.GetAllIds(path)
 
         Dim entries = DbTagsDictionary.GetTagEntries(path, listIdDictionary)

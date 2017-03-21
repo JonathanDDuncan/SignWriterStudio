@@ -48,7 +48,7 @@ Public Class CompareSigns
                     CompareItem.puddleSign = SigntoCompare.Item1
                     CompareItem.OverwritefromPuddle = False
 
-                    Dim SWDict As New SWDict
+                    Dim SWDict As New SWDict(_connectionString)
                     SWDict.DefaultSignLanguage = SettingsPublic.DefaultSignLanguage
                     SWDict.FirstGlossLanguage = SettingsPublic.FirstGlossLanguage
 

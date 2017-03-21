@@ -33,6 +33,7 @@ Public NotInheritable Class SWDict
     Public WithEvents DictionaryBindingSource1 As New BindingSource
     Public WithEvents DictionaryBindingSource2 As New BindingSource
     Private _defaultSignLanguage As Integer
+    Dim _connectionString As String
 
     Public Property DefaultSignLanguage() As Integer
         Get
@@ -84,6 +85,21 @@ Public NotInheritable Class SWDict
     Private ReadOnly _taDictionaryGloss As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryGlossTableAdapter
     Private ReadOnly _taDictionary As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryTableAdapter
 
+
+    Public Sub New(ByVal connectionString As String)
+        _connectionString = connectionString
+        Dim conn = New SQLite.SQLiteConnection(connectionString)
+        _taDictionarybyLanguages.AssignConnection(conn)
+        _taswFrame.AssignConnection(conn)
+        _taswSignSymbol.AssignConnection(conn)
+        _taswSignSequence.AssignConnection(conn)
+        _taSignsbyGlossesBilingual.AssignConnection(conn)
+        _taSignsbyGlossesUnilingual.AssignConnection(conn)
+        _taSignsBilingual.AssignConnection(conn)
+        _taDictionaryGloss.AssignConnection(conn)
+        _taDictionary.AssignConnection(conn)
+
+    End Sub
     ' Operations
     Public Sub SearchText(ByVal search As String)
         UpdateDataSources(search)
@@ -1183,9 +1199,9 @@ Public NotInheritable Class SWDict
         Dim tags = If(tagFilterValues Is Nothing, New List(Of String), tagFilterValues.Tags)
 
         If BilingualMode Then
-            Return DbTags.SignsbyGlosses.SignsbyGlossesBilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, filter, allExcept, tags)
+            Return DbTags.SignsbyGlosses.SignsbyGlossesBilingual.Count(DictionaryFilename, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, filter, allExcept, tags)
         Else
-            Return DbTags.SignsbyGlosses.SignsByGlossesUnilingual.Count(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, filter, allExcept, tags)
+            Return DbTags.SignsbyGlosses.SignsByGlossesUnilingual.Count(DictionaryFilename, DefaultSignLanguage, FirstGlossLanguage, searchWord, filter, allExcept, tags)
         End If
     End Function
 
@@ -1195,9 +1211,9 @@ Public NotInheritable Class SWDict
         Dim tags = If(tagFilterValues Is Nothing, New List(Of String), tagFilterValues.Tags)
 
         If BilingualMode Then
-            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip, filter, allExcept, tags))
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsbyGlossesBilingual.GetPage(DictionaryFilename, DefaultSignLanguage, FirstGlossLanguage, SecondGlossLanguage, searchWord, pageSize, skip, filter, allExcept, tags))
         Else
-            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsByGlossesUnilingual.GetPage(DictionaryConnectionString, DefaultSignLanguage, FirstGlossLanguage, searchWord, pageSize, skip, filter, allExcept, tags))
+            Return ConvertoSignsbyGlossesBilingualDataTable(DbTags.SignsbyGlosses.SignsByGlossesUnilingual.GetPage(DictionaryFilename, DefaultSignLanguage, FirstGlossLanguage, searchWord, pageSize, skip, filter, allExcept, tags))
         End If
     End Function
 

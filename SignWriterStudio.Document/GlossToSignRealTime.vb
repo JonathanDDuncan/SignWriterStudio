@@ -11,7 +11,7 @@ Imports System.Data.SQLite
 
 
 Public Class GlossToSignRealTime
-    Dim Dictionary As New SWDict
+    Dim Dictionary As New SWDict(DictionaryConnectionString)
     Friend Signs As List(Of Tuple(Of SwSign, Integer))
     Dim _clickedControl As GlossToSignRealTimeControl
 
@@ -539,7 +539,7 @@ Public Class GlossToSignRealTime
             idDictionary = swDictForm.IDDictionaryResult
             swDictForm.Dispose()
             If Not idDictionary = 0 Then
-                Dim dictionary1 As New SWDict
+                Dim dictionary1 As New SWDict(DictionaryConnectionString)
 
                 Return Tuple.Create(idDictionary, dictionary1.GetSWSign(idDictionary))
             End If
@@ -563,7 +563,7 @@ Public Class GlossToSignRealTime
             idDictionary = swDictForm.IDDictionaryResult
             swDictForm.Dispose()
             If Not idDictionary = 0 Then
-                Dim dictionary1 As New SWDict
+                Dim dictionary1 As New SWDict(DictionaryConnectionString)
 
                 Return Tuple.Create(idDictionary, dictionary1.GetSWSign(idDictionary))
             End If

@@ -23,6 +23,7 @@ Public NotInheritable Class SwDocumentForm
     Dim selectRectangle = Rectangle.Empty
     Dim controlsSelected As Boolean = False
 
+    Private DictionaryConnectionString = Database.Dictionary.DatabaseSetup.DictionaryConnectionString
     Friend Property Document() As SwDocument
         Get
             Return _documentValue
@@ -599,8 +600,7 @@ Public NotInheritable Class SwDocumentForm
             RightClickDownSender IsNot Nothing AndAlso
             RightClickDownSender.GetType.ToString = "SignWriterStudio.SWClasses.SwLayoutControl" Then
 
-
-            Dim dictionary As New SWDict
+            Dim dictionary As New SWDict(DictionaryConnectionString)
             Dim dialogRes As DialogResult
             Dim layoutControl As SwLayoutControl = CType(RightClickDownSender, SwLayoutControl)
             If _
@@ -900,7 +900,7 @@ Public NotInheritable Class SwDocumentForm
             idDictionary = _swDictForm.IDDictionaryResult
             _swDictForm.Dispose()
             If Not idDictionary = 0 Then
-                Dim dictionary1 As New SWDict
+                Dim dictionary1 As New SWDict(DictionaryConnectionString)
                 documentSign.IncorporateSWSign(dictionary1.GetSWSign(idDictionary))
                 Return documentSign
             End If
@@ -925,7 +925,7 @@ Public NotInheritable Class SwDocumentForm
             idDictionary = _swDictForm.IDDictionaryResult
             _swDictForm.Dispose()
             If Not idDictionary = 0 Then
-                Dim dictionary1 As New SWDict
+                Dim dictionary1 As New SWDict(DictionaryConnectionString)
                 Return dictionary1.GetPhoto(idDictionary)
             End If
         ElseIf (dialogRes = DialogResult.Cancel) Then
@@ -949,7 +949,7 @@ Public NotInheritable Class SwDocumentForm
             idDictionary = _swDictForm.IDDictionaryResult
             _swDictForm.Dispose()
             If Not idDictionary = 0 Then
-                Dim dictionary1 As New SWDict
+                Dim dictionary1 As New SWDict(DictionaryConnectionString)
                 Return dictionary1.GetSignPhoto(idDictionary)
             End If
         ElseIf (dialogRes = DialogResult.Cancel) Then

@@ -7,17 +7,21 @@ Imports SignWriterStudio.Settings
 
 
 Public Class SignWriterMenu
+    'Dim SerializableSettings As Settings.SerializableSettings = New Settings.SerializableSettings()
+    'Private DictionaryConnectionString As String = SerializableSettings.DictionaryConnectionString
+
+    Private DictionaryConnectionString = Database.Dictionary.DatabaseSetup.DictionaryConnectionString
     Friend WithEvents SaveSettingsDialog As New SaveFileDialog
     Friend WithEvents LoadSettingsDialog As New OpenFileDialog
 
     Private _swDictForm As Dictionary.SWDictForm
 
     Private _swDocumentForm As Document.SwDocumentForm
-    
+
     Private Sub CloseCerrarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles CloseCerrarToolStripMenuItem.Click
         Close()
     End Sub
-     
+
     Sub LoadTranslation()
         ' Put the Imports statements at the beginning of the code module
 
@@ -92,7 +96,7 @@ Public Class SignWriterMenu
     Private Sub OpenDocument(filename As String)
         Hide()
         _swDocumentForm.OpenDocument(filename)
-       
+
         Show()
     End Sub
 
@@ -108,7 +112,7 @@ Public Class SignWriterMenu
     Private Sub frmSignWriterMenu_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
 
         Try
-         
+
             Dim cd As AppDomain = AppDomain.CurrentDomain
 
             AddHandler cd.UnhandledException, AddressOf MyHandler
@@ -162,7 +166,7 @@ Public Class SignWriterMenu
         End Try
     End Sub
     Private Function CreateConnectionString(filename As String) As String
-        Return "data source=""" & Filename & """"
+        Return "data source=""" & filename & """"
     End Function
     Private Shared Sub CheckforSettingsFile()
         Dim pathNeedstoExist As String = Paths.Join(Paths.AllUsersData, "Settings.dat")
@@ -174,7 +178,7 @@ Public Class SignWriterMenu
     End Sub
     Private Function CheckConnectionString(ByVal connString As String) As Boolean
         Dim oledbStBuild As New OleDb.OleDbConnectionStringBuilder
-        oledbStBuild.ConnectionString = ConnString
+        oledbStBuild.ConnectionString = connString
         Dim filename As String = oledbStBuild.DataSource
         If Microsoft.VisualBasic.FileIO.FileSystem.FileExists(filename) AndAlso oledbStBuild.Provider = "Microsoft.Jet.OLEDB.4.0" Then
             Return True
@@ -208,26 +212,26 @@ Public Class SignWriterMenu
             End If
         End If
     End Sub
-   
+
     Private Sub OpenDictionary(ByVal filename As String)
         If _swDictForm Is Nothing OrElse _swDictForm.IsDisposed Then
             _swDictForm = New Dictionary.SWDictForm(New SWEditor.Editor)
         End If
 
-        _swDictForm.OpenDictionary(Filename)
+        _swDictForm.OpenDictionary(filename)
         _swDictForm.ShowDialog()
         _swDictForm.Close()
     End Sub
-  
+
     Private Sub ExportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ExportSettingsToolStripMenuItem.Click
         MessageBox.Show("This option has been temporarily disabled because it is not yet fully functional.")
- 
+
     End Sub
- 
+
 
     Private Sub ImportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ImportSettingsToolStripMenuItem.Click
         MessageBox.Show("This option has been temporarily disabled because it is not yet fully functional.")
-         
+
     End Sub
 
     Private Sub SaveSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles SaveSettingsDialog.FileOk
@@ -289,7 +293,7 @@ Public Class SignWriterMenu
 
         Catch ex As Exception
             LogError(ex, "")
-            
+
         End Try
     End Sub
 
@@ -299,6 +303,6 @@ Public Class SignWriterMenu
     End Sub
 
     Private Sub ShowLogFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowLogFilesToolStripMenuItem.Click
-       Process.Start(Application.UserAppDataPath)
+        Process.Start(Application.UserAppDataPath)
     End Sub
 End Class

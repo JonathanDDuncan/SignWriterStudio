@@ -10,27 +10,30 @@ Imports SignWriterStudio.SQLiteAdapters
 ''' Class DatabaseSignList description
 ''' </summary>
 Public Module DatabaseSetup
-    Property DictionaryConnectionString() As String
+    ReadOnly Property DictionaryConnectionString() As String
         Get
-            Return My.Settings.DictionaryConnectionString
-
+            Return BuildConnectionString(Settings.My.MySettings.Default.CurrentDictionaryFilename)
         End Get
-        Set(ByVal value As String)
-            SetDictionaryConnectionString(value)
-        End Set
     End Property
-
-    Friend Sub SetDictionaryConnectionString(ByVal fileName As String)
-        If Microsoft.VisualBasic.FileIO.FileSystem.FileExists(fileName) Then
-            My.Settings.DictionaryConnectionString = BuildConnectionString(fileName)
-            'Remember last database loaded
+    Property DictionaryFilename() As String
+        Get
+            Return Settings.My.MySettings.Default.CurrentDictionaryFilename
+        End Get
+        Set(ByVal fileName As String)
+            If Not Microsoft.VisualBasic.FileIO.FileSystem.FileExists(fileName) Then
+                'My.Settings.DictionaryConnectionString = BuildConnectionString(fileName)
+                fileName = ""
+            Else
+                'My.Settings.DictionaryConnectionString = BuildConnectionString("")
+            End If
+            'TODO 1 Remove LastDictionaryString
+            Settings.My.MySettings.Default.CurrentDictionaryFilename = fileName
             Settings.My.MySettings.Default.LastDictionaryString = fileName
             Settings.My.MySettings.Default.Save()
-        Else
-            My.Settings.DictionaryConnectionString = BuildConnectionString("")
-        End If
-        My.Settings.Save()
-    End Sub
+            My.Settings.Save()
+        End Set
+    End Property
+   
     Friend Function BuildConnectionString(ByVal filename As String) As String
         Return "data source=""" & filename & """"
     End Function
@@ -181,7 +184,7 @@ Public Module DatabaseSetup
     End Function
 
     Private Sub AddDoNotExportTags()
-        Dim path = GetConnectionString()
+        Dim path = DictionaryFilename
         Dim listIdDictionary = DbDictionary.GetIdDoNotExport(path)
         Dim affectedRows = DbTagsDictionary.InsertDoNotExportTag(path, listIdDictionary)
     End Sub
