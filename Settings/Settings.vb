@@ -254,15 +254,7 @@ Public Class SettingsPublic
             My.Settings.Save()
         End Set
     End Property
-    Public Shared Property LastDictionaryString() As String
-        Get
-            Return My.Settings.LastDictionaryString
-        End Get
-        Set(ByVal value As String)
-            My.Settings.LastDictionaryString = value
-            My.Settings.Save()
-        End Set
-    End Property
+    
     Public Shared Property LastDocumentString() As String
         Get
             Return My.Settings.LastDocumentString

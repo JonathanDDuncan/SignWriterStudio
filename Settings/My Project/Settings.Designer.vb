@@ -165,18 +165,6 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property LastDictionaryString() As String
-            Get
-                Return CType(Me("LastDictionaryString"),String)
-            End Get
-            Set
-                Me("LastDictionaryString") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property LastDocumentString() As String
             Get
                 Return CType(Me("LastDocumentString"),String)

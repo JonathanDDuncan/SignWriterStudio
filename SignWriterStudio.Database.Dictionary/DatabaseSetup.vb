@@ -21,14 +21,10 @@ Public Module DatabaseSetup
         End Get
         Set(ByVal fileName As String)
             If Not Microsoft.VisualBasic.FileIO.FileSystem.FileExists(fileName) Then
-                'My.Settings.DictionaryConnectionString = BuildConnectionString(fileName)
                 fileName = ""
-            Else
-                'My.Settings.DictionaryConnectionString = BuildConnectionString("")
             End If
-            'TODO 1 Remove LastDictionaryString
+
             Settings.My.MySettings.Default.CurrentDictionaryFilename = fileName
-            Settings.My.MySettings.Default.LastDictionaryString = fileName
             Settings.My.MySettings.Default.Save()
             My.Settings.Save()
         End Set

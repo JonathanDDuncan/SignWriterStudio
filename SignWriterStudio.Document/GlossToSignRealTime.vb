@@ -512,7 +512,7 @@ Public Class GlossToSignRealTime
             selectedColumn.ColumnName = "Selected"
             selectedColumn.DataType = Type.GetType("System.Boolean")
 
-            Dim dt = Dictionary.GetSignbyId(SettingsPublic.LastDictionaryString, idDict)
+            Dim dt = Dictionary.GetSignbyId(DictionaryFilename, idDict)
             dt.Columns.Add(selectedColumn)
             Dim row1 = dt.Rows(0)
             row1.Item("Selected") = True

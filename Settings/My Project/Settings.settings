@@ -29,9 +29,6 @@
     <Setting Name="FirstRun" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="LastDictionaryString" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="LastDocumentString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

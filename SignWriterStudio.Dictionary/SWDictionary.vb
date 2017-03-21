@@ -636,7 +636,7 @@ Public Class SWDictForm
                 swSignSearch.SearchCriteria.SearchString IsNot Nothing AndAlso
                 Not String.IsNullOrEmpty(swSignSearch.SearchCriteria.SearchString) Then
                 searchString = swSignSearch.SearchCriteria.SearchString
-                dt = _myDictionary.GetSymbolSearchDt(SettingsPublic.LastDictionaryString, searchString)
+                dt = _myDictionary.GetSymbolSearchDt(DictionaryFilename, searchString)
                 _myDictionary.UpdateDataSources(dt)
                 If dt.Rows.Count = 0 Then
                     MessageBox.Show("There are no matches for your criteria.")
