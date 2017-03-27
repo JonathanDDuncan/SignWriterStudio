@@ -104,10 +104,15 @@ Partial Public Class Editor
         Dim Symbol As New SWSignSymbol With {.Code = code}
         Dim SSS As String = Symbol.SymbolDetails.Id
 
-        SSS = SSS.Substring(0, 12) & "-02-01"
+        If SSS.Length >= 12 Then
+            SSS = SSS.Substring(0, 12) & "-02-01"
+        End If
+
         TreeNodes = TVAllGroups.Nodes.Find(SSS, True)
         If TreeNodes.Length = 0 Then
-            SSS = SSS.Substring(0, 12) & "-01-01"
+            If SSS.Length >= 12 Then
+                SSS = SSS.Substring(0, 12) & "-01-01"
+            End If
             TreeNodes = TVAllGroups.Nodes.Find(SSS, True)
         End If
         If TreeNodes.Length > 0 Then
