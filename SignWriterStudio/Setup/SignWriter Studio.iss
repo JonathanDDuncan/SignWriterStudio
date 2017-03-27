@@ -8,7 +8,8 @@
 #define MyAppExeName "SignWriterStudio.exe"
 ; #define MyDotNetName "Dot Net Framework 4.0 Instalation"
 ; #define MyDotNetStrapper "DN4Setup.exe"
-#define BaseSourceDir "C:\Users\Jonathan\Documents\SignWriter\SignWriter Studio"
+; #define BaseSourceDir "C:\Users\Jonathan\Documents\SignWriter\SignWriter Studio"
+#define BaseSourceDir "D:\Jonathan\Documents\SignWriter\SignWriter Studio"
 #define VCRedistName "Visual C++ 2010 redistributable"
 #define VCRedist2010 "vcredist_x86.exe"
 
@@ -54,6 +55,8 @@ Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.Document
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.Dictionary.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.ImageEditor.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.Database.Dictionary.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\SignWriterStudio.WebRequestPost.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\HtmlAgilityPack.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\TagList.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\DropDownControls.dll"; DestDir: "{app}"; Flags: ignoreversion
