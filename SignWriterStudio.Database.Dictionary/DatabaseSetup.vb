@@ -5,6 +5,7 @@ Imports System.Data.SQLite
 Imports SignWriterStudio.DbTags
 Imports SignWriterStudio.General
 Imports SignWriterStudio.SQLiteAdapters
+Imports System.Data.SqlClient
 
 ''' <summary>
 ''' Class DatabaseSignList description
@@ -238,9 +239,15 @@ Public Module DatabaseSetup
         Dim taVer As New DictionaryDataSetTableAdapters.VersionTableAdapter
         Return taVer.Connection.ConnectionString
     End Function
+    Public Function GetFilenameFromConnectionString(connectionString As String) As String
+        Dim CSBuilder As New SqlConnectionStringBuilder
+        CSBuilder.ConnectionString = connectionString
+        Return CSBuilder.DataSource
+    End Function
+
 
     Private Sub CreateBackup(ByVal connectionString As String, ByVal fromVersion As String)
-        Dim filename As String = StringUtil.GetConnectionFilename(connectionString)
+        Dim filename As String = GetFilenameFromConnectionString(connectionString)
         Dim newFilename = IO.Path.Combine(IO.Path.GetDirectoryName(filename), IO.Path.GetFileNameWithoutExtension(filename) + "_" + fromVersion + ".bak")
         IO.File.Copy(filename, newFilename, True)
     End Sub
