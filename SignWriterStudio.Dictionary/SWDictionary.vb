@@ -349,36 +349,36 @@ Public Class SWDictForm
     End Sub
 
     Sub SaveDataGrid()
-
         Try
-            Dim saved = False
-            Dim tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))) = Nothing
-            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
+            If CheckSQLiteConnectionString(DictionaryConnectionString) Then
+                Dim saved = False
+                Dim tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))) = Nothing
 
-            Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
-            Using conn
-                Try
-                    tagChanges = SignWriterStudio.Dictionary.TagChanges.GetTagChanges(_myDictionary)
-                    SaveDataGrid(conn, trans)
-                    trans.Commit()
-                    saved = True
-                Catch ex As SQLiteException
-                    LogError(ex, "SQLite Error " & ex.GetType().Name)
+                Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
 
-                    MessageBox.Show(ex.ToString)
-                    If trans IsNot Nothing Then trans.Rollback()
-                Finally
-                    conn.Close()
+                Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+                Using conn
+                    Try
+                        tagChanges = SignWriterStudio.Dictionary.TagChanges.GetTagChanges(_myDictionary)
+                        SaveDataGrid(conn, trans)
+                        trans.Commit()
+                        saved = True
+                    Catch ex As SQLiteException
+                        LogError(ex, "SQLite Error " & ex.GetType().Name)
 
-                End Try
-            End Using
-            If saved Then
-                SaveTagDictionary(tagChanges)
+                        MessageBox.Show(ex.ToString)
+                        If trans IsNot Nothing Then trans.Rollback()
+                    Finally
+                        conn.Close()
+
+                    End Try
+                End Using
+                If saved Then
+                    SaveTagDictionary(tagChanges)
+                End If
             End If
         Catch ex As ArgumentException
             LogError(ex, "No current file can not save DataGrid " & ex.GetType().Name)
-
-
         End Try
     End Sub
 
@@ -387,7 +387,6 @@ Public Class SWDictForm
     End Sub
 
     Sub SaveDataGrid(ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
-
         'Try
         UpdateDataset()
         Dim ds As New DataSet
@@ -1360,6 +1359,7 @@ Public Class SWDictForm
 
     Private Sub OpenSignWriterStudioFileToolStripMenuItem_Click(sender As Object, e As EventArgs) _
         Handles OpenSignWriterStudioFileToolStripMenuItem.Click
+
         SaveDataGrid()
         OpenFileDialog1.InitialDirectory = ""
 
@@ -1372,6 +1372,13 @@ Public Class SWDictForm
 
     Public Sub OpenDictionary(filename As String)
         Dim connectionString = CreateConnectionString(filename)
+        VerifyConnectionString(connectionString, filename)
+    End Sub
+    Private Sub VerifyConnectionString(connectionString As String, Optional filename As String = Nothing)
+        If filename Is Nothing Then
+            filename = DatabaseSetup.GetFilenameFromConnectionString(connectionString)
+        End If
+
         If CheckSQLiteConnectionString(connectionString) Then
             SetDictionaryFilename(filename)
 
@@ -1397,12 +1404,23 @@ Public Class SWDictForm
                 SetDictionaryFilename("")
                 Me.DictionaryLoaded = False
             End If
+        ElseIf Not filename.Contains(":") Then
+            MessageBox.Show(
+                   "File '" & filename &
+                   "' is not a on a local drive. Please choose a valid SignWriter file on a local drive before continuing.")
+            SetDictionaryFilename("")
+            Me.DictionaryLoaded = False
+        Else
+            MessageBox.Show(
+                   "File '" & filename &
+                   "' could not be loaded for an unknown reason. Please choose a valid SignWriter file before continuing.")
+            SetDictionaryFilename("")
+            Me.DictionaryLoaded = False
         End If
     End Sub
-
     Private Sub SaveFileDialog1_FileOk_1(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
         CopyBlankDB(SaveFileDialog1.FileName)
-        SetDictionaryFilename(SaveFileDialog1.FileName)
+        OpenDictionary(SaveFileDialog1.FileName)
         LoadDictionary(False)
 
         Me.DictionaryLoaded = True
@@ -1458,7 +1476,8 @@ Public Class SWDictForm
     Private Function CheckSQLiteConnectionString(ByVal ConnString As String) As Boolean
         Dim CSBuilder As New SqlConnectionStringBuilder
         CSBuilder.ConnectionString = ConnString
-        If ConnString.Contains("data source=") Then
+        'Must have a drive letter
+        If ConnString.Contains("data source=") And ConnString.Contains(":") Then
             Dim Filename As String = CSBuilder.DataSource
             If Paths.FileExists(Filename) Then
                 Return True
@@ -1471,7 +1490,12 @@ Public Class SWDictForm
     End Function
 
     Private Function CreateConnectionString(Filename As String) As String
-        Return "data source=" & Filename
+        If Not Filename.Contains(":") Then
+            'Must be on local drive
+            Return ""
+        Else
+            Return "data source=" & Filename
+        End If
     End Function
 
     Private Sub ImportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportToolStripMenuItem.Click
