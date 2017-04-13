@@ -30,7 +30,7 @@ Public Module DatabaseSetup
             My.Settings.Save()
         End Set
     End Property
-   
+
     Friend Function BuildConnectionString(ByVal filename As String) As String
         Return "data source=""" & filename & """"
     End Function
@@ -198,7 +198,7 @@ Public Module DatabaseSetup
     End Sub
 
     Private Sub RunUpgradeScript(ByVal connectionString As String, ByVal fromVersion As String, ByVal upgradeScript As String)
-       
+
         CreateBackup(connectionString, fromVersion)
         Dim sqliteConnection1 As SQLiteConnection = New SQLiteConnection(connectionString)
         Dim cmd As SQLiteCommand = New SQLiteCommand()
