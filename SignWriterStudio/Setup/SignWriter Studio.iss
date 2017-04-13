@@ -9,9 +9,9 @@
 ; #define MyDotNetName "Dot Net Framework 4.0 Instalation"
 ; #define MyDotNetStrapper "DN4Setup.exe"
 ; #define BaseSourceDir "C:\Users\Jonathan\Documents\SignWriter\SignWriter Studio"
-#define BaseSourceDir "D:\Jonathan\Documents\SignWriter\SignWriter Studio"
-#define VCRedistName "Visual C++ 2010 redistributable"
-#define VCRedist2010 "vcredist_x86.exe"
+#define BaseSourceDir "D:\SignWriter\SignWriter Studio"
+#define VCRedistName "Visual C++ 2013 redistributable"
+#define VCRedist2013 "vcredist_x86_2013.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -83,7 +83,7 @@ Source: "{#BaseSourceDir}\packages\cef.redist.x86.3.2883.1552\CEF\x86\*"; DestDi
 Source: "{#BaseSourceDir}\packages\cef.redist.x86.3.2883.1552\CEF\locales\*"; DestDir: "{app}\locales"; Flags: ignoreversion recursesubdirs
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\dist\*"; DestDir: "{app}\dist"; Flags: ignoreversion recursesubdirs
 Source: "{#BaseSourceDir}\SignWriterStudio\bin\Release\nunit.framework.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BaseSourceDir}\Foreign Dll\vcredist_x86.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BaseSourceDir}\Foreign Dll\{#VCRedist2013}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\Settings\Settings.dat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio.UI\swsui.dat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BaseSourceDir}\SignWriterStudio\SignWriterStudio.chm"; DestDir: "{app}"; Flags: ignoreversion
@@ -105,7 +105,7 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Working
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\{#VCRedist2010}"; Parameters: "/q /norestart" ; Description: "{cm:LaunchProgram,{#VCRedistName}}"; Flags: hidewizard
+Filename: "{app}\{#VCRedist2013}"; Parameters: "/install /passive /norestart" ; Description: "{cm:LaunchProgram,{#VCRedistName}}"; Flags: hidewizard
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#MyAppName}}"; Flags: nowait postinstall skipifsilent
 
 
