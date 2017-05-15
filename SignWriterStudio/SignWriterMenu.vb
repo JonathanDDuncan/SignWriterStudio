@@ -261,7 +261,7 @@ Public Class SignWriterMenu
 
     Private Sub LoadSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles LoadSettingsDialog.FileOk
         Dim settingsPath As String = Path.Combine(SettingsFolder(), settingsfilename)
-        File.Copy(settingsPath, Path.GetRandomFileName, True)
+        File.Copy(settingsPath, settingsfilename & Path.GetRandomFileName, True)
         File.Copy(LoadSettingsDialog.FileName, settingsPath, True)
         LoadForms()
     End Sub
