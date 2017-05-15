@@ -747,10 +747,7 @@ Partial Public Class Editor
         End If
     End Sub
 
-    Private Sub TVAllGroups_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TVAllGroups.AfterSelect
-
-    End Sub
-
+ 
 
 End Class
  

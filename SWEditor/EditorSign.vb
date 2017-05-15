@@ -507,10 +507,7 @@ Partial Public Class Editor
         ElseIf e.Data.GetData(GetType(String)).ToString = TVFavoriteSymbols.Name Then
             AddSelectedFavorite(pPoint)
         End If
-        'If 1 symbol Selected Set controls
-        If CurrentFrame.SelectedSymbolCount = 1 Then
-            OnlyOneSymbolJustSelected()
-        End If
+        
         DisplaySign()
     End Sub
 
@@ -803,10 +800,10 @@ Partial Public Class Editor
 
             End If
         End If
-        'If 1 symbol Selected Set controls
-        If CurrentFrame.SelectedSymbolCount = 1 Then
-            OnlyOneSymbolJustSelected()
-        End If
+        ''If 1 symbol Selected Set controls
+        'If CurrentFrame.SelectedSymbolCount = 1 Then
+        '    OnlyOneSymbolJustSelected()
+        'End If
     End Sub
 
     Private Sub CopySign()
@@ -937,7 +934,7 @@ Partial Public Class Editor
             Area = AreaEnm.Sign
         End If
     End Sub
-
+ 
     Private Sub TSMIInsertsymbolOuts_Click(ByVal sender As Object, ByVal e As EventArgs) _
         Handles TSMIInsertsymbolOuts.Click
         InsertSymbolIntoSign(Me.symbolOut.Code)
@@ -1381,4 +1378,11 @@ Partial Public Class Editor
         Next
         Return symbolcount > 0
     End Function
+
+
+    Private Sub FindSymbol_Click(sender As Object, e As EventArgs) Handles FindSymbol.Click
+        If CurrentFrame.SelectedSymbolCount = 1 Then
+            OnlyOneSymbolJustSelected()
+        End If
+    End Sub
 End Class

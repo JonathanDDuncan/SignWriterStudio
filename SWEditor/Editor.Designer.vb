@@ -166,6 +166,7 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FindSymbol = New System.Windows.Forms.Button()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
@@ -767,6 +768,7 @@ Imports SignWriterStudio
         Me.GBSign.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GBSign.Controls.Add(Me.FindSymbol)
         Me.GBSign.Controls.Add(Me.QuickSignEditorBtn)
         Me.GBSign.Controls.Add(Me.btnCancel)
         Me.GBSign.Controls.Add(Me.btnAccept)
@@ -781,7 +783,7 @@ Imports SignWriterStudio
         '
         'QuickSignEditorBtn
         '
-        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(189, 19)
+        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(388, 19)
         Me.QuickSignEditorBtn.Name = "QuickSignEditorBtn"
         Me.QuickSignEditorBtn.Size = New System.Drawing.Size(94, 22)
         Me.QuickSignEditorBtn.TabIndex = 63
@@ -1485,6 +1487,17 @@ Imports SignWriterStudio
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
+        'FindSymbol
+        '
+        Me.FindSymbol.Location = New System.Drawing.Point(199, 19)
+        Me.FindSymbol.Name = "FindSymbol"
+        Me.FindSymbol.Size = New System.Drawing.Size(94, 22)
+        Me.FindSymbol.TabIndex = 67
+        Me.FindSymbol.TabStop = False
+        Me.FindSymbol.Text = "Find in Choosers"
+        Me.SymbolToolTip.SetToolTip(Me.FindSymbol, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.FindSymbol.UseVisualStyleBackColor = True
+        '
         'Editor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1680,5 +1693,6 @@ Imports SignWriterStudio
     Friend WithEvents btnChooserAdd As System.Windows.Forms.Button
     Friend WithEvents MirrorSignToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ChangeArrowHandsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FindSymbol As System.Windows.Forms.Button
 
 End Class
