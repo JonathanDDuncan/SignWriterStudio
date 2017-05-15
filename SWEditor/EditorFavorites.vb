@@ -198,6 +198,44 @@ Partial Public Class Editor
             OnlyOneSymbolJustSelected()
         End If
     End Sub
+    Private Sub ReplaceFirstFavSymbolstoFrame(ByVal id As Integer, ByVal pPoint As Point)
+        If Not AddedFavoriteByDrop Then
+            Dim ta As New Settings.SettingsDataSetTableAdapters.FavSymbolsTableAdapter
+            Dim symbs As DataRowCollection
+
+            symbs = ta.GetDataByFavId(id).Rows
+            Dim firstsymbol As SWSignSymbol = New SWSignSymbol
+
+
+            For Each row As Settings.SettingsDataSet.FavSymbolsRow In symbs
+                firstsymbol.Code = row.sym_code
+                firstsymbol.Hand = row.hand
+                Exit For
+            Next
+
+            If firstsymbol IsNot Nothing Then
+                ChangeChangeSymbolIn(firstsymbol, firstsymbol.Hand)
+            End If
+
+
+            'Dim frame As SWFrame = mySWSign.Frames(mySWSign.CurrentFrameIndex)
+            'frame.UnSelectSymbols()
+
+            'Dim dragOffset = GetDragOffset(symbs.Count(), CType(symbs.Item(0), Settings.SettingsDataSet.FavSymbolsRow), pPoint)
+            'If Not dragOffset.X = 0 AndAlso Not dragOffset.Y = 0 Then
+            '    AddedFavoriteByDrop = True
+            'End If
+            'AddUndo()
+            'For Each row As Settings.SettingsDataSet.FavSymbolsRow In symbs
+            '    CurrentFrame.InsertSymbolIntoSign(row.sym_code, True, row.x + dragOffset.X, row.y + dragOffset.Y, Color.FromArgb(row.handcolor), Color.FromArgb(row.palmcolor), row.hand)
+            'Next
+            'DisplaySign()
+        End If
+        If CurrentFrame.SelectedSymbolCount = 1 Then
+            OnlyOneSymbolJustSelected()
+        End If
+    End Sub
+
     Property AddedFavoriteByDrop() As Boolean
      
 
@@ -227,11 +265,25 @@ Partial Public Class Editor
       
     End Sub
 
-    Private Sub TVFavoriteSymbols_DoubleClick(sender As Object, e As EventArgs) Handles TVFavoriteSymbols.DoubleClick
+    Private Sub TVFavoriteSymbols_MouseClick(sender As Object, e As MouseEventArgs) Handles TVFavoriteSymbols.MouseClick
         If TVFavoriteSymbols.SelectedNode IsNot Nothing Then
-            AddSelectedFavorite()
+            Dim selectednode = TVFavoriteSymbols.SelectedNode
+            Dim mysender = DirectCast(sender, TreeView)
+
+            Dim node = mysender.GetNodeAt(e.Location)
+
+            If selectednode.Equals(node) Then
+
+                If e.Button = System.Windows.Forms.MouseButtons.Left Then
+                    AddSelectedFavorite()
+                End If
+                If e.Button = System.Windows.Forms.MouseButtons.Right Then
+                    ReplaceSelectedFavorite()
+                End If
+            End If
         End If
     End Sub
+
     Private Sub TVFavoriteSymbols_MouseEnter(ByVal sender As Object, ByVal e As EventArgs) Handles TVFavoriteSymbols.MouseEnter
         Area = AreaEnm.Favorites
     End Sub
@@ -247,6 +299,17 @@ Partial Public Class Editor
         End If
     End Sub
 
+
+    Private Sub ReplaceSelectedFavorite(Optional ByVal pPoint As Point = Nothing)
+        If CBFavorites.SelectedValue IsNot Nothing And Not AddedFavoriteByDrop Then
+            Dim favId As Integer
+
+            favId = CInt(DirectCast(DirectCast(CBFavorites.SelectedValue, System.Object), DataRowView).Row.Item("IdFavorites"))
+            ReplaceFirstFavSymbolstoFrame(favId, pPoint)
+
+            Area = AreaEnm.Sign
+        End If
+    End Sub
 #End Region
 
 

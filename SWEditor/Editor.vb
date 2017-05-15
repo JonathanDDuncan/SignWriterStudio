@@ -255,7 +255,7 @@ Partial Public Class Editor
                 If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPFavorites.Name) Then
                     TCSymbols.SelectTab(TPFavorites)
                     TVFavoriteSymbols.Focus()
-
+                    TVFavoriteSymbols.Select()
                 End If
                 AreaFavoritesColor(ActiveAreaColor)
 
@@ -747,9 +747,6 @@ Partial Public Class Editor
         End If
     End Sub
 
-    Private Sub TVAllGroups_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TVAllGroups.AfterSelect
-
-    End Sub
 End Class
  
 
