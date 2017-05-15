@@ -4,6 +4,8 @@ Imports Microsoft.VisualBasic.Logging
 Imports SignWriterStudio.General
 Imports SignWriterStudio.SWClasses
 Imports SignWriterStudio.Settings
+Imports Microsoft.VisualBasic.FileIO
+Imports System.IO
 
 
 Public Class SignWriterMenu
@@ -13,7 +15,7 @@ Public Class SignWriterMenu
     Private DictionaryConnectionString = Database.Dictionary.DatabaseSetup.DictionaryConnectionString
     Friend WithEvents SaveSettingsDialog As New SaveFileDialog
     Friend WithEvents LoadSettingsDialog As New OpenFileDialog
-
+    Dim settingsfilename As String = "Settings.dat"
     Private _swDictForm As Dictionary.SWDictForm
 
     Private _swDocumentForm As Document.SwDocumentForm
@@ -222,26 +224,60 @@ Public Class SignWriterMenu
         _swDictForm.ShowDialog()
         _swDictForm.Close()
     End Sub
+    Private Function SettingsFolder() As String
+        Dim folder As String = String.Empty
+
+
+        If Application.ExecutablePath.Contains("Program Files") Then
+
+            Dim virtualstore As String = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\")
+            Dim programdrive As String = Path.GetPathRoot(Application.ExecutablePath)
+            Dim programfolder As String = Path.GetDirectoryName(Application.ExecutablePath)
+            Dim programfolderwithoutroot As String = programfolder.Replace(programdrive, "")
+
+
+            folder = Path.Combine(virtualstore, programfolderwithoutroot)
+        Else
+            folder = Path.GetDirectoryName(Application.ExecutablePath)
+        End If
+
+        Return folder
+    End Function
+
+
 
     Private Sub ExportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ExportSettingsToolStripMenuItem.Click
-        MessageBox.Show("This option has been temporarily disabled because it is not yet fully functional.")
 
+
+        SaveSettingsDialog.InitialDirectory = SpecialDirectories.MyDocuments
+        SaveSettingsDialog.FileName = settingsfilename
+
+        SaveSettingsDialog.ShowDialog()
+        
     End Sub
 
 
     Private Sub ImportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ImportSettingsToolStripMenuItem.Click
-        MessageBox.Show("This option has been temporarily disabled because it is not yet fully functional.")
 
+
+        LoadSettingsDialog.InitialDirectory = SpecialDirectories.MyDocuments
+        LoadSettingsDialog.FileName = settingsfilename
+        LoadSettingsDialog.ShowDialog()
+ 
     End Sub
 
     Private Sub SaveSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles SaveSettingsDialog.FileOk
-        IO.File.Copy(Paths.Join(Paths.AllUsersData, "Settings.dat"), SaveSettingsDialog.FileName, True)
+        Dim strFilePath As String = Path.Combine(SettingsFolder(), settingsfilename)
+        MessageBox.Show(strFilePath)
+        File.Copy(strFilePath, SaveSettingsDialog.FileName)
     End Sub
 
     Private Sub LoadSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles LoadSettingsDialog.FileOk
-        Dim ss As New SerializableSettings
-        IO.File.Copy(SaveSettingsDialog.FileName, Paths.Join(Paths.AllUsersData, "Settings.dat"), True)
-        ss.Load()
+
+        Dim strFilePath As String = Path.Combine(SettingsFolder(), settingsfilename)
+        MessageBox.Show(strFilePath)
+        File.Copy(strFilePath, Path.GetRandomFileName, True)
+        File.Copy(LoadSettingsDialog.FileName, strFilePath, True)
     End Sub
 
     Public Sub New()

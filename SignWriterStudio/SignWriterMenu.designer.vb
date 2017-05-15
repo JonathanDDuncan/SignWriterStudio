@@ -29,6 +29,7 @@ Partial Class SignWriterMenu
         Me.SuitesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SignWritingDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DictionaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowLogFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
@@ -36,7 +37,6 @@ Partial Class SignWriterMenu
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.BtnDocument = New System.Windows.Forms.Button()
         Me.BtnDictionary = New System.Windows.Forms.Button()
-        Me.ShowLogFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -68,14 +68,12 @@ Partial Class SignWriterMenu
         Me.ExportSettingsToolStripMenuItem.Name = "ExportSettingsToolStripMenuItem"
         Me.ExportSettingsToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.ExportSettingsToolStripMenuItem.Text = "&Export Settings"
-        Me.ExportSettingsToolStripMenuItem.Visible = False
         '
         'ImportSettingsToolStripMenuItem
         '
         Me.ImportSettingsToolStripMenuItem.Name = "ImportSettingsToolStripMenuItem"
         Me.ImportSettingsToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.ImportSettingsToolStripMenuItem.Text = "&Import Settings"
-        Me.ImportSettingsToolStripMenuItem.Visible = False
         '
         'CloseCerrarToolStripMenuItem
         '
@@ -104,6 +102,12 @@ Partial Class SignWriterMenu
         Me.DictionaryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
         Me.DictionaryToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.DictionaryToolStripMenuItem.Text = "Dic&tionary ..."
+        '
+        'ShowLogFilesToolStripMenuItem
+        '
+        Me.ShowLogFilesToolStripMenuItem.Name = "ShowLogFilesToolStripMenuItem"
+        Me.ShowLogFilesToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.ShowLogFilesToolStripMenuItem.Text = "Show log files"
         '
         'AboutToolStripMenuItem1
         '
@@ -148,12 +152,6 @@ Partial Class SignWriterMenu
         Me.BtnDictionary.TabIndex = 8
         Me.BtnDictionary.Text = "Dictionary"
         Me.BtnDictionary.UseVisualStyleBackColor = True
-        '
-        'ShowLogFilesToolStripMenuItem
-        '
-        Me.ShowLogFilesToolStripMenuItem.Name = "ShowLogFilesToolStripMenuItem"
-        Me.ShowLogFilesToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.ShowLogFilesToolStripMenuItem.Text = "Show log files"
         '
         'SignWriterMenu
         '
