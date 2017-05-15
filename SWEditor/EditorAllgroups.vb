@@ -141,20 +141,23 @@ Partial Public Class Editor
         TVAllGroups.SelectedNode = TVAllGroups.GetNodeAt(e.X, e.Y)
         Dim CurrentTreeNode As TreeNode = TVAllGroups.SelectedNode
 
+        Dim nodeName As String = TVAllGroups.SelectedNode.Name
         If CurrentTreeNode IsNot Nothing Then
-
-            TVAllGroups.DoDragDrop(TVAllGroups.Name, DragDropEffects.Copy)
-        End If
-    End Sub
-
-    Private Sub TVAllGroups_DoubleClick(sender As Object, e As EventArgs) Handles TVAllGroups.DoubleClick
-        If TVAllGroups.SelectedNode IsNot Nothing Then
-
-            Dim nodeName As String = TVAllGroups.SelectedNode.Name
             If CheckId(nodeName) And _updateChooser Then
-                ChangeSymbolIn(SWSymbol.CodefromId(nodeName))
-                'Area = AreaEnm.Choose
+                If e.Button = System.Windows.Forms.MouseButtons.Left Then
+                    ChangeSymbolIn(SWSymbol.CodefromId(nodeName))
+                ElseIf e.Button = System.Windows.Forms.MouseButtons.Right Then
+                    Dim symbol = New SWSignSymbol()
+                    symbol.Code = SWSymbol.CodefromId(nodeName)
+
+                    ChangeChangeSymbolIn(symbol, symbol.Hand)
+                    If CurrentFrame.SelectedSymbolCount = 1 Then
+                        OnlyOneSymbolJustSelected()
+                    End If
+                End If
+
             End If
+            TVAllGroups.DoDragDrop(TVAllGroups.Name, DragDropEffects.Copy)
         End If
     End Sub
      
