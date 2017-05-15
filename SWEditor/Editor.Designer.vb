@@ -348,7 +348,6 @@ Imports SignWriterStudio
         Me.TVAllGroups.HotTracking = True
         Me.TVAllGroups.Indent = 19
         Me.TVAllGroups.ItemHeight = 55
-        Me.TVAllGroups.LabelEdit = True
         Me.TVAllGroups.Location = New System.Drawing.Point(3, 3)
         Me.TVAllGroups.Name = "TVAllGroups"
         Me.TVAllGroups.ShowNodeToolTips = True
