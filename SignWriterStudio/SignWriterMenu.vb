@@ -226,15 +226,12 @@ Public Class SignWriterMenu
     End Sub
     Private Function SettingsFolder() As String
         Dim folder As String = String.Empty
-
-
         If Application.ExecutablePath.Contains("Program Files") Then
 
             Dim virtualstore As String = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\")
             Dim programdrive As String = Path.GetPathRoot(Application.ExecutablePath)
             Dim programfolder As String = Path.GetDirectoryName(Application.ExecutablePath)
             Dim programfolderwithoutroot As String = programfolder.Replace(programdrive, "")
-
 
             folder = Path.Combine(virtualstore, programfolderwithoutroot)
         Else
@@ -244,40 +241,29 @@ Public Class SignWriterMenu
         Return folder
     End Function
 
-
-
     Private Sub ExportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ExportSettingsToolStripMenuItem.Click
-
-
         SaveSettingsDialog.InitialDirectory = SpecialDirectories.MyDocuments
         SaveSettingsDialog.FileName = settingsfilename
-
-        SaveSettingsDialog.ShowDialog()
-        
+        SaveSettingsDialog.ShowDialog()     
     End Sub
 
 
     Private Sub ImportSettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles ImportSettingsToolStripMenuItem.Click
-
-
         LoadSettingsDialog.InitialDirectory = SpecialDirectories.MyDocuments
         LoadSettingsDialog.FileName = settingsfilename
         LoadSettingsDialog.ShowDialog()
- 
     End Sub
 
     Private Sub SaveSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles SaveSettingsDialog.FileOk
-        Dim strFilePath As String = Path.Combine(SettingsFolder(), settingsfilename)
-        MessageBox.Show(strFilePath)
-        File.Copy(strFilePath, SaveSettingsDialog.FileName)
+        Dim settingsPath As String = Path.Combine(SettingsFolder(), settingsfilename)
+        File.Copy(settingsPath, SaveSettingsDialog.FileName)
     End Sub
 
     Private Sub LoadSettingsDialog_FileOk(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles LoadSettingsDialog.FileOk
-
-        Dim strFilePath As String = Path.Combine(SettingsFolder(), settingsfilename)
-        MessageBox.Show(strFilePath)
-        File.Copy(strFilePath, Path.GetRandomFileName, True)
-        File.Copy(LoadSettingsDialog.FileName, strFilePath, True)
+        Dim settingsPath As String = Path.Combine(SettingsFolder(), settingsfilename)
+        File.Copy(settingsPath, Path.GetRandomFileName, True)
+        File.Copy(LoadSettingsDialog.FileName, settingsPath, True)
+        LoadForms()
     End Sub
 
     Public Sub New()
