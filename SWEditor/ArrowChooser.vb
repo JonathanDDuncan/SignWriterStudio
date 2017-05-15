@@ -8,6 +8,8 @@ Public Class ArrowChooser
     Event Escape As EventHandler(Of EventArgs)
     Event Accept As EventHandler(Of EventArgs)
     Event Find As EventHandler(Of EventArgs)
+    Event RightClick As EventHandler(Of MouseEventArgs)
+
     Event ChangeSelectedSym As EventHandler(Of EventArgs)
     Private Property TypeItems() As Integer
     Private _editorForm As Editor
@@ -590,4 +592,13 @@ Public Class ArrowChooser
         RB6.Checked = True
     End Sub
 
+    Private Sub Form_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        RighClick(e)
+    End Sub
+
+    Private Sub RighClick(e As MouseEventArgs)
+        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+            RaiseEvent RightClick(Me, e)
+        End If
+    End Sub
 End Class

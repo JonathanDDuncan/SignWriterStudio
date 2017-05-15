@@ -1174,13 +1174,15 @@ Partial Public Class Editor
     End Sub
 
     Private Sub btnChooserReplace_Click(sender As Object, e As EventArgs) Handles btnChooserReplace.Click
+        ReplaceSymbol()
+    End Sub
+    Private Sub ReplaceSymbol()
         If CurrentFrame.SelectedSymbolCount = 1 Then
             AddUndo()
             'Replace selected symbol
             ChangeChangeSymbolIn(Me.symbolOut, HandChooser.Hand)
         End If
     End Sub
-
     Private Sub btnChooserAdd_Click(sender As Object, e As EventArgs) Handles btnChooserAdd.Click
         AddUndo()
         'Add Symbol

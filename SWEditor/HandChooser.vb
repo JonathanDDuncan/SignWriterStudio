@@ -8,7 +8,7 @@ Public Class HandChooser
     Event Accept As EventHandler(Of EventArgs)
     Event Find As EventHandler(Of EventArgs)
     Event ChangeSelectedSym As EventHandler(Of EventArgs)
-
+    Event RightClick As EventHandler(Of MouseEventArgs)
     Private _editorForm As Editor
     Private isLoading As Boolean
 
@@ -921,5 +921,16 @@ Public Class HandChooser
 
     Private Sub PBLeftHand_Click(sender As Object, e As EventArgs) Handles PBLeftHand.Click
         RBLeftHand.Checked = True
+    End Sub
+
+
+    Private Sub Form_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        RighClick(e)
+    End Sub
+
+    Private Sub RighClick(e As MouseEventArgs)
+        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+            RaiseEvent RightClick(Me, e)
+        End If
     End Sub
 End Class

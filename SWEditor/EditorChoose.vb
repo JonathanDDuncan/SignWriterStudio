@@ -164,6 +164,15 @@ Partial Public Class Editor
     '    End If
 
     'End Function
+    Private Sub Choosers_RightClick(sender As Object, e As MouseEventArgs) Handles ArrowChooser.RightClick, HandChooser.RightClick
+        ReplaceSymbol()
+    End Sub
+    Private Sub Choosers_MouseDown(sender As Object, e As MouseEventArgs) Handles ArrowChooser.MouseDown, HandChooser.MouseDown, TVChooser.MouseClick, TVChooser.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+            ReplaceSymbol()
+        End If
+    End Sub
+   
     Private Shared Function UseArrowChooser(ByVal Symbol As SWSymbol) As Boolean
         Dim DT = SymbolCache.SWSymbolCache.GetArrowChoosingInfo(Symbol.BaseGroup)
 
@@ -269,32 +278,7 @@ Partial Public Class Editor
             symbolOut.Code = SWSymbol.CodefromId(sender.SelectedNode.Name)
         End If
     End Sub
-    'Private Sub SetRotationControls()
-    '    'Dim DV As New DataView(DTSignSymbols)
-    '    'DV.RowFilter = "isSelected = True"
-    '    If CurrentFrame.SelectedSymbolCount = 1 Then
-    '        Dim Symbol As SWSignSymbol
-    '        For Each Symbol In CurrentFrame.SignSymbols
-    '            If Symbol.IsSelected Then
-    '                HandChooser.Reset(Symbol.Code)
-    '                Exit Sub
-    '            End If
-
-    '        Next
-
-    '    End If
-    'End Sub
-    'Private Sub SetRotationControls(ByVal code As Integer)
-
-    '    Dim symbol As New SWSignSymbol With {.Code = code}
-    '    HandChooser.Reset(symbol.Code)
-
-    'End Sub
-    Private Sub TVChooser_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles TVChooser.DoubleClick
-        InsertSymbolIntoSign(Me.symbolOut.Code)
-        Area = AreaEnm.Sign
-        DisplaySign()
-    End Sub
+   
     Private Sub TVChooser_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles TVChooser.MouseDown
         TVChooser.SelectedNode = TVChooser.GetNodeAt(e.X, e.Y)
         Dim CurrentTreeNode As TreeNode = TVChooser.SelectedNode
