@@ -145,12 +145,19 @@ Partial Public Class Editor
         If CurrentTreeNode IsNot Nothing Then
             If CheckId(nodeName) And _updateChooser Then
                 If e.Button = System.Windows.Forms.MouseButtons.Left Then
-                    ChangeSymbolIn(SWSymbol.CodefromId(nodeName))
+                    Dim symbol = SWSymbol.CodefromId(nodeName)
+                    Dim signSymbol = New SWSignSymbol
+                    signSymbol.Code = symbol
+                    ChangeSymbolIn(symbol)
+                    SetSymbolIn(signSymbol)
                 ElseIf e.Button = System.Windows.Forms.MouseButtons.Right Then
                     Dim symbol = New SWSignSymbol()
                     symbol.Code = SWSymbol.CodefromId(nodeName)
 
                     ChangeChangeSymbolIn(symbol, symbol.Hand)
+
+
+
                     If CurrentFrame.SelectedSymbolCount = 1 Then
                         OnlyOneSymbolJustSelected()
                     End If

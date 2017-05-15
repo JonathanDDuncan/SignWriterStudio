@@ -526,11 +526,7 @@ Partial Public Class Editor
             If CurrentFrame.SelectedSymbolCount = 1 Then
                 For Each symbol As SWSignSymbol In CurrentFrame.SignSymbols
                     If symbol.IsSelected Then
-                        symbolIn.Code = symbol.Code
-                        HandChooser.Reset(symbol.Code, symbol.Hand)
-                        AllGroupsFind(symbol.Code, False)
-
-                        UpdateSignSymbolSelected = False
+                        SetSymbolIn(symbol)
                         Exit Sub
                     End If
 
@@ -539,7 +535,13 @@ Partial Public Class Editor
             UpdateSignSymbolSelected = False
         End If
     End Sub
+    Private Sub SetSymbolIn(symbol As SWSignSymbol)
+        symbolIn.Code = symbol.Code
+        HandChooser.Reset(symbol.Code, symbol.Hand)
+        AllGroupsFind(symbol.Code, False)
 
+        UpdateSignSymbolSelected = False
+    End Sub
     Private Sub PBsymbolOut_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles PBsymbolOut.MouseDown
         If PBsymbolOut.Image IsNot Nothing Then
             Me.SymbolStartOffset = New Point(CInt(e.X + 2 - (PBsymbolOut.Width - PBsymbolOut.Image.Width) / 2),
