@@ -142,21 +142,21 @@ Partial Public Class Editor
         Dim CurrentTreeNode As TreeNode = TVAllGroups.SelectedNode
 
         If CurrentTreeNode IsNot Nothing Then
-            CurrentTreeNode.Expand()
+
             TVAllGroups.DoDragDrop(TVAllGroups.Name, DragDropEffects.Copy)
         End If
     End Sub
-    
-    Private Sub TVAllGroups_DoubleClick(sender As Object, e As EventArgs) Handles TVAllGroups.DoubleClick
-       If TVAllGroups.SelectedNode IsNot Nothing Then
 
-                Dim nodeName As String = TVAllGroups.SelectedNode.Name
-                If CheckId(nodeName) And _updateChooser Then
-                    ChangeSymbolIn(SWSymbol.CodefromId(nodeName))
-                    'Area = AreaEnm.Choose
-                End If
+    Private Sub TVAllGroups_DoubleClick(sender As Object, e As EventArgs) Handles TVAllGroups.DoubleClick
+        If TVAllGroups.SelectedNode IsNot Nothing Then
+
+            Dim nodeName As String = TVAllGroups.SelectedNode.Name
+            If CheckId(nodeName) And _updateChooser Then
+                ChangeSymbolIn(SWSymbol.CodefromId(nodeName))
+                'Area = AreaEnm.Choose
             End If
-        End Sub
+        End If
+    End Sub
      
 #End Region
 End Class
