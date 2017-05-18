@@ -131,12 +131,6 @@ Partial Public Class Editor
         End If
     End Sub
 
-    Private Sub TVAllGroups_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles TVAllGroups.MouseDown
-       
-  
-    End Sub
-
-
     Private Sub TVAllGroups_Click(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles TVAllGroups.Click
         TVAllGroups.SelectedNode = TVAllGroups.GetNodeAt(e.X, e.Y)
         Dim CurrentTreeNode As TreeNode = TVAllGroups.SelectedNode

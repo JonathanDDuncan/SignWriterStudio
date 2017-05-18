@@ -254,7 +254,6 @@ Partial Public Class Editor
             Case AreaEnm.Favorites
                 If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPFavorites.Name) Then
                     TCSymbols.SelectTab(TPFavorites)
-                    TVFavoriteSymbols.Focus()
                     TVFavoriteSymbols.Select()
                 End If
                 AreaFavoritesColor(ActiveAreaColor)
@@ -272,7 +271,6 @@ Partial Public Class Editor
                     TVChooser.Select()
                 ElseIf HandChooser.GBFills.Visible Then
                     HandChooser.GBFills.Select()
-                    HandChooser.GBFills.Focus()
                 End If
                 AreaChooserColor(ActiveAreaColor)
 
