@@ -42,7 +42,7 @@ Partial Public Class Editor
 
                     symbolOut.Code = symbolIn.Code
 
-                    Choose_Focus()
+
                     Area = AreaEnm.Choose
                     e.SuppressKeyPress = True
                     e.Handled = True
@@ -72,14 +72,14 @@ Partial Public Class Editor
     Private Sub Choose_Focus()
         If TVChooser.Visible Then
             TVChooser.Select()
-            TVChooser.Focus()
+
 
         ElseIf HandChooser.Visible Then
             HandChooser.GBFills.Select()
-            HandChooser.GBFills.Focus()
+
         ElseIf HandChooser.Visible Then
             ArrowChooser.VP1.Select()
-            ArrowChooser.VP1.Focus()
+
         Else
             PBSign.Select()
         End If
@@ -166,7 +166,7 @@ Partial Public Class Editor
             HandsClassifiedBindingSource.Filter = strFilter
         End If
         TVHandLoad(strFilter)
-        TVHand.Focus()
+
 
     End Sub
     Private Sub SetFilterFingers(ByRef strFilter As String)
@@ -337,11 +337,11 @@ Partial Public Class Editor
           
             If TVChooser.Visible Then
                 TVChooser.Select()
-                TVChooser.Focus()
+
                 TVExpand(TVChooser)
             ElseIf HandChooser.Visible Then
                 HandChooser.GBFills.Select()
-                HandChooser.GBFills.Focus()
+
             Else
                 PBSign.Select()
             End If

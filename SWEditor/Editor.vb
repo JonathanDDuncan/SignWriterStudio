@@ -130,13 +130,6 @@ Partial Public Class Editor
 
     End Sub
 
-    Private Sub Editor_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        If JustLoaded Then
-            Area = AreaEnm.Favorites
-            JustLoaded = False
-        End If
-    End Sub
-
     Private Sub Editor_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         EditorUndo.Clear()
     End Sub
