@@ -863,22 +863,22 @@ Imports SignWriterStudio.SWS
             End If
         Next
     End Sub
-    Public Sub DuplicateSelected()
+    Public Sub DuplicateSelected(offset As Integer)
         Dim symbol As SWSignSymbol
         Dim newSymbol As SWSignSymbol
         Dim changeSymbolIns As List(Of SWSignSymbol) = CType(SignSymbols.FindAll(AddressOf Selected), List(Of SWSignSymbol))
 
         For Each symbol In changeSymbolIns
             newSymbol = symbol.Clone
-            newSymbol.X += 5
-            newSymbol.Y += 5
+            newSymbol.X += offset
+            newSymbol.Y += offset
             newSymbol.IsSelected = True
             symbol.IsSelected = False
             SignSymbols.Add(newSymbol)
         Next
         ResetSignSymbols()
     End Sub
-    Public Sub DuplicateAll()
+    Public Sub DuplicateAll(offset As Integer)
         Dim symbol As SWSignSymbol
         Dim newSymbol As SWSignSymbol
 
@@ -886,8 +886,8 @@ Imports SignWriterStudio.SWS
 
         For Each symbol In SignSymbols
             newSymbol = symbol.Clone
-            newSymbol.X += 5
-            newSymbol.Y += 5
+            newSymbol.X += offset
+            newSymbol.Y += offset
             newSymbol.IsSelected = True
             symbol.IsSelected = False
             duplicatedList.Add(newSymbol)

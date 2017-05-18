@@ -9,7 +9,7 @@ Imports SignWriterStudio.SWS
 Partial Public Class Editor
 
 #Region "Sign"
-
+    Private ShiftArrowKeyOffset As Integer = 15
     Public Function ToImage() As Image
         Return Me.mySWSign.Render
     End Function
@@ -25,7 +25,7 @@ Partial Public Class Editor
                 If ChangeSymbolIn Then
                     AddUndo()
                     If e.Shift = True Then
-                        CurrentFrame.MoveSelected(ArrowDirection.Right, 15)
+                        CurrentFrame.MoveSelected(ArrowDirection.Right, ShiftArrowKeyOffset)
                         DisplaySign()
                     Else
                         CurrentFrame.MoveSelected(ArrowDirection.Right, 1)
@@ -40,7 +40,7 @@ Partial Public Class Editor
                 If ChangeSymbolIn Then
                     AddUndo()
                     If e.Shift = True Then
-                        CurrentFrame.MoveSelected(ArrowDirection.Left, 15)
+                        CurrentFrame.MoveSelected(ArrowDirection.Left, ShiftArrowKeyOffset)
                         DisplaySign()
                     Else
                         CurrentFrame.MoveSelected(ArrowDirection.Left, 1)
@@ -55,7 +55,7 @@ Partial Public Class Editor
                 If ChangeSymbolIn Then
                     AddUndo()
                     If e.Shift = True Then
-                        CurrentFrame.MoveSelected(ArrowDirection.Up, 15)
+                        CurrentFrame.MoveSelected(ArrowDirection.Up, ShiftArrowKeyOffset)
                         DisplaySign()
 
                     ElseIf e.Control Then
@@ -75,7 +75,7 @@ Partial Public Class Editor
                 If ChangeSymbolIn Then
                     AddUndo()
                     If e.Shift = True Then
-                        CurrentFrame.MoveSelected(ArrowDirection.Down, 15)
+                        CurrentFrame.MoveSelected(ArrowDirection.Down, ShiftArrowKeyOffset)
                         DisplaySign()
 
                     ElseIf e.Control Then
@@ -887,9 +887,9 @@ Partial Public Class Editor
     Private Sub DuplicateSymbols()
         AddUndo()
         If CurrentFrame.SelectedSymbolCount > 0 Then
-            CurrentFrame.DuplicateSelected()
+            CurrentFrame.DuplicateSelected(ShiftArrowKeyOffset)
         Else
-            CurrentFrame.DuplicateAll()
+            CurrentFrame.DuplicateAll(ShiftArrowKeyOffset)
         End If
         DisplaySign()
     End Sub
