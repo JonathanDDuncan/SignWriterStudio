@@ -327,16 +327,17 @@ Public Class SWDictForm
                 End If
             Case Keys.S
                 If e.Control Then
-                    TBSearch.Focus()
+                    If _puddleApi Is Nothing OrElse Not _puddleApi.IsLoggedIn Then
+                        MessageBox.Show("Please sign in to a Sign Puddle.")
+                    End If
+
                     e.Handled = True
                     e.SuppressKeyPress = True
                 End If
-
-
             Case Keys.Escape
-                Cancel()
+                    Cancel()
             Case Keys.F1
-                Help.ShowHelp(Me, "SignWriterStudio.chm", "dictionary.htm")
+                    Help.ShowHelp(Me, "SignWriterStudio.chm", "dictionary.htm")
         End Select
     End Sub
 
