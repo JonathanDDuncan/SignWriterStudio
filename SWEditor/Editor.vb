@@ -499,19 +499,9 @@ Partial Public Class Editor
         Help.ShowHelp(Me, "SignWriterStudio.chm", "signeditor.htm")
     End Sub
 
-
     Private Sub TPFavorites_MouseEnter(sender As System.Object, e As EventArgs) Handles TPFavorites.MouseEnter
         If Not Area = AreaEnm.Favorites Then
             Area = AreaEnm.Favorites
-        End If
-    End Sub
-
-    Private Sub TPFavorites_Enter(sender As System.Object, e As EventArgs) Handles TPFavorites.Enter
-        If Not Area = AreaEnm.Favorites Then
-            Area = AreaEnm.Favorites
-
-            TVFavoriteSymbols.Select()
-
         End If
     End Sub
 
@@ -701,42 +691,12 @@ Partial Public Class Editor
         End Sub
     End Class
   
-  
-    Private Sub TVSequence_Enter(sender As Object, e As EventArgs) Handles TVSequence.Enter
-        If Not Area = AreaEnm.Sequence Then
-            Area = AreaEnm.Sequence
-        End If
-    End Sub
-
-    Private Sub TPAllSymbols_Enter(sender As Object, e As EventArgs) Handles TPAllSymbols.Enter
-        If Not Area = AreaEnm.AllGroups Then
-            Area = AreaEnm.AllGroups
-        End If
-    End Sub
-
-    Private Sub TPSearch_Enter(sender As Object, e As EventArgs) Handles TPSearch.Enter
-        If Not Area = AreaEnm.Search Then
-            Area = AreaEnm.Search
-        End If
-    End Sub
-
-    Private Sub TPSequence_Enter(sender As Object, e As EventArgs) Handles TPSequence.Enter
-        If Not Area = AreaEnm.Sequence Then
-            Area = AreaEnm.Sequence
-        End If
-    End Sub
-
     Private Sub TPChooser_MouseEnter(sender As Object, e As EventArgs) Handles TPChooser.MouseEnter
         If Not Area = AreaEnm.Choose Then
             Area = AreaEnm.Choose
         End If
     End Sub
 
-    Private Sub TPChooser_Enter(sender As Object, e As EventArgs) Handles TPChooser.Enter
-        If Not Area = AreaEnm.Choose Then
-            Area = AreaEnm.Choose
-        End If
-    End Sub
 End Class
  
 
