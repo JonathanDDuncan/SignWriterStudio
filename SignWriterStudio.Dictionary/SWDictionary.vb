@@ -20,6 +20,7 @@ Imports System.Xml
 Imports System.Text
 Imports System.Data.SqlClient
 Imports System.Linq
+Imports System.Net
 
 Public Class SWDictForm
     Dim WithEvents SPMLImportbw As BackgroundWorker ' With {.WorkerReportsProgress = True}
@@ -247,7 +248,7 @@ Public Class SWDictForm
 
         SaveDataGrid()
     End Sub
- 
+
     Private Sub EditImage()
         Dim imageEditor As New ImageEditor.ImageEditor
         Dim image1 As Image =
@@ -274,7 +275,7 @@ Public Class SWDictForm
             'check for boundaries before performing delete: datatable is empty, or there is no selection
             If currentCell IsNot Nothing Then
                 'convert generic Current object returned by DataConnector to the typed movie row object
- 
+
                 If ColumnClicked = DictionaryColumn.Photo Then
                     'open file as Readonly from file system, copy bytes, and assign to the image property of the current row
                     currentCell.Value = My.Computer.FileSystem.ReadAllBytes(filename)
@@ -1760,7 +1761,7 @@ Public Class SWDictForm
                 MessageBox.Show(ex.ToString)
                 If trans IsNot Nothing Then trans.Rollback()
             Finally
-                 If trans IsNot Nothing Then trans.Dispose()
+                If trans IsNot Nothing Then trans.Dispose()
                 conn.Close()
                 conn.Dispose()
             End Try
@@ -2236,7 +2237,13 @@ Public Class SWDictForm
 
         Dim tags1 = _myDictionary.GetTagEntries(New List(Of String)() From {idDictionary1.ToString})
         Dim tagNames = GetTagNames(allTags, tags1)
-        SendToPuddle(sign, gloss, glosses, tagNames)
+        Try
+            SendToPuddle(sign, gloss, glosses, tagNames)
+        Catch webEx As WebException
+            MessageBox.Show("Entry could not be sent to puddle.")
+            LogError(webEx, "Entry could not be sent to puddle.")
+
+        End Try
     End Sub
     Private Sub SendEntrySigntoPuddle(ByVal idDictionary1 As Integer)
         Dim gloss As String = ""
@@ -2339,17 +2346,22 @@ Public Class SWDictForm
 
         Dim build = converter.GetBuild(swSign)
 
+        Try
+            Dim webPageResult As String
+            Dim originalSid = swSign.SignPuddleId
+            If (Not originalSid = String.Empty) Then
+                webPageResult = _puddleApi.SendSign("1", _puddleSgn, originalSid, build)
+            Else
+                MessageBox.Show("There was an error adding the sign " & gloss & " to the puddle. Create it first and send whole entry.")
+            End If
 
-        Dim webPageResult As String
-        Dim originalSid = swSign.SignPuddleId
-        If (Not originalSid = String.Empty) Then
-            webPageResult = _puddleApi.SendSign("1", _puddleSgn, originalSid, build)
-        Else
-            MessageBox.Show("There was an error adding the sign " & gloss & " to the puddle. Create it first and send whole entry.")
-        End If
+            Dim sid = _puddleApi.GetFirsSidInWebPage(webPageResult)
+        Catch webEx As WebException
+            MessageBox.Show("Sign could not be sent to puddle.")
+            LogError(webEx, "Sign could not be sent to puddle.")
+        End Try
 
-        Dim sid = _puddleApi.GetFirsSidInWebPage(webPageResult)
-       
+
     End Sub
     Private Sub SaveSign(ByVal signToSave As SwSign)
 
@@ -2411,18 +2423,24 @@ Public Class SWDictForm
                 sid = currentSign.SignPuddleId
             End If
         End If
+        Try
+            If String.IsNullOrEmpty(sid) Then
+                MessageBox.Show("Entry for " & gloss & " does not have SignPuddle Id.")
+            Else
+                Dim webPageResult = _puddleApi.DeleteEntry("1", _puddleSgn, sid)
 
-        If String.IsNullOrEmpty(sid) Then
-            MessageBox.Show("Entry for " & gloss & " does not have SignPuddle Id.")
-        Else
-            Dim webPageResult = _puddleApi.DeleteEntry("1", _puddleSgn, sid)
+                Dim wasDeleted = _puddleApi.WasDeleted(webPageResult)
 
-            Dim wasDeleted = _puddleApi.WasDeleted(webPageResult)
-
-            If Not wasDeleted Then
-                MessageBox.Show("The sign " & gloss & " could not be deleted from the puddle.")
+                If Not wasDeleted Then
+                    MessageBox.Show("The sign " & gloss & " could not be deleted from the puddle.")
+                End If
             End If
-        End If
+        Catch webEx As WebException
+            MessageBox.Show("Entry could not be deleted from puddle.")
+            LogError(webEx, "Entry could not be deleted from puddle.")
+
+        End Try
+     
     End Sub
 
     Private Sub SendSelectedEntriesToPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendSelectedEntriesToPuddleToolStripMenuItem.Click

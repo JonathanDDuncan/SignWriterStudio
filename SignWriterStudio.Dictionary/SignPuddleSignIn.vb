@@ -116,6 +116,19 @@ Public Class SignPuddleSignIn
   
 
     Private Sub CBSiteUrl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBSiteUrl.SelectedIndexChanged
-        GetPuddles(CBSiteUrl.Text)
+        Try
+            GetPuddles(CBSiteUrl.Text)
+            CBPuddles.Enabled = True
+            TBPassword.Enabled = True
+            TBUsername.Enabled = True
+            BtnSignIn.Enabled = True
+        Catch webEx As Net.WebException
+            MessageBox.Show("Could not connect to sign puddle site.")
+            CBPuddles.Enabled = False
+            TBPassword.Enabled = False
+            TBUsername.Enabled = False
+            BtnSignIn.Enabled = False
+        End Try
+
     End Sub
 End Class
