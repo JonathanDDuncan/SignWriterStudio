@@ -68,6 +68,7 @@ Partial Class SignPuddleSignIn
         '
         'BtnSignIn
         '
+        Me.BtnSignIn.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.BtnSignIn.Location = New System.Drawing.Point(218, 142)
         Me.BtnSignIn.Name = "BtnSignIn"
         Me.BtnSignIn.Size = New System.Drawing.Size(75, 23)
@@ -81,7 +82,7 @@ Partial Class SignPuddleSignIn
         Me.CBPuddles.Location = New System.Drawing.Point(93, 39)
         Me.CBPuddles.Name = "CBPuddles"
         Me.CBPuddles.Size = New System.Drawing.Size(425, 21)
-        Me.CBPuddles.TabIndex = 5
+        Me.CBPuddles.TabIndex = 1
         '
         'LblPuddle
         '
@@ -109,7 +110,7 @@ Partial Class SignPuddleSignIn
         Me.CBSiteUrl.Location = New System.Drawing.Point(93, 12)
         Me.CBSiteUrl.Name = "CBSiteUrl"
         Me.CBSiteUrl.Size = New System.Drawing.Size(425, 21)
-        Me.CBSiteUrl.TabIndex = 9
+        Me.CBSiteUrl.TabIndex = 0
         '
         'SignPuddleSignIn
         '
