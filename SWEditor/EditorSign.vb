@@ -932,8 +932,15 @@ Partial Public Class Editor
     End Sub
 
     Private Sub PBSign_MouseClick(sender As Object, e As MouseEventArgs) Handles PBSign.MouseClick
-        If Not Area = AreaEnm.Sign Then
-            Area = AreaEnm.Sign
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            If Not Area = AreaEnm.Sign Then
+                Area = AreaEnm.Sign
+            End If
+        End If
+        If e.Button = System.Windows.Forms.MouseButtons.Middle Then
+            If CurrentFrame.SelectedSymbolCount = 1 Then
+                OnlyOneSymbolJustSelected()
+            End If
         End If
     End Sub
  

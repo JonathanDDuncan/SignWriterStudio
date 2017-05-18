@@ -70,6 +70,7 @@ Imports SignWriterStudio
         Me.SCRightSide = New System.Windows.Forms.SplitContainer()
         Me.SPSignView = New System.Windows.Forms.SplitContainer()
         Me.GBSign = New System.Windows.Forms.GroupBox()
+        Me.FindSymbol = New System.Windows.Forms.Button()
         Me.QuickSignEditorBtn = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnAccept = New System.Windows.Forms.Button()
@@ -166,7 +167,6 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FindSymbol = New System.Windows.Forms.Button()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
@@ -780,6 +780,17 @@ Imports SignWriterStudio
         Me.GBSign.TabStop = False
         Me.GBSign.Text = "Sign"
         Me.SymbolToolTip.SetToolTip(Me.GBSign, "(F12)")
+        '
+        'FindSymbol
+        '
+        Me.FindSymbol.Location = New System.Drawing.Point(199, 19)
+        Me.FindSymbol.Name = "FindSymbol"
+        Me.FindSymbol.Size = New System.Drawing.Size(94, 22)
+        Me.FindSymbol.TabIndex = 67
+        Me.FindSymbol.TabStop = False
+        Me.FindSymbol.Text = "Find in Choosers"
+        Me.SymbolToolTip.SetToolTip(Me.FindSymbol, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.FindSymbol.UseVisualStyleBackColor = True
         '
         'QuickSignEditorBtn
         '
@@ -1486,17 +1497,6 @@ Imports SignWriterStudio
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
-        '
-        'FindSymbol
-        '
-        Me.FindSymbol.Location = New System.Drawing.Point(199, 19)
-        Me.FindSymbol.Name = "FindSymbol"
-        Me.FindSymbol.Size = New System.Drawing.Size(94, 22)
-        Me.FindSymbol.TabIndex = 67
-        Me.FindSymbol.TabStop = False
-        Me.FindSymbol.Text = "Find in Choosers"
-        Me.SymbolToolTip.SetToolTip(Me.FindSymbol, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.FindSymbol.UseVisualStyleBackColor = True
         '
         'Editor
         '

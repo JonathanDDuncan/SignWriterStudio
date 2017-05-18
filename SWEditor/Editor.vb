@@ -744,9 +744,6 @@ Partial Public Class Editor
             Area = AreaEnm.Choose
         End If
     End Sub
-
- 
-
 End Class
  
 
