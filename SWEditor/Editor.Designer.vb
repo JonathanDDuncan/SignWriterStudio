@@ -25,14 +25,19 @@ Imports SignWriterStudio
         Me.SCSWEditor = New System.Windows.Forms.SplitContainer()
         Me.TCSymbols = New System.Windows.Forms.TabControl()
         Me.TPFavorites = New System.Windows.Forms.TabPage()
-        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.GBFavorites = New System.Windows.Forms.GroupBox()
         Me.TVFavoriteSymbols = New System.Windows.Forms.TreeView()
         Me.BtnRemoveSymbol = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
         Me.BtnNewFavorite = New System.Windows.Forms.Button()
         Me.CBFavorites = New System.Windows.Forms.ComboBox()
         Me.ISWAFavoriteSymbolsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SettingsDataSet = New SignWriterStudio.Settings.SettingsDataSet()
-        Me.TPAllSymbols = New System.Windows.Forms.TabPage()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.GBAllSymbols = New System.Windows.Forms.GroupBox()
+        Me.TVAllGroups = New System.Windows.Forms.TreeView()
+        Me.GBChoosers = New System.Windows.Forms.GroupBox()
         Me.TPSearch = New System.Windows.Forms.TabPage()
         Me.TVHand = New System.Windows.Forms.TreeView()
         Me.LBThumbPosition = New System.Windows.Forms.Label()
@@ -58,14 +63,6 @@ Imports SignWriterStudio
         Me.FilterMiddle = New System.Windows.Forms.CheckBox()
         Me.FilterIndex = New System.Windows.Forms.CheckBox()
         Me.PBHand = New System.Windows.Forms.PictureBox()
-        Me.TPChooser = New System.Windows.Forms.TabPage()
-        Me.btnChooserAdd = New System.Windows.Forms.Button()
-        Me.btnChooserReplace = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.PBsymbolOut = New System.Windows.Forms.PictureBox()
-        Me.ArrowChooser = New SignWriterStudio.SWEditor.ArrowChooser()
-        Me.HandChooser = New SignWriterStudio.SWEditor.HandChooser()
-        Me.TVChooser = New System.Windows.Forms.TreeView()
         Me.TPSpelling = New System.Windows.Forms.TabPage()
         Me.TPSequence = New System.Windows.Forms.GroupBox()
         Me.PanelSpelling = New System.Windows.Forms.Panel()
@@ -166,20 +163,32 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.GBAllSymbols = New System.Windows.Forms.GroupBox()
-        Me.TVAllGroups = New System.Windows.Forms.TreeView()
-        Me.GBFavorites = New System.Windows.Forms.GroupBox()
-        Me.GBChoosers = New System.Windows.Forms.GroupBox()
+        Me.btnChooserAdd = New System.Windows.Forms.Button()
+        Me.btnChooserReplace = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.PBsymbolOut = New System.Windows.Forms.PictureBox()
+        Me.ArrowChooser = New SignWriterStudio.SWEditor.ArrowChooser()
+        Me.HandChooser = New SignWriterStudio.SWEditor.HandChooser()
+        Me.TVChooser = New System.Windows.Forms.TreeView()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
         Me.SCSWEditor.SuspendLayout()
         Me.TCSymbols.SuspendLayout()
         Me.TPFavorites.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        Me.GBFavorites.SuspendLayout()
         CType(Me.ISWAFavoriteSymbolsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SettingsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
+        Me.GBAllSymbols.SuspendLayout()
+        Me.GBChoosers.SuspendLayout()
         Me.TPSearch.SuspendLayout()
         CType(Me.ISWAThumbPositionsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWADataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,8 +196,6 @@ Imports SignWriterStudio
         CType(Me.ISWAActionFingersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWARootShapesQuickBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBHand, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TPChooser.SuspendLayout()
-        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TPSpelling.SuspendLayout()
         Me.TPSequence.SuspendLayout()
         Me.PanelSpelling.SuspendLayout()
@@ -204,16 +211,7 @@ Imports SignWriterStudio
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SequenceMenuStrip.SuspendLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer2.Panel1.SuspendLayout()
-        Me.SplitContainer2.Panel2.SuspendLayout()
-        Me.SplitContainer2.SuspendLayout()
-        Me.GBAllSymbols.SuspendLayout()
-        Me.GBFavorites.SuspendLayout()
+        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SCSWEditor
@@ -231,22 +229,20 @@ Imports SignWriterStudio
         'SCSWEditor.Panel2
         '
         Me.SCSWEditor.Panel2.Controls.Add(Me.SPSignView)
-        Me.SCSWEditor.Size = New System.Drawing.Size(1468, 633)
+        Me.SCSWEditor.Size = New System.Drawing.Size(1468, 660)
         Me.SCSWEditor.SplitterDistance = 957
         Me.SCSWEditor.TabIndex = 0
         '
         'TCSymbols
         '
         Me.TCSymbols.Controls.Add(Me.TPFavorites)
-        Me.TCSymbols.Controls.Add(Me.TPAllSymbols)
         Me.TCSymbols.Controls.Add(Me.TPSearch)
-        Me.TCSymbols.Controls.Add(Me.TPChooser)
         Me.TCSymbols.Controls.Add(Me.TPSpelling)
         Me.TCSymbols.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TCSymbols.Location = New System.Drawing.Point(0, 0)
         Me.TCSymbols.Name = "TCSymbols"
         Me.TCSymbols.SelectedIndex = 0
-        Me.TCSymbols.Size = New System.Drawing.Size(957, 633)
+        Me.TCSymbols.Size = New System.Drawing.Size(957, 660)
         Me.TCSymbols.TabIndex = 0
         '
         'TPFavorites
@@ -255,22 +251,43 @@ Imports SignWriterStudio
         Me.TPFavorites.Location = New System.Drawing.Point(4, 22)
         Me.TPFavorites.Name = "TPFavorites"
         Me.TPFavorites.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPFavorites.Size = New System.Drawing.Size(949, 607)
+        Me.TPFavorites.Size = New System.Drawing.Size(949, 634)
         Me.TPFavorites.TabIndex = 1
         Me.TPFavorites.Text = "Favorites"
         Me.SymbolToolTip.SetToolTip(Me.TPFavorites, "Favorites [F5]")
         Me.TPFavorites.UseVisualStyleBackColor = True
         '
-        'btnAdd
+        'SplitContainer1
         '
-        Me.btnAdd.Location = New System.Drawing.Point(175, 22)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(103, 47)
-        Me.btnAdd.TabIndex = 5
-        Me.btnAdd.TabStop = False
-        Me.btnAdd.Text = "Add"
-        Me.SymbolToolTip.SetToolTip(Me.btnAdd, "Add from Sign [Ins]")
-        Me.btnAdd.UseVisualStyleBackColor = True
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(3, 3)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.GBFavorites)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer2)
+        Me.SplitContainer1.Size = New System.Drawing.Size(943, 628)
+        Me.SplitContainer1.SplitterDistance = 314
+        Me.SplitContainer1.TabIndex = 6
+        '
+        'GBFavorites
+        '
+        Me.GBFavorites.Controls.Add(Me.TVFavoriteSymbols)
+        Me.GBFavorites.Controls.Add(Me.BtnRemoveSymbol)
+        Me.GBFavorites.Controls.Add(Me.btnAdd)
+        Me.GBFavorites.Controls.Add(Me.BtnNewFavorite)
+        Me.GBFavorites.Controls.Add(Me.CBFavorites)
+        Me.GBFavorites.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GBFavorites.Location = New System.Drawing.Point(0, 0)
+        Me.GBFavorites.Name = "GBFavorites"
+        Me.GBFavorites.Size = New System.Drawing.Size(314, 628)
+        Me.GBFavorites.TabIndex = 6
+        Me.GBFavorites.TabStop = False
+        Me.GBFavorites.Text = "Favorites"
         '
         'TVFavoriteSymbols
         '
@@ -285,7 +302,7 @@ Imports SignWriterStudio
         Me.TVFavoriteSymbols.Name = "TVFavoriteSymbols"
         Me.TVFavoriteSymbols.ShowLines = False
         Me.TVFavoriteSymbols.ShowNodeToolTips = True
-        Me.TVFavoriteSymbols.Size = New System.Drawing.Size(304, 520)
+        Me.TVFavoriteSymbols.Size = New System.Drawing.Size(304, 547)
         Me.TVFavoriteSymbols.TabIndex = 2
         '
         'BtnRemoveSymbol
@@ -298,6 +315,17 @@ Imports SignWriterStudio
         Me.BtnRemoveSymbol.Text = "Remove"
         Me.SymbolToolTip.SetToolTip(Me.BtnRemoveSymbol, "Remove Selected Favorite [Del]")
         Me.BtnRemoveSymbol.UseVisualStyleBackColor = True
+        '
+        'btnAdd
+        '
+        Me.btnAdd.Location = New System.Drawing.Point(175, 22)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(103, 47)
+        Me.btnAdd.TabIndex = 5
+        Me.btnAdd.TabStop = False
+        Me.btnAdd.Text = "Add"
+        Me.SymbolToolTip.SetToolTip(Me.btnAdd, "Add from Sign [Ins]")
+        Me.btnAdd.UseVisualStyleBackColor = True
         '
         'BtnNewFavorite
         '
@@ -337,16 +365,64 @@ Imports SignWriterStudio
         Me.SettingsDataSet.DataSetName = "SettingsDataSet"
         Me.SettingsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'TPAllSymbols
+        'SplitContainer2
         '
-        Me.TPAllSymbols.Location = New System.Drawing.Point(4, 22)
-        Me.TPAllSymbols.Name = "TPAllSymbols"
-        Me.TPAllSymbols.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPAllSymbols.Size = New System.Drawing.Size(949, 607)
-        Me.TPAllSymbols.TabIndex = 0
-        Me.TPAllSymbols.Text = "All"
-        Me.SymbolToolTip.SetToolTip(Me.TPAllSymbols, "All Symbols [F6]")
-        Me.TPAllSymbols.UseVisualStyleBackColor = True
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.GBAllSymbols)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.GBChoosers)
+        Me.SplitContainer2.Size = New System.Drawing.Size(625, 628)
+        Me.SplitContainer2.SplitterDistance = 314
+        Me.SplitContainer2.TabIndex = 0
+        '
+        'GBAllSymbols
+        '
+        Me.GBAllSymbols.Controls.Add(Me.TVAllGroups)
+        Me.GBAllSymbols.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GBAllSymbols.Location = New System.Drawing.Point(0, 0)
+        Me.GBAllSymbols.Name = "GBAllSymbols"
+        Me.GBAllSymbols.Size = New System.Drawing.Size(314, 628)
+        Me.GBAllSymbols.TabIndex = 0
+        Me.GBAllSymbols.TabStop = False
+        Me.GBAllSymbols.Text = "All Symbols"
+        '
+        'TVAllGroups
+        '
+        Me.TVAllGroups.BackColor = System.Drawing.SystemColors.Window
+        Me.TVAllGroups.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TVAllGroups.FullRowSelect = True
+        Me.TVAllGroups.HotTracking = True
+        Me.TVAllGroups.Indent = 19
+        Me.TVAllGroups.ItemHeight = 55
+        Me.TVAllGroups.Location = New System.Drawing.Point(3, 16)
+        Me.TVAllGroups.Name = "TVAllGroups"
+        Me.TVAllGroups.ShowNodeToolTips = True
+        Me.TVAllGroups.Size = New System.Drawing.Size(308, 609)
+        Me.TVAllGroups.TabIndex = 2
+        '
+        'GBChoosers
+        '
+        Me.GBChoosers.Controls.Add(Me.btnChooserAdd)
+        Me.GBChoosers.Controls.Add(Me.btnChooserReplace)
+        Me.GBChoosers.Controls.Add(Me.TextBox1)
+        Me.GBChoosers.Controls.Add(Me.PBsymbolOut)
+        Me.GBChoosers.Controls.Add(Me.ArrowChooser)
+        Me.GBChoosers.Controls.Add(Me.HandChooser)
+        Me.GBChoosers.Controls.Add(Me.TVChooser)
+        Me.GBChoosers.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GBChoosers.Location = New System.Drawing.Point(0, 0)
+        Me.GBChoosers.Name = "GBChoosers"
+        Me.GBChoosers.Size = New System.Drawing.Size(307, 628)
+        Me.GBChoosers.TabIndex = 0
+        Me.GBChoosers.TabStop = False
+        Me.GBChoosers.Text = "Choosers"
         '
         'TPSearch
         '
@@ -617,105 +693,6 @@ Imports SignWriterStudio
         Me.PBHand.TabIndex = 47
         Me.PBHand.TabStop = False
         '
-        'TPChooser
-        '
-        Me.TPChooser.Controls.Add(Me.btnChooserAdd)
-        Me.TPChooser.Controls.Add(Me.btnChooserReplace)
-        Me.TPChooser.Controls.Add(Me.TextBox1)
-        Me.TPChooser.Controls.Add(Me.PBsymbolOut)
-        Me.TPChooser.Controls.Add(Me.ArrowChooser)
-        Me.TPChooser.Controls.Add(Me.HandChooser)
-        Me.TPChooser.Controls.Add(Me.TVChooser)
-        Me.TPChooser.Location = New System.Drawing.Point(4, 22)
-        Me.TPChooser.Name = "TPChooser"
-        Me.TPChooser.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPChooser.Size = New System.Drawing.Size(949, 607)
-        Me.TPChooser.TabIndex = 3
-        Me.TPChooser.Text = "Chooser"
-        Me.TPChooser.UseVisualStyleBackColor = True
-        '
-        'btnChooserAdd
-        '
-        Me.btnChooserAdd.Location = New System.Drawing.Point(138, 36)
-        Me.btnChooserAdd.Name = "btnChooserAdd"
-        Me.btnChooserAdd.Size = New System.Drawing.Size(94, 22)
-        Me.btnChooserAdd.TabIndex = 72
-        Me.btnChooserAdd.Text = "Add"
-        Me.SymbolToolTip.SetToolTip(Me.btnChooserAdd, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.btnChooserAdd.UseVisualStyleBackColor = True
-        '
-        'btnChooserReplace
-        '
-        Me.btnChooserReplace.Location = New System.Drawing.Point(138, 8)
-        Me.btnChooserReplace.Name = "btnChooserReplace"
-        Me.btnChooserReplace.Size = New System.Drawing.Size(94, 22)
-        Me.btnChooserReplace.TabIndex = 71
-        Me.btnChooserReplace.Text = "Replace"
-        Me.SymbolToolTip.SetToolTip(Me.btnChooserReplace, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.btnChooserReplace.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(-1, 65)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 68
-        Me.TextBox1.Visible = False
-        '
-        'PBsymbolOut
-        '
-        Me.PBsymbolOut.BackColor = System.Drawing.Color.White
-        Me.PBsymbolOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PBsymbolOut.Location = New System.Drawing.Point(8, 4)
-        Me.PBsymbolOut.Name = "PBsymbolOut"
-        Me.PBsymbolOut.Size = New System.Drawing.Size(60, 60)
-        Me.PBsymbolOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PBsymbolOut.TabIndex = 66
-        Me.PBsymbolOut.TabStop = False
-        '
-        'ArrowChooser
-        '
-        Me.ArrowChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ArrowChooser.AutoScroll = True
-        Me.ArrowChooser.EditorForm = Nothing
-        Me.ArrowChooser.Location = New System.Drawing.Point(40, 65)
-        Me.ArrowChooser.Margin = New System.Windows.Forms.Padding(4)
-        Me.ArrowChooser.Name = "ArrowChooser"
-        Me.ArrowChooser.Size = New System.Drawing.Size(886, 546)
-        Me.ArrowChooser.TabIndex = 70
-        Me.ArrowChooser.Visible = False
-        '
-        'HandChooser
-        '
-        Me.HandChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.HandChooser.AutoScroll = True
-        Me.HandChooser.EditorForm = Nothing
-        Me.HandChooser.Location = New System.Drawing.Point(42, 65)
-        Me.HandChooser.Margin = New System.Windows.Forms.Padding(4)
-        Me.HandChooser.Name = "HandChooser"
-        Me.HandChooser.Size = New System.Drawing.Size(884, 565)
-        Me.HandChooser.TabIndex = 69
-        '
-        'TVChooser
-        '
-        Me.TVChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TVChooser.BackColor = System.Drawing.Color.White
-        Me.TVChooser.HotTracking = True
-        Me.TVChooser.Indent = 5
-        Me.TVChooser.ItemHeight = 55
-        Me.TVChooser.Location = New System.Drawing.Point(-1, 52)
-        Me.TVChooser.Name = "TVChooser"
-        Me.TVChooser.ShowLines = False
-        Me.TVChooser.ShowNodeToolTips = True
-        Me.TVChooser.Size = New System.Drawing.Size(950, 556)
-        Me.TVChooser.TabIndex = 67
-        '
         'TPSpelling
         '
         Me.TPSpelling.Controls.Add(Me.TPSequence)
@@ -893,7 +870,7 @@ Imports SignWriterStudio
         '
         Me.SPSignView.Panel2.AutoScroll = True
         Me.SPSignView.Panel2.Controls.Add(Me.PanelSign)
-        Me.SPSignView.Size = New System.Drawing.Size(507, 633)
+        Me.SPSignView.Size = New System.Drawing.Size(507, 660)
         Me.SPSignView.SplitterDistance = 55
         Me.SPSignView.TabIndex = 68
         '
@@ -978,7 +955,7 @@ Imports SignWriterStudio
         Me.PanelSign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelSign.Location = New System.Drawing.Point(0, 0)
         Me.PanelSign.Name = "PanelSign"
-        Me.PanelSign.Size = New System.Drawing.Size(507, 574)
+        Me.PanelSign.Size = New System.Drawing.Size(507, 601)
         Me.PanelSign.TabIndex = 43
         '
         'PBSign
@@ -1480,95 +1457,91 @@ Imports SignWriterStudio
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'SplitContainer1
+        'btnChooserAdd
         '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(3, 3)
-        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.btnChooserAdd.Location = New System.Drawing.Point(145, 46)
+        Me.btnChooserAdd.Name = "btnChooserAdd"
+        Me.btnChooserAdd.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserAdd.TabIndex = 79
+        Me.btnChooserAdd.Text = "Add"
+        Me.SymbolToolTip.SetToolTip(Me.btnChooserAdd, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.btnChooserAdd.UseVisualStyleBackColor = True
         '
-        'SplitContainer1.Panel1
+        'btnChooserReplace
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.GBFavorites)
+        Me.btnChooserReplace.Location = New System.Drawing.Point(145, 18)
+        Me.btnChooserReplace.Name = "btnChooserReplace"
+        Me.btnChooserReplace.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserReplace.TabIndex = 78
+        Me.btnChooserReplace.Text = "Replace"
+        Me.SymbolToolTip.SetToolTip(Me.btnChooserReplace, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.btnChooserReplace.UseVisualStyleBackColor = True
         '
-        'SplitContainer1.Panel2
+        'TextBox1
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(943, 601)
-        Me.SplitContainer1.SplitterDistance = 314
-        Me.SplitContainer1.TabIndex = 6
+        Me.TextBox1.Location = New System.Drawing.Point(6, 75)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.TabIndex = 75
+        Me.TextBox1.Visible = False
         '
-        'SplitContainer2
+        'PBsymbolOut
         '
-        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer2.Name = "SplitContainer2"
+        Me.PBsymbolOut.BackColor = System.Drawing.Color.White
+        Me.PBsymbolOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PBsymbolOut.Location = New System.Drawing.Point(15, 14)
+        Me.PBsymbolOut.Name = "PBsymbolOut"
+        Me.PBsymbolOut.Size = New System.Drawing.Size(60, 60)
+        Me.PBsymbolOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PBsymbolOut.TabIndex = 73
+        Me.PBsymbolOut.TabStop = False
         '
-        'SplitContainer2.Panel1
+        'ArrowChooser
         '
-        Me.SplitContainer2.Panel1.Controls.Add(Me.GBAllSymbols)
+        Me.ArrowChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ArrowChooser.AutoScroll = True
+        Me.ArrowChooser.EditorForm = Nothing
+        Me.ArrowChooser.Location = New System.Drawing.Point(47, 89)
+        Me.ArrowChooser.Margin = New System.Windows.Forms.Padding(4)
+        Me.ArrowChooser.Name = "ArrowChooser"
+        Me.ArrowChooser.Size = New System.Drawing.Size(248, 546)
+        Me.ArrowChooser.TabIndex = 77
+        Me.ArrowChooser.Visible = False
         '
-        'SplitContainer2.Panel2
+        'HandChooser
         '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.GBChoosers)
-        Me.SplitContainer2.Size = New System.Drawing.Size(625, 601)
-        Me.SplitContainer2.SplitterDistance = 314
-        Me.SplitContainer2.TabIndex = 0
+        Me.HandChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.HandChooser.AutoScroll = True
+        Me.HandChooser.EditorForm = Nothing
+        Me.HandChooser.Location = New System.Drawing.Point(49, 88)
+        Me.HandChooser.Margin = New System.Windows.Forms.Padding(4)
+        Me.HandChooser.Name = "HandChooser"
+        Me.HandChooser.Size = New System.Drawing.Size(246, 565)
+        Me.HandChooser.TabIndex = 76
         '
-        'GBAllSymbols
+        'TVChooser
         '
-        Me.GBAllSymbols.Controls.Add(Me.TVAllGroups)
-        Me.GBAllSymbols.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GBAllSymbols.Location = New System.Drawing.Point(0, 0)
-        Me.GBAllSymbols.Name = "GBAllSymbols"
-        Me.GBAllSymbols.Size = New System.Drawing.Size(314, 601)
-        Me.GBAllSymbols.TabIndex = 0
-        Me.GBAllSymbols.TabStop = False
-        Me.GBAllSymbols.Text = "All Symbols"
-        '
-        'TVAllGroups
-        '
-        Me.TVAllGroups.BackColor = System.Drawing.SystemColors.Window
-        Me.TVAllGroups.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TVAllGroups.FullRowSelect = True
-        Me.TVAllGroups.HotTracking = True
-        Me.TVAllGroups.Indent = 19
-        Me.TVAllGroups.ItemHeight = 55
-        Me.TVAllGroups.Location = New System.Drawing.Point(3, 16)
-        Me.TVAllGroups.Name = "TVAllGroups"
-        Me.TVAllGroups.ShowNodeToolTips = True
-        Me.TVAllGroups.Size = New System.Drawing.Size(308, 582)
-        Me.TVAllGroups.TabIndex = 2
-        '
-        'GBFavorites
-        '
-        Me.GBFavorites.Controls.Add(Me.TVFavoriteSymbols)
-        Me.GBFavorites.Controls.Add(Me.BtnRemoveSymbol)
-        Me.GBFavorites.Controls.Add(Me.btnAdd)
-        Me.GBFavorites.Controls.Add(Me.BtnNewFavorite)
-        Me.GBFavorites.Controls.Add(Me.CBFavorites)
-        Me.GBFavorites.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GBFavorites.Location = New System.Drawing.Point(0, 0)
-        Me.GBFavorites.Name = "GBFavorites"
-        Me.GBFavorites.Size = New System.Drawing.Size(314, 601)
-        Me.GBFavorites.TabIndex = 6
-        Me.GBFavorites.TabStop = False
-        Me.GBFavorites.Text = "Favorites"
-        '
-        'GBChoosers
-        '
-        Me.GBChoosers.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GBChoosers.Location = New System.Drawing.Point(0, 0)
-        Me.GBChoosers.Name = "GBChoosers"
-        Me.GBChoosers.Size = New System.Drawing.Size(307, 601)
-        Me.GBChoosers.TabIndex = 0
-        Me.GBChoosers.TabStop = False
-        Me.GBChoosers.Text = "Choosers"
+        Me.TVChooser.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.TVChooser.BackColor = System.Drawing.Color.White
+        Me.TVChooser.HotTracking = True
+        Me.TVChooser.Indent = 5
+        Me.TVChooser.ItemHeight = 55
+        Me.TVChooser.Location = New System.Drawing.Point(15, 75)
+        Me.TVChooser.Name = "TVChooser"
+        Me.TVChooser.ShowLines = False
+        Me.TVChooser.ShowNodeToolTips = True
+        Me.TVChooser.Size = New System.Drawing.Size(289, 556)
+        Me.TVChooser.TabIndex = 74
         '
         'Editor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1468, 633)
+        Me.ClientSize = New System.Drawing.Size(1468, 660)
         Me.Controls.Add(Me.SCSWEditor)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Editor"
@@ -1579,8 +1552,20 @@ Imports SignWriterStudio
         Me.SCSWEditor.ResumeLayout(False)
         Me.TCSymbols.ResumeLayout(False)
         Me.TPFavorites.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.GBFavorites.ResumeLayout(False)
         CType(Me.ISWAFavoriteSymbolsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SettingsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
+        Me.GBAllSymbols.ResumeLayout(False)
+        Me.GBChoosers.ResumeLayout(False)
+        Me.GBChoosers.PerformLayout()
         Me.TPSearch.ResumeLayout(False)
         Me.TPSearch.PerformLayout()
         CType(Me.ISWAThumbPositionsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1589,9 +1574,6 @@ Imports SignWriterStudio
         CType(Me.ISWAActionFingersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ISWARootShapesQuickBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBHand, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TPChooser.ResumeLayout(False)
-        Me.TPChooser.PerformLayout()
-        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TPSpelling.ResumeLayout(False)
         Me.TPSequence.ResumeLayout(False)
         Me.PanelSpelling.ResumeLayout(False)
@@ -1608,22 +1590,12 @@ Imports SignWriterStudio
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SequenceMenuStrip.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        Me.SplitContainer2.Panel1.ResumeLayout(False)
-        Me.SplitContainer2.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer2.ResumeLayout(False)
-        Me.GBAllSymbols.ResumeLayout(False)
-        Me.GBFavorites.ResumeLayout(False)
+        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents SCSWEditor As System.Windows.Forms.SplitContainer
     Friend WithEvents TCSymbols As System.Windows.Forms.TabControl
-    Friend WithEvents TPAllSymbols As System.Windows.Forms.TabPage
     Friend WithEvents TPFavorites As System.Windows.Forms.TabPage
     Friend WithEvents TPSearch As System.Windows.Forms.TabPage
     Friend WithEvents BtnRemoveSymbol As System.Windows.Forms.Button
@@ -1733,14 +1705,6 @@ Imports SignWriterStudio
     Friend WithEvents ALotSmallerCtrlToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MoveTopMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MoveBottomMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TPChooser As System.Windows.Forms.TabPage
-    Friend WithEvents btnChooserReplace As System.Windows.Forms.Button
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents PBsymbolOut As System.Windows.Forms.PictureBox
-    Friend WithEvents ArrowChooser As SignWriterStudio.SWEditor.ArrowChooser
-    Friend WithEvents HandChooser As SignWriterStudio.SWEditor.HandChooser
-    Friend WithEvents TVChooser As System.Windows.Forms.TreeView
-    Friend WithEvents btnChooserAdd As System.Windows.Forms.Button
     Friend WithEvents MirrorSignToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ChangeArrowHandsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TPSpelling As System.Windows.Forms.TabPage
@@ -1771,5 +1735,12 @@ Imports SignWriterStudio
     Friend WithEvents TVAllGroups As System.Windows.Forms.TreeView
     Friend WithEvents GBFavorites As System.Windows.Forms.GroupBox
     Friend WithEvents GBChoosers As System.Windows.Forms.GroupBox
+    Friend WithEvents btnChooserAdd As System.Windows.Forms.Button
+    Friend WithEvents btnChooserReplace As System.Windows.Forms.Button
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents PBsymbolOut As System.Windows.Forms.PictureBox
+    Friend WithEvents ArrowChooser As SignWriterStudio.SWEditor.ArrowChooser
+    Friend WithEvents HandChooser As SignWriterStudio.SWEditor.HandChooser
+    Friend WithEvents TVChooser As System.Windows.Forms.TreeView
 
 End Class
