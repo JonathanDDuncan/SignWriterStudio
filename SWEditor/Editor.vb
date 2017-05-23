@@ -166,10 +166,8 @@ Partial Public Class Editor
         HandsClassifiedBindingSource.DataSource = DT
 
         BaseGroupSuggestion_Load()
-        'Todo remove commented code
-        'TCSymbols.SelectedTab = TPAllSymbols
-        'Todo uncomment code
-        'TCSymbols.SelectedTab = TPChoosers
+      
+        TCSymbols.SelectedTab = TPFavorites
 
         FirstLoad = True
 
@@ -246,15 +244,11 @@ Partial Public Class Editor
                 TVAllGroups.Select()
                 AreaAllColor(ActiveAreaColor)
             Case AreaEnm.Favorites
-
-                'Todo uncomment code
-                'If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPChoosers.Name) Then
-
-                '    TCSymbols.SelectTab(TPChoosers)
-                '    TVFavoriteSymbols.Select()
-                'End If
+                If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPFavorites.Name) Then
+                    TCSymbols.SelectTab(TPFavorites)
+                    TVFavoriteSymbols.Select()
+                End If
                 AreaFavoritesColor(ActiveAreaColor)
-
             Case AreaEnm.Search
                 ActiveControl = Nothing
                 TCSymbols.SelectTab(TPSearch)
