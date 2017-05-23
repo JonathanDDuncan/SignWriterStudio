@@ -166,9 +166,10 @@ Partial Public Class Editor
         HandsClassifiedBindingSource.DataSource = DT
 
         BaseGroupSuggestion_Load()
-
-        TCSymbols.SelectedTab = TPAllSymbols
-        TCSymbols.SelectedTab = TPFavorites
+        'Todo remove commented code
+        'TCSymbols.SelectedTab = TPAllSymbols
+        'Todo uncomment code
+        'TCSymbols.SelectedTab = TPChoosers
 
         FirstLoad = True
 
@@ -241,14 +242,17 @@ Partial Public Class Editor
         Select Case Area
             Case AreaEnm.AllGroups
                 ActiveControl = Nothing
-                TCSymbols.SelectTab(TPAllSymbols)
+                'TCSymbols.SelectTab(TPAllSymbols)
                 TVAllGroups.Select()
                 AreaAllColor(ActiveAreaColor)
             Case AreaEnm.Favorites
-                If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPFavorites.Name) Then
-                    TCSymbols.SelectTab(TPFavorites)
-                    TVFavoriteSymbols.Select()
-                End If
+                
+                'Todo uncomment code
+                'If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPChoosers.Name) Then
+
+                '    TCSymbols.SelectTab(TPChoosers)
+                '    TVFavoriteSymbols.Select()
+                'End If
                 AreaFavoritesColor(ActiveAreaColor)
 
             Case AreaEnm.Search
@@ -259,7 +263,7 @@ Partial Public Class Editor
                 ActiveControl = FilterRootShape
             Case AreaEnm.Choose
                 ActiveControl = Nothing
-                TCSymbols.SelectTab(TPChooser)
+                'TCSymbols.SelectTab(TPChooser)
                 If TVChooser.Visible Then
                     TVChooser.Select()
                 ElseIf HandChooser.GBFills.Visible Then
@@ -284,7 +288,8 @@ Partial Public Class Editor
     End Sub
     Private Sub AreaSignColor(color As Color)
         GBSign.BackColor = color
-        SCRightSide.BackColor = color
+        SCSWEditor.Panel2.BackColor = color
+
     End Sub
     Private Sub AreaChooserColor(color As Color)
         TVChooser.BackColor = color
@@ -294,11 +299,11 @@ Partial Public Class Editor
     End Sub
     Private Sub AreaAllColor(color As Color)
         TVAllGroups.BackColor = color
-        TPAllSymbols.BackColor = color
+        'TPAllSymbols.BackColor = color
     End Sub
     Private Sub AreaFavoritesColor(color As Color)
         TVFavoriteSymbols.BackColor = color
-        TPFavorites.BackColor = color
+        'TPFavorites.BackColor = color
     End Sub
     Private Sub AreaSearchColor(color As Color)
         TVHand.BackColor = color
@@ -458,57 +463,12 @@ Partial Public Class Editor
         Initiate()
     End Sub
 
-
-
-    'Private Sub Button1_Click(sender As System.Object, e As System.EventArgs)
-    '    Dim DeglossChoosers1 = New DeglossChoosers
-    '    Dim DeglossedList As List(Of DeglossResult) = DeglossChoosers1.GetDeglossed(TVAllGroups)
-
-    '    Dim sb As New System.Text.StringBuilder
-
-    '    For Each item In DeglossedList
-    '        sb.Append("UPDATE basesymbol SET ")
-    '        sb.Append("UseArrowChooser " & "=" & TrueFalse(item.UseArrowChooser))
-    '        sb.Append(", ShowWallPlane " & "=" & TrueFalse(item.ShowWallPlane))
-    '        sb.Append(", ShowWallPlaneImage " & "=" & TrueFalse(item.ShowWallPlaneImage))
-    '        sb.Append(", ShowFloorPlane " & "=" & TrueFalse(item.ShowFloorPlane))
-    '        sb.Append(", ShowFloorPlaneImage " & "=" & TrueFalse(item.ShowFloorPlaneImage))
-    '        sb.Append(", ShowFlip " & "=" & TrueFalse(item.ShowFlip))
-    '        sb.Append(", ShowVP3VP7 " & "=" & TrueFalse(item.ShowVP3VP7))
-    '        sb.AppendLine("  WHERE  bs_sym_code = " & item.Code & ";")
-    '    Next
-
-    '    Using outfile As New IO.StreamWriter("ShowArrowsUpdate.txt")
-    '        outfile.Write(sb.ToString())
-    '    End Using
-    'End Sub
-
-    'Private Function TrueFalse(bool As Boolean) As String
-    '    If bool Then
-    '        Return "1"
-    '    Else
-    '        Return "0"
-    '    End If
-    'End Function
-
     Private Sub CMSPBSign_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles CMSPBSign.Opening
 
     End Sub
 
     Private Sub btnHelp_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles btnHelp.MouseClick
         Help.ShowHelp(Me, "SignWriterStudio.chm", "signeditor.htm")
-    End Sub
-
-    Private Sub TPFavorites_MouseEnter(sender As System.Object, e As EventArgs) Handles TPFavorites.MouseEnter
-        If Not Area = AreaEnm.Favorites Then
-            Area = AreaEnm.Favorites
-        End If
-    End Sub
-
-    Private Sub TPAllSymbols_MouseEnter(sender As System.Object, e As EventArgs) Handles TPAllSymbols.MouseEnter
-        If Not Area = AreaEnm.AllGroups Then
-            Area = AreaEnm.AllGroups
-        End If
     End Sub
 
 
@@ -543,7 +503,7 @@ Partial Public Class Editor
 
             HandChooser.Visible = False
             ArrowChooser.Visible = False
- 
+
             Area = AreaEnm.Favorites
 
             If mySWSign IsNot Nothing Then
@@ -690,12 +650,7 @@ Partial Public Class Editor
             MessageBox.Show(msg)
         End Sub
     End Class
-  
-    Private Sub TPChooser_MouseEnter(sender As Object, e As EventArgs) Handles TPChooser.MouseEnter
-        If Not Area = AreaEnm.Choose Then
-            Area = AreaEnm.Choose
-        End If
-    End Sub
+
 
 End Class
  

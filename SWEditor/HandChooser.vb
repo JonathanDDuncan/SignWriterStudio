@@ -894,8 +894,8 @@ Public Class HandChooser
         RBRightHand.Checked = True
         HandR1.Checked = True
         VP1.Checked = True
-        PBRightHand.Image = GetImagebyId("01-05-001-01-03-01")
-        PBLeftHand.Image = GetImagebyId("01-05-001-01-03-09")
+        'PBRightHand.Image = GetImagebyId("01-05-001-01-03-01")
+        'PBLeftHand.Image = GetImagebyId("01-05-001-01-03-09")
         isLoading = False
     End Sub
 

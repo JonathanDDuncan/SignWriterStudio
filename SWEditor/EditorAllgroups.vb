@@ -122,7 +122,7 @@ Partial Public Class Editor
             TreeNodes(0).Expand()
             _updateChooser = True
         End If
-        TCSymbols.SelectTab(TPChooser)
+        'TCSymbols.SelectTab(TPChooser)
     End Sub
     Private Sub symbolIn_SymbolChanged(ByVal sender As Object, ByVal e As EventArgs) Handles symbolIn.SymbolChanged
         If _updateChooser Then
