@@ -67,16 +67,6 @@ Imports SignWriterStudio
         Me.ArrowChooser = New SignWriterStudio.SWEditor.ArrowChooser()
         Me.HandChooser = New SignWriterStudio.SWEditor.HandChooser()
         Me.TVChooser = New System.Windows.Forms.TreeView()
-        Me.SCRightSide = New System.Windows.Forms.SplitContainer()
-        Me.SPSignView = New System.Windows.Forms.SplitContainer()
-        Me.GBSign = New System.Windows.Forms.GroupBox()
-        Me.FindSymbol = New System.Windows.Forms.Button()
-        Me.QuickSignEditorBtn = New System.Windows.Forms.Button()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnAccept = New System.Windows.Forms.Button()
-        Me.grid = New System.Windows.Forms.CheckBox()
-        Me.PanelSign = New System.Windows.Forms.Panel()
-        Me.PBSign = New System.Windows.Forms.PictureBox()
         Me.CMSPBSign = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.TSMIInsertsymbolOuts = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIRemoveSymbols = New System.Windows.Forms.ToolStripMenuItem()
@@ -134,18 +124,6 @@ Imports SignWriterStudio
         Me.PasteCtrlVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MirrorSignToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeArrowHandsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TPSequence = New System.Windows.Forms.GroupBox()
-        Me.PanelSpelling = New System.Windows.Forms.Panel()
-        Me.TVSequence = New System.Windows.Forms.TreeView()
-        Me.btnHelp = New System.Windows.Forms.Button()
-        Me.btnSugg2 = New System.Windows.Forms.Button()
-        Me.BtnDeleteAll = New System.Windows.Forms.Button()
-        Me.btnSugg1 = New System.Windows.Forms.Button()
-        Me.BtnAddChooser = New System.Windows.Forms.Button()
-        Me.BtnUp = New System.Windows.Forms.Button()
-        Me.BtnAddSign = New System.Windows.Forms.Button()
-        Me.BtnDown = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblBaseGroupName = New System.Windows.Forms.Label()
         Me.lblMultipleFinger = New System.Windows.Forms.Label()
         Me.lblActionFinger = New System.Windows.Forms.Label()
@@ -167,6 +145,28 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TPSpelling = New System.Windows.Forms.TabPage()
+        Me.TPSequence = New System.Windows.Forms.GroupBox()
+        Me.PanelSpelling = New System.Windows.Forms.Panel()
+        Me.TVSequence = New System.Windows.Forms.TreeView()
+        Me.btnHelp = New System.Windows.Forms.Button()
+        Me.btnSugg2 = New System.Windows.Forms.Button()
+        Me.BtnDeleteAll = New System.Windows.Forms.Button()
+        Me.btnSugg1 = New System.Windows.Forms.Button()
+        Me.BtnAddChooser = New System.Windows.Forms.Button()
+        Me.BtnUp = New System.Windows.Forms.Button()
+        Me.BtnAddSign = New System.Windows.Forms.Button()
+        Me.BtnDown = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.SPSignView = New System.Windows.Forms.SplitContainer()
+        Me.GBSign = New System.Windows.Forms.GroupBox()
+        Me.FindSymbol = New System.Windows.Forms.Button()
+        Me.QuickSignEditorBtn = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnAccept = New System.Windows.Forms.Button()
+        Me.grid = New System.Windows.Forms.CheckBox()
+        Me.PanelSign = New System.Windows.Forms.Panel()
+        Me.PBSign = New System.Windows.Forms.PictureBox()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
@@ -185,10 +185,14 @@ Imports SignWriterStudio
         CType(Me.PBHand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TPChooser.SuspendLayout()
         CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SCRightSide, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SCRightSide.Panel1.SuspendLayout()
-        Me.SCRightSide.Panel2.SuspendLayout()
-        Me.SCRightSide.SuspendLayout()
+        Me.CMSPBSign.SuspendLayout()
+        CType(Me.ISWABaseSymbolsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SequenceMenuStrip.SuspendLayout()
+        Me.TPSpelling.SuspendLayout()
+        Me.TPSequence.SuspendLayout()
+        Me.PanelSpelling.SuspendLayout()
         CType(Me.SPSignView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SPSignView.Panel1.SuspendLayout()
         Me.SPSignView.Panel2.SuspendLayout()
@@ -196,13 +200,6 @@ Imports SignWriterStudio
         Me.GBSign.SuspendLayout()
         Me.PanelSign.SuspendLayout()
         CType(Me.PBSign, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CMSPBSign.SuspendLayout()
-        Me.TPSequence.SuspendLayout()
-        Me.PanelSpelling.SuspendLayout()
-        CType(Me.ISWABaseSymbolsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SequenceMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'SCSWEditor
@@ -219,9 +216,9 @@ Imports SignWriterStudio
         '
         'SCSWEditor.Panel2
         '
-        Me.SCSWEditor.Panel2.Controls.Add(Me.SCRightSide)
-        Me.SCSWEditor.Size = New System.Drawing.Size(1102, 633)
-        Me.SCSWEditor.SplitterDistance = 352
+        Me.SCSWEditor.Panel2.Controls.Add(Me.SPSignView)
+        Me.SCSWEditor.Size = New System.Drawing.Size(1468, 633)
+        Me.SCSWEditor.SplitterDistance = 957
         Me.SCSWEditor.TabIndex = 0
         '
         'TCSymbols
@@ -230,11 +227,12 @@ Imports SignWriterStudio
         Me.TCSymbols.Controls.Add(Me.TPAllSymbols)
         Me.TCSymbols.Controls.Add(Me.TPSearch)
         Me.TCSymbols.Controls.Add(Me.TPChooser)
+        Me.TCSymbols.Controls.Add(Me.TPSpelling)
         Me.TCSymbols.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TCSymbols.Location = New System.Drawing.Point(0, 0)
         Me.TCSymbols.Name = "TCSymbols"
         Me.TCSymbols.SelectedIndex = 0
-        Me.TCSymbols.Size = New System.Drawing.Size(352, 633)
+        Me.TCSymbols.Size = New System.Drawing.Size(957, 633)
         Me.TCSymbols.TabIndex = 0
         '
         'TPFavorites
@@ -247,7 +245,7 @@ Imports SignWriterStudio
         Me.TPFavorites.Location = New System.Drawing.Point(4, 22)
         Me.TPFavorites.Name = "TPFavorites"
         Me.TPFavorites.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPFavorites.Size = New System.Drawing.Size(344, 607)
+        Me.TPFavorites.Size = New System.Drawing.Size(949, 607)
         Me.TPFavorites.TabIndex = 1
         Me.TPFavorites.Text = "Favorites"
         Me.SymbolToolTip.SetToolTip(Me.TPFavorites, "Favorites [F5]")
@@ -277,7 +275,7 @@ Imports SignWriterStudio
         Me.TVFavoriteSymbols.Name = "TVFavoriteSymbols"
         Me.TVFavoriteSymbols.ShowLines = False
         Me.TVFavoriteSymbols.ShowNodeToolTips = True
-        Me.TVFavoriteSymbols.Size = New System.Drawing.Size(338, 545)
+        Me.TVFavoriteSymbols.Size = New System.Drawing.Size(943, 545)
         Me.TVFavoriteSymbols.TabIndex = 2
         '
         'BtnRemoveSymbol
@@ -723,141 +721,6 @@ Imports SignWriterStudio
         Me.TVChooser.Size = New System.Drawing.Size(345, 556)
         Me.TVChooser.TabIndex = 67
         '
-        'SCRightSide
-        '
-        Me.SCRightSide.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SCRightSide.Location = New System.Drawing.Point(0, 0)
-        Me.SCRightSide.Name = "SCRightSide"
-        '
-        'SCRightSide.Panel1
-        '
-        Me.SCRightSide.Panel1.Controls.Add(Me.SPSignView)
-        '
-        'SCRightSide.Panel2
-        '
-        Me.SCRightSide.Panel2.AutoScroll = True
-        Me.SCRightSide.Panel2.AutoScrollMinSize = New System.Drawing.Size(20, 0)
-        Me.SCRightSide.Panel2.Controls.Add(Me.TPSequence)
-        Me.SCRightSide.Size = New System.Drawing.Size(746, 633)
-        Me.SCRightSide.SplitterDistance = 498
-        Me.SCRightSide.TabIndex = 68
-        '
-        'SPSignView
-        '
-        Me.SPSignView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SPSignView.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
-        Me.SPSignView.IsSplitterFixed = True
-        Me.SPSignView.Location = New System.Drawing.Point(0, 0)
-        Me.SPSignView.Name = "SPSignView"
-        Me.SPSignView.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SPSignView.Panel1
-        '
-        Me.SPSignView.Panel1.Controls.Add(Me.GBSign)
-        '
-        'SPSignView.Panel2
-        '
-        Me.SPSignView.Panel2.AutoScroll = True
-        Me.SPSignView.Panel2.Controls.Add(Me.PanelSign)
-        Me.SPSignView.Size = New System.Drawing.Size(498, 633)
-        Me.SPSignView.SplitterDistance = 55
-        Me.SPSignView.TabIndex = 67
-        '
-        'GBSign
-        '
-        Me.GBSign.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GBSign.Controls.Add(Me.FindSymbol)
-        Me.GBSign.Controls.Add(Me.QuickSignEditorBtn)
-        Me.GBSign.Controls.Add(Me.btnCancel)
-        Me.GBSign.Controls.Add(Me.btnAccept)
-        Me.GBSign.Controls.Add(Me.grid)
-        Me.GBSign.Location = New System.Drawing.Point(0, 0)
-        Me.GBSign.Name = "GBSign"
-        Me.GBSign.Size = New System.Drawing.Size(498, 55)
-        Me.GBSign.TabIndex = 56
-        Me.GBSign.TabStop = False
-        Me.GBSign.Text = "Sign"
-        Me.SymbolToolTip.SetToolTip(Me.GBSign, "(F12)")
-        '
-        'FindSymbol
-        '
-        Me.FindSymbol.Location = New System.Drawing.Point(199, 19)
-        Me.FindSymbol.Name = "FindSymbol"
-        Me.FindSymbol.Size = New System.Drawing.Size(94, 22)
-        Me.FindSymbol.TabIndex = 67
-        Me.FindSymbol.TabStop = False
-        Me.FindSymbol.Text = "Find in Choosers"
-        Me.SymbolToolTip.SetToolTip(Me.FindSymbol, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.FindSymbol.UseVisualStyleBackColor = True
-        '
-        'QuickSignEditorBtn
-        '
-        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(388, 19)
-        Me.QuickSignEditorBtn.Name = "QuickSignEditorBtn"
-        Me.QuickSignEditorBtn.Size = New System.Drawing.Size(94, 22)
-        Me.QuickSignEditorBtn.TabIndex = 63
-        Me.QuickSignEditorBtn.TabStop = False
-        Me.QuickSignEditorBtn.Text = "QuickSignEditor"
-        Me.SymbolToolTip.SetToolTip(Me.QuickSignEditorBtn, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.QuickSignEditorBtn.UseVisualStyleBackColor = True
-        '
-        'btnCancel
-        '
-        Me.btnCancel.Location = New System.Drawing.Point(67, 19)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(52, 23)
-        Me.btnCancel.TabIndex = 58
-        Me.btnCancel.TabStop = False
-        Me.btnCancel.Text = "Cancel"
-        Me.SymbolToolTip.SetToolTip(Me.btnCancel, "Cancel [Alt-F4]")
-        Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'btnAccept
-        '
-        Me.btnAccept.Location = New System.Drawing.Point(9, 19)
-        Me.btnAccept.Name = "btnAccept"
-        Me.btnAccept.Size = New System.Drawing.Size(52, 23)
-        Me.btnAccept.TabIndex = 57
-        Me.btnAccept.TabStop = False
-        Me.btnAccept.Text = "Accept"
-        Me.SymbolToolTip.SetToolTip(Me.btnAccept, "Accept Sign [Ctrl-Enter]")
-        Me.btnAccept.UseVisualStyleBackColor = True
-        '
-        'grid
-        '
-        Me.grid.Appearance = System.Windows.Forms.Appearance.Button
-        Me.grid.AutoSize = True
-        Me.grid.Location = New System.Drawing.Point(147, 19)
-        Me.grid.Name = "grid"
-        Me.grid.Size = New System.Drawing.Size(36, 23)
-        Me.grid.TabIndex = 66
-        Me.grid.TabStop = False
-        Me.grid.Text = "Grid"
-        Me.grid.UseVisualStyleBackColor = True
-        '
-        'PanelSign
-        '
-        Me.PanelSign.AutoScroll = True
-        Me.PanelSign.Controls.Add(Me.PBSign)
-        Me.PanelSign.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelSign.Location = New System.Drawing.Point(0, 0)
-        Me.PanelSign.Name = "PanelSign"
-        Me.PanelSign.Size = New System.Drawing.Size(498, 574)
-        Me.PanelSign.TabIndex = 43
-        '
-        'PBSign
-        '
-        Me.PBSign.BackColor = System.Drawing.Color.White
-        Me.PBSign.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PBSign.ContextMenuStrip = Me.CMSPBSign
-        Me.PBSign.Location = New System.Drawing.Point(0, 0)
-        Me.PBSign.Name = "PBSign"
-        Me.PBSign.Size = New System.Drawing.Size(500, 500)
-        Me.PBSign.TabIndex = 42
-        Me.PBSign.TabStop = False
-        '
         'CMSPBSign
         '
         Me.CMSPBSign.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSMIInsertsymbolOuts, Me.TSMIRemoveSymbols, Me.TSMIDuplicateSymbols, Me.ToolStripSeparator3, Me.TSMICenter, Me.TSMICenterHead, Me.OverlapSymbolsToolStripMenuItem, Me.SeperateSymbolsToolStripMenuItem, Me.MoveArea, Me.ToolStripSeparator2, Me.SelectAllToolStripMenuItem, Me.TSMINextSymbol, Me.TSMIPreviousSymbol, Me.TSMINextAddToSelected, Me.TSMIPreviousAddToSelected, Me.ToolStripSeparator5, Me.MoveTopMenuItem, Me.TSMIMoveUp, Me.TSMIMoveDown, Me.MoveBottomMenuItem, Me.ToolStripSeparator4, Me.ColorsToolStripMenuItem, Me.SizeToolStripMenuItem, Me.ToolStripSeparator1, Me.TSMIUndo, Me.TSMIRedo, Me.ToolStripSeparator6, Me.SignToolStripMenuItem, Me.MirrorSignToolStripMenuItem, Me.ChangeArrowHandsToolStripMenuItem})
@@ -1240,6 +1103,123 @@ Imports SignWriterStudio
         Me.ChangeArrowHandsToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
         Me.ChangeArrowHandsToolStripMenuItem.Text = "Change arrow hands"
         '
+        'lblBaseGroupName
+        '
+        Me.lblBaseGroupName.Location = New System.Drawing.Point(0, 0)
+        Me.lblBaseGroupName.Name = "lblBaseGroupName"
+        Me.lblBaseGroupName.Size = New System.Drawing.Size(100, 23)
+        Me.lblBaseGroupName.TabIndex = 0
+        '
+        'lblMultipleFinger
+        '
+        Me.lblMultipleFinger.Location = New System.Drawing.Point(0, 0)
+        Me.lblMultipleFinger.Name = "lblMultipleFinger"
+        Me.lblMultipleFinger.Size = New System.Drawing.Size(100, 23)
+        Me.lblMultipleFinger.TabIndex = 0
+        '
+        'lblActionFinger
+        '
+        Me.lblActionFinger.Location = New System.Drawing.Point(0, 0)
+        Me.lblActionFinger.Name = "lblActionFinger"
+        Me.lblActionFinger.Size = New System.Drawing.Size(100, 23)
+        Me.lblActionFinger.TabIndex = 0
+        '
+        'lblRootShape
+        '
+        Me.lblRootShape.Location = New System.Drawing.Point(0, 0)
+        Me.lblRootShape.Name = "lblRootShape"
+        Me.lblRootShape.Size = New System.Drawing.Size(100, 23)
+        Me.lblRootShape.TabIndex = 0
+        '
+        'SymbolToolTip
+        '
+        Me.SymbolToolTip.AutoPopDelay = 5000
+        Me.SymbolToolTip.InitialDelay = 500
+        Me.SymbolToolTip.IsBalloon = True
+        Me.SymbolToolTip.ReshowDelay = 100
+        '
+        'ColorDialog1
+        '
+        Me.ColorDialog1.AnyColor = True
+        Me.ColorDialog1.FullOpen = True
+        '
+        'ISWAActionFingersTableAdapter
+        '
+        Me.ISWAActionFingersTableAdapter.ClearBeforeFill = True
+        '
+        'ISWABaseSymbolsBindingSource
+        '
+        Me.ISWABaseSymbolsBindingSource.DataMember = "basesymbol"
+        Me.ISWABaseSymbolsBindingSource.DataSource = Me.ISWADataSet
+        '
+        'ISWABaseSymbolsTableAdapter
+        '
+        Me.ISWABaseSymbolsTableAdapter.ClearBeforeFill = True
+        '
+        'ISWAFavoriteSymbolsTableAdapter
+        '
+        Me.ISWAFavoriteSymbolsTableAdapter.ClearBeforeFill = True
+        '
+        'ISWAMultipleFingersTableAdapter
+        '
+        Me.ISWAMultipleFingersTableAdapter.ClearBeforeFill = True
+        '
+        'ISWARootShapeGroupsBindingSource
+        '
+        Me.ISWARootShapeGroupsBindingSource.DataMember = "rootshapegroup"
+        Me.ISWARootShapeGroupsBindingSource.DataSource = Me.ISWADataSet
+        '
+        'ISWARootShapeGroupsTableAdapter
+        '
+        Me.ISWARootShapeGroupsTableAdapter.ClearBeforeFill = True
+        '
+        'ISWARootShapesQuickTableAdapter
+        '
+        Me.ISWARootShapesQuickTableAdapter.ClearBeforeFill = True
+        '
+        'ISWAThumbPositionsTableAdapter
+        '
+        Me.ISWAThumbPositionsTableAdapter.ClearBeforeFill = True
+        '
+        'IswaSymbolsTableAdapter
+        '
+        Me.IswaSymbolsTableAdapter.ClearBeforeFill = True
+        '
+        'SequenceMenuStrip
+        '
+        Me.SequenceMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpToolStripMenuItem, Me.DownToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.SequenceMenuStrip.Name = "SequenceMenuStrip"
+        Me.SequenceMenuStrip.Size = New System.Drawing.Size(108, 70)
+        '
+        'UpToolStripMenuItem
+        '
+        Me.UpToolStripMenuItem.Name = "UpToolStripMenuItem"
+        Me.UpToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.UpToolStripMenuItem.Text = "Up"
+        '
+        'DownToolStripMenuItem
+        '
+        Me.DownToolStripMenuItem.Name = "DownToolStripMenuItem"
+        Me.DownToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DownToolStripMenuItem.Text = "Down"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
+        'TPSpelling
+        '
+        Me.TPSpelling.Controls.Add(Me.TPSequence)
+        Me.TPSpelling.Location = New System.Drawing.Point(4, 22)
+        Me.TPSpelling.Name = "TPSpelling"
+        Me.TPSpelling.Padding = New System.Windows.Forms.Padding(3)
+        Me.TPSpelling.Size = New System.Drawing.Size(949, 607)
+        Me.TPSpelling.TabIndex = 4
+        Me.TPSpelling.Text = "Spelling"
+        Me.TPSpelling.UseVisualStyleBackColor = True
+        '
         'TPSequence
         '
         Me.TPSequence.Controls.Add(Me.PanelSpelling)
@@ -1252,31 +1232,28 @@ Imports SignWriterStudio
         Me.TPSequence.Controls.Add(Me.BtnAddSign)
         Me.TPSequence.Controls.Add(Me.BtnDown)
         Me.TPSequence.Controls.Add(Me.btnDelete)
-        Me.TPSequence.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TPSequence.Location = New System.Drawing.Point(0, 0)
         Me.TPSequence.Name = "TPSequence"
-        Me.TPSequence.Size = New System.Drawing.Size(244, 633)
-        Me.TPSequence.TabIndex = 68
+        Me.TPSequence.Size = New System.Drawing.Size(341, 633)
+        Me.TPSequence.TabIndex = 69
         Me.TPSequence.TabStop = False
         Me.TPSequence.Text = "Spelling"
         '
         'PanelSpelling
         '
-        Me.PanelSpelling.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelSpelling.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PanelSpelling.AutoScroll = True
         Me.PanelSpelling.Controls.Add(Me.TVSequence)
         Me.PanelSpelling.Location = New System.Drawing.Point(0, 100)
         Me.PanelSpelling.Name = "PanelSpelling"
-        Me.PanelSpelling.Size = New System.Drawing.Size(244, 533)
+        Me.PanelSpelling.Size = New System.Drawing.Size(264, 533)
         Me.PanelSpelling.TabIndex = 64
         '
         'TVSequence
         '
         Me.TVSequence.AllowDrop = True
         Me.TVSequence.BackColor = System.Drawing.Color.White
-        Me.TVSequence.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TVSequence.HotTracking = True
         Me.TVSequence.Indent = 5
         Me.TVSequence.ItemHeight = 55
@@ -1392,117 +1369,127 @@ Imports SignWriterStudio
         Me.SymbolToolTip.SetToolTip(Me.btnDelete, "Delete [Del]")
         Me.btnDelete.UseVisualStyleBackColor = True
         '
-        'lblBaseGroupName
+        'SPSignView
         '
-        Me.lblBaseGroupName.Location = New System.Drawing.Point(0, 0)
-        Me.lblBaseGroupName.Name = "lblBaseGroupName"
-        Me.lblBaseGroupName.Size = New System.Drawing.Size(100, 23)
-        Me.lblBaseGroupName.TabIndex = 0
+        Me.SPSignView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SPSignView.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.SPSignView.IsSplitterFixed = True
+        Me.SPSignView.Location = New System.Drawing.Point(0, 0)
+        Me.SPSignView.Name = "SPSignView"
+        Me.SPSignView.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
-        'lblMultipleFinger
+        'SPSignView.Panel1
         '
-        Me.lblMultipleFinger.Location = New System.Drawing.Point(0, 0)
-        Me.lblMultipleFinger.Name = "lblMultipleFinger"
-        Me.lblMultipleFinger.Size = New System.Drawing.Size(100, 23)
-        Me.lblMultipleFinger.TabIndex = 0
+        Me.SPSignView.Panel1.Controls.Add(Me.GBSign)
         '
-        'lblActionFinger
+        'SPSignView.Panel2
         '
-        Me.lblActionFinger.Location = New System.Drawing.Point(0, 0)
-        Me.lblActionFinger.Name = "lblActionFinger"
-        Me.lblActionFinger.Size = New System.Drawing.Size(100, 23)
-        Me.lblActionFinger.TabIndex = 0
+        Me.SPSignView.Panel2.AutoScroll = True
+        Me.SPSignView.Panel2.Controls.Add(Me.PanelSign)
+        Me.SPSignView.Size = New System.Drawing.Size(507, 633)
+        Me.SPSignView.SplitterDistance = 55
+        Me.SPSignView.TabIndex = 68
         '
-        'lblRootShape
+        'GBSign
         '
-        Me.lblRootShape.Location = New System.Drawing.Point(0, 0)
-        Me.lblRootShape.Name = "lblRootShape"
-        Me.lblRootShape.Size = New System.Drawing.Size(100, 23)
-        Me.lblRootShape.TabIndex = 0
+        Me.GBSign.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GBSign.Controls.Add(Me.FindSymbol)
+        Me.GBSign.Controls.Add(Me.QuickSignEditorBtn)
+        Me.GBSign.Controls.Add(Me.btnCancel)
+        Me.GBSign.Controls.Add(Me.btnAccept)
+        Me.GBSign.Controls.Add(Me.grid)
+        Me.GBSign.Location = New System.Drawing.Point(0, 0)
+        Me.GBSign.Name = "GBSign"
+        Me.GBSign.Size = New System.Drawing.Size(507, 55)
+        Me.GBSign.TabIndex = 56
+        Me.GBSign.TabStop = False
+        Me.GBSign.Text = "Sign"
+        Me.SymbolToolTip.SetToolTip(Me.GBSign, "(F12)")
         '
-        'SymbolToolTip
+        'FindSymbol
         '
-        Me.SymbolToolTip.AutoPopDelay = 5000
-        Me.SymbolToolTip.InitialDelay = 500
-        Me.SymbolToolTip.IsBalloon = True
-        Me.SymbolToolTip.ReshowDelay = 100
+        Me.FindSymbol.Location = New System.Drawing.Point(199, 19)
+        Me.FindSymbol.Name = "FindSymbol"
+        Me.FindSymbol.Size = New System.Drawing.Size(94, 22)
+        Me.FindSymbol.TabIndex = 67
+        Me.FindSymbol.TabStop = False
+        Me.FindSymbol.Text = "Find in Choosers"
+        Me.SymbolToolTip.SetToolTip(Me.FindSymbol, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.FindSymbol.UseVisualStyleBackColor = True
         '
-        'ColorDialog1
+        'QuickSignEditorBtn
         '
-        Me.ColorDialog1.AnyColor = True
-        Me.ColorDialog1.FullOpen = True
+        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(388, 19)
+        Me.QuickSignEditorBtn.Name = "QuickSignEditorBtn"
+        Me.QuickSignEditorBtn.Size = New System.Drawing.Size(94, 22)
+        Me.QuickSignEditorBtn.TabIndex = 63
+        Me.QuickSignEditorBtn.TabStop = False
+        Me.QuickSignEditorBtn.Text = "QuickSignEditor"
+        Me.SymbolToolTip.SetToolTip(Me.QuickSignEditorBtn, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.QuickSignEditorBtn.UseVisualStyleBackColor = True
         '
-        'ISWAActionFingersTableAdapter
+        'btnCancel
         '
-        Me.ISWAActionFingersTableAdapter.ClearBeforeFill = True
+        Me.btnCancel.Location = New System.Drawing.Point(67, 19)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(52, 23)
+        Me.btnCancel.TabIndex = 58
+        Me.btnCancel.TabStop = False
+        Me.btnCancel.Text = "Cancel"
+        Me.SymbolToolTip.SetToolTip(Me.btnCancel, "Cancel [Alt-F4]")
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'ISWABaseSymbolsBindingSource
+        'btnAccept
         '
-        Me.ISWABaseSymbolsBindingSource.DataMember = "basesymbol"
-        Me.ISWABaseSymbolsBindingSource.DataSource = Me.ISWADataSet
+        Me.btnAccept.Location = New System.Drawing.Point(9, 19)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(52, 23)
+        Me.btnAccept.TabIndex = 57
+        Me.btnAccept.TabStop = False
+        Me.btnAccept.Text = "Accept"
+        Me.SymbolToolTip.SetToolTip(Me.btnAccept, "Accept Sign [Ctrl-Enter]")
+        Me.btnAccept.UseVisualStyleBackColor = True
         '
-        'ISWABaseSymbolsTableAdapter
+        'grid
         '
-        Me.ISWABaseSymbolsTableAdapter.ClearBeforeFill = True
+        Me.grid.Appearance = System.Windows.Forms.Appearance.Button
+        Me.grid.AutoSize = True
+        Me.grid.Location = New System.Drawing.Point(147, 19)
+        Me.grid.Name = "grid"
+        Me.grid.Size = New System.Drawing.Size(36, 23)
+        Me.grid.TabIndex = 66
+        Me.grid.TabStop = False
+        Me.grid.Text = "Grid"
+        Me.grid.UseVisualStyleBackColor = True
         '
-        'ISWAFavoriteSymbolsTableAdapter
+        'PanelSign
         '
-        Me.ISWAFavoriteSymbolsTableAdapter.ClearBeforeFill = True
+        Me.PanelSign.AutoScroll = True
+        Me.PanelSign.Controls.Add(Me.PBSign)
+        Me.PanelSign.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelSign.Location = New System.Drawing.Point(0, 0)
+        Me.PanelSign.Name = "PanelSign"
+        Me.PanelSign.Size = New System.Drawing.Size(507, 574)
+        Me.PanelSign.TabIndex = 43
         '
-        'ISWAMultipleFingersTableAdapter
+        'PBSign
         '
-        Me.ISWAMultipleFingersTableAdapter.ClearBeforeFill = True
-        '
-        'ISWARootShapeGroupsBindingSource
-        '
-        Me.ISWARootShapeGroupsBindingSource.DataMember = "rootshapegroup"
-        Me.ISWARootShapeGroupsBindingSource.DataSource = Me.ISWADataSet
-        '
-        'ISWARootShapeGroupsTableAdapter
-        '
-        Me.ISWARootShapeGroupsTableAdapter.ClearBeforeFill = True
-        '
-        'ISWARootShapesQuickTableAdapter
-        '
-        Me.ISWARootShapesQuickTableAdapter.ClearBeforeFill = True
-        '
-        'ISWAThumbPositionsTableAdapter
-        '
-        Me.ISWAThumbPositionsTableAdapter.ClearBeforeFill = True
-        '
-        'IswaSymbolsTableAdapter
-        '
-        Me.IswaSymbolsTableAdapter.ClearBeforeFill = True
-        '
-        'SequenceMenuStrip
-        '
-        Me.SequenceMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpToolStripMenuItem, Me.DownToolStripMenuItem, Me.DeleteToolStripMenuItem})
-        Me.SequenceMenuStrip.Name = "SequenceMenuStrip"
-        Me.SequenceMenuStrip.Size = New System.Drawing.Size(108, 70)
-        '
-        'UpToolStripMenuItem
-        '
-        Me.UpToolStripMenuItem.Name = "UpToolStripMenuItem"
-        Me.UpToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.UpToolStripMenuItem.Text = "Up"
-        '
-        'DownToolStripMenuItem
-        '
-        Me.DownToolStripMenuItem.Name = "DownToolStripMenuItem"
-        Me.DownToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.DownToolStripMenuItem.Text = "Down"
-        '
-        'DeleteToolStripMenuItem
-        '
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.DeleteToolStripMenuItem.Text = "Delete"
+        Me.PBSign.BackColor = System.Drawing.Color.White
+        Me.PBSign.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PBSign.ContextMenuStrip = Me.CMSPBSign
+        Me.PBSign.Location = New System.Drawing.Point(0, 0)
+        Me.PBSign.Name = "PBSign"
+        Me.PBSign.Size = New System.Drawing.Size(500, 500)
+        Me.PBSign.TabIndex = 42
+        Me.PBSign.TabStop = False
         '
         'Editor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1102, 633)
+        Me.ClientSize = New System.Drawing.Size(1468, 633)
         Me.Controls.Add(Me.SCSWEditor)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Editor"
@@ -1527,10 +1514,14 @@ Imports SignWriterStudio
         Me.TPChooser.ResumeLayout(False)
         Me.TPChooser.PerformLayout()
         CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SCRightSide.Panel1.ResumeLayout(False)
-        Me.SCRightSide.Panel2.ResumeLayout(False)
-        CType(Me.SCRightSide, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SCRightSide.ResumeLayout(False)
+        Me.CMSPBSign.ResumeLayout(False)
+        CType(Me.ISWABaseSymbolsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SequenceMenuStrip.ResumeLayout(False)
+        Me.TPSpelling.ResumeLayout(False)
+        Me.TPSequence.ResumeLayout(False)
+        Me.PanelSpelling.ResumeLayout(False)
         Me.SPSignView.Panel1.ResumeLayout(False)
         Me.SPSignView.Panel2.ResumeLayout(False)
         CType(Me.SPSignView, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1539,13 +1530,6 @@ Imports SignWriterStudio
         Me.GBSign.PerformLayout()
         Me.PanelSign.ResumeLayout(False)
         CType(Me.PBSign, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CMSPBSign.ResumeLayout(False)
-        Me.TPSequence.ResumeLayout(False)
-        Me.PanelSpelling.ResumeLayout(False)
-        CType(Me.ISWABaseSymbolsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SequenceMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1590,7 +1574,6 @@ Imports SignWriterStudio
     Friend WithEvents TSMIMoveUp As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TSMIMoveDown As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ColorDialog1 As System.Windows.Forms.ColorDialog
-    Friend WithEvents GBSign As System.Windows.Forms.GroupBox
     Friend WithEvents ISWAActionFingersBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents ISWAActionFingersTableAdapter As SymbolCache.ISWA2010DataSetTableAdapters.actionfingerTableAdapter
     Friend WithEvents ISWABaseSymbolsBindingSource As System.Windows.Forms.BindingSource
@@ -1633,12 +1616,10 @@ Imports SignWriterStudio
     Friend WithEvents TSMIDeleteSign As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HandsClassifiedBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents IswaSymbolsTableAdapter As SymbolCache.ISWA2010DataSetTableAdapters.symbolTableAdapter
-    Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents SettingsDataSet As Settings.SettingsDataSet
     Friend WithEvents PasteCtrlVToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OverlapSymbolsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents CMSPBSign As System.Windows.Forms.ContextMenuStrip
-    Public WithEvents btnAccept As System.Windows.Forms.Button
     Friend WithEvents TSMIRedo As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SequenceMenuStrip As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents UpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -1663,8 +1644,6 @@ Imports SignWriterStudio
     Friend WithEvents btnAdd As System.Windows.Forms.Button
     Friend WithEvents ALotLargerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ALotSmallerCtrlToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents grid As System.Windows.Forms.CheckBox
-    Friend WithEvents QuickSignEditorBtn As System.Windows.Forms.Button
     Friend WithEvents MoveTopMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MoveBottomMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TPChooser As System.Windows.Forms.TabPage
@@ -1674,10 +1653,12 @@ Imports SignWriterStudio
     Friend WithEvents ArrowChooser As SignWriterStudio.SWEditor.ArrowChooser
     Friend WithEvents HandChooser As SignWriterStudio.SWEditor.HandChooser
     Friend WithEvents TVChooser As System.Windows.Forms.TreeView
-    Friend WithEvents SCRightSide As System.Windows.Forms.SplitContainer
-    Friend WithEvents SPSignView As System.Windows.Forms.SplitContainer
-    Friend WithEvents PBSign As System.Windows.Forms.PictureBox
+    Friend WithEvents btnChooserAdd As System.Windows.Forms.Button
+    Friend WithEvents MirrorSignToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ChangeArrowHandsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TPSpelling As System.Windows.Forms.TabPage
     Friend WithEvents TPSequence As System.Windows.Forms.GroupBox
+    Friend WithEvents PanelSpelling As System.Windows.Forms.Panel
     Friend WithEvents TVSequence As System.Windows.Forms.TreeView
     Friend WithEvents btnHelp As System.Windows.Forms.Button
     Friend WithEvents btnSugg2 As System.Windows.Forms.Button
@@ -1688,11 +1669,14 @@ Imports SignWriterStudio
     Friend WithEvents BtnAddSign As System.Windows.Forms.Button
     Friend WithEvents BtnDown As System.Windows.Forms.Button
     Friend WithEvents btnDelete As System.Windows.Forms.Button
-    Friend WithEvents PanelSign As System.Windows.Forms.Panel
-    Friend WithEvents PanelSpelling As System.Windows.Forms.Panel
-    Friend WithEvents btnChooserAdd As System.Windows.Forms.Button
-    Friend WithEvents MirrorSignToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ChangeArrowHandsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SPSignView As System.Windows.Forms.SplitContainer
+    Friend WithEvents GBSign As System.Windows.Forms.GroupBox
     Friend WithEvents FindSymbol As System.Windows.Forms.Button
+    Friend WithEvents QuickSignEditorBtn As System.Windows.Forms.Button
+    Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Public WithEvents btnAccept As System.Windows.Forms.Button
+    Friend WithEvents grid As System.Windows.Forms.CheckBox
+    Friend WithEvents PanelSign As System.Windows.Forms.Panel
+    Friend WithEvents PBSign As System.Windows.Forms.PictureBox
 
 End Class

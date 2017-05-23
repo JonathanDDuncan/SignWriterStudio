@@ -246,7 +246,7 @@ Partial Public Class Editor
                 TVAllGroups.Select()
                 AreaAllColor(ActiveAreaColor)
             Case AreaEnm.Favorites
-                
+
                 'Todo uncomment code
                 'If ActiveControl Is Nothing OrElse (ActiveControl IsNot Nothing AndAlso Not ActiveControl.Name = TPChoosers.Name) Then
 
