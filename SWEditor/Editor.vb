@@ -240,7 +240,7 @@ Partial Public Class Editor
         Select Case Area
             Case AreaEnm.AllGroups
                 ActiveControl = Nothing
-                'TCSymbols.SelectTab(TPAllSymbols)
+                TCSymbols.SelectTab(TPFavorites)
                 TVAllGroups.Select()
                 AreaAllColor(ActiveAreaColor)
             Case AreaEnm.Favorites
@@ -257,7 +257,7 @@ Partial Public Class Editor
                 ActiveControl = FilterRootShape
             Case AreaEnm.Choose
                 ActiveControl = Nothing
-                'TCSymbols.SelectTab(TPChooser)
+                TCSymbols.SelectTab(TPFavorites)
                 If TVChooser.Visible Then
                     TVChooser.Select()
                 ElseIf HandChooser.GBFills.Visible Then

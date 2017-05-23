@@ -38,6 +38,13 @@ Imports SignWriterStudio
         Me.GBAllSymbols = New System.Windows.Forms.GroupBox()
         Me.TVAllGroups = New System.Windows.Forms.TreeView()
         Me.GBChoosers = New System.Windows.Forms.GroupBox()
+        Me.btnChooserAdd = New System.Windows.Forms.Button()
+        Me.btnChooserReplace = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.PBsymbolOut = New System.Windows.Forms.PictureBox()
+        Me.ArrowChooser = New SignWriterStudio.SWEditor.ArrowChooser()
+        Me.HandChooser = New SignWriterStudio.SWEditor.HandChooser()
+        Me.TVChooser = New System.Windows.Forms.TreeView()
         Me.TPSearch = New System.Windows.Forms.TabPage()
         Me.TVHand = New System.Windows.Forms.TreeView()
         Me.LBThumbPosition = New System.Windows.Forms.Label()
@@ -163,13 +170,6 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btnChooserAdd = New System.Windows.Forms.Button()
-        Me.btnChooserReplace = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.PBsymbolOut = New System.Windows.Forms.PictureBox()
-        Me.ArrowChooser = New SignWriterStudio.SWEditor.ArrowChooser()
-        Me.HandChooser = New SignWriterStudio.SWEditor.HandChooser()
-        Me.TVChooser = New System.Windows.Forms.TreeView()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
@@ -189,6 +189,7 @@ Imports SignWriterStudio
         Me.SplitContainer2.SuspendLayout()
         Me.GBAllSymbols.SuspendLayout()
         Me.GBChoosers.SuspendLayout()
+        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TPSearch.SuspendLayout()
         CType(Me.ISWAThumbPositionsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWADataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,7 +212,6 @@ Imports SignWriterStudio
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SequenceMenuStrip.SuspendLayout()
-        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SCSWEditor
@@ -424,6 +424,86 @@ Imports SignWriterStudio
         Me.GBChoosers.TabStop = False
         Me.GBChoosers.Text = "Choosers"
         '
+        'btnChooserAdd
+        '
+        Me.btnChooserAdd.Location = New System.Drawing.Point(145, 46)
+        Me.btnChooserAdd.Name = "btnChooserAdd"
+        Me.btnChooserAdd.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserAdd.TabIndex = 79
+        Me.btnChooserAdd.Text = "Add"
+        Me.SymbolToolTip.SetToolTip(Me.btnChooserAdd, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.btnChooserAdd.UseVisualStyleBackColor = True
+        '
+        'btnChooserReplace
+        '
+        Me.btnChooserReplace.Location = New System.Drawing.Point(145, 18)
+        Me.btnChooserReplace.Name = "btnChooserReplace"
+        Me.btnChooserReplace.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserReplace.TabIndex = 78
+        Me.btnChooserReplace.Text = "Replace"
+        Me.SymbolToolTip.SetToolTip(Me.btnChooserReplace, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
+        Me.btnChooserReplace.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(6, 75)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.TabIndex = 75
+        Me.TextBox1.Visible = False
+        '
+        'PBsymbolOut
+        '
+        Me.PBsymbolOut.BackColor = System.Drawing.Color.White
+        Me.PBsymbolOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PBsymbolOut.Location = New System.Drawing.Point(15, 14)
+        Me.PBsymbolOut.Name = "PBsymbolOut"
+        Me.PBsymbolOut.Size = New System.Drawing.Size(60, 60)
+        Me.PBsymbolOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PBsymbolOut.TabIndex = 73
+        Me.PBsymbolOut.TabStop = False
+        '
+        'ArrowChooser
+        '
+        Me.ArrowChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ArrowChooser.AutoScroll = True
+        Me.ArrowChooser.EditorForm = Nothing
+        Me.ArrowChooser.Location = New System.Drawing.Point(47, 89)
+        Me.ArrowChooser.Margin = New System.Windows.Forms.Padding(4)
+        Me.ArrowChooser.Name = "ArrowChooser"
+        Me.ArrowChooser.Size = New System.Drawing.Size(248, 546)
+        Me.ArrowChooser.TabIndex = 77
+        Me.ArrowChooser.Visible = False
+        '
+        'HandChooser
+        '
+        Me.HandChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.HandChooser.AutoScroll = True
+        Me.HandChooser.EditorForm = Nothing
+        Me.HandChooser.Location = New System.Drawing.Point(49, 88)
+        Me.HandChooser.Margin = New System.Windows.Forms.Padding(4)
+        Me.HandChooser.Name = "HandChooser"
+        Me.HandChooser.Size = New System.Drawing.Size(246, 565)
+        Me.HandChooser.TabIndex = 76
+        '
+        'TVChooser
+        '
+        Me.TVChooser.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.TVChooser.BackColor = System.Drawing.Color.White
+        Me.TVChooser.HotTracking = True
+        Me.TVChooser.Indent = 5
+        Me.TVChooser.ItemHeight = 55
+        Me.TVChooser.Location = New System.Drawing.Point(15, 75)
+        Me.TVChooser.Name = "TVChooser"
+        Me.TVChooser.ShowLines = False
+        Me.TVChooser.ShowNodeToolTips = True
+        Me.TVChooser.Size = New System.Drawing.Size(289, 556)
+        Me.TVChooser.TabIndex = 74
+        '
         'TPSearch
         '
         Me.TPSearch.Controls.Add(Me.TVHand)
@@ -448,7 +528,7 @@ Imports SignWriterStudio
         Me.TPSearch.Location = New System.Drawing.Point(4, 22)
         Me.TPSearch.Name = "TPSearch"
         Me.TPSearch.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPSearch.Size = New System.Drawing.Size(949, 607)
+        Me.TPSearch.Size = New System.Drawing.Size(949, 634)
         Me.TPSearch.TabIndex = 2
         Me.TPSearch.Text = "Search"
         Me.SymbolToolTip.SetToolTip(Me.TPSearch, "Hand Search [F7]")
@@ -456,24 +536,23 @@ Imports SignWriterStudio
         '
         'TVHand
         '
-        Me.TVHand.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TVHand.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TVHand.HotTracking = True
         Me.TVHand.Indent = 5
         Me.TVHand.ItemHeight = 55
-        Me.TVHand.Location = New System.Drawing.Point(3, 150)
+        Me.TVHand.Location = New System.Drawing.Point(696, 150)
         Me.TVHand.Margin = New System.Windows.Forms.Padding(3, 3, 3, 100)
         Me.TVHand.Name = "TVHand"
         Me.TVHand.ShowLines = False
         Me.TVHand.ShowNodeToolTips = True
-        Me.TVHand.Size = New System.Drawing.Size(943, 454)
+        Me.TVHand.Size = New System.Drawing.Size(250, 481)
         Me.TVHand.TabIndex = 49
         '
         'LBThumbPosition
         '
         Me.LBThumbPosition.AutoSize = True
-        Me.LBThumbPosition.Location = New System.Drawing.Point(9, 44)
+        Me.LBThumbPosition.Location = New System.Drawing.Point(696, 47)
         Me.LBThumbPosition.Name = "LBThumbPosition"
         Me.LBThumbPosition.Size = New System.Drawing.Size(77, 13)
         Me.LBThumbPosition.TabIndex = 3
@@ -487,7 +566,7 @@ Imports SignWriterStudio
         Me.FilterThumbPosition.DisplayMember = "ThumbPositionName"
         Me.FilterThumbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FilterThumbPosition.FormattingEnabled = True
-        Me.FilterThumbPosition.Location = New System.Drawing.Point(9, 60)
+        Me.FilterThumbPosition.Location = New System.Drawing.Point(696, 63)
         Me.FilterThumbPosition.Name = "FilterThumbPosition"
         Me.FilterThumbPosition.Size = New System.Drawing.Size(121, 21)
         Me.FilterThumbPosition.TabIndex = 4
@@ -505,7 +584,7 @@ Imports SignWriterStudio
         '
         'BtnReset
         '
-        Me.BtnReset.Location = New System.Drawing.Point(178, 118)
+        Me.BtnReset.Location = New System.Drawing.Point(865, 121)
         Me.BtnReset.Name = "BtnReset"
         Me.BtnReset.Size = New System.Drawing.Size(75, 23)
         Me.BtnReset.TabIndex = 17
@@ -515,7 +594,7 @@ Imports SignWriterStudio
         '
         'BtnFilter
         '
-        Me.BtnFilter.Location = New System.Drawing.Point(97, 118)
+        Me.BtnFilter.Location = New System.Drawing.Point(784, 121)
         Me.BtnFilter.Name = "BtnFilter"
         Me.BtnFilter.Size = New System.Drawing.Size(75, 23)
         Me.BtnFilter.TabIndex = 16
@@ -526,7 +605,7 @@ Imports SignWriterStudio
         'BtnBaseGroupName
         '
         Me.BtnBaseGroupName.AutoSize = True
-        Me.BtnBaseGroupName.Location = New System.Drawing.Point(135, 80)
+        Me.BtnBaseGroupName.Location = New System.Drawing.Point(822, 83)
         Me.BtnBaseGroupName.Name = "BtnBaseGroupName"
         Me.BtnBaseGroupName.Size = New System.Drawing.Size(72, 13)
         Me.BtnBaseGroupName.TabIndex = 9
@@ -536,7 +615,7 @@ Imports SignWriterStudio
         '
         Me.FilterSymbolName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.FilterSymbolName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.FilterSymbolName.Location = New System.Drawing.Point(135, 96)
+        Me.FilterSymbolName.Location = New System.Drawing.Point(822, 99)
         Me.FilterSymbolName.Name = "FilterSymbolName"
         Me.FilterSymbolName.Size = New System.Drawing.Size(120, 20)
         Me.FilterSymbolName.TabIndex = 10
@@ -544,7 +623,7 @@ Imports SignWriterStudio
         'LbMultipleFinger
         '
         Me.LbMultipleFinger.AutoSize = True
-        Me.LbMultipleFinger.Location = New System.Drawing.Point(132, 44)
+        Me.LbMultipleFinger.Location = New System.Drawing.Point(819, 47)
         Me.LbMultipleFinger.Name = "LbMultipleFinger"
         Me.LbMultipleFinger.Size = New System.Drawing.Size(75, 13)
         Me.LbMultipleFinger.TabIndex = 7
@@ -558,7 +637,7 @@ Imports SignWriterStudio
         Me.FilterMultipleFingers.DisplayMember = "MultipleFingerName"
         Me.FilterMultipleFingers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FilterMultipleFingers.FormattingEnabled = True
-        Me.FilterMultipleFingers.Location = New System.Drawing.Point(135, 59)
+        Me.FilterMultipleFingers.Location = New System.Drawing.Point(822, 62)
         Me.FilterMultipleFingers.Name = "FilterMultipleFingers"
         Me.FilterMultipleFingers.Size = New System.Drawing.Size(121, 21)
         Me.FilterMultipleFingers.TabIndex = 8
@@ -572,7 +651,7 @@ Imports SignWriterStudio
         'LBActionFinger
         '
         Me.LBActionFinger.AutoSize = True
-        Me.LBActionFinger.Location = New System.Drawing.Point(135, 7)
+        Me.LBActionFinger.Location = New System.Drawing.Point(822, 10)
         Me.LBActionFinger.Name = "LBActionFinger"
         Me.LBActionFinger.Size = New System.Drawing.Size(65, 13)
         Me.LBActionFinger.TabIndex = 5
@@ -586,7 +665,7 @@ Imports SignWriterStudio
         Me.FilterActionFinger.DisplayMember = "ActionFingerName"
         Me.FilterActionFinger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FilterActionFinger.FormattingEnabled = True
-        Me.FilterActionFinger.Location = New System.Drawing.Point(135, 22)
+        Me.FilterActionFinger.Location = New System.Drawing.Point(822, 25)
         Me.FilterActionFinger.Name = "FilterActionFinger"
         Me.FilterActionFinger.Size = New System.Drawing.Size(121, 21)
         Me.FilterActionFinger.TabIndex = 6
@@ -600,7 +679,7 @@ Imports SignWriterStudio
         'LBRootShape
         '
         Me.LBRootShape.AutoSize = True
-        Me.LBRootShape.Location = New System.Drawing.Point(6, 6)
+        Me.LBRootShape.Location = New System.Drawing.Point(693, 9)
         Me.LBRootShape.Name = "LBRootShape"
         Me.LBRootShape.Size = New System.Drawing.Size(61, 13)
         Me.LBRootShape.TabIndex = 0
@@ -614,7 +693,7 @@ Imports SignWriterStudio
         Me.FilterRootShape.DisplayMember = "RootshapeQuickName"
         Me.FilterRootShape.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FilterRootShape.FormattingEnabled = True
-        Me.FilterRootShape.Location = New System.Drawing.Point(9, 22)
+        Me.FilterRootShape.Location = New System.Drawing.Point(696, 25)
         Me.FilterRootShape.Name = "FilterRootShape"
         Me.FilterRootShape.Size = New System.Drawing.Size(121, 21)
         Me.FilterRootShape.TabIndex = 1
@@ -629,7 +708,7 @@ Imports SignWriterStudio
         '
         Me.FilterThumb.AutoSize = True
         Me.FilterThumb.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.FilterThumb.Location = New System.Drawing.Point(3, 120)
+        Me.FilterThumb.Location = New System.Drawing.Point(690, 123)
         Me.FilterThumb.Name = "FilterThumb"
         Me.FilterThumb.Size = New System.Drawing.Size(32, 17)
         Me.FilterThumb.TabIndex = 11
@@ -640,7 +719,7 @@ Imports SignWriterStudio
         'FilterBaby
         '
         Me.FilterBaby.AutoSize = True
-        Me.FilterBaby.Location = New System.Drawing.Point(63, 114)
+        Me.FilterBaby.Location = New System.Drawing.Point(750, 117)
         Me.FilterBaby.Name = "FilterBaby"
         Me.FilterBaby.Size = New System.Drawing.Size(32, 17)
         Me.FilterBaby.TabIndex = 15
@@ -651,7 +730,7 @@ Imports SignWriterStudio
         'FilterRing
         '
         Me.FilterRing.AutoSize = True
-        Me.FilterRing.Location = New System.Drawing.Point(58, 100)
+        Me.FilterRing.Location = New System.Drawing.Point(745, 103)
         Me.FilterRing.Name = "FilterRing"
         Me.FilterRing.Size = New System.Drawing.Size(32, 17)
         Me.FilterRing.TabIndex = 14
@@ -663,7 +742,7 @@ Imports SignWriterStudio
         '
         Me.FilterMiddle.AutoSize = True
         Me.FilterMiddle.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.FilterMiddle.Location = New System.Drawing.Point(42, 80)
+        Me.FilterMiddle.Location = New System.Drawing.Point(729, 83)
         Me.FilterMiddle.Name = "FilterMiddle"
         Me.FilterMiddle.Size = New System.Drawing.Size(17, 31)
         Me.FilterMiddle.TabIndex = 13
@@ -675,7 +754,7 @@ Imports SignWriterStudio
         '
         Me.FilterIndex.AutoSize = True
         Me.FilterIndex.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.FilterIndex.Location = New System.Drawing.Point(9, 99)
+        Me.FilterIndex.Location = New System.Drawing.Point(696, 102)
         Me.FilterIndex.Name = "FilterIndex"
         Me.FilterIndex.Size = New System.Drawing.Size(32, 17)
         Me.FilterIndex.TabIndex = 12
@@ -686,7 +765,7 @@ Imports SignWriterStudio
         'PBHand
         '
         Me.PBHand.Image = CType(resources.GetObject("PBHand.Image"), System.Drawing.Image)
-        Me.PBHand.Location = New System.Drawing.Point(32, 109)
+        Me.PBHand.Location = New System.Drawing.Point(719, 112)
         Me.PBHand.Name = "PBHand"
         Me.PBHand.Size = New System.Drawing.Size(35, 35)
         Me.PBHand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -699,13 +778,15 @@ Imports SignWriterStudio
         Me.TPSpelling.Location = New System.Drawing.Point(4, 22)
         Me.TPSpelling.Name = "TPSpelling"
         Me.TPSpelling.Padding = New System.Windows.Forms.Padding(3)
-        Me.TPSpelling.Size = New System.Drawing.Size(949, 607)
+        Me.TPSpelling.Size = New System.Drawing.Size(949, 634)
         Me.TPSpelling.TabIndex = 4
         Me.TPSpelling.Text = "Spelling"
         Me.TPSpelling.UseVisualStyleBackColor = True
         '
         'TPSequence
         '
+        Me.TPSequence.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TPSequence.Controls.Add(Me.PanelSpelling)
         Me.TPSequence.Controls.Add(Me.btnHelp)
         Me.TPSequence.Controls.Add(Me.btnSugg2)
@@ -716,7 +797,7 @@ Imports SignWriterStudio
         Me.TPSequence.Controls.Add(Me.BtnAddSign)
         Me.TPSequence.Controls.Add(Me.BtnDown)
         Me.TPSequence.Controls.Add(Me.btnDelete)
-        Me.TPSequence.Location = New System.Drawing.Point(0, 0)
+        Me.TPSequence.Location = New System.Drawing.Point(605, 3)
         Me.TPSequence.Name = "TPSequence"
         Me.TPSequence.Size = New System.Drawing.Size(341, 633)
         Me.TPSequence.TabIndex = 69
@@ -1457,86 +1538,6 @@ Imports SignWriterStudio
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'btnChooserAdd
-        '
-        Me.btnChooserAdd.Location = New System.Drawing.Point(145, 46)
-        Me.btnChooserAdd.Name = "btnChooserAdd"
-        Me.btnChooserAdd.Size = New System.Drawing.Size(94, 22)
-        Me.btnChooserAdd.TabIndex = 79
-        Me.btnChooserAdd.Text = "Add"
-        Me.SymbolToolTip.SetToolTip(Me.btnChooserAdd, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.btnChooserAdd.UseVisualStyleBackColor = True
-        '
-        'btnChooserReplace
-        '
-        Me.btnChooserReplace.Location = New System.Drawing.Point(145, 18)
-        Me.btnChooserReplace.Name = "btnChooserReplace"
-        Me.btnChooserReplace.Size = New System.Drawing.Size(94, 22)
-        Me.btnChooserReplace.TabIndex = 78
-        Me.btnChooserReplace.Text = "Replace"
-        Me.SymbolToolTip.SetToolTip(Me.btnChooserReplace, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
-        Me.btnChooserReplace.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 75)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 75
-        Me.TextBox1.Visible = False
-        '
-        'PBsymbolOut
-        '
-        Me.PBsymbolOut.BackColor = System.Drawing.Color.White
-        Me.PBsymbolOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PBsymbolOut.Location = New System.Drawing.Point(15, 14)
-        Me.PBsymbolOut.Name = "PBsymbolOut"
-        Me.PBsymbolOut.Size = New System.Drawing.Size(60, 60)
-        Me.PBsymbolOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PBsymbolOut.TabIndex = 73
-        Me.PBsymbolOut.TabStop = False
-        '
-        'ArrowChooser
-        '
-        Me.ArrowChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ArrowChooser.AutoScroll = True
-        Me.ArrowChooser.EditorForm = Nothing
-        Me.ArrowChooser.Location = New System.Drawing.Point(47, 89)
-        Me.ArrowChooser.Margin = New System.Windows.Forms.Padding(4)
-        Me.ArrowChooser.Name = "ArrowChooser"
-        Me.ArrowChooser.Size = New System.Drawing.Size(248, 546)
-        Me.ArrowChooser.TabIndex = 77
-        Me.ArrowChooser.Visible = False
-        '
-        'HandChooser
-        '
-        Me.HandChooser.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.HandChooser.AutoScroll = True
-        Me.HandChooser.EditorForm = Nothing
-        Me.HandChooser.Location = New System.Drawing.Point(49, 88)
-        Me.HandChooser.Margin = New System.Windows.Forms.Padding(4)
-        Me.HandChooser.Name = "HandChooser"
-        Me.HandChooser.Size = New System.Drawing.Size(246, 565)
-        Me.HandChooser.TabIndex = 76
-        '
-        'TVChooser
-        '
-        Me.TVChooser.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.TVChooser.BackColor = System.Drawing.Color.White
-        Me.TVChooser.HotTracking = True
-        Me.TVChooser.Indent = 5
-        Me.TVChooser.ItemHeight = 55
-        Me.TVChooser.Location = New System.Drawing.Point(15, 75)
-        Me.TVChooser.Name = "TVChooser"
-        Me.TVChooser.ShowLines = False
-        Me.TVChooser.ShowNodeToolTips = True
-        Me.TVChooser.Size = New System.Drawing.Size(289, 556)
-        Me.TVChooser.TabIndex = 74
-        '
         'Editor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1566,6 +1567,7 @@ Imports SignWriterStudio
         Me.GBAllSymbols.ResumeLayout(False)
         Me.GBChoosers.ResumeLayout(False)
         Me.GBChoosers.PerformLayout()
+        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TPSearch.ResumeLayout(False)
         Me.TPSearch.PerformLayout()
         CType(Me.ISWAThumbPositionsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1590,7 +1592,6 @@ Imports SignWriterStudio
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SequenceMenuStrip.ResumeLayout(False)
-        CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
