@@ -266,7 +266,7 @@ Partial Public Class Editor
                 AreaChooserColor(ActiveAreaColor)
 
             Case AreaEnm.Sequence
-
+                TCSymbols.SelectTab(TPSpelling)
                 AreaSequenceColor(ActiveAreaColor)
                 ActiveControl = Nothing
 
@@ -289,15 +289,15 @@ Partial Public Class Editor
         TVChooser.BackColor = color
         HandChooser.BackColor = color
         ArrowChooser.BackColor = color
-
+        GBChoosers.BackColor = color
     End Sub
     Private Sub AreaAllColor(color As Color)
         TVAllGroups.BackColor = color
-        'TPAllSymbols.BackColor = color
+        GBAllSymbols.BackColor = color
     End Sub
     Private Sub AreaFavoritesColor(color As Color)
         TVFavoriteSymbols.BackColor = color
-        'TPFavorites.BackColor = color
+        GBFavorites.BackColor = color
     End Sub
     Private Sub AreaSearchColor(color As Color)
         TVHand.BackColor = color
@@ -318,17 +318,17 @@ Partial Public Class Editor
                 Case Keys.NumPad2
                     SetArea(e, AreaEnm.AllGroups)
                 Case Keys.D3
-                    SetArea(e, AreaEnm.Search)
+                    SetArea(e, AreaEnm.Choose)
                 Case Keys.NumPad3
-                    SetArea(e, AreaEnm.Search)
+                    SetArea(e, AreaEnm.Choose)
                 Case Keys.D4
-                    SetArea(e, AreaEnm.Choose)
+                    SetArea(e, AreaEnm.Sign)
                 Case Keys.NumPad4
-                    SetArea(e, AreaEnm.Choose)
+                    SetArea(e, AreaEnm.Sign)
                 Case Keys.D5
-                    SetArea(e, AreaEnm.Sign)
+                    SetArea(e, AreaEnm.Search)
                 Case Keys.NumPad5
-                    SetArea(e, AreaEnm.Sign)
+                    SetArea(e, AreaEnm.Search)
                 Case Keys.D6
                     SetArea(e, AreaEnm.Sequence)
                 Case Keys.NumPad6
