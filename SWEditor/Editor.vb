@@ -466,7 +466,11 @@ Partial Public Class Editor
             Area = AreaEnm.Sign
         End If
     End Sub
-
+    Private Sub GBChoosers_MouseHover(sender As Object, e As EventArgs) Handles GBChoosers.MouseHover
+        If Not Area = AreaEnm.Choose Then
+            Area = AreaEnm.Choose
+        End If
+    End Sub
 
 
     Private Sub TVHand_MouseEnter(sender As System.Object, e As EventArgs) Handles TVHand.MouseEnter

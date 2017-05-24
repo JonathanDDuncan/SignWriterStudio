@@ -37,30 +37,31 @@ Imports SignWriterStudio
         Me.HandChooser = New SignWriterStudio.SWEditor.HandChooser()
         Me.TVChooser = New System.Windows.Forms.TreeView()
         Me.TPSearch = New System.Windows.Forms.TabPage()
+        Me.GBHandSearch = New System.Windows.Forms.GroupBox()
         Me.TVHand = New System.Windows.Forms.TreeView()
+        Me.PBHand = New System.Windows.Forms.PictureBox()
         Me.LBThumbPosition = New System.Windows.Forms.Label()
+        Me.FilterIndex = New System.Windows.Forms.CheckBox()
         Me.FilterThumbPosition = New System.Windows.Forms.ComboBox()
         Me.ISWAThumbPositionsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ISWADataSet = New SignWriterStudio.SymbolCache.ISWA2010DataSet()
+        Me.FilterMiddle = New System.Windows.Forms.CheckBox()
         Me.BtnReset = New System.Windows.Forms.Button()
+        Me.FilterRing = New System.Windows.Forms.CheckBox()
         Me.BtnFilter = New System.Windows.Forms.Button()
+        Me.FilterBaby = New System.Windows.Forms.CheckBox()
         Me.BtnBaseGroupName = New System.Windows.Forms.Label()
+        Me.FilterThumb = New System.Windows.Forms.CheckBox()
         Me.FilterSymbolName = New System.Windows.Forms.TextBox()
-        Me.LbMultipleFinger = New System.Windows.Forms.Label()
-        Me.FilterMultipleFingers = New System.Windows.Forms.ComboBox()
-        Me.ISWAMultipleFingersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.LBActionFinger = New System.Windows.Forms.Label()
-        Me.FilterActionFinger = New System.Windows.Forms.ComboBox()
-        Me.ISWAActionFingersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.LBRootShape = New System.Windows.Forms.Label()
         Me.FilterRootShape = New System.Windows.Forms.ComboBox()
         Me.ISWARootShapesQuickBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.FilterThumb = New System.Windows.Forms.CheckBox()
-        Me.FilterBaby = New System.Windows.Forms.CheckBox()
-        Me.FilterRing = New System.Windows.Forms.CheckBox()
-        Me.FilterMiddle = New System.Windows.Forms.CheckBox()
-        Me.FilterIndex = New System.Windows.Forms.CheckBox()
-        Me.PBHand = New System.Windows.Forms.PictureBox()
+        Me.LbMultipleFinger = New System.Windows.Forms.Label()
+        Me.LBRootShape = New System.Windows.Forms.Label()
+        Me.FilterMultipleFingers = New System.Windows.Forms.ComboBox()
+        Me.ISWAMultipleFingersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FilterActionFinger = New System.Windows.Forms.ComboBox()
+        Me.ISWAActionFingersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.LBActionFinger = New System.Windows.Forms.Label()
         Me.TPSpelling = New System.Windows.Forms.TabPage()
         Me.TPSequence = New System.Windows.Forms.GroupBox()
         Me.PanelSpelling = New System.Windows.Forms.Panel()
@@ -169,7 +170,6 @@ Imports SignWriterStudio
         Me.UpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GBHandSearch = New System.Windows.Forms.GroupBox()
         CType(Me.SCSWEditor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCSWEditor.Panel1.SuspendLayout()
         Me.SCSWEditor.Panel2.SuspendLayout()
@@ -184,12 +184,13 @@ Imports SignWriterStudio
         Me.GBChoosers.SuspendLayout()
         CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TPSearch.SuspendLayout()
+        Me.GBHandSearch.SuspendLayout()
+        CType(Me.PBHand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWAThumbPositionsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWADataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ISWARootShapesQuickBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWAMultipleFingersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ISWAActionFingersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ISWARootShapesQuickBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PBHand, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TPSpelling.SuspendLayout()
         Me.TPSequence.SuspendLayout()
         Me.PanelSpelling.SuspendLayout()
@@ -212,7 +213,6 @@ Imports SignWriterStudio
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SequenceMenuStrip.SuspendLayout()
-        Me.GBHandSearch.SuspendLayout()
         Me.SuspendLayout()
         '
         'SCSWEditor
@@ -409,6 +409,36 @@ Imports SignWriterStudio
         Me.SymbolToolTip.SetToolTip(Me.TPSearch, "Hand Search [F7]")
         Me.TPSearch.UseVisualStyleBackColor = True
         '
+        'GBHandSearch
+        '
+        Me.GBHandSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GBHandSearch.Controls.Add(Me.TVHand)
+        Me.GBHandSearch.Controls.Add(Me.PBHand)
+        Me.GBHandSearch.Controls.Add(Me.LBThumbPosition)
+        Me.GBHandSearch.Controls.Add(Me.FilterIndex)
+        Me.GBHandSearch.Controls.Add(Me.FilterThumbPosition)
+        Me.GBHandSearch.Controls.Add(Me.FilterMiddle)
+        Me.GBHandSearch.Controls.Add(Me.BtnReset)
+        Me.GBHandSearch.Controls.Add(Me.FilterRing)
+        Me.GBHandSearch.Controls.Add(Me.BtnFilter)
+        Me.GBHandSearch.Controls.Add(Me.FilterBaby)
+        Me.GBHandSearch.Controls.Add(Me.BtnBaseGroupName)
+        Me.GBHandSearch.Controls.Add(Me.FilterThumb)
+        Me.GBHandSearch.Controls.Add(Me.FilterSymbolName)
+        Me.GBHandSearch.Controls.Add(Me.FilterRootShape)
+        Me.GBHandSearch.Controls.Add(Me.LbMultipleFinger)
+        Me.GBHandSearch.Controls.Add(Me.LBRootShape)
+        Me.GBHandSearch.Controls.Add(Me.FilterMultipleFingers)
+        Me.GBHandSearch.Controls.Add(Me.FilterActionFinger)
+        Me.GBHandSearch.Controls.Add(Me.LBActionFinger)
+        Me.GBHandSearch.Location = New System.Drawing.Point(356, 3)
+        Me.GBHandSearch.Name = "GBHandSearch"
+        Me.GBHandSearch.Size = New System.Drawing.Size(262, 635)
+        Me.GBHandSearch.TabIndex = 1
+        Me.GBHandSearch.TabStop = False
+        Me.GBHandSearch.Text = "Hand Search"
+        '
         'TVHand
         '
         Me.TVHand.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -423,6 +453,16 @@ Imports SignWriterStudio
         Me.TVHand.Size = New System.Drawing.Size(250, 481)
         Me.TVHand.TabIndex = 49
         '
+        'PBHand
+        '
+        Me.PBHand.Image = CType(resources.GetObject("PBHand.Image"), System.Drawing.Image)
+        Me.PBHand.Location = New System.Drawing.Point(33, 115)
+        Me.PBHand.Name = "PBHand"
+        Me.PBHand.Size = New System.Drawing.Size(35, 35)
+        Me.PBHand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PBHand.TabIndex = 47
+        Me.PBHand.TabStop = False
+        '
         'LBThumbPosition
         '
         Me.LBThumbPosition.AutoSize = True
@@ -431,6 +471,18 @@ Imports SignWriterStudio
         Me.LBThumbPosition.Size = New System.Drawing.Size(77, 13)
         Me.LBThumbPosition.TabIndex = 3
         Me.LBThumbPosition.Text = "&ThumbPosition"
+        '
+        'FilterIndex
+        '
+        Me.FilterIndex.AutoSize = True
+        Me.FilterIndex.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.FilterIndex.Location = New System.Drawing.Point(10, 105)
+        Me.FilterIndex.Name = "FilterIndex"
+        Me.FilterIndex.Size = New System.Drawing.Size(32, 17)
+        Me.FilterIndex.TabIndex = 12
+        Me.FilterIndex.Text = "4"
+        Me.FilterIndex.ThreeState = True
+        Me.FilterIndex.UseVisualStyleBackColor = True
         '
         'FilterThumbPosition
         '
@@ -456,6 +508,18 @@ Imports SignWriterStudio
         Me.ISWADataSet.DataSetName = "ISWADataSet"
         Me.ISWADataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
+        'FilterMiddle
+        '
+        Me.FilterMiddle.AutoSize = True
+        Me.FilterMiddle.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.FilterMiddle.Location = New System.Drawing.Point(43, 86)
+        Me.FilterMiddle.Name = "FilterMiddle"
+        Me.FilterMiddle.Size = New System.Drawing.Size(17, 31)
+        Me.FilterMiddle.TabIndex = 13
+        Me.FilterMiddle.Text = "8"
+        Me.FilterMiddle.ThreeState = True
+        Me.FilterMiddle.UseVisualStyleBackColor = True
+        '
         'BtnReset
         '
         Me.BtnReset.Location = New System.Drawing.Point(179, 124)
@@ -465,6 +529,17 @@ Imports SignWriterStudio
         Me.BtnReset.Text = "Reset"
         Me.SymbolToolTip.SetToolTip(Me.BtnReset, "Reset filters [Esc]")
         Me.BtnReset.UseVisualStyleBackColor = True
+        '
+        'FilterRing
+        '
+        Me.FilterRing.AutoSize = True
+        Me.FilterRing.Location = New System.Drawing.Point(59, 106)
+        Me.FilterRing.Name = "FilterRing"
+        Me.FilterRing.Size = New System.Drawing.Size(32, 17)
+        Me.FilterRing.TabIndex = 14
+        Me.FilterRing.Text = "6"
+        Me.FilterRing.ThreeState = True
+        Me.FilterRing.UseVisualStyleBackColor = True
         '
         'BtnFilter
         '
@@ -476,6 +551,17 @@ Imports SignWriterStudio
         Me.SymbolToolTip.SetToolTip(Me.BtnFilter, "Search [Enter]")
         Me.BtnFilter.UseVisualStyleBackColor = True
         '
+        'FilterBaby
+        '
+        Me.FilterBaby.AutoSize = True
+        Me.FilterBaby.Location = New System.Drawing.Point(64, 120)
+        Me.FilterBaby.Name = "FilterBaby"
+        Me.FilterBaby.Size = New System.Drawing.Size(32, 17)
+        Me.FilterBaby.TabIndex = 15
+        Me.FilterBaby.Text = "3"
+        Me.FilterBaby.ThreeState = True
+        Me.FilterBaby.UseVisualStyleBackColor = True
+        '
         'BtnBaseGroupName
         '
         Me.BtnBaseGroupName.AutoSize = True
@@ -485,6 +571,18 @@ Imports SignWriterStudio
         Me.BtnBaseGroupName.TabIndex = 9
         Me.BtnBaseGroupName.Text = "&Symbol Name"
         '
+        'FilterThumb
+        '
+        Me.FilterThumb.AutoSize = True
+        Me.FilterThumb.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.FilterThumb.Location = New System.Drawing.Point(4, 126)
+        Me.FilterThumb.Name = "FilterThumb"
+        Me.FilterThumb.Size = New System.Drawing.Size(32, 17)
+        Me.FilterThumb.TabIndex = 11
+        Me.FilterThumb.Text = "1"
+        Me.FilterThumb.ThreeState = True
+        Me.FilterThumb.UseVisualStyleBackColor = True
+        '
         'FilterSymbolName
         '
         Me.FilterSymbolName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
@@ -493,71 +591,6 @@ Imports SignWriterStudio
         Me.FilterSymbolName.Name = "FilterSymbolName"
         Me.FilterSymbolName.Size = New System.Drawing.Size(120, 20)
         Me.FilterSymbolName.TabIndex = 10
-        '
-        'LbMultipleFinger
-        '
-        Me.LbMultipleFinger.AutoSize = True
-        Me.LbMultipleFinger.Location = New System.Drawing.Point(133, 50)
-        Me.LbMultipleFinger.Name = "LbMultipleFinger"
-        Me.LbMultipleFinger.Size = New System.Drawing.Size(75, 13)
-        Me.LbMultipleFinger.TabIndex = 7
-        Me.LbMultipleFinger.Text = "&Multiple Finger"
-        '
-        'FilterMultipleFingers
-        '
-        Me.FilterMultipleFingers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.FilterMultipleFingers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.FilterMultipleFingers.DataSource = Me.ISWAMultipleFingersBindingSource
-        Me.FilterMultipleFingers.DisplayMember = "MultipleFingerName"
-        Me.FilterMultipleFingers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.FilterMultipleFingers.FormattingEnabled = True
-        Me.FilterMultipleFingers.Location = New System.Drawing.Point(136, 65)
-        Me.FilterMultipleFingers.Name = "FilterMultipleFingers"
-        Me.FilterMultipleFingers.Size = New System.Drawing.Size(121, 21)
-        Me.FilterMultipleFingers.TabIndex = 8
-        Me.FilterMultipleFingers.ValueMember = "IDMultipleFinger"
-        '
-        'ISWAMultipleFingersBindingSource
-        '
-        Me.ISWAMultipleFingersBindingSource.DataMember = "multiplefinger"
-        Me.ISWAMultipleFingersBindingSource.DataSource = Me.ISWADataSet
-        '
-        'LBActionFinger
-        '
-        Me.LBActionFinger.AutoSize = True
-        Me.LBActionFinger.Location = New System.Drawing.Point(136, 13)
-        Me.LBActionFinger.Name = "LBActionFinger"
-        Me.LBActionFinger.Size = New System.Drawing.Size(65, 13)
-        Me.LBActionFinger.TabIndex = 5
-        Me.LBActionFinger.Text = "&Charateristic"
-        '
-        'FilterActionFinger
-        '
-        Me.FilterActionFinger.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.FilterActionFinger.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.FilterActionFinger.DataSource = Me.ISWAActionFingersBindingSource
-        Me.FilterActionFinger.DisplayMember = "ActionFingerName"
-        Me.FilterActionFinger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.FilterActionFinger.FormattingEnabled = True
-        Me.FilterActionFinger.Location = New System.Drawing.Point(136, 28)
-        Me.FilterActionFinger.Name = "FilterActionFinger"
-        Me.FilterActionFinger.Size = New System.Drawing.Size(121, 21)
-        Me.FilterActionFinger.TabIndex = 6
-        Me.FilterActionFinger.ValueMember = "IDActionFinger"
-        '
-        'ISWAActionFingersBindingSource
-        '
-        Me.ISWAActionFingersBindingSource.DataMember = "actionfinger"
-        Me.ISWAActionFingersBindingSource.DataSource = Me.ISWADataSet
-        '
-        'LBRootShape
-        '
-        Me.LBRootShape.AutoSize = True
-        Me.LBRootShape.Location = New System.Drawing.Point(7, 12)
-        Me.LBRootShape.Name = "LBRootShape"
-        Me.LBRootShape.Size = New System.Drawing.Size(61, 13)
-        Me.LBRootShape.TabIndex = 0
-        Me.LBRootShape.Text = "&RootShape"
         '
         'FilterRootShape
         '
@@ -578,73 +611,70 @@ Imports SignWriterStudio
         Me.ISWARootShapesQuickBindingSource.DataMember = "rootshapequick"
         Me.ISWARootShapesQuickBindingSource.DataSource = Me.ISWADataSet
         '
-        'FilterThumb
+        'LbMultipleFinger
         '
-        Me.FilterThumb.AutoSize = True
-        Me.FilterThumb.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.FilterThumb.Location = New System.Drawing.Point(4, 126)
-        Me.FilterThumb.Name = "FilterThumb"
-        Me.FilterThumb.Size = New System.Drawing.Size(32, 17)
-        Me.FilterThumb.TabIndex = 11
-        Me.FilterThumb.Text = "1"
-        Me.FilterThumb.ThreeState = True
-        Me.FilterThumb.UseVisualStyleBackColor = True
+        Me.LbMultipleFinger.AutoSize = True
+        Me.LbMultipleFinger.Location = New System.Drawing.Point(133, 50)
+        Me.LbMultipleFinger.Name = "LbMultipleFinger"
+        Me.LbMultipleFinger.Size = New System.Drawing.Size(75, 13)
+        Me.LbMultipleFinger.TabIndex = 7
+        Me.LbMultipleFinger.Text = "&Multiple Finger"
         '
-        'FilterBaby
+        'LBRootShape
         '
-        Me.FilterBaby.AutoSize = True
-        Me.FilterBaby.Location = New System.Drawing.Point(64, 120)
-        Me.FilterBaby.Name = "FilterBaby"
-        Me.FilterBaby.Size = New System.Drawing.Size(32, 17)
-        Me.FilterBaby.TabIndex = 15
-        Me.FilterBaby.Text = "3"
-        Me.FilterBaby.ThreeState = True
-        Me.FilterBaby.UseVisualStyleBackColor = True
+        Me.LBRootShape.AutoSize = True
+        Me.LBRootShape.Location = New System.Drawing.Point(7, 12)
+        Me.LBRootShape.Name = "LBRootShape"
+        Me.LBRootShape.Size = New System.Drawing.Size(61, 13)
+        Me.LBRootShape.TabIndex = 0
+        Me.LBRootShape.Text = "&RootShape"
         '
-        'FilterRing
+        'FilterMultipleFingers
         '
-        Me.FilterRing.AutoSize = True
-        Me.FilterRing.Location = New System.Drawing.Point(59, 106)
-        Me.FilterRing.Name = "FilterRing"
-        Me.FilterRing.Size = New System.Drawing.Size(32, 17)
-        Me.FilterRing.TabIndex = 14
-        Me.FilterRing.Text = "6"
-        Me.FilterRing.ThreeState = True
-        Me.FilterRing.UseVisualStyleBackColor = True
+        Me.FilterMultipleFingers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.FilterMultipleFingers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.FilterMultipleFingers.DataSource = Me.ISWAMultipleFingersBindingSource
+        Me.FilterMultipleFingers.DisplayMember = "MultipleFingerName"
+        Me.FilterMultipleFingers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.FilterMultipleFingers.FormattingEnabled = True
+        Me.FilterMultipleFingers.Location = New System.Drawing.Point(136, 65)
+        Me.FilterMultipleFingers.Name = "FilterMultipleFingers"
+        Me.FilterMultipleFingers.Size = New System.Drawing.Size(121, 21)
+        Me.FilterMultipleFingers.TabIndex = 8
+        Me.FilterMultipleFingers.ValueMember = "IDMultipleFinger"
         '
-        'FilterMiddle
+        'ISWAMultipleFingersBindingSource
         '
-        Me.FilterMiddle.AutoSize = True
-        Me.FilterMiddle.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.FilterMiddle.Location = New System.Drawing.Point(43, 86)
-        Me.FilterMiddle.Name = "FilterMiddle"
-        Me.FilterMiddle.Size = New System.Drawing.Size(17, 31)
-        Me.FilterMiddle.TabIndex = 13
-        Me.FilterMiddle.Text = "8"
-        Me.FilterMiddle.ThreeState = True
-        Me.FilterMiddle.UseVisualStyleBackColor = True
+        Me.ISWAMultipleFingersBindingSource.DataMember = "multiplefinger"
+        Me.ISWAMultipleFingersBindingSource.DataSource = Me.ISWADataSet
         '
-        'FilterIndex
+        'FilterActionFinger
         '
-        Me.FilterIndex.AutoSize = True
-        Me.FilterIndex.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.FilterIndex.Location = New System.Drawing.Point(10, 105)
-        Me.FilterIndex.Name = "FilterIndex"
-        Me.FilterIndex.Size = New System.Drawing.Size(32, 17)
-        Me.FilterIndex.TabIndex = 12
-        Me.FilterIndex.Text = "4"
-        Me.FilterIndex.ThreeState = True
-        Me.FilterIndex.UseVisualStyleBackColor = True
+        Me.FilterActionFinger.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.FilterActionFinger.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.FilterActionFinger.DataSource = Me.ISWAActionFingersBindingSource
+        Me.FilterActionFinger.DisplayMember = "ActionFingerName"
+        Me.FilterActionFinger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.FilterActionFinger.FormattingEnabled = True
+        Me.FilterActionFinger.Location = New System.Drawing.Point(136, 28)
+        Me.FilterActionFinger.Name = "FilterActionFinger"
+        Me.FilterActionFinger.Size = New System.Drawing.Size(121, 21)
+        Me.FilterActionFinger.TabIndex = 6
+        Me.FilterActionFinger.ValueMember = "IDActionFinger"
         '
-        'PBHand
+        'ISWAActionFingersBindingSource
         '
-        Me.PBHand.Image = CType(resources.GetObject("PBHand.Image"), System.Drawing.Image)
-        Me.PBHand.Location = New System.Drawing.Point(33, 115)
-        Me.PBHand.Name = "PBHand"
-        Me.PBHand.Size = New System.Drawing.Size(35, 35)
-        Me.PBHand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PBHand.TabIndex = 47
-        Me.PBHand.TabStop = False
+        Me.ISWAActionFingersBindingSource.DataMember = "actionfinger"
+        Me.ISWAActionFingersBindingSource.DataSource = Me.ISWADataSet
+        '
+        'LBActionFinger
+        '
+        Me.LBActionFinger.AutoSize = True
+        Me.LBActionFinger.Location = New System.Drawing.Point(136, 13)
+        Me.LBActionFinger.Name = "LBActionFinger"
+        Me.LBActionFinger.Size = New System.Drawing.Size(65, 13)
+        Me.LBActionFinger.TabIndex = 5
+        Me.LBActionFinger.Text = "&Charateristic"
         '
         'TPSpelling
         '
@@ -1509,36 +1539,6 @@ Imports SignWriterStudio
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'GBHandSearch
-        '
-        Me.GBHandSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GBHandSearch.Controls.Add(Me.TVHand)
-        Me.GBHandSearch.Controls.Add(Me.PBHand)
-        Me.GBHandSearch.Controls.Add(Me.LBThumbPosition)
-        Me.GBHandSearch.Controls.Add(Me.FilterIndex)
-        Me.GBHandSearch.Controls.Add(Me.FilterThumbPosition)
-        Me.GBHandSearch.Controls.Add(Me.FilterMiddle)
-        Me.GBHandSearch.Controls.Add(Me.BtnReset)
-        Me.GBHandSearch.Controls.Add(Me.FilterRing)
-        Me.GBHandSearch.Controls.Add(Me.BtnFilter)
-        Me.GBHandSearch.Controls.Add(Me.FilterBaby)
-        Me.GBHandSearch.Controls.Add(Me.BtnBaseGroupName)
-        Me.GBHandSearch.Controls.Add(Me.FilterThumb)
-        Me.GBHandSearch.Controls.Add(Me.FilterSymbolName)
-        Me.GBHandSearch.Controls.Add(Me.FilterRootShape)
-        Me.GBHandSearch.Controls.Add(Me.LbMultipleFinger)
-        Me.GBHandSearch.Controls.Add(Me.LBRootShape)
-        Me.GBHandSearch.Controls.Add(Me.FilterMultipleFingers)
-        Me.GBHandSearch.Controls.Add(Me.FilterActionFinger)
-        Me.GBHandSearch.Controls.Add(Me.LBActionFinger)
-        Me.GBHandSearch.Location = New System.Drawing.Point(356, 3)
-        Me.GBHandSearch.Name = "GBHandSearch"
-        Me.GBHandSearch.Size = New System.Drawing.Size(262, 635)
-        Me.GBHandSearch.TabIndex = 1
-        Me.GBHandSearch.TabStop = False
-        Me.GBHandSearch.Text = "Hand Search"
-        '
         'Editor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1563,12 +1563,14 @@ Imports SignWriterStudio
         Me.GBChoosers.PerformLayout()
         CType(Me.PBsymbolOut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TPSearch.ResumeLayout(False)
+        Me.GBHandSearch.ResumeLayout(False)
+        Me.GBHandSearch.PerformLayout()
+        CType(Me.PBHand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ISWAThumbPositionsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ISWADataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ISWARootShapesQuickBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ISWAMultipleFingersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ISWAActionFingersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ISWARootShapesQuickBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PBHand, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TPSpelling.ResumeLayout(False)
         Me.TPSequence.ResumeLayout(False)
         Me.PanelSpelling.ResumeLayout(False)
@@ -1592,8 +1594,6 @@ Imports SignWriterStudio
         CType(Me.ISWARootShapeGroupsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HandsClassifiedBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SequenceMenuStrip.ResumeLayout(False)
-        Me.GBHandSearch.ResumeLayout(False)
-        Me.GBHandSearch.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
