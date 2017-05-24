@@ -79,32 +79,8 @@ Public Class SWOptions
         Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
-
-    Private Sub CBUserInterfaceSignLang_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles CBUserInterfaceSignLang.Leave
-        If CBUserInterfaceSignLang.SelectedValue Is Nothing Then
-            CBUserInterfaceSignLang.Focus()
-            MessageBox.Show("You must choose an interface sign language.", "User Interface sign language.")
-            'MessageBox.Show(Databases.UI.UICGetTranslation("", ""))
-        End If
-    End Sub
-
-    Private Sub CBDefaulSignLang_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles CBDefaulSignLang.Leave
-        If CBDefaulSignLang.SelectedValue Is Nothing Then
-            CBDefaulSignLang.Focus()
-
-            MessageBox.Show("You must choose an sign language.", "Sign language.")
-            'MessageBox.Show(Databases.UI.UICGetTranslation("", ""))
-        End If
-    End Sub
-
-    Private Sub CBUserInterfaceLang_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles CBUserInterfaceLang.Leave
-        If CBUserInterfaceLang.SelectedValue Is Nothing Then
-            CBUserInterfaceLang.Focus()
-
-            MessageBox.Show("You must choose an interface language.", "User Interface language.")
-            'MessageBox.Show(Databases.UI.UICGetTranslation("", ""))
-        End If
-    End Sub
+     
+ 
     Private Sub LoadTranslations()
         'TODO Translations
         'Databases.UI.UICGetTranslation("", "")
@@ -131,4 +107,29 @@ Public Class SWOptions
     End Sub
      
 
+    Private Sub CBDefaulSignLang_Validated(sender As Object, e As EventArgs) Handles CBDefaulSignLang.Validated
+        If CBDefaulSignLang.SelectedValue Is Nothing Then
+            CBDefaulSignLang.Focus()
+
+            MessageBox.Show("You must choose an sign language.", "Sign language.")
+            'MessageBox.Show(Databases.UI.UICGetTranslation("", ""))
+        End If
+    End Sub
+
+    Private Sub CBUserInterfaceLang_Validated(sender As Object, e As EventArgs) Handles CBUserInterfaceLang.Validated
+        If CBUserInterfaceLang.SelectedValue Is Nothing Then
+            CBUserInterfaceLang.Focus()
+
+            MessageBox.Show("You must choose an interface language.", "User Interface language.")
+
+        End If
+    End Sub
+
+    Private Sub CBUserInterfaceSignLang_Validated(sender As Object, e As EventArgs) Handles CBUserInterfaceSignLang.Validated
+        If CBUserInterfaceSignLang.SelectedValue Is Nothing Then
+            CBUserInterfaceSignLang.Focus()
+            MessageBox.Show("You must choose an interface sign language.", "User Interface sign language.")
+
+        End If
+    End Sub
 End Class

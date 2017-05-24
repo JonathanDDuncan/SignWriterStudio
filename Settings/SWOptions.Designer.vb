@@ -116,10 +116,10 @@ Partial Class SWOptions
         '
         'CBGlossLang1
         '
+        Me.CBGlossLang1.AllowDrop = True
         Me.CBGlossLang1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CBGlossLang1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CBGlossLang1.DisplayMember = "ID Culture"
-        Me.CBGlossLang1.FormattingEnabled = True
         Me.CBGlossLang1.Location = New System.Drawing.Point(157, 72)
         Me.CBGlossLang1.Name = "CBGlossLang1"
         Me.CBGlossLang1.Size = New System.Drawing.Size(121, 21)
@@ -152,11 +152,11 @@ Partial Class SWOptions
         '
         'CBDefaulSignLang
         '
+        Me.CBDefaulSignLang.AllowDrop = True
         Me.CBDefaulSignLang.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CBDefaulSignLang.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CBDefaulSignLang.DisplayMember = "ID SignLanguage"
         Me.CBDefaulSignLang.DropDownWidth = 250
-        Me.CBDefaulSignLang.FormattingEnabled = True
         Me.CBDefaulSignLang.Location = New System.Drawing.Point(7, 72)
         Me.CBDefaulSignLang.Name = "CBDefaulSignLang"
         Me.CBDefaulSignLang.Size = New System.Drawing.Size(121, 21)
