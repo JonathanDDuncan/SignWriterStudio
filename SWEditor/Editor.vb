@@ -461,11 +461,6 @@ Partial Public Class Editor
 
     End Sub
 
-    Private Sub btnHelp_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles btnHelp.MouseClick
-        Help.ShowHelp(Me, "SignWriterStudio.chm", "signeditor.htm")
-    End Sub
-
-
     Private Sub GBSign_MouseHover(sender As System.Object, e As EventArgs) Handles GBSign.MouseHover
         If Not Area = AreaEnm.Sign Then
             Area = AreaEnm.Sign
