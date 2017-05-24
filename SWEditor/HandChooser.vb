@@ -835,7 +835,7 @@ Public Class HandChooser
 
         Catch ex As Exception
             LogError(ex, "")
-            MessageBox.Show(ex.Message)
+
         End Try
 
 
@@ -894,8 +894,12 @@ Public Class HandChooser
         RBRightHand.Checked = True
         HandR1.Checked = True
         VP1.Checked = True
-        PBRightHand.Image = GetImagebyId("01-05-001-01-03-01")
-        PBLeftHand.Image = GetImagebyId("01-05-001-01-03-09")
+        Try
+            PBRightHand.Image = GetImagebyId("01-05-001-01-03-01")
+            PBLeftHand.Image = GetImagebyId("01-05-001-01-03-09")
+        Catch ex As Exception
+        End Try
+
         isLoading = False
     End Sub
 
