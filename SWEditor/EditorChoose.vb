@@ -164,11 +164,13 @@ Partial Public Class Editor
     '    End If
 
     'End Function
-    Private Sub Choosers_RightClick(sender As Object, e As MouseEventArgs) Handles ArrowChooser.RightClick, HandChooser.RightClick
-        ReplaceSymbol()
+    Private Sub Choosers_RightClick(sender As Object, e As MouseEventArgs) Handles ArrowChooser.ChooserMouseDown, HandChooser.ChooserMouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Middle Then
+            ReplaceSymbol()
+        End If
     End Sub
     Private Sub Choosers_MouseDown(sender As Object, e As MouseEventArgs) Handles ArrowChooser.MouseDown, HandChooser.MouseDown, TVChooser.MouseClick, TVChooser.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+        If e.Button = System.Windows.Forms.MouseButtons.Middle Then
             ReplaceSymbol()
         End If
     End Sub

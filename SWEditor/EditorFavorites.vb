@@ -276,8 +276,7 @@ Partial Public Class Editor
 
                 If e.Button = System.Windows.Forms.MouseButtons.Left Then
                     AddSelectedFavorite()
-                End If
-                If e.Button = System.Windows.Forms.MouseButtons.Right Then
+                ElseIf e.Button = System.Windows.Forms.MouseButtons.Right Then
                     ReplaceSelectedFavorite()
                 End If
             End If
