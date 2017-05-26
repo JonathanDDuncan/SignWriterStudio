@@ -319,9 +319,10 @@ Imports SignWriterStudio
         '
         'btnChooserAdd
         '
-        Me.btnChooserAdd.Location = New System.Drawing.Point(145, 46)
+        Me.btnChooserAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnChooserAdd.Location = New System.Drawing.Point(175, 47)
         Me.btnChooserAdd.Name = "btnChooserAdd"
-        Me.btnChooserAdd.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserAdd.Size = New System.Drawing.Size(59, 22)
         Me.btnChooserAdd.TabIndex = 79
         Me.btnChooserAdd.Text = "Add"
         Me.SymbolToolTip.SetToolTip(Me.btnChooserAdd, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
@@ -329,9 +330,10 @@ Imports SignWriterStudio
         '
         'btnChooserReplace
         '
-        Me.btnChooserReplace.Location = New System.Drawing.Point(145, 18)
+        Me.btnChooserReplace.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnChooserReplace.Location = New System.Drawing.Point(175, 20)
         Me.btnChooserReplace.Name = "btnChooserReplace"
-        Me.btnChooserReplace.Size = New System.Drawing.Size(94, 22)
+        Me.btnChooserReplace.Size = New System.Drawing.Size(59, 22)
         Me.btnChooserReplace.TabIndex = 78
         Me.btnChooserReplace.Text = "Replace"
         Me.SymbolToolTip.SetToolTip(Me.btnChooserReplace, "Add to Sign / Replace Selected Symbol in Sign [Enter]")
@@ -339,7 +341,8 @@ Imports SignWriterStudio
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 75)
+        Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox1.Location = New System.Drawing.Point(203, 75)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 75
@@ -347,9 +350,10 @@ Imports SignWriterStudio
         '
         'PBsymbolOut
         '
+        Me.PBsymbolOut.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PBsymbolOut.BackColor = System.Drawing.Color.White
         Me.PBsymbolOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PBsymbolOut.Location = New System.Drawing.Point(15, 14)
+        Me.PBsymbolOut.Location = New System.Drawing.Point(240, 16)
         Me.PBsymbolOut.Name = "PBsymbolOut"
         Me.PBsymbolOut.Size = New System.Drawing.Size(60, 60)
         Me.PBsymbolOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -885,7 +889,7 @@ Imports SignWriterStudio
         '
         'FindSymbol
         '
-        Me.FindSymbol.Location = New System.Drawing.Point(199, 19)
+        Me.FindSymbol.Location = New System.Drawing.Point(6, 19)
         Me.FindSymbol.Name = "FindSymbol"
         Me.FindSymbol.Size = New System.Drawing.Size(94, 22)
         Me.FindSymbol.TabIndex = 67
@@ -896,7 +900,7 @@ Imports SignWriterStudio
         '
         'QuickSignEditorBtn
         '
-        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(388, 19)
+        Me.QuickSignEditorBtn.Location = New System.Drawing.Point(292, 20)
         Me.QuickSignEditorBtn.Name = "QuickSignEditorBtn"
         Me.QuickSignEditorBtn.Size = New System.Drawing.Size(94, 22)
         Me.QuickSignEditorBtn.TabIndex = 63
@@ -907,7 +911,7 @@ Imports SignWriterStudio
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(67, 19)
+        Me.btnCancel.Location = New System.Drawing.Point(191, 19)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(52, 23)
         Me.btnCancel.TabIndex = 58
@@ -918,7 +922,7 @@ Imports SignWriterStudio
         '
         'btnAccept
         '
-        Me.btnAccept.Location = New System.Drawing.Point(9, 19)
+        Me.btnAccept.Location = New System.Drawing.Point(133, 19)
         Me.btnAccept.Name = "btnAccept"
         Me.btnAccept.Size = New System.Drawing.Size(52, 23)
         Me.btnAccept.TabIndex = 57
@@ -931,7 +935,7 @@ Imports SignWriterStudio
         '
         Me.grid.Appearance = System.Windows.Forms.Appearance.Button
         Me.grid.AutoSize = True
-        Me.grid.Location = New System.Drawing.Point(147, 19)
+        Me.grid.Location = New System.Drawing.Point(392, 19)
         Me.grid.Name = "grid"
         Me.grid.Size = New System.Drawing.Size(36, 23)
         Me.grid.TabIndex = 66
@@ -1375,7 +1379,7 @@ Imports SignWriterStudio
         '
         'BtnRemoveSymbol
         '
-        Me.BtnRemoveSymbol.Location = New System.Drawing.Point(11, 46)
+        Me.BtnRemoveSymbol.Location = New System.Drawing.Point(115, 43)
         Me.BtnRemoveSymbol.Name = "BtnRemoveSymbol"
         Me.BtnRemoveSymbol.Size = New System.Drawing.Size(68, 23)
         Me.BtnRemoveSymbol.TabIndex = 3
@@ -1386,7 +1390,7 @@ Imports SignWriterStudio
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(175, 22)
+        Me.btnAdd.Location = New System.Drawing.Point(6, 18)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(103, 47)
         Me.btnAdd.TabIndex = 5
@@ -1397,7 +1401,7 @@ Imports SignWriterStudio
         '
         'BtnNewFavorite
         '
-        Me.BtnNewFavorite.Location = New System.Drawing.Point(11, 20)
+        Me.BtnNewFavorite.Location = New System.Drawing.Point(115, 17)
         Me.BtnNewFavorite.Name = "BtnNewFavorite"
         Me.BtnNewFavorite.Size = New System.Drawing.Size(68, 23)
         Me.BtnNewFavorite.TabIndex = 4
