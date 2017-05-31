@@ -6,7 +6,7 @@
                 height: 100%;
                 z-index: 10;
             }
-            
+
             .footer {
                 background-color: lightyellow;
                 position: fixed;
@@ -14,21 +14,21 @@
                 width: 100%;
                 z-index: 10;
             }
-            
+
             .leftspace {
                 background-color: lightsteelblue;
                 position: fixed;
                 top: 0;
                 z-index: 10;
             }
-            
+
             .centerspace {
                 background-color: lightyellow;
                 position: fixed;
                 top: 0;
                 z-index: 10;
             }
-            
+
             .rightspace {
                 background-color: lightyellow;
                 position: fixed;
@@ -36,7 +36,7 @@
                 padding-right: 50px;
                 z-index: 2;
             }
-            
+
             .drawer {
                 background-color: lightsteelblue;
                 position: fixed;
@@ -44,7 +44,7 @@
                 right: 0;
                 z-index: 10;
             }
-            
+
             .signview {
                 background-color: lightyellow;
                 position: relative;
@@ -53,19 +53,19 @@
                 border-color: black;
                 border-style: double;
             }
-            
+
             .sym-fill {
                 font-family: 'SuttonSignWritingFill';
                 fill: white;
                 display: block;
             }
-            
+
             .sym-line {
                 font-family: 'SuttonSignWriting';
                 fill: black;
                 display: block;
             }
-            
+
             .sym-fill,
             .sym-line {
                 left: 0;
@@ -75,7 +75,7 @@
                 z-index: 11;
                 font-size: 30px;
             }
-            
+
             .nonativedrag,
             .sym-fill,
             .sym-line,
@@ -86,19 +86,20 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
+                touch-action: none;
             }
-            
+
             .keyboard {
                 font-size: 0;
                 margin: 0;
                 padding: 0;
                 line-height: 0
             }
-            
+
             .keyboard .alphabetic {
                 text-align: center;
             }
-            
+
             .keyboard .alphabetic,
             .keyboard .arrows,
             .keyboard .numeric {
@@ -106,7 +107,7 @@
                 display: block;
                 overflow: hidden;
             }
-            
+
             .keyboard .key {
                 position: relative;
                 display: inline-block;
@@ -127,88 +128,88 @@
                 -o-transition: width .15s, margin-right .15s, background-position 0s;
                 transition: width .15s, margin-right .15s, background-position 0s;
             }
-            
+
             .alphabetic .row:nth-child(1) .key:nth-child(14) {
                 width: 9.5%;
             }
-            
+
             .alphabetic .row:nth-child(2) .key:nth-child(1),
             .alphabetic .row:nth-child(2) .key:nth-child(14) {
                 width: 7.875%;
             }
-            
+
             .alphabetic .row:nth-child(3) .key:nth-child(1),
             .alphabetic .row:nth-child(3) .key:nth-child(13) {
                 width: 11.1%;
             }
-            
+
             .alphabetic .row:nth-child(4) .key:nth-child(1),
             .alphabetic .row:nth-child(4) .key:nth-child(12) {
                 width: 14.4%;
             }
-            
+
             .alphabetic .row:nth-child(5) .key:nth-child(4) {
                 width: 44.1%;
             }
-            
+
             .alphabetic .row:nth-child(5) .key:nth-child(1),
             .alphabetic .row:nth-child(5) .key:nth-child(7) {
                 width: 11.75%;
             }
-            
+
             .alphabetic .key {
                 width: 6.3%;
             }
-            
+
             .arrows div:nth-child(2) .row:nth-child(1) .key:nth-child(1) {
                 margin-left: 29%;
             }
-            
+
             .numeric .row:nth-child(1) .key:nth-child(1) {
                 margin-left: 23%;
             }
-            
+
             .numeric .row:nth-child(5) .key:nth-child(1) {
                 width: 45%;
             }
-            
+
             .arrows .key {
                 width: 28%;
             }
-            
+
             .numeric .key {
                 width: 22%;
             }
-            
+
             .key span:nth-of-type(1) {
                 color: #AAA;
                 position: absolute;
                 left: 2px;
                 bottom: 7px;
             }
-            
+
             .symbol {
                 position: absolute;
             }
-            
+
             .symbol,
             .font-30 {
                 font-size: 30px;
             }
-            
+
             .readytoshow {
                 position: absolute;
                 bottom: 0px;
                 right: 0px;
                 z-index: 10;
             }
-            
+
             .choosing {
                 display: block;
                 height: 33px;
                 cursor: pointer;
             }
-            
+
             .chosercolumn {
                 border-width: 2px;
                 border-color: black;
@@ -216,31 +217,31 @@
                 padding: 2px;
                 padding-top: 10px;
             }
-            
+
             td,
             .center {
                 text-align: center;
                 vertical-align: middle;
             }
             /*Keep the tooltip from displaying blurry*/
-            
+
             .mdl-tooltip {
                 will-change: unset;
             }
-            
+
             .symbolchooserheader {
                 background-color: lightsteelblue;
                 top: -10px;
             }
-            
+
             .pressed {
                 background-color: darkslategray !important;
             }
-            
+
             .activemode {
                 background-color: paleturquoise !important;
             }
-            
+
             .centerdiv {
                 position: absolute;
                 margin: auto;
@@ -249,31 +250,31 @@
                 bottom: 0;
                 right: 0;
             }
-            
+
             .centerdivcontainer {
                 position: relative;
                 width: inherit;
                 height: inherit;
             }
-            
+
             .centerspan {
                 position: absolute;
                 display: inline-block;
             }
-            
+
             .centerspancontainer {
                 position: relative;
                 text-align: center;
                 vertical-align: middle;
                 display: table-cell;
             }
-            
+
             .border {
                 border-width: 1px;
                 border-color: black;
                 border-style: solid;
             }
-            
+
             .hover {
                 text-shadow: none;
                 -webkit-transition: 300ms ease-out 0s;
@@ -281,15 +282,15 @@
                 -o-transition: 300ms ease-out 0s;
                 transition: 300ms ease-out 0s;
             }
-            
+
             .hover:hover {
                 text-shadow: -1px 1px 15px gold, 1px -1px 15px gold;
             }
-            
+
             .signview div {
                 position: absolute;
             }
-            
+
             .signview div svg {
                 top: 0;
                 left: 0;
