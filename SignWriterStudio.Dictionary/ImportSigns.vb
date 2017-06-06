@@ -54,23 +54,9 @@ Public Class ImportSigns
                 If trans IsNot Nothing Then trans.Rollback()
             End Try
 
-            Try
-                Using conn
-                    selectedSigns = SelectComparedSigns(classifiedSigns.Item2, conn, trans)
-                    If trans.Connection IsNot Nothing Then
-
-                        trans.Commit()
-                    End If
-
-                    'conn.Close()
-                End Using
-
-            Catch ex As SQLiteException
-                LogError(ex, "SQLite Exception " & ex.GetType().Name)
-
-                MessageBox.Show(ex.ToString)
-                If trans IsNot Nothing Then trans.Rollback()
-            End Try
+             
+                    selectedSigns = SelectComparedSigns(classifiedSigns.Item2)
+ 
 
             UpdateSigns(selectedSigns)
 
@@ -173,16 +159,12 @@ Public Class ImportSigns
         Return Tuple.Create(signsNotModified, signstoCompare, signsToAdd)
     End Function
 
-    Private Function SelectComparedSigns(
-                                         ByVal signsToCompare As  _
-                                            List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)),
-                                         ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) _
+    Private Function SelectComparedSigns(ByVal signsToCompare As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean))) _
         As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
         Dim signsToOverwrite As New List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
         Dim compareSigns As New CompareSigns(DictionaryConnectionString)
         If signsToCompare.Count > 0 Then
-            'compareSigns.Conn = conn
-            'compareSigns.Trans = trans
+
             compareSigns.SignsToCompare = signsToCompare
             compareSigns.ShowDialog()
 
