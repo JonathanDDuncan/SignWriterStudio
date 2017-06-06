@@ -72,63 +72,15 @@ Public Class ImportSigns
                 If trans IsNot Nothing Then trans.Rollback()
             End Try
 
-            Try
-                conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
-                trans = SWDict.GetNewDictionaryTransaction(conn)
-                Using conn
-                    'Update current signs
-                    _myDictionary.DeleteSigns(selectedSigns, conn, trans)
-                    _myDictionary.SignstoDictionaryInsert(SelectedSignsToCollection(selectedSigns), conn, trans)
-                    trans.Commit()
-                    conn.Close()
-                End Using
-            Catch ex As SQLiteException
-                LogError(ex, "SQLite Exception " & ex.GetType().Name)
+            UpdateSigns(selectedSigns)
 
-                MessageBox.Show(ex.ToString)
-                If trans IsNot Nothing Then trans.Rollback()
-            End Try
+            SWEditorProgressBar.ProgressBar1.Value = 0
+            SWEditorProgressBar.Text = "SignWriter Studio™ Importing ..."
+            SWEditorProgressBar.Show()
+            _importedSigns = Tuple.Create(classifiedSigns.Item1.Count, selectedSigns.Count,
+                                          classifiedSigns.Item3.Count)
 
-            Try
-
-                conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
-                trans = SWDict.GetNewDictionaryTransaction(conn)
-                Using conn
-                    SWEditorProgressBar.ProgressBar1.Value = 0
-                    SWEditorProgressBar.Text = "SignWriter Studio™ Importing ..."
-                    SWEditorProgressBar.Show()
-                    _importedSigns = Tuple.Create(classifiedSigns.Item1.Count, selectedSigns.Count,
-                                                  classifiedSigns.Item3.Count)
-                    trans.Commit()
-                    conn.Close()
-                End Using
-            Catch ex As SQLiteException
-                LogError(ex, "SQLite Exception " & ex.GetType().Name)
-
-                MessageBox.Show(ex.ToString)
-                If trans IsNot Nothing Then trans.Rollback()
-            End Try
-
-            Try
-                conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
-                trans = SWDict.GetNewDictionaryTransaction(conn)
-                Using conn
-                    'Add new signs
-                    SPMLImportbw = New BackgroundWorker With {.WorkerReportsProgress = True}
-                    AddHandler SPMLImportbw.DoWork, AddressOf SPMLImportbw_DoWork
-                    AddHandler SPMLImportbw.RunWorkerCompleted, AddressOf SPMLImportbw_RunWorkerCompleted
-                    AddHandler SPMLImportbw.ProgressChanged, AddressOf SPMLImportbw_ProgressChanged
-                    SPMLImportbw.RunWorkerAsync(Tuple.Create(classifiedSigns.Item3, SPMLImportbw))
-                    trans.Commit()
-                    conn.Close()
-                End Using
-
-            Catch ex As SQLiteException
-                LogError(ex, "SQLite Exception " & ex.GetType().Name)
-
-                MessageBox.Show(ex.ToString)
-                If trans IsNot Nothing Then trans.Rollback()
-            End Try
+            AddSigns(classifiedSigns.Item3)
 
 
         Catch ex As XmlException
@@ -278,6 +230,50 @@ Public Class ImportSigns
 
         Return signs
     End Function
+
+    Private Sub AddSigns(signs As List(Of SwSign))
+        Dim conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans = SWDict.GetNewDictionaryTransaction(conn)
+        Try
+
+            Using conn
+                'Add new signs
+                SPMLImportbw = New BackgroundWorker With {.WorkerReportsProgress = True}
+                AddHandler SPMLImportbw.DoWork, AddressOf SPMLImportbw_DoWork
+                AddHandler SPMLImportbw.RunWorkerCompleted, AddressOf SPMLImportbw_RunWorkerCompleted
+                AddHandler SPMLImportbw.ProgressChanged, AddressOf SPMLImportbw_ProgressChanged
+                SPMLImportbw.RunWorkerAsync(Tuple.Create(signs, SPMLImportbw))
+                trans.Commit()
+                conn.Close()
+            End Using
+
+        Catch ex As SQLiteException
+            LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+            MessageBox.Show(ex.ToString)
+            If trans IsNot Nothing Then trans.Rollback()
+        End Try
+    End Sub
+
+    Private Sub UpdateSigns(selectedSigns As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow)))
+        Dim conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans = SWDict.GetNewDictionaryTransaction(conn)
+        Try
+
+            Using conn
+                'Update current signs
+                _myDictionary.DeleteSigns(selectedSigns, conn, trans)
+                _myDictionary.SignstoDictionaryInsert(SelectedSignsToCollection(selectedSigns), conn, trans)
+                trans.Commit()
+                conn.Close()
+            End Using
+        Catch ex As SQLiteException
+            LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+            MessageBox.Show(ex.ToString)
+            If trans IsNot Nothing Then trans.Rollback()
+        End Try
+    End Sub
 
 End Class
 
