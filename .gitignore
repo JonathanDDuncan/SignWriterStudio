@@ -187,3 +187,43 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+*.exe
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.0.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.1.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.10.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.11.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.12.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.13.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.14.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.15.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.16.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.17.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.18.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.2.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.3.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.4.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.5.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.6.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.7.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.8.iss
+SignWriterStudio/Setup/SignWriter Studio 1.2.5.9.iss
+SignWriterStudio.Database.Dictionary/BLSWSDatabase - Copy (2).SWS
+SignWriterStudio.Database.Dictionary/BLSWSDatabase - Copy (3).SWS
+SignWriterStudio.Database.Dictionary/BLSWSDatabase - Copy.SWS
+SignWriterStudio.Database.Dictionary/BLSWSDatabase 1.SWS
+SymbolCache/ISWA2010 - Copy (2).dat
+SymbolCache/ISWA2010 - Copy (3).dat
+SymbolCache/ISWA2010 - Copy.dat
+Blank/
+Foreign Dll/Old/
+Foreign Dll/old2/
+Dictionary/Class1.cs
+SIGNWRIT.LNK
+SignWriterStudio.sln - Shortcut.lnk
+Backups over last year 2015, 2016.txt
+Honduras fingerspelling 16.fngr.txt
+bug deleting entry with tag.txt
+SignWriterStudio/Settings2.dat
+SignWriterStudio/UniversalSerializer2.dll
+SignWriterStudio/UniversalSerializerWinForm2.dll
+Settings full.dat
