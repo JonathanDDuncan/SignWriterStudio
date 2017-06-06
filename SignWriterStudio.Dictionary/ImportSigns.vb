@@ -23,57 +23,30 @@ Public Class ImportSigns
     End Sub
 
     Public Sub ImportSPMLSigns(spmlfilename As String)
-        Dim signs = GetsignsfromSPMLfile(spmlfilename, _myDictionary.DefaultSignLanguage, _myDictionary.FirstGlossLanguage)
-        ImportSigns(signs)
-    End Sub
-
-    Private Sub ImportSigns(signs As List(Of SwSign))
-
-
-        Dim classifiedSigns As Tuple(Of List(Of SwSign), List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), List(Of SwSign))
         Try
-
-            Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
-            Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
-            Dim selectedSigns As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
-
-            Try
-                Using conn
-                    classifiedSigns = ClassifySigns(signs, conn, trans)
-                    If trans.Connection IsNot Nothing Then
-
-                        trans.Commit()
-                    End If
-
-                    conn.Close()
-                End Using
-            Catch ex As SQLiteException
-                LogError(ex, "SQLite Exception " & ex.GetType().Name)
-
-                MessageBox.Show(ex.ToString)
-                If trans IsNot Nothing Then trans.Rollback()
-            End Try
-
-             
-                    selectedSigns = SelectComparedSigns(classifiedSigns.Item2)
- 
-
-            UpdateSigns(selectedSigns)
-
-            SWEditorProgressBar.ProgressBar1.Value = 0
-            SWEditorProgressBar.Text = "SignWriter Studio™ Importing ..."
-            SWEditorProgressBar.Show()
-            _importedSigns = Tuple.Create(classifiedSigns.Item1.Count, selectedSigns.Count,
-                                          classifiedSigns.Item3.Count)
-
-            AddSigns(classifiedSigns.Item3)
-
+            Dim signs = GetsignsfromSPMLfile(spmlfilename, _myDictionary.DefaultSignLanguage, _myDictionary.FirstGlossLanguage)
+            ImportSigns(signs)
 
         Catch ex As XmlException
             LogError(ex, "XML Exception " & ex.GetType().Name)
 
             MessageBox.Show(ex.Message)
         End Try
+    End Sub
+
+    Private Sub ImportSigns(signs As List(Of SwSign))
+        Dim classifiedSigns As Tuple(Of List(Of SwSign), List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), List(Of SwSign))
+        classifiedSigns = ClassifySigns(signs)
+
+        Dim selectedSigns As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
+        selectedSigns = SelectComparedSigns(classifiedSigns.Item2)
+
+        ShowProgressBar(classifiedSigns.Item1.Count, selectedSigns.Count, classifiedSigns.Item3.Count, 0, "SignWriter Studio™ Importing ...")
+
+        UpdateSigns(selectedSigns)
+
+        AddSigns(classifiedSigns.Item3)
+
     End Sub
     Private Function SelectedSignsToCollection(
                                                SelectedSigns As  _
@@ -255,6 +228,37 @@ Public Class ImportSigns
             MessageBox.Show(ex.ToString)
             If trans IsNot Nothing Then trans.Rollback()
         End Try
+    End Sub
+
+    Private Function ClassifySigns(signs As List(Of SwSign)) As Tuple(Of List(Of SwSign), List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), List(Of SwSign))
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+        Dim classifiedSigns As Tuple(Of List(Of SwSign), List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), List(Of SwSign))
+        Try
+            Using conn
+                classifiedSigns = ClassifySigns(signs, conn, trans)
+                If trans.Connection IsNot Nothing Then
+
+                    trans.Commit()
+                End If
+
+                conn.Close()
+            End Using
+        Catch ex As SQLiteException
+            LogError(ex, "SQLite Exception " & ex.GetType().Name)
+
+            MessageBox.Show(ex.ToString)
+            If trans IsNot Nothing Then trans.Rollback()
+        End Try
+        Return classifiedSigns
+    End Function
+
+    Private Sub ShowProgressBar(signsNotModifiedCount As Integer, selectedSignsCount As Integer, signsToAddCount As Integer, value As Integer, text As String)
+        SWEditorProgressBar.ProgressBar1.Value = value
+        SWEditorProgressBar.Text = text
+        SWEditorProgressBar.Show()
+        _importedSigns = Tuple.Create(signsNotModifiedCount, selectedSignsCount,
+                                     signsToAddCount)
     End Sub
 
 End Class
