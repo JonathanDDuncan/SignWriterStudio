@@ -57,8 +57,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("data source=""C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO\LES"& _ 
-            "HO - Copy (7).SWS""")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("data source=""C:\Users\Jonathan\Desktop\LESHO\LESHO.SWS""")>  _
         Public ReadOnly Property LESHO___Copy__7_ConnectionString() As String
             Get
                 Return CType(Me("LESHO___Copy__7_ConnectionString"),String)

@@ -305,6 +305,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="DictionaryViewDataSet.xsc">
+      <DependentUpon>DictionaryViewDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DictionaryViewDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DictionaryViewDataSet.xss">
+      <DependentUpon>DictionaryViewDataSet.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
