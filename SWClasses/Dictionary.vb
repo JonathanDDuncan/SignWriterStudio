@@ -140,25 +140,11 @@ Public NotInheritable Class SWDict
 
                 Dim I As Integer
                 Dim count As Integer = signs.Count
-                'Dim dictionaryTa As New DictionaryTableAdapter
                 Dim dictionaryGlossTa As New DictionaryGlossTableAdapter
-                'Dim frameTa As New FrameTableAdapter
-                'Dim symbolTa As New SignSymbolsTableAdapter
-                'Dim sequenceTa As New SignSequenceTableAdapter
-                'Dim puddleTextTa As New PuddleTextTableAdapter
 
-                'dictionaryTa.AssignConnection(conn, trans)
                 dictionaryGlossTa.AssignConnection(conn, trans)
-                'frameTa.AssignConnection(conn, trans)
-                'symbolTa.AssignConnection(conn, trans)
-                'sequenceTa.AssignConnection(conn, trans)
-                'puddleTextTa.AssignConnection(conn, trans)
-
-                'Dim dictionaryGuid As Guid
-                'Dim slId As Long
+               
                 Dim dictionaryId As Long
-
-                'Dim frameId As Long
 
                 For Each sign As SwSign In signs
                     I += 1
