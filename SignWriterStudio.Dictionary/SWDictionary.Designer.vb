@@ -81,6 +81,7 @@ Partial Class SWDictForm
         Me.ExportToAnkiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportToHTMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewReportPDFWordExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportSWSFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSMIEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopySignImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -139,7 +140,6 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImportSWSFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -551,6 +551,13 @@ Partial Class SWDictForm
         Me.ViewReportPDFWordExcelToolStripMenuItem.Name = "ViewReportPDFWordExcelToolStripMenuItem"
         Me.ViewReportPDFWordExcelToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
         Me.ViewReportPDFWordExcelToolStripMenuItem.Text = "View Report (PDF, Word, Excel)"
+        '
+        'ImportSWSFileToolStripMenuItem
+        '
+        Me.ImportSWSFileToolStripMenuItem.Name = "ImportSWSFileToolStripMenuItem"
+        Me.ImportSWSFileToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ImportSWSFileToolStripMenuItem.Text = "Import SWS File"
+        Me.ImportSWSFileToolStripMenuItem.Visible = False
         '
         'TSMIEdit
         '
@@ -990,12 +997,6 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn11.HeaderText = "Sorting"
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.Visible = False
-        '
-        'ImportSWSFileToolStripMenuItem
-        '
-        Me.ImportSWSFileToolStripMenuItem.Name = "ImportSWSFileToolStripMenuItem"
-        Me.ImportSWSFileToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
-        Me.ImportSWSFileToolStripMenuItem.Text = "Import SWS File"
         '
         'SWDictForm
         '

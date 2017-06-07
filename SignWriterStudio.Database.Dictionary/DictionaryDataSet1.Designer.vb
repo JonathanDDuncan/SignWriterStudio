@@ -8541,11 +8541,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Sorting() As String
             Get
-                Try 
+                If Me.IsSortingNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableSignsbyGlossesBilingual.SortingColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Sorting' in table 'SignsbyGlossesBilingual' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableSignsbyGlossesBilingual.SortingColumn) = value
@@ -9051,11 +9051,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Sorting() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SortingColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Sorting' in table 'SignsbyGlossesUnilingual' is DBNull.", e)
-                End Try
+                If Me.IsSortingNull Then
+                    Return Nothing
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SortingColumn), String)
+                End If
             End Get
             Set
                 Me(Me.tableSignsbyGlossesUnilingual.SortingColumn) = value
