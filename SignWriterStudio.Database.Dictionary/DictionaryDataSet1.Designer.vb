@@ -5877,11 +5877,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property SWritingSource() As String
             Get
-                Try 
+                If Me.IsSWritingSourceNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.SWritingSourceColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SWritingSource' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.SWritingSourceColumn) = value
@@ -5892,11 +5892,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PhotoSource() As String
             Get
-                Try 
+                If Me.IsPhotoSourceNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.PhotoSourceColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PhotoSource' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.PhotoSourceColumn) = value
@@ -5907,11 +5907,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property SignSource() As String
             Get
-                Try 
+                If Me.IsSignSourceNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.SignSourceColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SignSource' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.SignSourceColumn) = value
@@ -5967,11 +5967,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property IDSignPuddle() As String
             Get
-                Try 
+                If Me.IsIDSignPuddleNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.IDSignPuddleColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IDSignPuddle' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.IDSignPuddleColumn) = value
@@ -5982,11 +5982,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property SignPuddleUser() As String
             Get
-                Try 
+                If Me.IsSignPuddleUserNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.SignPuddleUserColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SignPuddleUser' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.SignPuddleUserColumn) = value
@@ -5997,11 +5997,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PuddlePrev() As String
             Get
-                Try 
+                If Me.IsPuddlePrevNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.PuddlePrevColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PuddlePrev' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.PuddlePrevColumn) = value
@@ -6012,11 +6012,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PuddleNext() As String
             Get
-                Try 
+                If Me.IsPuddleNextNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.PuddleNextColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PuddleNext' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.PuddleNextColumn) = value
@@ -6027,11 +6027,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PuddlePNG() As String
             Get
-                Try 
+                If Me.IsPuddlePNGNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.PuddlePNGColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PuddlePNG' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.PuddlePNGColumn) = value
@@ -6042,11 +6042,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PuddleSVG() As String
             Get
-                Try 
+                If Me.IsPuddleSVGNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.PuddleSVGColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PuddleSVG' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.PuddleSVGColumn) = value
@@ -6057,11 +6057,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PuddleVideoLink() As String
             Get
-                Try 
+                If Me.IsPuddleVideoLinkNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.PuddleVideoLinkColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PuddleVideoLink' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.PuddleVideoLinkColumn) = value
@@ -6072,11 +6072,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Sorting() As String
             Get
-                Try 
+                If Me.IsSortingNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableDictionary.SortingColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Sorting' in table 'Dictionary' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableDictionary.SortingColumn) = value
@@ -6088,7 +6088,7 @@ Partial Public Class DictionaryDataSet
         Public Property PuddleTop() As String
             Get
                 If Me.IsPuddleTopNull Then
-                    Return String.Empty
+                    Return Nothing
                 Else
                     Return CType(Me(Me.tableDictionary.PuddleTopColumn),String)
                 End If
@@ -9871,7 +9871,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -12967,7 +12967,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -13983,7 +13983,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -15059,7 +15059,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -16427,7 +16427,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -17142,7 +17142,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -18471,7 +18471,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -19206,7 +19206,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -20543,30 +20543,30 @@ Namespace DictionaryDataSetTableAdapters
             End Get
         End Property
         
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
-                    Me.InitConnection()
+                    Me.InitConnection
                 End If
                 Return Me._connection
             End Get
-            Set(value As Global.System.Data.SQLite.SQLiteConnection)
-                Me._connection = Value
+            Set
+                Me._connection = value
                 If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = Value
+                    Me.Adapter.InsertCommand.Connection = value
                 End If
                 If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = Value
+                    Me.Adapter.DeleteCommand.Connection = value
                 End If
                 If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = Value
+                    Me.Adapter.UpdateCommand.Connection = value
                 End If
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i), Global.System.Data.SQLite.SQLiteCommand).Connection = Value
+                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
@@ -21129,7 +21129,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -21389,7 +21389,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -22072,7 +22072,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -22532,7 +22532,7 @@ Namespace DictionaryDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+        Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
