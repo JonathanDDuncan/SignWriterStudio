@@ -140,77 +140,38 @@ Public NotInheritable Class SWDict
 
                 Dim I As Integer
                 Dim count As Integer = signs.Count
-                Dim dictionaryTa As New DictionaryTableAdapter
-
-                'Dim timestart = Now()
-
+                'Dim dictionaryTa As New DictionaryTableAdapter
                 Dim dictionaryGlossTa As New DictionaryGlossTableAdapter
-                Dim frameTa As New FrameTableAdapter
-                Dim symbolTa As New SignSymbolsTableAdapter
-                Dim sequenceTa As New SignSequenceTableAdapter
-                Dim puddleTextTa As New PuddleTextTableAdapter
+                'Dim frameTa As New FrameTableAdapter
+                'Dim symbolTa As New SignSymbolsTableAdapter
+                'Dim sequenceTa As New SignSequenceTableAdapter
+                'Dim puddleTextTa As New PuddleTextTableAdapter
 
-                dictionaryTa.AssignConnection(conn, trans)
+                'dictionaryTa.AssignConnection(conn, trans)
                 dictionaryGlossTa.AssignConnection(conn, trans)
-                frameTa.AssignConnection(conn, trans)
-                symbolTa.AssignConnection(conn, trans)
-                sequenceTa.AssignConnection(conn, trans)
-                puddleTextTa.AssignConnection(conn, trans)
+                'frameTa.AssignConnection(conn, trans)
+                'symbolTa.AssignConnection(conn, trans)
+                'sequenceTa.AssignConnection(conn, trans)
+                'puddleTextTa.AssignConnection(conn, trans)
 
-                Dim dictionaryGuid As Guid
-                Dim slId As Long
+                'Dim dictionaryGuid As Guid
+                'Dim slId As Long
                 Dim dictionaryId As Long
 
-                Dim frameId As Long
+                'Dim frameId As Long
 
                 For Each sign As SwSign In signs
                     I += 1
+                    dictionaryId = SaveSWSign(sign, conn, trans)
 
-                    If sign.SignWriterGuid.HasValue Then
-                        dictionaryGuid = sign.SignWriterGuid.Value
-                    Else
-                        dictionaryGuid = Guid.NewGuid
-                    End If
-                    Dim tauisl As New UI.swsuiDataSetTableAdapters.UISignLanguagesTableAdapter
-                    slId = CLng(tauisl.GetIDbyISO(sign.SignLanguageIso))
-                    Dim img = sign.Render
-                    Dim swSignByte As Byte() = ImageToByteArray(img)
-                    img.Dispose()
-                    Dim photoByte As Byte()
-                    Dim signByte As Byte()
-
-                    Dim sortWeight = SequencetoSortingString(sign.Frames(0).Sequences)
-
-                    dictionaryId = CLng(dictionaryTa.InsertGetId(slId, False, sign.BkColor.ToArgb, swSignByte, photoByte, signByte, sign.SWritingSource, String.Empty, String.Empty, dictionaryGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddleTop, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink, sortWeight))
-
-
-
-
-                    frameId = CLng(frameTa.InsertGetId(dictionaryId, 0, sign.Frames(0).Bounds.Left, sign.Frames(0).Bounds.Top, sign.Frames(0).MinWidth, sign.Frames(0).MinHeight))
-
-                    For Each SignSymbol In sign.Frames(0).SignSymbols
-                        symbolTa.InsertQuery(frameId, SignSymbol.Code, SignSymbol.X, SignSymbol.Y, SignSymbol.Z, SignSymbol.Hand, SignSymbol.Handcolor, SignSymbol.Palmcolor, SignSymbol.Size)
-
-                    Next
-
-                    For Each Sequence In sign.Frames(0).Sequences
-                        sequenceTa.InsertQuery(frameId, Sequence.Code, Sequence.Rank)
-                    Next
-
-                    For Each txt In sign.PuddleText
-                        puddleTextTa.InsertQuery(dictionaryId, txt)
-                    Next
-                    Dim tauiCult As New UI.swsuiDataSetTableAdapters.UICulturesTableAdapter
-                    Dim cultureId As Long? = tauiCult.GetIDbyName(sign.LanguageIso)
-
-                    dictionaryGlossTa.InsertQuery(dictionaryId, cultureId, sign.Gloss, sign.Glosses)
+                    dictionaryGlossTa.InsertQuery(dictionaryId, FirstGlossLanguage, sign.Gloss, sign.Glosses)
                     If bw IsNot Nothing Then
                         bw.ReportProgress(15 + CInt((I / count) * 85))
                     End If
                 Next
 
                 trans.Commit()
-                'MessageBox.Show((Now() - timestart).TotalSeconds.ToString)
+
             Catch ex As Exception
                 LogError(ex, "")
                 MessageBox.Show(ex.ToString)
@@ -919,8 +880,8 @@ Public NotInheritable Class SWDict
 
         End Try
     End Sub
-    Public Sub SaveSWSign(ByVal sign As SwSign, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
-        Dim idDictionary As Integer = InsertDictionaryEntry(sign, True, conn, trans)
+    Public Function SaveSWSign(ByVal sign As SwSign, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Long
+        Dim idDictionary As Long = InsertDictionaryEntry(sign, True, conn, trans)
         EmptySWSign(idDictionary, conn, trans)
         'Save SWSign
         'InserSWSign(IDDictionary, sign)
@@ -946,7 +907,8 @@ Public NotInheritable Class SWDict
             Next
 
         Next
-    End Sub
+        Return idDictionary
+    End Function
     Public Function SWSignsbyGlossesUnilingual(ByVal searchStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D begin
         Return _taSignsbyGlossesUnilingual.GetData(FirstGlossLanguage, DefaultSignLanguage, searchStr)
