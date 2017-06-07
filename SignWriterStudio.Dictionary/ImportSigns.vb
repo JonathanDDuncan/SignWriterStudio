@@ -33,6 +33,19 @@ Public Class ImportSigns
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+    Public Sub ImportSWSSigns(swsfilename As String)
+        Try
+            Dim signs = GetsignsfromSwsfile(swsfilename, _myDictionary.DefaultSignLanguage, _myDictionary.FirstGlossLanguage)
+            ImportSigns(signs)
+
+        Catch ex As Exception
+            LogError(ex, "Exception " & ex.GetType().Name)
+
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+
 
     Private Sub ImportSigns(signs As List(Of SwSign))
         Dim classifiedSigns As Tuple(Of List(Of SwSign), List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), List(Of SwSign))
@@ -48,8 +61,7 @@ Public Class ImportSigns
         AddSigns(classifiedSigns.Item3)
 
     End Sub
-    Private Function SelectedSignsToCollection(
-                                               SelectedSigns As  _
+    Private Function SelectedSignsToCollection(SelectedSigns As  _
                                                   List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))) _
         As List(Of SwSign)
         Dim Coll As New List(Of SwSign)
@@ -185,6 +197,19 @@ Public Class ImportSigns
 
         Return signs
     End Function
+    Private Function GetsignsfromSwsfile(swsfilename As String, signlanguage As Integer, glosslanguage As Integer) As List(Of SwSign)
+        Dim signs As List(Of SwSign)
+        Dim dict = New SWDict("data source=""" & swsfilename & """")
+        dict.FirstGlossLanguage = glosslanguage
+        dict.DefaultSignLanguage = signlanguage
+
+        Dim allsigns = dict.GetAllSignsUnilingualDt()
+
+        signs = dict.ConvertUnilingualDttoSWSign(allsigns)
+         
+        Return signs
+    End Function
+
 
     Private Sub AddSigns(signs As List(Of SwSign))
         Dim conn = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
@@ -260,6 +285,8 @@ Public Class ImportSigns
         _importedSigns = Tuple.Create(signsNotModifiedCount, selectedSignsCount,
                                      signsToAddCount)
     End Sub
+
+   
 
 End Class
 

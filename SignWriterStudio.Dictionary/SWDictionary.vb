@@ -2278,6 +2278,24 @@ Public Class SWDictForm
     End Sub
 
 
+    Private Sub ImportSWSFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportSWSFileToolStripMenuItem.Click
+        Dim result =
+              MessageBox.Show(
+                  "You are importing to " & GetSLNameandAcronym() & " and gloss language " &
+                  UI.Cultures.GetCultureFullName(Me._myDictionary.FirstGlossLanguage) &
+                  ". If this is not what you want click No and change the options from the File menu.", "Import",
+                  MessageBoxButtons.YesNo)
+        If result = DialogResult.Yes Then
+            SaveDataGrid()
+            Dim importDialog = New OpenFileDialog()
+
+            Dim result1 = importDialog.ShowDialog()
+            If result1 = System.Windows.Forms.DialogResult.OK Then
+                Dim signImport = New ImportSigns(_myDictionary, SWEditorProgressBar)
+                signImport.ImportSWSSigns(importDialog.FileName)
+            End If
+        End If
+    End Sub
 End Class
 
 Public Class AddedEntry

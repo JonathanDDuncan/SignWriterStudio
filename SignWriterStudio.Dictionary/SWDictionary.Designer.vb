@@ -139,6 +139,7 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImportSWSFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -479,7 +480,7 @@ Partial Class SWDictForm
         '
         'ToolStripMenuItem1
         '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewSignWriterStudioFileToolStripMenuItem, Me.OpenSignWriterStudioFileToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem, Me.SignListsToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.ExportFingerSpellingToolStripMenuItem, Me.ExportToAnkiToolStripMenuItem, Me.ExportToHTMLToolStripMenuItem, Me.ViewReportPDFWordExcelToolStripMenuItem})
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewSignWriterStudioFileToolStripMenuItem, Me.OpenSignWriterStudioFileToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem, Me.SignListsToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.ExportFingerSpellingToolStripMenuItem, Me.ExportToAnkiToolStripMenuItem, Me.ExportToHTMLToolStripMenuItem, Me.ViewReportPDFWordExcelToolStripMenuItem, Me.ImportSWSFileToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(37, 20)
         Me.ToolStripMenuItem1.Text = "File"
@@ -990,6 +991,12 @@ Partial Class SWDictForm
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.Visible = False
         '
+        'ImportSWSFileToolStripMenuItem
+        '
+        Me.ImportSWSFileToolStripMenuItem.Name = "ImportSWSFileToolStripMenuItem"
+        Me.ImportSWSFileToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ImportSWSFileToolStripMenuItem.Text = "Import SWS File"
+        '
         'SWDictForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1119,4 +1126,5 @@ Partial Class SWDictForm
     Friend WithEvents ExportFingerSpellingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents SendSignToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ImportSWSFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

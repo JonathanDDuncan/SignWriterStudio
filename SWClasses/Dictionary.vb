@@ -322,7 +322,7 @@ Public NotInheritable Class SWDict
 
                     dt.ImportRow(signsbyGlossesBilingualRow)
                 Next
-               
+
             Next
             conn.Close()
         End Using
@@ -1151,6 +1151,126 @@ Public NotInheritable Class SWDict
         Return dt
     End Function
 
+    Public Function ConvertUnilingualDttoSWSign(allsigns As DataTable) As List(Of SwSign)
+        Dim unilingualDt = CType(allsigns, DictionaryDataSet.SignsbyGlossesUnilingualDataTable)
+        Dim signs As New List(Of SwSign)
+
+        For Each row As DictionaryDataSet.SignsbyGlossesUnilingualRow In unilingualDt.Rows
+            Dim sign As SwSign = UnilingualRowtoSign(row)
+            signs.Add(sign)
+        Next
+
+
+        Return signs
+    End Function
+    Private Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow) As SwSign
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
+        Dim sign = New SwSign
+        Try
+            Dim idDictionary = row.IDDictionary
+            _taDictionary.AssignConnection(conn, trans)
+            Dim dtDictionary As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
+            If dtDictionary.Count >= 1 Then
+                Dim dictRow = dtDictionary(0)
+               
+                sign.BkColor = Color.FromArgb(dictRow.bkColor)
+
+                sign.Gloss = dbnullNothing(row.gloss1)
+                sign.Glosses = dbnullNothing(row.glosses1)
+                sign.SetlanguageIso(My.Settings.FirstGlossLanguage)
+
+                sign.SetSignLanguageIso(CInt(row.IDSignLanguage))
+                sign.Created = dictRow.Created
+                sign.LastModified = dictRow.LastModified
+                sign.PuddleNext = dbnullNothing(dictRow.PuddleNext)
+                sign.PuddlePng = dbnullNothing(dictRow.PuddlePNG)
+                sign.PuddlePrev = dbnullNothing(dictRow.PuddlePrev)
+                sign.PuddleTop = dbnullNothing(dictRow.PuddleTop)
+                sign.PuddleSvg = dbnullNothing(dictRow.PuddleSVG)
+                sign.PuddleVideoLink = dbnullNothing(dictRow.PuddleVideoLink)
+                sign.SignPuddleUser = dbnullNothing(dictRow.SignPuddleUser)
+                sign.SWritingSource = dbnullNothing(dictRow.SWritingSource)
+                sign.SignPuddleId = dbnullNothing(dictRow.IDSignPuddle)
+                sign.SignWriterGuid = dictRow.GUID
+                sign.IsPrivate = dictRow.isPrivate
+
+
+                Dim dtFrameInfo As Database.Dictionary.DictionaryDataSet.FrameDataTable = GetFrameDt(idDictionary, conn, trans)
+                Dim frameRow As Database.Dictionary.DictionaryDataSet.FrameRow
+
+                For Each frameRow In dtFrameInfo.Rows
+                    If frameRow.FrameIndex > sign.Frames.Count - 1 Then
+                        sign.Frames.Add(New SWFrame)
+                    End If
+                    If Not frameRow.FrameIndex > sign.Frames.Count - 1 Then
+                        sign.Frames(frameRow.FrameIndex).MinHeight = frameRow.MinHeight
+                        sign.Frames(frameRow.FrameIndex).MinWidth = frameRow.MinWidth
+                    Else
+                        Const mbo As MessageBoxOptions = MessageBoxOptions.RtlReading And MessageBoxOptions.RightAlign
+                        MessageBox.Show("Error loading Frame from Dictionary", "", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, mbo, False)
+                    End If
+                    'Add Symbols
+
+                    Dim dtSymbolsInfo As Database.Dictionary.DictionaryDataSet.SignSymbolsDataTable = GetSymbolsDt(frameRow.IDFrame, conn, trans)
+
+                    Dim symbolRow As Database.Dictionary.DictionaryDataSet.SignSymbolsRow
+                    For Each symbolRow In dtSymbolsInfo.Rows
+                        Dim symbol As New SWSignSymbol
+                        symbol.Code = symbolRow.code
+                        Try
+                            symbol.Hand = symbolRow.hand
+                        Catch ex As StrongTypingException
+                            symbol.Hand = 0
+                        End Try
+
+                        symbol.Handcolor = symbolRow.handcolor
+                        symbol.Palmcolor = symbolRow.palmcolor
+                        symbol.Size = symbolRow.size
+                        symbol.X = symbolRow.x
+                        symbol.Y = symbolRow.y
+                        symbol.Z = symbolRow.z
+                        'Symbol.Update()
+                        sign.Frames(frameRow.FrameIndex).SignSymbols.Add(symbol.Clone)
+                    Next
+
+                    'Add Sequence
+
+                    Dim dtSequenceInfo As Database.Dictionary.DictionaryDataSet.SignSequenceDataTable = GetSequenceDt(frameRow.IDFrame, conn, trans)
+                    Dim sequenceRow As Database.Dictionary.DictionaryDataSet.SignSequenceRow
+                    For Each sequenceRow In dtSequenceInfo.Rows
+                        Dim sequence As New SWSequence(sequenceRow.code, sequenceRow.rank)
+                        sign.Frames(frameRow.FrameIndex).Sequences.Add(CType(sequence.Clone, SWSequence))
+                    Next
+                    'Add PuddleText
+                    Dim dtPuddleText As Database.Dictionary.DictionaryDataSet.PuddleTextDataTable = GetPuddleTextDt(idDictionary, conn, trans)
+                    Dim puddleTextRow As Database.Dictionary.DictionaryDataSet.PuddleTextRow
+                    For Each puddleTextRow In dtPuddleText.Rows
+                        sign.PuddleText.Add(puddleTextRow.EntryText)
+                    Next
+                Next
+            End If
+        Catch ex As Exception
+            LogError(ex, "")
+            MessageBox.Show(ex.ToString)
+            If trans IsNot Nothing Then trans.Rollback()
+        Finally
+            If trans IsNot Nothing Then trans.Rollback()
+            conn.Close()
+
+        End Try
+
+
+        Return sign
+
+    End Function
+    Private Function dbnullNothing(str As String) As String
+        If IsDbNull(str) Then
+            Return Nothing
+        Else
+            Return str
+        End If
+    End Function
     Private Sub SetBindingSources(dt As DataTable)
 
 
@@ -1760,4 +1880,9 @@ Public NotInheritable Class SWDict
 
         Return dt
     End Function
+
+  
+
+
+
 End Class
