@@ -143,7 +143,7 @@ Public NotInheritable Class SWDict
                 Dim dictionaryGlossTa As New DictionaryGlossTableAdapter
 
                 dictionaryGlossTa.AssignConnection(conn, trans)
-               
+
                 Dim dictionaryId As Long
 
                 For Each sign As SwSign In signs
@@ -1098,7 +1098,6 @@ Public NotInheritable Class SWDict
         dt = dtUnilingual
         Return dt
     End Function
-
     Public Function ConvertUnilingualDttoSWSign(allsigns As DataTable) As List(Of SwSign)
         Dim unilingualDt = CType(allsigns, DictionaryDataSet.SignsbyGlossesUnilingualDataTable)
         Dim signs As New List(Of SwSign)
@@ -1107,13 +1106,20 @@ Public NotInheritable Class SWDict
             Dim sign As SwSign = UnilingualRowtoSign(row)
             signs.Add(sign)
         Next
-
-
         Return signs
     End Function
-    Private Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow) As SwSign
-        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
-        Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
+    Public Function ConvertUnilingualDttoSWSign(allsigns As DataTable, ByVal glosslanguage As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As List(Of SwSign)
+        Dim unilingualDt = CType(allsigns, DictionaryDataSet.SignsbyGlossesUnilingualDataTable)
+        Dim signs As New List(Of SwSign)
+
+        For Each row As DictionaryDataSet.SignsbyGlossesUnilingualRow In unilingualDt.Rows
+            Dim sign As SwSign = UnilingualRowtoSign(row, conn, trans, glosslanguage)
+            signs.Add(sign)
+        Next
+        Return signs
+    End Function
+
+    Private Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction, Optional ByVal glosslanguage As Nullable(Of Integer) = Nothing) As SwSign
         Dim sign = New SwSign
         Try
             Dim idDictionary = row.IDDictionary
@@ -1121,12 +1127,13 @@ Public NotInheritable Class SWDict
             Dim dtDictionary As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
             If dtDictionary.Count >= 1 Then
                 Dim dictRow = dtDictionary(0)
-               
+
                 sign.BkColor = Color.FromArgb(dictRow.bkColor)
 
                 sign.Gloss = dbnullNothing(row.gloss1)
                 sign.Glosses = dbnullNothing(row.glosses1)
-                sign.SetlanguageIso(My.Settings.FirstGlossLanguage)
+                Dim gl As Integer = If(glosslanguage.HasValue, glosslanguage.Value, My.Settings.FirstGlossLanguage)
+                sign.SetlanguageIso(gl)
 
                 sign.SetSignLanguageIso(CInt(row.IDSignLanguage))
                 sign.Created = dictRow.Created
@@ -1202,15 +1209,25 @@ Public NotInheritable Class SWDict
             LogError(ex, "")
             MessageBox.Show(ex.ToString)
             If trans IsNot Nothing Then trans.Rollback()
+        End Try
+        Return sign
+    End Function
+
+    Private Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow) As SwSign
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
+
+        Try
+            Return UnilingualRowtoSign(row, conn, trans)
+        Catch ex As Exception
+            LogError(ex, "")
+            MessageBox.Show(ex.ToString)
+            If trans IsNot Nothing Then trans.Rollback()
         Finally
             If trans IsNot Nothing Then trans.Rollback()
             conn.Close()
 
         End Try
-
-
-        Return sign
-
     End Function
     Private Function dbnullNothing(str As String) As String
         If IsDbNull(str) Then
@@ -1829,7 +1846,7 @@ Public NotInheritable Class SWDict
         Return dt
     End Function
 
-  
+
 
 
 

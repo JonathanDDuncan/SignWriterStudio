@@ -11,6 +11,7 @@ Public Class CompareSigns
 
     Public Sub New(ByVal connectionString As String)
         _connectionString = connectionString
+        InitializeComponent()
     End Sub
 
     Private Sub CompareSigns_Load(sender As Object, e As EventArgs) Handles Me.Load

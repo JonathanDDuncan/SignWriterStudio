@@ -557,7 +557,6 @@ Partial Class SWDictForm
         Me.ImportSWSFileToolStripMenuItem.Name = "ImportSWSFileToolStripMenuItem"
         Me.ImportSWSFileToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
         Me.ImportSWSFileToolStripMenuItem.Text = "Import SWS File"
-        Me.ImportSWSFileToolStripMenuItem.Visible = False
         '
         'TSMIEdit
         '

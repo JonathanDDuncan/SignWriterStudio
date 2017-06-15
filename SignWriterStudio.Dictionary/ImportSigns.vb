@@ -199,14 +199,26 @@ Public Class ImportSigns
     End Function
     Private Function GetsignsfromSwsfile(swsfilename As String, signlanguage As Integer, glosslanguage As Integer) As List(Of SwSign)
         Dim signs As List(Of SwSign)
-        Dim dict = New SWDict("data source=""" & swsfilename & """")
+        Dim swsconnectionstring = "data source=""" & swsfilename & """"
+        Dim dict = New SWDict(swsconnectionstring)
         dict.FirstGlossLanguage = glosslanguage
         dict.DefaultSignLanguage = signlanguage
 
         Dim allsigns = dict.GetAllSignsUnilingualDt()
 
-        signs = dict.ConvertUnilingualDttoSWSign(allsigns)
-         
+        Dim conn = SWDict.GetNewDictionaryConnection(swsconnectionstring)
+        Dim trans = SWDict.GetNewDictionaryTransaction(conn)
+        Try
+            signs = dict.ConvertUnilingualDttoSWSign(allsigns, glosslanguage, conn, trans)
+        Catch ex As Exception
+            LogError(ex, "")
+            MessageBox.Show(ex.ToString)
+            If trans IsNot Nothing Then trans.Rollback()
+        Finally
+            If trans IsNot Nothing Then trans.Rollback()
+            conn.Close()
+
+        End Try
         Return signs
     End Function
 
