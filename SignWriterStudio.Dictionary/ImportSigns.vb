@@ -51,14 +51,15 @@ Public Class ImportSigns
         Dim classifiedSigns As Tuple(Of List(Of SwSign), List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow, Boolean)), List(Of SwSign))
         classifiedSigns = ClassifySigns(signs)
 
-        Dim selectedSigns As List(Of Tuple(Of SwSign, DictionaryDataSet.DictionaryRow))
-        selectedSigns = SelectComparedSigns(classifiedSigns.Item2)
+        Dim selectedSigns = SelectComparedSigns(classifiedSigns.Item2)
 
-        ShowProgressBar(classifiedSigns.Item1.Count, selectedSigns.Count, classifiedSigns.Item3.Count, 0, "SignWriter Studio™ Importing ...")
+        Dim signstoAdd = SelectaddSigns(classifiedSigns.Item3)
+
+        ShowProgressBar(classifiedSigns.Item1.Count, selectedSigns.Count, signstoAdd.Count, 0, "SignWriter Studio™ Importing ...")
 
         UpdateSigns(selectedSigns)
 
-        AddSigns(classifiedSigns.Item3)
+        AddSigns(signstoAdd)
 
     End Sub
     Private Function SelectedSignsToCollection(SelectedSigns As  _
@@ -161,6 +162,23 @@ Public Class ImportSigns
 
         End If
         Return signsToOverwrite
+    End Function
+    Private Function SelectaddSigns(ByVal signsToAdd As List(Of SwSign)) As List(Of SwSign)
+        Dim signsSelected As New List(Of SwSign)
+        Dim compareSigns As New CompareSigns(DictionaryConnectionString)
+        If signsToAdd.Count > 0 Then
+
+            compareSigns.SignsToAdd = signsToAdd
+            compareSigns.ShowDialog()
+
+            For Each Item In compareSigns.ListToAdd
+                If Item.OverwritefromPuddle Then
+                    signsSelected.Add(Item.puddleSign)
+                End If
+            Next
+
+        End If
+        Return signsSelected
     End Function
 
 
@@ -298,7 +316,7 @@ Public Class ImportSigns
                                      signsToAddCount)
     End Sub
 
-   
+
 
 End Class
 
