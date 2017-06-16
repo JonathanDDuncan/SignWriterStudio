@@ -28,7 +28,6 @@ Public Class CompareSigns
 
             BindingSourceCompare.DataSource = listtoShow1
             DataGridViewCompare.DataSource = BindingSourceCompare
-            PuddleGloss.DataPropertyName = "Importing Gloss"
         ElseIf SignsToAdd IsNot Nothing Then
             Dim listtoShow2 As BindingList(Of AddItem) = PrepareListtoShow(SignsToAdd)
 
@@ -104,8 +103,6 @@ Public Class CompareSigns
                     AddItem.puddleSource = SigntoAdd.SWritingSource
                     AddItem.puddleSign = SigntoAdd
                     AddItem.OverwritefromPuddle = False
-
-
 
                     ListToAdd.Add(AddItem)
                 Next
