@@ -23,6 +23,10 @@ Partial Class CompareSigns
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -30,11 +34,6 @@ Partial Class CompareSigns
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CompareSigns))
         Me.DataGridViewCompare = New System.Windows.Forms.DataGridView()
         Me.BindingSourceCompare = New System.Windows.Forms.BindingSource(Me.components)
@@ -42,6 +41,13 @@ Partial Class CompareSigns
         Me.btnContinue = New System.Windows.Forms.Button()
         Me.BindingSourceAdd = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataGridAdd = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewImageColumn1 = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuddleSign = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OverwritefromPuddle = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.PuddleGloss = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PuddleGlosses = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -53,13 +59,6 @@ Partial Class CompareSigns
         Me.StudioImage = New System.Windows.Forms.DataGridViewImageColumn()
         Me.StudioModified = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StudioSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewImageColumn1 = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PuddleSign = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridViewCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSourceCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,111 +124,6 @@ Partial Class CompareSigns
         Me.DataGridAdd.Size = New System.Drawing.Size(1144, 519)
         Me.DataGridAdd.TabIndex = 1
         '
-        'OverwritefromPuddle
-        '
-        Me.OverwritefromPuddle.DataPropertyName = "OverwritefromPuddle"
-        Me.OverwritefromPuddle.HeaderText = "Update"
-        Me.OverwritefromPuddle.Name = "OverwritefromPuddle"
-        Me.OverwritefromPuddle.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.OverwritefromPuddle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.OverwritefromPuddle.Width = 60
-        '
-        'PuddleGloss
-        '
-        Me.PuddleGloss.DataPropertyName = "PuddleGloss"
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PuddleGloss.DefaultCellStyle = DataGridViewCellStyle1
-        Me.PuddleGloss.HeaderText = "Import Gloss"
-        Me.PuddleGloss.Name = "PuddleGloss"
-        Me.PuddleGloss.ReadOnly = True
-        '
-        'PuddleGlosses
-        '
-        Me.PuddleGlosses.DataPropertyName = "PuddleGlosses"
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PuddleGlosses.DefaultCellStyle = DataGridViewCellStyle2
-        Me.PuddleGlosses.HeaderText = "Import Glosses"
-        Me.PuddleGlosses.Name = "PuddleGlosses"
-        Me.PuddleGlosses.ReadOnly = True
-        '
-        'PuddleImage
-        '
-        Me.PuddleImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.PuddleImage.DataPropertyName = "PuddleImage"
-        Me.PuddleImage.HeaderText = "Import Sign"
-        Me.PuddleImage.MinimumWidth = 100
-        Me.PuddleImage.Name = "PuddleImage"
-        Me.PuddleImage.ReadOnly = True
-        Me.PuddleImage.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PuddleImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'PuddleModified
-        '
-        Me.PuddleModified.DataPropertyName = "PuddleModified"
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PuddleModified.DefaultCellStyle = DataGridViewCellStyle3
-        Me.PuddleModified.HeaderText = "Import Modified Date"
-        Me.PuddleModified.Name = "PuddleModified"
-        Me.PuddleModified.ReadOnly = True
-        Me.PuddleModified.Width = 110
-        '
-        'PuddleSource
-        '
-        Me.PuddleSource.DataPropertyName = "PuddleSource"
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PuddleSource.DefaultCellStyle = DataGridViewCellStyle4
-        Me.PuddleSource.HeaderText = "Import Source"
-        Me.PuddleSource.Name = "PuddleSource"
-        Me.PuddleSource.ReadOnly = True
-        '
-        'StudioGloss
-        '
-        Me.StudioGloss.DataPropertyName = "StudioGloss"
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.StudioGloss.DefaultCellStyle = DataGridViewCellStyle5
-        Me.StudioGloss.HeaderText = "Existing Gloss"
-        Me.StudioGloss.Name = "StudioGloss"
-        Me.StudioGloss.ReadOnly = True
-        '
-        'StudioGlosses
-        '
-        Me.StudioGlosses.DataPropertyName = "StudioGlosses"
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.StudioGlosses.DefaultCellStyle = DataGridViewCellStyle6
-        Me.StudioGlosses.HeaderText = "Existing Glosses"
-        Me.StudioGlosses.Name = "StudioGlosses"
-        Me.StudioGlosses.ReadOnly = True
-        '
-        'StudioImage
-        '
-        Me.StudioImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.StudioImage.DataPropertyName = "StudioImage"
-        Me.StudioImage.HeaderText = "Existing Sign"
-        Me.StudioImage.MinimumWidth = 100
-        Me.StudioImage.Name = "StudioImage"
-        Me.StudioImage.ReadOnly = True
-        Me.StudioImage.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.StudioImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'StudioModified
-        '
-        Me.StudioModified.DataPropertyName = "StudioModified"
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.StudioModified.DefaultCellStyle = DataGridViewCellStyle7
-        Me.StudioModified.HeaderText = "Existing Modified Date"
-        Me.StudioModified.Name = "StudioModified"
-        Me.StudioModified.ReadOnly = True
-        Me.StudioModified.Width = 110
-        '
-        'StudioSource
-        '
-        Me.StudioSource.DataPropertyName = "StudioSource"
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.StudioSource.DefaultCellStyle = DataGridViewCellStyle8
-        Me.StudioSource.HeaderText = "Existing Source"
-        Me.StudioSource.Name = "StudioSource"
-        Me.StudioSource.ReadOnly = True
-        '
         'DataGridViewCheckBoxColumn1
         '
         Me.DataGridViewCheckBoxColumn1.DataPropertyName = "OverwritefromPuddle"
@@ -242,8 +136,8 @@ Partial Class CompareSigns
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.DataPropertyName = "PuddleGloss"
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewTextBoxColumn1.HeaderText = "Gloss"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
@@ -251,8 +145,8 @@ Partial Class CompareSigns
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.DataPropertyName = "PuddleGlosses"
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewTextBoxColumn2.HeaderText = "Glosses"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.ReadOnly = True
@@ -271,8 +165,8 @@ Partial Class CompareSigns
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.DataPropertyName = "PuddleModified"
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridViewTextBoxColumn3.HeaderText = "Modified"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.ReadOnly = True
@@ -281,8 +175,8 @@ Partial Class CompareSigns
         'DataGridViewTextBoxColumn4
         '
         Me.DataGridViewTextBoxColumn4.DataPropertyName = "PuddleSource"
-        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewTextBoxColumn4.HeaderText = "Source"
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         Me.DataGridViewTextBoxColumn4.ReadOnly = True
@@ -293,6 +187,109 @@ Partial Class CompareSigns
         Me.PuddleSign.HeaderText = "Sign"
         Me.PuddleSign.Name = "PuddleSign"
         Me.PuddleSign.Visible = False
+        '
+        'OverwritefromPuddle
+        '
+        Me.OverwritefromPuddle.DataPropertyName = "OverwritefromPuddle"
+        Me.OverwritefromPuddle.HeaderText = "Update"
+        Me.OverwritefromPuddle.Name = "OverwritefromPuddle"
+        Me.OverwritefromPuddle.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.OverwritefromPuddle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.OverwritefromPuddle.Width = 60
+        '
+        'PuddleGloss
+        '
+        Me.PuddleGloss.DataPropertyName = "PuddleGloss"
+        Me.PuddleGloss.HeaderText = "Import Gloss"
+        Me.PuddleGloss.Name = "PuddleGloss"
+        Me.PuddleGloss.ReadOnly = True
+        '
+        'PuddleGlosses
+        '
+        Me.PuddleGlosses.DataPropertyName = "PuddleGlosses"
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PuddleGlosses.DefaultCellStyle = DataGridViewCellStyle1
+        Me.PuddleGlosses.HeaderText = "Import Glosses"
+        Me.PuddleGlosses.Name = "PuddleGlosses"
+        Me.PuddleGlosses.ReadOnly = True
+        '
+        'PuddleImage
+        '
+        Me.PuddleImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.PuddleImage.DataPropertyName = "PuddleImage"
+        Me.PuddleImage.HeaderText = "Import Sign"
+        Me.PuddleImage.MinimumWidth = 100
+        Me.PuddleImage.Name = "PuddleImage"
+        Me.PuddleImage.ReadOnly = True
+        Me.PuddleImage.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PuddleImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'PuddleModified
+        '
+        Me.PuddleModified.DataPropertyName = "PuddleModified"
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PuddleModified.DefaultCellStyle = DataGridViewCellStyle2
+        Me.PuddleModified.HeaderText = "Import Modified Date"
+        Me.PuddleModified.Name = "PuddleModified"
+        Me.PuddleModified.ReadOnly = True
+        Me.PuddleModified.Width = 110
+        '
+        'PuddleSource
+        '
+        Me.PuddleSource.DataPropertyName = "PuddleSource"
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PuddleSource.DefaultCellStyle = DataGridViewCellStyle3
+        Me.PuddleSource.HeaderText = "Import Source"
+        Me.PuddleSource.Name = "PuddleSource"
+        Me.PuddleSource.ReadOnly = True
+        '
+        'StudioGloss
+        '
+        Me.StudioGloss.DataPropertyName = "StudioGloss"
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.StudioGloss.DefaultCellStyle = DataGridViewCellStyle4
+        Me.StudioGloss.HeaderText = "Existing Gloss"
+        Me.StudioGloss.Name = "StudioGloss"
+        Me.StudioGloss.ReadOnly = True
+        '
+        'StudioGlosses
+        '
+        Me.StudioGlosses.DataPropertyName = "StudioGlosses"
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.StudioGlosses.DefaultCellStyle = DataGridViewCellStyle5
+        Me.StudioGlosses.HeaderText = "Existing Glosses"
+        Me.StudioGlosses.Name = "StudioGlosses"
+        Me.StudioGlosses.ReadOnly = True
+        '
+        'StudioImage
+        '
+        Me.StudioImage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.StudioImage.DataPropertyName = "StudioImage"
+        Me.StudioImage.HeaderText = "Existing Sign"
+        Me.StudioImage.MinimumWidth = 100
+        Me.StudioImage.Name = "StudioImage"
+        Me.StudioImage.ReadOnly = True
+        Me.StudioImage.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.StudioImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StudioModified
+        '
+        Me.StudioModified.DataPropertyName = "StudioModified"
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.StudioModified.DefaultCellStyle = DataGridViewCellStyle6
+        Me.StudioModified.HeaderText = "Existing Modified Date"
+        Me.StudioModified.Name = "StudioModified"
+        Me.StudioModified.ReadOnly = True
+        Me.StudioModified.Width = 110
+        '
+        'StudioSource
+        '
+        Me.StudioSource.DataPropertyName = "StudioSource"
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.StudioSource.DefaultCellStyle = DataGridViewCellStyle7
+        Me.StudioSource.HeaderText = "Existing Source"
+        Me.StudioSource.Name = "StudioSource"
+        Me.StudioSource.ReadOnly = True
         '
         'CompareSigns
         '
@@ -320,6 +317,13 @@ Partial Class CompareSigns
     Friend WithEvents btnContinue As System.Windows.Forms.Button
     Friend WithEvents DataGridAdd As System.Windows.Forms.DataGridView
     Friend WithEvents BindingSourceAdd As System.Windows.Forms.BindingSource
+    Friend WithEvents DataGridViewCheckBoxColumn1 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewImageColumn1 As System.Windows.Forms.DataGridViewImageColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PuddleSign As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents OverwritefromPuddle As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents PuddleGloss As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PuddleGlosses As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -331,11 +335,4 @@ Partial Class CompareSigns
     Friend WithEvents StudioImage As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents StudioModified As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents StudioSource As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewCheckBoxColumn1 As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewImageColumn1 As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PuddleSign As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

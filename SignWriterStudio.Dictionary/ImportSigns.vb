@@ -129,7 +129,7 @@ Public Class ImportSigns
                                                                          Sign.SignWriterGuid)
                 If foundbyGuid IsNot Nothing Then
 
-                    If Not Date.Compare(Sign.LastModified, foundbyGuid.LastModified) = 0 Then
+                    If Date.Compare(Sign.LastModified, foundbyGuid.LastModified) > 0 Then
                         signstoCompare.Add(Tuple.Create(Sign, foundbyGuid, True))
                     Else
                         signsNotModified.Add(Sign)
