@@ -35,7 +35,7 @@ function denormalizesign(sign) {
     var symbolszoom = sign ? (sign.styling ? sign.styling.symbolszoom : []) : []
     syms = denormalizesymbols(symbols, symbolscolors, symbolszoom);
     newsign.syms = syms;
-    console.log(JSON.stringify(newsign), null, 2);
+
     return newsign;
 };
 
