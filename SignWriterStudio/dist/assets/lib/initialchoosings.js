@@ -64,8 +64,8 @@ function denormalizesymbols(symbols, symbolscolors, symbolszoom) {
         symbolscolors.forEach(function (element) {
             var symbol = getsymbol(element.index, newsymbols)
             if (symbol) {
-                symbol.nwcolor = element.fore;
-                symbol.nbcolor = element.back;
+                symbol.nwcolor = element.back;
+                symbol.nbcolor = element.fore;
             }
         }, this);
     }
