@@ -29,15 +29,15 @@ Public Module StringParser
         Return result.Where(Function(s) s.Contains("C")).ToList()
     End Function
     <Extension()>
-    Public Function GetSymbolIndex(stylingStr As String) As Integer
-        Const pattern As String = "(C\d\d)"
+    Public Function GetSymbolIndex(stylingStr As String, prefix As String) As Integer
+        Dim pattern As String = "(" & prefix & "\d\d)"
 
-        Dim result = Regex.Match(stylingStr, pattern).Value.Replace("C", "")
+        Dim result = Regex.Match(stylingStr, pattern).Value.Replace(prefix, "")
         Return Convert.ToInt32(result)
     End Function
     <Extension()>
     Public Function GetSize(stylingStr As String) As Double
-        Const pattern As String = "(,\d+\.?(\d+)?)"
+        Const pattern As String = "(,\d+(?:\.\d+)?)"
 
         Dim result = Regex.Match(stylingStr, pattern).Value.Replace(",", "")
         Return Convert.ToDouble(result)
@@ -53,10 +53,10 @@ Public Module StringParser
 
     <Extension()>
     Public Function getSymbolsSizes(stylingStr As String) As List(Of String)
-        Const pattern As String = "(Z\d\d,\d+\.?(\d+)?)"
+        Const pattern As String = "(Z\d\d,\d+(?:\.\d+)?)"
 
-        Dim result = Regex.Split(stylingStr, pattern).Where(Function(s) s.Contains("Z"))
-        Return result.ToList()
+        Dim result = Regex.Split(stylingStr, pattern)
+        Return result.Where(Function(s) s.Contains("Z")).ToList()
     End Function
 
     Friend Function SplitSymbolBuildStr(ByVal buildStr As String) As List(Of String)

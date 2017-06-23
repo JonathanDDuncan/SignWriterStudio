@@ -292,7 +292,7 @@ Public NotInheritable Class SpmlConverter
     Private Shared Function ParseColors(colors As List(Of String)) As List(Of Tuple(Of Integer, String, String))
         Dim resultList = New List(Of Tuple(Of Integer, String, String))
         For Each str As String In colors
-            Dim symbolIndex = GetSymbolIndex(str)
+            Dim symbolIndex = GetSymbolIndex(str, "C")
             Dim colorString As String = GetColorString(str)
             Dim split1 As String() = Split(colorString, ",")
             Dim firstcolor = String.Empty
@@ -312,7 +312,7 @@ Public NotInheritable Class SpmlConverter
     Private Shared Function ParseSizes(sizes As List(Of String)) As List(Of Tuple(Of Integer, Double))
         Dim resultList = New List(Of Tuple(Of Integer, Double))
         For Each str As String In sizes
-            Dim symbolIndex = GetSymbolIndex(str)
+            Dim symbolIndex = GetSymbolIndex(str, "Z")
             Dim size = GetSize(str)
             resultList.Add(Tuple.Create(symbolIndex, size))
         Next
@@ -1094,7 +1094,11 @@ Public NotInheritable Class SpmlConverter
     End Function
 
     Private Function Rgb(ByVal color1 As Color) As String
-        Return Hex(color1.ToArgb()).Substring(2, 6).ToLowerInvariant
+        Dim res1 = Hex(color1.ToArgb())
+        If res1 = "0" Then
+            res1 = "00000000"
+        End If
+        Return res1.Substring(2, 6).ToLowerInvariant
     End Function
 
     Private Function GetSymbolZoom(ByVal index As Integer, ByVal symbol As SWSignSymbol) As String
