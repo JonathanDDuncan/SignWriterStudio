@@ -599,10 +599,18 @@ Partial Public Class Editor
     Private Function FrameLoadEnd(sender As IWebBrowser, args As FrameLoadEndEventArgs) As EventHandler(Of FrameLoadEndEventArgs)
         'Wait for the MainFrame to finish loading
         If (args.Frame.IsMain) Then
-
             Dim script As String = "window.initialFSW = '" & FSW & "';" & vbCrLf &
-            "var sign = ssw.symbolsList(window.initialFSW);" & vbCrLf &
-            "app.ports.receiveSign.send(sign);"
+                " console.log('outgoingfsw: '); " & vbCrLf &
+                " console.log(window.initialFSW); " & vbCrLf &
+                " function loadfsw(fsw) { " & vbCrLf &
+                " try { " & vbCrLf &
+                " var signparser = peg.generate(fswpeg.sign); " & vbCrLf &
+                " var parsed = signparser.parse(fsw); " & vbCrLf &
+                " var sign = denormalizesign(parsed); " & vbCrLf &
+                " app.ports.loadPortableSign.send(sign); " & vbCrLf &
+                " } catch (e) { console.log(e) } " & vbCrLf &
+                "} " & vbCrLf &
+                "loadfsw(window.initialFSW); "
 
             args.Frame.ExecuteJavaScriptAsync(script)
         End If
