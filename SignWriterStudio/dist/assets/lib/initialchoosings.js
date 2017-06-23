@@ -60,26 +60,28 @@ function denormalizesymbols(symbols, symbolscolors, symbolszoom) {
         newsymbols.push(newsymbol)
     }, this);
 
-
-    symbolscolors.forEach(function (element) {
-        var symbol = getsymbol(element.index, newsymbols)
-        if (symbol) {
-            symbol.nwcolor = element.fore;
-            symbol.nbcolor = element.back;
-        }
-    }, this);
-
-    symbolszoom.forEach(function (element) {
-        var symbol = getsymbol(element.index, newsymbols)
-        if (symbol) {
-            symbol.size = element.zoom;
-            symbol.fontsize = symbol.fontsize * element.zoom;
-            if (element.offset) {
-                symbol.x = symbol.x + element.offset.x - 500;
-                symbol.y = symbol.y + element.offset.y - 500;
+    if (symbolscolors) {
+        symbolscolors.forEach(function (element) {
+            var symbol = getsymbol(element.index, newsymbols)
+            if (symbol) {
+                symbol.nwcolor = element.fore;
+                symbol.nbcolor = element.back;
             }
-        }
-    }, this);
+        }, this);
+    }
+    if (symbolszoom) {
+        symbolszoom.forEach(function (element) {
+            var symbol = getsymbol(element.index, newsymbols)
+            if (symbol) {
+                symbol.size = element.zoom;
+                symbol.fontsize = symbol.fontsize * element.zoom;
+                if (element.offset) {
+                    symbol.x = symbol.x + element.offset.x - 500;
+                    symbol.y = symbol.y + element.offset.y - 500;
+                }
+            }
+        }, this);
+    }
 
     return newsymbols;
 };
