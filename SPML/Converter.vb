@@ -197,6 +197,7 @@ Public NotInheritable Class SpmlConverter
         Dim newSign As New SwSign
         Dim sequenceStr As String
         Dim symbolsStr As String
+        Dim stylingStr As String
 
         newSign.SetlanguageIso(idCulture)
         newSign.SetSignLanguageIso(idSignLanguage)
@@ -205,6 +206,7 @@ Public NotInheritable Class SpmlConverter
 
         sequenceStr = fsw.GetSequenceBuildStr()
         symbolsStr = fsw.GetSymbolsBuildStr()
+        stylingStr = fsw.GetSytlingStr()
 
         For Each Symbol In SpmlSymbolsToSwSymbols(symbolsStr)
             Symbol.Handcolor = Color.Black.ToArgb
@@ -222,9 +224,103 @@ Public NotInheritable Class SpmlConverter
 
         newSign.Frames(0).CenterSymbols()
 
+        Dim symbolColors = ParseColors(getSymbolsColors(stylingStr))
+        Dim symbolSizes = ParseSizes(getSymbolsSizes(stylingStr))
+
+        ApplyColors(newSign, symbolColors)
+        ApplySizes(newSign, symbolSizes)
+
         Return newSign
     End Function
+    Private Shared Sub ApplyColors(newSign As SwSign, symbolColors As List(Of Tuple(Of Integer, String, String)))
+        Dim symbols = newSign.Frames(0).SignSymbols
 
+
+        For Each item As Tuple(Of Integer, String, String) In symbolColors
+            Dim symbol = FindSymbol(item.Item1, symbols)
+            If symbol IsNot Nothing Then
+                Dim color = getColor(item.Item2)
+                symbol.Handcolor = color
+            End If
+            If symbol IsNot Nothing Then
+                Dim color = getColor(item.Item3)
+                symbol.Palmcolor = color
+            End If
+        Next
+ 
+    End Sub
+    Private Shared Function getColor(str As String) As Integer
+        Dim colorint As Integer
+        If Not str = String.Empty Then
+            Dim hexcolor = ColorFromHex(str)
+            If Not hexcolor.HasValue Then
+                Dim color As Color = color.FromName(str)
+                colorint = color.ToArgb()
+            Else
+                colorint = hexcolor.Value.ToArgb()
+            End If
+        End If
+        Return colorint
+    End Function
+    Private Shared Function ColorFromHex(str As String) As Nullable(Of Color)
+        If str.Length = 6 AndAlso IsHex(str) Then
+            Dim r = Convert.ToInt32(str.Substring(0, 2), 16)
+            Dim g = Convert.ToInt32(str.Substring(2, 2), 16)
+            Dim b = Convert.ToInt32(str.Substring(4, 2), 16)
+            Return Color.FromArgb(r, g, b)
+        End If
+        Return Nothing
+    End Function
+    Private Shared Function IsHex(str As String) As Boolean
+        Return str.All(Function(c) c Like "[0-9a-hA-H]")
+    End Function
+    Private Shared Sub ApplySizes(newSign As SwSign, symbolSizes As List(Of Tuple(Of Integer, Double)))
+        Dim symbols = newSign.Frames(0).SignSymbols
+        For Each item As Tuple(Of Integer, Double) In symbolSizes
+            Dim symbol = FindSymbol(item.Item1, symbols)
+            If symbol IsNot Nothing Then
+                symbol.Size = item.Item2
+            End If
+        Next
+    End Sub
+    Private Shared Function FindSymbol(index As Integer, symbols As List(Of SWSignSymbol)) As SWSignSymbol
+        If symbols.Count >= index Then
+            Return symbols(index - 1)
+        End If
+        Return Nothing
+    End Function
+    Private Shared Function ParseColors(colors As List(Of String)) As List(Of Tuple(Of Integer, String, String))
+        Dim resultList = New List(Of Tuple(Of Integer, String, String))
+        For Each str As String In colors
+            Dim symbolIndex = GetSymbolIndex(str)
+            Dim colorString As String = GetColorString(str)
+            Dim split1 As String() = Split(colorString, ",")
+            Dim firstcolor = String.Empty
+            Dim secondcolor = String.Empty
+
+            If split1.Length >= 1 Then
+                firstcolor = split1(0)
+            End If
+            If split1.Length >= 2 Then
+                secondcolor = split1(1)
+            End If
+            resultList.Add(Tuple.Create(symbolIndex, firstcolor, secondcolor))
+        Next
+        Return resultList
+    End Function
+
+    Private Shared Function ParseSizes(sizes As List(Of String)) As List(Of Tuple(Of Integer, Double))
+        Dim resultList = New List(Of Tuple(Of Integer, Double))
+        For Each str As String In sizes
+            Dim symbolIndex = GetSymbolIndex(str)
+            Dim size = GetSize(str)
+            resultList.Add(Tuple.Create(symbolIndex, size))
+        Next
+        Return resultList
+    End Function
+
+
+ 
     Private Shared Function SymbolExists(ByVal seq As Integer) As Boolean
         Dim symbol = New SWSymbol()
         symbol.Code = seq
@@ -1150,6 +1246,13 @@ Public NotInheritable Class SpmlConverter
         y -= 500
         Return x & "x" & y
     End Function
+
+  
+ 
+   
+
+
+   
 End Class
 
 Public Class ExportSettings

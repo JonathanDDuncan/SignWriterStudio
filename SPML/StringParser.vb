@@ -4,20 +4,59 @@ Imports System.Text.RegularExpressions
 Public Module StringParser
     <Extension()>
     Public Function GetSequenceBuildStr(str As String) As String
-        Const pattern As String = "A[^>MLR]*"
+        Const pattern As String = "(A(S[123][0-9a-f]{2}[0-5][0-9a-f])+)"
         Return Regex.Match(str, pattern).Value
     End Function
     <Extension()>
     Public Function GetSymbolsBuildStr(str As String) As String
-        Const pattern As String = "[MLR].*$"
+        Const pattern As String = "[BLMR]([0-9]{3}x[0-9]{3})(S[123][0-9a-f]{2}[0-5][0-9a-f][0-9]{3}x[0-9]{3})*"
         Dim signBoxResult = Regex.Match(str, pattern).Value
 
-        If signBoxResult = String.Empty Then
-            Dim punctuation = getPunctuation(str)
-            Return punctuation
-        End If
-
         Return signBoxResult
+    End Function
+    <Extension()>
+    Public Function GetSytlingStr(str As String) As String
+        Const pattern As String = "(-.*)"
+        Dim result = Regex.Match(str, pattern).Value
+
+        Return result
+    End Function
+    <Extension()>
+    Public Function getSymbolsColors(stylingStr As String) As List(Of String)
+        Const pattern As String = "(C\d\d_([\da-f]{6}|[\da-f]{6},[\da-f]{6}|[^_]+,[^_]+|[^_]+)_)"
+
+        Dim result = Regex.Split(stylingStr, pattern)
+        Return result.Where(Function(s) s.Contains("C")).ToList()
+    End Function
+    <Extension()>
+    Public Function GetSymbolIndex(stylingStr As String) As Integer
+        Const pattern As String = "(C\d\d)"
+
+        Dim result = Regex.Match(stylingStr, pattern).Value.Replace("C", "")
+        Return Convert.ToInt32(result)
+    End Function
+    <Extension()>
+    Public Function GetSize(stylingStr As String) As Double
+        Const pattern As String = "(,\d+\.?(\d+)?)"
+
+        Dim result = Regex.Match(stylingStr, pattern).Value.Replace(",", "")
+        Return Convert.ToDouble(result)
+    End Function
+    <Extension()>
+    Public Function GetColorString(stylingStr As String) As String
+        Const pattern As String = "(_([\da-f]{6}|[\da-f]{6},[\da-f]{6}|[^_]+,[^_]+|[^_]+)_)"
+
+        Dim result = Regex.Match(stylingStr, pattern).Value.Replace("_", "")
+        Return result
+    End Function
+ 
+
+    <Extension()>
+    Public Function getSymbolsSizes(stylingStr As String) As List(Of String)
+        Const pattern As String = "(Z\d\d,\d+\.?(\d+)?)"
+
+        Dim result = Regex.Split(stylingStr, pattern).Where(Function(s) s.Contains("Z"))
+        Return result.ToList()
     End Function
 
     Friend Function SplitSymbolBuildStr(ByVal buildStr As String) As List(Of String)
