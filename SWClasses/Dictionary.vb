@@ -1326,6 +1326,7 @@ Public NotInheritable Class SWDict
             row.Item("GUID") = dict.Item("GUID")
             row.Item("LastModified") = dict.Item("LastModified")
             row.Item("Sorting") = dict.Item("Sorting")
+            row.Item("VideoUrl") = dict.Item("PuddleVideoLink")
             Dim tags = StringToList(dict.Item("Tags"))
             If (tags IsNot Nothing) Then
                 row.Item("Tags") = tags

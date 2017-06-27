@@ -5,13 +5,13 @@ Namespace SignsbyGlosses
     Public Class SignsbyGlossesBilingual
         Private Shared ReadOnly BaseQryStr = _
             "SELECT Joinner.IDDictionary AS IDDictionary, Joinner.IDSignLanguage AS IDSignLanguage, Joinner.IDSignPuddle AS IDSignPuddle, Joinner.isPrivate AS isPrivate, " & _
-            "Joinner.SWriting AS SWriting, Joinner.Photo AS Photo, Joinner.Sign AS Sign, Joinner.SWritingSource AS SWritingSource, Joinner.PhotoSource AS PhotoSource, " & _
+            "Joinner.SWriting AS SWriting, Joinner.Photo AS Photo, Joinner.Sign AS Sign, Joinner.SWritingSource AS SWritingSource, Joinner.PhotoSource AS PhotoSource, Joinner.PuddleVideoLink as PuddleVideoLink, " & _
             "Joinner.SignSource AS SignSource, Joinner.GUID AS GUID, Joinner.LastModified AS LastModified, TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, " & _
             "TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, TableLanguage1.glosses AS glosses1, " & _
             "TableLanguage2.IDDictionaryGloss AS IDDictionaryGloss2, TableLanguage2.IDCulture AS Culture2, TableLanguage2.gloss AS gloss2, " & _
             "TableLanguage2.glosses AS glosses2,TagsList.Tags AS Tags, Joinner.Sorting as Sorting " & _
             "FROM (SELECT IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, " & _
-            "PhotoSource, SignSource, GUID, LastModified, Sorting " & _
+            "PhotoSource, SignSource, GUID, LastModified, Sorting, PuddleVideoLink " & _
             "FROM Dictionary) Joinner LEFT OUTER JOIN " & _
             "(SELECT IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses " & _
             "FROM DictionaryGloss DictionaryGloss_1 " & _

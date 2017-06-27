@@ -15,6 +15,8 @@ Public Class DictionaryDataGridTable
         AddColumn(New DataColumn("IllustrationHeight", GetType(Int32)))
         AddColumn(New DataColumn("SignWidth", GetType(Int32)))
         AddColumn(New DataColumn("SignHeight", GetType(Int32)))
+        AddColumn(New DataColumn("VideoUrl", GetType(String)))
+
     End Sub
 
     Private Sub AddColumn(ByVal dataColumn As DataColumn)
