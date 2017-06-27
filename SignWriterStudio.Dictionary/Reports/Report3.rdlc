@@ -444,32 +444,8 @@
           <DataField>Sorting</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PuddleTop">
-          <DataField>PuddleTop</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="PuddleVideoLink">
           <DataField>PuddleVideoLink</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PuddleSVG">
-          <DataField>PuddleSVG</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PuddlePNG">
-          <DataField>PuddlePNG</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PuddleNext">
-          <DataField>PuddleNext</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PuddlePrev">
-          <DataField>PuddlePrev</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SignPuddleUser">
-          <DataField>SignPuddleUser</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Tags">

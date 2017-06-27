@@ -1727,43 +1727,28 @@ WHERE           (Dictionary.IDSignLanguage = @IDSL) AND (Dictionary.IDDictionary
               <DbSource ConnectionRef="test1ConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fillby" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fillby" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fillby">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT          Joinner.IDDictionary, Joinner.IDSignLanguage, Joinner.IDSignPuddle, Joinner.isPrivate, 
-Joinner.SWriting, Joinner.Photo, Joinner.Sign, Joinner.SWritingSource,
-                                 Joinner.PhotoSource, Joinner.SignSource, Joinner.GUID, 
-Joinner.LastModified, 
-
-Joinner.PuddleTop as PuddleTop , Joinner.PuddleVideoLink as PuddleVideoLink, Joinner.PuddleSVG as PuddleSVG, Joinner.PuddlePNG as PuddlePNG,
- Joinner.PuddleNext as PuddleNext, Joinner.PuddlePrev as PuddlePrev, 
-                         Joinner.SignPuddleUser as SignPuddleUser,
-
- TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, 
-                                TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, 
-TableLanguage1.glosses AS glosses1, 
-                                TableLanguage2.IDDictionaryGloss AS IDDictionaryGloss2, 
-TableLanguage2.IDCulture AS Culture2, TableLanguage2.gloss AS gloss2, 
-                                TableLanguage2.glosses AS glosses2, Joinner.Sorting as Sorting
-FROM               (SELECT          IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, 
-Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting, PuddleTop, PuddleVideoLink, PuddleSVG, PuddlePNG, 
-		PuddleNext, PuddlePrev, SignPuddleUser
-                                 FROM               Dictionary) Joinner LEFT OUTER JOIN
-                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, 
-glosses
-                                       FROM               DictionaryGloss DictionaryGloss_1
-                                       WHERE           (IDCulture = @Lang1) OR
-                                                                       (IDCulture IS NULL)) TableLanguage1 
-ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
-                                    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, 
-glosses
-                                       FROM               DictionaryGloss DictionaryGloss_2
-                                       WHERE           (IDCulture = @Lang2) OR
-                                                                       (IDCulture IS NULL)) TableLanguage2 
-ON Joinner.IDDictionary = TableLanguage2.IDDictionary
-WHERE           (Joinner.IDSignLanguage = @IDSL) AND (gloss1 LIKE @search) OR
-                                (Joinner.IDSignLanguage = @IDSL) AND (glosses1 LIKE @search) OR
-                                (Joinner.IDSignLanguage = @IDSL) AND (gloss2 LIKE @search) OR
-                                (Joinner.IDSignLanguage = @IDSL) AND (glosses2 LIKE @search) GROUP BY Joinner.IDDictionary ORDER BY Joinner.Sorting </CommandText>
+                    <CommandText>SELECT        Joinner.IDDictionary, Joinner.IDSignLanguage, Joinner.IDSignPuddle, Joinner.isPrivate, Joinner.SWriting, Joinner.Photo, Joinner.Sign, Joinner.SWritingSource, Joinner.PhotoSource, Joinner.SignSource, 
+                         Joinner.GUID, Joinner.LastModified, TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, TableLanguage1.glosses AS glosses1, 
+                         TableLanguage2.IDDictionaryGloss AS IDDictionaryGloss2, TableLanguage2.IDCulture AS Culture2, TableLanguage2.gloss AS gloss2, TableLanguage2.glosses AS glosses2, Joinner.Sorting as Sorting, 
+                         Joinner.PuddleVideoLink as PuddleVideoLink
+FROM            (SELECT        IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting, PuddleVideoLink
+                          FROM            Dictionary) Joinner LEFT OUTER JOIN
+                             (SELECT        IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                               FROM            DictionaryGloss DictionaryGloss_1
+                               WHERE        (IDCulture = @Lang1) OR
+                                                         (IDCulture IS NULL)) TableLanguage1 ON Joinner.IDDictionary = TableLanguage1.IDDictionary LEFT OUTER JOIN
+                             (SELECT        IDDictionaryGloss, IDDictionary, IDCulture, gloss, glosses
+                               FROM            DictionaryGloss DictionaryGloss_2
+                               WHERE        (IDCulture = @Lang2) OR
+                                                         (IDCulture IS NULL)) TableLanguage2 ON Joinner.IDDictionary = TableLanguage2.IDDictionary
+WHERE        (gloss1 LIKE @search) AND (Joinner.IDSignLanguage = @IDSL) OR
+                         (glosses1 LIKE @search) AND (Joinner.IDSignLanguage = @IDSL) OR
+                         (gloss2 LIKE @search) AND (Joinner.IDSignLanguage = @IDSL) OR
+                         (glosses2 LIKE @search) AND (Joinner.IDSignLanguage = @IDSL)
+GROUP BY Joinner.IDDictionary
+ORDER BY Joinner.Sorting</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="IDSL" ColumnName="IDSignLanguage" DataSourceName="SELECT IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting, PuddleTop, PuddleVideoLink, PuddleSVG, PuddlePNG, PuddleNext, PuddlePrev, SignPuddleUser FROM Dictionary" DataTypeServer="integer(8)" DbType="Int32" Direction="Input" ParameterName="@IDSL" Precision="0" Scale="0" Size="8" SourceColumn="IDSignLanguage" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="IDSL" ColumnName="IDSignLanguage" DataSourceName="SELECT IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting, PuddleVideoLink FROM Dictionary" DataTypeServer="integer(8)" DbType="Int32" Direction="Input" ParameterName="@IDSL" Precision="0" Scale="0" Size="8" SourceColumn="IDSignLanguage" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="Lang1" ColumnName="" DataSourceName="" DataTypeServer="integer(8)" DbType="Int32" Direction="Input" ParameterName="@Lang1" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="Lang2" ColumnName="" DataSourceName="" DataTypeServer="integer(8)" DbType="Int32" Direction="Input" ParameterName="@Lang2" Precision="0" Scale="0" Size="8" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="search" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Object" Direction="Input" ParameterName="@search" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -1794,13 +1779,7 @@ WHERE           (Joinner.IDSignLanguage = @IDSL) AND (gloss1 LIKE @search) OR
               <Mapping SourceColumn="Joinner.GUID" DataSetColumn="GUID" />
               <Mapping SourceColumn="Joinner.LastModified" DataSetColumn="LastModified" />
               <Mapping SourceColumn="Sorting" DataSetColumn="Sorting" />
-              <Mapping SourceColumn="PuddleTop" DataSetColumn="PuddleTop" />
               <Mapping SourceColumn="PuddleVideoLink" DataSetColumn="PuddleVideoLink" />
-              <Mapping SourceColumn="PuddleSVG" DataSetColumn="PuddleSVG" />
-              <Mapping SourceColumn="PuddlePNG" DataSetColumn="PuddlePNG" />
-              <Mapping SourceColumn="PuddleNext" DataSetColumn="PuddleNext" />
-              <Mapping SourceColumn="PuddlePrev" DataSetColumn="PuddlePrev" />
-              <Mapping SourceColumn="SignPuddleUser" DataSetColumn="SignPuddleUser" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="test1ConnectionString (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
@@ -1944,23 +1923,21 @@ WHERE           (Joinner.IDSignLanguage = @IDSL) GROUP BY Joinner.IDDictionary O
             <MainSource>
               <DbSource ConnectionRef="test1ConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fillby" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fillby" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fillby">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Dictionary.IDDictionary, Dictionary.IDSignLanguage, Dictionary.IDSignPuddle, Dictionary.isPrivate, Dictionary.SWriting, Dictionary.Photo, Dictionary.Sign, Dictionary.SWritingSource, Dictionary.PhotoSource, 
-                         Dictionary.SignSource, Dictionary.GUID, Dictionary.LastModified, TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, 
-                         TableLanguage1.glosses AS glosses1, Dictionary.Sorting, Dictionary.PuddleTop, Dictionary.PuddleVideoLink, Dictionary.PuddleSVG, Dictionary.PuddlePNG, Dictionary.PuddleNext, Dictionary.PuddlePrev, 
-                         Dictionary.SignPuddleUser
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        Dictionary.IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, 
+                         TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, 
+                         TableLanguage1.glosses AS glosses1, Dictionary.Sorting
 FROM            Dictionary LEFT OUTER JOIN
                          DictionaryGloss TableLanguage1 ON Dictionary.IDDictionary = TableLanguage1.IDDictionary
-WHERE        (Dictionary.IDSignLanguage = @IDSL) AND (TableLanguage1.IDCulture = @Lang1 OR
-                         TableLanguage1.IDCulture IS NULL) AND (TableLanguage1.gloss LIKE @search) OR
-                         (Dictionary.IDSignLanguage = @IDSL) AND (TableLanguage1.IDCulture = @Lang1 OR
-                         TableLanguage1.IDCulture IS NULL) AND (TableLanguage1.glosses LIKE @search)
+WHERE        (Dictionary.IDSignLanguage = @IDSL) AND (((TableLanguage1.IDCulture = @Lang1) OR
+                         (TableLanguage1.IDCulture IS NULL)) AND ((TableLanguage1.gloss LIKE @search) OR
+                         (TableLanguage1.glosses LIKE @search)))
 GROUP BY Dictionary.IDDictionary
-ORDER BY Dictionary.Sorting</CommandText>
+ORDER BY Dictionary.Sorting </CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="IDSL" ColumnName="IDSignLanguage" DataSourceName="main.Dictionary" DataTypeServer="integer(8)" DbType="Int64" Direction="Input" ParameterName="@IDSL" Precision="0" ProviderType="Int64" Scale="0" Size="8" SourceColumn="IDSignLanguage" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="Lang1" ColumnName="IDCulture" DataSourceName="main.DictionaryGloss" DataTypeServer="integer(8)" DbType="Int64" Direction="Input" ParameterName="@Lang1" Precision="0" ProviderType="Int64" Scale="0" Size="8" SourceColumn="Culture1" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="search" ColumnName="gloss" DataSourceName="main.DictionaryGloss" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@search" Precision="0" ProviderType="String" Scale="0" Size="2147483647" SourceColumn="gloss1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="IDSL" ColumnName="IDSignLanguage" DataSourceName="" DataTypeServer="integer(8)" DbType="Int64" Direction="Input" ParameterName="@IDSL" Precision="0" ProviderType="Int64" Scale="0" Size="8" SourceColumn="IDSignLanguage" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Lang1" ColumnName="IDCulture" DataSourceName="" DataTypeServer="integer(8)" DbType="Int64" Direction="Input" ParameterName="@Lang1" Precision="0" ProviderType="Int64" Scale="0" Size="8" SourceColumn="Culture1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="search" ColumnName="gloss" DataSourceName="" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@search" Precision="0" ProviderType="String" Scale="0" Size="2147483647" SourceColumn="gloss1" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
@@ -1984,13 +1961,6 @@ ORDER BY Dictionary.Sorting</CommandText>
               <Mapping SourceColumn="GUID" DataSetColumn="GUID" />
               <Mapping SourceColumn="LastModified" DataSetColumn="LastModified" />
               <Mapping SourceColumn="Sorting" DataSetColumn="Sorting" />
-              <Mapping SourceColumn="PuddleTop" DataSetColumn="PuddleTop" />
-              <Mapping SourceColumn="PuddleVideoLink" DataSetColumn="PuddleVideoLink" />
-              <Mapping SourceColumn="PuddleSVG" DataSetColumn="PuddleSVG" />
-              <Mapping SourceColumn="PuddlePNG" DataSetColumn="PuddlePNG" />
-              <Mapping SourceColumn="PuddleNext" DataSetColumn="PuddleNext" />
-              <Mapping SourceColumn="PuddlePrev" DataSetColumn="PuddlePrev" />
-              <Mapping SourceColumn="SignPuddleUser" DataSetColumn="SignPuddleUser" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="test1ConnectionString (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
@@ -2520,56 +2490,14 @@ VALUES        (@IDDictionary, @EntryText)</CommandText>
               </xs:element>
               <xs:element name="GUID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msdata:Caption="Joinner.GUID" msprop:Generator_ColumnVarNameInTable="columnGUID" msprop:Generator_ColumnPropNameInRow="GUID" msprop:Generator_ColumnPropNameInTable="GUIDColumn" msprop:Generator_UserColumnName="GUID" type="xs:string" minOccurs="0" />
               <xs:element name="LastModified" msdata:Caption="Joinner.LastModified" msprop:Generator_ColumnVarNameInTable="columnLastModified" msprop:Generator_ColumnPropNameInRow="LastModified" msprop:Generator_ColumnPropNameInTable="LastModifiedColumn" msprop:Generator_UserColumnName="LastModified" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Sorting" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Sorting" msprop:Generator_ColumnVarNameInTable="columnSorting" msprop:Generator_ColumnPropNameInTable="SortingColumn" msprop:Generator_UserColumnName="Sorting" minOccurs="0">
+              <xs:element name="Sorting" msprop:Generator_ColumnVarNameInTable="columnSorting" msprop:Generator_ColumnPropNameInRow="Sorting" msprop:Generator_ColumnPropNameInTable="SortingColumn" msprop:Generator_UserColumnName="Sorting" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PuddleTop" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleTop" msprop:Generator_ColumnVarNameInTable="columnPuddleTop" msprop:Generator_ColumnPropNameInTable="PuddleTopColumn" msprop:Generator_UserColumnName="PuddleTop" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddleVideoLink" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleVideoLink" msprop:Generator_ColumnVarNameInTable="columnPuddleVideoLink" msprop:Generator_ColumnPropNameInTable="PuddleVideoLinkColumn" msprop:Generator_UserColumnName="PuddleVideoLink" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddleSVG" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleSVG" msprop:Generator_ColumnVarNameInTable="columnPuddleSVG" msprop:Generator_ColumnPropNameInTable="PuddleSVGColumn" msprop:Generator_UserColumnName="PuddleSVG" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddlePNG" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddlePNG" msprop:Generator_ColumnVarNameInTable="columnPuddlePNG" msprop:Generator_ColumnPropNameInTable="PuddlePNGColumn" msprop:Generator_UserColumnName="PuddlePNG" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddleNext" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleNext" msprop:Generator_ColumnVarNameInTable="columnPuddleNext" msprop:Generator_ColumnPropNameInTable="PuddleNextColumn" msprop:Generator_UserColumnName="PuddleNext" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddlePrev" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddlePrev" msprop:Generator_ColumnVarNameInTable="columnPuddlePrev" msprop:Generator_ColumnPropNameInTable="PuddlePrevColumn" msprop:Generator_UserColumnName="PuddlePrev" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SignPuddleUser" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="SignPuddleUser" msprop:Generator_ColumnVarNameInTable="columnSignPuddleUser" msprop:Generator_ColumnPropNameInTable="SignPuddleUserColumn" msprop:Generator_UserColumnName="SignPuddleUser" minOccurs="0">
+              <xs:element name="PuddleVideoLink" msprop:Generator_ColumnVarNameInTable="columnPuddleVideoLink" msprop:Generator_ColumnPropNameInRow="PuddleVideoLink" msprop:Generator_ColumnPropNameInTable="PuddleVideoLinkColumn" msprop:Generator_UserColumnName="PuddleVideoLink" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -2596,7 +2524,7 @@ VALUES        (@IDDictionary, @EntryText)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IDDictionaryGloss1" msprop:Generator_ColumnVarNameInTable="columnIDDictionaryGloss1" msprop:Generator_ColumnPropNameInRow="IDDictionaryGloss1" msprop:Generator_ColumnPropNameInTable="IDDictionaryGloss1Column" msprop:Generator_UserColumnName="IDDictionaryGloss1" type="xs:long" />
+              <xs:element name="IDDictionaryGloss1" msprop:Generator_ColumnVarNameInTable="columnIDDictionaryGloss1" msprop:Generator_ColumnPropNameInRow="IDDictionaryGloss1" msprop:Generator_ColumnPropNameInTable="IDDictionaryGloss1Column" msprop:Generator_UserColumnName="IDDictionaryGloss1" type="xs:long" minOccurs="0" />
               <xs:element name="Culture1" msprop:Generator_ColumnVarNameInTable="columnCulture1" msprop:Generator_ColumnPropNameInRow="Culture1" msprop:Generator_ColumnPropNameInTable="Culture1Column" msprop:Generator_UserColumnName="Culture1" type="xs:long" minOccurs="0" />
               <xs:element name="IDDictionary" msprop:Generator_ColumnVarNameInTable="columnIDDictionary" msprop:Generator_ColumnPropNameInRow="IDDictionary" msprop:Generator_ColumnPropNameInTable="IDDictionaryColumn" msprop:Generator_UserColumnName="IDDictionary" type="xs:long" />
               <xs:element name="IDSignLanguage" msprop:Generator_ColumnVarNameInTable="columnIDSignLanguage" msprop:Generator_ColumnPropNameInRow="IDSignLanguage" msprop:Generator_ColumnPropNameInTable="IDSignLanguageColumn" msprop:Generator_UserColumnName="IDSignLanguage" type="xs:long" minOccurs="0" />
@@ -2635,55 +2563,6 @@ VALUES        (@IDDictionary, @EntryText)</CommandText>
               <xs:element name="GUID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnGUID" msprop:Generator_ColumnPropNameInRow="GUID" msprop:Generator_ColumnPropNameInTable="GUIDColumn" msprop:Generator_UserColumnName="GUID" type="xs:string" minOccurs="0" />
               <xs:element name="LastModified" msprop:Generator_ColumnVarNameInTable="columnLastModified" msprop:Generator_ColumnPropNameInRow="LastModified" msprop:Generator_ColumnPropNameInTable="LastModifiedColumn" msprop:Generator_UserColumnName="LastModified" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Sorting" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Sorting" msprop:Generator_ColumnVarNameInTable="columnSorting" msprop:Generator_ColumnPropNameInTable="SortingColumn" msprop:Generator_UserColumnName="Sorting" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddleTop" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleTop" msprop:Generator_ColumnVarNameInTable="columnPuddleTop" msprop:Generator_ColumnPropNameInTable="PuddleTopColumn" msprop:Generator_UserColumnName="PuddleTop" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddleVideoLink" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleVideoLink" msprop:Generator_ColumnVarNameInTable="columnPuddleVideoLink" msprop:Generator_ColumnPropNameInTable="PuddleVideoLinkColumn" msprop:Generator_UserColumnName="PuddleVideoLink" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddleSVG" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleSVG" msprop:Generator_ColumnVarNameInTable="columnPuddleSVG" msprop:Generator_ColumnPropNameInTable="PuddleSVGColumn" msprop:Generator_UserColumnName="PuddleSVG" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddlePNG" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddlePNG" msprop:Generator_ColumnVarNameInTable="columnPuddlePNG" msprop:Generator_ColumnPropNameInTable="PuddlePNGColumn" msprop:Generator_UserColumnName="PuddlePNG" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddleNext" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddleNext" msprop:Generator_ColumnVarNameInTable="columnPuddleNext" msprop:Generator_ColumnPropNameInTable="PuddleNextColumn" msprop:Generator_UserColumnName="PuddleNext" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PuddlePrev" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="PuddlePrev" msprop:Generator_ColumnVarNameInTable="columnPuddlePrev" msprop:Generator_ColumnPropNameInTable="PuddlePrevColumn" msprop:Generator_UserColumnName="PuddlePrev" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SignPuddleUser" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="SignPuddleUser" msprop:Generator_ColumnVarNameInTable="columnSignPuddleUser" msprop:Generator_ColumnPropNameInTable="SignPuddleUserColumn" msprop:Generator_UserColumnName="SignPuddleUser" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />

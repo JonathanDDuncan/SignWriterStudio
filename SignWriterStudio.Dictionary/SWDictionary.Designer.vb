@@ -135,7 +135,7 @@ Partial Class SWDictForm
         Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
         Me.Photo = New System.Windows.Forms.DataGridViewImageColumn()
         Me.Sign = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.VideoUrl = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuddleVideoLink = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SWSignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PhotoSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -741,7 +741,7 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.AllowUserToOrderColumns = True
         Me.DictionaryDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders
         Me.DictionaryDataGridView.ColumnHeadersHeight = 35
-        Me.DictionaryDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SignLanguage, Me.IDDictionary, Me.gloss1, Me.glosses1, Me.gloss2, Me.glosses2, Me.SWriting, Me.Photo, Me.Sign, Me.VideoUrl, Me.SWSignSource, Me.PhotoSource, Me.SignSource, Me.Tags, Me.GUID, Me.Sorting})
+        Me.DictionaryDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SignLanguage, Me.IDDictionary, Me.gloss1, Me.glosses1, Me.gloss2, Me.glosses2, Me.SWriting, Me.Photo, Me.Sign, Me.PuddleVideoLink, Me.SWSignSource, Me.PhotoSource, Me.SignSource, Me.Tags, Me.GUID, Me.Sorting})
         Me.DictionaryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DictionaryDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.DictionaryDataGridView.Name = "DictionaryDataGridView"
@@ -952,13 +952,13 @@ Partial Class SWDictForm
         Me.Sign.Name = "Sign"
         Me.Sign.Width = 300
         '
-        'VideoUrl
+        'PuddleVideoLink
         '
-        Me.VideoUrl.DataPropertyName = "PuddleVideoLink"
+        Me.PuddleVideoLink.DataPropertyName = "PuddleVideoLink"
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.VideoUrl.DefaultCellStyle = DataGridViewCellStyle5
-        Me.VideoUrl.HeaderText = "VideoUrl"
-        Me.VideoUrl.Name = "VideoUrl"
+        Me.PuddleVideoLink.DefaultCellStyle = DataGridViewCellStyle5
+        Me.PuddleVideoLink.HeaderText = "Video Link"
+        Me.PuddleVideoLink.Name = "PuddleVideoLink"
         '
         'SWSignSource
         '
@@ -1131,7 +1131,7 @@ Partial Class SWDictForm
     Friend WithEvents SWriting As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents Photo As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents Sign As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents VideoUrl As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PuddleVideoLink As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SWSignSource As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PhotoSource As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SignSource As System.Windows.Forms.DataGridViewTextBoxColumn
