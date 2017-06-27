@@ -84,6 +84,7 @@ Public Class ReportForm
         Dim reportsList = New List(Of Tuple(Of Integer, String))()
         reportsList.Add(Tuple.Create(1, "Gloss, SignWriting, Illustration, Photo Sign"))
         reportsList.Add(Tuple.Create(2, "Gloss, SignWriting"))
+        reportsList.Add(Tuple.Create(3, "Gloss, SignWriting, Illustration, Video Link"))
         CBReports.DataSource = reportsList
         CBReports.ValueMember = "Item1"
         CBReports.DisplayMember = "Item2"
@@ -104,7 +105,8 @@ Public Class ReportForm
                 Report1Chosen()
             Case 2
                 Report2Chosen()
-
+            Case 3
+                Report3Chosen()
         End Select
     End Sub
 
@@ -117,6 +119,13 @@ Public Class ReportForm
     End Sub
 
     Private Sub Report1Chosen()
+        TitleTB.Enabled = True
+        GlossTB.Enabled = True
+        SignWritingTB.Enabled = True
+        IllustrationTB.Enabled = True
+        PhotoSignTB.Enabled = True
+    End Sub
+    Private Sub Report3Chosen()
         TitleTB.Enabled = True
         GlossTB.Enabled = True
         SignWritingTB.Enabled = True

@@ -281,6 +281,7 @@
     <EmbeddedResource Include="ReportForm.resx">
       <DependentUpon>ReportForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Report3.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />
     <EmbeddedResource Include="Reports\Report2.rdlc" />
     <EmbeddedResource Include="Reports\ReportViewer.resx">
