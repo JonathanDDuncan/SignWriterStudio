@@ -130,6 +130,7 @@ Public Class ReportForm
         GlossTB.Enabled = True
         SignWritingTB.Enabled = True
         IllustrationTB.Enabled = True
-        PhotoSignTB.Enabled = True
+        PhotoSignTB.Enabled = False
     End Sub
+ 
 End Class

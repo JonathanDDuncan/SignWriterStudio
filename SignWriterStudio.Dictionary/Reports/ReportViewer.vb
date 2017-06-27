@@ -9,6 +9,7 @@
 
         Public Sub SetReport(ByVal reportname As String)
             ReportViewer1.LocalReport.ReportEmbeddedResource = String.Format("SignWriterStudio.Dictionary.{0}.rdlc", reportname)
+            ReportViewer1.LocalReport.EnableHyperlinks = True
             ReportViewer1.RefreshReport()
         End Sub
 

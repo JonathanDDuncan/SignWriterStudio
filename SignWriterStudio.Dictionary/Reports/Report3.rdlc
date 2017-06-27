@@ -14,9 +14,6 @@
             <TablixColumn>
               <Width>2in</Width>
             </TablixColumn>
-            <TablixColumn>
-              <Width>2in</Width>
-            </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
@@ -124,40 +121,6 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox11">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=First(Fields!PhotoSign.Value, "TitlesDataSet")</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox11</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
               </TablixCells>
             </TablixRow>
             <TablixRow>
@@ -172,7 +135,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!gloss1.Value &amp; IIF(Not Fields!glosses1.Value  = "",", " &amp; Fields!glosses1.Value, "")</Value>
+                              <Value>= Fields!gloss1.Value &amp; IIF(Not Fields!glosses1.Value  = "",", " &amp; Fields!glosses1.Value, "")</Value>
                               <Style>
                                 <FontSize>14pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -183,6 +146,13 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>gloss1</rd:DefaultName>
+                      <ActionInfo>
+                        <Actions>
+                          <Action>
+                            <Hyperlink>=Fields!VideoUrl.Value</Hyperlink>
+                          </Action>
+                        </Actions>
+                      </ActionInfo>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -193,6 +163,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -229,30 +200,12 @@
                     </Image>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Image Name="Sign">
-                      <Source>Database</Source>
-                      <Value>=Fields!Sign.Value</Value>
-                      <MIMEType>image/png</MIMEType>
-                      <Sizing>FitProportional</Sizing>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>=Code.GetLeftPaddingProportional(2, 1.75,Fields!SignWidth.Value,Fields!SignHeight.Value,96)</PaddingLeft>
-                        <PaddingTop>=Code.GetTopPaddingProportional(2, 1.75,Fields!SignWidth.Value,Fields!SignHeight.Value,96)</PaddingTop>
-                      </Style>
-                    </Image>
-                  </CellContents>
-                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
-            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -278,7 +231,7 @@
         <KeepTogether>true</KeepTogether>
         <DataSetName>DataDataSet</DataSetName>
         <Height>2in</Height>
-        <Width>7.65625in</Width>
+        <Width>5.65625in</Width>
         <Style>
           <Border>
             <Style>None</Style>
