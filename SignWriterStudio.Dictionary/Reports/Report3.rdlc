@@ -149,7 +149,7 @@
                       <ActionInfo>
                         <Actions>
                           <Action>
-                            <Hyperlink>=Fields!VideoUrl.Value</Hyperlink>
+                            <Hyperlink>=Fields!gloss1.Value</Hyperlink>
                           </Action>
                         </Actions>
                       </ActionInfo>
@@ -444,6 +444,10 @@
           <DataField>Sorting</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="PuddleVideoLink">
+          <DataField>PuddleVideoLink</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Tags">
           <DataField>Tags</DataField>
           <rd:TypeName>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -479,10 +483,6 @@
         <Field Name="SignHeight">
           <DataField>SignHeight</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="VideoUrl">
-          <DataField>VideoUrl</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
