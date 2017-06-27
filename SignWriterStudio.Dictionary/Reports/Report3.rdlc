@@ -149,7 +149,7 @@
                       <ActionInfo>
                         <Actions>
                           <Action>
-                            <Hyperlink>=Fields!gloss1.Value</Hyperlink>
+                            <Hyperlink>=Fields!PuddleVideoLink.Value</Hyperlink>
                           </Action>
                         </Actions>
                       </ActionInfo>
