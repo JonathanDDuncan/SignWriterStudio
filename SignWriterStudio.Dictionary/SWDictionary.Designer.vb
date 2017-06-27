@@ -21,6 +21,13 @@ Partial Class SWDictForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SWDictForm))
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -29,12 +36,6 @@ Partial Class SWDictForm
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DictionaryBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
@@ -108,21 +109,6 @@ Partial Class SWDictForm
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.DictionaryDataGridView = New System.Windows.Forms.DataGridView()
-        Me.SignLanguage = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gloss1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.glosses1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gloss2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.glosses2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.Photo = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.Sign = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.SWSignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PhotoSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tags = New TagList.DGV.DataGridViewTagListColumn()
-        Me.GUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Sorting = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.ExportFileDialog = New System.Windows.Forms.SaveFileDialog()
@@ -140,6 +126,22 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SignLanguage = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gloss1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.glosses1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gloss2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.glosses2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Photo = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Sign = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.PuddleVideoLink = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SWSignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PhotoSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tags = New TagList.DGV.DataGridViewTagListColumn()
+        Me.GUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sorting = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -474,7 +476,7 @@ Partial Class SWDictForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 3)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(218, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(126, 24)
         Me.MenuStrip1.TabIndex = 12
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -739,7 +741,7 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.AllowUserToOrderColumns = True
         Me.DictionaryDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders
         Me.DictionaryDataGridView.ColumnHeadersHeight = 35
-        Me.DictionaryDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SignLanguage, Me.IDDictionary, Me.gloss1, Me.glosses1, Me.gloss2, Me.glosses2, Me.SWriting, Me.Photo, Me.Sign, Me.SWSignSource, Me.PhotoSource, Me.SignSource, Me.Tags, Me.GUID, Me.Sorting})
+        Me.DictionaryDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SignLanguage, Me.IDDictionary, Me.gloss1, Me.glosses1, Me.gloss2, Me.glosses2, Me.SWriting, Me.Photo, Me.Sign, Me.PuddleVideoLink, Me.SWSignSource, Me.PhotoSource, Me.SignSource, Me.Tags, Me.GUID, Me.Sorting})
         Me.DictionaryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DictionaryDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.DictionaryDataGridView.Name = "DictionaryDataGridView"
@@ -747,6 +749,137 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.Size = New System.Drawing.Size(1276, 428)
         Me.DictionaryDataGridView.TabIndex = 3
         Me.DictionaryDataGridView.VirtualMode = True
+        '
+        'Pager1
+        '
+        Me.Pager1.CurrentPage = 0
+        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Pager1.Location = New System.Drawing.Point(0, 428)
+        Me.Pager1.Name = "Pager1"
+        Me.Pager1.PageSize = 20
+        Me.Pager1.Search = Nothing
+        Me.Pager1.Size = New System.Drawing.Size(1276, 28)
+        Me.Pager1.TabIndex = 4
+        Me.Pager1.TotalPages = 0
+        Me.Pager1.TotalRowCount = 0
+        '
+        'ImportFileDialog
+        '
+        Me.ImportFileDialog.DefaultExt = "spml"
+        Me.ImportFileDialog.FileName = "sgn.spml"
+        Me.ImportFileDialog.Filter = "SPML files (*.spml)|*.spml|All files (*.*)|*.*"""
+        Me.ImportFileDialog.Title = "Import SPML"
+        '
+        'ExportFileDialog
+        '
+        Me.ExportFileDialog.DefaultExt = "spml"
+        Me.ExportFileDialog.FileName = "sgn.spml"
+        Me.ExportFileDialog.Filter = "SPML files (*.spml)|*.spml|All files (*.*)|*.*"""
+        Me.ExportFileDialog.Title = "Export SPML"
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.DefaultExt = "SWS"
+        Me.OpenFileDialog1.Filter = "SWS (*.SWS)|*.SWS"
+        '
+        'SaveFileDialog1
+        '
+        Me.SaveFileDialog1.DefaultExt = "SWS"
+        Me.SaveFileDialog1.Filter = "SWS (*.SWS)|*.SWS"
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "IDSignLanguage"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "SignLanguage"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.Visible = False
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "IDDictionary"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "IDDictionary"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Visible = False
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "gloss1"
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle9
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Gloss"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "glosses1"
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle10
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Other Glosses"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "gloss2"
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle11
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Gloss"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "glosses2"
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle12
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Other Glosses"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "SWritingSource"
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridViewTextBoxColumn7.HeaderText = "SWritingSource"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "PhotoSource"
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridViewTextBoxColumn8.HeaderText = "PhotoSource"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.DataPropertyName = "SignSource"
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridViewTextBoxColumn9.HeaderText = "PhotoSignSource"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        '
+        'DataGridViewTagListColumn1
+        '
+        Me.DataGridViewTagListColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTagListColumn1.DataPropertyName = "Tags"
+        Me.DataGridViewTagListColumn1.HeaderText = "Column1"
+        Me.DataGridViewTagListColumn1.LabelFont = Nothing
+        Me.DataGridViewTagListColumn1.Name = "DataGridViewTagListColumn1"
+        Me.DataGridViewTagListColumn1.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.DataPropertyName = "GUID"
+        Me.DataGridViewTextBoxColumn10.HeaderText = "GUID"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.Visible = False
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.DataPropertyName = "Sorting"
+        Me.DataGridViewTextBoxColumn11.HeaderText = "Sorting"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        Me.DataGridViewTextBoxColumn11.Visible = False
         '
         'SignLanguage
         '
@@ -819,27 +952,35 @@ Partial Class SWDictForm
         Me.Sign.Name = "Sign"
         Me.Sign.Width = 300
         '
+        'PuddleVideoLink
+        '
+        Me.PuddleVideoLink.DataPropertyName = "PuddleVideoLink"
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PuddleVideoLink.DefaultCellStyle = DataGridViewCellStyle5
+        Me.PuddleVideoLink.HeaderText = "Video Link"
+        Me.PuddleVideoLink.Name = "PuddleVideoLink"
+        '
         'SWSignSource
         '
         Me.SWSignSource.DataPropertyName = "SWritingSource"
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.SWSignSource.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SWSignSource.DefaultCellStyle = DataGridViewCellStyle6
         Me.SWSignSource.HeaderText = "SWritingSource"
         Me.SWSignSource.Name = "SWSignSource"
         '
         'PhotoSource
         '
         Me.PhotoSource.DataPropertyName = "PhotoSource"
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PhotoSource.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PhotoSource.DefaultCellStyle = DataGridViewCellStyle7
         Me.PhotoSource.HeaderText = "PhotoSource"
         Me.PhotoSource.Name = "PhotoSource"
         '
         'SignSource
         '
         Me.SignSource.DataPropertyName = "SignSource"
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.SignSource.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SignSource.DefaultCellStyle = DataGridViewCellStyle8
         Me.SignSource.HeaderText = "PhotoSignSource"
         Me.SignSource.Name = "SignSource"
         '
@@ -865,137 +1006,6 @@ Partial Class SWDictForm
         Me.Sorting.HeaderText = "Sorting"
         Me.Sorting.Name = "Sorting"
         Me.Sorting.Visible = False
-        '
-        'Pager1
-        '
-        Me.Pager1.CurrentPage = 0
-        Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Pager1.Location = New System.Drawing.Point(0, 428)
-        Me.Pager1.Name = "Pager1"
-        Me.Pager1.PageSize = 20
-        Me.Pager1.Search = Nothing
-        Me.Pager1.Size = New System.Drawing.Size(1276, 28)
-        Me.Pager1.TabIndex = 4
-        Me.Pager1.TotalPages = 0
-        Me.Pager1.TotalRowCount = 0
-        '
-        'ImportFileDialog
-        '
-        Me.ImportFileDialog.DefaultExt = "spml"
-        Me.ImportFileDialog.FileName = "sgn.spml"
-        Me.ImportFileDialog.Filter = "SPML files (*.spml)|*.spml|All files (*.*)|*.*"""
-        Me.ImportFileDialog.Title = "Import SPML"
-        '
-        'ExportFileDialog
-        '
-        Me.ExportFileDialog.DefaultExt = "spml"
-        Me.ExportFileDialog.FileName = "sgn.spml"
-        Me.ExportFileDialog.Filter = "SPML files (*.spml)|*.spml|All files (*.*)|*.*"""
-        Me.ExportFileDialog.Title = "Export SPML"
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.DefaultExt = "SWS"
-        Me.OpenFileDialog1.Filter = "SWS (*.SWS)|*.SWS"
-        '
-        'SaveFileDialog1
-        '
-        Me.SaveFileDialog1.DefaultExt = "SWS"
-        Me.SaveFileDialog1.Filter = "SWS (*.SWS)|*.SWS"
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "IDSignLanguage"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "SignLanguage"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "IDDictionary"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "IDDictionary"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Visible = False
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "gloss1"
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle8
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Gloss"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "glosses1"
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle9
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Other Glosses"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "gloss2"
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle10
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Gloss"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "glosses2"
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle11
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Other Glosses"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "SWritingSource"
-        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle12
-        Me.DataGridViewTextBoxColumn7.HeaderText = "SWritingSource"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.DataPropertyName = "PhotoSource"
-        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle13
-        Me.DataGridViewTextBoxColumn8.HeaderText = "PhotoSource"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.DataPropertyName = "SignSource"
-        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle14
-        Me.DataGridViewTextBoxColumn9.HeaderText = "PhotoSignSource"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        '
-        'DataGridViewTagListColumn1
-        '
-        Me.DataGridViewTagListColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTagListColumn1.DataPropertyName = "Tags"
-        Me.DataGridViewTagListColumn1.HeaderText = "Column1"
-        Me.DataGridViewTagListColumn1.LabelFont = Nothing
-        Me.DataGridViewTagListColumn1.Name = "DataGridViewTagListColumn1"
-        Me.DataGridViewTagListColumn1.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.DataPropertyName = "GUID"
-        Me.DataGridViewTextBoxColumn10.HeaderText = "GUID"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        Me.DataGridViewTextBoxColumn10.Visible = False
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.DataPropertyName = "Sorting"
-        Me.DataGridViewTextBoxColumn11.HeaderText = "Sorting"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        Me.DataGridViewTextBoxColumn11.Visible = False
         '
         'SWDictForm
         '
@@ -1097,21 +1107,6 @@ Partial Class SWDictForm
     Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTagListColumn1 As TagList.DGV.DataGridViewTagListColumn
-    Friend WithEvents SignLanguage As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents IDDictionary As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents gloss1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents glosses1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents gloss2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents glosses2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SWriting As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents Photo As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents Sign As System.Windows.Forms.DataGridViewImageColumn
-    Friend WithEvents SWSignSource As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PhotoSource As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SignSource As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Tags As TagList.DGV.DataGridViewTagListColumn
-    Friend WithEvents GUID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Sorting As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnShowSource As System.Windows.Forms.Button
     Friend WithEvents Pager1 As Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager
     Friend WithEvents TagFilter1 As Global.SignWriterStudio.Dictionary.TagFilter
@@ -1127,4 +1122,20 @@ Partial Class SWDictForm
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents SendSignToPuddleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportSWSFileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SignLanguage As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents IDDictionary As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents gloss1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents glosses1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents gloss2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents glosses2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SWriting As System.Windows.Forms.DataGridViewImageColumn
+    Friend WithEvents Photo As System.Windows.Forms.DataGridViewImageColumn
+    Friend WithEvents Sign As System.Windows.Forms.DataGridViewImageColumn
+    Friend WithEvents PuddleVideoLink As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SWSignSource As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PhotoSource As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SignSource As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Tags As TagList.DGV.DataGridViewTagListColumn
+    Friend WithEvents GUID As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Sorting As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
