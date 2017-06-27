@@ -4457,6 +4457,20 @@ Partial Public Class DictionaryDataSet
         
         Private columnSorting As Global.System.Data.DataColumn
         
+        Private columnPuddleTop As Global.System.Data.DataColumn
+        
+        Private columnPuddleVideoLink As Global.System.Data.DataColumn
+        
+        Private columnPuddleSVG As Global.System.Data.DataColumn
+        
+        Private columnPuddlePNG As Global.System.Data.DataColumn
+        
+        Private columnPuddleNext As Global.System.Data.DataColumn
+        
+        Private columnPuddlePrev As Global.System.Data.DataColumn
+        
+        Private columnSignPuddleUser As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -4661,6 +4675,62 @@ Partial Public Class DictionaryDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleTopColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleTop
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleVideoLinkColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleVideoLink
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleSVGColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleSVG
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddlePNGColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddlePNG
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleNextColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleNext
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddlePrevColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddlePrev
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SignPuddleUserColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSignPuddleUser
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4718,9 +4788,16 @@ Partial Public Class DictionaryDataSet
                     ByVal SignSource As String,  _
                     ByVal GUID As System.Guid,  _
                     ByVal LastModified As Date,  _
-                    ByVal Sorting As String) As SignsbyGlossesBilingualRow
+                    ByVal Sorting As String,  _
+                    ByVal PuddleTop As String,  _
+                    ByVal PuddleVideoLink As String,  _
+                    ByVal PuddleSVG As String,  _
+                    ByVal PuddlePNG As String,  _
+                    ByVal PuddleNext As String,  _
+                    ByVal PuddlePrev As String,  _
+                    ByVal SignPuddleUser As String) As SignsbyGlossesBilingualRow
             Dim rowSignsbyGlossesBilingualRow As SignsbyGlossesBilingualRow = CType(Me.NewRow,SignsbyGlossesBilingualRow)
-            Dim columnValuesArray() As Object = New Object() {gloss1, glosses1, gloss2, glosses2, IDDictionaryGloss1, Culture1, IDDictionaryGloss2, Culture2, IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting}
+            Dim columnValuesArray() As Object = New Object() {gloss1, glosses1, gloss2, glosses2, IDDictionaryGloss1, Culture1, IDDictionaryGloss2, Culture2, IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting, PuddleTop, PuddleVideoLink, PuddleSVG, PuddlePNG, PuddleNext, PuddlePrev, SignPuddleUser}
             rowSignsbyGlossesBilingualRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSignsbyGlossesBilingualRow)
             Return rowSignsbyGlossesBilingualRow
@@ -4770,6 +4847,13 @@ Partial Public Class DictionaryDataSet
             Me.columnGUID = MyBase.Columns("GUID")
             Me.columnLastModified = MyBase.Columns("LastModified")
             Me.columnSorting = MyBase.Columns("Sorting")
+            Me.columnPuddleTop = MyBase.Columns("PuddleTop")
+            Me.columnPuddleVideoLink = MyBase.Columns("PuddleVideoLink")
+            Me.columnPuddleSVG = MyBase.Columns("PuddleSVG")
+            Me.columnPuddlePNG = MyBase.Columns("PuddlePNG")
+            Me.columnPuddleNext = MyBase.Columns("PuddleNext")
+            Me.columnPuddlePrev = MyBase.Columns("PuddlePrev")
+            Me.columnSignPuddleUser = MyBase.Columns("SignPuddleUser")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4817,11 +4901,26 @@ Partial Public Class DictionaryDataSet
             MyBase.Columns.Add(Me.columnLastModified)
             Me.columnSorting = New Global.System.Data.DataColumn("Sorting", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSorting)
+            Me.columnPuddleTop = New Global.System.Data.DataColumn("PuddleTop", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleTop)
+            Me.columnPuddleVideoLink = New Global.System.Data.DataColumn("PuddleVideoLink", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleVideoLink)
+            Me.columnPuddleSVG = New Global.System.Data.DataColumn("PuddleSVG", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleSVG)
+            Me.columnPuddlePNG = New Global.System.Data.DataColumn("PuddlePNG", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddlePNG)
+            Me.columnPuddleNext = New Global.System.Data.DataColumn("PuddleNext", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleNext)
+            Me.columnPuddlePrev = New Global.System.Data.DataColumn("PuddlePrev", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddlePrev)
+            Me.columnSignPuddleUser = New Global.System.Data.DataColumn("SignPuddleUser", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSignPuddleUser)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIDDictionary}, true))
             Me.columngloss1.MaxLength = 2147483647
             Me.columnglosses1.MaxLength = 2147483647
             Me.columngloss2.MaxLength = 2147483647
             Me.columnglosses2.MaxLength = 2147483647
+            Me.columnIDDictionaryGloss1.AllowDBNull = false
             Me.columnIDDictionary.AllowDBNull = false
             Me.columnIDDictionary.Unique = true
             Me.columnIDDictionary.Caption = "Joinner.IDDictionary"
@@ -4841,6 +4940,13 @@ Partial Public Class DictionaryDataSet
             Me.columnGUID.Caption = "Joinner.GUID"
             Me.columnLastModified.Caption = "Joinner.LastModified"
             Me.columnSorting.MaxLength = 2147483647
+            Me.columnPuddleTop.MaxLength = 2147483647
+            Me.columnPuddleVideoLink.MaxLength = 2147483647
+            Me.columnPuddleSVG.MaxLength = 2147483647
+            Me.columnPuddlePNG.MaxLength = 2147483647
+            Me.columnPuddleNext.MaxLength = 2147483647
+            Me.columnPuddlePrev.MaxLength = 2147483647
+            Me.columnSignPuddleUser.MaxLength = 2147483647
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5011,6 +5117,20 @@ Partial Public Class DictionaryDataSet
         Private columnLastModified As Global.System.Data.DataColumn
         
         Private columnSorting As Global.System.Data.DataColumn
+        
+        Private columnPuddleTop As Global.System.Data.DataColumn
+        
+        Private columnPuddleVideoLink As Global.System.Data.DataColumn
+        
+        Private columnPuddleSVG As Global.System.Data.DataColumn
+        
+        Private columnPuddlePNG As Global.System.Data.DataColumn
+        
+        Private columnPuddleNext As Global.System.Data.DataColumn
+        
+        Private columnPuddlePrev As Global.System.Data.DataColumn
+        
+        Private columnSignPuddleUser As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -5184,6 +5304,62 @@ Partial Public Class DictionaryDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleTopColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleTop
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleVideoLinkColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleVideoLink
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleSVGColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleSVG
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddlePNGColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddlePNG
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddleNextColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddleNext
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PuddlePrevColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPuddlePrev
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SignPuddleUserColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSignPuddleUser
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5237,9 +5413,16 @@ Partial Public Class DictionaryDataSet
                     ByVal SignSource As String,  _
                     ByVal GUID As System.Guid,  _
                     ByVal LastModified As Date,  _
-                    ByVal Sorting As String) As SignsbyGlossesUnilingualRow
+                    ByVal Sorting As String,  _
+                    ByVal PuddleTop As String,  _
+                    ByVal PuddleVideoLink As String,  _
+                    ByVal PuddleSVG As String,  _
+                    ByVal PuddlePNG As String,  _
+                    ByVal PuddleNext As String,  _
+                    ByVal PuddlePrev As String,  _
+                    ByVal SignPuddleUser As String) As SignsbyGlossesUnilingualRow
             Dim rowSignsbyGlossesUnilingualRow As SignsbyGlossesUnilingualRow = CType(Me.NewRow,SignsbyGlossesUnilingualRow)
-            Dim columnValuesArray() As Object = New Object() {gloss1, glosses1, IDDictionaryGloss1, Culture1, Nothing, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting}
+            Dim columnValuesArray() As Object = New Object() {gloss1, glosses1, IDDictionaryGloss1, Culture1, Nothing, IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModified, Sorting, PuddleTop, PuddleVideoLink, PuddleSVG, PuddlePNG, PuddleNext, PuddlePrev, SignPuddleUser}
             If (Not (parentDictionaryRowByFK_DictionaryGloss_02) Is Nothing) Then
                 columnValuesArray(4) = parentDictionaryRowByFK_DictionaryGloss_02(0)
             End If
@@ -5288,6 +5471,13 @@ Partial Public Class DictionaryDataSet
             Me.columnGUID = MyBase.Columns("GUID")
             Me.columnLastModified = MyBase.Columns("LastModified")
             Me.columnSorting = MyBase.Columns("Sorting")
+            Me.columnPuddleTop = MyBase.Columns("PuddleTop")
+            Me.columnPuddleVideoLink = MyBase.Columns("PuddleVideoLink")
+            Me.columnPuddleSVG = MyBase.Columns("PuddleSVG")
+            Me.columnPuddlePNG = MyBase.Columns("PuddlePNG")
+            Me.columnPuddleNext = MyBase.Columns("PuddleNext")
+            Me.columnPuddlePrev = MyBase.Columns("PuddlePrev")
+            Me.columnSignPuddleUser = MyBase.Columns("SignPuddleUser")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5327,9 +5517,24 @@ Partial Public Class DictionaryDataSet
             MyBase.Columns.Add(Me.columnLastModified)
             Me.columnSorting = New Global.System.Data.DataColumn("Sorting", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSorting)
+            Me.columnPuddleTop = New Global.System.Data.DataColumn("PuddleTop", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleTop)
+            Me.columnPuddleVideoLink = New Global.System.Data.DataColumn("PuddleVideoLink", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleVideoLink)
+            Me.columnPuddleSVG = New Global.System.Data.DataColumn("PuddleSVG", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleSVG)
+            Me.columnPuddlePNG = New Global.System.Data.DataColumn("PuddlePNG", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddlePNG)
+            Me.columnPuddleNext = New Global.System.Data.DataColumn("PuddleNext", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddleNext)
+            Me.columnPuddlePrev = New Global.System.Data.DataColumn("PuddlePrev", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPuddlePrev)
+            Me.columnSignPuddleUser = New Global.System.Data.DataColumn("SignPuddleUser", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSignPuddleUser)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIDDictionary}, true))
             Me.columngloss1.MaxLength = 2147483647
             Me.columnglosses1.MaxLength = 2147483647
+            Me.columnIDDictionaryGloss1.AllowDBNull = false
             Me.columnIDDictionary.AllowDBNull = false
             Me.columnIDDictionary.Unique = true
             Me.columnIDSignPuddle.MaxLength = 2147483647
@@ -5337,6 +5542,13 @@ Partial Public Class DictionaryDataSet
             Me.columnPhotoSource.MaxLength = 2147483647
             Me.columnSignSource.MaxLength = 2147483647
             Me.columnSorting.MaxLength = 2147483647
+            Me.columnPuddleTop.MaxLength = 2147483647
+            Me.columnPuddleVideoLink.MaxLength = 2147483647
+            Me.columnPuddleSVG.MaxLength = 2147483647
+            Me.columnPuddlePNG.MaxLength = 2147483647
+            Me.columnPuddleNext.MaxLength = 2147483647
+            Me.columnPuddlePrev.MaxLength = 2147483647
+            Me.columnSignPuddleUser.MaxLength = 2147483647
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8301,12 +8513,7 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property IDDictionaryGloss1() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IDDictionaryGloss1' in table 'SignsbyGlossesBilingual' is D"& _ 
-                            "BNull.", e)
-                End Try
+                Return CType(Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column),Long)
             End Get
             Set
                 Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column) = value
@@ -8554,501 +8761,673 @@ Partial Public Class DictionaryDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PuddleTop() As String
+            Get
+                If Me.IsPuddleTopNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.PuddleTopColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesBilingual.PuddleTopColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddleVideoLink() As String
+            Get
+                If Me.IsPuddleVideoLinkNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.PuddleVideoLinkColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesBilingual.PuddleVideoLinkColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddleSVG() As String
+            Get
+                If Me.IsPuddleSVGNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.PuddleSVGColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesBilingual.PuddleSVGColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddlePNG() As String
+            Get
+                If Me.IsPuddlePNGNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.PuddlePNGColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesBilingual.PuddlePNGColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddleNext() As String
+            Get
+                If Me.IsPuddleNextNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.PuddleNextColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesBilingual.PuddleNextColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddlePrev() As String
+            Get
+                If Me.IsPuddlePrevNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.PuddlePrevColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesBilingual.PuddlePrevColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property SignPuddleUser() As String
+            Get
+                If Me.IsSignPuddleUserNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.SignPuddleUserColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesBilingual.SignPuddleUserColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function Isgloss1Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.gloss1Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setgloss1Null()
             Me(Me.tableSignsbyGlossesBilingual.gloss1Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function Isglosses1Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.glosses1Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setglosses1Null()
             Me(Me.tableSignsbyGlossesBilingual.glosses1Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function Isgloss2Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.gloss2Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setgloss2Null()
             Me(Me.tableSignsbyGlossesBilingual.gloss2Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function Isglosses2Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.glosses2Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setglosses2Null()
             Me(Me.tableSignsbyGlossesBilingual.glosses2Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsIDDictionaryGloss1Null() As Boolean
-            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetIDDictionaryGloss1Null()
-            Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCulture1Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.Culture1Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCulture1Null()
             Me(Me.tableSignsbyGlossesBilingual.Culture1Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIDDictionaryGloss2Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss2Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIDDictionaryGloss2Null()
             Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss2Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCulture2Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.Culture2Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCulture2Null()
             Me(Me.tableSignsbyGlossesBilingual.Culture2Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIDSignLanguageNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.IDSignLanguageColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIDSignLanguageNull()
             Me(Me.tableSignsbyGlossesBilingual.IDSignLanguageColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIDSignPuddleNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.IDSignPuddleColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIDSignPuddleNull()
             Me(Me.tableSignsbyGlossesBilingual.IDSignPuddleColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsisPrivateNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.isPrivateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetisPrivateNull()
             Me(Me.tableSignsbyGlossesBilingual.isPrivateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSWritingNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.SWritingColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSWritingNull()
             Me(Me.tableSignsbyGlossesBilingual.SWritingColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPhotoNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PhotoColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPhotoNull()
             Me(Me.tableSignsbyGlossesBilingual.PhotoColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSignNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.SignColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSignNull()
             Me(Me.tableSignsbyGlossesBilingual.SignColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSWritingSourceNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.SWritingSourceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSWritingSourceNull()
             Me(Me.tableSignsbyGlossesBilingual.SWritingSourceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPhotoSourceNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PhotoSourceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPhotoSourceNull()
             Me(Me.tableSignsbyGlossesBilingual.PhotoSourceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSignSourceNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.SignSourceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSignSourceNull()
             Me(Me.tableSignsbyGlossesBilingual.SignSourceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsGUIDNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.GUIDColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetGUIDNull()
             Me(Me.tableSignsbyGlossesBilingual.GUIDColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsLastModifiedNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.LastModifiedColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetLastModifiedNull()
             Me(Me.tableSignsbyGlossesBilingual.LastModifiedColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSortingNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesBilingual.SortingColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSortingNull()
             Me(Me.tableSignsbyGlossesBilingual.SortingColumn) = Global.System.Convert.DBNull
         End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleTopNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PuddleTopColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleTopNull()
+            Me(Me.tableSignsbyGlossesBilingual.PuddleTopColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleVideoLinkNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PuddleVideoLinkColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleVideoLinkNull()
+            Me(Me.tableSignsbyGlossesBilingual.PuddleVideoLinkColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleSVGNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PuddleSVGColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleSVGNull()
+            Me(Me.tableSignsbyGlossesBilingual.PuddleSVGColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddlePNGNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PuddlePNGColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddlePNGNull()
+            Me(Me.tableSignsbyGlossesBilingual.PuddlePNGColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleNextNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PuddleNextColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleNextNull()
+            Me(Me.tableSignsbyGlossesBilingual.PuddleNextColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddlePrevNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.PuddlePrevColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddlePrevNull()
+            Me(Me.tableSignsbyGlossesBilingual.PuddlePrevColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsSignPuddleUserNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.SignPuddleUserColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetSignPuddleUserNull()
+            Me(Me.tableSignsbyGlossesBilingual.SignPuddleUserColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
-    
+
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class SignsbyGlossesUnilingualRow
         Inherits Global.System.Data.DataRow
-        
+
         Private tableSignsbyGlossesUnilingual As SignsbyGlossesUnilingualDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableSignsbyGlossesUnilingual = CType(Me.Table,SignsbyGlossesUnilingualDataTable)
+            Me.tableSignsbyGlossesUnilingual = CType(Me.Table, SignsbyGlossesUnilingualDataTable)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property gloss1() As String
             Get
                 If Me.Isgloss1Null Then
                     Return String.Empty
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.gloss1Column),String)
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.gloss1Column), String)
                 End If
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableSignsbyGlossesUnilingual.gloss1Column) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property glosses1() As String
             Get
                 If Me.Isglosses1Null Then
                     Return String.Empty
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.glosses1Column),String)
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.glosses1Column), String)
                 End If
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableSignsbyGlossesUnilingual.glosses1Column) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IDDictionaryGloss1() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDDictionaryGloss1Column),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IDDictionaryGloss1' in table 'SignsbyGlossesUnilingual' is "& _ 
-                            "DBNull.", e)
-                End Try
+                Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDDictionaryGloss1Column), Long)
             End Get
-            Set
+            Set(value As Long)
                 Me(Me.tableSignsbyGlossesUnilingual.IDDictionaryGloss1Column) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Culture1() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.Culture1Column),Long)
+                Try
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.Culture1Column), Long)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Culture1' in table 'SignsbyGlossesUnilingual' is DBNull.", e)
                 End Try
             End Get
-            Set
+            Set(value As Long)
                 Me(Me.tableSignsbyGlossesUnilingual.Culture1Column) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IDDictionary() As Long
             Get
-                Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDDictionaryColumn),Long)
+                Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDDictionaryColumn), Long)
             End Get
-            Set
+            Set(value As Long)
                 Me(Me.tableSignsbyGlossesUnilingual.IDDictionaryColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IDSignLanguage() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDSignLanguageColumn),Long)
+                Try
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDSignLanguageColumn), Long)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IDSignLanguage' in table 'SignsbyGlossesUnilingual' is DBNu"& _ 
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IDSignLanguage' in table 'SignsbyGlossesUnilingual' is DBNu" & _
                             "ll.", e)
                 End Try
             End Get
-            Set
+            Set(value As Long)
                 Me(Me.tableSignsbyGlossesUnilingual.IDSignLanguageColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IDSignPuddle() As String
             Get
                 If Me.IsIDSignPuddleNull Then
                     Return String.Empty
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDSignPuddleColumn),String)
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.IDSignPuddleColumn), String)
                 End If
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableSignsbyGlossesUnilingual.IDSignPuddleColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property isPrivate() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.isPrivateColumn),Boolean)
+                Try
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.isPrivateColumn), Boolean)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'isPrivate' in table 'SignsbyGlossesUnilingual' is DBNull.", e)
                 End Try
             End Get
-            Set
+            Set(value As Boolean)
                 Me(Me.tableSignsbyGlossesUnilingual.isPrivateColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property SWriting() As Byte()
             Get
                 If Me.IsSWritingNull Then
                     Return Nothing
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SWritingColumn),Byte())
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SWritingColumn), Byte())
                 End If
             End Get
-            Set
+            Set(value As Byte())
                 Me(Me.tableSignsbyGlossesUnilingual.SWritingColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Photo() As Byte()
             Get
                 If Me.IsPhotoNull Then
                     Return Nothing
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PhotoColumn),Byte())
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PhotoColumn), Byte())
                 End If
             End Get
-            Set
+            Set(value As Byte())
                 Me(Me.tableSignsbyGlossesUnilingual.PhotoColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Sign() As Byte()
             Get
                 If Me.IsSignNull Then
                     Return Nothing
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SignColumn),Byte())
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SignColumn), Byte())
                 End If
             End Get
-            Set
+            Set(value As Byte())
                 Me(Me.tableSignsbyGlossesUnilingual.SignColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property SWritingSource() As String
             Get
                 If Me.IsSWritingSourceNull Then
                     Return String.Empty
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SWritingSourceColumn),String)
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SWritingSourceColumn), String)
                 End If
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableSignsbyGlossesUnilingual.SWritingSourceColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property PhotoSource() As String
             Get
                 If Me.IsPhotoSourceNull Then
                     Return String.Empty
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PhotoSourceColumn),String)
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PhotoSourceColumn), String)
                 End If
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableSignsbyGlossesUnilingual.PhotoSourceColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property SignSource() As String
             Get
                 If Me.IsSignSourceNull Then
                     Return String.Empty
                 Else
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SignSourceColumn),String)
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SignSourceColumn), String)
                 End If
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableSignsbyGlossesUnilingual.SignSourceColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property GUID() As System.Guid
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.GUIDColumn),Global.System.Guid)
+                Try
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.GUIDColumn), Global.System.Guid)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'GUID' in table 'SignsbyGlossesUnilingual' is DBNull.", e)
                 End Try
             End Get
-            Set
+            Set(value As System.Guid)
                 Me(Me.tableSignsbyGlossesUnilingual.GUIDColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property LastModified() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.LastModifiedColumn),Date)
+                Try
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.LastModifiedColumn), Date)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LastModified' in table 'SignsbyGlossesUnilingual' is DBNull"& _ 
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LastModified' in table 'SignsbyGlossesUnilingual' is DBNull" & _
                             ".", e)
                 End Try
             End Get
-            Set
+            Set(value As Date)
                 Me(Me.tableSignsbyGlossesUnilingual.LastModifiedColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Sorting() As String
             Get
                 If Me.IsSortingNull Then
@@ -9057,768 +9436,945 @@ Partial Public Class DictionaryDataSet
                     Return CType(Me(Me.tableSignsbyGlossesUnilingual.SortingColumn), String)
                 End If
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tableSignsbyGlossesUnilingual.SortingColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddleTop() As String
+            Get
+                If Me.IsPuddleTopNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PuddleTopColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesUnilingual.PuddleTopColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddleVideoLink() As String
+            Get
+                If Me.IsPuddleVideoLinkNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PuddleVideoLinkColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesUnilingual.PuddleVideoLinkColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddleSVG() As String
+            Get
+                If Me.IsPuddleSVGNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PuddleSVGColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesUnilingual.PuddleSVGColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddlePNG() As String
+            Get
+                If Me.IsPuddlePNGNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PuddlePNGColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesUnilingual.PuddlePNGColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddleNext() As String
+            Get
+                If Me.IsPuddleNextNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PuddleNextColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesUnilingual.PuddleNextColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property PuddlePrev() As String
+            Get
+                If Me.IsPuddlePrevNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.PuddlePrevColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesUnilingual.PuddlePrevColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property SignPuddleUser() As String
+            Get
+                If Me.IsSignPuddleUserNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableSignsbyGlossesUnilingual.SignPuddleUserColumn), String)
+                End If
+            End Get
+            Set(value As String)
+                Me(Me.tableSignsbyGlossesUnilingual.SignPuddleUserColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property DictionaryRow() As DictionaryRow
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_DictionaryGloss_02")),DictionaryRow)
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_DictionaryGloss_02")), DictionaryRow)
             End Get
-            Set
+            Set(value As DictionaryRow)
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_DictionaryGloss_02"))
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function Isgloss1Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.gloss1Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setgloss1Null()
             Me(Me.tableSignsbyGlossesUnilingual.gloss1Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function Isglosses1Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.glosses1Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setglosses1Null()
             Me(Me.tableSignsbyGlossesUnilingual.glosses1Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsIDDictionaryGloss1Null() As Boolean
-            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.IDDictionaryGloss1Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetIDDictionaryGloss1Null()
-            Me(Me.tableSignsbyGlossesUnilingual.IDDictionaryGloss1Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCulture1Null() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.Culture1Column)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCulture1Null()
             Me(Me.tableSignsbyGlossesUnilingual.Culture1Column) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIDSignLanguageNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.IDSignLanguageColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIDSignLanguageNull()
             Me(Me.tableSignsbyGlossesUnilingual.IDSignLanguageColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIDSignPuddleNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.IDSignPuddleColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIDSignPuddleNull()
             Me(Me.tableSignsbyGlossesUnilingual.IDSignPuddleColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsisPrivateNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.isPrivateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetisPrivateNull()
             Me(Me.tableSignsbyGlossesUnilingual.isPrivateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSWritingNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.SWritingColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSWritingNull()
             Me(Me.tableSignsbyGlossesUnilingual.SWritingColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPhotoNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PhotoColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPhotoNull()
             Me(Me.tableSignsbyGlossesUnilingual.PhotoColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSignNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.SignColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSignNull()
             Me(Me.tableSignsbyGlossesUnilingual.SignColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSWritingSourceNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.SWritingSourceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSWritingSourceNull()
             Me(Me.tableSignsbyGlossesUnilingual.SWritingSourceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPhotoSourceNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PhotoSourceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPhotoSourceNull()
             Me(Me.tableSignsbyGlossesUnilingual.PhotoSourceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSignSourceNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.SignSourceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSignSourceNull()
             Me(Me.tableSignsbyGlossesUnilingual.SignSourceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsGUIDNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.GUIDColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetGUIDNull()
             Me(Me.tableSignsbyGlossesUnilingual.GUIDColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsLastModifiedNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.LastModifiedColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetLastModifiedNull()
             Me(Me.tableSignsbyGlossesUnilingual.LastModifiedColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSortingNull() As Boolean
             Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.SortingColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSortingNull()
             Me(Me.tableSignsbyGlossesUnilingual.SortingColumn) = Global.System.Convert.DBNull
         End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleTopNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PuddleTopColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleTopNull()
+            Me(Me.tableSignsbyGlossesUnilingual.PuddleTopColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleVideoLinkNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PuddleVideoLinkColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleVideoLinkNull()
+            Me(Me.tableSignsbyGlossesUnilingual.PuddleVideoLinkColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleSVGNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PuddleSVGColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleSVGNull()
+            Me(Me.tableSignsbyGlossesUnilingual.PuddleSVGColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddlePNGNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PuddlePNGColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddlePNGNull()
+            Me(Me.tableSignsbyGlossesUnilingual.PuddlePNGColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddleNextNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PuddleNextColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddleNextNull()
+            Me(Me.tableSignsbyGlossesUnilingual.PuddleNextColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPuddlePrevNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.PuddlePrevColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPuddlePrevNull()
+            Me(Me.tableSignsbyGlossesUnilingual.PuddlePrevColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsSignPuddleUserNull() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesUnilingual.SignPuddleUserColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetSignPuddleUserNull()
+            Me(Me.tableSignsbyGlossesUnilingual.SignPuddleUserColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
-    
+
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class PuddleTextRow
         Inherits Global.System.Data.DataRow
-        
+
         Private tablePuddleText As PuddleTextDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tablePuddleText = CType(Me.Table,PuddleTextDataTable)
+            Me.tablePuddleText = CType(Me.Table, PuddleTextDataTable)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IDPuddleText() As Long
             Get
-                Return CType(Me(Me.tablePuddleText.IDPuddleTextColumn),Long)
+                Return CType(Me(Me.tablePuddleText.IDPuddleTextColumn), Long)
             End Get
-            Set
+            Set(value As Long)
                 Me(Me.tablePuddleText.IDPuddleTextColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IDDictionary() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tablePuddleText.IDDictionaryColumn),Long)
+                Try
+                    Return CType(Me(Me.tablePuddleText.IDDictionaryColumn), Long)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'IDDictionary' in table 'PuddleText' is DBNull.", e)
                 End Try
             End Get
-            Set
+            Set(value As Long)
                 Me(Me.tablePuddleText.IDDictionaryColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property EntryText() As String
             Get
-                Try 
-                    Return CType(Me(Me.tablePuddleText.EntryTextColumn),String)
+                Try
+                    Return CType(Me(Me.tablePuddleText.EntryTextColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'EntryText' in table 'PuddleText' is DBNull.", e)
                 End Try
             End Get
-            Set
+            Set(value As String)
                 Me(Me.tablePuddleText.EntryTextColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property DictionaryRow() As DictionaryRow
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("Dictionary_PuddleText")),DictionaryRow)
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("Dictionary_PuddleText")), DictionaryRow)
             End Get
-            Set
+            Set(value As DictionaryRow)
                 Me.SetParentRow(value, Me.Table.ParentRelations("Dictionary_PuddleText"))
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIDDictionaryNull() As Boolean
             Return Me.IsNull(Me.tablePuddleText.IDDictionaryColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIDDictionaryNull()
             Me(Me.tablePuddleText.IDDictionaryColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsEntryTextNull() As Boolean
             Return Me.IsNull(Me.tablePuddleText.EntryTextColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetEntryTextNull()
             Me(Me.tablePuddleText.EntryTextColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class DictionaryRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As DictionaryRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As DictionaryRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As DictionaryRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class DictionaryGlossRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As DictionaryGlossRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As DictionaryGlossRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As DictionaryGlossRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class FrameRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As FrameRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As FrameRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As FrameRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SigninSignListSubTitlesRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SigninSignListSubTitlesRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SigninSignListSubTitlesRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SigninSignListSubTitlesRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SignListRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SignListRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SignListRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SignListRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SignListSubTitlesRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SignListSubTitlesRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SignListSubTitlesRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SignListSubTitlesRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SignSequenceRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SignSequenceRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SignSequenceRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SignSequenceRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SignSymbolsRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SignSymbolsRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SignSymbolsRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SignSymbolsRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class VersionRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As VersionRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As VersionRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As VersionRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SignsBilingualRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SignsBilingualRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SignsBilingualRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SignsBilingualRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SignsbyGlossesBilingualRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SignsbyGlossesBilingualRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SignsbyGlossesBilingualRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SignsbyGlossesBilingualRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class SignsbyGlossesUnilingualRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As SignsbyGlossesUnilingualRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As SignsbyGlossesUnilingualRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As SignsbyGlossesUnilingualRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class PuddleTextRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As PuddleTextRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As PuddleTextRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As PuddleTextRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
@@ -9828,57 +10384,57 @@ Partial Public Class DictionaryDataSet
 End Class
 
 Namespace DictionaryDataSetTableAdapters
-    
+
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
     '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"), _
+     Global.System.ComponentModel.ToolboxItem(True), _
+     Global.System.ComponentModel.DataObjectAttribute(True), _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" & _
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"), _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
     Partial Public Class DictionaryTableAdapter
         Inherits Global.System.ComponentModel.Component
-        
+
         Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
-        
+
         Private _connection As Global.System.Data.SQLite.SQLiteConnection
-        
+
         Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
-        
+
         Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
-        
+
         Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
+            MyBase.New()
+            Me.ClearBeforeFill = True
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
             Get
                 If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
+                    Me.InitAdapter()
                 End If
                 Return Me._adapter
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Connection() As Global.System.Data.SQLite.SQLiteConnection
             Get
                 If (Me._connection Is Nothing) Then
-                    Me.InitConnection
+                    Me.InitConnection()
                 End If
                 Return Me._connection
             End Get
-            Set
+            Set(value As Global.System.Data.SQLite.SQLiteConnection)
                 Me._connection = value
                 If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
                     Me.Adapter.InsertCommand.Connection = value
@@ -9892,65 +10448,65 @@ Namespace DictionaryDataSetTableAdapters
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
+                        CType(Me.CommandCollection(i), Global.System.Data.SQLite.SQLiteCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
             Get
                 Return Me._transaction
             End Get
-            Set
+            Set(value As Global.System.Data.SQLite.SQLiteTransaction)
                 Me._transaction = value
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     Me.CommandCollection(i).Transaction = Me._transaction
                     i = (i + 1)
                 Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
+                If ((Not (Me.Adapter) Is Nothing) _
                             AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
                     Me.Adapter.DeleteCommand.Transaction = Me._transaction
                 End If
-                If ((Not (Me.Adapter) Is Nothing)  _
+                If ((Not (Me.Adapter) Is Nothing) _
                             AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
                     Me.Adapter.InsertCommand.Transaction = Me._transaction
                 End If
-                If ((Not (Me.Adapter) Is Nothing)  _
+                If ((Not (Me.Adapter) Is Nothing) _
                             AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
                     Me.Adapter.UpdateCommand.Transaction = Me._transaction
                 End If
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
             Get
                 If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
+                    Me.InitCommandCollection()
                 End If
                 Return Me._commandCollection
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property ClearBeforeFill() As Boolean
             Get
                 Return Me._clearBeforeFill
             End Get
-            Set
+            Set(value As Boolean)
                 Me._clearBeforeFill = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitAdapter()
             Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
@@ -9981,32 +10537,32 @@ Namespace DictionaryDataSetTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SQLite.SQLiteCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [main].[sqlite_default_schema].[Dictionary] WHERE (([IDDictionary] = "& _ 
-                "@Original_IDDictionary) AND ((@IsNull_IDSignLanguage = 1 AND [IDSignLanguage] IS"& _ 
-                " NULL) OR ([IDSignLanguage] = @Original_IDSignLanguage)) AND ((@IsNull_isPrivate"& _ 
-                " = 1 AND [isPrivate] IS NULL) OR ([isPrivate] = @Original_isPrivate)) AND ((@IsN"& _ 
-                "ull_bkColor = 1 AND [bkColor] IS NULL) OR ([bkColor] = @Original_bkColor)) AND ("& _ 
-                "(@IsNull_SWriting = 1 AND [SWriting] IS NULL) OR ([SWriting] = @Original_SWritin"& _ 
-                "g)) AND ((@IsNull_Photo = 1 AND [Photo] IS NULL) OR ([Photo] = @Original_Photo))"& _ 
-                " AND ((@IsNull_Sign = 1 AND [Sign] IS NULL) OR ([Sign] = @Original_Sign)) AND (("& _ 
-                "@IsNull_SWritingSource = 1 AND [SWritingSource] IS NULL) OR ([SWritingSource] = "& _ 
-                "@Original_SWritingSource)) AND ((@IsNull_PhotoSource = 1 AND [PhotoSource] IS NU"& _ 
-                "LL) OR ([PhotoSource] = @Original_PhotoSource)) AND ((@IsNull_SignSource = 1 AND"& _ 
-                " [SignSource] IS NULL) OR ([SignSource] = @Original_SignSource)) AND ((@IsNull_G"& _ 
-                "UID = 1 AND [GUID] IS NULL) OR ([GUID] = @Original_GUID)) AND ((@IsNull_Created "& _ 
-                "= 1 AND [Created] IS NULL) OR ([Created] = @Original_Created)) AND ((@IsNull_Las"& _ 
-                "tModified = 1 AND [LastModified] IS NULL) OR ([LastModified] = @Original_LastMod"& _ 
-                "ified)) AND ((@IsNull_IDSignPuddle = 1 AND [IDSignPuddle] IS NULL) OR ([IDSignPu"& _ 
-                "ddle] = @Original_IDSignPuddle)) AND ((@IsNull_SignPuddleUser = 1 AND [SignPuddl"& _ 
-                "eUser] IS NULL) OR ([SignPuddleUser] = @Original_SignPuddleUser)) AND ((@IsNull_"& _ 
-                "PuddlePrev = 1 AND [PuddlePrev] IS NULL) OR ([PuddlePrev] = @Original_PuddlePrev"& _ 
-                ")) AND ((@IsNull_PuddleNext = 1 AND [PuddleNext] IS NULL) OR ([PuddleNext] = @Or"& _ 
-                "iginal_PuddleNext)) AND ((@IsNull_PuddlePNG = 1 AND [PuddlePNG] IS NULL) OR ([Pu"& _ 
-                "ddlePNG] = @Original_PuddlePNG)) AND ((@IsNull_PuddleSVG = 1 AND [PuddleSVG] IS "& _ 
-                "NULL) OR ([PuddleSVG] = @Original_PuddleSVG)) AND ((@IsNull_PuddleVideoLink = 1 "& _ 
-                "AND [PuddleVideoLink] IS NULL) OR ([PuddleVideoLink] = @Original_PuddleVideoLink"& _ 
-                ")) AND ((@IsNull_Sorting = 1 AND [Sorting] IS NULL) OR ([Sorting] = @Original_So"& _ 
-                "rting)) AND ((@IsNull_PuddleTop = 1 AND [PuddleTop] IS NULL) OR ([PuddleTop] = @"& _ 
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [main].[sqlite_default_schema].[Dictionary] WHERE (([IDDictionary] = " & _
+                "@Original_IDDictionary) AND ((@IsNull_IDSignLanguage = 1 AND [IDSignLanguage] IS" & _
+                " NULL) OR ([IDSignLanguage] = @Original_IDSignLanguage)) AND ((@IsNull_isPrivate" & _
+                " = 1 AND [isPrivate] IS NULL) OR ([isPrivate] = @Original_isPrivate)) AND ((@IsN" & _
+                "ull_bkColor = 1 AND [bkColor] IS NULL) OR ([bkColor] = @Original_bkColor)) AND (" & _
+                "(@IsNull_SWriting = 1 AND [SWriting] IS NULL) OR ([SWriting] = @Original_SWritin" & _
+                "g)) AND ((@IsNull_Photo = 1 AND [Photo] IS NULL) OR ([Photo] = @Original_Photo))" & _
+                " AND ((@IsNull_Sign = 1 AND [Sign] IS NULL) OR ([Sign] = @Original_Sign)) AND ((" & _
+                "@IsNull_SWritingSource = 1 AND [SWritingSource] IS NULL) OR ([SWritingSource] = " & _
+                "@Original_SWritingSource)) AND ((@IsNull_PhotoSource = 1 AND [PhotoSource] IS NU" & _
+                "LL) OR ([PhotoSource] = @Original_PhotoSource)) AND ((@IsNull_SignSource = 1 AND" & _
+                " [SignSource] IS NULL) OR ([SignSource] = @Original_SignSource)) AND ((@IsNull_G" & _
+                "UID = 1 AND [GUID] IS NULL) OR ([GUID] = @Original_GUID)) AND ((@IsNull_Created " & _
+                "= 1 AND [Created] IS NULL) OR ([Created] = @Original_Created)) AND ((@IsNull_Las" & _
+                "tModified = 1 AND [LastModified] IS NULL) OR ([LastModified] = @Original_LastMod" & _
+                "ified)) AND ((@IsNull_IDSignPuddle = 1 AND [IDSignPuddle] IS NULL) OR ([IDSignPu" & _
+                "ddle] = @Original_IDSignPuddle)) AND ((@IsNull_SignPuddleUser = 1 AND [SignPuddl" & _
+                "eUser] IS NULL) OR ([SignPuddleUser] = @Original_SignPuddleUser)) AND ((@IsNull_" & _
+                "PuddlePrev = 1 AND [PuddlePrev] IS NULL) OR ([PuddlePrev] = @Original_PuddlePrev" & _
+                ")) AND ((@IsNull_PuddleNext = 1 AND [PuddleNext] IS NULL) OR ([PuddleNext] = @Or" & _
+                "iginal_PuddleNext)) AND ((@IsNull_PuddlePNG = 1 AND [PuddlePNG] IS NULL) OR ([Pu" & _
+                "ddlePNG] = @Original_PuddlePNG)) AND ((@IsNull_PuddleSVG = 1 AND [PuddleSVG] IS " & _
+                "NULL) OR ([PuddleSVG] = @Original_PuddleSVG)) AND ((@IsNull_PuddleVideoLink = 1 " & _
+                "AND [PuddleVideoLink] IS NULL) OR ([PuddleVideoLink] = @Original_PuddleVideoLink" & _
+                ")) AND ((@IsNull_Sorting = 1 AND [Sorting] IS NULL) OR ([Sorting] = @Original_So" & _
+                "rting)) AND ((@IsNull_PuddleTop = 1 AND [PuddleTop] IS NULL) OR ([PuddleTop] = @" & _
                 "Original_PuddleTop)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
@@ -10022,7 +10578,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "IDSignLanguage"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_IDSignLanguage"
@@ -10037,7 +10593,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "isPrivate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_isPrivate"
@@ -10052,7 +10608,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "bkColor"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_bkColor"
@@ -10067,7 +10623,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SWriting"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SWriting"
@@ -10082,7 +10638,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Photo"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Photo"
@@ -10097,7 +10653,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Sign"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Sign"
@@ -10112,7 +10668,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SWritingSource"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SWritingSource"
@@ -10126,7 +10682,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PhotoSource"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PhotoSource"
@@ -10140,7 +10696,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SignSource"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SignSource"
@@ -10154,7 +10710,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "GUID"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_GUID"
@@ -10169,7 +10725,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Created"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Created"
@@ -10184,7 +10740,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "LastModified"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_LastModified"
@@ -10199,7 +10755,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "IDSignPuddle"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_IDSignPuddle"
@@ -10213,7 +10769,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SignPuddleUser"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SignPuddleUser"
@@ -10227,7 +10783,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddlePrev"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddlePrev"
@@ -10241,7 +10797,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleNext"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleNext"
@@ -10255,7 +10811,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddlePNG"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddlePNG"
@@ -10269,7 +10825,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleSVG"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleSVG"
@@ -10283,7 +10839,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleVideoLink"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleVideoLink"
@@ -10297,7 +10853,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Sorting"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Sorting"
@@ -10311,7 +10867,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleTop"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleTop"
@@ -10321,14 +10877,14 @@ Namespace DictionaryDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.System.Data.SQLite.SQLiteCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[Dictionary] ([IDDictionary], [IDSignL"& _ 
-                "anguage], [isPrivate], [bkColor], [SWriting], [Photo], [Sign], [SWritingSource],"& _ 
-                " [PhotoSource], [SignSource], [GUID], [Created], [LastModified], [IDSignPuddle],"& _ 
-                " [SignPuddleUser], [PuddlePrev], [PuddleNext], [PuddlePNG], [PuddleSVG], [Puddle"& _ 
-                "VideoLink], [Sorting], [PuddleTop]) VALUES (@IDDictionary, @IDSignLanguage, @isP"& _ 
-                "rivate, @bkColor, @SWriting, @Photo, @Sign, @SWritingSource, @PhotoSource, @Sign"& _ 
-                "Source, @GUID, @Created, @LastModified, @IDSignPuddle, @SignPuddleUser, @PuddleP"& _ 
-                "rev, @PuddleNext, @PuddlePNG, @PuddleSVG, @PuddleVideoLink, @Sorting, @PuddleTop"& _ 
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[Dictionary] ([IDDictionary], [IDSignL" & _
+                "anguage], [isPrivate], [bkColor], [SWriting], [Photo], [Sign], [SWritingSource]," & _
+                " [PhotoSource], [SignSource], [GUID], [Created], [LastModified], [IDSignPuddle]," & _
+                " [SignPuddleUser], [PuddlePrev], [PuddleNext], [PuddlePNG], [PuddleSVG], [Puddle" & _
+                "VideoLink], [Sorting], [PuddleTop]) VALUES (@IDDictionary, @IDSignLanguage, @isP" & _
+                "rivate, @bkColor, @SWriting, @Photo, @Sign, @SWritingSource, @PhotoSource, @Sign" & _
+                "Source, @GUID, @Created, @LastModified, @IDSignPuddle, @SignPuddleUser, @PuddleP" & _
+                "rev, @PuddleNext, @PuddlePNG, @PuddleSVG, @PuddleVideoLink, @Sorting, @PuddleTop" & _
                 ")"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -10453,39 +11009,39 @@ Namespace DictionaryDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.System.Data.SQLite.SQLiteCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [main].[sqlite_default_schema].[Dictionary] SET [IDDictionary] = @IDDictio"& _ 
-                "nary, [IDSignLanguage] = @IDSignLanguage, [isPrivate] = @isPrivate, [bkColor] = "& _ 
-                "@bkColor, [SWriting] = @SWriting, [Photo] = @Photo, [Sign] = @Sign, [SWritingSou"& _ 
-                "rce] = @SWritingSource, [PhotoSource] = @PhotoSource, [SignSource] = @SignSource"& _ 
-                ", [GUID] = @GUID, [Created] = @Created, [LastModified] = @LastModified, [IDSignP"& _ 
-                "uddle] = @IDSignPuddle, [SignPuddleUser] = @SignPuddleUser, [PuddlePrev] = @Pudd"& _ 
-                "lePrev, [PuddleNext] = @PuddleNext, [PuddlePNG] = @PuddlePNG, [PuddleSVG] = @Pud"& _ 
-                "dleSVG, [PuddleVideoLink] = @PuddleVideoLink, [Sorting] = @Sorting, [PuddleTop] "& _ 
-                "= @PuddleTop WHERE (([IDDictionary] = @Original_IDDictionary) AND ((@IsNull_IDSi"& _ 
-                "gnLanguage = 1 AND [IDSignLanguage] IS NULL) OR ([IDSignLanguage] = @Original_ID"& _ 
-                "SignLanguage)) AND ((@IsNull_isPrivate = 1 AND [isPrivate] IS NULL) OR ([isPriva"& _ 
-                "te] = @Original_isPrivate)) AND ((@IsNull_bkColor = 1 AND [bkColor] IS NULL) OR "& _ 
-                "([bkColor] = @Original_bkColor)) AND ((@IsNull_SWriting = 1 AND [SWriting] IS NU"& _ 
-                "LL) OR ([SWriting] = @Original_SWriting)) AND ((@IsNull_Photo = 1 AND [Photo] IS"& _ 
-                " NULL) OR ([Photo] = @Original_Photo)) AND ((@IsNull_Sign = 1 AND [Sign] IS NULL"& _ 
-                ") OR ([Sign] = @Original_Sign)) AND ((@IsNull_SWritingSource = 1 AND [SWritingSo"& _ 
-                "urce] IS NULL) OR ([SWritingSource] = @Original_SWritingSource)) AND ((@IsNull_P"& _ 
-                "hotoSource = 1 AND [PhotoSource] IS NULL) OR ([PhotoSource] = @Original_PhotoSou"& _ 
-                "rce)) AND ((@IsNull_SignSource = 1 AND [SignSource] IS NULL) OR ([SignSource] = "& _ 
-                "@Original_SignSource)) AND ((@IsNull_GUID = 1 AND [GUID] IS NULL) OR ([GUID] = @"& _ 
-                "Original_GUID)) AND ((@IsNull_Created = 1 AND [Created] IS NULL) OR ([Created] ="& _ 
-                " @Original_Created)) AND ((@IsNull_LastModified = 1 AND [LastModified] IS NULL) "& _ 
-                "OR ([LastModified] = @Original_LastModified)) AND ((@IsNull_IDSignPuddle = 1 AND"& _ 
-                " [IDSignPuddle] IS NULL) OR ([IDSignPuddle] = @Original_IDSignPuddle)) AND ((@Is"& _ 
-                "Null_SignPuddleUser = 1 AND [SignPuddleUser] IS NULL) OR ([SignPuddleUser] = @Or"& _ 
-                "iginal_SignPuddleUser)) AND ((@IsNull_PuddlePrev = 1 AND [PuddlePrev] IS NULL) O"& _ 
-                "R ([PuddlePrev] = @Original_PuddlePrev)) AND ((@IsNull_PuddleNext = 1 AND [Puddl"& _ 
-                "eNext] IS NULL) OR ([PuddleNext] = @Original_PuddleNext)) AND ((@IsNull_PuddlePN"& _ 
-                "G = 1 AND [PuddlePNG] IS NULL) OR ([PuddlePNG] = @Original_PuddlePNG)) AND ((@Is"& _ 
-                "Null_PuddleSVG = 1 AND [PuddleSVG] IS NULL) OR ([PuddleSVG] = @Original_PuddleSV"& _ 
-                "G)) AND ((@IsNull_PuddleVideoLink = 1 AND [PuddleVideoLink] IS NULL) OR ([Puddle"& _ 
-                "VideoLink] = @Original_PuddleVideoLink)) AND ((@IsNull_Sorting = 1 AND [Sorting]"& _ 
-                " IS NULL) OR ([Sorting] = @Original_Sorting)) AND ((@IsNull_PuddleTop = 1 AND [P"& _ 
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [main].[sqlite_default_schema].[Dictionary] SET [IDDictionary] = @IDDictio" & _
+                "nary, [IDSignLanguage] = @IDSignLanguage, [isPrivate] = @isPrivate, [bkColor] = " & _
+                "@bkColor, [SWriting] = @SWriting, [Photo] = @Photo, [Sign] = @Sign, [SWritingSou" & _
+                "rce] = @SWritingSource, [PhotoSource] = @PhotoSource, [SignSource] = @SignSource" & _
+                ", [GUID] = @GUID, [Created] = @Created, [LastModified] = @LastModified, [IDSignP" & _
+                "uddle] = @IDSignPuddle, [SignPuddleUser] = @SignPuddleUser, [PuddlePrev] = @Pudd" & _
+                "lePrev, [PuddleNext] = @PuddleNext, [PuddlePNG] = @PuddlePNG, [PuddleSVG] = @Pud" & _
+                "dleSVG, [PuddleVideoLink] = @PuddleVideoLink, [Sorting] = @Sorting, [PuddleTop] " & _
+                "= @PuddleTop WHERE (([IDDictionary] = @Original_IDDictionary) AND ((@IsNull_IDSi" & _
+                "gnLanguage = 1 AND [IDSignLanguage] IS NULL) OR ([IDSignLanguage] = @Original_ID" & _
+                "SignLanguage)) AND ((@IsNull_isPrivate = 1 AND [isPrivate] IS NULL) OR ([isPriva" & _
+                "te] = @Original_isPrivate)) AND ((@IsNull_bkColor = 1 AND [bkColor] IS NULL) OR " & _
+                "([bkColor] = @Original_bkColor)) AND ((@IsNull_SWriting = 1 AND [SWriting] IS NU" & _
+                "LL) OR ([SWriting] = @Original_SWriting)) AND ((@IsNull_Photo = 1 AND [Photo] IS" & _
+                " NULL) OR ([Photo] = @Original_Photo)) AND ((@IsNull_Sign = 1 AND [Sign] IS NULL" & _
+                ") OR ([Sign] = @Original_Sign)) AND ((@IsNull_SWritingSource = 1 AND [SWritingSo" & _
+                "urce] IS NULL) OR ([SWritingSource] = @Original_SWritingSource)) AND ((@IsNull_P" & _
+                "hotoSource = 1 AND [PhotoSource] IS NULL) OR ([PhotoSource] = @Original_PhotoSou" & _
+                "rce)) AND ((@IsNull_SignSource = 1 AND [SignSource] IS NULL) OR ([SignSource] = " & _
+                "@Original_SignSource)) AND ((@IsNull_GUID = 1 AND [GUID] IS NULL) OR ([GUID] = @" & _
+                "Original_GUID)) AND ((@IsNull_Created = 1 AND [Created] IS NULL) OR ([Created] =" & _
+                " @Original_Created)) AND ((@IsNull_LastModified = 1 AND [LastModified] IS NULL) " & _
+                "OR ([LastModified] = @Original_LastModified)) AND ((@IsNull_IDSignPuddle = 1 AND" & _
+                " [IDSignPuddle] IS NULL) OR ([IDSignPuddle] = @Original_IDSignPuddle)) AND ((@Is" & _
+                "Null_SignPuddleUser = 1 AND [SignPuddleUser] IS NULL) OR ([SignPuddleUser] = @Or" & _
+                "iginal_SignPuddleUser)) AND ((@IsNull_PuddlePrev = 1 AND [PuddlePrev] IS NULL) O" & _
+                "R ([PuddlePrev] = @Original_PuddlePrev)) AND ((@IsNull_PuddleNext = 1 AND [Puddl" & _
+                "eNext] IS NULL) OR ([PuddleNext] = @Original_PuddleNext)) AND ((@IsNull_PuddlePN" & _
+                "G = 1 AND [PuddlePNG] IS NULL) OR ([PuddlePNG] = @Original_PuddlePNG)) AND ((@Is" & _
+                "Null_PuddleSVG = 1 AND [PuddleSVG] IS NULL) OR ([PuddleSVG] = @Original_PuddleSV" & _
+                "G)) AND ((@IsNull_PuddleVideoLink = 1 AND [PuddleVideoLink] IS NULL) OR ([Puddle" & _
+                "VideoLink] = @Original_PuddleVideoLink)) AND ((@IsNull_Sorting = 1 AND [Sorting]" & _
+                " IS NULL) OR ([Sorting] = @Original_Sorting)) AND ((@IsNull_PuddleTop = 1 AND [P" & _
                 "uddleTop] IS NULL) OR ([PuddleTop] = @Original_PuddleTop)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -10621,7 +11177,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "IDSignLanguage"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_IDSignLanguage"
@@ -10636,7 +11192,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "isPrivate"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_isPrivate"
@@ -10651,7 +11207,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "bkColor"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_bkColor"
@@ -10666,7 +11222,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SWriting"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SWriting"
@@ -10681,7 +11237,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Photo"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Photo"
@@ -10696,7 +11252,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Sign"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Sign"
@@ -10711,7 +11267,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SWritingSource"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SWritingSource"
@@ -10725,7 +11281,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PhotoSource"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PhotoSource"
@@ -10739,7 +11295,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SignSource"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SignSource"
@@ -10753,7 +11309,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "GUID"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_GUID"
@@ -10768,7 +11324,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Created"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Created"
@@ -10783,7 +11339,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "LastModified"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_LastModified"
@@ -10798,7 +11354,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "IDSignPuddle"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_IDSignPuddle"
@@ -10812,7 +11368,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "SignPuddleUser"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_SignPuddleUser"
@@ -10826,7 +11382,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddlePrev"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddlePrev"
@@ -10840,7 +11396,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleNext"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleNext"
@@ -10854,7 +11410,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddlePNG"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddlePNG"
@@ -10868,7 +11424,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleSVG"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleSVG"
@@ -10882,7 +11438,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleVideoLink"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleVideoLink"
@@ -10896,7 +11452,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "Sorting"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_Sorting"
@@ -10910,7 +11466,7 @@ Namespace DictionaryDataSetTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.SourceColumn = "PuddleTop"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
+            param.SourceColumnNullMapping = True
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@Original_PuddleTop"
@@ -10919,29 +11475,29 @@ Namespace DictionaryDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
             Me._connection.ConnectionString = Global.SignWriterStudio.Database.Dictionary.My.MySettings.Default.test1ConnectionString
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitCommandCollection()
             Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(15) {}
             Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        IDDictionary, IDSignLanguage, isPrivate, bkColor, SWriting, Photo, "& _ 
-                "Sign, SWritingSource, PhotoSource, SignSource, GUID, Created, LastModified, IDSi"& _ 
-                "gnPuddle, SignPuddleUser, PuddlePrev, PuddleNext, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Pud"& _ 
-                "dlePNG, PuddleSVG, PuddleVideoLink, Sorting, PuddleTop"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Dictiona"& _ 
+            Me._commandCollection(0).CommandText = "SELECT        IDDictionary, IDSignLanguage, isPrivate, bkColor, SWriting, Photo, " & _
+                "Sign, SWritingSource, PhotoSource, SignSource, GUID, Created, LastModified, IDSi" & _
+                "gnPuddle, SignPuddleUser, PuddlePrev, PuddleNext, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Pud" & _
+                "dlePNG, PuddleSVG, PuddleVideoLink, Sorting, PuddleTop" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            Dictiona" & _
                 "ry"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        GUID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (GUID = @GUID)"
+            Me._commandCollection(1).CommandText = "SELECT        GUID" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (GUID = @GUID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@GUID"
@@ -10952,7 +11508,7 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(1).Parameters.Add(param)
             Me._commandCollection(2) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "DELETE FROM Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IDDictionary = @ID)"
+            Me._commandCollection(2).CommandText = "DELETE FROM Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (IDDictionary = @ID)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@ID"
@@ -10964,16 +11520,16 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(2).Parameters.Add(param)
             Me._commandCollection(3) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT     Dictionary.IDSignLanguage, DictionaryGloss.IDCulture"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         (Di"& _ 
-                "ctionary INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      DictionaryGloss ON Dictionary.IDDicti"& _ 
-                "onary = DictionaryGloss.IDDictionary)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Dictionary.IDSignLanguage, Dicti"& _ 
+            Me._commandCollection(3).CommandText = "SELECT     Dictionary.IDSignLanguage, DictionaryGloss.IDCulture" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM         (Di" & _
+                "ctionary INNER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                      DictionaryGloss ON Dictionary.IDDicti" & _
+                "onary = DictionaryGloss.IDDictionary)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "GROUP BY Dictionary.IDSignLanguage, Dicti" & _
                 "onaryGloss.IDCulture"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT Created, GUID, IDDictionary, IDSignLanguage, IDSignPuddle, LastModified, P"& _ 
-                "hoto, PhotoSource, PuddleNext, PuddlePNG, PuddlePrev, PuddleSVG, PuddleTop, Pudd"& _ 
-                "leVideoLink, SWriting, SWritingSource, Sign, SignPuddleUser, SignSource, Sorting"& _ 
+            Me._commandCollection(4).CommandText = "SELECT Created, GUID, IDDictionary, IDSignLanguage, IDSignPuddle, LastModified, P" & _
+                "hoto, PhotoSource, PuddleNext, PuddlePNG, PuddlePrev, PuddleSVG, PuddleTop, Pudd" & _
+                "leVideoLink, SWriting, SWritingSource, Sign, SignPuddleUser, SignSource, Sorting" & _
                 ", bkColor, isPrivate FROM Dictionary WHERE (IDDictionary = @IDDictionary)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -10985,17 +11541,17 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(4).Parameters.Add(param)
             Me._commandCollection(5) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT        Dictionary.IDDictionary, Dictionary.IDSignLanguage, Dictionary.IDSi"& _ 
-                "gnPuddle, Dictionary.SWriting, Dictionary.Photo, Dictionary.Sign, Dictionary.Pho"& _ 
-                "toSource,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          Dictionary.SignSource, Dictionary.SWritingS"& _ 
-                "ource, Dictionary.GUID, Dictionary.LastModified, DictionaryGloss_1.gloss, Dictio"& _ 
-                "naryGloss_1.glosses, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DictionaryGloss.gloss AS Expr1, "& _ 
-                "DictionaryGloss.glosses AS Expr2, Dictionary.Sorting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Dictionary"& _ 
-                " LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DictionaryGloss ON Dictionary.IDDicti"& _ 
-                "onary = DictionaryGloss.IDDictionary LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         D"& _ 
-                "ictionaryGloss DictionaryGloss_1 ON Dictionary.IDDictionary = DictionaryGloss_1."& _ 
-                "IDDictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Dictionary.IDDictionary = @IDDictionary) AND (Dictio"& _ 
-                "naryGloss_1.IDCulture = @Gloss1IDCulture) AND (DictionaryGloss.IDCulture = @Glos"& _ 
+            Me._commandCollection(5).CommandText = "SELECT        Dictionary.IDDictionary, Dictionary.IDSignLanguage, Dictionary.IDSi" & _
+                "gnPuddle, Dictionary.SWriting, Dictionary.Photo, Dictionary.Sign, Dictionary.Pho" & _
+                "toSource," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                          Dictionary.SignSource, Dictionary.SWritingS" & _
+                "ource, Dictionary.GUID, Dictionary.LastModified, DictionaryGloss_1.gloss, Dictio" & _
+                "naryGloss_1.glosses, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         DictionaryGloss.gloss AS Expr1, " & _
+                "DictionaryGloss.glosses AS Expr2, Dictionary.Sorting" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            Dictionary" & _
+                " LEFT OUTER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         DictionaryGloss ON Dictionary.IDDicti" & _
+                "onary = DictionaryGloss.IDDictionary LEFT OUTER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         D" & _
+                "ictionaryGloss DictionaryGloss_1 ON Dictionary.IDDictionary = DictionaryGloss_1." & _
+                "IDDictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (Dictionary.IDDictionary = @IDDictionary) AND (Dictio" & _
+                "naryGloss_1.IDCulture = @Gloss1IDCulture) AND (DictionaryGloss.IDCulture = @Glos" & _
                 "s2IDCulture)"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -11021,21 +11577,21 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(5).Parameters.Add(param)
             Me._commandCollection(6) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "SELECT Created, GUID, IDDictionary, IDSignLanguage, IDSignPuddle, LastModified, P"& _ 
-                "hoto, PhotoSource, PuddleNext, PuddlePNG, PuddlePrev, PuddleSVG, PuddleTop, Pudd"& _ 
-                "leVideoLink, SWriting, SWritingSource, Sign, SignPuddleUser, SignSource, Sorting"& _ 
+            Me._commandCollection(6).CommandText = "SELECT Created, GUID, IDDictionary, IDSignLanguage, IDSignPuddle, LastModified, P" & _
+                "hoto, PhotoSource, PuddleNext, PuddlePNG, PuddlePrev, PuddleSVG, PuddleTop, Pudd" & _
+                "leVideoLink, SWriting, SWritingSource, Sign, SignPuddleUser, SignSource, Sorting" & _
                 ", bkColor, isPrivate FROM Dictionary"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(7) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "SELECT Created, GUID, IDDictionary, IDSignLanguage, IDSignPuddle, LastModified, P"& _ 
-                "hoto, PhotoSource, PuddleNext, PuddlePNG, PuddlePrev, PuddleSVG, PuddleTop, Pudd"& _ 
-                "leVideoLink, SWriting, SWritingSource, Sign, SignPuddleUser, SignSource, Sorting"& _ 
+            Me._commandCollection(7).CommandText = "SELECT Created, GUID, IDDictionary, IDSignLanguage, IDSignPuddle, LastModified, P" & _
+                "hoto, PhotoSource, PuddleNext, PuddlePNG, PuddlePrev, PuddleSVG, PuddleTop, Pudd" & _
+                "leVideoLink, SWriting, SWritingSource, Sign, SignPuddleUser, SignSource, Sorting" & _
                 ", bkColor, isPrivate FROM Dictionary GROUP BY IDSignLanguage"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(8) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "SELECT        IDDictionary, isPrivate"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ("& _ 
+            Me._commandCollection(8).CommandText = "SELECT        IDDictionary, isPrivate" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (" & _
                 "GUID = @GUID)"
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -11047,7 +11603,7 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(8).Parameters.Add(param)
             Me._commandCollection(9) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(9).Connection = Me.Connection
-            Me._commandCollection(9).CommandText = "SELECT     Photo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     (IDDictionary = @IDDictionar"& _ 
+            Me._commandCollection(9).CommandText = "SELECT     Photo" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM         Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE     (IDDictionary = @IDDictionar" & _
                 "y)"
             Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -11059,7 +11615,7 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(9).Parameters.Add(param)
             Me._commandCollection(10) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(10).Connection = Me.Connection
-            Me._commandCollection(10).CommandText = "SELECT        Sign"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IDDictionary = @IDD"& _ 
+            Me._commandCollection(10).CommandText = "SELECT        Sign" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (IDDictionary = @IDD" & _
                 "ictionary)"
             Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -11071,14 +11627,14 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(10).Parameters.Add(param)
             Me._commandCollection(11) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(11).Connection = Me.Connection
-            Me._commandCollection(11).CommandText = "INSERT INTO Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IDSignLanguage, isPrivate, bkCo"& _ 
-                "lor, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, Creat"& _ 
-                "ed, LastModified, IDSignPuddle, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         SignPuddleUser, Puddl"& _ 
-                "eTop, PuddlePrev, PuddleNext, PuddlePNG, PuddleSVG, PuddleVideoLink, Sorting)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"V"& _ 
-                "ALUES        (@IDSignLanguage, @isPrivate, @bkColor, @SWriting, @Photo, @Sign, @"& _ 
-                "SWritingSource, @PhotoSource, @SignSource, @GUID, @Created, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
-                "       @LastModified, @IDSignPuddle, @SignPuddleUser, @PuddleTop, @PuddlePrev, @"& _ 
-                "PuddleNext, @PuddlePNG, @PuddleSVG, @PuddleVideoLink,@Sorting);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+            Me._commandCollection(11).CommandText = "INSERT INTO Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         (IDSignLanguage, isPrivate, bkCo" & _
+                "lor, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, Creat" & _
+                "ed, LastModified, IDSignPuddle, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         SignPuddleUser, Puddl" & _
+                "eTop, PuddlePrev, PuddleNext, PuddlePNG, PuddleSVG, PuddleVideoLink, Sorting)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "V" & _
+                "ALUES        (@IDSignLanguage, @isPrivate, @bkColor, @SWriting, @Photo, @Sign, @" & _
+                "SWritingSource, @PhotoSource, @SignSource, @GUID, @Created, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                  " & _
+                "       @LastModified, @IDSignPuddle, @SignPuddleUser, @PuddleTop, @PuddlePrev, @" & _
+                "PuddleNext, @PuddlePNG, @PuddleSVG, @PuddleVideoLink,@Sorting);" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "               " & _
                 "              SELECT        last_insert_rowid();"
             Me._commandCollection(11).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -11217,13 +11773,13 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(11).Parameters.Add(param)
             Me._commandCollection(12) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(12).Connection = Me.Connection
-            Me._commandCollection(12).CommandText = "INSERT INTO Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IDSignLanguage, isPrivate, bkCo"& _ 
-                "lor, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, Creat"& _ 
-                "ed, LastModified, IDSignPuddle, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         SignPuddleUser, Puddl"& _ 
-                "ePrev, PuddleNext, PuddlePNG, PuddleSVG, PuddleVideoLink)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@IDSig"& _ 
-                "nLanguage, @isPrivate, @bkColor, @SWriting, @Photo, @Sign, @SWritingSource, @Pho"& _ 
-                "toSource, @SignSource, @GUID, @Created, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @LastModified"& _ 
-                ", @IDSignPuddle, @SignPuddleUser, @PuddlePrev, @PuddleNext, @PuddlePNG, @PuddleS"& _ 
+            Me._commandCollection(12).CommandText = "INSERT INTO Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         (IDSignLanguage, isPrivate, bkCo" & _
+                "lor, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, Creat" & _
+                "ed, LastModified, IDSignPuddle, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         SignPuddleUser, Puddl" & _
+                "ePrev, PuddleNext, PuddlePNG, PuddleSVG, PuddleVideoLink)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "VALUES        (@IDSig" & _
+                "nLanguage, @isPrivate, @bkColor, @SWriting, @Photo, @Sign, @SWritingSource, @Pho" & _
+                "toSource, @SignSource, @GUID, @Created, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         @LastModified" & _
+                ", @IDSignPuddle, @SignPuddleUser, @PuddlePrev, @PuddleNext, @PuddlePNG, @PuddleS" & _
                 "VG, @PuddleVideoLink)"
             Me._commandCollection(12).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -11351,15 +11907,16 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(12).Parameters.Add(param)
             Me._commandCollection(13) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(13).Connection = Me.Connection
-            Me._commandCollection(13).CommandText = "SELECT     MAX(IDDictionary) AS LastID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         Dictionary"
+            Me._commandCollection(13).CommandText = "SELECT     MAX(IDDictionary) AS LastID" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM         Dictionary"
             Me._commandCollection(13).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(14) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(14).Connection = Me.Connection
-            Me._commandCollection(14).CommandText = "UPDATE       Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                IDSignLanguage = @IDSignLanguage, isP"& _ 
-                "rivate = @isPrivate, SWriting = @SWriting, Photo = @Photo, Sign = @Sign, PhotoSo"& _ 
-                "urce = @PhotoSource, SignSource = @SignSource, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         SWriti"& _ 
-                "ngSource = @SWSignSource, LastModified = @LastModified, IDSignPuddle = @IDSignPu"& _ 
-                "ddle, Sorting = @Sorting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IDDictionary = @IDDictionary)"
+            Me._commandCollection(14).CommandText = "UPDATE       Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET                IDSignLanguage = @IDSignLanguage, isP" & _
+                "rivate = @isPrivate, SWriting = @SWriting, Photo = @Photo, Sign = @Sign, PhotoSo" & _
+                "urce = @PhotoSource, SignSource = @SignSource, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         SWriti" & _
+                "ngSource = @SWSignSource, LastModified = @LastModified, IDSignPuddle = @IDSignPu" & _
+                "ddle, Sorting = @Sorting, PuddleVideoLink = @PuddleVideoLink" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (IDDi" & _
+                "ctionary = @IDDictionary)"
             Me._commandCollection(14).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@IDSignLanguage"
@@ -11434,6 +11991,12 @@ Namespace DictionaryDataSetTableAdapters
             param.SourceColumn = "Sorting"
             Me._commandCollection(14).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@PuddleVideoLink"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.Size = 2147483647
+            param.SourceColumn = "PuddleVideoLink"
+            Me._commandCollection(14).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@IDDictionary"
             param.DbType = Global.System.Data.DbType.Int64
             param.DbType = Global.System.Data.DbType.Int64
@@ -11443,7 +12006,7 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(14).Parameters.Add(param)
             Me._commandCollection(15) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(15).Connection = Me.Connection
-            Me._commandCollection(15).CommandText = "UPDATE       Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Sorting = @Sorting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IDD"& _ 
+            Me._commandCollection(15).CommandText = "UPDATE       Dictionary" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET                Sorting = @Sorting" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (IDD" & _
                 "ictionary = @Original_IDDictionary)"
             Me._commandCollection(15).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -11461,119 +12024,119 @@ Namespace DictionaryDataSetTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._commandCollection(15).Parameters.Add(param)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
+        Public Overridable Overloads Function Fill(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DictionaryDataSet.DictionaryDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
+        Public Overridable Overloads Function GetData() As DictionaryDataSet.DictionaryDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As DictionaryDataSet.DictionaryDataTable = New DictionaryDataSet.DictionaryDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByGlossLanguagesinDictionary(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillByGlossLanguagesinDictionary(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(3)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByGlossLanguagesinDictionary() As DictionaryDataSet.DictionaryDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataByGlossLanguagesinDictionary() As DictionaryDataSet.DictionaryDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Dim dataTable As DictionaryDataSet.DictionaryDataTable = New DictionaryDataSet.DictionaryDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByID(ByVal dataTable As DictionaryDataSet.DictionaryDataTable, ByVal IDDictionary As Long) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillByID(ByVal dataTable As DictionaryDataSet.DictionaryDataTable, ByVal IDDictionary As Long) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(4)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary,Long)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary, Long)
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByID(ByVal IDDictionary As Long) As DictionaryDataSet.DictionaryDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataByID(ByVal IDDictionary As Long) As DictionaryDataSet.DictionaryDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(4)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary,Long)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary, Long)
             Dim dataTable As DictionaryDataSet.DictionaryDataTable = New DictionaryDataSet.DictionaryDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByIDAndLanguages(ByVal dataTable As DictionaryDataSet.DictionaryDataTable, ByVal IDDictionary As Long, ByVal Gloss1IDCulture As Global.System.Nullable(Of Long), ByVal Gloss2IDCulture As Global.System.Nullable(Of Long)) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillByIDAndLanguages(ByVal dataTable As DictionaryDataSet.DictionaryDataTable, ByVal IDDictionary As Long, ByVal Gloss1IDCulture As Global.System.Nullable(Of Long), ByVal Gloss2IDCulture As Global.System.Nullable(Of Long)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(5)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary,Long)
-            If (Gloss1IDCulture.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Gloss1IDCulture.Value,Long)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary, Long)
+            If (Gloss1IDCulture.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Gloss1IDCulture.Value, Long)
             Else
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (Gloss2IDCulture.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(Gloss2IDCulture.Value,Long)
+            If (Gloss2IDCulture.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(Gloss2IDCulture.Value, Long)
             Else
                 Me.Adapter.SelectCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByIDAndLanguages(ByVal IDDictionary As Long, ByVal Gloss1IDCulture As Global.System.Nullable(Of Long), ByVal Gloss2IDCulture As Global.System.Nullable(Of Long)) As DictionaryDataSet.DictionaryDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataByIDAndLanguages(ByVal IDDictionary As Long, ByVal Gloss1IDCulture As Global.System.Nullable(Of Long), ByVal Gloss2IDCulture As Global.System.Nullable(Of Long)) As DictionaryDataSet.DictionaryDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(5)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary,Long)
-            If (Gloss1IDCulture.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Gloss1IDCulture.Value,Long)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDDictionary, Long)
+            If (Gloss1IDCulture.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Gloss1IDCulture.Value, Long)
             Else
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (Gloss2IDCulture.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(Gloss2IDCulture.Value,Long)
+            If (Gloss2IDCulture.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(Gloss2IDCulture.Value, Long)
             Else
                 Me.Adapter.SelectCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
@@ -11581,1316 +12144,1321 @@ Namespace DictionaryDataSetTableAdapters
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBySignIDGUID(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillBySignIDGUID(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(6)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataBySignIDGUID() As DictionaryDataSet.DictionaryDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataBySignIDGUID() As DictionaryDataSet.DictionaryDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(6)
             Dim dataTable As DictionaryDataSet.DictionaryDataTable = New DictionaryDataSet.DictionaryDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBySignLanguagesinDictionary(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillBySignLanguagesinDictionary(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(7)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataBySignLanguagesinDictionary() As DictionaryDataSet.DictionaryDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataBySignLanguagesinDictionary() As DictionaryDataSet.DictionaryDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(7)
             Dim dataTable As DictionaryDataSet.DictionaryDataTable = New DictionaryDataSet.DictionaryDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataTable As DictionaryDataSet.DictionaryDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As DictionaryDataSet) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataSet As DictionaryDataSet) As Integer
             Return Me.Adapter.Update(dataSet, "Dictionary")
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_IDDictionary As Long,  _
-                    ByVal Original_IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal Original_isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_SWriting() As Byte,  _
-                    ByVal Original_Photo() As Byte,  _
-                    ByVal Original_Sign() As Byte,  _
-                    ByVal Original_SWritingSource As String,  _
-                    ByVal Original_PhotoSource As String,  _
-                    ByVal Original_SignSource As String,  _
-                    ByVal Original_GUID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_Created As Global.System.Nullable(Of Date),  _
-                    ByVal Original_LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal Original_IDSignPuddle As String,  _
-                    ByVal Original_SignPuddleUser As String,  _
-                    ByVal Original_PuddlePrev As String,  _
-                    ByVal Original_PuddleNext As String,  _
-                    ByVal Original_PuddlePNG As String,  _
-                    ByVal Original_PuddleSVG As String,  _
-                    ByVal Original_PuddleVideoLink As String,  _
-                    ByVal Original_Sorting As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, True)> _
+        Public Overridable Overloads Function Delete( _
+                    ByVal Original_IDDictionary As Long, _
+                    ByVal Original_IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal Original_isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal Original_bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal Original_SWriting() As Byte, _
+                    ByVal Original_Photo() As Byte, _
+                    ByVal Original_Sign() As Byte, _
+                    ByVal Original_SWritingSource As String, _
+                    ByVal Original_PhotoSource As String, _
+                    ByVal Original_SignSource As String, _
+                    ByVal Original_GUID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_Created As Global.System.Nullable(Of Date), _
+                    ByVal Original_LastModified As Global.System.Nullable(Of Date), _
+                    ByVal Original_IDSignPuddle As String, _
+                    ByVal Original_SignPuddleUser As String, _
+                    ByVal Original_PuddlePrev As String, _
+                    ByVal Original_PuddleNext As String, _
+                    ByVal Original_PuddlePNG As String, _
+                    ByVal Original_PuddleSVG As String, _
+                    ByVal Original_PuddleVideoLink As String, _
+                    ByVal Original_Sorting As String, _
                     ByVal Original_PuddleTop As String) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_IDDictionary,Long)
-            If (Original_IDSignLanguage.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_IDSignLanguage.Value,Long)
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_IDDictionary, Long)
+            If (Original_IDSignLanguage.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_IDSignLanguage.Value, Long)
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (Original_isPrivate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_isPrivate.Value,Boolean)
+            If (Original_isPrivate.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_isPrivate.Value, Boolean)
             Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            If (Original_bkColor.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_bkColor.Value,Integer)
+            If (Original_bkColor.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_bkColor.Value, Integer)
             Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
             If (Original_SWriting Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_SWriting,Byte())
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_SWriting, Byte())
             End If
             If (Original_Photo Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Photo,Byte())
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Photo, Byte())
             End If
             If (Original_Sign Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Sign,Byte())
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Sign, Byte())
             End If
             If (Original_SWritingSource Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_SWritingSource,String)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_SWritingSource, String)
             End If
             If (Original_PhotoSource Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_PhotoSource,String)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_PhotoSource, String)
             End If
             If (Original_SignSource Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_SignSource,String)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_SignSource, String)
             End If
-            If (Original_GUID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_GUID.Value,System.Guid)
+            If (Original_GUID.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_GUID.Value, System.Guid)
             Else
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
-            If (Original_Created.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Created.Value,Date)
+            If (Original_Created.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Created.Value, Date)
             Else
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
             End If
-            If (Original_LastModified.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_LastModified.Value,Date)
+            If (Original_LastModified.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_LastModified.Value, Date)
             Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
             If (Original_IDSignPuddle Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(26).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_IDSignPuddle,String)
+                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_IDSignPuddle, String)
             End If
             If (Original_SignPuddleUser Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(28).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_SignPuddleUser,String)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_SignPuddleUser, String)
             End If
             If (Original_PuddlePrev Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(30).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_PuddlePrev,String)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_PuddlePrev, String)
             End If
             If (Original_PuddleNext Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(32).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_PuddleNext,String)
+                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_PuddleNext, String)
             End If
             If (Original_PuddlePNG Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(34).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_PuddlePNG,String)
+                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_PuddlePNG, String)
             End If
             If (Original_PuddleSVG Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(36).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(Original_PuddleSVG,String)
+                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(Original_PuddleSVG, String)
             End If
             If (Original_PuddleVideoLink Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(38).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(Original_PuddleVideoLink,String)
+                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(Original_PuddleVideoLink, String)
             End If
             If (Original_Sorting Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(40).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(Original_Sorting,String)
+                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(Original_Sorting, String)
             End If
             If (Original_PuddleTop Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(42).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(Original_PuddleTop,String)
+                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(Original_PuddleTop, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
+                Me.Adapter.DeleteCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
+                    Me.Adapter.DeleteCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal IDDictionary As Long,  _
-                    ByVal IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal SWriting() As Byte,  _
-                    ByVal Photo() As Byte,  _
-                    ByVal Sign() As Byte,  _
-                    ByVal SWritingSource As String,  _
-                    ByVal PhotoSource As String,  _
-                    ByVal SignSource As String,  _
-                    ByVal GUID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Created As Global.System.Nullable(Of Date),  _
-                    ByVal LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal IDSignPuddle As String,  _
-                    ByVal SignPuddleUser As String,  _
-                    ByVal PuddlePrev As String,  _
-                    ByVal PuddleNext As String,  _
-                    ByVal PuddlePNG As String,  _
-                    ByVal PuddleSVG As String,  _
-                    ByVal PuddleVideoLink As String,  _
-                    ByVal Sorting As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, True)> _
+        Public Overridable Overloads Function Insert( _
+                    ByVal IDDictionary As Long, _
+                    ByVal IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal SWriting() As Byte, _
+                    ByVal Photo() As Byte, _
+                    ByVal Sign() As Byte, _
+                    ByVal SWritingSource As String, _
+                    ByVal PhotoSource As String, _
+                    ByVal SignSource As String, _
+                    ByVal GUID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Created As Global.System.Nullable(Of Date), _
+                    ByVal LastModified As Global.System.Nullable(Of Date), _
+                    ByVal IDSignPuddle As String, _
+                    ByVal SignPuddleUser As String, _
+                    ByVal PuddlePrev As String, _
+                    ByVal PuddleNext As String, _
+                    ByVal PuddlePNG As String, _
+                    ByVal PuddleSVG As String, _
+                    ByVal PuddleVideoLink As String, _
+                    ByVal Sorting As String, _
                     ByVal PuddleTop As String) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(IDDictionary,Long)
-            If (IDSignLanguage.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(IDSignLanguage.Value,Long)
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(IDDictionary, Long)
+            If (IDSignLanguage.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(IDSignLanguage.Value, Long)
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (isPrivate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(isPrivate.Value,Boolean)
+            If (isPrivate.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(isPrivate.Value, Boolean)
             Else
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (bkColor.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(bkColor.Value,Integer)
+            If (bkColor.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(bkColor.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
             If (SWriting Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(SWriting,Byte())
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(SWriting, Byte())
             End If
             If (Photo Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(Photo,Byte())
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(Photo, Byte())
             End If
             If (Sign Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Sign,Byte())
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Sign, Byte())
             End If
             If (SWritingSource Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(SWritingSource,String)
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(SWritingSource, String)
             End If
             If (PhotoSource Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(PhotoSource,String)
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(PhotoSource, String)
             End If
             If (SignSource Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(SignSource,String)
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(SignSource, String)
             End If
-            If (GUID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(GUID.Value,System.Guid)
+            If (GUID.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(GUID.Value, System.Guid)
             Else
                 Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (Created.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Created.Value,Date)
+            If (Created.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Created.Value, Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
-            If (LastModified.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(LastModified.Value,Date)
+            If (LastModified.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(LastModified.Value, Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
             End If
             If (IDSignPuddle Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(IDSignPuddle,String)
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(IDSignPuddle, String)
             End If
             If (SignPuddleUser Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(SignPuddleUser,String)
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(SignPuddleUser, String)
             End If
             If (PuddlePrev Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(PuddlePrev,String)
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(PuddlePrev, String)
             End If
             If (PuddleNext Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(PuddleNext,String)
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(PuddleNext, String)
             End If
             If (PuddlePNG Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(PuddlePNG,String)
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(PuddlePNG, String)
             End If
             If (PuddleSVG Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(PuddleSVG,String)
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(PuddleSVG, String)
             End If
             If (PuddleVideoLink Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(19).Value = CType(PuddleVideoLink,String)
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(PuddleVideoLink, String)
             End If
             If (Sorting Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(Sorting,String)
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(Sorting, String)
             End If
             If (PuddleTop Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(PuddleTop,String)
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(PuddleTop, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
+                Me.Adapter.InsertCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
+                    Me.Adapter.InsertCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal IDDictionary As Long,  _
-                    ByVal IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal SWriting() As Byte,  _
-                    ByVal Photo() As Byte,  _
-                    ByVal Sign() As Byte,  _
-                    ByVal SWritingSource As String,  _
-                    ByVal PhotoSource As String,  _
-                    ByVal SignSource As String,  _
-                    ByVal GUID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Created As Global.System.Nullable(Of Date),  _
-                    ByVal LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal IDSignPuddle As String,  _
-                    ByVal SignPuddleUser As String,  _
-                    ByVal PuddlePrev As String,  _
-                    ByVal PuddleNext As String,  _
-                    ByVal PuddlePNG As String,  _
-                    ByVal PuddleSVG As String,  _
-                    ByVal PuddleVideoLink As String,  _
-                    ByVal Sorting As String,  _
-                    ByVal PuddleTop As String,  _
-                    ByVal Original_IDDictionary As Long,  _
-                    ByVal Original_IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal Original_isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_SWriting() As Byte,  _
-                    ByVal Original_Photo() As Byte,  _
-                    ByVal Original_Sign() As Byte,  _
-                    ByVal Original_SWritingSource As String,  _
-                    ByVal Original_PhotoSource As String,  _
-                    ByVal Original_SignSource As String,  _
-                    ByVal Original_GUID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_Created As Global.System.Nullable(Of Date),  _
-                    ByVal Original_LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal Original_IDSignPuddle As String,  _
-                    ByVal Original_SignPuddleUser As String,  _
-                    ByVal Original_PuddlePrev As String,  _
-                    ByVal Original_PuddleNext As String,  _
-                    ByVal Original_PuddlePNG As String,  _
-                    ByVal Original_PuddleSVG As String,  _
-                    ByVal Original_PuddleVideoLink As String,  _
-                    ByVal Original_Sorting As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal IDDictionary As Long, _
+                    ByVal IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal SWriting() As Byte, _
+                    ByVal Photo() As Byte, _
+                    ByVal Sign() As Byte, _
+                    ByVal SWritingSource As String, _
+                    ByVal PhotoSource As String, _
+                    ByVal SignSource As String, _
+                    ByVal GUID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Created As Global.System.Nullable(Of Date), _
+                    ByVal LastModified As Global.System.Nullable(Of Date), _
+                    ByVal IDSignPuddle As String, _
+                    ByVal SignPuddleUser As String, _
+                    ByVal PuddlePrev As String, _
+                    ByVal PuddleNext As String, _
+                    ByVal PuddlePNG As String, _
+                    ByVal PuddleSVG As String, _
+                    ByVal PuddleVideoLink As String, _
+                    ByVal Sorting As String, _
+                    ByVal PuddleTop As String, _
+                    ByVal Original_IDDictionary As Long, _
+                    ByVal Original_IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal Original_isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal Original_bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal Original_SWriting() As Byte, _
+                    ByVal Original_Photo() As Byte, _
+                    ByVal Original_Sign() As Byte, _
+                    ByVal Original_SWritingSource As String, _
+                    ByVal Original_PhotoSource As String, _
+                    ByVal Original_SignSource As String, _
+                    ByVal Original_GUID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_Created As Global.System.Nullable(Of Date), _
+                    ByVal Original_LastModified As Global.System.Nullable(Of Date), _
+                    ByVal Original_IDSignPuddle As String, _
+                    ByVal Original_SignPuddleUser As String, _
+                    ByVal Original_PuddlePrev As String, _
+                    ByVal Original_PuddleNext As String, _
+                    ByVal Original_PuddlePNG As String, _
+                    ByVal Original_PuddleSVG As String, _
+                    ByVal Original_PuddleVideoLink As String, _
+                    ByVal Original_Sorting As String, _
                     ByVal Original_PuddleTop As String) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(IDDictionary,Long)
-            If (IDSignLanguage.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(IDSignLanguage.Value,Long)
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(IDDictionary, Long)
+            If (IDSignLanguage.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(IDSignLanguage.Value, Long)
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (isPrivate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(isPrivate.Value,Boolean)
+            If (isPrivate.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(isPrivate.Value, Boolean)
             Else
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (bkColor.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(bkColor.Value,Integer)
+            If (bkColor.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(bkColor.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
             If (SWriting Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(SWriting,Byte())
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(SWriting, Byte())
             End If
             If (Photo Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Photo,Byte())
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Photo, Byte())
             End If
             If (Sign Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Sign,Byte())
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Sign, Byte())
             End If
             If (SWritingSource Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(SWritingSource,String)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(SWritingSource, String)
             End If
             If (PhotoSource Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PhotoSource,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PhotoSource, String)
             End If
             If (SignSource Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(SignSource,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(SignSource, String)
             End If
-            If (GUID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(GUID.Value,System.Guid)
+            If (GUID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(GUID.Value, System.Guid)
             Else
                 Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (Created.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Created.Value,Date)
+            If (Created.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Created.Value, Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
-            If (LastModified.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(LastModified.Value,Date)
+            If (LastModified.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(LastModified.Value, Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             End If
             If (IDSignPuddle Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(IDSignPuddle,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(IDSignPuddle, String)
             End If
             If (SignPuddleUser Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(SignPuddleUser,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(SignPuddleUser, String)
             End If
             If (PuddlePrev Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(PuddlePrev,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(PuddlePrev, String)
             End If
             If (PuddleNext Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(PuddleNext,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(PuddleNext, String)
             End If
             If (PuddlePNG Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(PuddlePNG,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(PuddlePNG, String)
             End If
             If (PuddleSVG Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(PuddleSVG,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(PuddleSVG, String)
             End If
             If (PuddleVideoLink Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(PuddleVideoLink,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(PuddleVideoLink, String)
             End If
             If (Sorting Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Sorting,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Sorting, String)
             End If
             If (PuddleTop Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(PuddleTop,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(PuddleTop, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_IDDictionary,Long)
-            If (Original_IDSignLanguage.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_IDSignLanguage.Value,Long)
+            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_IDDictionary, Long)
+            If (Original_IDSignLanguage.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_IDSignLanguage.Value, Long)
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
-            If (Original_isPrivate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_isPrivate.Value,Boolean)
+            If (Original_isPrivate.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_isPrivate.Value, Boolean)
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
             End If
-            If (Original_bkColor.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_bkColor.Value,Integer)
+            If (Original_bkColor.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_bkColor.Value, Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             End If
             If (Original_SWriting Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_SWriting,Byte())
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_SWriting, Byte())
             End If
             If (Original_Photo Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_Photo,Byte())
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_Photo, Byte())
             End If
             If (Original_Sign Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_Sign,Byte())
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_Sign, Byte())
             End If
             If (Original_SWritingSource Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_SWritingSource,String)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_SWritingSource, String)
             End If
             If (Original_PhotoSource Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_PhotoSource,String)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_PhotoSource, String)
             End If
             If (Original_SignSource Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_SignSource,String)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_SignSource, String)
             End If
-            If (Original_GUID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_GUID.Value,System.Guid)
+            If (Original_GUID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_GUID.Value, System.Guid)
             Else
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
             End If
-            If (Original_Created.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_Created.Value,Date)
+            If (Original_Created.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_Created.Value, Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(44).Value = Global.System.DBNull.Value
             End If
-            If (Original_LastModified.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_LastModified.Value,Date)
+            If (Original_LastModified.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_LastModified.Value, Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(46).Value = Global.System.DBNull.Value
             End If
             If (Original_IDSignPuddle Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(48).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_IDSignPuddle,String)
+                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_IDSignPuddle, String)
             End If
             If (Original_SignPuddleUser Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(50).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_SignPuddleUser,String)
+                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_SignPuddleUser, String)
             End If
             If (Original_PuddlePrev Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(52).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_PuddlePrev,String)
+                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_PuddlePrev, String)
             End If
             If (Original_PuddleNext Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(54).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(Original_PuddleNext,String)
+                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(Original_PuddleNext, String)
             End If
             If (Original_PuddlePNG Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_PuddlePNG,String)
+                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_PuddlePNG, String)
             End If
             If (Original_PuddleSVG Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(58).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_PuddleSVG,String)
+                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_PuddleSVG, String)
             End If
             If (Original_PuddleVideoLink Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(60).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_PuddleVideoLink,String)
+                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_PuddleVideoLink, String)
             End If
             If (Original_Sorting Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(62).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_Sorting,String)
+                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_Sorting, String)
             End If
             If (Original_PuddleTop Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(64).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(Original_PuddleTop,String)
+                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(Original_PuddleTop, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
+                Me.Adapter.UpdateCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
+                    Me.Adapter.UpdateCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal SWriting() As Byte,  _
-                    ByVal Photo() As Byte,  _
-                    ByVal Sign() As Byte,  _
-                    ByVal SWritingSource As String,  _
-                    ByVal PhotoSource As String,  _
-                    ByVal SignSource As String,  _
-                    ByVal GUID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Created As Global.System.Nullable(Of Date),  _
-                    ByVal LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal IDSignPuddle As String,  _
-                    ByVal SignPuddleUser As String,  _
-                    ByVal PuddlePrev As String,  _
-                    ByVal PuddleNext As String,  _
-                    ByVal PuddlePNG As String,  _
-                    ByVal PuddleSVG As String,  _
-                    ByVal PuddleVideoLink As String,  _
-                    ByVal Sorting As String,  _
-                    ByVal PuddleTop As String,  _
-                    ByVal Original_IDDictionary As Long,  _
-                    ByVal Original_IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal Original_isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_SWriting() As Byte,  _
-                    ByVal Original_Photo() As Byte,  _
-                    ByVal Original_Sign() As Byte,  _
-                    ByVal Original_SWritingSource As String,  _
-                    ByVal Original_PhotoSource As String,  _
-                    ByVal Original_SignSource As String,  _
-                    ByVal Original_GUID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_Created As Global.System.Nullable(Of Date),  _
-                    ByVal Original_LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal Original_IDSignPuddle As String,  _
-                    ByVal Original_SignPuddleUser As String,  _
-                    ByVal Original_PuddlePrev As String,  _
-                    ByVal Original_PuddleNext As String,  _
-                    ByVal Original_PuddlePNG As String,  _
-                    ByVal Original_PuddleSVG As String,  _
-                    ByVal Original_PuddleVideoLink As String,  _
-                    ByVal Original_Sorting As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal SWriting() As Byte, _
+                    ByVal Photo() As Byte, _
+                    ByVal Sign() As Byte, _
+                    ByVal SWritingSource As String, _
+                    ByVal PhotoSource As String, _
+                    ByVal SignSource As String, _
+                    ByVal GUID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Created As Global.System.Nullable(Of Date), _
+                    ByVal LastModified As Global.System.Nullable(Of Date), _
+                    ByVal IDSignPuddle As String, _
+                    ByVal SignPuddleUser As String, _
+                    ByVal PuddlePrev As String, _
+                    ByVal PuddleNext As String, _
+                    ByVal PuddlePNG As String, _
+                    ByVal PuddleSVG As String, _
+                    ByVal PuddleVideoLink As String, _
+                    ByVal Sorting As String, _
+                    ByVal PuddleTop As String, _
+                    ByVal Original_IDDictionary As Long, _
+                    ByVal Original_IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal Original_isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal Original_bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal Original_SWriting() As Byte, _
+                    ByVal Original_Photo() As Byte, _
+                    ByVal Original_Sign() As Byte, _
+                    ByVal Original_SWritingSource As String, _
+                    ByVal Original_PhotoSource As String, _
+                    ByVal Original_SignSource As String, _
+                    ByVal Original_GUID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_Created As Global.System.Nullable(Of Date), _
+                    ByVal Original_LastModified As Global.System.Nullable(Of Date), _
+                    ByVal Original_IDSignPuddle As String, _
+                    ByVal Original_SignPuddleUser As String, _
+                    ByVal Original_PuddlePrev As String, _
+                    ByVal Original_PuddleNext As String, _
+                    ByVal Original_PuddlePNG As String, _
+                    ByVal Original_PuddleSVG As String, _
+                    ByVal Original_PuddleVideoLink As String, _
+                    ByVal Original_Sorting As String, _
                     ByVal Original_PuddleTop As String) As Integer
             Return Me.Update(Original_IDDictionary, IDSignLanguage, isPrivate, bkColor, SWriting, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, Created, LastModified, IDSignPuddle, SignPuddleUser, PuddlePrev, PuddleNext, PuddlePNG, PuddleSVG, PuddleVideoLink, Sorting, PuddleTop, Original_IDDictionary, Original_IDSignLanguage, Original_isPrivate, Original_bkColor, Original_SWriting, Original_Photo, Original_Sign, Original_SWritingSource, Original_PhotoSource, Original_SignSource, Original_GUID, Original_Created, Original_LastModified, Original_IDSignPuddle, Original_SignPuddleUser, Original_PuddlePrev, Original_PuddleNext, Original_PuddlePNG, Original_PuddleSVG, Original_PuddleVideoLink, Original_Sorting, Original_PuddleTop)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function CheckGUID(ByVal GUID As Global.System.Nullable(Of Global.System.Guid)) As Object
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function CheckGUID(ByVal GUID As Global.System.Nullable(Of Global.System.Guid)) As Object
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(1)
-            If (GUID.HasValue = true) Then
-                command.Parameters(0).Value = CType(GUID.Value,System.Guid)
+            If (GUID.HasValue = True) Then
+                command.Parameters(0).Value = CType(GUID.Value, System.Guid)
             Else
                 command.Parameters(0).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Object
-            Try 
+            Try
                 returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
-            If ((returnValue Is Nothing)  _
+            If ((returnValue Is Nothing) _
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,Object)
+                Return CType(returnValue, Object)
             End If
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function DeletebyID(ByVal ID As Long) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, False)> _
+        Public Overridable Overloads Function DeletebyID(ByVal ID As Long) As Integer
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(2)
-            command.Parameters(0).Value = CType(ID,Long)
+            command.Parameters(0).Value = CType(ID, Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Integer
-            Try 
+            Try
                 returnValue = command.ExecuteNonQuery
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function GetIDbyGUID(ByVal GUID As Global.System.Nullable(Of Global.System.Guid)) As Object
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function GetIDbyGUID(ByVal GUID As Global.System.Nullable(Of Global.System.Guid)) As Object
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(8)
-            If (GUID.HasValue = true) Then
-                command.Parameters(0).Value = CType(GUID.Value,System.Guid)
+            If (GUID.HasValue = True) Then
+                command.Parameters(0).Value = CType(GUID.Value, System.Guid)
             Else
                 command.Parameters(0).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Object
-            Try 
+            Try
                 returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
-            If ((returnValue Is Nothing)  _
+            If ((returnValue Is Nothing) _
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,Object)
+                Return CType(returnValue, Object)
             End If
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function GetPhotoByID(ByVal IDDictionary As Long) As Object
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function GetPhotoByID(ByVal IDDictionary As Long) As Object
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(9)
-            command.Parameters(0).Value = CType(IDDictionary,Long)
+            command.Parameters(0).Value = CType(IDDictionary, Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Object
-            Try 
+            Try
                 returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
-            If ((returnValue Is Nothing)  _
+            If ((returnValue Is Nothing) _
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,Object)
+                Return CType(returnValue, Object)
             End If
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function GetSignbyID(ByVal IDDictionary As Long) As Object
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function GetSignbyID(ByVal IDDictionary As Long) As Object
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(10)
-            command.Parameters(0).Value = CType(IDDictionary,Long)
+            command.Parameters(0).Value = CType(IDDictionary, Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Object
-            Try 
+            Try
                 returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
-            If ((returnValue Is Nothing)  _
+            If ((returnValue Is Nothing) _
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,Object)
+                Return CType(returnValue, Object)
             End If
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function InsertGetId( _
-                    ByVal IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal SWriting() As Byte,  _
-                    ByVal Photo() As Byte,  _
-                    ByVal Sign() As Byte,  _
-                    ByVal SWritingSource As String,  _
-                    ByVal PhotoSource As String,  _
-                    ByVal SignSource As String,  _
-                    ByVal GUID As Object,  _
-                    ByVal Created As Global.System.Nullable(Of Date),  _
-                    ByVal LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal IDSignPuddle As String,  _
-                    ByVal SignPuddleUser As String,  _
-                    ByVal PuddleTop As String,  _
-                    ByVal PuddlePrev As String,  _
-                    ByVal PuddleNext As String,  _
-                    ByVal PuddlePNG As String,  _
-                    ByVal PuddleSVG As String,  _
-                    ByVal PuddleVideoLink As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function InsertGetId( _
+                    ByVal IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal SWriting() As Byte, _
+                    ByVal Photo() As Byte, _
+                    ByVal Sign() As Byte, _
+                    ByVal SWritingSource As String, _
+                    ByVal PhotoSource As String, _
+                    ByVal SignSource As String, _
+                    ByVal GUID As Object, _
+                    ByVal Created As Global.System.Nullable(Of Date), _
+                    ByVal LastModified As Global.System.Nullable(Of Date), _
+                    ByVal IDSignPuddle As String, _
+                    ByVal SignPuddleUser As String, _
+                    ByVal PuddleTop As String, _
+                    ByVal PuddlePrev As String, _
+                    ByVal PuddleNext As String, _
+                    ByVal PuddlePNG As String, _
+                    ByVal PuddleSVG As String, _
+                    ByVal PuddleVideoLink As String, _
                     ByVal Sorting As String) As Object
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(11)
-            If (IDSignLanguage.HasValue = true) Then
-                command.Parameters(0).Value = CType(IDSignLanguage.Value,Long)
+            If (IDSignLanguage.HasValue = True) Then
+                command.Parameters(0).Value = CType(IDSignLanguage.Value, Long)
             Else
                 command.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            If (isPrivate.HasValue = true) Then
-                command.Parameters(1).Value = CType(isPrivate.Value,Boolean)
+            If (isPrivate.HasValue = True) Then
+                command.Parameters(1).Value = CType(isPrivate.Value, Boolean)
             Else
                 command.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (bkColor.HasValue = true) Then
-                command.Parameters(2).Value = CType(bkColor.Value,Integer)
+            If (bkColor.HasValue = True) Then
+                command.Parameters(2).Value = CType(bkColor.Value, Integer)
             Else
                 command.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (SWriting Is Nothing) Then
                 command.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(3).Value = CType(SWriting,Byte())
+                command.Parameters(3).Value = CType(SWriting, Byte())
             End If
             If (Photo Is Nothing) Then
                 command.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(4).Value = CType(Photo,Byte())
+                command.Parameters(4).Value = CType(Photo, Byte())
             End If
             If (Sign Is Nothing) Then
                 command.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(5).Value = CType(Sign,Byte())
+                command.Parameters(5).Value = CType(Sign, Byte())
             End If
             If (SWritingSource Is Nothing) Then
                 command.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(6).Value = CType(SWritingSource,String)
+                command.Parameters(6).Value = CType(SWritingSource, String)
             End If
             If (PhotoSource Is Nothing) Then
                 command.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(7).Value = CType(PhotoSource,String)
+                command.Parameters(7).Value = CType(PhotoSource, String)
             End If
             If (SignSource Is Nothing) Then
                 command.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(8).Value = CType(SignSource,String)
+                command.Parameters(8).Value = CType(SignSource, String)
             End If
             If (GUID Is Nothing) Then
                 command.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(9).Value = CType(GUID,Object)
+                command.Parameters(9).Value = CType(GUID, Object)
             End If
-            If (Created.HasValue = true) Then
-                command.Parameters(10).Value = CType(Created.Value,Date)
+            If (Created.HasValue = True) Then
+                command.Parameters(10).Value = CType(Created.Value, Date)
             Else
                 command.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (LastModified.HasValue = true) Then
-                command.Parameters(11).Value = CType(LastModified.Value,Date)
+            If (LastModified.HasValue = True) Then
+                command.Parameters(11).Value = CType(LastModified.Value, Date)
             Else
                 command.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (IDSignPuddle Is Nothing) Then
                 command.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(12).Value = CType(IDSignPuddle,String)
+                command.Parameters(12).Value = CType(IDSignPuddle, String)
             End If
             If (SignPuddleUser Is Nothing) Then
                 command.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(13).Value = CType(SignPuddleUser,String)
+                command.Parameters(13).Value = CType(SignPuddleUser, String)
             End If
             If (PuddleTop Is Nothing) Then
                 command.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(14).Value = CType(PuddleTop,String)
+                command.Parameters(14).Value = CType(PuddleTop, String)
             End If
             If (PuddlePrev Is Nothing) Then
                 command.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(15).Value = CType(PuddlePrev,String)
+                command.Parameters(15).Value = CType(PuddlePrev, String)
             End If
             If (PuddleNext Is Nothing) Then
                 command.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(16).Value = CType(PuddleNext,String)
+                command.Parameters(16).Value = CType(PuddleNext, String)
             End If
             If (PuddlePNG Is Nothing) Then
                 command.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(17).Value = CType(PuddlePNG,String)
+                command.Parameters(17).Value = CType(PuddlePNG, String)
             End If
             If (PuddleSVG Is Nothing) Then
                 command.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(18).Value = CType(PuddleSVG,String)
+                command.Parameters(18).Value = CType(PuddleSVG, String)
             End If
             If (PuddleVideoLink Is Nothing) Then
                 command.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(19).Value = CType(PuddleVideoLink,String)
+                command.Parameters(19).Value = CType(PuddleVideoLink, String)
             End If
             If (Sorting Is Nothing) Then
                 command.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(20).Value = CType(Sorting,String)
+                command.Parameters(20).Value = CType(Sorting, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Object
-            Try 
+            Try
                 returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
-            If ((returnValue Is Nothing)  _
+            If ((returnValue Is Nothing) _
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,Object)
+                Return CType(returnValue, Object)
             End If
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertQuery( _
-                    ByVal IDSignLanguage As Global.System.Nullable(Of Long),  _
-                    ByVal isPrivate As Global.System.Nullable(Of Boolean),  _
-                    ByVal bkColor As Global.System.Nullable(Of Integer),  _
-                    ByVal SWriting() As Byte,  _
-                    ByVal Photo() As Byte,  _
-                    ByVal Sign() As Byte,  _
-                    ByVal SWritingSource As String,  _
-                    ByVal PhotoSource As String,  _
-                    ByVal SignSource As String,  _
-                    ByVal GUID As Object,  _
-                    ByVal Created As Global.System.Nullable(Of Date),  _
-                    ByVal LastModified As Global.System.Nullable(Of Date),  _
-                    ByVal IDSignPuddle As String,  _
-                    ByVal SignPuddleUser As String,  _
-                    ByVal PuddlePrev As String,  _
-                    ByVal PuddleNext As String,  _
-                    ByVal PuddlePNG As String,  _
-                    ByVal PuddleSVG As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, False)> _
+        Public Overridable Overloads Function InsertQuery( _
+                    ByVal IDSignLanguage As Global.System.Nullable(Of Long), _
+                    ByVal isPrivate As Global.System.Nullable(Of Boolean), _
+                    ByVal bkColor As Global.System.Nullable(Of Integer), _
+                    ByVal SWriting() As Byte, _
+                    ByVal Photo() As Byte, _
+                    ByVal Sign() As Byte, _
+                    ByVal SWritingSource As String, _
+                    ByVal PhotoSource As String, _
+                    ByVal SignSource As String, _
+                    ByVal GUID As Object, _
+                    ByVal Created As Global.System.Nullable(Of Date), _
+                    ByVal LastModified As Global.System.Nullable(Of Date), _
+                    ByVal IDSignPuddle As String, _
+                    ByVal SignPuddleUser As String, _
+                    ByVal PuddlePrev As String, _
+                    ByVal PuddleNext As String, _
+                    ByVal PuddlePNG As String, _
+                    ByVal PuddleSVG As String, _
                     ByVal PuddleVideoLink As String) As Integer
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(12)
-            If (IDSignLanguage.HasValue = true) Then
-                command.Parameters(0).Value = CType(IDSignLanguage.Value,Long)
+            If (IDSignLanguage.HasValue = True) Then
+                command.Parameters(0).Value = CType(IDSignLanguage.Value, Long)
             Else
                 command.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            If (isPrivate.HasValue = true) Then
-                command.Parameters(1).Value = CType(isPrivate.Value,Boolean)
+            If (isPrivate.HasValue = True) Then
+                command.Parameters(1).Value = CType(isPrivate.Value, Boolean)
             Else
                 command.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (bkColor.HasValue = true) Then
-                command.Parameters(2).Value = CType(bkColor.Value,Integer)
+            If (bkColor.HasValue = True) Then
+                command.Parameters(2).Value = CType(bkColor.Value, Integer)
             Else
                 command.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (SWriting Is Nothing) Then
                 command.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(3).Value = CType(SWriting,Byte())
+                command.Parameters(3).Value = CType(SWriting, Byte())
             End If
             If (Photo Is Nothing) Then
                 command.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(4).Value = CType(Photo,Byte())
+                command.Parameters(4).Value = CType(Photo, Byte())
             End If
             If (Sign Is Nothing) Then
                 command.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(5).Value = CType(Sign,Byte())
+                command.Parameters(5).Value = CType(Sign, Byte())
             End If
             If (SWritingSource Is Nothing) Then
                 command.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(6).Value = CType(SWritingSource,String)
+                command.Parameters(6).Value = CType(SWritingSource, String)
             End If
             If (PhotoSource Is Nothing) Then
                 command.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(7).Value = CType(PhotoSource,String)
+                command.Parameters(7).Value = CType(PhotoSource, String)
             End If
             If (SignSource Is Nothing) Then
                 command.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(8).Value = CType(SignSource,String)
+                command.Parameters(8).Value = CType(SignSource, String)
             End If
             If (GUID Is Nothing) Then
                 command.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(9).Value = CType(GUID,Object)
+                command.Parameters(9).Value = CType(GUID, Object)
             End If
-            If (Created.HasValue = true) Then
-                command.Parameters(10).Value = CType(Created.Value,Date)
+            If (Created.HasValue = True) Then
+                command.Parameters(10).Value = CType(Created.Value, Date)
             Else
                 command.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (LastModified.HasValue = true) Then
-                command.Parameters(11).Value = CType(LastModified.Value,Date)
+            If (LastModified.HasValue = True) Then
+                command.Parameters(11).Value = CType(LastModified.Value, Date)
             Else
                 command.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (IDSignPuddle Is Nothing) Then
                 command.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(12).Value = CType(IDSignPuddle,String)
+                command.Parameters(12).Value = CType(IDSignPuddle, String)
             End If
             If (SignPuddleUser Is Nothing) Then
                 command.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(13).Value = CType(SignPuddleUser,String)
+                command.Parameters(13).Value = CType(SignPuddleUser, String)
             End If
             If (PuddlePrev Is Nothing) Then
                 command.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(14).Value = CType(PuddlePrev,String)
+                command.Parameters(14).Value = CType(PuddlePrev, String)
             End If
             If (PuddleNext Is Nothing) Then
                 command.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(15).Value = CType(PuddleNext,String)
+                command.Parameters(15).Value = CType(PuddleNext, String)
             End If
             If (PuddlePNG Is Nothing) Then
                 command.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(16).Value = CType(PuddlePNG,String)
+                command.Parameters(16).Value = CType(PuddlePNG, String)
             End If
             If (PuddleSVG Is Nothing) Then
                 command.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(17).Value = CType(PuddleSVG,String)
+                command.Parameters(17).Value = CType(PuddleSVG, String)
             End If
             If (PuddleVideoLink Is Nothing) Then
                 command.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(18).Value = CType(PuddleVideoLink,String)
+                command.Parameters(18).Value = CType(PuddleVideoLink, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Integer
-            Try 
+            Try
                 returnValue = command.ExecuteNonQuery
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function LastID() As Object
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function LastID() As Object
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(13)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Object
-            Try 
+            Try
                 returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
-            If ((returnValue Is Nothing)  _
+            If ((returnValue Is Nothing) _
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,Object)
+                Return CType(returnValue, Object)
             End If
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateQuery(ByVal IDSignLanguage As Global.System.Nullable(Of Long), ByVal isPrivate As Global.System.Nullable(Of Boolean), ByVal SWriting() As Byte, ByVal Photo() As Byte, ByVal Sign() As Byte, ByVal PhotoSource As String, ByVal SignSource As String, ByVal SWSignSource As String, ByVal LastModified As Global.System.Nullable(Of Date), ByVal IDSignPuddle As String, ByVal Sorting As String, ByVal IDDictionary As Long) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, False)> _
+        Public Overridable Overloads Function UpdateQuery(ByVal IDSignLanguage As Global.System.Nullable(Of Long), ByVal isPrivate As Global.System.Nullable(Of Boolean), ByVal SWriting() As Byte, ByVal Photo() As Byte, ByVal Sign() As Byte, ByVal PhotoSource As String, ByVal SignSource As String, ByVal SWSignSource As String, ByVal LastModified As Global.System.Nullable(Of Date), ByVal IDSignPuddle As String, ByVal Sorting As String, ByVal PuddleVideoLink As String, ByVal IDDictionary As Long) As Integer
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(14)
-            If (IDSignLanguage.HasValue = true) Then
-                command.Parameters(0).Value = CType(IDSignLanguage.Value,Long)
+            If (IDSignLanguage.HasValue = True) Then
+                command.Parameters(0).Value = CType(IDSignLanguage.Value, Long)
             Else
                 command.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            If (isPrivate.HasValue = true) Then
-                command.Parameters(1).Value = CType(isPrivate.Value,Boolean)
+            If (isPrivate.HasValue = True) Then
+                command.Parameters(1).Value = CType(isPrivate.Value, Boolean)
             Else
                 command.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (SWriting Is Nothing) Then
                 command.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(2).Value = CType(SWriting,Byte())
+                command.Parameters(2).Value = CType(SWriting, Byte())
             End If
             If (Photo Is Nothing) Then
                 command.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(3).Value = CType(Photo,Byte())
+                command.Parameters(3).Value = CType(Photo, Byte())
             End If
             If (Sign Is Nothing) Then
                 command.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(4).Value = CType(Sign,Byte())
+                command.Parameters(4).Value = CType(Sign, Byte())
             End If
             If (PhotoSource Is Nothing) Then
                 command.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(5).Value = CType(PhotoSource,String)
+                command.Parameters(5).Value = CType(PhotoSource, String)
             End If
             If (SignSource Is Nothing) Then
                 command.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(6).Value = CType(SignSource,String)
+                command.Parameters(6).Value = CType(SignSource, String)
             End If
             If (SWSignSource Is Nothing) Then
                 command.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(7).Value = CType(SWSignSource,String)
+                command.Parameters(7).Value = CType(SWSignSource, String)
             End If
-            If (LastModified.HasValue = true) Then
-                command.Parameters(8).Value = CType(LastModified.Value,Date)
+            If (LastModified.HasValue = True) Then
+                command.Parameters(8).Value = CType(LastModified.Value, Date)
             Else
                 command.Parameters(8).Value = Global.System.DBNull.Value
             End If
             If (IDSignPuddle Is Nothing) Then
                 command.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(9).Value = CType(IDSignPuddle,String)
+                command.Parameters(9).Value = CType(IDSignPuddle, String)
             End If
             If (Sorting Is Nothing) Then
                 command.Parameters(10).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(10).Value = CType(Sorting,String)
+                command.Parameters(10).Value = CType(Sorting, String)
             End If
-            command.Parameters(11).Value = CType(IDDictionary,Long)
+            If (PuddleVideoLink Is Nothing) Then
+                command.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(11).Value = CType(PuddleVideoLink, String)
+            End If
+            command.Parameters(12).Value = CType(IDDictionary, Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Integer
-            Try 
+            Try
                 returnValue = command.ExecuteNonQuery
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
             Return returnValue
@@ -21495,6 +22063,13 @@ Namespace DictionaryDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Joinner.GUID", "GUID")
             tableMapping.ColumnMappings.Add("Joinner.LastModified", "LastModified")
             tableMapping.ColumnMappings.Add("Sorting", "Sorting")
+            tableMapping.ColumnMappings.Add("PuddleTop", "PuddleTop")
+            tableMapping.ColumnMappings.Add("PuddleVideoLink", "PuddleVideoLink")
+            tableMapping.ColumnMappings.Add("PuddleSVG", "PuddleSVG")
+            tableMapping.ColumnMappings.Add("PuddlePNG", "PuddlePNG")
+            tableMapping.ColumnMappings.Add("PuddleNext", "PuddleNext")
+            tableMapping.ColumnMappings.Add("PuddlePrev", "PuddlePrev")
+            tableMapping.ColumnMappings.Add("SignPuddleUser", "SignPuddleUser")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -21514,33 +22089,38 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection(0).CommandText = "SELECT          Joinner.IDDictionary, Joinner.IDSignLanguage, Joinner.IDSignPuddl"& _ 
                 "e, Joinner.isPrivate, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Joinner.SWriting, Joinner.Photo, Joinner.Sign, Joinner."& _ 
                 "SWritingSource,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 Joinner.PhotoSource, Joinner.S"& _ 
-                "ignSource, Joinner.GUID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Joinner.LastModified, TableLanguage1.IDDictionaryGlo"& _ 
-                "ss AS IDDictionaryGloss1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                TableLanguage1.IDCul"& _ 
-                "ture AS Culture1, TableLanguage1.gloss AS gloss1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"TableLanguage1.glosses AS g"& _ 
-                "losses1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                TableLanguage2.IDDictionaryGloss AS I"& _ 
-                "DDictionaryGloss2, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"TableLanguage2.IDCulture AS Culture2, TableLanguage2.gloss"& _ 
-                " AS gloss2, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                TableLanguage2.glosses AS glosses2"& _ 
-                ", Joinner.Sorting as Sorting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM               (SELECT          IDDictionary, "& _ 
-                "IDSignLanguage, IDSignPuddle, isPrivate, SWriting, Photo, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Sign, SWritingSourc"& _ 
-                "e, PhotoSource, SignSource, GUID, LastModified, Sorting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
-                "          FROM               Dictionary) Joinner LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
-                "                      (SELECT          IDDictionaryGloss, IDDictionary, IDCultur"& _ 
-                "e, gloss, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"glosses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                       FROM               "& _ 
-                "DictionaryGloss DictionaryGloss_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                       WHERE "& _ 
-                "          (IDCulture = @Lang1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                             "& _ 
-                "                          (IDCulture IS NULL)) TableLanguage1 "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ON Joinner.IDDi"& _ 
-                "ctionary = TableLanguage1.IDDictionary LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                "            (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, "& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"glosses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                       FROM               Dictionary"& _ 
-                "Gloss DictionaryGloss_2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                       WHERE           "& _ 
-                "(IDCulture = @Lang2) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                       "& _ 
-                "                (IDCulture IS NULL)) TableLanguage2 "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ON Joinner.IDDictionary ="& _ 
-                " TableLanguage2.IDDictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE           (Joinner.IDSignLanguage = @IDSL) A"& _ 
-                "ND (gloss1 LIKE @search) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                (Joinner.IDSignLang"& _ 
-                "uage = @IDSL) AND (glosses1 LIKE @search) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                (J"& _ 
-                "oinner.IDSignLanguage = @IDSL) AND (gloss2 LIKE @search) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "             (Joinner.IDSignLanguage = @IDSL) AND (glosses2 LIKE @search) GROUP "& _ 
-                "BY Joinner.IDDictionary ORDER BY Joinner.Sorting "
+                "ignSource, Joinner.GUID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Joinner.LastModified, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Joinner.PuddleTop as Puddl"& _ 
+                "eTop , Joinner.PuddleVideoLink as PuddleVideoLink, Joinner.PuddleSVG as PuddleSV"& _ 
+                "G, Joinner.PuddlePNG as PuddlePNG,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" Joinner.PuddleNext as PuddleNext, Joinner.P"& _ 
+                "uddlePrev as PuddlePrev, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Joinner.SignPuddleUser as Si"& _ 
+                "gnPuddleUser,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" TableLanguage1.IDDictionaryGloss AS IDDictionaryGloss1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
+                "                            TableLanguage1.IDCulture AS Culture1, TableLanguage1"& _ 
+                ".gloss AS gloss1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"TableLanguage1.glosses AS glosses1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
+                "           TableLanguage2.IDDictionaryGloss AS IDDictionaryGloss2, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"TableLangu"& _ 
+                "age2.IDCulture AS Culture2, TableLanguage2.gloss AS gloss2, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "              TableLanguage2.glosses AS glosses2, Joinner.Sorting as Sorting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
+                "OM               (SELECT          IDDictionary, IDSignLanguage, IDSignPuddle, is"& _ 
+                "Private, SWriting, Photo, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Sign, SWritingSource, PhotoSource, SignSource, GUID"& _ 
+                ", LastModified, Sorting, PuddleTop, PuddleVideoLink, PuddleSVG, PuddlePNG, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"P"& _ 
+                "uddleNext, PuddlePrev, SignPuddleUser"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 FROM    "& _ 
+                "           Dictionary) Joinner LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                "& _ 
+                "    (SELECT          IDDictionaryGloss, IDDictionary, IDCulture, gloss, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"gloss"& _ 
+                "es"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                       FROM               DictionaryGloss Di"& _ 
+                "ctionaryGloss_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                       WHERE           (IDCultu"& _ 
+                "re = @Lang1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                               "& _ 
+                "        (IDCulture IS NULL)) TableLanguage1 "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ON Joinner.IDDictionary = TableLa"& _ 
+                "nguage1.IDDictionary LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                    (SELEC"& _ 
+                "T          IDDictionaryGloss, IDDictionary, IDCulture, gloss, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"glosses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"      "& _ 
+                "                                 FROM               DictionaryGloss DictionaryGl"& _ 
+                "oss_2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                       WHERE           (IDCulture = @Lang"& _ 
+                "2) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                                       (I"& _ 
+                "DCulture IS NULL)) TableLanguage2 "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ON Joinner.IDDictionary = TableLanguage2.ID"& _ 
+                "Dictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE           (Joinner.IDSignLanguage = @IDSL) AND (gloss1 LIKE @s"& _ 
+                "earch) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                (Joinner.IDSignLanguage = @IDSL) AND "& _ 
+                "(glosses1 LIKE @search) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                (Joinner.IDSignLangu"& _ 
+                "age = @IDSL) AND (gloss2 LIKE @search) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                (Join"& _ 
+                "ner.IDSignLanguage = @IDSL) AND (glosses2 LIKE @search) GROUP BY Joinner.IDDicti"& _ 
+                "onary ORDER BY Joinner.Sorting "
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@IDSL"
@@ -22174,6 +22754,13 @@ Namespace DictionaryDataSetTableAdapters
             tableMapping.ColumnMappings.Add("GUID", "GUID")
             tableMapping.ColumnMappings.Add("LastModified", "LastModified")
             tableMapping.ColumnMappings.Add("Sorting", "Sorting")
+            tableMapping.ColumnMappings.Add("PuddleTop", "PuddleTop")
+            tableMapping.ColumnMappings.Add("PuddleVideoLink", "PuddleVideoLink")
+            tableMapping.ColumnMappings.Add("PuddleSVG", "PuddleSVG")
+            tableMapping.ColumnMappings.Add("PuddlePNG", "PuddlePNG")
+            tableMapping.ColumnMappings.Add("PuddleNext", "PuddleNext")
+            tableMapping.ColumnMappings.Add("PuddlePrev", "PuddlePrev")
+            tableMapping.ColumnMappings.Add("SignPuddleUser", "SignPuddleUser")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -22190,18 +22777,23 @@ Namespace DictionaryDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        Dictionary.IDDictionary, IDSignLanguage, IDSignPuddle, isPrivate, S"& _ 
-                "Writing, Photo, Sign, SWritingSource, PhotoSource, SignSource, GUID, LastModifie"& _ 
-                "d, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         TableLanguage1.IDDictionaryGloss AS IDDictionaryGl"& _ 
-                "oss1, TableLanguage1.IDCulture AS Culture1, TableLanguage1.gloss AS gloss1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                       TableLanguage1.glosses AS glosses1, Dictionary.Sorting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"F"& _ 
-                "ROM            Dictionary LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DictionaryGl"& _ 
-                "oss TableLanguage1 ON Dictionary.IDDictionary = TableLanguage1.IDDictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHE"& _ 
-                "RE        (Dictionary.IDSignLanguage = @IDSL) AND (((TableLanguage1.IDCulture = "& _ 
-                "@Lang1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (TableLanguage1.IDCulture IS NULL)) AND ((T"& _ 
-                "ableLanguage1.gloss LIKE @search) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (TableLanguage1.g"& _ 
-                "losses LIKE @search)))"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Dictionary.IDDictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Dictionary.So"& _ 
-                "rting "
+            Me._commandCollection(0).CommandText = "SELECT        Dictionary.IDDictionary, Dictionary.IDSignLanguage, Dictionary.IDSi"& _ 
+                "gnPuddle, Dictionary.isPrivate, Dictionary.SWriting, Dictionary.Photo, Dictionar"& _ 
+                "y.Sign, Dictionary.SWritingSource, Dictionary.PhotoSource, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
+                "      Dictionary.SignSource, Dictionary.GUID, Dictionary.LastModified, TableLang"& _ 
+                "uage1.IDDictionaryGloss AS IDDictionaryGloss1, TableLanguage1.IDCulture AS Cultu"& _ 
+                "re1, TableLanguage1.gloss AS gloss1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         TableLanguage1.g"& _ 
+                "losses AS glosses1, Dictionary.Sorting, Dictionary.PuddleTop, Dictionary.PuddleV"& _ 
+                "ideoLink, Dictionary.PuddleSVG, Dictionary.PuddlePNG, Dictionary.PuddleNext, Dic"& _ 
+                "tionary.PuddlePrev, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Dictionary.SignPuddleUser"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
+                "          Dictionary LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DictionaryGloss T"& _ 
+                "ableLanguage1 ON Dictionary.IDDictionary = TableLanguage1.IDDictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE   "& _ 
+                "     (Dictionary.IDSignLanguage = @IDSL) AND (TableLanguage1.IDCulture = @Lang1 "& _ 
+                "OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         TableLanguage1.IDCulture IS NULL) AND (TableLanguag"& _ 
+                "e1.gloss LIKE @search) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Dictionary.IDSignLanguage ="& _ 
+                " @IDSL) AND (TableLanguage1.IDCulture = @Lang1 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Tabl"& _ 
+                "eLanguage1.IDCulture IS NULL) AND (TableLanguage1.glosses LIKE @search)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP B"& _ 
+                "Y Dictionary.IDDictionary"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Dictionary.Sorting"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@IDSL"
