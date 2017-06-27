@@ -342,7 +342,9 @@ Public NotInheritable Class SWDict
         signByte = NulltoByteArray(modifiedInfo.Sign)
 
         _taDictionary.AssignConnection(conn, trans)
-        _taDictionary.UpdateQuery(modifiedInfo.IDSignLanguage, modifiedInfo.isPrivate, swSignByte, photoByte, signByte, modifiedInfo.PhotoSource, modifiedInfo.SignSource, modifiedInfo.SWritingSource, Date.UtcNow, modifiedInfo.IDSignPuddle, modifiedInfo.Sorting, modifiedInfo.IDDictionary)
+        _taDictionary.UpdateQuery(modifiedInfo.IDSignLanguage, modifiedInfo.isPrivate, swSignByte, photoByte, signByte,
+                                  modifiedInfo.PhotoSource, modifiedInfo.SignSource, modifiedInfo.SWritingSource, Date.UtcNow,
+                                  modifiedInfo.IDSignPuddle, modifiedInfo.Sorting, modifiedInfo.PuddleVideoLink, modifiedInfo.IDDictionary)
         'Language1
         _taDictionaryGloss.AssignConnection(conn, trans)
         Dim lang1RowsAlreadyinDb As Integer = CInt(_taDictionaryGloss.CheckifExists(modifiedInfo.IDDictionary, lang1))
