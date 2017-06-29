@@ -4836,7 +4836,6 @@ Partial Public Class DictionaryDataSet
             Me.columnglosses1.MaxLength = 2147483647
             Me.columngloss2.MaxLength = 2147483647
             Me.columnglosses2.MaxLength = 2147483647
-            Me.columnIDDictionaryGloss1.AllowDBNull = false
             Me.columnIDDictionary.AllowDBNull = False
             Me.columnIDDictionary.Unique = True
             Me.columnIDDictionary.Caption = "Joinner.IDDictionary"
@@ -8317,7 +8316,12 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IDDictionaryGloss1() As Long
             Get
-                Return CType(Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column), Long)
+                Try
+                    Return CType(Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column), Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IDDictionaryGloss1' in table 'SignsbyGlossesBilingual' is D" & _
+                            "BNull.", e)
+                End Try
             End Get
             Set(value As Long)
                 Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column) = value
@@ -8552,11 +8556,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Sorting() As String
             Get
-                Try
+                If Me.IsSortingNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableSignsbyGlossesBilingual.SortingColumn), String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Sorting' in table 'SignsbyGlossesBilingual' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set(value As String)
                 Me(Me.tableSignsbyGlossesBilingual.SortingColumn) = value
@@ -8567,12 +8571,11 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property PuddleVideoLink() As String
             Get
-                Try
+                If Me.IsPuddleVideoLinkNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableSignsbyGlossesBilingual.PuddleVideoLinkColumn), String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PuddleVideoLink' in table 'SignsbyGlossesBilingual' is DBNu" & _
-                            "ll.", e)
-                End Try
+                End If
             End Get
             Set(value As String)
                 Me(Me.tableSignsbyGlossesBilingual.PuddleVideoLinkColumn) = value
@@ -8625,6 +8628,18 @@ Partial Public Class DictionaryDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setglosses2Null()
             Me(Me.tableSignsbyGlossesBilingual.glosses2Column) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsIDDictionaryGloss1Null() As Boolean
+            Return Me.IsNull(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetIDDictionaryGloss1Null()
+            Me(Me.tableSignsbyGlossesBilingual.IDDictionaryGloss1Column) = Global.System.Convert.DBNull
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
