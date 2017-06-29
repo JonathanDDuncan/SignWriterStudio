@@ -139,6 +139,8 @@
                               <Style>
                                 <FontSize>14pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <TextDecoration>=Iif(Fields!PuddleVideoLink.Value Is Nothing OrElse  Fields!PuddleVideoLink.Value = String.Empty ,"Default", "Underline")</TextDecoration>
+                                <Color>=Iif(Fields!PuddleVideoLink.Value Is Nothing OrElse  Fields!PuddleVideoLink.Value = String.Empty ,"Black", "Blue")</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
