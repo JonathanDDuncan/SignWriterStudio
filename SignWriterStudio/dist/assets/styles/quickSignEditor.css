@@ -54,6 +54,12 @@
                 border-style: double;
             }
 
+            dialog {
+                position: fixed;
+                top: 50%;
+                transform: translate(0, -50%);
+                }
+                
             .sym-fill {
                 font-family: 'SuttonSignWritingFill';
                 fill: white;
@@ -195,13 +201,6 @@
             .symbol,
             .font-30 {
                 font-size: 30px;
-            }
-
-            .readytoshow {
-                position: absolute;
-                bottom: 0px;
-                right: 0px;
-                z-index: 10;
             }
 
             .choosing {
