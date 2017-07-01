@@ -188,7 +188,6 @@ Namespace Org.Mentalis.Utilities
 				Throw New SecurityException()
             End Try
             SetExplorerFileExts(Me)
-          
         End Sub
 		'/// <summary>Removes the file association.</summary>
 		'/// <exceptions cref="ArgumentNullException">Extension -or- ProperName is null (VB.NET: Nothing).</exceptions>
