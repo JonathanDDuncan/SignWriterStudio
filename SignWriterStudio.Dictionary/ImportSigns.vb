@@ -167,17 +167,22 @@ Public Class ImportSigns
         Dim signsSelected As New List(Of SwSign)
         Dim compareSigns As New CompareSigns(DictionaryConnectionString)
         If signsToAdd.Count > 0 Then
+            'Only compare signs if less than 1000
+            If signsToAdd.Count <= 1000 Then
+                compareSigns.SignsToAdd = signsToAdd
+                compareSigns.ShowDialog()
 
-            compareSigns.SignsToAdd = signsToAdd
-            compareSigns.ShowDialog()
-
-            For Each Item In compareSigns.ListToAdd
-                If Item.OverwritefromPuddle Then
-                    signsSelected.Add(Item.puddleSign)
-                End If
-            Next
+                For Each Item In compareSigns.ListToAdd
+                    If Item.OverwritefromPuddle Then
+                        signsSelected.Add(Item.puddleSign)
+                    End If
+                Next
+            Else
+                signsSelected = signsToAdd
+            End If
 
         End If
+
         Return signsSelected
     End Function
 
