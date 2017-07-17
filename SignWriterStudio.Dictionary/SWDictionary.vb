@@ -1200,16 +1200,16 @@ Public Class SWDictForm
             Dim result = DatabaseSetup.CheckDictionary(connectionString, True, wasUpgraded)
 
             If result.Item1 Then
-                Dim languages As String = DictLanguages.LanguagesInDictionary
-                If Not languages = String.Empty Then
-                    MessageBox.Show(languages)
-                End If
+               
                 If wasUpgraded Then
                     ' Create sort strings if first one is empty
                     _myDictionary.CreateSortString()
                 End If
                 LoadDictionary()
-
+                Dim languages As String = DictLanguages.LanguagesInDictionary(connectionString)
+                If Not languages = String.Empty Then
+                    MessageBox.Show(languages)
+                End If
                 DictionaryLoaded = True
             Else
                 MessageBox.Show(

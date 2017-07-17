@@ -153,9 +153,12 @@ End Class
 
 Public NotInheritable Class DictLanguages
 
-    Public Shared Function LanguagesInDictionary() As String
+    Public Shared Function LanguagesInDictionary(connectionString As String) As String
         'TODO set TableAdapter connection string on Dictionary DataTables
+        Dim conn = New SQLite.SQLiteConnection(connectionString)
+
         Dim taDict As New DictionaryDataSetTableAdapters.DictionaryTableAdapter
+        taDict.AssignConnection(conn)
         Dim stringBuilder As New Text.StringBuilder
         Dim cultureId As Integer
         Try
