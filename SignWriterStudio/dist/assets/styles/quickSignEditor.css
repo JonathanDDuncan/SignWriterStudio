@@ -1,4 +1,17 @@
-            .overlay {
+@font-face {
+    font-family: "SuttonSignWriting";
+    src: 
+      local('SuttonSignWriting'),
+      url('https://cdn.rawgit.com/Slevinski/signwriting_2010_fonts/master/fonts/SuttonSignWriting.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: "SuttonSignWritingFill";
+    src: 
+      local('SuttonSignWritingFill'),
+      url('https://cdn.rawgit.com/Slevinski/signwriting_2010_fonts/master/fonts/SuttonSignWritingFill.ttf') format('truetype');
+  }
+  
+     .overlay {
                 background-color: pink;
                 top: 0;
                 left: 0;
