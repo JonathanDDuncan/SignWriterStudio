@@ -33,7 +33,8 @@ Public NotInheritable Class SWDict
     Public WithEvents DictionaryBindingSource1 As New BindingSource
     Public WithEvents DictionaryBindingSource2 As New BindingSource
     Private _defaultSignLanguage As Integer
-    Dim _connectionString As String
+    'Dim _connectionString As String
+    Public ReadOnly Property ConnectionString As String
 
     Public Property DefaultSignLanguage() As Integer
         Get
@@ -85,9 +86,8 @@ Public NotInheritable Class SWDict
     Private ReadOnly _taDictionaryGloss As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryGlossTableAdapter
     Private ReadOnly _taDictionary As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryTableAdapter
 
-
     Public Sub New(ByVal connectionString As String)
-        _connectionString = connectionString
+        Me.ConnectionString = connectionString
         Dim conn = New SQLite.SQLiteConnection(connectionString)
         _taDictionarybyLanguages.AssignConnection(conn)
         _taswFrame.AssignConnection(conn)
@@ -242,7 +242,7 @@ Public NotInheritable Class SWDict
 
     End Sub
 
-    Public Function GetSymbolSearchDt(ByVal connectionString As String, _
+    Public Function GetSymbolSearchDt(ByVal connectionString As String,
       ByVal queryStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
 
         Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
@@ -410,6 +410,11 @@ Public NotInheritable Class SWDict
         End Using
 
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D end
+    End Sub
+
+    Public Sub Disconnect()
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
+        conn.Close()
     End Sub
 
     Private Sub DuplicateRowSign(toDuplicateRowId As Long, insertedRowId As Integer, conn As SQLiteConnection, trans As SQLiteTransaction)
@@ -619,22 +624,31 @@ Public NotInheritable Class SWDict
         Static allCachedSignSequenceDataTable As DataTable
         Static allCachedPuddleTextDataTable As DataTable
         If cacheLoaded = False Then
+            Dim connection As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
             Dim taDictionary As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryTableAdapter
+            taDictionary.Connection = connection
             allCachedDictionaryDataTable = taDictionary.GetData()
 
             Dim taDictionaryGloss As DictionaryGlossTableAdapter = New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryGlossTableAdapter
+            taDictionaryGloss.Connection = connection
+
             allCachedDictionaryGlossDataTable = taDictionaryGloss.GetData()
 
             Dim taFrame As New Database.Dictionary.DictionaryDataSetTableAdapters.FrameTableAdapter
+            taFrame.Connection = connection
             allCachedFrameDataTable = taFrame.GetData()
 
             Dim taSignSymbols As New Database.Dictionary.DictionaryDataSetTableAdapters.SignSymbolsTableAdapter
+            taSignSymbols.Connection = connection
             allCachedSignSymbolsDatatable = taSignSymbols.GetData()
 
             Dim taSignSequence As New Database.Dictionary.DictionaryDataSetTableAdapters.SignSequenceTableAdapter
+            taSignSequence.Connection = connection
             allCachedSignSequenceDataTable = taSignSequence.GetData()
 
+
             Dim taPuddleText As New Database.Dictionary.DictionaryDataSetTableAdapters.PuddleTextTableAdapter
+            taPuddleText.Connection = connection
             allCachedPuddleTextDataTable = taPuddleText.GetData()
             cacheLoaded = True
         End If
