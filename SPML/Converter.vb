@@ -522,10 +522,11 @@ Public NotInheritable Class SpmlConverter
 
         Dim dt As DataTable
         If myExportSettings.EntireDictionary Then
-            Dim dictionary1 As New SWDict(myExportSettings.Filename)
+            Dim dictionary1 As New SWDict(dictionary.ConnectionString)
             dictionary1.BilingualMode = False
             dictionary1.DefaultSignLanguage = dictionary.DefaultSignLanguage
             dictionary1.FirstGlossLanguage = dictionary.FirstGlossLanguage
+            dictionary.Disconnect()
             dictionary1.SearchText("%")
             dt = CType(dictionary1.DictionaryBindingSource1.DataSource, DataTable)
         Else
