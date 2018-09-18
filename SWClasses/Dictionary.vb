@@ -502,6 +502,29 @@ Public NotInheritable Class SWDict
         Return Nothing
     End Function
 
+    Public Function GetSWSignByGuid(ByVal guid As Guid, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As SwSign
+        Dim sign As SwSign
+        If Not guid = Guid.Empty Then
+            'Dim DTSignInfo As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = GetSignDT(idDictionary)
+
+            _taDictionary.AssignConnection(conn, trans)
+            Dim idDictionary As Long = CType(_taDictionary.GetIDbyGUID(guid), Long)
+            sign = GetSWSign(idDictionary, conn, trans)
+        End If
+        Return sign
+    End Function
+    Public Function GetSWSignByGuid(ByVal guid As Guid) As SwSign
+        Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
+
+        Dim sign = GetSWSignByGuid(guid, conn, trans)
+        trans.Commit()
+        trans.Dispose()
+        conn.Close()
+        conn.Dispose()
+        Return sign
+
+    End Function
     Public Function GetSWSign(ByVal idDictionary As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As SwSign
         Dim sign As SwSign
         If Not idDictionary = 0 Then
