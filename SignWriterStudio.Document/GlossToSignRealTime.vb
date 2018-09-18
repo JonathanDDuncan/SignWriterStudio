@@ -90,7 +90,7 @@ Public Class GlossToSignRealTime
 
         glossToSignArray = textString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
         Dim glossToSignArray1 = glossToSignArray.Where(Function(x) Not String.IsNullOrWhiteSpace(x) AndAlso x IsNot Environment.NewLine).ToArray()
-        Dim glossToSignArray2 = Class1.MultipleSigns(glossToSignArray1)
+        Dim glossToSignArray2 = GlossToSignHelper.MultipleSigns(glossToSignArray1)
         Return glossToSignArray2
     End Function
 
