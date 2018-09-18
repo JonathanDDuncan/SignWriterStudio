@@ -490,5 +490,9 @@ Imports Microsoft.VisualBasic
 #End Region
 
 
-
+    Public Shared Function MergeFirstFrames(checkedSign As SwSign, addWithSign As SwSign) As SwSign
+        Dim newSign = checkedSign.Clone()
+        newSign.Frames(0).MergeFrame(addWithSign.Frames(0))
+        Return newSign
+    End Function
 End Class

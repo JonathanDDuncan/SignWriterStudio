@@ -1252,7 +1252,7 @@ Public NotInheritable Class SWDict
         Return sign
     End Function
 
-    Private Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow) As SwSign
+    Public Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow) As SwSign
         Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
 

@@ -222,7 +222,7 @@ Imports SignWriterStudio.SWS
     Public Sub AddSequenceItem(ByVal symbol As SWSymbol)
         If symbol.IsValid Then
             Sequences.Add(New SWSequence(symbol.Code, GetLastSequenceRank(Me) + 1))
-            End If
+        End If
     End Sub
     Public Sub AddSequenceSelectedItems()
         For Each symbol As SWSignSymbol In SignSymbols
@@ -231,7 +231,7 @@ Imports SignWriterStudio.SWS
             End If
         Next
     End Sub
-  
+
     Public Sub MoveSequenceUp(ByVal index As Integer)
 
         If Not index = 0 Then
@@ -240,7 +240,7 @@ Imports SignWriterStudio.SWS
             Sequences.Remove(sequence)
             Sequences.Insert(index - 1, sequence)
             RenumberSequenceRank()
-        
+
         End If
     End Sub
     Public Sub MoveSequenceDown(ByVal index As Integer)
@@ -250,10 +250,10 @@ Imports SignWriterStudio.SWS
             Sequences.Remove(sequence)
             Sequences.Insert(index + 1, sequence)
             RenumberSequenceRank()
-       
+
         End If
     End Sub
-  
+
     Public Shared Function GetLastSequenceRank(ByVal frame As SWFrame) As Integer
 
         Return (From sequence1 In frame.Sequences Select sequence1.Rank).Concat(New Integer() {0}).Max()
@@ -267,7 +267,7 @@ Imports SignWriterStudio.SWS
             sequence.Rank = I
         Next
     End Sub
-    Private Shared Function CompareSequencesByRank( _
+    Private Shared Function CompareSequencesByRank(
       ByVal x As SWSequence, ByVal y As SWSequence) As Integer
 
 
@@ -291,7 +291,7 @@ Imports SignWriterStudio.SWS
                 ' ...and y is not Nothing, compare the 
                 ' lengths of the two strings.
                 '
-                Dim retval As Integer = _
+                Dim retval As Integer =
                     x.Rank.CompareTo(y.Rank)
 
                 If retval <> 0 Then
@@ -309,7 +309,7 @@ Imports SignWriterStudio.SWS
         End If
 
     End Function
-    Private Shared Function CompareSignSymbolsByZ( _
+    Private Shared Function CompareSignSymbolsByZ(
    ByVal x As SWSignSymbol, ByVal y As SWSignSymbol) As Integer
 
 
@@ -333,7 +333,7 @@ Imports SignWriterStudio.SWS
                 ' ...and y is not Nothing, compare the 
                 ' lengths of the two strings.
                 '
-                Dim retval As Integer = _
+                Dim retval As Integer =
                     x.Z.CompareTo(y.Z)
 
                 If retval <> 0 Then
@@ -809,7 +809,7 @@ Imports SignWriterStudio.SWS
             If symbol.IsSelected Then
 
                 CompareZ = symbol.Z - 1
-                Dim foundSymbol As SWSignSymbol = _
+                Dim foundSymbol As SWSignSymbol =
                         SignSymbols.Find(AddressOf FindZ)
                 If foundSymbol IsNot Nothing Then
                     foundSymbol.Z = symbol.Z
@@ -839,8 +839,8 @@ Imports SignWriterStudio.SWS
         For Each symbol In SignSymbols
 
             If symbol.IsSelected Then
- 
-                  symbol.Z = SignSymbols.Count + 1
+
+                symbol.Z = SignSymbols.Count + 1
 
                 Exit For
             End If
@@ -854,7 +854,7 @@ Imports SignWriterStudio.SWS
             If symbol.IsSelected Then
                 'Move found row down
                 CompareZ = symbol.Z + 1
-                Dim foundSymbol As SWSignSymbol = _
+                Dim foundSymbol As SWSignSymbol =
                         SignSymbols.Find(AddressOf FindZ)
                 If foundSymbol IsNot Nothing Then
                     foundSymbol.Z = symbol.Z
@@ -1310,7 +1310,7 @@ Imports SignWriterStudio.SWS
         _disposedValue = True
     End Sub
 
-  
+
 
 #Region " IDisposable Support "
     ' This code added by Visual Basic to correctly implement the disposable pattern.
@@ -1333,4 +1333,60 @@ Imports SignWriterStudio.SWS
     Public Sub SignSymbolsSort()
         Me.SignSymbols.Sort(AddressOf CompareSignSymbolsByZ)
     End Sub
+
+    Public Sub MergeFrame(frame As SWFrame)
+        Dim myHeadBounds = GetHeadBounds(Me)
+        Dim myHeadTrunkBounds = GetHeadTrunkBounds(Me)
+        Dim myAllSymbolsBounds = GetAllSymbolsBounds(Me)
+        Dim newframeHeadBounds = GetHeadBounds(frame)
+        Dim newframeHeadTrunkBounds = GetHeadTrunkBounds(frame)
+        Dim newframeAllSymbolsBounds = GetAllSymbolsBounds(frame)
+        Dim offset As Point = Point.Empty
+
+        If Not myHeadBounds = Rectangle.Empty Then
+            If Not newframeHeadBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myHeadBounds, newframeHeadBounds)
+            ElseIf Not newframeHeadTrunkBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myHeadBounds, newframeHeadTrunkBounds)
+            ElseIf Not newframeAllSymbolsBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myHeadBounds, newframeHeadTrunkBounds)
+            End If
+
+        ElseIf Not myHeadTrunkBounds = Rectangle.Empty Then
+            If Not newframeHeadBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myHeadTrunkBounds, newframeHeadBounds)
+            ElseIf Not newframeHeadTrunkBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myHeadTrunkBounds, newframeHeadTrunkBounds)
+            ElseIf Not newframeAllSymbolsBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myHeadTrunkBounds, newframeHeadTrunkBounds)
+            End If
+            If Not newframeHeadBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myAllSymbolsBounds, newframeHeadBounds)
+            ElseIf Not newframeHeadTrunkBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myAllSymbolsBounds, newframeHeadTrunkBounds)
+            ElseIf Not newframeAllSymbolsBounds = Rectangle.Empty Then
+                offset = GetBoundsTopLeftOffset(myAllSymbolsBounds, newframeHeadTrunkBounds)
+            End If
+        End If
+
+
+        frame.SelectAll()
+        frame.MoveSelected(offset)
+        frame.UnSelectSymbols()
+        Me.InsertSymbolsIntoSign(frame.SignSymbols)
+    End Sub
+
+    Private Sub InsertSymbolsIntoSign(swSignSymbols As List(Of SWSignSymbol))
+        For Each swSignSymbol As SWSignSymbol In swSignSymbols
+            swSignSymbol.Z = GetLastZ(Me) + 1
+            SignSymbols.Add(swSignSymbol)
+        Next
+
+        CountSelectedSymbols()
+        ResetSignSymbols()
+    End Sub
+
+    Private Function GetBoundsTopLeftOffset(bounds1 As Rectangle, bounds2 As Rectangle) As Point
+        Return New Point(bounds1.X - bounds2.X, bounds1.Top - bounds2.Top)
+    End Function
 End Class
