@@ -368,7 +368,7 @@ Public Class GlossToSignRealTime
         GlossToSignDataGridView.DataSource = glosstosignrealtimecontrol1.FoundWordDt
 
         glosstosignrealtimecontrol1.Value = GetId(CType(GlossToSignDataGridView.DataSource, DataTable))
-        glosstosignrealtimecontrol1.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable))
+        glosstosignrealtimecontrol1.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable), glosstosignrealtimecontrol1.AddWith)
     End Sub
 
     Private Sub GlossToSignDataGridView_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -393,7 +393,7 @@ Public Class GlossToSignRealTime
 
     Private Sub GlossToSignDataGridView_Validated(sender As Object, e As EventArgs) Handles GlossToSignDataGridView.Validated
         _currentGlossControl.Value = GetId(CType(GlossToSignDataGridView.DataSource, DataTable))
-        _currentGlossControl.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable))
+        _currentGlossControl.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable), _currentGlossControl.AddWith)
     End Sub
 
     Private Function GetImage(dt As Object, Optional addWithRow As SignsbyGlossesUnilingualRow = Nothing) As Image
