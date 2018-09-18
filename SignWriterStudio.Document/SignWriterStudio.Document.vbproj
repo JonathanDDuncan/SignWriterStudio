@@ -119,12 +119,14 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.vb" />
     <Compile Include="DocumentSettings.Designer.vb">
       <DependentUpon>DocumentSettings.vb</DependentUpon>
     </Compile>
     <Compile Include="DocumentSettings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GlossToSignHelper.vb" />
     <Compile Include="GlossToSignDataRealTimeGridView.Designer.vb">
       <DependentUpon>GlossToSignDataRealTimeGridView.vb</DependentUpon>
     </Compile>
@@ -143,7 +145,6 @@
     <Compile Include="GlossToSignDataGridView.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MultiplesTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

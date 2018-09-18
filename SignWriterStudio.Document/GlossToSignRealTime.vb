@@ -90,47 +90,8 @@ Public Class GlossToSignRealTime
 
         glossToSignArray = textString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
         Dim glossToSignArray1 = glossToSignArray.Where(Function(x) Not String.IsNullOrWhiteSpace(x) AndAlso x IsNot Environment.NewLine).ToArray()
-        Dim glossToSignArray2 = MultipleSigns(glossToSignArray1)
+        Dim glossToSignArray2 = Class1.MultipleSigns(glossToSignArray1)
         Return glossToSignArray2
-    End Function
-
-    Private Function MultipleSigns(ByVal glosses As String()) As String()
-        Dim glossToSignArray = New List(Of String)()
-        For Each s As String In glosses
-
-            If (s.Contains("X")) Then
-                Dim textBeforeX = GetTextBefore(s, "X")
-                Dim textAfterX = GetTextAfter(s, "X")
-                Dim mult As Integer = 0
-                Dim isInt = Integer.TryParse(textAfterX, mult)
-
-                If isInt AndAlso mult > 0 Then
-                    For i = 1 To mult
-                        glossToSignArray.Add(textBeforeX)
-                    Next
-                End If
-            Else
-                glossToSignArray.Add(s)
-            End If
-        Next
-        Return glossToSignArray.ToArray()
-    End Function
-
-    Private Function GetTextAfter(ByVal str As String, ByVal find As String) As String
-        Dim findStart = str.IndexOf(find, StringComparison.Ordinal)
-        If findStart > 0 Then
-            Dim findEnd As Integer = findStart + find.Length
-            Return str.Substring(findEnd, str.Length - (findEnd))
-        End If
-        Return String.Empty
-    End Function
-
-    Private Function GetTextBefore(ByVal str As String, ByVal find As String) As String
-        Dim findStart = str.IndexOf(find, StringComparison.Ordinal)
-        If findStart > 0 Then
-            Return str.Substring(0, findStart)
-        End If
-        Return String.Empty
     End Function
 
     Private Sub BtnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAccept.Click

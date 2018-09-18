@@ -57,6 +57,7 @@ Partial Class SwDocumentForm
         Me.PrintSetupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintPreviewToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAsJSONToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LayoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -78,6 +79,7 @@ Partial Class SwDocumentForm
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialogNewDocument = New System.Windows.Forms.SaveFileDialog()
         Me.SwFlowLayoutPanel1 = New SignWriterStudio.SWClasses.SwFlowLayoutPanel()
+        Me.ExportAsJSONWholeFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictBoxContextMenuStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -219,7 +221,7 @@ Partial Class SwDocumentForm
         '
         'DocumentToolStripMenuItem
         '
-        Me.DocumentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem2, Me.SaveAsToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.PrintToolStripMenuItem1, Me.PrintSetupToolStripMenuItem, Me.PrintPreviewToolStripMenuItem1, Me.OptionsToolStripMenuItem})
+        Me.DocumentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem2, Me.SaveAsToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.PrintToolStripMenuItem1, Me.PrintSetupToolStripMenuItem, Me.PrintPreviewToolStripMenuItem1, Me.OptionsToolStripMenuItem, Me.ExportAsJSONToolStripMenuItem, Me.ExportAsJSONWholeFolderToolStripMenuItem})
         Me.DocumentToolStripMenuItem.Name = "DocumentToolStripMenuItem"
         Me.DocumentToolStripMenuItem.Size = New System.Drawing.Size(75, 20)
         Me.DocumentToolStripMenuItem.Text = "Document"
@@ -228,14 +230,14 @@ Partial Class SwDocumentForm
         '
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
         Me.NewToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.NewToolStripMenuItem.Text = "&New"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
         Me.OpenToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.OpenToolStripMenuItem.Text = "&Open ..."
         '
         'SaveToolStripMenuItem2
@@ -243,7 +245,7 @@ Partial Class SwDocumentForm
         Me.SaveToolStripMenuItem2.Enabled = False
         Me.SaveToolStripMenuItem2.Name = "SaveToolStripMenuItem2"
         Me.SaveToolStripMenuItem2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.SaveToolStripMenuItem2.Size = New System.Drawing.Size(219, 22)
+        Me.SaveToolStripMenuItem2.Size = New System.Drawing.Size(221, 22)
         Me.SaveToolStripMenuItem2.Text = "&Save"
         '
         'SaveAsToolStripMenuItem
@@ -251,14 +253,14 @@ Partial Class SwDocumentForm
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
         Me.SaveAsToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save &as ..."
         '
         'SettingsToolStripMenuItem
         '
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2
-        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.SettingsToolStripMenuItem.Text = "&Settings ..."
         Me.SettingsToolStripMenuItem.Visible = False
         '
@@ -266,7 +268,7 @@ Partial Class SwDocumentForm
         '
         Me.PrintToolStripMenuItem1.Name = "PrintToolStripMenuItem1"
         Me.PrintToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.PrintToolStripMenuItem1.Size = New System.Drawing.Size(219, 22)
+        Me.PrintToolStripMenuItem1.Size = New System.Drawing.Size(221, 22)
         Me.PrintToolStripMenuItem1.Text = "&Print ..."
         Me.PrintToolStripMenuItem1.Visible = False
         '
@@ -275,7 +277,7 @@ Partial Class SwDocumentForm
         Me.PrintSetupToolStripMenuItem.Name = "PrintSetupToolStripMenuItem"
         Me.PrintSetupToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.PrintSetupToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.PrintSetupToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.PrintSetupToolStripMenuItem.Text = "Print Se&tup ..."
         Me.PrintSetupToolStripMenuItem.Visible = False
         '
@@ -284,7 +286,7 @@ Partial Class SwDocumentForm
         Me.PrintPreviewToolStripMenuItem1.Name = "PrintPreviewToolStripMenuItem1"
         Me.PrintPreviewToolStripMenuItem1.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.PrintPreviewToolStripMenuItem1.Size = New System.Drawing.Size(219, 22)
+        Me.PrintPreviewToolStripMenuItem1.Size = New System.Drawing.Size(221, 22)
         Me.PrintPreviewToolStripMenuItem1.Text = "Print Pre&view ..."
         Me.PrintPreviewToolStripMenuItem1.Visible = False
         '
@@ -292,8 +294,15 @@ Partial Class SwDocumentForm
         '
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
         Me.OptionsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(219, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.OptionsToolStripMenuItem.Text = "Op&tions"
+        '
+        'ExportAsJSONToolStripMenuItem
+        '
+        Me.ExportAsJSONToolStripMenuItem.Name = "ExportAsJSONToolStripMenuItem"
+        Me.ExportAsJSONToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.J), System.Windows.Forms.Keys)
+        Me.ExportAsJSONToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ExportAsJSONToolStripMenuItem.Text = "Export as JSON"
         '
         'EditToolStripMenuItem
         '
@@ -445,6 +454,12 @@ Partial Class SwDocumentForm
         Me.SwFlowLayoutPanel1.TabIndex = 0
         Me.SwFlowLayoutPanel1.WrapContents = False
         '
+        'ExportAsJSONWholeFolderToolStripMenuItem
+        '
+        Me.ExportAsJSONWholeFolderToolStripMenuItem.Name = "ExportAsJSONWholeFolderToolStripMenuItem"
+        Me.ExportAsJSONWholeFolderToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ExportAsJSONWholeFolderToolStripMenuItem.Text = "Export as JSON whole folder"
+        '
         'SwDocumentForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -518,4 +533,6 @@ Partial Class SwDocumentForm
     Friend WithEvents SaveFileDialogNewDocument As System.Windows.Forms.SaveFileDialog
     Friend WithEvents CutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ShowGlossToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExportAsJSONToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportAsJSONWholeFolderToolStripMenuItem As ToolStripMenuItem
 End Class

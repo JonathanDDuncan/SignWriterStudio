@@ -673,46 +673,46 @@ Public NotInheritable Class SwDocumentForm
             instertAt = 0
         End If
 
-            If Clipboard.ContainsText Then
-                Dim clipboardText As String = Clipboard.GetText
-                If clipboardText.Contains("[{") Then
-                    Try
-
-                        Dim signs = DeSerializeJson(Of List(Of SwDocumentSign))(clipboardText)
-                        If signs IsNot Nothing Then
-                            UnSelectControls()
-                            signs.Reverse()
-                            For Each sign As SwDocumentSign In signs
-                                sign.Frames.RemoveAt(0)
-                                Document.AddSWSign(sign, instertAt)
-                            Next
-                        End If
-                        DocumentChanged = True
-                        Return
-                    Catch ex As ArgumentException
-                        'Swallow is not json
-                    End Try
-                End If
-
+        If Clipboard.ContainsText Then
+            Dim clipboardText As String = Clipboard.GetText
+            If clipboardText.Contains("[{") Then
                 Try
 
-                    Dim sign = DeSerializeJson(Of SwSign)(clipboardText)
-                    If sign IsNot Nothing Then
-                        sign.Frames.RemoveAt(0)
-                        Document.AddSWSign(sign, instertAt)
+                    Dim signs = DeSerializeJson(Of List(Of SwDocumentSign))(clipboardText)
+                    If signs IsNot Nothing Then
+                        UnSelectControls()
+                        signs.Reverse()
+                        For Each sign As SwDocumentSign In signs
+                            sign.Frames.RemoveAt(0)
+                            Document.AddSWSign(sign, instertAt)
+                        Next
                     End If
                     DocumentChanged = True
+                    Return
                 Catch ex As ArgumentException
                     'Swallow is not json
                 End Try
-
-            ElseIf Clipboard.ContainsImage Then
-                Dim newSign As New SwDocumentSign
-                newSign.IsSign = False
-                newSign.DocumentImage = Clipboard.GetImage()
-                Document.AddSWSign(newSign, instertAt)
-                DocumentChanged = True
             End If
+
+            Try
+
+                Dim sign = DeSerializeJson(Of SwSign)(clipboardText)
+                If sign IsNot Nothing Then
+                    sign.Frames.RemoveAt(0)
+                    Document.AddSWSign(sign, instertAt)
+                End If
+                DocumentChanged = True
+            Catch ex As ArgumentException
+                'Swallow is not json
+            End Try
+
+        ElseIf Clipboard.ContainsImage Then
+            Dim newSign As New SwDocumentSign
+            newSign.IsSign = False
+            newSign.DocumentImage = Clipboard.GetImage()
+            Document.AddSWSign(newSign, instertAt)
+            DocumentChanged = True
+        End If
 
 
     End Sub
@@ -1226,7 +1226,7 @@ Public NotInheritable Class SwDocumentForm
         Dim g As Graphics = Graphics.FromImage(bmp)
 
         g.Clear(Color.White)
-      
+
         For Each control As Control In panelControls.Cast(Of Control).ToList().OrderByDescending(Function(b) panelControls.GetChildIndex(b))
 
             DrawControl(control, bmp)
@@ -1269,7 +1269,7 @@ Public NotInheritable Class SwDocumentForm
                 SwFlowLayoutPanel1.Refresh()
                 screenSelectRectangle = CreateRectangle(screenSelectStartPoint, sender.PointToScreen(New Point(e.X, e.Y)))
                 ' Draw the new rectangle by calling DrawReversibleFrame again.  
-                ControlPaint.DrawReversibleFrame(screenSelectRectangle, BackColor, _
+                ControlPaint.DrawReversibleFrame(screenSelectRectangle, BackColor,
                      FrameStyle.Dashed)
             End If
         End If
@@ -1362,7 +1362,7 @@ Public NotInheritable Class SwDocumentForm
 
 
     End Sub
-     
+
     Private Sub UpdateShowGloss(ByVal checked As Boolean)
         For Each ctrl As SwLayoutControl In SwFlowLayoutPanel1.Controls
             ctrl.ShowGloss = checked
@@ -1373,5 +1373,83 @@ Public NotInheritable Class SwDocumentForm
     Private Sub ShowGlossToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ShowGlossToolStripMenuItem.CheckedChanged
         UpdateShowGloss(ShowGlossToolStripMenuItem.Checked)
     End Sub
+
+    Private Sub ExportAsJSONToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAsJSONToolStripMenuItem.Click
+        ExportASJSON()
+    End Sub
+
+    Private Sub ExportASJSON()
+
+        Dim document1 = Document
+
+        Dim listsigns = New List(Of ExportSign)
+        Dim conv As New SpmlConverter
+        For Each sign As SwDocumentSign In document1.DocumentSigns
+            Dim dictSign = Lookup(sign)
+            Dim document2 = New ExportSign
+
+            If dictSign Is Nothing Then
+                document2.FSW = conv.GetFsw(sign)
+                document2.Lane = sign.Lane.ToString()
+            Else
+                document2.SignWriterGuid = dictSign.SignWriterGuid
+                document2.Gloss = dictSign.Gloss
+                document2.Glosses = dictSign.Glosses
+                document2.Lane = sign.Lane.ToString()
+            End If
+            document2.NewSign =""
+
+            listsigns.Add(document2)
+        Next
+
+        Dim serializer = New JsonSerializer()
+        serializer.Converters.Add(New JavaScriptDateTimeConverter())
+        serializer.NullValueHandling = NullValueHandling.Ignore
+        serializer.Formatting = Formatting.Indented
+
+        UnSelectControls()
+        Using sw = New StreamWriter(DocumentFilename.Replace(".SWSDoc", ".json"))
+            Using writer = New JsonTextWriter(sw)
+
+                serializer.Serialize(writer, listsigns)
+
+            End Using
+        End Using
+    End Sub
+
+    Private Function Lookup(swDocumentSign As SwDocumentSign) As SwSign
+        Dim dictionary As New SWDict(DictionaryConnectionString)
+
+        Return dictionary.GetSWSignByGuid(swDocumentSign.SignWriterGuid)
+
+    End Function
+
+    Private Sub ExportAsJSONWholeFolderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAsJSONWholeFolderToolStripMenuItem.Click
+        ExportJsonWholeFolder()
+    End Sub
+
+    Private Sub ExportJsonWholeFolder()
+        Dim currentFolder As String = Path.GetDirectoryName(DocumentFilename)
+        Dim files = Directory.GetFiles(currentFolder).Where(Function(s) s.EndsWith(".SWSDoc"))
+        For Each file As String In files
+            OpenDocument(file)
+            ExportASJSON()
+        Next
+    End Sub
+End Class
+
+Friend Class ExportSign
+    Public FSW As String
+
+    Public Property SignWriterGuid As Guid?
+
+    Public Property Gloss As String
+
+    Public Property Glosses As String
+
+    Public Property Lane As String
+
+    Public Property NewSign As String
+
 End Class
 
