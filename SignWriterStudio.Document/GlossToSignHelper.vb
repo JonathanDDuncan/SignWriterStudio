@@ -1,6 +1,6 @@
 ﻿Public Class GlossToSignHelper
 
-    Public Shared Function GetGlossToSignArray(textString As String) As List(Of GlossWiths)
+    Public Shared Function GetGlossToSignArray(textString As String) As List(Of GlossWith)
 
         Dim glossToSignArray() As String
 
@@ -15,11 +15,42 @@
         Dim textsBetween = GetTextsBetweenSquareBrackets(textString, startString, endString)
         Dim replacedWithHash = ReplaceWithHash(textString, textsBetween, startString, endString)
         Dim processed = GetSigns(textsBetween, delimiters)
-        Return processed
-        'glossToSignArray = textString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
-        'Dim glossToSignArray1 = glossToSignArray.Where(Function(x) Not String.IsNullOrWhiteSpace(x) AndAlso x IsNot Environment.NewLine).ToArray()
-        'Dim glossToSignArray2 = MultipleSigns(glossToSignArray1)
-        'Return glossToSignArray2
+
+        glossToSignArray = replacedWithHash.Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
+        Dim glossToSignArray1 = glossToSignArray.Where(Function(x) Not String.IsNullOrWhiteSpace(x) AndAlso x IsNot Environment.NewLine).ToArray()
+        Dim signStruc = ToSignStruc(glossToSignArray1)
+        Dim merged = MergeSigns(signStruc, processed)
+
+        Return MultipleSigns1(merged)
+    End Function
+
+    Private Shared Function MergeSigns(strucuturedSigns As List(Of GlossWith), processed As List(Of GlossWiths)) As List(Of GlossWith)
+        Dim MyDict = New Dictionary(Of String, GlossWiths)
+        For Each glossWithse As GlossWiths In processed
+            MyDict.Add("##" & glossWithse.Text.GetHashCode() & "##", glossWithse)
+        Next
+
+        Dim mergedList = New List(Of GlossWith)
+        For Each item As GlossWith In strucuturedSigns
+            If item.Gloss.StartsWith("##") Then
+                Dim Myvalue As GlossWiths = Nothing
+                Dim found = MyDict.TryGetValue(item.Gloss, Myvalue)
+                If found Then
+                    mergedList.AddRange(Myvalue.Signs)
+                End If
+            Else
+                mergedList.Add(item)
+            End If
+        Next
+        Return mergedList
+    End Function
+
+    Private Shared Function ToSignStruc(glossToSignArray1 As String()) As List(Of GlossWith)
+        Dim signs As New List(Of GlossWith)
+        For Each text As String In glossToSignArray1
+            signs.Add(New GlossWith With {.Gloss = text, .ToAdd = Nothing})
+        Next
+        Return signs
     End Function
 
     Private Shared Function GetSigns(textsBetween As List(Of String), delimiters As String()) As List(Of GlossWiths)
@@ -48,7 +79,7 @@
     Private Shared Function ReplaceWithHash(textString As String, textsBetween As List(Of String), startString As String, endString As String) As Object
         For Each text As String In textsBetween
             Dim textToReplace = startString & text & endString
-            textString = textString.Replace(textToReplace, "##" & textToReplace.GetHashCode() & "##")
+            textString = textString.Replace(textToReplace, " ##" & textToReplace.Replace(startString, "").Replace(endString, "").GetHashCode() & "## ")
         Next
         Return textString
     End Function
@@ -77,7 +108,27 @@
         End If
         Return f
     End Function
+    Public Shared Function MultipleSigns1(ByVal glosses As List(Of GlossWith)) As List(Of GlossWith)
+        Dim glossToSignArray = New List(Of GlossWith)()
+        For Each item As GlossWith In glosses
+            Dim s = item.Gloss
+            If (s.Contains("X")) Then
+                Dim textBeforeX = GetTextBefore(s, "X")
+                Dim textAfterX = GetTextAfter(s, "X")
+                Dim mult As Integer = 0
+                Dim isInt = Integer.TryParse(textAfterX, mult)
 
+                If isInt AndAlso mult > 0 Then
+                    For i = 1 To mult
+                        glossToSignArray.Add(New GlossWith() With {.Gloss = textBeforeX})
+                    Next
+                End If
+            Else
+                glossToSignArray.Add(item)
+            End If
+        Next
+        Return glossToSignArray
+    End Function
     Public Shared Function MultipleSigns(ByVal glosses As String()) As String()
         Dim glossToSignArray = New List(Of String)()
         For Each s As String In glosses

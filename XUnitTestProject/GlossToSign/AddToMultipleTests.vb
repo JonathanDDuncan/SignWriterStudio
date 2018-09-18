@@ -9,11 +9,9 @@ Namespace XUnitTestProject
         Sub Topic1Test1()
             Dim text = "[topico Dios él-D]"
 
-            Dim a = New GlossWiths With {
-                    .Signs = New List(Of GlossWith) From {
+            Dim expected = New List(Of GlossWith) From {
                     (New GlossWith With {.Gloss = "Dios", .ToAdd = "topico"}),
-                    (New GlossWith With {.Gloss = "él-D", .ToAdd = "topico"})}, .Text = "topico Dios él-D"}
-            Dim expected = New List(Of GlossWiths) From {a}
+                    (New GlossWith With {.Gloss = "él-D", .ToAdd = "topico"})}
             Dim result = GlossToSignHelper.GetGlossToSignArray(text)
 
             result.ShouldDeepEqual(expected)
@@ -23,11 +21,10 @@ Namespace XUnitTestProject
         Sub Topic1Test2()
             Dim text = "abc[topico Dios él-D]"
 
-            Dim a = New GlossWiths With {
-                    .Signs = New List(Of GlossWith) From {
+            Dim expected = New List(Of GlossWith) From {
+                    (New GlossWith With {.Gloss = "abc", .ToAdd = Nothing}),
                     (New GlossWith With {.Gloss = "Dios", .ToAdd = "topico"}),
-                    (New GlossWith With {.Gloss = "él-D", .ToAdd = "topico"})}, .Text = "topico Dios él-D"}
-            Dim expected = New List(Of GlossWiths) From {a}
+                    (New GlossWith With {.Gloss = "él-D", .ToAdd = "topico"})}
             Dim result = GlossToSignHelper.GetGlossToSignArray(text)
 
             result.ShouldDeepEqual(expected)
@@ -37,11 +34,30 @@ Namespace XUnitTestProject
         Sub Topic1Test3()
             Dim text = "[topico Dios él-D]abc"
 
-            Dim a = New GlossWiths With {
-                    .Signs = New List(Of GlossWith) From {
+            Dim expected = New List(Of GlossWith) From {
                     (New GlossWith With {.Gloss = "Dios", .ToAdd = "topico"}),
-                    (New GlossWith With {.Gloss = "él-D", .ToAdd = "topico"})}, .Text = "topico Dios él-D"}
-            Dim expected = New List(Of GlossWiths) From {a}
+                    (New GlossWith With {.Gloss = "él-D", .ToAdd = "topico"}),
+                    (New GlossWith With {.Gloss = "abc", .ToAdd = Nothing})}
+
+            Dim result = GlossToSignHelper.GetGlossToSignArray(text)
+
+            result.ShouldDeepEqual(expected)
+
+        End Sub
+
+        <Fact>
+        Sub Topic1Test4()
+            Dim text = "[topico Dios él-D]abcX5"
+
+            Dim expected = New List(Of GlossWith) From {
+                    (New GlossWith With {.Gloss = "Dios", .ToAdd = "topico"}),
+                    (New GlossWith With {.Gloss = "él-D", .ToAdd = "topico"}),
+                    (New GlossWith With {.Gloss = "abc", .ToAdd = Nothing}),
+                    (New GlossWith With {.Gloss = "abc", .ToAdd = Nothing}),
+                    (New GlossWith With {.Gloss = "abc", .ToAdd = Nothing}),
+                    (New GlossWith With {.Gloss = "abc", .ToAdd = Nothing}),
+                    (New GlossWith With {.Gloss = "abc", .ToAdd = Nothing})}
+
             Dim result = GlossToSignHelper.GetGlossToSignArray(text)
 
             result.ShouldDeepEqual(expected)

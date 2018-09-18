@@ -65,10 +65,10 @@ Public Class GlossToSignRealTime
         Try
             FlowLayoutPanel1.Controls.Clear()
             _glossNotFound.Clear()
-            Dim glossToSignArray As String() = GetGlossToSignArray()
+            Dim glossList As List(Of GlossWith) = GlossToSignHelper.GetGlossToSignArray(TBGlossToSign.Text)
             Dim i As Integer
-            For i = 0 To glossToSignArray.GetUpperBound(0)
-                AddGlossControl(glossToSignArray(i))
+            For i = 0 To glossList.Count() - 1
+                AddGlossControl(glossList.Item(i))
             Next
 
             TBGlossNotFound.Text = String.Join(", ", _glossNotFound.Select(Function(kvp) String.Format("{0}", kvp.Value)).ToArray())
@@ -135,8 +135,8 @@ Public Class GlossToSignRealTime
             tuple.Item1.Item1.Glosses = ""
         Next
     End Sub
-    Private Sub AddGlossControl(ByVal searchString As String)
-        Dim glossToSignControl1 = GetGtoSControl(searchString)
+    Private Sub AddGlossControl(ByVal searchString As GlossWith)
+        Dim glossToSignControl1 = GetGtoSControl(searchString.Gloss)
 
         FlowLayoutPanel1.Controls.Add(glossToSignControl1)
 
