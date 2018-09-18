@@ -1,4 +1,5 @@
 Imports SignWriterStudio.Database.Dictionary
+Imports SignWriterStudio.SWClasses
 
 Public Class GlossToSignRealTimeControl
     Private _foundWordDt1 As DataTable
@@ -52,6 +53,8 @@ Public Class GlossToSignRealTimeControl
     End Property
 
     Public Property AddWith As DictionaryDataSet.SignsbyGlossesUnilingualRow
+
+    Public Property Sign As SwSign
 
 
     Private Sub SetImage(tempLane As Integer?)

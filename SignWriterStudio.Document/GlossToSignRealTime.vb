@@ -168,10 +168,29 @@ Public Class GlossToSignRealTime
         AddHandler glossToSignRealTimeControl.MoveUp, AddressOf GlossToSignRealTimeControl_MoveUp
         AddHandler glossToSignRealTimeControl.MoveDown, AddressOf GlossToSignRealTimeControl_MoveDown
 
+        glossToSignRealTimeControl.Sign = MergedSigns(glossToSignRealTimeControl.FoundWordDt, glossToSignRealTimeControl.AddWith)
         glossToSignRealTimeControl.Value = GetId(glossToSignRealTimeControl.FoundWordDt)
-        glossToSignRealTimeControl.Image = GetImage(glossToSignRealTimeControl.FoundWordDt, glossToSignRealTimeControl.AddWith)
+        glossToSignRealTimeControl.Image = GetImage(glossToSignRealTimeControl.Sign)
 
         Return glossToSignRealTimeControl
+    End Function
+
+    Private Function MergedSigns(dt As DataTable, addWithRow As SignsbyGlossesUnilingualRow) As SwSign
+        Dim checkedRow = GetCheckedRow(dt)
+
+        Dim checkedSign As SwSign
+        If checkedRow IsNot Nothing Then
+            checkedSign = Dictionary.UnilingualRowtoSign(checkedRow)
+        End If
+        Dim sign As SwSign = checkedSign
+        Dim addWithSign As SwSign
+        If addWithRow IsNot Nothing Then
+            addWithSign = Dictionary.UnilingualRowtoSign(addWithRow)
+        End If
+        If addWithSign IsNot Nothing AndAlso checkedSign IsNot Nothing Then
+            sign = SwSign.MergeFirstFrames(checkedSign, addWithSign)
+        End If
+        Return sign
     End Function
 
     Private Sub glossToSignRealTimeControl_CurrentGlossControlChanged(ByVal currentGlossControl As GlossToSignRealTimeControl)
@@ -287,6 +306,8 @@ Public Class GlossToSignRealTime
 
         RemoveGlossControl(index)
 
+
+
         FlowLayoutPanel1.Controls.Add(glossToSignControl1)
         FlowLayoutPanel1.Controls.SetChildIndex(glossToSignControl1, index)
     End Sub
@@ -367,8 +388,9 @@ Public Class GlossToSignRealTime
         glosstosignrealtimecontrol1.ContextMenuStrip = GlossMenuStrip
         GlossToSignDataGridView.DataSource = glosstosignrealtimecontrol1.FoundWordDt
 
+        glosstosignrealtimecontrol1.Sign = MergedSigns(glosstosignrealtimecontrol1.FoundWordDt, glosstosignrealtimecontrol1.AddWith)
         glosstosignrealtimecontrol1.Value = GetId(CType(GlossToSignDataGridView.DataSource, DataTable))
-        glosstosignrealtimecontrol1.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable), glosstosignrealtimecontrol1.AddWith)
+        glosstosignrealtimecontrol1.Image = GetImage(glosstosignrealtimecontrol1.Sign)
     End Sub
 
     Private Sub GlossToSignDataGridView_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -392,26 +414,15 @@ Public Class GlossToSignRealTime
     End Sub
 
     Private Sub GlossToSignDataGridView_Validated(sender As Object, e As EventArgs) Handles GlossToSignDataGridView.Validated
+        _currentGlossControl.Sign = MergedSigns(CType(GlossToSignDataGridView.DataSource, DataTable), _currentGlossControl.AddWith)
         _currentGlossControl.Value = GetId(CType(GlossToSignDataGridView.DataSource, DataTable))
-        _currentGlossControl.Image = GetImage(CType(GlossToSignDataGridView.DataSource, DataTable), _currentGlossControl.AddWith)
+        _currentGlossControl.Image = GetImage(_currentGlossControl.Sign)
     End Sub
 
-    Private Function GetImage(dt As Object, Optional addWithRow As SignsbyGlossesUnilingualRow = Nothing) As Image
-        Dim image As Image = Nothing
-        Dim checkedRow = GetCheckedRow(dt)
-
-        Dim addWithSign As SwSign
-        If (addWithRow IsNot Nothing) Then
-            Dim checkedSign = Dictionary.UnilingualRowtoSign(checkedRow)
-            addWithSign = Dictionary.UnilingualRowtoSign(addWithRow)
-            Dim mergedSign As SwSign = SwSign.MergeFirstFrames(checkedSign, addWithSign)
-            image = mergedSign.Render(0, 10)
-
-        ElseIf checkedRow IsNot Nothing Then
-            image = General.ByteArraytoImage(checkedRow.SWriting)
+    Private Function GetImage(sign As SwSign) As Image
+        If sign IsNot Nothing Then
+            Return sign.Render(0, 10)
         End If
-
-        Return image
     End Function
 
     Private Function GetCheckedRow(dt As Object) As SignsbyGlossesUnilingualRow
@@ -498,8 +509,9 @@ Public Class GlossToSignRealTime
             control.TextBox1.Text = row1.Item("gloss1")
             control.FoundWordDt = dt
 
+            control.Sign = MergedSigns(control.FoundWordDt, control.AddWith)
             control.Value = GetId(control.FoundWordDt)
-            control.Image = GetImage(control.FoundWordDt)
+            control.Image = GetImage(control.Sign)
             control.ResultType = 0
             ColorControl(control, control.ResultType)
         End If
