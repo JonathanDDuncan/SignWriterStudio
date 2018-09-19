@@ -1338,9 +1338,9 @@ Imports SignWriterStudio.SWS
         Dim myHeadBounds = GetHeadBounds(Me)
         Dim myHeadTrunkBounds = GetHeadTrunkBounds(Me)
         Dim myAllSymbolsBounds = GetAllSymbolsBounds(Me)
-        Dim newframeHeadBounds = GetHeadBounds(frame)
-        Dim newframeHeadTrunkBounds = GetHeadTrunkBounds(frame)
-        Dim newframeAllSymbolsBounds = GetAllSymbolsBounds(frame)
+        Dim newFrameHeadBounds = GetHeadBounds(frame)
+        Dim newFrameHeadTrunkBounds = GetHeadTrunkBounds(frame)
+        Dim newFrameAllSymbolsBounds = GetAllSymbolsBounds(frame)
         Dim offset As Point = Point.Empty
 
         If Not myHeadBounds = Rectangle.Empty Then
@@ -1350,6 +1350,7 @@ Imports SignWriterStudio.SWS
                 offset = GetBoundsTopLeftOffset(myHeadBounds, newframeHeadTrunkBounds)
             ElseIf Not newframeAllSymbolsBounds = Rectangle.Empty Then
                 offset = GetBoundsTopLeftOffset(myHeadBounds, newframeHeadTrunkBounds)
+
             End If
 
         ElseIf Not myHeadTrunkBounds = Rectangle.Empty Then
@@ -1360,15 +1361,18 @@ Imports SignWriterStudio.SWS
             ElseIf Not newframeAllSymbolsBounds = Rectangle.Empty Then
                 offset = GetBoundsTopLeftOffset(myHeadTrunkBounds, newframeHeadTrunkBounds)
             End If
+        ElseIf Not myAllSymbolsBounds = Rectangle.Empty Then
+
             If Not newframeHeadBounds = Rectangle.Empty Then
-                offset = GetBoundsTopLeftOffset(myAllSymbolsBounds, newframeHeadBounds)
+                offset = GetBoundsTopLeftOffset(myAllSymbolsBounds, newFrameHeadBounds)
+                offset.Y -= myAllSymbolsBounds.Height + 10
+                offset.X = CType(myAllSymbolsBounds.X + myAllSymbolsBounds.Width / 2 - newFrameHeadBounds.X - newFrameHeadBounds.Width / 2, Integer)
             ElseIf Not newframeHeadTrunkBounds = Rectangle.Empty Then
                 offset = GetBoundsTopLeftOffset(myAllSymbolsBounds, newframeHeadTrunkBounds)
             ElseIf Not newframeAllSymbolsBounds = Rectangle.Empty Then
                 offset = GetBoundsTopLeftOffset(myAllSymbolsBounds, newframeHeadTrunkBounds)
             End If
         End If
-
 
         frame.SelectAll()
         frame.MoveSelected(offset)

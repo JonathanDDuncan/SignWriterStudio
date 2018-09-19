@@ -99,7 +99,7 @@ Public Class GlossToSignRealTime
         Dim idDictionary As Integer
 
 
-        Dim IDs = New List(Of Tuple(Of Integer, String, Integer))
+        Dim SignsList = New List(Of Tuple(Of SwSign, String, Integer))
         Dim gloss = New List(Of String)
         For Each control As Control In Me.FlowLayoutPanel1.Controls
             Dim glossToSignControl As GlossToSignRealTimeControl = CType(control, GlossToSignRealTimeControl)
@@ -108,16 +108,16 @@ Public Class GlossToSignRealTime
             If rows.Length > 0 Then
                 idDictionary = rows(0).Item("IDDictionary")
                 If Not idDictionary = 0 Then
-                    IDs.Add(Tuple.Create(idDictionary, "", glossToSignControl.Lane))
+                    SignsList.Add(Tuple.Create(glossToSignControl.Sign, "", glossToSignControl.Lane))
                 Else
-                    IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text, glossToSignControl.Lane))
+                    SignsList.Add(Tuple.Create(glossToSignControl.Sign, glossToSignControl.TextBox1.Text, glossToSignControl.Lane))
                 End If
             Else
-                IDs.Add(Tuple.Create(0, glossToSignControl.TextBox1.Text, glossToSignControl.Lane))
+                SignsList.Add(Tuple.Create(glossToSignControl.Sign, glossToSignControl.TextBox1.Text, glossToSignControl.Lane))
             End If
             gloss.Add(glossToSignControl.Gloss)
         Next
-        Signs = Dictionary.GetGlosstoSign(IDs)
+        Signs = Dictionary.GetGlosstoSign(SignsList)
 
         If CBUseSearchedGloss.Checked Then
             UseSearchedGloss(Signs, gloss)
@@ -175,7 +175,7 @@ Public Class GlossToSignRealTime
         Return glossToSignRealTimeControl
     End Function
 
-    Private Function MergedSigns(dt As DataTable, addWithRow As SignsbyGlossesUnilingualRow) As SwSign
+    Private Function MergedSigns(dt As DataTable, addWithRow As DataRow) As SwSign
         Dim checkedRow = GetCheckedRow(dt)
 
         Dim checkedSign As SwSign
@@ -425,7 +425,7 @@ Public Class GlossToSignRealTime
         End If
     End Function
 
-    Private Function GetCheckedRow(dt As Object) As SignsbyGlossesUnilingualRow
+    Private Function GetCheckedRow(dt As Object) As DataRow
         If dt IsNot Nothing Then
             Dim rows = dt.Select("Selected=True")
             If rows.Length > 0 Then
