@@ -1886,8 +1886,30 @@ Public NotInheritable Class SWDict
         Return dt
     End Function
 
+    Public Function ConvertBilingualRowtoUnilingualRow(row As SignsbyGlossesBilingualRow) As SignsbyGlossesUnilingualRow
+        Dim dt = New SignsbyGlossesUnilingualDataTable()
+        Dim uniRow = dt.NewSignsbyGlossesUnilingualRow()
+        With uniRow
+            .Culture1 = row.Culture1
+            .IDDictionary = row.IDDictionary
+            .IDDictionaryGloss1 = row.IDDictionaryGloss1
+            .IDSignLanguage = row.IDSignLanguage
+            .IDSignPuddle = row.IDSignPuddle
+            .GUID = row.GUID
+            .LastModified = row.LastModified
+            .Photo = row.Photo
+            .PhotoSource = row.PhotoSource
+            .Sign = row.Sign
+            .SignSource = row.SignSource
+            .SignSource = row.SignSource
+            .Sorting = row.Sorting
+            .SWritingSource = row.SWritingSource
+            .SWriting = row.SWriting
+            .gloss1 = row.gloss1
+            .glosses1 = row.glosses1
+            .isPrivate = row.isPrivate
+        End With
 
-
-
-
+        Return uniRow
+    End Function
 End Class

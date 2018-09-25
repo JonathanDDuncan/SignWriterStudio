@@ -180,7 +180,11 @@ Public Class GlossToSignRealTime
 
         Dim checkedSign As SwSign
         If checkedRow IsNot Nothing Then
-            checkedSign = Dictionary.UnilingualRowtoSign(checkedRow)
+            If checkedRow.GetType() Is GetType(DictionaryDataSet.SignsbyGlossesBilingualRow) Then
+                checkedSign = Dictionary.UnilingualRowtoSign(Dictionary.ConvertBilingualRowtoUnilingualRow(checkedRow))
+            Else
+                checkedSign = Dictionary.UnilingualRowtoSign(checkedRow)
+            End If
         End If
         Dim sign As SwSign = checkedSign
         Dim addWithSign As SwSign
