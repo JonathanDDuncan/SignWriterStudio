@@ -14,8 +14,8 @@ Imports System.Security.Permissions
 <Assembly: AssemblyTitle("DbTags")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("DbTags")> 
-<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2015 Jonathan Duncan All Rights Reserved")> 
+<Assembly: AssemblyProduct("DbTags")>
+<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2019 Jonathan Duncan All Rights Reserved")>
 <Assembly: AssemblyTrademark("SignWriter Studio™")> 
 
 <Assembly: ComVisible(False)>

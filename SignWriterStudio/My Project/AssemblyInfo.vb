@@ -11,14 +11,14 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("SignWriter Studio™")> 
 <Assembly: AssemblyDescription("SignWriting program for sign languages")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("SignWriter Studio™")> 
-<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2017 Jonathan Duncan All Rights Reserved")> 
+<Assembly: AssemblyProduct("SignWriter Studio™")>
+<Assembly: AssemblyCopyright("SignWriter Studio™ Copyright (C) 2009-2019 Jonathan Duncan All Rights Reserved")>
 <Assembly: AssemblyTrademark("SignWriter Studio™")> 
 
 <Assembly: ComVisible(False)>
 <Assembly: CLSCompliant(True)> 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("51badcff-709e-40b5-b223-29516dab8638")> 
+<Assembly: Guid("51badcff-709e-40b5-b223-29516dab8638")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.2.5.20")> 
-<Assembly: AssemblyFileVersion("1.2.5.20")> 
+<Assembly: AssemblyVersion("1.2.6.1")>
+<Assembly: AssemblyFileVersion("1.2.6.1")>
