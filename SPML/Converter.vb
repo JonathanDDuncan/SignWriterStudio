@@ -247,14 +247,14 @@ Public NotInheritable Class SpmlConverter
                 symbol.Palmcolor = color
             End If
         Next
- 
+
     End Sub
     Private Shared Function getColor(str As String) As Integer
         Dim colorint As Integer
         If Not str = String.Empty Then
             Dim hexcolor = ColorFromHex(str)
             If Not hexcolor.HasValue Then
-                Dim color As Color = color.FromName(str)
+                Dim color As Color = Color.FromName(str)
                 colorint = color.ToArgb()
             Else
                 colorint = hexcolor.Value.ToArgb()
@@ -320,7 +320,7 @@ Public NotInheritable Class SpmlConverter
     End Function
 
 
- 
+
     Private Shared Function SymbolExists(ByVal seq As Integer) As Boolean
         Dim symbol = New SWSymbol()
         symbol.Code = seq
@@ -428,9 +428,9 @@ Public NotInheritable Class SpmlConverter
             End If
             I += 1
         Next
-        Return New SignText With { _
-        .Gloss = gloss, _
-        .Glosses = glosses.ToString _
+        Return New SignText With {
+        .Gloss = gloss,
+        .Glosses = glosses.ToString
         }
 
     End Function
@@ -541,7 +541,7 @@ Public NotInheritable Class SpmlConverter
         Const typ As String = "sgn"
 
         Dim tauisl As New SignWriterStudio.UI.swsuiDataSetTableAdapters.UISignLanguagesTableAdapter
-        Dim guid As Guid = guid.Parse(CStr(tauisl.GetGUIDbyID(dictionary.DefaultSignLanguage)))
+        Dim guid As Guid = Guid.Parse(CStr(tauisl.GetGUIDbyID(dictionary.DefaultSignLanguage)))
         Dim uuid As String = guid.ToString
         Dim cdt As String = DateTimeToEpoch(Date.UtcNow).ToString
         Dim mdt As String = DateTimeToEpoch(Date.UtcNow).ToString
@@ -659,37 +659,37 @@ Public NotInheritable Class SpmlConverter
             dictionarySign = dictionary.GetSWSignCached(CInt(row("IDDictionary")))
 
             If dictionarySign IsNot Nothing Then
-                If Not dictionarySign.IsPrivate Then
-                    'StackFrames for Export
-                    Dim frametoExport As SWFrame
-                    If dictionarySign.Frames.Count > 1 Then
-                        frametoExport = dictionarySign.StackedFrame
-                    Else
-                        frametoExport = dictionarySign.Frames(0)
-                    End If
-                    frametoExport.CenterSpmlSymbols(New Point(500, 500))
-                    idSignPuddle = CInt(row("IDSignPuddle"))
-                    SpmlWriteLine(CreateBegEntryTag(dictionarySign, idSignPuddle))
-                    CreateFirstTermTag(frametoExport)
-                    SpmlWrite(CreateAdditionalTermsTag(dictionarySign))
-                    SpmlWrite(CreateTextTags(dictionarySign))
-                    SpmlWrite(CreateTag("png", Trim(dictionarySign.PuddlePng)))
-                    SpmlWrite(CreateTag("svg", Trim(dictionarySign.PuddleSvg)))
-                    SpmlWrite(CreateTag("video", Trim(dictionarySign.PuddleVideoLink)))
-                    SpmlWrite(CreateTag("src", Trim(dictionarySign.SWritingSource)))
-                    SpmlWriteLine(CreateEndEntryTag())
-                    SpmlWriteLine(String.Empty)
-                    exportedSigns += 1
+                'If Not dictionarySign.IsPrivate Then
+                'StackFrames for Export
+                Dim frametoExport As SWFrame
+                If dictionarySign.Frames.Count > 1 Then
+                    frametoExport = dictionarySign.StackedFrame
+                Else
+                    frametoExport = dictionarySign.Frames(0)
                 End If
-                If bw IsNot Nothing Then
-                    newPerc = CInt((exportedSigns * 94) / totalCount) + 6
-                    If Not newPerc = oldPerc Then
+                frametoExport.CenterSpmlSymbols(New Point(500, 500))
+                idSignPuddle = CInt(row("IDSignPuddle"))
+                SpmlWriteLine(CreateBegEntryTag(dictionarySign, idSignPuddle))
+                CreateFirstTermTag(frametoExport)
+                SpmlWrite(CreateAdditionalTermsTag(dictionarySign))
+                SpmlWrite(CreateTextTags(dictionarySign))
+                SpmlWrite(CreateTag("png", Trim(dictionarySign.PuddlePng)))
+                SpmlWrite(CreateTag("svg", Trim(dictionarySign.PuddleSvg)))
+                SpmlWrite(CreateTag("video", Trim(dictionarySign.PuddleVideoLink)))
+                SpmlWrite(CreateTag("src", Trim(dictionarySign.SWritingSource)))
+                SpmlWriteLine(CreateEndEntryTag())
+                SpmlWriteLine(String.Empty)
+                exportedSigns += 1
+            End If
+            If bw IsNot Nothing Then
+                newPerc = CInt((exportedSigns * 94) / totalCount) + 6
+                If Not newPerc = oldPerc Then
 
-                        bw.ReportProgress(newPerc)
-                        oldPerc = newPerc
-                    End If
+                    bw.ReportProgress(newPerc)
+                    oldPerc = newPerc
                 End If
             End If
+            'End If
         Next
         If bw IsNot Nothing Then
             bw.ReportProgress(100)
@@ -1252,12 +1252,12 @@ Public NotInheritable Class SpmlConverter
         Return x & "x" & y
     End Function
 
-  
- 
-   
 
 
-   
+
+
+
+
 End Class
 
 Public Class ExportSettings
