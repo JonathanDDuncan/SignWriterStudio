@@ -1201,6 +1201,10 @@ Public NotInheritable Class SwDocumentForm
     End Sub
 
     Private Sub CopyAsImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyAsImageToolStripMenuItem.Click
+        CopyImage()
+    End Sub
+
+    Private Sub CopyImage()
         SwFlowLayoutPanel1.HorizontalScroll.Value = 0
         SwFlowLayoutPanel1.Refresh()
         Dim controlCollection As Control.ControlCollection = SwFlowLayoutPanel1.Controls
@@ -1397,7 +1401,7 @@ Public NotInheritable Class SwDocumentForm
                 document2.Glosses = dictSign.Glosses
                 document2.Lane = sign.Lane.ToString()
             End If
-            document2.NewSign =""
+            document2.NewSign = ""
 
             listsigns.Add(document2)
         Next
@@ -1435,6 +1439,30 @@ Public NotInheritable Class SwDocumentForm
             OpenDocument(file)
             ExportASJSON()
         Next
+    End Sub
+
+    Private Sub NewToolStripMenuItem1_Click_1(sender As Object, e As EventArgs) Handles NewToolStripMenuItem1.Click
+        ClearDocument()
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+        If (Not String.IsNullOrEmpty(DocumentFilename)) Then
+            SaveCurrentDocument()
+        Else
+            SaveFileDialogNewDocument.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub CopyImageToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles CopyImageToolStripMenuItem.Click
+        CopyImage()
+    End Sub
+
+    Private Sub GlossToSignToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles GlossToSignToolStripMenuItem.Click
+        Gloss2SignRealTime()
+    End Sub
+
+    Private Sub GlossToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles GlossToolStripMenuItem.Click
+        ShowGlossToolStripMenuItem.Checked = Not ShowGlossToolStripMenuItem.Checked
     End Sub
 End Class
 
