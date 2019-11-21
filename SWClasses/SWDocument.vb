@@ -107,7 +107,7 @@ Imports Newtonsoft.Json
         layoutControl1.Refresh()
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 end
     End Sub
-    Public Sub AddSWSignLane(ByVal sign As SwSign, ByVal lane As Integer)
+    Public Sub AddSWSignLane(ByVal sign As SwSign, ByVal lane As Integer, ByVal showGloss As Boolean)
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:0000000000000900 begin
         Dim documentSign As SwDocumentSign = ConverSWSignToSWDocumentSign(sign)
         SetLane(documentSign, lane)
@@ -116,6 +116,9 @@ Imports Newtonsoft.Json
         documentSign.IncorporateSWSign(sign)
         Dim layoutControl1 As New SwLayoutControl
         layoutControl1.DocumentSign = documentSign
+
+        layoutControl1.ShowGloss = showGloss
+
         MySWFlowLayoutPanel.Controls.Add(layoutControl1)
         MySWFlowLayoutPanel.Controls.Item(MySWFlowLayoutPanel.Controls.Count - 1).ContextMenuStrip = MySWControlMenuStrip
 

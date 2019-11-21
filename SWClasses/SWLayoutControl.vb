@@ -128,7 +128,6 @@ Public NotInheritable Class SwLayoutControl
     Public Sub InitializeText()
 
         If DocumentSign.IsSign Then
-
             If DocumentSign IsNot Nothing Then
 
                 If DocumentSign.Glosses IsNot Nothing AndAlso Not DocumentSign.Glosses.Trim = String.Empty Then
@@ -176,10 +175,17 @@ Public NotInheritable Class SwLayoutControl
             TBGloss.Width = 0
 
         End If
-        TBGloss.Location = New Point(0, PictureBox1.Image.Height)
+        Dim image = PictureBox1?.Image
+        Dim Y = If(image IsNot Nothing, image.Height, 0)
+        TBGloss.Location = New Point(0, Y)
     End Sub
     Private Function MinWidth() As Integer
-        Return Math.Max(PictureBox1.Image.Size.Width, 50)
+        Dim image = PictureBox1?.Image
+        If image IsNot Nothing Then
+            Return Math.Max(image.Size.Width, 50)
+        Else
+            Return 50
+        End If
     End Function
 
     Protected Overrides Sub OnMousemove(ByVal e As Windows.Forms.MouseEventArgs)

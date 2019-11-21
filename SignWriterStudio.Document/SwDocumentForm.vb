@@ -833,7 +833,7 @@ Public NotInheritable Class SwDocumentForm
         SwFlowLayoutPanel1.SuspendLayout()
         For Each sign In signs
 
-            Document.AddSWSignLane(sign.Item1, sign.Item2)
+            Document.AddSWSignLane(sign.Item1, sign.Item2, ShowGlossToolStripMenuItem.Checked)
         Next
         SwFlowLayoutPanel1.ResumeLayout()
     End Sub

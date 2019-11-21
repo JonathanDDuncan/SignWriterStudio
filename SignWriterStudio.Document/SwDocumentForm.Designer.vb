@@ -364,9 +364,7 @@ Partial Class SwDocumentForm
         '
         'ShowGlossToolStripMenuItem
         '
-        Me.ShowGlossToolStripMenuItem.Checked = True
         Me.ShowGlossToolStripMenuItem.CheckOnClick = True
-        Me.ShowGlossToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ShowGlossToolStripMenuItem.Name = "ShowGlossToolStripMenuItem"
         Me.ShowGlossToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.ShowGlossToolStripMenuItem.Text = "Show gloss"
