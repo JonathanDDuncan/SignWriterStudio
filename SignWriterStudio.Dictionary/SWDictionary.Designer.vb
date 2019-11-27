@@ -21,13 +21,6 @@ Partial Class SWDictForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SWDictForm))
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -36,6 +29,13 @@ Partial Class SWDictForm
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DictionaryBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
@@ -109,6 +109,22 @@ Partial Class SWDictForm
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.DictionaryDataGridView = New System.Windows.Forms.DataGridView()
+        Me.SignLanguage = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gloss1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.glosses1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gloss2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.glosses2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Photo = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Sign = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.PuddleVideoLink = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SWSignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PhotoSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tags = New TagList.DGV.DataGridViewTagListColumn()
+        Me.GUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sorting = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Pager1 = New Global.SignWriterStudio.Dictionary.DataGridViewPager.Pager()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.ExportFileDialog = New System.Windows.Forms.SaveFileDialog()
@@ -126,22 +142,7 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1 = New TagList.DGV.DataGridViewTagListColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SignLanguage = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IDDictionary = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gloss1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.glosses1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gloss2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.glosses2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SWriting = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.Photo = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.Sign = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.PuddleVideoLink = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SWSignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PhotoSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SignSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tags = New TagList.DGV.DataGridViewTagListColumn()
-        Me.GUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Sorting = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LoadImagesinpngcolumnToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DictionaryBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,22 +160,23 @@ Partial Class SWDictForm
         Me.DictionaryBindingNavigator.DeleteItem = Nothing
         Me.DictionaryBindingNavigator.Dock = System.Windows.Forms.DockStyle.None
         Me.DictionaryBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.DictionaryBindingNavigator.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.DictionaryBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.TSBDuplicate, Me.BindingNavigatorDeleteItem, Me.ToolStripSeparator1, Me.TSBSymbolSearch})
-        Me.DictionaryBindingNavigator.Location = New System.Drawing.Point(126, 3)
+        Me.DictionaryBindingNavigator.Location = New System.Drawing.Point(168, 4)
         Me.DictionaryBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.DictionaryBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.DictionaryBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
         Me.DictionaryBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.DictionaryBindingNavigator.Name = "DictionaryBindingNavigator"
         Me.DictionaryBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.DictionaryBindingNavigator.Size = New System.Drawing.Size(738, 25)
+        Me.DictionaryBindingNavigator.Size = New System.Drawing.Size(916, 27)
         Me.DictionaryBindingNavigator.TabIndex = 1
         Me.DictionaryBindingNavigator.Text = "DictionaryBindingNavigator"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(45, 24)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -183,7 +185,7 @@ Partial Class SWDictForm
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(80, 22)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(99, 24)
         Me.BindingNavigatorMoveFirstItem.Text = "Move first"
         '
         'BindingNavigatorMovePreviousItem
@@ -191,34 +193,34 @@ Partial Class SWDictForm
         Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(105, 22)
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(130, 24)
         Me.BindingNavigatorMovePreviousItem.Text = "Move previous"
         '
         'BindingNavigatorSeparator
         '
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorPositionItem
         '
         Me.BindingNavigatorPositionItem.AccessibleName = "Position"
         Me.BindingNavigatorPositionItem.AutoSize = False
         Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(65, 27)
         Me.BindingNavigatorPositionItem.Text = "0"
         Me.BindingNavigatorPositionItem.ToolTipText = "Current position"
         '
         'BindingNavigatorSeparator1
         '
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorMoveNextItem
         '
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(82, 22)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(102, 24)
         Me.BindingNavigatorMoveNextItem.Text = "Move next"
         '
         'BindingNavigatorMoveLastItem
@@ -226,20 +228,20 @@ Partial Class SWDictForm
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(78, 22)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(97, 24)
         Me.BindingNavigatorMoveLastItem.Text = "Move last"
         '
         'BindingNavigatorSeparator2
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorAddNewItem
         '
         Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
         Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(74, 22)
+        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(92, 24)
         Me.BindingNavigatorAddNewItem.Text = "&Add new"
         '
         'TSBDuplicate
@@ -248,7 +250,7 @@ Partial Class SWDictForm
         Me.TSBDuplicate.Image = CType(resources.GetObject("TSBDuplicate.Image"), System.Drawing.Image)
         Me.TSBDuplicate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TSBDuplicate.Name = "TSBDuplicate"
-        Me.TSBDuplicate.Size = New System.Drawing.Size(61, 22)
+        Me.TSBDuplicate.Size = New System.Drawing.Size(77, 24)
         Me.TSBDuplicate.Text = "&Duplicate"
         '
         'BindingNavigatorDeleteItem
@@ -256,13 +258,13 @@ Partial Class SWDictForm
         Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
         Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(60, 22)
+        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(77, 24)
         Me.BindingNavigatorDeleteItem.Text = "Delete"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'TSBSymbolSearch
         '
@@ -270,7 +272,7 @@ Partial Class SWDictForm
         Me.TSBSymbolSearch.Image = CType(resources.GetObject("TSBSymbolSearch.Image"), System.Drawing.Image)
         Me.TSBSymbolSearch.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TSBSymbolSearch.Name = "TSBSymbolSearch"
-        Me.TSBSymbolSearch.Size = New System.Drawing.Size(84, 22)
+        Me.TSBSymbolSearch.Size = New System.Drawing.Size(103, 24)
         Me.TSBSymbolSearch.Text = "&Sign Search ..."
         '
         'hpAdvancedCHM
@@ -286,9 +288,10 @@ Partial Class SWDictForm
         '
         Me.CBGloss2.DisplayMember = "IDDictionary"
         Me.CBGloss2.FormattingEnabled = True
-        Me.CBGloss2.Location = New System.Drawing.Point(582, 37)
+        Me.CBGloss2.Location = New System.Drawing.Point(776, 46)
+        Me.CBGloss2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CBGloss2.Name = "CBGloss2"
-        Me.CBGloss2.Size = New System.Drawing.Size(121, 21)
+        Me.CBGloss2.Size = New System.Drawing.Size(160, 24)
         Me.CBGloss2.TabIndex = 2
         Me.CBGloss2.ValueMember = "IDDictionary"
         '
@@ -296,9 +299,10 @@ Partial Class SWDictForm
         '
         Me.CBGloss1.DisplayMember = "IDDictionary"
         Me.CBGloss1.FormattingEnabled = True
-        Me.CBGloss1.Location = New System.Drawing.Point(455, 37)
+        Me.CBGloss1.Location = New System.Drawing.Point(607, 46)
+        Me.CBGloss1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CBGloss1.Name = "CBGloss1"
-        Me.CBGloss1.Size = New System.Drawing.Size(121, 21)
+        Me.CBGloss1.Size = New System.Drawing.Size(160, 24)
         Me.CBGloss1.TabIndex = 1
         Me.CBGloss1.ValueMember = "IDDictionary"
         '
@@ -307,6 +311,7 @@ Partial Class SWDictForm
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -337,15 +342,17 @@ Partial Class SWDictForm
         Me.SplitContainer1.Panel2.AutoScroll = True
         Me.SplitContainer1.Panel2.Controls.Add(Me.DictionaryDataGridView)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Pager1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1276, 533)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1701, 656)
         Me.SplitContainer1.SplitterDistance = 73
+        Me.SplitContainer1.SplitterWidth = 5
         Me.SplitContainer1.TabIndex = 4
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(982, 38)
+        Me.Button1.Location = New System.Drawing.Point(1309, 47)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(120, 23)
+        Me.Button1.Size = New System.Drawing.Size(160, 28)
         Me.Button1.TabIndex = 22
         Me.Button1.Text = "Add New Tag"
         Me.Button1.UseVisualStyleBackColor = True
@@ -353,9 +360,10 @@ Partial Class SWDictForm
         'CBExactSearch
         '
         Me.CBExactSearch.AutoSize = True
-        Me.CBExactSearch.Location = New System.Drawing.Point(2, 59)
+        Me.CBExactSearch.Location = New System.Drawing.Point(3, 73)
+        Me.CBExactSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CBExactSearch.Name = "CBExactSearch"
-        Me.CBExactSearch.Size = New System.Drawing.Size(90, 17)
+        Me.CBExactSearch.Size = New System.Drawing.Size(113, 21)
         Me.CBExactSearch.TabIndex = 21
         Me.CBExactSearch.Text = "Exact Search"
         Me.CBExactSearch.UseVisualStyleBackColor = True
@@ -364,34 +372,38 @@ Partial Class SWDictForm
         '
         Me.TagFilter1.AssumeFiltering = False
         Me.TagFilter1.DataSource = Nothing
-        Me.TagFilter1.Location = New System.Drawing.Point(1120, 3)
+        Me.TagFilter1.Location = New System.Drawing.Point(1493, 4)
+        Me.TagFilter1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.TagFilter1.Name = "TagFilter1"
-        Me.TagFilter1.Size = New System.Drawing.Size(393, 68)
+        Me.TagFilter1.Size = New System.Drawing.Size(524, 84)
         Me.TagFilter1.TabIndex = 20
         '
         'btnShowSource
         '
-        Me.btnShowSource.Location = New System.Drawing.Point(1004, 5)
+        Me.btnShowSource.Location = New System.Drawing.Point(1339, 6)
+        Me.btnShowSource.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnShowSource.Name = "btnShowSource"
-        Me.btnShowSource.Size = New System.Drawing.Size(98, 23)
+        Me.btnShowSource.Size = New System.Drawing.Size(131, 28)
         Me.btnShowSource.TabIndex = 18
         Me.btnShowSource.Text = "Show Source"
         Me.btnShowSource.UseVisualStyleBackColor = True
         '
         'btnTagsForm
         '
-        Me.btnTagsForm.Location = New System.Drawing.Point(911, 6)
+        Me.btnTagsForm.Location = New System.Drawing.Point(1215, 7)
+        Me.btnTagsForm.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnTagsForm.Name = "btnTagsForm"
-        Me.btnTagsForm.Size = New System.Drawing.Size(75, 23)
+        Me.btnTagsForm.Size = New System.Drawing.Size(100, 28)
         Me.btnTagsForm.TabIndex = 17
         Me.btnTagsForm.Text = "Edit Tags"
         Me.btnTagsForm.UseVisualStyleBackColor = True
         '
         'btnSpell
         '
-        Me.btnSpell.Location = New System.Drawing.Point(732, 36)
+        Me.btnSpell.Location = New System.Drawing.Point(976, 44)
+        Me.btnSpell.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSpell.Name = "btnSpell"
-        Me.btnSpell.Size = New System.Drawing.Size(75, 23)
+        Me.btnSpell.Size = New System.Drawing.Size(100, 28)
         Me.btnSpell.TabIndex = 16
         Me.btnSpell.Text = "Spell"
         Me.btnSpell.UseVisualStyleBackColor = True
@@ -399,34 +411,38 @@ Partial Class SWDictForm
         '
         'TBSearch
         '
-        Me.TBSearch.Location = New System.Drawing.Point(3, 37)
+        Me.TBSearch.Location = New System.Drawing.Point(4, 46)
+        Me.TBSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TBSearch.Name = "TBSearch"
-        Me.TBSearch.Size = New System.Drawing.Size(100, 20)
+        Me.TBSearch.Size = New System.Drawing.Size(132, 22)
         Me.TBSearch.TabIndex = 0
         '
         'btnEditSignWriting
         '
-        Me.btnEditSignWriting.Location = New System.Drawing.Point(352, 35)
+        Me.btnEditSignWriting.Location = New System.Drawing.Point(469, 43)
+        Me.btnEditSignWriting.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnEditSignWriting.Name = "btnEditSignWriting"
-        Me.btnEditSignWriting.Size = New System.Drawing.Size(97, 23)
+        Me.btnEditSignWriting.Size = New System.Drawing.Size(129, 28)
         Me.btnEditSignWriting.TabIndex = 15
         Me.btnEditSignWriting.Text = "Edit SignWriting"
         Me.btnEditSignWriting.UseVisualStyleBackColor = True
         '
         'BtnSearch
         '
-        Me.BtnSearch.Location = New System.Drawing.Point(109, 36)
+        Me.BtnSearch.Location = New System.Drawing.Point(145, 44)
+        Me.BtnSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.BtnSearch.Size = New System.Drawing.Size(100, 28)
         Me.BtnSearch.TabIndex = 13
         Me.BtnSearch.Text = "Search"
         Me.BtnSearch.UseVisualStyleBackColor = True
         '
         'BtnCancel
         '
-        Me.BtnCancel.Location = New System.Drawing.Point(271, 35)
+        Me.BtnCancel.Location = New System.Drawing.Point(361, 43)
+        Me.BtnCancel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.BtnCancel.Size = New System.Drawing.Size(100, 28)
         Me.BtnCancel.TabIndex = 11
         Me.BtnCancel.Text = "Cancel"
         Me.BtnCancel.UseVisualStyleBackColor = True
@@ -434,9 +450,10 @@ Partial Class SWDictForm
         '
         'BtnAccept
         '
-        Me.BtnAccept.Location = New System.Drawing.Point(190, 35)
+        Me.BtnAccept.Location = New System.Drawing.Point(253, 43)
+        Me.BtnAccept.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtnAccept.Name = "BtnAccept"
-        Me.BtnAccept.Size = New System.Drawing.Size(75, 23)
+        Me.BtnAccept.Size = New System.Drawing.Size(100, 28)
         Me.BtnAccept.TabIndex = 10
         Me.BtnAccept.Text = "Accept"
         Me.BtnAccept.UseVisualStyleBackColor = True
@@ -445,81 +462,85 @@ Partial Class SWDictForm
         'LBGlossLang2
         '
         Me.LBGlossLang2.AutoSize = True
-        Me.LBGlossLang2.Location = New System.Drawing.Point(582, 25)
+        Me.LBGlossLang2.Location = New System.Drawing.Point(776, 31)
+        Me.LBGlossLang2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LBGlossLang2.Name = "LBGlossLang2"
-        Me.LBGlossLang2.Size = New System.Drawing.Size(37, 13)
+        Me.LBGlossLang2.Size = New System.Drawing.Size(48, 17)
         Me.LBGlossLang2.TabIndex = 9
         Me.LBGlossLang2.Text = "Lang2"
         '
         'LBGlossLang1
         '
         Me.LBGlossLang1.AutoSize = True
-        Me.LBGlossLang1.Location = New System.Drawing.Point(452, 25)
+        Me.LBGlossLang1.Location = New System.Drawing.Point(603, 31)
+        Me.LBGlossLang1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LBGlossLang1.Name = "LBGlossLang1"
-        Me.LBGlossLang1.Size = New System.Drawing.Size(37, 13)
+        Me.LBGlossLang1.Size = New System.Drawing.Size(48, 17)
         Me.LBGlossLang1.TabIndex = 8
         Me.LBGlossLang1.Text = "Lang1"
         '
         'LBSearch
         '
         Me.LBSearch.AutoSize = True
-        Me.LBSearch.Location = New System.Drawing.Point(3, 25)
+        Me.LBSearch.Location = New System.Drawing.Point(4, 31)
+        Me.LBSearch.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LBSearch.Name = "LBSearch"
-        Me.LBSearch.Size = New System.Drawing.Size(70, 13)
+        Me.LBSearch.Size = New System.Drawing.Size(93, 17)
         Me.LBSearch.TabIndex = 7
         Me.LBSearch.Text = "&Gloss Search"
         '
         'MenuStrip1
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.TSMIEdit, Me.HelpToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 3)
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 4)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(126, 24)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(5, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(157, 28)
         Me.MenuStrip1.TabIndex = 12
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ToolStripMenuItem1
         '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewSignWriterStudioFileToolStripMenuItem, Me.OpenSignWriterStudioFileToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem, Me.SignListsToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.ExportFingerSpellingToolStripMenuItem, Me.ExportToAnkiToolStripMenuItem, Me.ExportToHTMLToolStripMenuItem, Me.ViewReportPDFWordExcelToolStripMenuItem, Me.ImportSWSFileToolStripMenuItem})
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewSignWriterStudioFileToolStripMenuItem, Me.OpenSignWriterStudioFileToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem, Me.SignListsToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.ExportFingerSpellingToolStripMenuItem, Me.ExportToAnkiToolStripMenuItem, Me.ExportToHTMLToolStripMenuItem, Me.ViewReportPDFWordExcelToolStripMenuItem, Me.ImportSWSFileToolStripMenuItem, Me.LoadImagesinpngcolumnToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(37, 20)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(46, 24)
         Me.ToolStripMenuItem1.Text = "File"
         '
         'NewSignWriterStudioFileToolStripMenuItem
         '
         Me.NewSignWriterStudioFileToolStripMenuItem.Name = "NewSignWriterStudioFileToolStripMenuItem"
         Me.NewSignWriterStudioFileToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewSignWriterStudioFileToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.NewSignWriterStudioFileToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.NewSignWriterStudioFileToolStripMenuItem.Text = "&New SignWriter Studio™ File ..."
         '
         'OpenSignWriterStudioFileToolStripMenuItem
         '
         Me.OpenSignWriterStudioFileToolStripMenuItem.Name = "OpenSignWriterStudioFileToolStripMenuItem"
         Me.OpenSignWriterStudioFileToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.OpenSignWriterStudioFileToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.OpenSignWriterStudioFileToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.OpenSignWriterStudioFileToolStripMenuItem.Text = "&Open SignWriter Studio™ File ..."
         '
         'ImportToolStripMenuItem
         '
         Me.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem"
         Me.ImportToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.ImportToolStripMenuItem.Text = "&Import ..."
         '
         'ExportToolStripMenuItem
         '
         Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
         Me.ExportToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.ExportToolStripMenuItem.Text = "&Export ..."
         '
         'SignListsToolStripMenuItem
         '
         Me.SignListsToolStripMenuItem.Name = "SignListsToolStripMenuItem"
         Me.SignListsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.SignListsToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.SignListsToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.SignListsToolStripMenuItem.Text = "Sign Lists (&Print) ..."
         Me.SignListsToolStripMenuItem.Visible = False
         '
@@ -527,63 +548,63 @@ Partial Class SWDictForm
         '
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
         Me.OptionsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.OptionsToolStripMenuItem.Text = "Op&tions ..."
         '
         'ExportFingerSpellingToolStripMenuItem
         '
         Me.ExportFingerSpellingToolStripMenuItem.Name = "ExportFingerSpellingToolStripMenuItem"
-        Me.ExportFingerSpellingToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ExportFingerSpellingToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.ExportFingerSpellingToolStripMenuItem.Text = "Export FingerSpelling text file..."
         '
         'ExportToAnkiToolStripMenuItem
         '
         Me.ExportToAnkiToolStripMenuItem.Name = "ExportToAnkiToolStripMenuItem"
-        Me.ExportToAnkiToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ExportToAnkiToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.ExportToAnkiToolStripMenuItem.Text = "Export to Anki..."
         '
         'ExportToHTMLToolStripMenuItem
         '
         Me.ExportToHTMLToolStripMenuItem.Name = "ExportToHTMLToolStripMenuItem"
-        Me.ExportToHTMLToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ExportToHTMLToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.ExportToHTMLToolStripMenuItem.Text = "Export to HTML..."
         '
         'ViewReportPDFWordExcelToolStripMenuItem
         '
         Me.ViewReportPDFWordExcelToolStripMenuItem.Name = "ViewReportPDFWordExcelToolStripMenuItem"
-        Me.ViewReportPDFWordExcelToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ViewReportPDFWordExcelToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.ViewReportPDFWordExcelToolStripMenuItem.Text = "View Report (PDF, Word, Excel)"
         '
         'ImportSWSFileToolStripMenuItem
         '
         Me.ImportSWSFileToolStripMenuItem.Name = "ImportSWSFileToolStripMenuItem"
-        Me.ImportSWSFileToolStripMenuItem.Size = New System.Drawing.Size(283, 22)
+        Me.ImportSWSFileToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
         Me.ImportSWSFileToolStripMenuItem.Text = "Import SWS File"
         '
         'TSMIEdit
         '
         Me.TSMIEdit.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem1, Me.PasteToolStripMenuItem1, Me.DeleteEntryToolStripMenuItem, Me.AddNewEntryToolStripMenuItem, Me.DuplicateEntryToolStripMenuItem, Me.SignPuddleToolStripMenuItem})
         Me.TSMIEdit.Name = "TSMIEdit"
-        Me.TSMIEdit.Size = New System.Drawing.Size(39, 20)
+        Me.TSMIEdit.Size = New System.Drawing.Size(49, 24)
         Me.TSMIEdit.Text = "Edit"
         '
         'CopyToolStripMenuItem1
         '
         Me.CopyToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopySignImageToolStripMenuItem, Me.CopySignToolStripMenuItem, Me.CopyToSignPuddleToolStripMenuItem1, Me.CopyFSWToolStripMenuItem, Me.CopyIllustrationToolStripMenuItem, Me.CopyPhotoSignToolStripMenuItem})
         Me.CopyToolStripMenuItem1.Name = "CopyToolStripMenuItem1"
-        Me.CopyToolStripMenuItem1.Size = New System.Drawing.Size(200, 22)
+        Me.CopyToolStripMenuItem1.Size = New System.Drawing.Size(248, 26)
         Me.CopyToolStripMenuItem1.Text = "Copy"
         '
         'CopySignImageToolStripMenuItem
         '
         Me.CopySignImageToolStripMenuItem.Name = "CopySignImageToolStripMenuItem"
-        Me.CopySignImageToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.CopySignImageToolStripMenuItem.Size = New System.Drawing.Size(336, 26)
         Me.CopySignImageToolStripMenuItem.Text = "Copy Sign Image"
         '
         'CopySignToolStripMenuItem
         '
         Me.CopySignToolStripMenuItem.Name = "CopySignToolStripMenuItem"
-        Me.CopySignToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.CopySignToolStripMenuItem.Size = New System.Drawing.Size(336, 26)
         Me.CopySignToolStripMenuItem.Text = "Copy Sign Row"
         Me.CopySignToolStripMenuItem.Visible = False
         '
@@ -592,13 +613,13 @@ Partial Class SWDictForm
         Me.CopyToSignPuddleToolStripMenuItem1.Name = "CopyToSignPuddleToolStripMenuItem1"
         Me.CopyToSignPuddleToolStripMenuItem1.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyToSignPuddleToolStripMenuItem1.Size = New System.Drawing.Size(270, 22)
+        Me.CopyToSignPuddleToolStripMenuItem1.Size = New System.Drawing.Size(336, 26)
         Me.CopyToSignPuddleToolStripMenuItem1.Text = "Copy Sign to SignPuddle"
         '
         'CopyFSWToolStripMenuItem
         '
         Me.CopyFSWToolStripMenuItem.Name = "CopyFSWToolStripMenuItem"
-        Me.CopyFSWToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.CopyFSWToolStripMenuItem.Size = New System.Drawing.Size(336, 26)
         Me.CopyFSWToolStripMenuItem.Text = "Copy FSW"
         '
         'CopyIllustrationToolStripMenuItem
@@ -606,7 +627,7 @@ Partial Class SWDictForm
         Me.CopyIllustrationToolStripMenuItem.Name = "CopyIllustrationToolStripMenuItem"
         Me.CopyIllustrationToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyIllustrationToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.CopyIllustrationToolStripMenuItem.Size = New System.Drawing.Size(336, 26)
         Me.CopyIllustrationToolStripMenuItem.Text = "Copy Illustration"
         '
         'CopyPhotoSignToolStripMenuItem
@@ -614,20 +635,20 @@ Partial Class SWDictForm
         Me.CopyPhotoSignToolStripMenuItem.Name = "CopyPhotoSignToolStripMenuItem"
         Me.CopyPhotoSignToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyPhotoSignToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.CopyPhotoSignToolStripMenuItem.Size = New System.Drawing.Size(336, 26)
         Me.CopyPhotoSignToolStripMenuItem.Text = "Copy Photo Sign"
         '
         'PasteToolStripMenuItem1
         '
         Me.PasteToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteSignToolStripMenuItem, Me.PasteFSWFromSignPuddleToolStripMenuItem, Me.PasteIllustrationToolStripMenuItem, Me.PastePhotoSignToolStripMenuItem})
         Me.PasteToolStripMenuItem1.Name = "PasteToolStripMenuItem1"
-        Me.PasteToolStripMenuItem1.Size = New System.Drawing.Size(200, 22)
+        Me.PasteToolStripMenuItem1.Size = New System.Drawing.Size(248, 26)
         Me.PasteToolStripMenuItem1.Text = "Paste"
         '
         'PasteSignToolStripMenuItem
         '
         Me.PasteSignToolStripMenuItem.Name = "PasteSignToolStripMenuItem"
-        Me.PasteSignToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.PasteSignToolStripMenuItem.Size = New System.Drawing.Size(291, 26)
         Me.PasteSignToolStripMenuItem.Text = "Paste Sign Row"
         Me.PasteSignToolStripMenuItem.Visible = False
         '
@@ -636,7 +657,7 @@ Partial Class SWDictForm
         Me.PasteFSWFromSignPuddleToolStripMenuItem.Name = "PasteFSWFromSignPuddleToolStripMenuItem"
         Me.PasteFSWFromSignPuddleToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteFSWFromSignPuddleToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.PasteFSWFromSignPuddleToolStripMenuItem.Size = New System.Drawing.Size(291, 26)
         Me.PasteFSWFromSignPuddleToolStripMenuItem.Text = "Paste FSW"
         '
         'PasteIllustrationToolStripMenuItem
@@ -644,7 +665,7 @@ Partial Class SWDictForm
         Me.PasteIllustrationToolStripMenuItem.Name = "PasteIllustrationToolStripMenuItem"
         Me.PasteIllustrationToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteIllustrationToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.PasteIllustrationToolStripMenuItem.Size = New System.Drawing.Size(291, 26)
         Me.PasteIllustrationToolStripMenuItem.Text = "Paste Illustration"
         '
         'PastePhotoSignToolStripMenuItem
@@ -652,86 +673,86 @@ Partial Class SWDictForm
         Me.PastePhotoSignToolStripMenuItem.Name = "PastePhotoSignToolStripMenuItem"
         Me.PastePhotoSignToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PastePhotoSignToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.PastePhotoSignToolStripMenuItem.Size = New System.Drawing.Size(291, 26)
         Me.PastePhotoSignToolStripMenuItem.Text = "Paste Photo Sign"
         '
         'DeleteEntryToolStripMenuItem
         '
         Me.DeleteEntryToolStripMenuItem.Name = "DeleteEntryToolStripMenuItem"
         Me.DeleteEntryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Delete), System.Windows.Forms.Keys)
-        Me.DeleteEntryToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
+        Me.DeleteEntryToolStripMenuItem.Size = New System.Drawing.Size(248, 26)
         Me.DeleteEntryToolStripMenuItem.Text = "Delete Entry"
         '
         'AddNewEntryToolStripMenuItem
         '
         Me.AddNewEntryToolStripMenuItem.Name = "AddNewEntryToolStripMenuItem"
         Me.AddNewEntryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Insert), System.Windows.Forms.Keys)
-        Me.AddNewEntryToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
+        Me.AddNewEntryToolStripMenuItem.Size = New System.Drawing.Size(248, 26)
         Me.AddNewEntryToolStripMenuItem.Text = "Add new Entry"
         '
         'DuplicateEntryToolStripMenuItem
         '
         Me.DuplicateEntryToolStripMenuItem.Name = "DuplicateEntryToolStripMenuItem"
         Me.DuplicateEntryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.DuplicateEntryToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
+        Me.DuplicateEntryToolStripMenuItem.Size = New System.Drawing.Size(248, 26)
         Me.DuplicateEntryToolStripMenuItem.Text = "Duplicate Entry"
         '
         'SignPuddleToolStripMenuItem
         '
         Me.SignPuddleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SignInToolStripMenuItem, Me.SignOutToolStripMenuItem, Me.SendToPuddleToolStripMenuItem, Me.SendSelectedEntriesToPuddleToolStripMenuItem, Me.DeleteFromPuddleToolStripMenuItem, Me.SendSignToPuddleToolStripMenuItem})
         Me.SignPuddleToolStripMenuItem.Name = "SignPuddleToolStripMenuItem"
-        Me.SignPuddleToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
+        Me.SignPuddleToolStripMenuItem.Size = New System.Drawing.Size(248, 26)
         Me.SignPuddleToolStripMenuItem.Text = "SignPuddle"
         '
         'SignInToolStripMenuItem
         '
         Me.SignInToolStripMenuItem.Name = "SignInToolStripMenuItem"
-        Me.SignInToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.SignInToolStripMenuItem.Size = New System.Drawing.Size(302, 26)
         Me.SignInToolStripMenuItem.Text = "Sign in"
         '
         'SignOutToolStripMenuItem
         '
         Me.SignOutToolStripMenuItem.Name = "SignOutToolStripMenuItem"
-        Me.SignOutToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.SignOutToolStripMenuItem.Size = New System.Drawing.Size(302, 26)
         Me.SignOutToolStripMenuItem.Text = "Sign out"
         '
         'SendToPuddleToolStripMenuItem
         '
         Me.SendToPuddleToolStripMenuItem.Name = "SendToPuddleToolStripMenuItem"
-        Me.SendToPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.SendToPuddleToolStripMenuItem.Size = New System.Drawing.Size(302, 26)
         Me.SendToPuddleToolStripMenuItem.Text = "Send to Puddle"
         '
         'SendSelectedEntriesToPuddleToolStripMenuItem
         '
         Me.SendSelectedEntriesToPuddleToolStripMenuItem.Name = "SendSelectedEntriesToPuddleToolStripMenuItem"
-        Me.SendSelectedEntriesToPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.SendSelectedEntriesToPuddleToolStripMenuItem.Size = New System.Drawing.Size(302, 26)
         Me.SendSelectedEntriesToPuddleToolStripMenuItem.Text = "Send Selected Entries to Puddle"
         '
         'DeleteFromPuddleToolStripMenuItem
         '
         Me.DeleteFromPuddleToolStripMenuItem.Name = "DeleteFromPuddleToolStripMenuItem"
-        Me.DeleteFromPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.DeleteFromPuddleToolStripMenuItem.Size = New System.Drawing.Size(302, 26)
         Me.DeleteFromPuddleToolStripMenuItem.Text = "Delete from Puddle"
         '
         'SendSignToPuddleToolStripMenuItem
         '
         Me.SendSignToPuddleToolStripMenuItem.Name = "SendSignToPuddleToolStripMenuItem"
         Me.SendSignToPuddleToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SendSignToPuddleToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
+        Me.SendSignToPuddleToolStripMenuItem.Size = New System.Drawing.Size(302, 26)
         Me.SendSignToPuddleToolStripMenuItem.Text = "Send Sign to Puddle"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpToolStripMenuItem1})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(55, 24)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'HelpToolStripMenuItem1
         '
         Me.HelpToolStripMenuItem1.Name = "HelpToolStripMenuItem1"
         Me.HelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
+        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(152, 26)
         Me.HelpToolStripMenuItem1.Text = "&Help "
         '
         'DictionaryDataGridView
@@ -744,21 +765,175 @@ Partial Class SWDictForm
         Me.DictionaryDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SignLanguage, Me.IDDictionary, Me.gloss1, Me.glosses1, Me.gloss2, Me.glosses2, Me.SWriting, Me.Photo, Me.Sign, Me.PuddleVideoLink, Me.SWSignSource, Me.PhotoSource, Me.SignSource, Me.Tags, Me.GUID, Me.Sorting})
         Me.DictionaryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DictionaryDataGridView.Location = New System.Drawing.Point(0, 0)
+        Me.DictionaryDataGridView.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DictionaryDataGridView.Name = "DictionaryDataGridView"
+        Me.DictionaryDataGridView.RowHeadersWidth = 51
         Me.DictionaryDataGridView.RowTemplate.Height = 24
-        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1276, 428)
+        Me.DictionaryDataGridView.Size = New System.Drawing.Size(1701, 544)
         Me.DictionaryDataGridView.TabIndex = 3
         Me.DictionaryDataGridView.VirtualMode = True
+        '
+        'SignLanguage
+        '
+        Me.SignLanguage.DataPropertyName = "IDSignLanguage"
+        Me.SignLanguage.HeaderText = "SignLanguage"
+        Me.SignLanguage.MinimumWidth = 6
+        Me.SignLanguage.Name = "SignLanguage"
+        Me.SignLanguage.Visible = False
+        Me.SignLanguage.Width = 125
+        '
+        'IDDictionary
+        '
+        Me.IDDictionary.DataPropertyName = "IDDictionary"
+        Me.IDDictionary.HeaderText = "IDDictionary"
+        Me.IDDictionary.MinimumWidth = 6
+        Me.IDDictionary.Name = "IDDictionary"
+        Me.IDDictionary.Visible = False
+        Me.IDDictionary.Width = 125
+        '
+        'gloss1
+        '
+        Me.gloss1.DataPropertyName = "gloss1"
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gloss1.DefaultCellStyle = DataGridViewCellStyle1
+        Me.gloss1.HeaderText = "Gloss"
+        Me.gloss1.MinimumWidth = 6
+        Me.gloss1.Name = "gloss1"
+        Me.gloss1.Width = 125
+        '
+        'glosses1
+        '
+        Me.glosses1.DataPropertyName = "glosses1"
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.glosses1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.glosses1.HeaderText = "Other Glosses"
+        Me.glosses1.MinimumWidth = 6
+        Me.glosses1.Name = "glosses1"
+        Me.glosses1.Width = 125
+        '
+        'gloss2
+        '
+        Me.gloss2.DataPropertyName = "gloss2"
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gloss2.DefaultCellStyle = DataGridViewCellStyle3
+        Me.gloss2.HeaderText = "Gloss"
+        Me.gloss2.MinimumWidth = 6
+        Me.gloss2.Name = "gloss2"
+        Me.gloss2.Width = 125
+        '
+        'glosses2
+        '
+        Me.glosses2.DataPropertyName = "glosses2"
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.glosses2.DefaultCellStyle = DataGridViewCellStyle4
+        Me.glosses2.HeaderText = "Other Glosses"
+        Me.glosses2.MinimumWidth = 6
+        Me.glosses2.Name = "glosses2"
+        Me.glosses2.Width = 125
+        '
+        'SWriting
+        '
+        Me.SWriting.DataPropertyName = "SWriting"
+        Me.SWriting.HeaderText = "SWriting"
+        Me.SWriting.MinimumWidth = 100
+        Me.SWriting.Name = "SWriting"
+        Me.SWriting.Width = 300
+        '
+        'Photo
+        '
+        Me.Photo.DataPropertyName = "Photo"
+        Me.Photo.HeaderText = "Illustration"
+        Me.Photo.MinimumWidth = 100
+        Me.Photo.Name = "Photo"
+        Me.Photo.Width = 300
+        '
+        'Sign
+        '
+        Me.Sign.DataPropertyName = "Sign"
+        Me.Sign.HeaderText = "Photo Sign"
+        Me.Sign.MinimumWidth = 100
+        Me.Sign.Name = "Sign"
+        Me.Sign.Width = 300
+        '
+        'PuddleVideoLink
+        '
+        Me.PuddleVideoLink.DataPropertyName = "PuddleVideoLink"
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PuddleVideoLink.DefaultCellStyle = DataGridViewCellStyle5
+        Me.PuddleVideoLink.HeaderText = "Video Link"
+        Me.PuddleVideoLink.MinimumWidth = 6
+        Me.PuddleVideoLink.Name = "PuddleVideoLink"
+        Me.PuddleVideoLink.Width = 125
+        '
+        'SWSignSource
+        '
+        Me.SWSignSource.DataPropertyName = "SWritingSource"
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SWSignSource.DefaultCellStyle = DataGridViewCellStyle6
+        Me.SWSignSource.HeaderText = "SWritingSource"
+        Me.SWSignSource.MinimumWidth = 6
+        Me.SWSignSource.Name = "SWSignSource"
+        Me.SWSignSource.Width = 125
+        '
+        'PhotoSource
+        '
+        Me.PhotoSource.DataPropertyName = "PhotoSource"
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PhotoSource.DefaultCellStyle = DataGridViewCellStyle7
+        Me.PhotoSource.HeaderText = "PhotoSource"
+        Me.PhotoSource.MinimumWidth = 6
+        Me.PhotoSource.Name = "PhotoSource"
+        Me.PhotoSource.Width = 125
+        '
+        'SignSource
+        '
+        Me.SignSource.DataPropertyName = "SignSource"
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.SignSource.DefaultCellStyle = DataGridViewCellStyle8
+        Me.SignSource.HeaderText = "PhotoSignSource"
+        Me.SignSource.MinimumWidth = 6
+        Me.SignSource.Name = "SignSource"
+        Me.SignSource.Width = 125
+        '
+        'Tags
+        '
+        Me.Tags.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Tags.DataPropertyName = "Tags"
+        Me.Tags.HeaderText = "Tags"
+        Me.Tags.LabelFont = Nothing
+        Me.Tags.MinimumWidth = 6
+        Me.Tags.Name = "Tags"
+        Me.Tags.ReadOnly = True
+        '
+        'GUID
+        '
+        Me.GUID.DataPropertyName = "GUID"
+        Me.GUID.HeaderText = "GUID"
+        Me.GUID.MinimumWidth = 6
+        Me.GUID.Name = "GUID"
+        Me.GUID.Visible = False
+        Me.GUID.Width = 125
+        '
+        'Sorting
+        '
+        Me.Sorting.DataPropertyName = "Sorting"
+        Me.Sorting.HeaderText = "Sorting"
+        Me.Sorting.MinimumWidth = 6
+        Me.Sorting.Name = "Sorting"
+        Me.Sorting.Visible = False
+        Me.Sorting.Width = 125
         '
         'Pager1
         '
         Me.Pager1.CurrentPage = 0
         Me.Pager1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Pager1.Location = New System.Drawing.Point(0, 428)
+        Me.Pager1.Location = New System.Drawing.Point(0, 544)
+        Me.Pager1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.Pager1.Name = "Pager1"
         Me.Pager1.PageSize = 20
         Me.Pager1.Search = Nothing
-        Me.Pager1.Size = New System.Drawing.Size(1276, 28)
+        Me.Pager1.Size = New System.Drawing.Size(1701, 34)
         Me.Pager1.TabIndex = 4
         Me.Pager1.TotalPages = 0
         Me.Pager1.TotalRowCount = 0
@@ -791,15 +966,19 @@ Partial Class SWDictForm
         '
         Me.DataGridViewTextBoxColumn1.DataPropertyName = "IDSignLanguage"
         Me.DataGridViewTextBoxColumn1.HeaderText = "SignLanguage"
+        Me.DataGridViewTextBoxColumn1.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.Visible = False
+        Me.DataGridViewTextBoxColumn1.Width = 125
         '
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.DataPropertyName = "IDDictionary"
         Me.DataGridViewTextBoxColumn2.HeaderText = "IDDictionary"
+        Me.DataGridViewTextBoxColumn2.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.Visible = False
+        Me.DataGridViewTextBoxColumn2.Width = 125
         '
         'DataGridViewTextBoxColumn3
         '
@@ -808,7 +987,9 @@ Partial Class SWDictForm
         DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewTextBoxColumn3.HeaderText = "Gloss"
+        Me.DataGridViewTextBoxColumn3.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Width = 125
         '
         'DataGridViewTextBoxColumn4
         '
@@ -816,7 +997,9 @@ Partial Class SWDictForm
         DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridViewTextBoxColumn4.HeaderText = "Other Glosses"
+        Me.DataGridViewTextBoxColumn4.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.Width = 125
         '
         'DataGridViewTextBoxColumn5
         '
@@ -824,7 +1007,9 @@ Partial Class SWDictForm
         DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewTextBoxColumn5.HeaderText = "Gloss"
+        Me.DataGridViewTextBoxColumn5.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.Width = 125
         '
         'DataGridViewTextBoxColumn6
         '
@@ -832,7 +1017,9 @@ Partial Class SWDictForm
         DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridViewTextBoxColumn6.HeaderText = "Other Glosses"
+        Me.DataGridViewTextBoxColumn6.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.Width = 125
         '
         'DataGridViewTextBoxColumn7
         '
@@ -840,7 +1027,9 @@ Partial Class SWDictForm
         DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewTextBoxColumn7.HeaderText = "SWritingSource"
+        Me.DataGridViewTextBoxColumn7.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Width = 125
         '
         'DataGridViewTextBoxColumn8
         '
@@ -848,7 +1037,9 @@ Partial Class SWDictForm
         DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle14
         Me.DataGridViewTextBoxColumn8.HeaderText = "PhotoSource"
+        Me.DataGridViewTextBoxColumn8.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.Width = 125
         '
         'DataGridViewTextBoxColumn9
         '
@@ -856,7 +1047,9 @@ Partial Class SWDictForm
         DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridViewTextBoxColumn9.HeaderText = "PhotoSignSource"
+        Me.DataGridViewTextBoxColumn9.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.Width = 125
         '
         'DataGridViewTagListColumn1
         '
@@ -864,6 +1057,7 @@ Partial Class SWDictForm
         Me.DataGridViewTagListColumn1.DataPropertyName = "Tags"
         Me.DataGridViewTagListColumn1.HeaderText = "Column1"
         Me.DataGridViewTagListColumn1.LabelFont = Nothing
+        Me.DataGridViewTagListColumn1.MinimumWidth = 6
         Me.DataGridViewTagListColumn1.Name = "DataGridViewTagListColumn1"
         Me.DataGridViewTagListColumn1.ReadOnly = True
         '
@@ -871,150 +1065,35 @@ Partial Class SWDictForm
         '
         Me.DataGridViewTextBoxColumn10.DataPropertyName = "GUID"
         Me.DataGridViewTextBoxColumn10.HeaderText = "GUID"
+        Me.DataGridViewTextBoxColumn10.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         Me.DataGridViewTextBoxColumn10.Visible = False
+        Me.DataGridViewTextBoxColumn10.Width = 125
         '
         'DataGridViewTextBoxColumn11
         '
         Me.DataGridViewTextBoxColumn11.DataPropertyName = "Sorting"
         Me.DataGridViewTextBoxColumn11.HeaderText = "Sorting"
+        Me.DataGridViewTextBoxColumn11.MinimumWidth = 6
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.Visible = False
+        Me.DataGridViewTextBoxColumn11.Width = 125
         '
-        'SignLanguage
+        'LoadImagesinpngcolumnToolStripMenuItem
         '
-        Me.SignLanguage.DataPropertyName = "IDSignLanguage"
-        Me.SignLanguage.HeaderText = "SignLanguage"
-        Me.SignLanguage.Name = "SignLanguage"
-        Me.SignLanguage.Visible = False
-        '
-        'IDDictionary
-        '
-        Me.IDDictionary.DataPropertyName = "IDDictionary"
-        Me.IDDictionary.HeaderText = "IDDictionary"
-        Me.IDDictionary.Name = "IDDictionary"
-        Me.IDDictionary.Visible = False
-        '
-        'gloss1
-        '
-        Me.gloss1.DataPropertyName = "gloss1"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gloss1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.gloss1.HeaderText = "Gloss"
-        Me.gloss1.Name = "gloss1"
-        '
-        'glosses1
-        '
-        Me.glosses1.DataPropertyName = "glosses1"
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.glosses1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.glosses1.HeaderText = "Other Glosses"
-        Me.glosses1.Name = "glosses1"
-        '
-        'gloss2
-        '
-        Me.gloss2.DataPropertyName = "gloss2"
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gloss2.DefaultCellStyle = DataGridViewCellStyle3
-        Me.gloss2.HeaderText = "Gloss"
-        Me.gloss2.Name = "gloss2"
-        '
-        'glosses2
-        '
-        Me.glosses2.DataPropertyName = "glosses2"
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.glosses2.DefaultCellStyle = DataGridViewCellStyle4
-        Me.glosses2.HeaderText = "Other Glosses"
-        Me.glosses2.Name = "glosses2"
-        '
-        'SWriting
-        '
-        Me.SWriting.DataPropertyName = "SWriting"
-        Me.SWriting.HeaderText = "SWriting"
-        Me.SWriting.MinimumWidth = 100
-        Me.SWriting.Name = "SWriting"
-        Me.SWriting.Width = 300
-        '
-        'Photo
-        '
-        Me.Photo.DataPropertyName = "Photo"
-        Me.Photo.HeaderText = "Illustration"
-        Me.Photo.MinimumWidth = 100
-        Me.Photo.Name = "Photo"
-        Me.Photo.Width = 300
-        '
-        'Sign
-        '
-        Me.Sign.DataPropertyName = "Sign"
-        Me.Sign.HeaderText = "Photo Sign"
-        Me.Sign.MinimumWidth = 100
-        Me.Sign.Name = "Sign"
-        Me.Sign.Width = 300
-        '
-        'PuddleVideoLink
-        '
-        Me.PuddleVideoLink.DataPropertyName = "PuddleVideoLink"
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PuddleVideoLink.DefaultCellStyle = DataGridViewCellStyle5
-        Me.PuddleVideoLink.HeaderText = "Video Link"
-        Me.PuddleVideoLink.Name = "PuddleVideoLink"
-        '
-        'SWSignSource
-        '
-        Me.SWSignSource.DataPropertyName = "SWritingSource"
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.SWSignSource.DefaultCellStyle = DataGridViewCellStyle6
-        Me.SWSignSource.HeaderText = "SWritingSource"
-        Me.SWSignSource.Name = "SWSignSource"
-        '
-        'PhotoSource
-        '
-        Me.PhotoSource.DataPropertyName = "PhotoSource"
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PhotoSource.DefaultCellStyle = DataGridViewCellStyle7
-        Me.PhotoSource.HeaderText = "PhotoSource"
-        Me.PhotoSource.Name = "PhotoSource"
-        '
-        'SignSource
-        '
-        Me.SignSource.DataPropertyName = "SignSource"
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.SignSource.DefaultCellStyle = DataGridViewCellStyle8
-        Me.SignSource.HeaderText = "PhotoSignSource"
-        Me.SignSource.Name = "SignSource"
-        '
-        'Tags
-        '
-        Me.Tags.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Tags.DataPropertyName = "Tags"
-        Me.Tags.HeaderText = "Tags"
-        Me.Tags.LabelFont = Nothing
-        Me.Tags.Name = "Tags"
-        Me.Tags.ReadOnly = True
-        '
-        'GUID
-        '
-        Me.GUID.DataPropertyName = "GUID"
-        Me.GUID.HeaderText = "GUID"
-        Me.GUID.Name = "GUID"
-        Me.GUID.Visible = False
-        '
-        'Sorting
-        '
-        Me.Sorting.DataPropertyName = "Sorting"
-        Me.Sorting.HeaderText = "Sorting"
-        Me.Sorting.Name = "Sorting"
-        Me.Sorting.Visible = False
+        Me.LoadImagesinpngcolumnToolStripMenuItem.Name = "LoadImagesinpngcolumnToolStripMenuItem"
+        Me.LoadImagesinpngcolumnToolStripMenuItem.Size = New System.Drawing.Size(354, 26)
+        Me.LoadImagesinpngcolumnToolStripMenuItem.Text = "LoadImagesinpngcolumn"
         '
         'SWDictForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1276, 533)
+        Me.ClientSize = New System.Drawing.Size(1701, 656)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "SWDictForm"
         Me.Text = "SignWriter Studio™ Dictionary"
         CType(Me.DictionaryBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1138,4 +1217,5 @@ Partial Class SWDictForm
     Friend WithEvents Tags As TagList.DGV.DataGridViewTagListColumn
     Friend WithEvents GUID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Sorting As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LoadImagesinpngcolumnToolStripMenuItem As ToolStripMenuItem
 End Class

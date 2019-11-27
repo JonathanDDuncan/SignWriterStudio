@@ -21,6 +21,7 @@ Imports System.Text
 Imports System.Data.SqlClient
 Imports System.Linq
 Imports System.Net
+Imports SignWriterStudio.Database.Dictionary.DictionaryDataSet
 
 Public Class SWDictForm
 
@@ -128,7 +129,7 @@ Public Class SWDictForm
 
         Return (From group In groups Let groupText = group.Item("Description") Let groupId = group.Item("IdTag") From itemTag _
                     In items.Where(Function(x) x.Item("Parent") = groupId)
-                    Select New GroupedColoredComboBoxItem With
+                Select New GroupedColoredComboBoxItem With
                            {.Group = groupText.ToString(), .Value = itemTag.Item("IdTag").ToString(),
                             .Display = itemTag.Item("Description"), .Color = Color.FromArgb(itemTag.Item("Color"))}).ToList()
     End Function
@@ -335,9 +336,9 @@ Public Class SWDictForm
                     e.SuppressKeyPress = True
                 End If
             Case Keys.Escape
-                    Cancel()
+                Cancel()
             Case Keys.F1
-                    Help.ShowHelp(Me, "SignWriterStudio.chm", "dictionary.htm")
+                Help.ShowHelp(Me, "SignWriterStudio.chm", "dictionary.htm")
         End Select
     End Sub
 
@@ -1141,7 +1142,7 @@ Public Class SWDictForm
         Dim signImport = New ImportSigns(_myDictionary, SWEditorProgressBar)
 
         signImport.ImportSPMLSigns(ImportFileDialog.FileName)
-       
+
     End Sub
 
     Private Sub DisposeSigns(ByVal List As List(Of SwSign))
@@ -1200,7 +1201,7 @@ Public Class SWDictForm
             Dim result = DatabaseSetup.CheckDictionary(connectionString, True, wasUpgraded)
 
             If result.Item1 Then
-               
+
                 If wasUpgraded Then
                     ' Create sort strings if first one is empty
                     _myDictionary.CreateSortString()
@@ -1382,7 +1383,7 @@ Public Class SWDictForm
     Private Sub LetKnowNoMatchesFound()
 
         If _myDictionary.DictionaryBindingSource1.DataSource.Rows.Count = 0 Then
-            Dim MBO As MessageBoxOptions = CType(MessageBoxOptions.RtlReading And MessageBoxOptions.RightAlign, 
+            Dim MBO As MessageBoxOptions = CType(MessageBoxOptions.RtlReading And MessageBoxOptions.RightAlign,
                                                  MessageBoxOptions)
             MessageBox.Show("There are no matches for your criteria.", "", MessageBoxButtons.OK,
                             MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MBO, False)
@@ -1462,7 +1463,7 @@ Public Class SWDictForm
         SaveDataGrid(conn, trans)
     End Sub
 
-  
+
     Private Sub CopyToSignPuddle()
         Dim fsw = GetFsw()
         Process.Start("http://www.signbank.org/signpuddle2.0/signtextsave.php?ui=1&sgn=&sgntxt=" & fsw)
@@ -2189,7 +2190,7 @@ Public Class SWDictForm
             LogError(webEx, "Entry could not be deleted from puddle.")
 
         End Try
-     
+
     End Sub
 
     Private Sub SendSelectedEntriesToPuddleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendSelectedEntriesToPuddleToolStripMenuItem.Click
@@ -2295,6 +2296,29 @@ Public Class SWDictForm
                 signImport.ImportSWSSigns(importDialog.FileName)
             End If
         End If
+    End Sub
+
+    Private Sub LoadImagesinpngcolumnToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadImagesinpngcolumnToolStripMenuItem.Click
+        Dim conn As SQLiteConnection = SWDict.GetNewDictionaryConnection(DictionaryConnectionString)
+        Dim trans As SQLiteTransaction = SWDict.GetNewDictionaryTransaction(conn)
+
+        _myDictionary.AllSigns()
+        Dim dt As SignsbyGlossesUnilingualDataTable = CType(_myDictionary.DictionaryBindingSource1.DataSource, DataTable)
+
+        Using webClient As New WebClient()
+            For Each row As SignsbyGlossesUnilingualRow In dt.Rows
+                Dim sign = _myDictionary.GetSWSign(row.IDDictionary, conn, trans)
+                Dim image = ByteArraytoImage(webClient.DownloadData(sign.PuddlePng))
+                Dim resized = SWDrawing.ResizeImage(image, 200, 200)
+                row.Photo = ImageToByteArray(resized)
+                SaveDataGrid(conn, trans)
+                trans.Commit()
+                trans = SWDict.GetNewDictionaryTransaction(conn)
+            Next
+        End Using
+        conn.Close()
+        conn.Dispose()
+
     End Sub
 End Class
 
