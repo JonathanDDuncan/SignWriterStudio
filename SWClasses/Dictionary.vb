@@ -1632,7 +1632,7 @@ Public NotInheritable Class SWDict
         End If
 
         _taDictionary.AssignConnection(conn, trans)
-        _taDictionary.InsertQuery(UI.Cultures.GetIdSignLanguages(sign.SignLanguageIso), False, -1, byteArray, Nothing, Nothing, String.Empty, String.Empty, String.Empty, sign.SignWriterGuid, sign.Created, sign.LastModified, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty)
+        _taDictionary.InsertQuery(UI.Cultures.GetIdSignLanguages(sign.SignLanguageIso), False, -1, byteArray, Nothing, Nothing, sign.SWritingSource, String.Empty, String.Empty, sign.SignWriterGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink)
 
 
         'If Result = 1 Then
