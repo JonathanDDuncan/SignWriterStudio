@@ -1177,6 +1177,13 @@ Public NotInheritable Class SWDict
                 sign.SetSignLanguageIso(CInt(row.IDSignLanguage))
                 sign.Created = dictRow.Created
                 sign.LastModified = dictRow.LastModified
+                Try
+                    sign.Photo = dictRow.Photo
+                Catch ex As StrongTypingException
+
+                Catch ex As Exception
+                    Dim a = ex
+                End Try
                 sign.PuddleNext = dbnullNothing(dictRow.PuddleNext)
                 sign.PuddlePng = dbnullNothing(dictRow.PuddlePNG)
                 sign.PuddlePrev = dbnullNothing(dictRow.PuddlePrev)
@@ -1632,7 +1639,7 @@ Public NotInheritable Class SWDict
         End If
 
         _taDictionary.AssignConnection(conn, trans)
-        _taDictionary.InsertQuery(UI.Cultures.GetIdSignLanguages(sign.SignLanguageIso), False, -1, byteArray, Nothing, Nothing, sign.SWritingSource, String.Empty, String.Empty, sign.SignWriterGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink)
+        _taDictionary.InsertQuery(UI.Cultures.GetIdSignLanguages(sign.SignLanguageIso), False, -1, byteArray, sign.Photo, Nothing, sign.SWritingSource, String.Empty, String.Empty, sign.SignWriterGuid, sign.Created, sign.LastModified, sign.SignPuddleId, sign.SignPuddleUser, sign.PuddlePrev, sign.PuddleNext, sign.PuddlePng, sign.PuddleSvg, sign.PuddleVideoLink)
 
 
         'If Result = 1 Then

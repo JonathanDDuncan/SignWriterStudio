@@ -222,16 +222,9 @@ Imports Microsoft.VisualBasic
             _puddleTop = value
         End Set
     End Property
+    Public Property Photo() As Byte()
 
-    Private _puddlePrev As String
     Public Property PuddlePrev() As String
-        Get
-            Return _puddlePrev
-        End Get
-        Set(ByVal value As String)
-            _puddlePrev = value
-        End Set
-    End Property
 
     Private _puddleNext As String
     Public Property PuddleNext() As String
@@ -495,4 +488,5 @@ Imports Microsoft.VisualBasic
         newSign.Frames(0).MergeFrame(addWithSign.Frames(0))
         Return newSign
     End Function
+
 End Class
