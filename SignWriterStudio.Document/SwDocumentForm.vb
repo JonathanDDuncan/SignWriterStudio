@@ -1449,7 +1449,7 @@ Public NotInheritable Class SwDocumentForm
         If (Not String.IsNullOrEmpty(DocumentFilename)) Then
             SaveCurrentDocument()
         Else
-            SaveFileDialogNewDocument.ShowDialog()
+            SaveDocumentFileDialog.ShowDialog()
         End If
     End Sub
 
