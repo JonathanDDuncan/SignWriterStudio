@@ -1,4 +1,4 @@
-﻿Option Strict On
+﻿'Option Strict On
 Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Windows.Forms
@@ -11,6 +11,7 @@ Imports System.Data.SQLite
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Database.Dictionary.DatabaseDictionary
 Imports System.Text
+Imports SignWriterStudio.DbTags
 'Imports SignsbyGlossesBilingual = SignWriterStudio.DbTags.SignsbyGlosses.SignsbyGlossesBilingual
 'Imports SignsByGlossesUnilingual = SignWriterStudio.DbTags.SignsbyGlosses.SignsByGlossesUnilingual
 
@@ -73,22 +74,22 @@ Public NotInheritable Class SWDict
         End Set
     End Property
     '    Private RetrieveDictID As Boolean '= False
-    Private ReadOnly _taDictionarybyLanguages As New Database.Dictionary.DictionaryDataSetTableAdapters.SignsbyGlossesBilingualTableAdapter
+    Private ReadOnly _taDictionarybyLanguages As New SignsbyGlossesBilingualTableAdapter
     'Private TASWSign As New Database.Dictionary.DictionaryDataSetTableAdapters.SignTableAdapter
-    Private ReadOnly _taswFrame As New Database.Dictionary.DictionaryDataSetTableAdapters.FrameTableAdapter
-    Private ReadOnly _taswSignSymbol As New Database.Dictionary.DictionaryDataSetTableAdapters.SignSymbolsTableAdapter
-    Private ReadOnly _taswSignSequence As New Database.Dictionary.DictionaryDataSetTableAdapters.SignSequenceTableAdapter
-    Private ReadOnly _taSignsbyGlossesBilingual As New Database.Dictionary.DictionaryDataSetTableAdapters.SignsbyGlossesBilingualTableAdapter
-    Private ReadOnly _taSignsbyGlossesUnilingual As New Database.Dictionary.DictionaryDataSetTableAdapters.SignsbyGlossesUnilingualTableAdapter
+    Private ReadOnly _taswFrame As New FrameTableAdapter
+    Private ReadOnly _taswSignSymbol As New SignSymbolsTableAdapter
+    Private ReadOnly _taswSignSequence As New SignSequenceTableAdapter
+    Private ReadOnly _taSignsbyGlossesBilingual As New SignsbyGlossesBilingualTableAdapter
+    Private ReadOnly _taSignsbyGlossesUnilingual As New SignsbyGlossesUnilingualTableAdapter
     Private ReadOnly _tauiSignLanguages As New UI.swsuiDataSetTableAdapters.UISignLanguagesTableAdapter
     Private ReadOnly _tauiCultures As New UI.swsuiDataSetTableAdapters.UICulturesTableAdapter
-    Private ReadOnly _taSignsBilingual As New Database.Dictionary.DictionaryDataSetTableAdapters.SignsBilingualTableAdapter
-    Private ReadOnly _taDictionaryGloss As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryGlossTableAdapter
-    Private ReadOnly _taDictionary As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryTableAdapter
+    Private ReadOnly _taSignsBilingual As New SignsBilingualTableAdapter
+    Private ReadOnly _taDictionaryGloss As New DictionaryGlossTableAdapter
+    Private ReadOnly _taDictionary As New DictionaryTableAdapter
 
     Public Sub New(ByVal connectionString As String)
         Me.ConnectionString = connectionString
-        Dim conn = New SQLite.SQLiteConnection(connectionString)
+        Dim conn = New SQLiteConnection(connectionString)
         _taDictionarybyLanguages.AssignConnection(conn)
         _taswFrame.AssignConnection(conn)
         _taswSignSymbol.AssignConnection(conn)
@@ -243,9 +244,9 @@ Public NotInheritable Class SWDict
     End Sub
 
     Public Function GetSymbolSearchDt(ByVal connectionString As String,
-      ByVal queryStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+      ByVal queryStr As String) As SignsbyGlossesBilingualDataTable
 
-        Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        Dim dt As New SignsbyGlossesBilingualDataTable
         Dim signsbyGlossesBilingualTableAdapter As New SignsbyGlossesBilingualTableAdapter()
 
         Dim strConection = CreateConnectionStringFromPath(connectionString)
@@ -256,7 +257,7 @@ Public NotInheritable Class SWDict
 
             'TODO different search parameters
             Dim adapter As New SQLiteDataAdapter
-            Dim dt1 As New Data.DataTable
+            Dim dt1 As New DataTable
             adapter.SelectCommand = New SQLiteCommand(queryStr, conn)
             adapter.Fill(dt1)
 
@@ -283,7 +284,7 @@ Public NotInheritable Class SWDict
         'data source="C:\Users\Jonathan\Documents\SignWriter Studio Sample Files\LESHO.SWS"
     End Function
 
-    Public Function AddSign(ByVal newEntry As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow, ByVal lang1 As Integer, ByVal lang2 As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
+    Public Function AddSign(ByVal newEntry As SignsbyGlossesBilingualRow, ByVal lang1 As Integer, ByVal lang2 As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
         ' section 127-0-0-1-64774d6b:11b4c03f30f:-8000:0000000000000793 begin
         'TODO figure out how to split newEntry into two typed datarows.
         Dim newId As Integer
@@ -308,7 +309,7 @@ Public NotInheritable Class SWDict
         _taswSignSequence.AssignConnection(conn, trans)
         _taswSignSymbol.AssignConnection(conn, trans)
 
-        Dim puddleText = New Database.Dictionary.DictionaryDataSetTableAdapters.PuddleTextTableAdapter
+        Dim puddleText = New PuddleTextTableAdapter
         puddleText.AssignConnection(conn, trans)
 
         Dim idFrames = _taswFrame.GetDataByIDDictionary(idDictionary)
@@ -373,7 +374,7 @@ Public NotInheritable Class SWDict
         Using conn
             Try
                 If TypeOf rowtoInsert.Row Is SignsbyGlossesBilingualRow Then
-                    Dim rowtoIns As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow = CType(rowtoInsert.Row, Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow)
+                    Dim rowtoIns As SignsbyGlossesBilingualRow = CType(rowtoInsert.Row, SignsbyGlossesBilingualRow)
 
                     ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D begin
                     If rowtoInsert Is Nothing Then
@@ -385,7 +386,7 @@ Public NotInheritable Class SWDict
                     DuplicateDictionaryEntryTranslations(CInt(rowtoIns.IDDictionary), insertedRowId, conn, trans)
                     DuplicateRowSign(rowtoIns.IDDictionary, insertedRowId, conn, trans)
                 Else
-                    Dim rowtoIns As Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualRow = CType(rowtoInsert.Row, Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualRow)
+                    Dim rowtoIns As SignsbyGlossesUnilingualRow = CType(rowtoInsert.Row, SignsbyGlossesUnilingualRow)
 
                     ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D begin
                     If rowtoInsert Is Nothing Then
@@ -423,43 +424,28 @@ Public NotInheritable Class SWDict
         'Save SWriting
         SaveSWSign(insertedRowId, sign, conn, trans)
     End Sub
-    'Public Function GetSignDT(ByVal idDictionary As Integer) As Database.Dictionary.DictionaryDataSet.SignDataTable
-    '    Dim DT As New Database.Dictionary.DictionaryDataSet.SignDataTable
-    '    TASWSign.FillByIDDictionary(DT, idDictionary)
-    '    Return DT
-    'End Function
-    'Friend Function GetImage(ByVal idDictionary As Integer) As Image
 
-    '    Return SWDrawing.ByteArrayToImage(TADictionary.GetPhotobyId(IDDictionary))
-
-    'End Function
-    'Public Function GetSign(ByVal idDictionary As Integer) As Image
-
-    '    Return ByteArraytoImage(CType(TADictionary.GetSignbyID(idDictionary), Byte()))
-
-    'End Function
-
-    Private Function GetFrameDt(ByVal idDictionary As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As Database.Dictionary.DictionaryDataSet.FrameDataTable
+    Private Function GetFrameDt(ByVal idDictionary As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As FrameDataTable
         _taswFrame.AssignConnection(conn, trans)
-        Dim dt As New Database.Dictionary.DictionaryDataSet.FrameDataTable
+        Dim dt As New FrameDataTable
         _taswFrame.FillByIDDictionary(dt, idDictionary)
         Return dt
     End Function
-    Public Function GetSymbolsDt(ByVal idSWFrame As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As Database.Dictionary.DictionaryDataSet.SignSymbolsDataTable
+    Public Function GetSymbolsDt(ByVal idSWFrame As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As SignSymbolsDataTable
         _taswSignSymbol.AssignConnection(conn, trans)
-        Dim dt As New Database.Dictionary.DictionaryDataSet.SignSymbolsDataTable
+        Dim dt As New SignSymbolsDataTable
         _taswSignSymbol.FillByIDFrame(dt, idSWFrame)
         Return dt
     End Function
-    Public Function GetSequenceDt(ByVal idSWFrame As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As Database.Dictionary.DictionaryDataSet.SignSequenceDataTable
+    Public Function GetSequenceDt(ByVal idSWFrame As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As SignSequenceDataTable
         _taswSignSequence.AssignConnection(conn, trans)
-        Dim dt As New Database.Dictionary.DictionaryDataSet.SignSequenceDataTable
+        Dim dt As New SignSequenceDataTable
         _taswSignSequence.FillByIDFrame(dt, idSWFrame)
         Return dt
     End Function
 
-    Public Function GetPuddleTextDt(ByVal idDictionary As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As Database.Dictionary.DictionaryDataSet.PuddleTextDataTable
-        Dim dt As New Database.Dictionary.DictionaryDataSet.PuddleTextDataTable
+    Public Function GetPuddleTextDt(ByVal idDictionary As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As PuddleTextDataTable
+        Dim dt As New PuddleTextDataTable
         Dim taPuddleText As New PuddleTextTableAdapter
         taPuddleText.AssignConnection(conn, trans)
         taPuddleText.FillByIDDictionary(dt, idDictionary)
@@ -531,7 +517,7 @@ Public NotInheritable Class SWDict
             'Dim DTSignInfo As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = GetSignDT(idDictionary)
 
             _taDictionary.AssignConnection(conn, trans)
-            Dim dtDictionary As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
+            Dim dtDictionary As DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
 
             'Skip if none found
             If dtDictionary.Count >= 1 Then
@@ -540,7 +526,7 @@ Public NotInheritable Class SWDict
                 _taDictionaryGloss.AssignConnection(conn, trans)
 
                 'TODO there is a bug as regards the gloss language was FirstGlossLanguage but was bringing up empty gloss with number 54 set to SecondGlossLanguge which is set to 157
-                Dim dtDictionaryGloss As Database.Dictionary.DictionaryDataSet.DictionaryGlossDataTable = _taDictionaryGloss.GetDataByIDDictionayandLanguage(idDictionary, My.Settings.SecondGlossLanguage)
+                Dim dtDictionaryGloss As DictionaryGlossDataTable = _taDictionaryGloss.GetDataByIDDictionayandLanguage(idDictionary, My.Settings.SecondGlossLanguage)
 
                 If dtDictionaryGloss.Count > 0 Then
                     sign.Gloss = dtDictionaryGloss(0).gloss
@@ -564,8 +550,8 @@ Public NotInheritable Class SWDict
                     sign.IsPrivate = dtDictionary(0).isPrivate
                 End If
 
-                Dim dtFrameInfo As Database.Dictionary.DictionaryDataSet.FrameDataTable = GetFrameDt(dtDictionary(0).IDDictionary, conn, trans)
-                Dim frameRow As Database.Dictionary.DictionaryDataSet.FrameRow
+                Dim dtFrameInfo As FrameDataTable = GetFrameDt(dtDictionary(0).IDDictionary, conn, trans)
+                Dim frameRow As FrameRow
 
                 For Each frameRow In dtFrameInfo.Rows
                     If frameRow.FrameIndex > sign.Frames.Count - 1 Then
@@ -580,9 +566,9 @@ Public NotInheritable Class SWDict
                     End If
                     'Add Symbols
 
-                    Dim dtSymbolsInfo As Database.Dictionary.DictionaryDataSet.SignSymbolsDataTable = GetSymbolsDt(frameRow.IDFrame, conn, trans)
+                    Dim dtSymbolsInfo As SignSymbolsDataTable = GetSymbolsDt(frameRow.IDFrame, conn, trans)
 
-                    Dim symbolRow As Database.Dictionary.DictionaryDataSet.SignSymbolsRow
+                    Dim symbolRow As SignSymbolsRow
                     For Each symbolRow In dtSymbolsInfo.Rows
                         Dim symbol As New SWSignSymbol
                         symbol.Code = symbolRow.code
@@ -604,15 +590,15 @@ Public NotInheritable Class SWDict
 
                     'Add Sequence
 
-                    Dim dtSequenceInfo As Database.Dictionary.DictionaryDataSet.SignSequenceDataTable = GetSequenceDt(frameRow.IDFrame, conn, trans)
-                    Dim sequenceRow As Database.Dictionary.DictionaryDataSet.SignSequenceRow
+                    Dim dtSequenceInfo As SignSequenceDataTable = GetSequenceDt(frameRow.IDFrame, conn, trans)
+                    Dim sequenceRow As SignSequenceRow
                     For Each sequenceRow In dtSequenceInfo.Rows
                         Dim sequence As New SWSequence(sequenceRow.code, sequenceRow.rank)
                         sign.Frames(frameRow.FrameIndex).Sequences.Add(CType(sequence.Clone, SWSequence))
                     Next
                     'Add PuddleText
-                    Dim dtPuddleText As Database.Dictionary.DictionaryDataSet.PuddleTextDataTable = GetPuddleTextDt(dtDictionary(0).IDDictionary, conn, trans)
-                    Dim puddleTextRow As Database.Dictionary.DictionaryDataSet.PuddleTextRow
+                    Dim dtPuddleText As PuddleTextDataTable = GetPuddleTextDt(dtDictionary(0).IDDictionary, conn, trans)
+                    Dim puddleTextRow As PuddleTextRow
                     For Each puddleTextRow In dtPuddleText.Rows
                         sign.PuddleText.Add(puddleTextRow.EntryText)
                     Next
@@ -625,6 +611,7 @@ Public NotInheritable Class SWDict
         End If
         Return sign
     End Function
+
     Public Function GetSWSign(ByVal idDictionary As Long) As SwSign
         Dim conn As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
@@ -648,42 +635,42 @@ Public NotInheritable Class SWDict
         Static allCachedPuddleTextDataTable As DataTable
         If cacheLoaded = False Then
             Dim connection As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
-            Dim taDictionary As New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryTableAdapter
+            Dim taDictionary As New DictionaryTableAdapter
             taDictionary.Connection = connection
             allCachedDictionaryDataTable = taDictionary.GetData()
 
-            Dim taDictionaryGloss As DictionaryGlossTableAdapter = New Database.Dictionary.DictionaryDataSetTableAdapters.DictionaryGlossTableAdapter
+            Dim taDictionaryGloss As DictionaryGlossTableAdapter = New DictionaryGlossTableAdapter
             taDictionaryGloss.Connection = connection
 
             allCachedDictionaryGlossDataTable = taDictionaryGloss.GetData()
 
-            Dim taFrame As New Database.Dictionary.DictionaryDataSetTableAdapters.FrameTableAdapter
+            Dim taFrame As New FrameTableAdapter
             taFrame.Connection = connection
             allCachedFrameDataTable = taFrame.GetData()
 
-            Dim taSignSymbols As New Database.Dictionary.DictionaryDataSetTableAdapters.SignSymbolsTableAdapter
+            Dim taSignSymbols As New SignSymbolsTableAdapter
             taSignSymbols.Connection = connection
             allCachedSignSymbolsDatatable = taSignSymbols.GetData()
 
-            Dim taSignSequence As New Database.Dictionary.DictionaryDataSetTableAdapters.SignSequenceTableAdapter
+            Dim taSignSequence As New SignSequenceTableAdapter
             taSignSequence.Connection = connection
             allCachedSignSequenceDataTable = taSignSequence.GetData()
 
 
-            Dim taPuddleText As New Database.Dictionary.DictionaryDataSetTableAdapters.PuddleTextTableAdapter
+            Dim taPuddleText As New PuddleTextTableAdapter
             taPuddleText.Connection = connection
             allCachedPuddleTextDataTable = taPuddleText.GetData()
             cacheLoaded = True
         End If
         If Not idDictionary = 0 Then
             'Dim DTSignInfo As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = GetSignDT(idDictionary)
-            Dim dtDictionary As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = GetDataDictionaryByIdCached(allCachedDictionaryDataTable, idDictionary)
+            Dim dtDictionary As DictionaryDataTable = GetDataDictionaryByIdCached(allCachedDictionaryDataTable, idDictionary)
 
             'Skip if none found
             If dtDictionary.Count >= 1 Then
                 sign = New SwSign
                 sign.BkColor = Color.FromArgb(dtDictionary(0).bkColor)
-                Dim dtDictionaryGloss As Database.Dictionary.DictionaryDataSet.DictionaryGlossDataTable = GetDataDictionaryGlossCached(allCachedDictionaryGlossDataTable, idDictionary, FirstGlossLanguage)
+                Dim dtDictionaryGloss As DictionaryGlossDataTable = GetDataDictionaryGlossCached(allCachedDictionaryGlossDataTable, idDictionary, FirstGlossLanguage)
 
                 If dtDictionaryGloss.Count > 0 Then
                     sign.Gloss = dtDictionaryGloss(0).gloss
@@ -706,8 +693,8 @@ Public NotInheritable Class SWDict
                     sign.SignWriterGuid = dtDictionary(0).GUID
                     sign.IsPrivate = dtDictionary(0).isPrivate
                 End If
-                Dim dtFrameInfo As Database.Dictionary.DictionaryDataSet.FrameDataTable = GetDataFrameCached(allCachedFrameDataTable, dtDictionary(0).IDDictionary)
-                Dim frameRow As Database.Dictionary.DictionaryDataSet.FrameRow
+                Dim dtFrameInfo As FrameDataTable = GetDataFrameCached(allCachedFrameDataTable, dtDictionary(0).IDDictionary)
+                Dim frameRow As FrameRow
 
                 For Each frameRow In dtFrameInfo.Rows
                     If frameRow.FrameIndex > sign.Frames.Count - 1 Then
@@ -721,8 +708,8 @@ Public NotInheritable Class SWDict
                         MessageBox.Show("Error loading Frame from Dictionary", "", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, mbo, False)
                     End If
                     'Add Symbols
-                    Dim dtSymbolsInfo As Database.Dictionary.DictionaryDataSet.SignSymbolsDataTable = GetSymbolsDtCached(allCachedSignSymbolsDatatable, frameRow.IDFrame)
-                    Dim symbolRow As Database.Dictionary.DictionaryDataSet.SignSymbolsRow
+                    Dim dtSymbolsInfo As SignSymbolsDataTable = GetSymbolsDtCached(allCachedSignSymbolsDatatable, frameRow.IDFrame)
+                    Dim symbolRow As SignSymbolsRow
                     For Each symbolRow In dtSymbolsInfo.Rows
                         Dim symbol As New SWSignSymbol
                         symbol.Code = symbolRow.code
@@ -743,15 +730,15 @@ Public NotInheritable Class SWDict
                     Next
 
                     'Add Sequence
-                    Dim dtSequenceInfo As Database.Dictionary.DictionaryDataSet.SignSequenceDataTable = GetSequenceDtCached(allCachedSignSequenceDataTable, frameRow.IDFrame)
-                    Dim sequenceRow As Database.Dictionary.DictionaryDataSet.SignSequenceRow
+                    Dim dtSequenceInfo As SignSequenceDataTable = GetSequenceDtCached(allCachedSignSequenceDataTable, frameRow.IDFrame)
+                    Dim sequenceRow As SignSequenceRow
                     For Each sequenceRow In dtSequenceInfo.Rows
                         Dim sequence As New SWSequence(sequenceRow.code, sequenceRow.rank)
                         sign.Frames(frameRow.FrameIndex).Sequences.Add(CType(sequence.Clone, SWSequence))
                     Next
                     'Add PuddleText
-                    Dim dtPuddleText As Database.Dictionary.DictionaryDataSet.PuddleTextDataTable = GetPuddleTextDtCached(allCachedPuddleTextDataTable, dtDictionary(0).IDDictionary)
-                    Dim puddleTextRow As Database.Dictionary.DictionaryDataSet.PuddleTextRow
+                    Dim dtPuddleText As PuddleTextDataTable = GetPuddleTextDtCached(allCachedPuddleTextDataTable, dtDictionary(0).IDDictionary)
+                    Dim puddleTextRow As PuddleTextRow
                     For Each puddleTextRow In dtPuddleText.Rows
                         sign.PuddleText.Add(puddleTextRow.EntryText)
                     Next
@@ -797,8 +784,8 @@ Public NotInheritable Class SWDict
         'Get Current idSWSign
         'Dim idSWSign As Integer '= GetidSWSign(idDictionary)
         'Get idSWFrame
-        Dim dtFrameInfo As Database.Dictionary.DictionaryDataSet.FrameDataTable = GetFrameDt(idDictionary, conn, trans)
-        Dim frameRow As Database.Dictionary.DictionaryDataSet.FrameRow
+        Dim dtFrameInfo As FrameDataTable = GetFrameDt(idDictionary, conn, trans)
+        Dim frameRow As FrameRow
         For Each frameRow In dtFrameInfo.Rows
             Dim idSWFrame As Long = frameRow.IDFrame
             'Delete Symbols
@@ -817,7 +804,7 @@ Public NotInheritable Class SWDict
     End Sub
     Private Function GetFrameId(ByVal idDictionary As Long, ByVal frameIndex As Long, ByVal conn As SQLiteConnection, ByVal trans As SQLiteTransaction) As Long
         _taswFrame.AssignConnection(conn, trans)
-        Dim idSWFrame As Nullable(Of Integer) = CInt(_taswFrame.GetFrameID(idDictionary, CType(frameIndex, Integer?)))
+        Dim idSWFrame As Integer? = CInt(_taswFrame.GetFrameID(idDictionary, CType(frameIndex, Integer?)))
 
         If idSWFrame.HasValue Then
             Return CInt(idSWFrame)
@@ -934,12 +921,12 @@ Public NotInheritable Class SWDict
         Next
         Return idDictionary
     End Function
-    Public Function SWSignsbyGlossesUnilingual(ByVal searchStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
+    Public Function SWSignsbyGlossesUnilingual(ByVal searchStr As String) As SignsbyGlossesUnilingualDataTable
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D begin
         Return _taSignsbyGlossesUnilingual.GetData(FirstGlossLanguage, DefaultSignLanguage, searchStr)
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D end
     End Function
-    Public Function SWSignsbyGlossesBilingual(ByVal searchStr As String) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+    Public Function SWSignsbyGlossesBilingual(ByVal searchStr As String) As SignsbyGlossesBilingualDataTable
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D begin
         Return _taSignsbyGlossesBilingual.GetData(FirstGlossLanguage, SecondGlossLanguage, DefaultSignLanguage, searchStr)
         ' section 127-0-0-1--1e49af91:11b4e3ad262:-8000:000000000000088D end
@@ -990,10 +977,7 @@ Public NotInheritable Class SWDict
             If row IsNot Nothing Then
                 AddTagToRow(row, groupItem.Value)
             End If
-
-
         Next
-
     End Sub
 
     Private Shared Function GetTagDictionaryGroups(ByVal entries As List(Of ExpandoObject)) As Dictionary(Of Long, List(Of Guid))
@@ -1048,11 +1032,11 @@ Public NotInheritable Class SWDict
             slid = 4
         End If
         If BilingualMode Then
-            Dim dtBilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+            Dim dtBilingual As New SignsbyGlossesBilingualDataTable
             _taSignsbyGlossesBilingual.FillByTop(dtBilingual, slid, lang1Id, lang2Id, top)
             dt = dtBilingual
         Else
-            Dim dtUnilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
+            Dim dtUnilingual As New SignsbyGlossesUnilingualDataTable
             _taSignsbyGlossesUnilingual.FillByTop(dtUnilingual, slid, lang1Id, top)
             dt = dtUnilingual
         End If
@@ -1116,7 +1100,7 @@ Public NotInheritable Class SWDict
     Private Function GetAllSignsBilingualDt(ByVal lang1Id As Integer, ByVal lang2Id As Integer, ByVal slid As Integer) As DataTable
         Dim dt As DataTable
 
-        Dim dtBilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        Dim dtBilingual As New SignsbyGlossesBilingualDataTable
         _taSignsbyGlossesBilingual.FillByAll(dtBilingual, slid, lang1Id, lang2Id)
         dt = dtBilingual
         Return dt
@@ -1132,38 +1116,38 @@ Public NotInheritable Class SWDict
     Private Function GetAllSignsUnilingualDt(ByVal lang1Id As Integer, ByVal slid As Integer) As DataTable
         Dim dt As DataTable
 
-        Dim dtUnilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
+        Dim dtUnilingual As New SignsbyGlossesUnilingualDataTable
         _taSignsbyGlossesUnilingual.FillByAll(dtUnilingual, slid, lang1Id)
         dt = dtUnilingual
         Return dt
     End Function
     Public Function ConvertUnilingualDttoSWSign(allsigns As DataTable) As List(Of SwSign)
-        Dim unilingualDt = CType(allsigns, DictionaryDataSet.SignsbyGlossesUnilingualDataTable)
+        Dim unilingualDt = CType(allsigns, SignsbyGlossesUnilingualDataTable)
         Dim signs As New List(Of SwSign)
 
-        For Each row As DictionaryDataSet.SignsbyGlossesUnilingualRow In unilingualDt.Rows
+        For Each row As SignsbyGlossesUnilingualRow In unilingualDt.Rows
             Dim sign As SwSign = UnilingualRowtoSign(row)
             signs.Add(sign)
         Next
         Return signs
     End Function
     Public Function ConvertUnilingualDttoSWSign(allsigns As DataTable, ByVal glosslanguage As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As List(Of SwSign)
-        Dim unilingualDt = CType(allsigns, DictionaryDataSet.SignsbyGlossesUnilingualDataTable)
+        Dim unilingualDt = CType(allsigns, SignsbyGlossesUnilingualDataTable)
         Dim signs As New List(Of SwSign)
 
-        For Each row As DictionaryDataSet.SignsbyGlossesUnilingualRow In unilingualDt.Rows
+        For Each row As SignsbyGlossesUnilingualRow In unilingualDt.Rows
             Dim sign As SwSign = UnilingualRowtoSign(row, conn, trans, glosslanguage)
             signs.Add(sign)
         Next
         Return signs
     End Function
 
-    Private Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction, Optional ByVal glosslanguage As Nullable(Of Integer) = Nothing) As SwSign
+    Private Function UnilingualRowtoSign(row As SignsbyGlossesUnilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction, Optional ByVal glosslanguage As Integer? = Nothing) As SwSign
         Dim sign = New SwSign
         Try
             Dim idDictionary = row.IDDictionary
             _taDictionary.AssignConnection(conn, trans)
-            Dim dtDictionary As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
+            Dim dtDictionary As DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
             If dtDictionary.Count >= 1 Then
                 Dim dictRow = dtDictionary(0)
 
@@ -1197,8 +1181,8 @@ Public NotInheritable Class SWDict
                 sign.IsPrivate = dictRow.isPrivate
 
 
-                Dim dtFrameInfo As Database.Dictionary.DictionaryDataSet.FrameDataTable = GetFrameDt(idDictionary, conn, trans)
-                Dim frameRow As Database.Dictionary.DictionaryDataSet.FrameRow
+                Dim dtFrameInfo As FrameDataTable = GetFrameDt(idDictionary, conn, trans)
+                Dim frameRow As FrameRow
 
                 For Each frameRow In dtFrameInfo.Rows
                     If frameRow.FrameIndex > sign.Frames.Count - 1 Then
@@ -1213,9 +1197,9 @@ Public NotInheritable Class SWDict
                     End If
                     'Add Symbols
 
-                    Dim dtSymbolsInfo As Database.Dictionary.DictionaryDataSet.SignSymbolsDataTable = GetSymbolsDt(frameRow.IDFrame, conn, trans)
+                    Dim dtSymbolsInfo As SignSymbolsDataTable = GetSymbolsDt(frameRow.IDFrame, conn, trans)
 
-                    Dim symbolRow As Database.Dictionary.DictionaryDataSet.SignSymbolsRow
+                    Dim symbolRow As SignSymbolsRow
                     For Each symbolRow In dtSymbolsInfo.Rows
                         Dim symbol As New SWSignSymbol
                         symbol.Code = symbolRow.code
@@ -1237,15 +1221,15 @@ Public NotInheritable Class SWDict
 
                     'Add Sequence
 
-                    Dim dtSequenceInfo As Database.Dictionary.DictionaryDataSet.SignSequenceDataTable = GetSequenceDt(frameRow.IDFrame, conn, trans)
-                    Dim sequenceRow As Database.Dictionary.DictionaryDataSet.SignSequenceRow
+                    Dim dtSequenceInfo As SignSequenceDataTable = GetSequenceDt(frameRow.IDFrame, conn, trans)
+                    Dim sequenceRow As SignSequenceRow
                     For Each sequenceRow In dtSequenceInfo.Rows
                         Dim sequence As New SWSequence(sequenceRow.code, sequenceRow.rank)
                         sign.Frames(frameRow.FrameIndex).Sequences.Add(CType(sequence.Clone, SWSequence))
                     Next
                     'Add PuddleText
-                    Dim dtPuddleText As Database.Dictionary.DictionaryDataSet.PuddleTextDataTable = GetPuddleTextDt(idDictionary, conn, trans)
-                    Dim puddleTextRow As Database.Dictionary.DictionaryDataSet.PuddleTextRow
+                    Dim dtPuddleText As PuddleTextDataTable = GetPuddleTextDt(idDictionary, conn, trans)
+                    Dim puddleTextRow As PuddleTextRow
                     For Each puddleTextRow In dtPuddleText.Rows
                         sign.PuddleText.Add(puddleTextRow.EntryText)
                     Next
@@ -1432,11 +1416,11 @@ Public NotInheritable Class SWDict
 
 
         If BilingualMode Then
-            Dim dtBilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+            Dim dtBilingual As New SignsbyGlossesBilingualDataTable
             _taSignsbyGlossesBilingual.Fillby(dtBilingual, slid, lang1Id, lang2Id, searchWord)
             Return dtBilingual
         Else
-            Dim dtUnilingual As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
+            Dim dtUnilingual As New SignsbyGlossesUnilingualDataTable
             _taSignsbyGlossesUnilingual.Fillby(dtUnilingual, slid, lang1Id, searchWord)
             Return dtUnilingual
         End If
@@ -1456,20 +1440,20 @@ Public NotInheritable Class SWDict
         If slid = 0 Then
             slid = 4
         End If
-        Dim dt As New Database.Dictionary.DictionaryDataSet.SignsBilingualDataTable
+        Dim dt As New SignsBilingualDataTable
         _taSignsBilingual.Fill(dt, idDictionary, lang1Id, lang2Id, slid)
         Return dt
     End Function
     Public Shared Function BlankDictionaryTable() As DataTable
-        Return New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        Return New SignsbyGlossesBilingualDataTable
     End Function
     Public Sub DuplicateDictionaryEntryTranslations(ByVal dictionaryOriginalId As Integer, ByVal dictionaryDuplicatedId As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
 
-        Dim dt As Database.Dictionary.DictionaryDataSet.DictionaryGlossDataTable
+        Dim dt As DictionaryGlossDataTable
         Dim result As Integer
         _taDictionaryGloss.AssignConnection(conn, trans)
         dt = _taDictionaryGloss.GetDataByDictionaryEntry(dictionaryOriginalId)
-        For Each row As Database.Dictionary.DictionaryDataSet.DictionaryGlossRow In dt.Rows
+        For Each row As DictionaryGlossRow In dt.Rows
             result = _taDictionaryGloss.InsertQuery(dictionaryDuplicatedId, row.IDCulture, row.gloss & " Copy ", row.glosses)
             If result = 1 Then
                 'Success
@@ -1478,7 +1462,7 @@ Public NotInheritable Class SWDict
             End If
         Next
     End Sub
-    Public Sub UpdateDictionaryEntries(ByVal dictionaryDataTable As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable, ByVal lang1 As Integer, ByVal lang2 As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
+    Public Sub UpdateDictionaryEntries(ByVal dictionaryDataTable As SignsbyGlossesBilingualDataTable, ByVal lang1 As Integer, ByVal lang2 As Integer, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
 
         If dictionaryDataTable IsNot Nothing Then
             Dim deletedDictionaryView As DataTable = dictionaryDataTable.GetChanges(DataRowState.Deleted)
@@ -1489,7 +1473,7 @@ Public NotInheritable Class SWDict
             'Try
             ' Remove all deleted rows.
             If deletedDictionaryView IsNot Nothing Then
-                Dim deletedEntry As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow
+                Dim deletedEntry As SignsbyGlossesBilingualRow
 
                 For Each deletedEntry In deletedDictionaryView.Rows
                     deletedEntry.RejectChanges() 'See what the IDDictionary was
@@ -1500,7 +1484,7 @@ Public NotInheritable Class SWDict
 
             ' Add new rows.
             If newDictionaryView IsNot Nothing Then
-                Dim newEntry As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow
+                Dim newEntry As SignsbyGlossesBilingualRow
                 For Each newEntry In newDictionaryView.Rows
                     Dim id As Integer = AddSign(newEntry, lang1, lang2, conn, trans)
                     UpdateId(dictionaryDataTable, id, newEntry.GUID)
@@ -1509,7 +1493,7 @@ Public NotInheritable Class SWDict
 
             ' Update all rows.
             If modifiedDictionaryView IsNot Nothing Then
-                Dim modifiedEntry As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow
+                Dim modifiedEntry As SignsbyGlossesBilingualRow
 
                 For Each modifiedEntry In modifiedDictionaryView.Rows
                     ModifySign(modifiedEntry, lang1, lang2, conn, trans)
@@ -1538,7 +1522,7 @@ Public NotInheritable Class SWDict
             'End Try
         End If
     End Sub
-    Private Shared Sub UpdateId(ByRef dictionaryDataTable As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable, ByVal id As Integer, ByVal guid As Guid)
+    Private Shared Sub UpdateId(ByRef dictionaryDataTable As SignsbyGlossesBilingualDataTable, ByVal id As Integer, ByVal guid As Guid)
 
         Dim view As DataView = dictionaryDataTable.DefaultView
         view.RowFilter = "GUID='" & guid.ToString & "'"
@@ -1548,10 +1532,10 @@ Public NotInheritable Class SWDict
 
     End Sub
 
-    Public Function InsertDuplicatedDictionaryEntry(ByVal newEntry As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
+    Public Function InsertDuplicatedDictionaryEntry(ByVal newEntry As SignsbyGlossesBilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
         Dim newGuid As Guid
 
-        Dim toInsert As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow = newEntry
+        Dim toInsert As SignsbyGlossesBilingualRow = newEntry
 
         newGuid = Guid.NewGuid()
 
@@ -1569,9 +1553,9 @@ Public NotInheritable Class SWDict
 
         Return CInt(_taDictionary.GetIDbyGUID(newGuid))
     End Function
-    Public Function InsertDuplicatedDictionaryEntry(ByVal newEntry As Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
+    Public Function InsertDuplicatedDictionaryEntry(ByVal newEntry As SignsbyGlossesUnilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
         Dim newGuid As Guid
-        Dim toInsert As Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualRow = newEntry
+        Dim toInsert As SignsbyGlossesUnilingualRow = newEntry
 
         newGuid = Guid.NewGuid()
 
@@ -1589,9 +1573,9 @@ Public NotInheritable Class SWDict
 
         Return CInt(_taDictionary.GetIDbyGUID(newGuid))
     End Function
-    Public Function InsertDictionaryEntry(ByVal newEntry As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
+    Public Function InsertDictionaryEntry(ByVal newEntry As SignsbyGlossesBilingualRow, ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction) As Integer
         Dim newGuid As Guid
-        Dim toInsert As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow = newEntry
+        Dim toInsert As SignsbyGlossesBilingualRow = newEntry
 
         If IsDbNull(toInsert.GUID) Then
             newGuid = Guid.NewGuid()
@@ -1688,21 +1672,21 @@ Public NotInheritable Class SWDict
         _disposedValue = True
     End Sub
     Public Function IsSignsbyGlossesBilingual(ByVal obj As Object) As Boolean
-        Return TypeOf obj Is Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        Return TypeOf obj Is SignsbyGlossesBilingualDataTable
     End Function
     Public Function IsSignsbyGlossesUnilingual(ByVal obj As Object) As Boolean
-        Return TypeOf obj Is Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable
+        Return TypeOf obj Is SignsbyGlossesUnilingualDataTable
     End Function
-    Public Function ConvertUnilingualDTtoBilingualDt(ByVal dt As Object) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+    Public Function ConvertUnilingualDTtoBilingualDt(ByVal dt As Object) As SignsbyGlossesBilingualDataTable
         If IsSignsbyGlossesBilingual(dt) Then
-            Return CType(dt, Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable)
+            Return CType(dt, SignsbyGlossesBilingualDataTable)
         ElseIf IsSignsbyGlossesUnilingual(dt) Then
-            Dim dtgb As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
-            Dim dtgu As Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable = CType(dt, Database.Dictionary.DictionaryDataSet.SignsbyGlossesUnilingualDataTable)
-            Dim nr As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow
+            Dim dtgb As New SignsbyGlossesBilingualDataTable
+            Dim dtgu As SignsbyGlossesUnilingualDataTable = CType(dt, SignsbyGlossesUnilingualDataTable)
+            Dim nr As SignsbyGlossesBilingualRow
             Dim deleted As Boolean
             For Each dr As DataRow In dtgu.Rows
-                nr = CType(dtgb.NewRow(), Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualRow)
+                nr = CType(dtgb.NewRow(), SignsbyGlossesBilingualRow)
 
                 If dr.RowState = DataRowState.Deleted Then
                     deleted = True
@@ -1745,6 +1729,50 @@ Public NotInheritable Class SWDict
             Throw New Exception("Cannot convert object of type " & dt.GetType.ToString & " to SignsbyGlossesBilingualDataTable")
         End If
     End Function
+
+    Public Function GetTagNames11(idDictionary1 As Integer, allTags As List(Of ExpandoObject)) As List(Of String)
+        Dim tags1 = GetTagEntries(New List(Of String)() From {idDictionary1.ToString})
+        Dim tagNames = GetTagNames(allTags, tags1)
+        Return tagNames
+    End Function
+    Private Function GetTagNames(ByVal allTags As List(Of ExpandoObject), ByVal tags1 As List(Of ExpandoObject)) As List(Of String)
+        Dim tagNames = New List(Of String)
+        For Each tag As Object In tags1
+            Dim idTag = tag.IdTag
+            Dim idTagParent = GetParentGuid(allTags, idTag)
+
+            Dim tagName = GetTagName(allTags, idTag)
+            Dim tagParentName = GetTagParentName(allTags, idTagParent)
+            tagNames.Add(tagParentName & ":" & tagName)
+        Next
+
+        If (tagNames.Any()) Then
+
+            Return tagNames
+        Else
+            Return Nothing
+        End If
+    End Function
+    Private Function GetTagParentName(ByVal allTags As List(Of ExpandoObject), ByVal idTag As Guid) As String
+        Return GetTagName(allTags, idTag)
+    End Function
+
+    Private Function GetTagName(allTags As List(Of ExpandoObject), idTag As Guid) As String
+        For Each Tag As Object In allTags
+            If Tag.IdTag = idTag Then
+                Return Tag.Description
+            End If
+        Next
+        Return String.Empty
+    End Function
+    Private Function GetParentGuid(allTags As List(Of ExpandoObject), idTag As Guid) As Guid
+        For Each Tag As Object In allTags
+            If Tag.IdTag = idTag Then
+                Return Tag.Parent
+            End If
+        Next
+        Return System.Guid.Empty
+    End Function
 #Region " IDisposable Support "
     ' This code added by Visual Basic to correctly implement the disposable pattern.
     Public Sub Dispose() Implements IDisposable.Dispose
@@ -1757,7 +1785,7 @@ Public NotInheritable Class SWDict
     Function GetPhoto(idDictionary As Integer) As Image
         Dim img As Image
         If Not idDictionary = 0 Then
-            Dim dtDictionary As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
+            Dim dtDictionary As DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
             If dtDictionary.Count > 0 Then
                 If dtDictionary(0).Photo IsNot Nothing Then
                     img = ByteArraytoImage(dtDictionary(0).Photo)
@@ -1774,7 +1802,7 @@ Public NotInheritable Class SWDict
     Function GetSignPhoto(idDictionary As Integer) As Image
         Dim img As Image
         If Not idDictionary = 0 Then
-            Dim dtDictionary As Database.Dictionary.DictionaryDataSet.DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
+            Dim dtDictionary As DictionaryDataTable = _taDictionary.GetDataByID(idDictionary)
             If dtDictionary.Count > 0 Then
                 img = ByteArraytoImage(dtDictionary(0).Sign)
             End If
@@ -1872,9 +1900,9 @@ Public NotInheritable Class SWDict
     End Sub
 
 
-    Public Function GetSignbyId(ByVal connectionString As String, ByVal idDict As Integer) As Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+    Public Function GetSignbyId(ByVal connectionString As String, ByVal idDict As Integer) As SignsbyGlossesBilingualDataTable
 
-        Dim dt As New Database.Dictionary.DictionaryDataSet.SignsbyGlossesBilingualDataTable
+        Dim dt As New SignsbyGlossesBilingualDataTable
         Dim signsbyGlossesBilingualTableAdapter As New SignsbyGlossesBilingualTableAdapter()
         Dim strConection = CreateConnectionStringFromPath(connectionString)
 

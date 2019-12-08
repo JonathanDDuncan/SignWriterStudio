@@ -6,7 +6,6 @@ Imports System.Data.OleDb
 Imports Newtonsoft.Json
 Imports SignWriterStudio.DbTags
 Imports DropDownControls.FilteredGroupedComboBox
-Imports System.Dynamic
 Imports Microsoft.VisualBasic.FileIO
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Settings
@@ -16,12 +15,11 @@ Imports SignWriterStudio.SWClasses
 Imports SPML
 Imports SignWriterStudio.SWEditor
 Imports System.Data.SQLite
-Imports System.Xml
 Imports System.Text
 Imports System.Data.SqlClient
-Imports System.Linq
 Imports System.Net
 Imports SignWriterStudio.Database.Dictionary.DictionaryDataSet
+Imports System.Dynamic
 
 Public Class SWDictForm
 
@@ -1985,8 +1983,8 @@ Public Class SWDictForm
             sign = _myDictionary.GetSWSign(idDictionary1)
         End If
 
-        Dim tags1 = _myDictionary.GetTagEntries(New List(Of String)() From {idDictionary1.ToString})
-        Dim tagNames = GetTagNames(allTags, tags1)
+        Dim tagNames As List(Of String) = _myDictionary.GetTagNames11(idDictionary1, allTags)
+
         Try
             SendToPuddle(sign, gloss, glosses, tagNames)
         Catch webEx As WebException
@@ -1995,6 +1993,9 @@ Public Class SWDictForm
 
         End Try
     End Sub
+
+
+
     Private Sub SendEntrySigntoPuddle(ByVal idDictionary1 As Integer)
         Dim gloss As String = ""
 
@@ -2011,46 +2012,6 @@ Public Class SWDictForm
         SendToPuddle(sign, gloss)
     End Sub
 
-
-    Private Function GetTagNames(ByVal allTags As List(Of ExpandoObject), ByVal tags1 As List(Of ExpandoObject)) As List(Of String)
-        Dim tagNames = New List(Of String)
-        For Each Tag As Object In tags1
-            Dim idTag = Tag.idTag
-            Dim idTagParent = GetParentGuid(allTags, idTag)
-
-            Dim tagName = GetTagName(allTags, idTag)
-            Dim tagParentName = GetTagParentName(allTags, idTagParent)
-            tagNames.Add(tagParentName & ":" & tagName)
-        Next
-
-        If (tagNames.Any()) Then
-
-            Return tagNames
-        Else
-            Return Nothing
-        End If
-    End Function
-
-    Private Function GetTagParentName(ByVal allTags As List(Of ExpandoObject), ByVal idTag As Guid) As Object
-        Return GetTagName(allTags, idTag)
-    End Function
-
-    Private Function GetTagName(allTags As List(Of ExpandoObject), idTag As Guid) As String
-        For Each Tag As Object In allTags
-            If Tag.IdTag = idTag Then
-                Return Tag.Description
-            End If
-        Next
-        Return String.Empty
-    End Function
-    Private Function GetParentGuid(allTags As List(Of ExpandoObject), idTag As Guid) As Guid
-        For Each Tag As Object In allTags
-            If Tag.IdTag = idTag Then
-                Return Tag.Parent
-            End If
-        Next
-        Return System.Guid.Empty
-    End Function
     Private Sub SendToPuddle(ByVal swSign As SwSign, ByVal gloss As String, ByVal glosses As String, ByVal tagNames As List(Of String))
         Dim converter = New SpmlConverter()
 

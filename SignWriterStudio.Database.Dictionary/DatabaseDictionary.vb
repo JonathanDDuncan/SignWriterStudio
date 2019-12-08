@@ -9,6 +9,7 @@ Imports System
 Imports System.Dynamic
 Imports SignWriterStudio.General
 Imports System.Data.SQLite
+Imports SignWriterStudio.DbTags
 'Class
 ''' <summary>
 ''' Class DatabaseSignList description
@@ -145,8 +146,6 @@ Public Class DatabaseDictionary
     Public Shared Sub SaveTagDictionary(ByVal tagChanges As Tuple(Of List(Of List(Of String)), List(Of List(Of String))))
         Dim path = DictionaryFilename
         DbTags.DbTagsDictionary.SaveTagDictionary(path, tagChanges)
-
-
     End Sub
 End Class
 

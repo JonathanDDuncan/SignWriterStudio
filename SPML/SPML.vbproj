@@ -149,6 +149,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DbTags\DbTags.vbproj">
+      <Project>{39CDE5FB-E7EC-4365-95FA-17B0CB6BF13E}</Project>
+      <Name>DbTags</Name>
+    </ProjectReference>
     <ProjectReference Include="..\General\General\General.vbproj">
       <Project>{800E41F9-9663-47D2-A0B2-A61BB6EEB4CC}</Project>
       <Name>General</Name>

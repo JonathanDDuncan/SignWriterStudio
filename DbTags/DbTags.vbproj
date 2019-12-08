@@ -103,6 +103,7 @@
     <Compile Include="SignsbyGlosses\SignsbyGlossesBilingual.vb" />
     <Compile Include="SignsbyGlosses\SignsByGlossesUnilingual.vb" />
     <Compile Include="SignsbyGlosses\SignsGlossTags.vb" />
+    <Compile Include="Tag.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

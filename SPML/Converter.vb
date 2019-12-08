@@ -11,7 +11,7 @@ Imports SignWriterStudio.SWClasses
 Imports System.Text
 Imports SignWriterStudio.SWS
 Imports SignWriterStudio.General
-
+Imports SignWriterStudio.DbTags
 
 Public NotInheritable Class SpmlConverter
     Public Function LoadSPML(ByVal xmlFilename As String, ByVal bw As System.ComponentModel.BackgroundWorker) As SPMLDataSet
@@ -654,6 +654,8 @@ Public NotInheritable Class SpmlConverter
         If bw IsNot Nothing Then
             bw.ReportProgress(6)
         End If
+
+        Dim allTags = dictionary.GetTags()
         For Each row As DataRow In dt.Rows
 
             dictionarySign = dictionary.GetSWSignCached(CInt(row("IDDictionary")))
@@ -673,6 +675,11 @@ Public NotInheritable Class SpmlConverter
                 CreateFirstTermTag(frametoExport)
                 SpmlWrite(CreateAdditionalTermsTag(dictionarySign))
                 SpmlWrite(CreateTextTags(dictionarySign))
+                Dim tagsNames = dictionary.GetTagNames11(CInt(row("IDDictionary")), allTags)
+                If tagsNames IsNot Nothing Then
+                    Dim tagsString = "SWS-TAG[" & String.Join(",", tagsNames) & "]"
+                    SpmlWrite(CreateTag("text", tagsString))
+                End If
                 SpmlWrite(CreateTag("png", Trim(dictionarySign.PuddlePng)))
                 SpmlWrite(CreateTag("svg", Trim(dictionarySign.PuddleSvg)))
                 SpmlWrite(CreateTag("video", Trim(dictionarySign.PuddleVideoLink)))
