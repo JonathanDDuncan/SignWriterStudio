@@ -77,6 +77,7 @@ Public Class ImportSigns
         Dim Args = CType(e.Argument, Tuple(Of List(Of SwSign), BackgroundWorker))
 
         _myDictionary.SignstoDictionary(Args.Item1, Args.Item2)
+        _myDictionary.SaveTags(Args.Item1)
     End Sub
 
 

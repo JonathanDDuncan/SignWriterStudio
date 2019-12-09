@@ -12,6 +12,7 @@ Imports SignWriterStudio.Database.Dictionary.DictionaryDataSetTableAdapters
 Imports SignWriterStudio.Database.Dictionary.DatabaseDictionary
 Imports System.Text
 Imports SignWriterStudio.DbTags
+Imports SignWriterStudio.SWClasses
 'Imports SignsbyGlossesBilingual = SignWriterStudio.DbTags.SignsbyGlosses.SignsbyGlossesBilingual
 'Imports SignsByGlossesUnilingual = SignWriterStudio.DbTags.SignsbyGlosses.SignsByGlossesUnilingual
 
@@ -75,6 +76,8 @@ Public NotInheritable Class SWDict
     End Property
     '    Private RetrieveDictID As Boolean '= False
     Private ReadOnly _taDictionarybyLanguages As New SignsbyGlossesBilingualTableAdapter
+
+
     'Private TASWSign As New Database.Dictionary.DictionaryDataSetTableAdapters.SignTableAdapter
     Private ReadOnly _taswFrame As New FrameTableAdapter
     Private ReadOnly _taswSignSymbol As New SignSymbolsTableAdapter
@@ -152,6 +155,7 @@ Public NotInheritable Class SWDict
                     dictionaryId = SaveSWSign(sign, conn, trans)
 
                     dictionaryGlossTa.InsertQuery(dictionaryId, FirstGlossLanguage, sign.Gloss, sign.Glosses)
+
                     If bw IsNot Nothing Then
                         bw.ReportProgress(15 + CInt((I / count) * 85))
                     End If
@@ -170,6 +174,116 @@ Public NotInheritable Class SWDict
             End Try
         End Using
     End Sub
+    Public Sub SaveTags(signs As List(Of SwSign))
+        Dim allTags = Tag.ToTag(GetTags())
+        For Each sign In signs
+            Dim connection As SQLiteConnection = GetNewDictionaryConnection(DictionaryConnectionString)
+            Dim Id As Long
+            Using dictionaryTa As New DictionaryTableAdapter With {
+                .Connection = connection
+            }
+                Id = CType(dictionaryTa.GetIDbyGUID(sign.SignWriterGuid), Long)
+            End Using
+            SaveTags1(allTags, Id, TryCast(sign.Tag, String))
+        Next
+
+    End Sub
+    Private Sub SaveTags1(allTags As List(Of Tag), dictionaryId As Long, tagsStr As String)
+
+
+
+        If tagsStr IsNot Nothing Then
+            Dim tags = tagsStr.Split(",")
+            If tags.Length > 0 Then
+                For Each mytag As String In tags
+                    Dim spl = tagsStr.Split(":")
+                    If spl.Count = 2 Then
+                        Dim ParentName = spl(0)
+                        Dim ChildName = spl(1)
+                        If ParentName IsNot Nothing And ChildName IsNot Nothing Then
+                            Dim parent = FindParent(allTags, ParentName)
+                            Dim parentGuid As Guid? = parent?.IdTag
+                            If parentGuid Is Nothing Then
+                                parentGuid = AddParent(ParentName)
+                                allTags.Add(New Tag With {.IdTag = parentGuid, .Description = ParentName})
+                            End If
+                            Dim children = GetChildren(allTags, parentGuid)
+                            Dim child = FindChild(children, ChildName)
+                            Dim childGuid As Guid? = child?.IdTag
+
+                            If childGuid Is Nothing Then
+                                childGuid = AddChild(parentGuid, ChildName)
+                                allTags.Add(New Tag With {.IdTag = childGuid, .Description = ChildName, .Parent = parentGuid})
+                            End If
+
+                            AddTag(dictionaryId, childGuid)
+                        End If
+                    End If
+                Next
+            End If
+        End If
+
+    End Sub
+
+    Private Sub AddTag(dictionaryId As Long, childGuid As Guid)
+        Dim path = DictionaryFilename
+        Dim tagList = New List(Of String) From {
+           dictionaryId.ToString()
+        }
+
+        Dim affectedRows = DbTagsDictionary.InsertTag(path, tagList, childGuid.ToString())
+    End Sub
+
+    Private Function AddChild(parentGuid As Guid, childName As String) As Guid
+        Dim path = DictionaryFilename
+
+        Dim idTag = Guid.NewGuid
+
+        Dim tag = CType(New ExpandoObject(), Object)
+        tag.IdTag = idTag.ToString()
+        tag.Parent = parentGuid.ToString()
+        tag.Description = childName
+        tag.Abbreviation = String.Empty
+        tag.Color = Color.White.ToArgb()
+        tag.Rank = 0.ToString()
+
+        Dim addList = New List(Of ExpandoObject) From {tag}
+
+        DbTags.DbTags.SaveTags(path, addList, New List(Of ExpandoObject), New List(Of String))
+
+        Return idTag
+    End Function
+
+    Private Function AddParent(parentName As String) As Guid
+        Dim path = DictionaryFilename
+
+        Dim idTag = Guid.NewGuid
+        Dim tag = CType(New ExpandoObject(), Object)
+        tag.IdTag = idTag.ToString()
+        tag.Description = parentName
+        tag.Abbreviation = String.Empty
+        tag.Color = Color.White.ToArgb()
+        tag.Rank = 0.ToString()
+        tag.Parent = String.Empty
+
+        Dim addList = New List(Of ExpandoObject) From {tag}
+
+        DbTags.DbTags.SaveTags(path, addList, New List(Of ExpandoObject), New List(Of String))
+
+        Return idTag
+    End Function
+
+    Private Function GetChildren(allTags As List(Of Tag), parentGuid As Guid) As List(Of Tag)
+        Return allTags.Where(Function(x) x.IdTag = parentGuid).ToList()
+    End Function
+
+    Private Function FindChild(children As List(Of Tag), childName As String) As Object
+        Return children.Where(Function(x) x.Description.ToLowerInvariant() = childName).FirstOrDefault()
+    End Function
+
+    Private Function FindParent(allTags As List(Of Tag), parentName As String) As Object
+        Return allTags.Where(Function(x) x.Description.ToLowerInvariant() = parentName).FirstOrDefault()
+    End Function
 
     Public Sub SignstoDictionaryInsert(ByVal signs As ICollection(Of SwSign), ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
         Dim dictionaryTa As New DictionaryTableAdapter

@@ -157,9 +157,23 @@ Public NotInheritable Class SpmlConverter
 
         textRows = entryRow.GettextRows
         For Each txt In textRows
+            If (txt.text_Text.ToLowerInvariant().Contains("SWS-Tag".ToLowerInvariant())) Then
+                newSign.Tag = GetTags(UnEncodeXml(txt.text_Text))
+            End If
             newSign.PuddleText.Add(UnEncodeXml(txt.text_Text))
         Next
         Return newSign
+    End Function
+
+    Private Shared Function GetTags(text As String) As String
+        If text.ToLowerInvariant().Contains("SWS-Tag".ToLowerInvariant()) And text.Contains("[") And text.Contains("]") Then
+            Dim startIndex = text.IndexOf("[")
+            Dim endIndex = text.IndexOf("]")
+
+            Return text.Substring(startIndex + 1, endIndex - startIndex - 1)
+        End If
+
+
     End Function
     'Simplify two function that take idSignlanguage as Int or as String
     Public Shared Function FswtoSwSign(ByVal fsw As String, ByVal idSignLanguage As Integer, ByVal idCulture As Integer) As SwSign

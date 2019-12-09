@@ -39,8 +39,8 @@ Public Class DbTags
 
     Private Shared Function GetTagValues(ByVal added As List(Of ExpandoObject)) As List(Of List(Of String))
 
-        Return (From expandoObject In added Select row = TryCast(expandoObject, IDictionary(Of String, Object)) _
-                Select New List(Of String)() From { _
+        Return (From expandoObject In added Select row = TryCast(expandoObject, IDictionary(Of String, Object))
+                Select New List(Of String)() From {
                     NullifEmpty(row.Item("IdTag")),
                     row.Item("Description"),
                     row.Item("Abbreviation"),
