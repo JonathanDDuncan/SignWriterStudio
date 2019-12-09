@@ -141,15 +141,11 @@ Public NotInheritable Class SWDict
         Dim trans As SQLiteTransaction = GetNewDictionaryTransaction(conn)
         Using conn
             Try
-
                 Dim I As Integer
                 Dim count As Integer = signs.Count
                 Dim dictionaryGlossTa As New DictionaryGlossTableAdapter
-
                 dictionaryGlossTa.AssignConnection(conn, trans)
-
                 Dim dictionaryId As Long
-
                 For Each sign As SwSign In signs
                     I += 1
                     dictionaryId = SaveSWSign(sign, conn, trans)
@@ -184,14 +180,11 @@ Public NotInheritable Class SWDict
             }
                 Id = CType(dictionaryTa.GetIDbyGUID(sign.SignWriterGuid), Long)
             End Using
-            SaveTags1(allTags, Id, TryCast(sign.Tag, String))
+            allTags = SaveTags1(allTags, Id, TryCast(sign.Tag, String))
         Next
 
     End Sub
-    Private Sub SaveTags1(allTags As List(Of Tag), dictionaryId As Long, tagsStr As String)
-
-
-
+    Private Function SaveTags1(allTags As List(Of Tag), dictionaryId As Long, tagsStr As String) As List(Of Tag)
         If tagsStr IsNot Nothing Then
             Dim tags = tagsStr.Split(",")
             If tags.Length > 0 Then
@@ -222,8 +215,8 @@ Public NotInheritable Class SWDict
                 Next
             End If
         End If
-
-    End Sub
+        Return allTags
+    End Function
 
     Private Sub AddTag(dictionaryId As Long, childGuid As Guid)
         Dim path = DictionaryFilename
@@ -274,15 +267,15 @@ Public NotInheritable Class SWDict
     End Function
 
     Private Function GetChildren(allTags As List(Of Tag), parentGuid As Guid) As List(Of Tag)
-        Return allTags.Where(Function(x) x.IdTag = parentGuid).ToList()
+        Return allTags.Where(Function(x) x.Parent = parentGuid).ToList()
     End Function
 
-    Private Function FindChild(children As List(Of Tag), childName As String) As Object
-        Return children.Where(Function(x) x.Description.ToLowerInvariant() = childName).FirstOrDefault()
+    Private Function FindChild(children As List(Of Tag), childName As String) As Tag
+        Return children.Where(Function(x) x.Description.ToLowerInvariant() = childName.ToLowerInvariant()).FirstOrDefault()
     End Function
 
-    Private Function FindParent(allTags As List(Of Tag), parentName As String) As Object
-        Return allTags.Where(Function(x) x.Description.ToLowerInvariant() = parentName).FirstOrDefault()
+    Private Function FindParent(allTags As List(Of Tag), parentName As String) As Tag
+        Return allTags.Where(Function(x) x.Description.ToLowerInvariant() = parentName.ToLowerInvariant()).FirstOrDefault()
     End Function
 
     Public Sub SignstoDictionaryInsert(ByVal signs As ICollection(Of SwSign), ByRef conn As SQLiteConnection, ByRef trans As SQLiteTransaction)
