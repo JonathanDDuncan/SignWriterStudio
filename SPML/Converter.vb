@@ -694,7 +694,9 @@ Public NotInheritable Class SpmlConverter
                     Dim tagsString = "SWS-TAG[" & String.Join(",", tagsNames) & "]"
                     SpmlWrite(CreateTag("text", tagsString))
                 End If
-                SpmlWrite(CreateTag("png", Trim(dictionarySign.PuddlePng)))
+                If row.Field(Of Byte())("Photo") IsNot Nothing Then
+                    SpmlWrite(CreateTagNormal("png", Convert.ToBase64String(row.Field(Of Byte())("Photo"))))
+                End If
                 SpmlWrite(CreateTag("svg", Trim(dictionarySign.PuddleSvg)))
                 SpmlWrite(CreateTag("video", Trim(dictionarySign.PuddleVideoLink)))
                 SpmlWrite(CreateTag("src", Trim(dictionarySign.SWritingSource)))
